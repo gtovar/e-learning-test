@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <dbconnection dbname="unnmlg" username="peter" userpassword="pk1187kp11">
+  </dbconnection>
+  <dbtables>
+    <department tablename="Department" id="ID" title="Title">
+    </department>
+  </dbtables>
+</config>
