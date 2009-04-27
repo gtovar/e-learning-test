@@ -1,0 +1,44 @@
+﻿.contentPlace
+{
+    height: 239px;
+    width: 100%;
+    vertical-align: top;
+}
+.menu
+{
+    height: 239px;
+    width: 74px;
+    width: 429px;
+    vertical-align: top;
+}
+.line
+{
+    height: 2px;
+    background-color: Gray;
+}
+.foot
+{
+    text-align: center;
+}
+
+.hideMessage
+{
+    display: none;
+    font-weight: bold;
+    font-size: large;
+    color: #993300;
+}
+.showMessage
+{
+    display: inline;
+    font-weight: bold;
+    font-size: large;
+    color: #993300;
+}
+
+.loginStatus
+{
+    float: right;
+    color: White;
+    font-weight: bold;
+}

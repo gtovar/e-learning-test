@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="Default.aspx" title="Главная"  description="">
+    <siteMapNode url="Login.aspx" title="Авторизация"  description="" />
+    <siteMapNode url="Register.aspx" title="Регистрация"  description="" />
+    <siteMapNode url="Admin/Admin.aspx" title="Администрирование" >
+      <siteMapNode url="Admin/ManageAccounts.aspx" title="Управление пользователями" />
+      <siteMapNode url="Admin/Departments/ManageDepartments.aspx" title="Управление факультетами" />
+      <siteMapNode url="Admin/Chairs/ManageChairs.aspx" title="Управление кафедрами" />
+      <siteMapNode url="Admin/Groups/ManageGroups.aspx" title="Управление группами" />
+      <siteMapNode url="Admin/Disciplines/ManageDisciplines.aspx" title="Управление дисциплинами" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>
