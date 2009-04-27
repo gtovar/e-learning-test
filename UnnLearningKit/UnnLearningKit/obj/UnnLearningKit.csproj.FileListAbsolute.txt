@@ -8,3 +8,5 @@ C:\Разное\MLG\e-learning-test\UnnLearningKit\UnnLearningKit\obj\Debug\UnnL
 C:\Разное\MLG\e-learning-test\UnnLearningKit\UnnLearningKit\obj\Debug\UnnLearningKit.TestForm.resources
 C:\Разное\MLG\e-learning-test\UnnLearningKit\UnnLearningKit\bin\Debug\ULKLibs.dll
 C:\Разное\MLG\e-learning-test\UnnLearningKit\UnnLearningKit\bin\Debug\ULKLibs.pdb
+C:\MLG\e-learning-test\UnnLearningKit\UnnLearningKit\obj\Debug\UnnLearningKit.exe
+C:\MLG\e-learning-test\UnnLearningKit\UnnLearningKit\obj\Debug\UnnLearningKit.pdb
