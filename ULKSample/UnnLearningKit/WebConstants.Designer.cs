@@ -61,6 +61,24 @@ namespace UnnLearningKit {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на AddGroup.aspx?DepartmentID=.
+        /// </summary>
+        internal static string AddGroupUrl {
+            get {
+                return ResourceManager.GetString("AddGroupUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ManageGroups.aspx?DepartmentID=.
+        /// </summary>
+        internal static string GroupsUrl {
+            get {
+                return ResourceManager.GetString("GroupsUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на hideMessage.
         /// </summary>
         internal static string HideMessageCssClass {

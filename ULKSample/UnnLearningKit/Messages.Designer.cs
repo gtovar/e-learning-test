@@ -70,6 +70,24 @@ namespace UnnLearningKit {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Проверьте корректность заполняемых полей.
+        /// </summary>
+        internal static string AddGroupErrors {
+            get {
+                return ResourceManager.GetString("AddGroupErrors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Группа добавлена успешно!.
+        /// </summary>
+        internal static string AddGroupSuccessfully {
+            get {
+                return ResourceManager.GetString("AddGroupSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на .
         /// </summary>
         internal static string EmptyMessage {

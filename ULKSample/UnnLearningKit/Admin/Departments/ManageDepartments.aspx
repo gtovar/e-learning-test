@@ -33,12 +33,9 @@
                     </asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:HyperLinkField HeaderText="Операции" NavigateUrl="~/Admin/Chairs/ManageChairs.aspx"
-                Text="Добавить кафедру" />
-            <asp:HyperLinkField HeaderText="Операции" NavigateUrl="~/Admin/Disciplines/ManageDisciplines.aspx"
-                Text="Добавить дисциплину" />
-            <asp:HyperLinkField HeaderText="Операции" NavigateUrl="~/Admin/Groups/ManageGroups.aspx"
-                Text="Добавить группу" />
+            <asp:HyperLinkField DataNavigateUrlFields="id" 
+                DataNavigateUrlFormatString="~/Admin/Groups/ManageGroups.aspx?DepartmentID={0}" 
+                HeaderText="Просмотр групп" Text="Группы" />
         </Columns>
         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />

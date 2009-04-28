@@ -68,6 +68,8 @@
     <Compile Include="IDisciplineTableImp.cs" />
     <Compile Include="IGroupTable.cs" />
     <Compile Include="IGroupTableImp.cs" />
+    <Compile Include="IStudentTable.cs" />
+    <Compile Include="IStudentTableImp.cs" />
     <Compile Include="ITable.cs" />
     <Compile Include="LocalChairTable.cs" />
     <Compile Include="LocalDepartmentTable.cs" />
@@ -76,6 +78,9 @@
     <Compile Include="LocalGroupTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Obj.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
