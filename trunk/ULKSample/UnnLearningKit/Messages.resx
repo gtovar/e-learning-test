@@ -120,6 +120,12 @@
   <data name="AddDepartmentSuccessfully" xml:space="preserve">
     <value>Факультет добавлен успешно!</value>
   </data>
+  <data name="AddGroupErrors" xml:space="preserve">
+    <value>Проверьте корректность заполняемых полей</value>
+  </data>
+  <data name="AddGroupSuccessfully" xml:space="preserve">
+    <value>Группа добавлена успешно!</value>
+  </data>
   <data name="EmptyMessage" xml:space="preserve">
     <value />
   </data>

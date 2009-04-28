@@ -87,6 +87,13 @@
     <Compile Include="Admin\Disciplines\ManageDisciplines.aspx.designer.cs">
       <DependentUpon>ManageDisciplines.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Groups\AddGroup.aspx.cs">
+      <DependentUpon>AddGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Groups\AddGroup.aspx.designer.cs">
+      <DependentUpon>AddGroup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Groups\ManageGroups.aspx.cs">
       <DependentUpon>ManageGroups.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,9 +185,11 @@
   <ItemGroup>
     <Content Include="Admin\Chairs\ManageChairs.aspx" />
     <Content Include="Admin\Disciplines\ManageDisciplines.aspx" />
+    <Content Include="Admin\Groups\AddGroup.aspx" />
     <Content Include="Admin\Groups\ManageGroups.aspx" />
     <Content Include="Admin\Departments\ManageDepartments.aspx" />
     <Content Include="App_Themes\Default\DefaultScreen.css" />
+    <Content Include="js\Lib.js" />
     <Content Include="Users\ChangePassword.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="Web.sitemap" />
