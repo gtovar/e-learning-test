@@ -14,6 +14,33 @@ namespace UnnLearningKit.Admin {
     public partial class ManageAccounts {
         
         /// <summary>
+        /// rolesList элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList rolesList;
+        
+        /// <summary>
+        /// CreateAccount элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CreateAccount;
+        
+        /// <summary>
+        /// ObjectRolesDataSource элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectRolesDataSource;
+        
+        /// <summary>
         /// viewAccounts элемент управления.
         /// </summary>
         /// <remarks>

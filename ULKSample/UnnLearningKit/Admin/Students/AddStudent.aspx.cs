@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using UnnLearningKitLibrary;
 using UnnLearningKit.App_Code.dataSetTableAdapters;
 using UnnLearningKit.App_Code;
+using UnnLearningKit.Code;
 
 namespace UnnLearningKit.Admin.Students
 {
@@ -17,10 +18,6 @@ namespace UnnLearningKit.Admin.Students
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void departmentsList_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
 
         protected void groupsList_SelectedIndexChanged(object sender, EventArgs e)
@@ -40,8 +37,8 @@ namespace UnnLearningKit.Admin.Students
         protected void createStudent_CreatedUser(object sender, EventArgs e)
         {
             string userId = GetCreatedUserId();
-            string roleId = GetUsersGroupRoleId();
-            AddUserInRoles(userId, roleId);
+            string roleId = AspNet_Users.GetUsersGroupRoleId();
+            AspNet_Users.AddUserInRoles(userId, roleId);
             AddStudentToDB();
         }
 
@@ -53,23 +50,6 @@ namespace UnnLearningKit.Admin.Students
             string user_id = usersTable.Rows[0].ItemArray[0].ToString();
 
             return user_id;
-        }
-
-        protected string GetUsersGroupRoleId()
-        {
-            RolesTableAdapter rolesAdapter = new RolesTableAdapter();
-            dataSet.RolesDataTable rolesTable = rolesAdapter.GetRoleByRoleName(WebConstants.UsersGroupRoleName);
-            string role_id = rolesTable.Rows[0].ItemArray[0].ToString();
-
-            return role_id;
-        }
-
-        protected void AddUserInRoles(string userId, string roleId)
-        {
-            Guid userGuid = new Guid(userId);
-            Guid roleGuid = new Guid(roleId);
-            UsersInRolesTableAdapter usersInRolesAdapter = new UsersInRolesTableAdapter();
-            usersInRolesAdapter.AddUsersInRoles(userGuid, roleGuid);
         }
 
         protected void AddStudentToDB()
@@ -110,17 +90,6 @@ namespace UnnLearningKit.Admin.Students
 
             table = new StudentTable();
             table.Add(new Student(Constants.FAKE_ID, group_id, name, login, email, description));
-
-        }
-
-        protected void redirectToAddStudent_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(WebConstants.AddStudentUrl + groupID);
-        }
-
-        protected void redirectToManageStudents_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(WebConstants.StudentsUrl + groupID);
         }
     }
 }

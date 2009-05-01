@@ -157,9 +157,11 @@
                         <tr>
                         <td colspan="2">
         <asp:Button ID="redirectToCreateAccount" runat="server" CssClass="button" 
-            onclick="redirectToCreateAccount_Click" Text="Добавить еще" />
+            Text="Добавить еще" 
+                                PostBackUrl="~/Admin/Users/CreateAccount.aspx" />
 &nbsp;<asp:Button ID="redirectToManageAccounts" runat="server" CssClass="button" 
-            Text="Перейти на управление учетными записями" onclick="redirectToManageAccounts_Click" />
+            Text="Перейти на управление учетными записями" 
+                                PostBackUrl="~/Admin/Users/ManageAccounts.aspx" />
         <br />
                         </td>
                         </tr>

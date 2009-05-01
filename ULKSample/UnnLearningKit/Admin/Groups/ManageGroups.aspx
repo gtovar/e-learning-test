@@ -8,8 +8,9 @@
         OnSelectedIndexChanged="departmentList_SelectedIndexChanged">
     </asp:DropDownList>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="addGroup" 
-        runat="server" Height="24px" onclick="addGroup_Click" Text="Добавить группу" 
-        Width="145px" CssClass="button" />
+        runat="server" Height="24px" Text="Добавить группу" 
+        Width="145px" CssClass="button" 
+        PostBackUrl="~/Admin/Groups/AddGroup.aspx" />
 &nbsp;<asp:ObjectDataSource ID="ObjectDepartmentsDataSource" runat="server" DeleteMethod="Delete"
         InsertMethod="Insert" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllDepartments"
         TypeName="dataSetTableAdapters.DepartmentTableAdapter" UpdateMethod="Update">

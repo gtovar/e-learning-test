@@ -42,17 +42,5 @@ namespace UnnLearningKit.Admin.Students
             {
             }
         }
-
-        protected void addStudent_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int groupId = Convert.ToInt32(groupsList.SelectedValue);
-                Response.Redirect(WebConstants.AddStudentUrl + groupId);
-            }
-            catch (Exception ex)
-            {
-            }
-        }
     }
 }

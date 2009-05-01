@@ -9,7 +9,8 @@
     
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:Button ID="addStudent" runat="server" Height="22px" 
-        onclick="addStudent_Click" Text="Добавить студента" CssClass="button" />
+        Text="Добавить студента" CssClass="button" 
+        PostBackUrl="~/Admin/Students/AddStudent.aspx" />
 &nbsp;<asp:ObjectDataSource ID="ObjectGroupsDataSource" runat="server" 
         OldValuesParameterFormatString="original_{0}" 
         SelectMethod="GetAllGroupsAtDepartmentByGroupId" 
