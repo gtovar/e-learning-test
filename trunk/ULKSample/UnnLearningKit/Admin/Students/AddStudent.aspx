@@ -130,8 +130,7 @@
                             <td>
                                 <asp:DropDownList ID="departmentsList" runat="server" 
                                     DataSourceID="ObjectDepartmentsDataSource" DataTextField="title" 
-                                    DataValueField="id" 
-                                    onselectedindexchanged="departmentsList_SelectedIndexChanged" 
+                                    DataValueField="id"
                                     AutoPostBack="True">
                                 </asp:DropDownList>
                                 <asp:ObjectDataSource ID="ObjectDepartmentsDataSource" runat="server" 
@@ -216,9 +215,9 @@
                         <tr>
                         <td colspan="2">
         <asp:Button ID="redirectToAddStudent" runat="server" CssClass="button" 
-            onclick="redirectToAddStudent_Click" Text="Добавить еще" />
+            Text="Добавить еще" PostBackUrl="~/Admin/Students/AddStudent.aspx" />
 &nbsp;<asp:Button ID="redirectToManageStudents" runat="server" CssClass="button" 
-            Text="Перейти на управление студентами" onclick="redirectToManageStudents_Click" />
+            Text="Перейти на управление студентами" PostBackUrl="~/Admin/Students/ManageStudents.aspx" />
         <br />
                         </td>
                         </tr>

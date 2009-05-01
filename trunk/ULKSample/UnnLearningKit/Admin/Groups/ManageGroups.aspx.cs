@@ -41,17 +41,5 @@ namespace UnnLearningKit.Admin.Groups
             {
             }
         }
-
-        protected void addGroup_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int departmentID = Convert.ToInt32(departmentsList.SelectedValue);
-                Response.Redirect(WebConstants.AddGroupUrl + departmentID);
-            }
-            catch (Exception ex)
-            {
-            }
-        }
     }
 }

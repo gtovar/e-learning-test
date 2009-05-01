@@ -8,10 +8,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UnnLearningKit.Admin.Students {
+namespace UnnLearningKit.Admin.Users {
     
     
-    public partial class EditStudent {
+    public partial class EditAccount {
+        
+        /// <summary>
+        /// titleText элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label titleText;
         
         /// <summary>
         /// loginTitle элемент управления.
@@ -39,33 +48,6 @@ namespace UnnLearningKit.Admin.Students {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator loginValidation;
-        
-        /// <summary>
-        /// nameTitle элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label nameTitle;
-        
-        /// <summary>
-        /// nameValue элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox nameValue;
-        
-        /// <summary>
-        /// nameValidation элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator nameValidation;
         
         /// <summary>
         /// emailTitle элемент управления.
@@ -104,93 +86,57 @@ namespace UnnLearningKit.Admin.Students {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator emailFormatValidation;
         
         /// <summary>
-        /// departmentTitle элемент управления.
+        /// roleTitle элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label departmentTitle;
+        protected global::System.Web.UI.WebControls.Label roleTitle;
         
         /// <summary>
-        /// departmentsList элемент управления.
+        /// rolesList элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList departmentsList;
+        protected global::System.Web.UI.WebControls.DropDownList rolesList;
         
         /// <summary>
-        /// ObjectDepartmentsDataSource элемент управления.
+        /// ObjectRolesDataSource элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDepartmentsDataSource;
+        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectRolesDataSource;
         
         /// <summary>
-        /// groupTitle элемент управления.
+        /// editAccountValidationSummary элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label groupTitle;
+        protected global::System.Web.UI.WebControls.ValidationSummary editAccountValidationSummary;
         
         /// <summary>
-        /// groupsList элемент управления.
+        /// saveAccount элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList groupsList;
+        protected global::System.Web.UI.WebControls.Button saveAccount;
         
         /// <summary>
-        /// ObjectGroupsDataSource элемент управления.
+        /// cancelEditAccount элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectGroupsDataSource;
-        
-        /// <summary>
-        /// editStudentValidationSummary элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary editStudentValidationSummary;
-        
-        /// <summary>
-        /// descriptionTitle элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label descriptionTitle;
-        
-        /// <summary>
-        /// descriptionValue элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox descriptionValue;
-        
-        /// <summary>
-        /// saveStudent элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button saveStudent;
+        protected global::System.Web.UI.WebControls.Button cancelEditAccount;
     }
 }

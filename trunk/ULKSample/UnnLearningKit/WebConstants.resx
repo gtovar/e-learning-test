@@ -126,8 +126,14 @@
   <data name="CreateAccountUrl" xml:space="preserve">
     <value>CreateAccount.aspx</value>
   </data>
+  <data name="DeleteAccountResultUrl" xml:space="preserve">
+    <value>DeleteAccountResult.aspx</value>
+  </data>
   <data name="DeleteStudentResultUrl" xml:space="preserve">
     <value>DeleteStudentResult.aspx</value>
+  </data>
+  <data name="EditAccountResultUrl" xml:space="preserve">
+    <value>EditAccountResult.aspx</value>
   </data>
   <data name="EditStudentResultUrl" xml:space="preserve">
     <value>EditStudentResult.aspx</value>

@@ -129,6 +129,34 @@
     <Compile Include="Admin\Students\EditStudentResult.aspx.designer.cs">
       <DependentUpon>EditStudentResult.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Users\DeleteAccount.aspx.cs">
+      <DependentUpon>DeleteAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\DeleteAccount.aspx.designer.cs">
+      <DependentUpon>DeleteAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\DeleteAccountResult.aspx.cs">
+      <DependentUpon>DeleteAccountResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\DeleteAccountResult.aspx.designer.cs">
+      <DependentUpon>DeleteAccountResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\EditAccount.aspx.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\EditAccount.aspx.designer.cs">
+      <DependentUpon>EditAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users\EditAccountResult.aspx.cs">
+      <DependentUpon>EditAccountResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users\EditAccountResult.aspx.designer.cs">
+      <DependentUpon>EditAccountResult.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Users\ManageAccounts.aspx.cs">
       <DependentUpon>ManageAccounts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -157,6 +185,7 @@
     <Compile Include="Admin\Students\ManageStudents.aspx.designer.cs">
       <DependentUpon>ManageStudents.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Code\AspNet_Users.cs" />
     <Compile Include="RegistratedUsers\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -236,6 +265,10 @@
     <Content Include="Admin\Students\EditStudent.aspx" />
     <Content Include="Admin\Students\EditStudentResult.aspx" />
     <Content Include="Admin\Students\ManageStudents.aspx" />
+    <Content Include="Admin\Users\DeleteAccount.aspx" />
+    <Content Include="Admin\Users\DeleteAccountResult.aspx" />
+    <Content Include="Admin\Users\EditAccount.aspx" />
+    <Content Include="Admin\Users\EditAccountResult.aspx" />
     <Content Include="App_Data\ASPNETDB.MDF">
     </Content>
     <Content Include="App_Data\aspnetdb_log.LDF">

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UnnLearningKit.App_Code.dataSetTableAdapters;
 using UnnLearningKit.App_Code;
+using UnnLearningKit.Code;
 
 namespace UnnLearningKit
 {
@@ -35,25 +36,7 @@ namespace UnnLearningKit
         {
             string userId = GetCreatedUserId();
             string roleId = GetChoosingRoleId();
-            AddUserInRoles(userId, roleId);
-        }
-
-        protected void AddUserInRoles(string userId, string roleId)
-        {
-            Guid userGuid = new Guid(userId);
-            Guid roleGuid = new Guid(roleId);
-            UsersInRolesTableAdapter usersInRolesAdapter = new UsersInRolesTableAdapter();
-            usersInRolesAdapter.AddUsersInRoles(userGuid, roleGuid);
-        }
-
-        protected void redirectToCreateAccount_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(WebConstants.CreateAccountUrl);
-        }
-
-        protected void redirectToManageAccounts_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(WebConstants.MangeAccountsUrl);
+            AspNet_Users.AddUserInRoles(userId, roleId);
         }
     }
 }

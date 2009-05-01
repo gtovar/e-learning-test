@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using UnnLearningKitLibrary;
 using UnnLearningKit.App_Code.dataSetTableAdapters;
 using UnnLearningKit.App_Code;
+using UnnLearningKit.Code;
 
 namespace UnnLearningKit.Admin.Students
 {
@@ -34,36 +35,13 @@ namespace UnnLearningKit.Admin.Students
                         nameValue.Text = student.Name;
                         descriptionValue.Text = student.Description;
 
-                        userId = GetUserId(student.Login);
+                        userId = AspNet_Users.GetUserId(student.Login);
                     }
                     catch (Exception ex)
                     {
                     }
                 }
             }
-        }
-
-        protected string GetUserId(string userName)
-        {
-            UsersTableAdapter userAdapter = new UsersTableAdapter();
-            dataSet.UsersDataTable usersTable = userAdapter.GetUserId(userName);
-            string user_id = usersTable.Rows[0].ItemArray[0].ToString();
-
-            return user_id;
-        }
-
-        protected void UpdateUserName(string userName, string userId)
-        {
-            Guid userGuid = new Guid(userId);
-            UsersTableAdapter userAdapter = new UsersTableAdapter();
-            userAdapter.UpdateUserName(userName, userName.ToLower(), userGuid);
-        }
-
-        protected void UpdateUserEmail(string userEmail, string userId)
-        {
-            Guid userGuid = new Guid(userId);
-            MembershipTableAdapter membershipAdapter = new MembershipTableAdapter();
-            membershipAdapter.UpdateEmail(userEmail, userEmail.ToLower(), userGuid);
         }
 
         protected void UpdateStudent()
@@ -82,8 +60,8 @@ namespace UnnLearningKit.Admin.Students
             {
             }
 
-            UpdateUserEmail(student.Email, userId);
-            UpdateUserName(student.Login, userId);
+            AspNet_Users.UpdateUserEmail(userId, student.Email);
+            AspNet_Users.UpdateUserName(userId, student.Login);
 
             table = new StudentTable();
             table.Update(student);

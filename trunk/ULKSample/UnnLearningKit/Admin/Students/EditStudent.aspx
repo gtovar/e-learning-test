@@ -12,28 +12,29 @@
         <br />
         <asp:TextBox ID="loginValue" runat="server" Width="226px"></asp:TextBox>
         <asp:RequiredFieldValidator ID="loginValidation" runat="server" 
-            ControlToValidate="loginValue" ErrorMessage="Обязательное поле" 
-            SetFocusOnError="True"></asp:RequiredFieldValidator>
+            ControlToValidate="loginValue" ErrorMessage="Логин" 
+            SetFocusOnError="True" CssClass="validation" Display="Dynamic">Логин не должен быть пустым</asp:RequiredFieldValidator>
         <br />
         <br />
         <asp:Label ID="nameTitle" runat="server" Text="Полное имя*:"></asp:Label>
         <br />
         <asp:TextBox ID="nameValue" runat="server" Width="226px"></asp:TextBox>
         <asp:RequiredFieldValidator ID="nameValidation" runat="server" 
-            ControlToValidate="nameValue" ErrorMessage="Обязательное поле" 
-            SetFocusOnError="True"></asp:RequiredFieldValidator>
+            ControlToValidate="nameValue" ErrorMessage="Полное имя" 
+            SetFocusOnError="True" CssClass="validation" Display="Dynamic">Имя не должно быть пустым</asp:RequiredFieldValidator>
         <br />
         <br />
         <asp:Label ID="emailTitle" runat="server" Text="Email*:"></asp:Label>
         <br />
         <asp:TextBox ID="emailValue" runat="server" Width="226px"></asp:TextBox>
         <asp:RequiredFieldValidator ID="emailValidation" runat="server" 
-            ControlToValidate="emailValue" ErrorMessage="Обязательное поле" 
-            SetFocusOnError="True"></asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator ID="emailFormatValidation" runat="server" 
-            ControlToValidate="emailValue" ErrorMessage="Неверный формат" 
+            ControlToValidate="emailValue" ErrorMessage="Email" 
+            SetFocusOnError="True" CssClass="validation" Display="Dynamic"></asp:RequiredFieldValidator>
+        &nbsp;<asp:RegularExpressionValidator ID="emailFormatValidation" runat="server" 
+            ControlToValidate="emailValue" ErrorMessage="Email" 
             SetFocusOnError="True" 
-            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+            CssClass="validation" Display="Dynamic">Формат email&#39;а должен соответствовать формату электронной почты</asp:RegularExpressionValidator>
         <br />
         <br />
         <asp:Label ID="departmentTitle" runat="server" Text="Факультет*:"></asp:Label>
@@ -75,6 +76,8 @@
             </SelectParameters>
         </asp:ObjectDataSource>
         <br />
+        <asp:ValidationSummary ID="editStudentValidationSummary" runat="server" 
+            CssClass="validation" HeaderText="Ошибки при заполнении следующих полей" />
         <br />
         <asp:Label ID="descriptionTitle" runat="server" Text="Характеристика:"></asp:Label>
         <br />

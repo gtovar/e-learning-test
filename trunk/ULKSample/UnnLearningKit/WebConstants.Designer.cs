@@ -88,11 +88,29 @@ namespace UnnLearningKit {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на DeleteAccountResult.aspx.
+        /// </summary>
+        internal static string DeleteAccountResultUrl {
+            get {
+                return ResourceManager.GetString("DeleteAccountResultUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на DeleteStudentResult.aspx.
         /// </summary>
         internal static string DeleteStudentResultUrl {
             get {
                 return ResourceManager.GetString("DeleteStudentResultUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на EditAccountResult.aspx.
+        /// </summary>
+        internal static string EditAccountResultUrl {
+            get {
+                return ResourceManager.GetString("EditAccountResultUrl", resourceCulture);
             }
         }
         
