@@ -3,3 +3,8 @@ C:\Documents and Settings\Администратор\Мои документы\V
 C:\Documents and Settings\Администратор\Мои документы\Visual Studio 2008\Projects\ULKSample\UnnLearningKitLibrary\bin\Debug\UnnLearningKitLibrary.pdb
 C:\Documents and Settings\Администратор\Мои документы\Visual Studio 2008\Projects\ULKSample\UnnLearningKitLibrary\obj\Debug\UnnLearningKitLibrary.dll
 C:\Documents and Settings\Администратор\Мои документы\Visual Studio 2008\Projects\ULKSample\UnnLearningKitLibrary\obj\Debug\UnnLearningKitLibrary.pdb
+C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\obj\Debug\ResolveAssemblyReference.cache
+C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\obj\Debug\UnnLearningKitLibrary.dll
+C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\obj\Debug\UnnLearningKitLibrary.pdb
+C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\bin\Debug\UnnLearningKitLibrary.dll
+C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\bin\Debug\UnnLearningKitLibrary.pdb

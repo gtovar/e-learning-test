@@ -14,12 +14,12 @@ namespace UnnLearningKit {
     public partial class Login {
         
         /// <summary>
-        /// Login1 элемент управления.
+        /// loginForm элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Login Login1;
+        protected global::System.Web.UI.WebControls.Login loginForm;
     }
 }

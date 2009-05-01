@@ -9,11 +9,14 @@ namespace UnnLearningKitLibrary
     {
         protected int _id;
 
+        public Obj() { }
+
         public Obj(int id) { _id = id; }
 
         public int Id
         {
             get { return _id; }
+            set { _id = value; }
         }
     }
 }

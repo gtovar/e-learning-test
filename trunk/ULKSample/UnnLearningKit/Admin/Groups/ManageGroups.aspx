@@ -3,12 +3,13 @@
 
 <asp:Content ID="ManageGroupsPage" ContentPlaceHolderID="contentPlaceHolder" runat="server">
     <br />
-    <asp:DropDownList ID="departmentList" runat="server" AutoPostBack="True" DataSourceID="ObjectDepartmentsDataSource"
-        DataTextField="title" DataValueField="id" OnSelectedIndexChanged="departmentList_SelectedIndexChanged">
+    <asp:DropDownList ID="departmentsList" runat="server" AutoPostBack="True" DataSourceID="ObjectDepartmentsDataSource"
+        DataTextField="title" DataValueField="id" 
+        OnSelectedIndexChanged="departmentList_SelectedIndexChanged">
     </asp:DropDownList>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="addGroup" 
         runat="server" Height="24px" onclick="addGroup_Click" Text="Добавить группу" 
-        Width="145px" />
+        Width="145px" CssClass="button" />
 &nbsp;<asp:ObjectDataSource ID="ObjectDepartmentsDataSource" runat="server" DeleteMethod="Delete"
         InsertMethod="Insert" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllDepartments"
         TypeName="dataSetTableAdapters.DepartmentTableAdapter" UpdateMethod="Update">
@@ -43,6 +44,9 @@
                     </asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:HyperLinkField DataNavigateUrlFields="id" 
+                DataNavigateUrlFormatString="~/Admin/Students/ManageStudents.aspx?GroupID={0}" 
+                HeaderText="Просмотр группы" Text="Студенты" />
         </Columns>
         <FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
         <PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />

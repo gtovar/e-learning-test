@@ -3,19 +3,18 @@
 
 <asp:Content ID="ManageDepartmentsPage" ContentPlaceHolderID="contentPlaceHolder"
     runat="server">
-    <h2>
-        Добавить факультет</h2>
     <div>
         <p>
         <asp:Label ID="departmentStatus" runat="server" CssClass="hideMessage" />
         </p>
+        <asp:Label ID="departmentTextLabel" runat="server">Название факультета*:</asp:Label>
+        <br />
         <asp:TextBox ID="departmentTitle" runat="server" Width="306px"></asp:TextBox>
         &nbsp;<asp:Button ID="addDepartment" runat="server" OnClick="addDepartment_Click"
             Text="Добавить" />
         <br />
+        <br />
     </div>
-    <h2>
-        Все факультеты</h2>
     <asp:GridView ID="viewDepartments" runat="server" AllowPaging="True" AllowSorting="True"
         AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None"
         BorderWidth="1px" CellPadding="3" DataKeyNames="id" DataSourceID="objectDepartmentDataSource"

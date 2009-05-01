@@ -7,6 +7,5 @@ namespace UnnLearningKitLibrary
 {
     interface IStudentTable : ITable
     {
-        List<Obj> GetAllStudentByGroupId(int groupId);
     }
 }

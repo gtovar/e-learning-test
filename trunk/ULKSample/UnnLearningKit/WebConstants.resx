@@ -120,13 +120,49 @@
   <data name="AddGroupUrl" xml:space="preserve">
     <value>AddGroup.aspx?DepartmentID=</value>
   </data>
+  <data name="AddStudentUrl" xml:space="preserve">
+    <value>AddStudent.aspx?GroupID=</value>
+  </data>
+  <data name="CreateAccountUrl" xml:space="preserve">
+    <value>CreateAccount.aspx</value>
+  </data>
+  <data name="DeleteStudentResultUrl" xml:space="preserve">
+    <value>DeleteStudentResult.aspx</value>
+  </data>
+  <data name="EditStudentResultUrl" xml:space="preserve">
+    <value>EditStudentResult.aspx</value>
+  </data>
+  <data name="FullUserNameControlName" xml:space="preserve">
+    <value>FullUserName</value>
+  </data>
+  <data name="GroupsListControlName" xml:space="preserve">
+    <value>groupsList</value>
+  </data>
   <data name="GroupsUrl" xml:space="preserve">
     <value>ManageGroups.aspx?DepartmentID=</value>
   </data>
   <data name="HideMessageCssClass" xml:space="preserve">
     <value>hideMessage</value>
   </data>
+  <data name="MangeAccountsUrl" xml:space="preserve">
+    <value>ManageAccounts.aspx</value>
+  </data>
+  <data name="RolesListControlName" xml:space="preserve">
+    <value>rolesList</value>
+  </data>
+  <data name="SecretAnswerControlName" xml:space="preserve">
+    <value>Answer</value>
+  </data>
   <data name="ShowMessageCssClass" xml:space="preserve">
     <value>showMessage</value>
+  </data>
+  <data name="StudentsUrl" xml:space="preserve">
+    <value>ManageStudents.aspx?GroupID=</value>
+  </data>
+  <data name="UserDescriptionControlName" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="UsersGroupRoleName" xml:space="preserve">
+    <value>Пользователь</value>
   </data>
 </root>

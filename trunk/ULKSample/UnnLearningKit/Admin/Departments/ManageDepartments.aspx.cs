@@ -21,7 +21,7 @@ namespace UnnLearningKit.Admin
         protected void addDepartment_Click(object sender, EventArgs e)
         {
             table = new DepartmentTable();
-            if (String.Empty != departmentTitle.Text)
+            if (!String.IsNullOrEmpty(departmentTitle.Text))
             {
                 table.Add(new Department(Constants.FAKE_ID, departmentTitle.Text));
                 

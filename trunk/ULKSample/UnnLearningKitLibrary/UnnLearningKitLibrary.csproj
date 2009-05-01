@@ -76,8 +76,11 @@
     <Compile Include="LocalDisciplieTable.cs" />
     <Compile Include="LocalDisciplinePartTable.cs" />
     <Compile Include="LocalGroupTable.cs" />
+    <Compile Include="LocalStudentTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Obj.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="StudentTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />

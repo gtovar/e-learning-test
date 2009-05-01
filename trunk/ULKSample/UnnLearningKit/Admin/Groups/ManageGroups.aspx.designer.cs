@@ -14,13 +14,13 @@ namespace UnnLearningKit.Admin.Groups {
     public partial class ManageGroups {
         
         /// <summary>
-        /// departmentList элемент управления.
+        /// departmentsList элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList departmentList;
+        protected global::System.Web.UI.WebControls.DropDownList departmentsList;
         
         /// <summary>
         /// addGroup элемент управления.

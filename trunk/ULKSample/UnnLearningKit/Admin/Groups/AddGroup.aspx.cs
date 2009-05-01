@@ -16,10 +16,16 @@ namespace UnnLearningKit.Admin.Groups
             groupStatus.Text = Messages.EmptyMessage;
             groupStatus.CssClass = WebConstants.HideMessageCssClass;
 
-            string departmentId = Request.Params["DepartmentID"];
             try
             {
-                departmentList.SelectedIndex = Convert.ToInt32(departmentId) - 1;
+                int departmentId = Convert.ToInt32(Request.Params["DepartmentID"]);
+                for (int i = 0; i < departmentsList.Items.Count; i++)
+                {
+                    if (Convert.ToInt32(departmentsList.Items[i].Value) == departmentId)
+                    {
+                        departmentsList.SelectedIndex = i;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -28,27 +34,24 @@ namespace UnnLearningKit.Admin.Groups
 
         protected void saveGroup_Click(object sender, EventArgs e)
         {
-            table = new GroupTable();
-
+            int departmentId = Constants.FAKE_ID;
+            try
+            {
+                departmentId = Convert.ToInt32(departmentsList.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+            }
             string title = titleValue.Text;
-            string description = descriptionValue.Text;
-            int departmentId = departmentList.SelectedIndex + 1;
-
-            if (String.Empty == title)
+            if (String.IsNullOrEmpty(title))
             {
                 groupStatus.Text = Messages.AddGroupErrors;
                 groupStatus.CssClass = WebConstants.ShowMessageCssClass;
                 return;
             }
-
-            if (String.Empty == description)
-            {
-                table.Add(new Group(Constants.FAKE_ID, departmentId, title));
-            }
-            else
-            {
-                table.Add(new Group(Constants.FAKE_ID, departmentId, title, description));
-            }
+            string description = descriptionValue.Text;
+            table = new GroupTable();
+            table.Add(new Group(Constants.FAKE_ID, departmentId, title, description));
 
             groupStatus.Text = Messages.AddGroupSuccessfully;
             groupStatus.CssClass = WebConstants.ShowMessageCssClass;
@@ -59,7 +62,14 @@ namespace UnnLearningKit.Admin.Groups
 
         protected void cancelSaveGroup_Click(object sender, EventArgs e)
         {
-            int departmentId = departmentList.SelectedIndex + 1;
+            int departmentId = Constants.FAKE_ID;
+            try
+            {
+                departmentId = Convert.ToInt32(departmentsList.SelectedValue);
+            }
+            catch (Exception ex)
+            {
+            }
             Response.Redirect(WebConstants.GroupsUrl + departmentId);
         }
     }

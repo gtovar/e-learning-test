@@ -70,6 +70,60 @@ namespace UnnLearningKit {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на AddStudent.aspx?GroupID=.
+        /// </summary>
+        internal static string AddStudentUrl {
+            get {
+                return ResourceManager.GetString("AddStudentUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на CreateAccount.aspx.
+        /// </summary>
+        internal static string CreateAccountUrl {
+            get {
+                return ResourceManager.GetString("CreateAccountUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на DeleteStudentResult.aspx.
+        /// </summary>
+        internal static string DeleteStudentResultUrl {
+            get {
+                return ResourceManager.GetString("DeleteStudentResultUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на EditStudentResult.aspx.
+        /// </summary>
+        internal static string EditStudentResultUrl {
+            get {
+                return ResourceManager.GetString("EditStudentResultUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FullUserName.
+        /// </summary>
+        internal static string FullUserNameControlName {
+            get {
+                return ResourceManager.GetString("FullUserNameControlName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на groupsList.
+        /// </summary>
+        internal static string GroupsListControlName {
+            get {
+                return ResourceManager.GetString("GroupsListControlName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на ManageGroups.aspx?DepartmentID=.
         /// </summary>
         internal static string GroupsUrl {
@@ -88,11 +142,65 @@ namespace UnnLearningKit {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на ManageAccounts.aspx.
+        /// </summary>
+        internal static string MangeAccountsUrl {
+            get {
+                return ResourceManager.GetString("MangeAccountsUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на rolesList.
+        /// </summary>
+        internal static string RolesListControlName {
+            get {
+                return ResourceManager.GetString("RolesListControlName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Answer.
+        /// </summary>
+        internal static string SecretAnswerControlName {
+            get {
+                return ResourceManager.GetString("SecretAnswerControlName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на showMessage.
         /// </summary>
         internal static string ShowMessageCssClass {
             get {
                 return ResourceManager.GetString("ShowMessageCssClass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ManageStudents.aspx?GroupID=.
+        /// </summary>
+        internal static string StudentsUrl {
+            get {
+                return ResourceManager.GetString("StudentsUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Description.
+        /// </summary>
+        internal static string UserDescriptionControlName {
+            get {
+                return ResourceManager.GetString("UserDescriptionControlName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пользователь.
+        /// </summary>
+        internal static string UsersGroupRoleName {
+            get {
+                return ResourceManager.GetString("UsersGroupRoleName", resourceCulture);
             }
         }
     }
