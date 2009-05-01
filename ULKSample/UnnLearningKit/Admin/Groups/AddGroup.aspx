@@ -14,7 +14,7 @@
         <br />
         <asp:Label ID="departmentText" runat="server" Text="Факультет*"></asp:Label>
         <br />
-        <asp:DropDownList ID="departmentList" runat="server" 
+        <asp:DropDownList ID="departmentsList" runat="server" 
             DataSourceID="ObjectDepartmentDataSource" DataTextField="title" 
             DataValueField="id">
         </asp:DropDownList>
@@ -42,10 +42,10 @@
         <br />
         <br />
         <asp:Button ID="saveGroup" runat="server" onclick="saveGroup_Click" 
-            Text="Сохранить" />
+            Text="Сохранить" CssClass="button" />
         &nbsp;
         <asp:Button ID="cancelSaveGroup" runat="server" onclick="cancelSaveGroup_Click" 
-            Text="Отмена" />
+            Text="Отмена" CssClass="button" />
         <br />
     </div>
 </asp:Content>

@@ -2,9 +2,10 @@
 <xs:schema id="dataSet" targetNamespace="http://tempuri.org/dataSet.xsd" xmlns:mstns="http://tempuri.org/dataSet.xsd" xmlns="http://tempuri.org/dataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="unnmlgConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="unnmlgConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.unnmlgConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="AspnetdbConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AspnetdbConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.AspnetdbConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DepartmentTableAdapter" GeneratorDataComponentClassName="DepartmentTableAdapter" Name="Department" UserDataComponentName="DepartmentTableAdapter">
@@ -79,7 +80,7 @@ WHERE     (department_id = @department_id)</CommandText>
               <Mapping SourceColumn="description" DataSetColumn="description" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="unnmlgConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteOnlyGroup" Modifier="Public" Name="DeleteOnlyGroup" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteOnlyGroup">
+              <DbSource ConnectionRef="unnmlgConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteOnlyGroup" Modifier="Public" Name="DeleteOnlyGroup" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteOnlyGroup">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM [Group]
@@ -90,7 +91,22 @@ WHERE     (id = @Original_id)</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="unnmlgConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="UpdateOnlyGroupContentField" Modifier="Public" Name="UpdateOnlyGroupContentField" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateOnlyGroupContentField">
+              <DbSource ConnectionRef="unnmlgConnectionString (Web.config)" DbObjectName="unnmlg.dbo.[Group]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetAllGroupsAtDepartmentByGroupId" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetAllGroupsAtDepartmentByGroupId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAllGroupsAtDepartmentByGroupId" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     id, title
+FROM         [Group]
+WHERE     (department_id =
+                          (SELECT     department_id
+                            FROM          [Group] AS Group_1
+                            WHERE      (id = @group_id)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="group_id" ColumnName="id" DataSourceName="unnmlg.dbo.[Group]" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@group_id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="unnmlgConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="UpdateOnlyGroupContentField" Modifier="Public" Name="UpdateOnlyGroupContentField" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="UpdateOnlyGroupContentField">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE    [Group]
@@ -103,6 +119,453 @@ WHERE     (id = @Original_id)</CommandText>
                     </Parameters>
                   </DbCommand>
                 </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StudentTableAdapter" GeneratorDataComponentClassName="StudentTableAdapter" Name="Student" UserDataComponentName="StudentTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="unnmlgConnectionString (Web.config)" DbObjectName="unnmlg.dbo.Student" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetOnlyStudentContentField" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetOnlyStudentContentField" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetOnlyStudentContentField" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [Student] WHERE (([id] = @Original_id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT id, login, email, name, description FROM Student WHERE (group_id = @group_id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="group_id" ColumnName="group_id" DataSourceName="unnmlg.dbo.Student" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@group_id" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="group_id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [Student] SET [login] = @login, [email] = @email, [name] = @name, [description] = @description WHERE (([id] = @Original_id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@login" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="login" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@email" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="email" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@description" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="description" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_id" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="description" DataSetColumn="description" />
+              <Mapping SourceColumn="login" DataSetColumn="login" />
+              <Mapping SourceColumn="email" DataSetColumn="email" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UsersInRolesTableAdapter" GeneratorDataComponentClassName="UsersInRolesTableAdapter" Name="UsersInRoles" UserDataComponentName="UsersInRolesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="dbo.aspnet_UsersInRoles" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetUsersInRoles" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetUsersInRoles" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetUsersInRoles" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [aspnet_UsersInRoles] WHERE (([UserId] = @Original_UserId) AND ([RoleId] = @Original_RoleId))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_RoleId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="RoleId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [aspnet_UsersInRoles] ([UserId], [RoleId]) VALUES (@UserId, @RoleId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@RoleId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="RoleId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     aspnet_UsersInRoles.*
+FROM         aspnet_UsersInRoles</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [aspnet_UsersInRoles] SET [UserId] = @UserId, [RoleId] = @RoleId WHERE (([UserId] = @Original_UserId) AND ([RoleId] = @Original_RoleId))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@RoleId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="RoleId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_RoleId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="RoleId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="UserId" DataSetColumn="UserId" />
+              <Mapping SourceColumn="RoleId" DataSetColumn="RoleId" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AddUsersInRoles" Modifier="Public" Name="AddUsersInRoles" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AddUsersInRoles">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [aspnet_UsersInRoles] ([UserId], [RoleId]) VALUES (@UserId, @RoleId)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="UserId" ColumnName="UserId" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_UsersInRoles" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="RoleId" ColumnName="RoleId" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_UsersInRoles" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@RoleId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="RoleId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteUserRoles" Modifier="Public" Name="DeleteUserRoles" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteUserRoles">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM [aspnet_UsersInRoles] WHERE (([UserId] = @user_id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="user_id" ColumnName="UserId" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_UsersInRoles" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@user_id" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RolesTableAdapter" GeneratorDataComponentClassName="RolesTableAdapter" Name="Roles" UserDataComponentName="RolesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="dbo.aspnet_Roles" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetAllRoles" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetAllRoles" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetAllRoles" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     RoleId, RoleName
+FROM         aspnet_Roles</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RoleId" DataSetColumn="RoleId" />
+              <Mapping SourceColumn="RoleName" DataSetColumn="RoleName" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="dbo.aspnet_Roles" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetRoleByRoleName" GeneratorSourceName="FillBy" GetMethodModifier="Public" GetMethodName="GetRoleByRoleName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetRoleByRoleName" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     RoleId, RoleName
+FROM         aspnet_Roles WHERE RoleName = @role_name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="role_name" ColumnName="RoleName" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Roles" DataTypeServer="nvarchar(256)" DbType="String" Direction="Input" ParameterName="@role_name" Precision="0" ProviderType="NVarChar" Scale="0" Size="256" SourceColumn="RoleName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UsersTableAdapter" GeneratorDataComponentClassName="UsersTableAdapter" Name="Users" UserDataComponentName="UsersTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="dbo.aspnet_Users" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetUserId" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetUserId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetUserId" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     UserId
+FROM         aspnet_Users
+WHERE     (UserName = @user_name)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="user_name" ColumnName="UserName" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Users" DataTypeServer="nvarchar(256)" DbType="String" Direction="Input" ParameterName="@user_name" Precision="0" ProviderType="NVarChar" Scale="0" Size="256" SourceColumn="UserName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="UserId" DataSetColumn="UserId" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteUser" Modifier="Public" Name="DeleteUser" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteUser">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM [aspnet_Users] WHERE UserId = @user_id</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="user_id" ColumnName="UserId" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Users" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@user_id" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateUserName" Modifier="Public" Name="UpdateUserName" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateUserName">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE    aspnet_Users
+SET              UserName = @login, LoweredUserName = @lowered_login
+WHERE     (UserId = @user_id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="login" ColumnName="UserName" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Users" DataTypeServer="nvarchar(256)" DbType="String" Direction="Input" ParameterName="@login" Precision="0" ProviderType="NVarChar" Scale="0" Size="256" SourceColumn="UserName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="lowered_login" ColumnName="LoweredUserName" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Users" DataTypeServer="nvarchar(256)" DbType="String" Direction="Input" ParameterName="@lowered_login" Precision="0" ProviderType="NVarChar" Scale="0" Size="256" SourceColumn="LoweredUserName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="user_id" ColumnName="UserId" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Users" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@user_id" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MembershipTableAdapter" GeneratorDataComponentClassName="MembershipTableAdapter" Name="Membership" UserDataComponentName="MembershipTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="dbo.aspnet_Membership" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetAllMembership" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetAllMembership" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetAllMembership" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [aspnet_Membership] WHERE (([UserId] = @Original_UserId))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [aspnet_Membership] ([ApplicationId], [UserId], [Password], [PasswordFormat], [PasswordSalt], [MobilePIN], [Email], [LoweredEmail], [PasswordQuestion], [PasswordAnswer], [IsApproved], [IsLockedOut], [CreateDate], [LastLoginDate], [LastPasswordChangedDate], [LastLockoutDate], [FailedPasswordAttemptCount], [FailedPasswordAttemptWindowStart], [FailedPasswordAnswerAttemptCount], [FailedPasswordAnswerAttemptWindowStart], [Comment]) VALUES (@ApplicationId, @UserId, @Password, @PasswordFormat, @PasswordSalt, @MobilePIN, @Email, @LoweredEmail, @PasswordQuestion, @PasswordAnswer, @IsApproved, @IsLockedOut, @CreateDate, @LastLoginDate, @LastPasswordChangedDate, @LastLockoutDate, @FailedPasswordAttemptCount, @FailedPasswordAttemptWindowStart, @FailedPasswordAnswerAttemptCount, @FailedPasswordAnswerAttemptWindowStart, @Comment)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@ApplicationId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="ApplicationId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PasswordFormat" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PasswordFormat" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PasswordSalt" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PasswordSalt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MobilePIN" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MobilePIN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Email" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LoweredEmail" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LoweredEmail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PasswordQuestion" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PasswordQuestion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PasswordAnswer" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PasswordAnswer" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@IsApproved" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="IsApproved" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@IsLockedOut" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="IsLockedOut" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@CreateDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="CreateDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastLoginDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastLoginDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastPasswordChangedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastPasswordChangedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastLockoutDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastLockoutDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FailedPasswordAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FailedPasswordAttemptCount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@FailedPasswordAttemptWindowStart" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FailedPasswordAttemptWindowStart" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FailedPasswordAnswerAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FailedPasswordAnswerAttemptCount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@FailedPasswordAnswerAttemptWindowStart" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FailedPasswordAnswerAttemptWindowStart" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Comment" Precision="0" ProviderType="NText" Scale="0" Size="0" SourceColumn="Comment" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     aspnet_Membership.*
+FROM         aspnet_Membership</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [aspnet_Membership] SET [ApplicationId] = @ApplicationId, [UserId] = @UserId, [Password] = @Password, [PasswordFormat] = @PasswordFormat, [PasswordSalt] = @PasswordSalt, [MobilePIN] = @MobilePIN, [Email] = @Email, [LoweredEmail] = @LoweredEmail, [PasswordQuestion] = @PasswordQuestion, [PasswordAnswer] = @PasswordAnswer, [IsApproved] = @IsApproved, [IsLockedOut] = @IsLockedOut, [CreateDate] = @CreateDate, [LastLoginDate] = @LastLoginDate, [LastPasswordChangedDate] = @LastPasswordChangedDate, [LastLockoutDate] = @LastLockoutDate, [FailedPasswordAttemptCount] = @FailedPasswordAttemptCount, [FailedPasswordAttemptWindowStart] = @FailedPasswordAttemptWindowStart, [FailedPasswordAnswerAttemptCount] = @FailedPasswordAnswerAttemptCount, [FailedPasswordAnswerAttemptWindowStart] = @FailedPasswordAnswerAttemptWindowStart, [Comment] = @Comment WHERE (([UserId] = @Original_UserId))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@ApplicationId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="ApplicationId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Password" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Password" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PasswordFormat" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PasswordFormat" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PasswordSalt" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PasswordSalt" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@MobilePIN" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="MobilePIN" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Email" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Email" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@LoweredEmail" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="LoweredEmail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PasswordQuestion" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PasswordQuestion" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PasswordAnswer" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="PasswordAnswer" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@IsApproved" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="IsApproved" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Boolean" Direction="Input" ParameterName="@IsLockedOut" Precision="0" ProviderType="Bit" Scale="0" Size="0" SourceColumn="IsLockedOut" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@CreateDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="CreateDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastLoginDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastLoginDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastPasswordChangedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastPasswordChangedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastLockoutDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastLockoutDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FailedPasswordAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FailedPasswordAttemptCount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@FailedPasswordAttemptWindowStart" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FailedPasswordAttemptWindowStart" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@FailedPasswordAnswerAttemptCount" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="FailedPasswordAnswerAttemptCount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@FailedPasswordAnswerAttemptWindowStart" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="FailedPasswordAnswerAttemptWindowStart" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Comment" Precision="0" ProviderType="NText" Scale="0" Size="0" SourceColumn="Comment" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ApplicationId" DataSetColumn="ApplicationId" />
+              <Mapping SourceColumn="UserId" DataSetColumn="UserId" />
+              <Mapping SourceColumn="Password" DataSetColumn="Password" />
+              <Mapping SourceColumn="PasswordFormat" DataSetColumn="PasswordFormat" />
+              <Mapping SourceColumn="PasswordSalt" DataSetColumn="PasswordSalt" />
+              <Mapping SourceColumn="MobilePIN" DataSetColumn="MobilePIN" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="LoweredEmail" DataSetColumn="LoweredEmail" />
+              <Mapping SourceColumn="PasswordQuestion" DataSetColumn="PasswordQuestion" />
+              <Mapping SourceColumn="PasswordAnswer" DataSetColumn="PasswordAnswer" />
+              <Mapping SourceColumn="IsApproved" DataSetColumn="IsApproved" />
+              <Mapping SourceColumn="IsLockedOut" DataSetColumn="IsLockedOut" />
+              <Mapping SourceColumn="CreateDate" DataSetColumn="CreateDate" />
+              <Mapping SourceColumn="LastLoginDate" DataSetColumn="LastLoginDate" />
+              <Mapping SourceColumn="LastPasswordChangedDate" DataSetColumn="LastPasswordChangedDate" />
+              <Mapping SourceColumn="LastLockoutDate" DataSetColumn="LastLockoutDate" />
+              <Mapping SourceColumn="FailedPasswordAttemptCount" DataSetColumn="FailedPasswordAttemptCount" />
+              <Mapping SourceColumn="FailedPasswordAttemptWindowStart" DataSetColumn="FailedPasswordAttemptWindowStart" />
+              <Mapping SourceColumn="FailedPasswordAnswerAttemptCount" DataSetColumn="FailedPasswordAnswerAttemptCount" />
+              <Mapping SourceColumn="FailedPasswordAnswerAttemptWindowStart" DataSetColumn="FailedPasswordAnswerAttemptWindowStart" />
+              <Mapping SourceColumn="Comment" DataSetColumn="Comment" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteUserMembership" Modifier="Public" Name="DeleteUserMembership" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeleteUserMembership">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM [aspnet_Membership] WHERE (([UserId] = @user_id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="user_id" ColumnName="UserId" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Membership" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@user_id" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="UpdateEmail" Modifier="Public" Name="UpdateEmail" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateEmail">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE [aspnet_Membership] SET[Email] = @email, [LoweredEmail] = @lowered_email WHERE (([UserId] = @user_id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="email" ColumnName="Email" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Membership" DataTypeServer="nvarchar(256)" DbType="String" Direction="Input" ParameterName="@email" Precision="0" ProviderType="NVarChar" Scale="0" Size="256" SourceColumn="Email" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="lowered_email" ColumnName="LoweredEmail" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Membership" DataTypeServer="nvarchar(256)" DbType="String" Direction="Input" ParameterName="@lowered_email" Precision="0" ProviderType="NVarChar" Scale="0" Size="256" SourceColumn="LoweredEmail" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="user_id" ColumnName="UserId" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Membership" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@user_id" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PersonalizationPerUserTableAdapter" GeneratorDataComponentClassName="PersonalizationPerUserTableAdapter" Name="PersonalizationPerUser" UserDataComponentName="PersonalizationPerUserTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="dbo.aspnet_PersonalizationPerUser" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetUserPersonalization" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetUserPersonalization" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetUserPersonalization" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [aspnet_PersonalizationPerUser] WHERE (((@IsNull_PathId = 1 AND [PathId] IS NULL) OR ([PathId] = @Original_PathId)) AND ((@IsNull_UserId = 1 AND [UserId] IS NULL) OR ([UserId] = @Original_UserId)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PathId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PathId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_PathId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="PathId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [aspnet_PersonalizationPerUser] ([Id], [PathId], [UserId], [PageSettings], [LastUpdatedDate]) VALUES (@Id, @PathId, @UserId, @PageSettings, @LastUpdatedDate)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@PathId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="PathId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Binary" Direction="Input" ParameterName="@PageSettings" Precision="0" ProviderType="Image" Scale="0" Size="0" SourceColumn="PageSettings" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastUpdatedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastUpdatedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     aspnet_PersonalizationPerUser.*
+FROM         aspnet_PersonalizationPerUser</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [aspnet_PersonalizationPerUser] SET [Id] = @Id, [PathId] = @PathId, [UserId] = @UserId, [PageSettings] = @PageSettings, [LastUpdatedDate] = @LastUpdatedDate WHERE (((@IsNull_PathId = 1 AND [PathId] IS NULL) OR ([PathId] = @Original_PathId)) AND ((@IsNull_UserId = 1 AND [UserId] IS NULL) OR ([UserId] = @Original_UserId)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Id" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="Id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@PathId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="PathId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Binary" Direction="Input" ParameterName="@PageSettings" Precision="0" ProviderType="Image" Scale="0" Size="0" SourceColumn="PageSettings" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastUpdatedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastUpdatedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_PathId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PathId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_PathId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="PathId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_UserId" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Id" DataSetColumn="Id" />
+              <Mapping SourceColumn="PathId" DataSetColumn="PathId" />
+              <Mapping SourceColumn="UserId" DataSetColumn="UserId" />
+              <Mapping SourceColumn="PageSettings" DataSetColumn="PageSettings" />
+              <Mapping SourceColumn="LastUpdatedDate" DataSetColumn="LastUpdatedDate" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="DeleteUserPersonalization" Modifier="Public" Name="DeleteUserPersonalization" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteUserPersonalization">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM [aspnet_PersonalizationPerUser] WHERE  ([UserId] = @user_id)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="user_id" ColumnName="UserId" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_PersonalizationPerUser" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@user_id" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProfileTableAdapter" GeneratorDataComponentClassName="ProfileTableAdapter" Name="Profile" UserDataComponentName="ProfileTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="dbo.aspnet_Profile" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetUserProfile" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetUserProfile" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetUserProfile" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [aspnet_Profile] WHERE (([UserId] = @Original_UserId))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [aspnet_Profile] ([UserId], [PropertyNames], [PropertyValuesString], [PropertyValuesBinary], [LastUpdatedDate]) VALUES (@UserId, @PropertyNames, @PropertyValuesString, @PropertyValuesBinary, @LastUpdatedDate)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PropertyNames" Precision="0" ProviderType="NText" Scale="0" Size="0" SourceColumn="PropertyNames" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PropertyValuesString" Precision="0" ProviderType="NText" Scale="0" Size="0" SourceColumn="PropertyValuesString" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Binary" Direction="Input" ParameterName="@PropertyValuesBinary" Precision="0" ProviderType="Image" Scale="0" Size="0" SourceColumn="PropertyValuesBinary" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastUpdatedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastUpdatedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT     aspnet_Profile.*
+FROM         aspnet_Profile</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [aspnet_Profile] SET [UserId] = @UserId, [PropertyNames] = @PropertyNames, [PropertyValuesString] = @PropertyValuesString, [PropertyValuesBinary] = @PropertyValuesBinary, [LastUpdatedDate] = @LastUpdatedDate WHERE (([UserId] = @Original_UserId))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PropertyNames" Precision="0" ProviderType="NText" Scale="0" Size="0" SourceColumn="PropertyNames" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@PropertyValuesString" Precision="0" ProviderType="NText" Scale="0" Size="0" SourceColumn="PropertyValuesString" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Binary" Direction="Input" ParameterName="@PropertyValuesBinary" Precision="0" ProviderType="Image" Scale="0" Size="0" SourceColumn="PropertyValuesBinary" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="DateTime" Direction="Input" ParameterName="@LastUpdatedDate" Precision="0" ProviderType="DateTime" Scale="0" Size="0" SourceColumn="LastUpdatedDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Guid" Direction="Input" ParameterName="@Original_UserId" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="0" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="UserId" DataSetColumn="UserId" />
+              <Mapping SourceColumn="PropertyNames" DataSetColumn="PropertyNames" />
+              <Mapping SourceColumn="PropertyValuesString" DataSetColumn="PropertyValuesString" />
+              <Mapping SourceColumn="PropertyValuesBinary" DataSetColumn="PropertyValuesBinary" />
+              <Mapping SourceColumn="LastUpdatedDate" DataSetColumn="LastUpdatedDate" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="AspnetdbConnectionString (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteUserProfile" Modifier="Public" Name="DeleteUserProfile" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteUserProfile">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM [aspnet_Profile] WHERE (([UserId] = @user_id))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="user_id" ColumnName="UserId" DataSourceName="[C:\MLG\E-LEARNING-TEST\ULKSAMPLE\UNNLEARNINGKIT\APP_DATA\ASPNETDB.MDF].dbo.aspnet_Profile" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@user_id" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="UserId" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
               </DbSource>
             </Sources>
           </TableAdapter>
@@ -128,7 +591,7 @@ WHERE     (id = @Original_id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Group" msprop:Generator_UserTableName="Group" msprop:Generator_RowDeletedName="GroupRowDeleted" msprop:Generator_TableClassName="GroupDataTable" msprop:Generator_RowChangedName="GroupRowChanged" msprop:Generator_RowClassName="GroupRow" msprop:Generator_RowChangingName="GroupRowChanging" msprop:Generator_RowEvArgName="GroupRowChangeEvent" msprop:Generator_RowEvHandlerName="GroupRowChangeEventHandler" msprop:Generator_TablePropName="Group" msprop:Generator_TableVarName="tableGroup" msprop:Generator_RowDeletingName="GroupRowDeleting">
+        <xs:element name="Group" msprop:Generator_UserTableName="Group" msprop:Generator_RowDeletedName="GroupRowDeleted" msprop:Generator_RowChangedName="GroupRowChanged" msprop:Generator_RowClassName="GroupRow" msprop:Generator_RowChangingName="GroupRowChanging" msprop:Generator_RowEvArgName="GroupRowChangeEvent" msprop:Generator_RowEvHandlerName="GroupRowChangeEventHandler" msprop:Generator_TableClassName="GroupDataTable" msprop:Generator_TableVarName="tableGroup" msprop:Generator_RowDeletingName="GroupRowDeleting" msprop:Generator_TablePropName="Group">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
@@ -149,6 +612,179 @@ WHERE     (id = @Original_id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Student" msprop:Generator_UserTableName="Student" msprop:Generator_RowDeletedName="StudentRowDeleted" msprop:Generator_RowChangedName="StudentRowChanged" msprop:Generator_RowClassName="StudentRow" msprop:Generator_RowChangingName="StudentRowChanging" msprop:Generator_RowEvArgName="StudentRowChangeEvent" msprop:Generator_RowEvHandlerName="StudentRowChangeEventHandler" msprop:Generator_TableClassName="StudentDataTable" msprop:Generator_TableVarName="tableStudent" msprop:Generator_RowDeletingName="StudentRowDeleting" msprop:Generator_TablePropName="Student">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" type="xs:int" />
+              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="description" msprop:Generator_UserColumnName="description" msprop:Generator_ColumnVarNameInTable="columndescription" msprop:Generator_ColumnPropNameInRow="description" msprop:Generator_ColumnPropNameInTable="descriptionColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="login" msprop:Generator_UserColumnName="login" msprop:Generator_ColumnVarNameInTable="columnlogin" msprop:Generator_ColumnPropNameInRow="login" msprop:Generator_ColumnPropNameInTable="loginColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="email" msprop:Generator_UserColumnName="email" msprop:Generator_ColumnVarNameInTable="columnemail" msprop:Generator_ColumnPropNameInRow="email" msprop:Generator_ColumnPropNameInTable="emailColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="UsersInRoles" msprop:Generator_UserTableName="UsersInRoles" msprop:Generator_RowDeletedName="UsersInRolesRowDeleted" msprop:Generator_RowChangedName="UsersInRolesRowChanged" msprop:Generator_RowClassName="UsersInRolesRow" msprop:Generator_RowChangingName="UsersInRolesRowChanging" msprop:Generator_RowEvArgName="UsersInRolesRowChangeEvent" msprop:Generator_RowEvHandlerName="UsersInRolesRowChangeEventHandler" msprop:Generator_TableClassName="UsersInRolesDataTable" msprop:Generator_TableVarName="tableUsersInRoles" msprop:Generator_RowDeletingName="UsersInRolesRowDeleting" msprop:Generator_TablePropName="UsersInRoles">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="UserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" type="xs:string" />
+              <xs:element name="RoleId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="RoleId" msprop:Generator_ColumnPropNameInRow="RoleId" msprop:Generator_ColumnVarNameInTable="columnRoleId" msprop:Generator_ColumnPropNameInTable="RoleIdColumn" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Roles" msprop:Generator_UserTableName="Roles" msprop:Generator_RowDeletedName="RolesRowDeleted" msprop:Generator_RowChangedName="RolesRowChanged" msprop:Generator_RowClassName="RolesRow" msprop:Generator_RowChangingName="RolesRowChanging" msprop:Generator_RowEvArgName="RolesRowChangeEvent" msprop:Generator_RowEvHandlerName="RolesRowChangeEventHandler" msprop:Generator_TableClassName="RolesDataTable" msprop:Generator_TableVarName="tableRoles" msprop:Generator_RowDeletingName="RolesRowDeleting" msprop:Generator_TablePropName="Roles">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RoleId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="RoleId" msprop:Generator_ColumnPropNameInRow="RoleId" msprop:Generator_ColumnVarNameInTable="columnRoleId" msprop:Generator_ColumnPropNameInTable="RoleIdColumn" type="xs:string" />
+              <xs:element name="RoleName" msprop:Generator_UserColumnName="RoleName" msprop:Generator_ColumnPropNameInRow="RoleName" msprop:Generator_ColumnVarNameInTable="columnRoleName" msprop:Generator_ColumnPropNameInTable="RoleNameColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Users" msprop:Generator_UserTableName="Users" msprop:Generator_RowDeletedName="UsersRowDeleted" msprop:Generator_RowChangedName="UsersRowChanged" msprop:Generator_RowClassName="UsersRow" msprop:Generator_RowChangingName="UsersRowChanging" msprop:Generator_RowEvArgName="UsersRowChangeEvent" msprop:Generator_RowEvHandlerName="UsersRowChangeEventHandler" msprop:Generator_TableClassName="UsersDataTable" msprop:Generator_TableVarName="tableUsers" msprop:Generator_RowDeletingName="UsersRowDeleting" msprop:Generator_TablePropName="Users">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="UserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Membership" msprop:Generator_UserTableName="Membership" msprop:Generator_RowDeletedName="MembershipRowDeleted" msprop:Generator_TableClassName="MembershipDataTable" msprop:Generator_RowChangedName="MembershipRowChanged" msprop:Generator_RowClassName="MembershipRow" msprop:Generator_RowChangingName="MembershipRowChanging" msprop:Generator_RowEvArgName="MembershipRowChangeEvent" msprop:Generator_RowEvHandlerName="MembershipRowChangeEventHandler" msprop:Generator_TablePropName="Membership" msprop:Generator_TableVarName="tableMembership" msprop:Generator_RowDeletingName="MembershipRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ApplicationId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="ApplicationId" msprop:Generator_ColumnPropNameInRow="ApplicationId" msprop:Generator_ColumnVarNameInTable="columnApplicationId" msprop:Generator_ColumnPropNameInTable="ApplicationIdColumn" type="xs:string" />
+              <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="UserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" type="xs:string" />
+              <xs:element name="Password" msprop:Generator_UserColumnName="Password" msprop:Generator_ColumnPropNameInRow="Password" msprop:Generator_ColumnVarNameInTable="columnPassword" msprop:Generator_ColumnPropNameInTable="PasswordColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PasswordFormat" msprop:Generator_UserColumnName="PasswordFormat" msprop:Generator_ColumnPropNameInRow="PasswordFormat" msprop:Generator_ColumnVarNameInTable="columnPasswordFormat" msprop:Generator_ColumnPropNameInTable="PasswordFormatColumn" type="xs:int" />
+              <xs:element name="PasswordSalt" msprop:Generator_UserColumnName="PasswordSalt" msprop:Generator_ColumnPropNameInRow="PasswordSalt" msprop:Generator_ColumnVarNameInTable="columnPasswordSalt" msprop:Generator_ColumnPropNameInTable="PasswordSaltColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MobilePIN" msprop:Generator_UserColumnName="MobilePIN" msprop:Generator_ColumnPropNameInRow="MobilePIN" msprop:Generator_ColumnVarNameInTable="columnMobilePIN" msprop:Generator_ColumnPropNameInTable="MobilePINColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_UserColumnName="Email" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInTable="EmailColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LoweredEmail" msprop:Generator_UserColumnName="LoweredEmail" msprop:Generator_ColumnPropNameInRow="LoweredEmail" msprop:Generator_ColumnVarNameInTable="columnLoweredEmail" msprop:Generator_ColumnPropNameInTable="LoweredEmailColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PasswordQuestion" msprop:Generator_UserColumnName="PasswordQuestion" msprop:Generator_ColumnPropNameInRow="PasswordQuestion" msprop:Generator_ColumnVarNameInTable="columnPasswordQuestion" msprop:Generator_ColumnPropNameInTable="PasswordQuestionColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="256" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PasswordAnswer" msprop:Generator_UserColumnName="PasswordAnswer" msprop:Generator_ColumnPropNameInRow="PasswordAnswer" msprop:Generator_ColumnVarNameInTable="columnPasswordAnswer" msprop:Generator_ColumnPropNameInTable="PasswordAnswerColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IsApproved" msprop:Generator_UserColumnName="IsApproved" msprop:Generator_ColumnPropNameInRow="IsApproved" msprop:Generator_ColumnVarNameInTable="columnIsApproved" msprop:Generator_ColumnPropNameInTable="IsApprovedColumn" type="xs:boolean" />
+              <xs:element name="IsLockedOut" msprop:Generator_UserColumnName="IsLockedOut" msprop:Generator_ColumnPropNameInRow="IsLockedOut" msprop:Generator_ColumnVarNameInTable="columnIsLockedOut" msprop:Generator_ColumnPropNameInTable="IsLockedOutColumn" type="xs:boolean" />
+              <xs:element name="CreateDate" msprop:Generator_UserColumnName="CreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" type="xs:dateTime" />
+              <xs:element name="LastLoginDate" msprop:Generator_UserColumnName="LastLoginDate" msprop:Generator_ColumnPropNameInRow="LastLoginDate" msprop:Generator_ColumnVarNameInTable="columnLastLoginDate" msprop:Generator_ColumnPropNameInTable="LastLoginDateColumn" type="xs:dateTime" />
+              <xs:element name="LastPasswordChangedDate" msprop:Generator_UserColumnName="LastPasswordChangedDate" msprop:Generator_ColumnPropNameInRow="LastPasswordChangedDate" msprop:Generator_ColumnVarNameInTable="columnLastPasswordChangedDate" msprop:Generator_ColumnPropNameInTable="LastPasswordChangedDateColumn" type="xs:dateTime" />
+              <xs:element name="LastLockoutDate" msprop:Generator_UserColumnName="LastLockoutDate" msprop:Generator_ColumnPropNameInRow="LastLockoutDate" msprop:Generator_ColumnVarNameInTable="columnLastLockoutDate" msprop:Generator_ColumnPropNameInTable="LastLockoutDateColumn" type="xs:dateTime" />
+              <xs:element name="FailedPasswordAttemptCount" msprop:Generator_UserColumnName="FailedPasswordAttemptCount" msprop:Generator_ColumnPropNameInRow="FailedPasswordAttemptCount" msprop:Generator_ColumnVarNameInTable="columnFailedPasswordAttemptCount" msprop:Generator_ColumnPropNameInTable="FailedPasswordAttemptCountColumn" type="xs:int" />
+              <xs:element name="FailedPasswordAttemptWindowStart" msprop:Generator_UserColumnName="FailedPasswordAttemptWindowStart" msprop:Generator_ColumnPropNameInRow="FailedPasswordAttemptWindowStart" msprop:Generator_ColumnVarNameInTable="columnFailedPasswordAttemptWindowStart" msprop:Generator_ColumnPropNameInTable="FailedPasswordAttemptWindowStartColumn" type="xs:dateTime" />
+              <xs:element name="FailedPasswordAnswerAttemptCount" msprop:Generator_UserColumnName="FailedPasswordAnswerAttemptCount" msprop:Generator_ColumnPropNameInRow="FailedPasswordAnswerAttemptCount" msprop:Generator_ColumnVarNameInTable="columnFailedPasswordAnswerAttemptCount" msprop:Generator_ColumnPropNameInTable="FailedPasswordAnswerAttemptCountColumn" type="xs:int" />
+              <xs:element name="FailedPasswordAnswerAttemptWindowStart" msprop:Generator_UserColumnName="FailedPasswordAnswerAttemptWindowStart" msprop:Generator_ColumnPropNameInRow="FailedPasswordAnswerAttemptWindowStart" msprop:Generator_ColumnVarNameInTable="columnFailedPasswordAnswerAttemptWindowStart" msprop:Generator_ColumnPropNameInTable="FailedPasswordAnswerAttemptWindowStartColumn" type="xs:dateTime" />
+              <xs:element name="Comment" msprop:Generator_UserColumnName="Comment" msprop:Generator_ColumnPropNameInRow="Comment" msprop:Generator_ColumnVarNameInTable="columnComment" msprop:Generator_ColumnPropNameInTable="CommentColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1073741823" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PersonalizationPerUser" msprop:Generator_UserTableName="PersonalizationPerUser" msprop:Generator_RowDeletedName="PersonalizationPerUserRowDeleted" msprop:Generator_TableClassName="PersonalizationPerUserDataTable" msprop:Generator_RowChangedName="PersonalizationPerUserRowChanged" msprop:Generator_RowClassName="PersonalizationPerUserRow" msprop:Generator_RowChangingName="PersonalizationPerUserRowChanging" msprop:Generator_RowEvArgName="PersonalizationPerUserRowChangeEvent" msprop:Generator_RowEvHandlerName="PersonalizationPerUserRowChangeEventHandler" msprop:Generator_TablePropName="PersonalizationPerUser" msprop:Generator_TableVarName="tablePersonalizationPerUser" msprop:Generator_RowDeletingName="PersonalizationPerUserRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:string" />
+              <xs:element name="PathId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="PathId" msprop:Generator_ColumnPropNameInRow="PathId" msprop:Generator_ColumnVarNameInTable="columnPathId" msprop:Generator_ColumnPropNameInTable="PathIdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="UserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="PageSettings" msprop:Generator_UserColumnName="PageSettings" msprop:Generator_ColumnPropNameInRow="PageSettings" msprop:Generator_ColumnVarNameInTable="columnPageSettings" msprop:Generator_ColumnPropNameInTable="PageSettingsColumn" type="xs:base64Binary" />
+              <xs:element name="LastUpdatedDate" msprop:Generator_UserColumnName="LastUpdatedDate" msprop:Generator_ColumnPropNameInRow="LastUpdatedDate" msprop:Generator_ColumnVarNameInTable="columnLastUpdatedDate" msprop:Generator_ColumnPropNameInTable="LastUpdatedDateColumn" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Profile" msprop:Generator_UserTableName="Profile" msprop:Generator_RowDeletedName="ProfileRowDeleted" msprop:Generator_TableClassName="ProfileDataTable" msprop:Generator_RowChangedName="ProfileRowChanged" msprop:Generator_RowClassName="ProfileRow" msprop:Generator_RowChangingName="ProfileRowChanging" msprop:Generator_RowEvArgName="ProfileRowChangeEvent" msprop:Generator_RowEvHandlerName="ProfileRowChangeEventHandler" msprop:Generator_TablePropName="Profile" msprop:Generator_TableVarName="tableProfile" msprop:Generator_RowDeletingName="ProfileRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UserId" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="UserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" type="xs:string" />
+              <xs:element name="PropertyNames" msprop:Generator_UserColumnName="PropertyNames" msprop:Generator_ColumnPropNameInRow="PropertyNames" msprop:Generator_ColumnVarNameInTable="columnPropertyNames" msprop:Generator_ColumnPropNameInTable="PropertyNamesColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1073741823" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PropertyValuesString" msprop:Generator_UserColumnName="PropertyValuesString" msprop:Generator_ColumnPropNameInRow="PropertyValuesString" msprop:Generator_ColumnVarNameInTable="columnPropertyValuesString" msprop:Generator_ColumnPropNameInTable="PropertyValuesStringColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1073741823" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PropertyValuesBinary" msprop:Generator_UserColumnName="PropertyValuesBinary" msprop:Generator_ColumnPropNameInRow="PropertyValuesBinary" msprop:Generator_ColumnVarNameInTable="columnPropertyValuesBinary" msprop:Generator_ColumnPropNameInTable="PropertyValuesBinaryColumn" type="xs:base64Binary" />
+              <xs:element name="LastUpdatedDate" msprop:Generator_UserColumnName="LastUpdatedDate" msprop:Generator_ColumnPropNameInRow="LastUpdatedDate" msprop:Generator_ColumnVarNameInTable="columnLastUpdatedDate" msprop:Generator_ColumnPropNameInTable="LastUpdatedDateColumn" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -159,5 +795,30 @@ WHERE     (id = @Original_id)</CommandText>
       <xs:selector xpath=".//mstns:Group" />
       <xs:field xpath="mstns:id" />
     </xs:unique>
+    <xs:unique name="Student_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Student" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="UsersInRoles_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:UsersInRoles" />
+      <xs:field xpath="mstns:UserId" />
+      <xs:field xpath="mstns:RoleId" />
+    </xs:unique>
+    <xs:unique name="Membership_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Membership" />
+      <xs:field xpath="mstns:UserId" />
+    </xs:unique>
+    <xs:unique name="Profile_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Profile" />
+      <xs:field xpath="mstns:UserId" />
+    </xs:unique>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK__aspnet_Us__UserI__36B12243" msdata:parent="Users" msdata:child="UsersInRoles" msdata:parentkey="UserId" msdata:childkey="UserId" msprop:Generator_UserRelationName="FK__aspnet_Us__UserI__36B12243" msprop:Generator_RelationVarName="relationFK__aspnet_Us__UserI__36B12243" msprop:Generator_UserChildTable="UsersInRoles" msprop:Generator_UserParentTable="Users" msprop:Generator_ParentPropName="UsersRow" msprop:Generator_ChildPropName="GetUsersInRolesRows" />
+      <msdata:Relationship name="FK__aspnet_Me__UserI__15502E78" msdata:parent="Users" msdata:child="Membership" msdata:parentkey="UserId" msdata:childkey="UserId" msprop:Generator_UserRelationName="FK__aspnet_Me__UserI__15502E78" msprop:Generator_RelationVarName="relationFK__aspnet_Me__UserI__15502E78" msprop:Generator_UserChildTable="Membership" msprop:Generator_UserParentTable="Users" msprop:Generator_ParentPropName="UsersRow" msprop:Generator_ChildPropName="GetMembershipRows" />
+      <msdata:Relationship name="FK__aspnet_Pe__UserI__5070F446" msdata:parent="Users" msdata:child="PersonalizationPerUser" msdata:parentkey="UserId" msdata:childkey="UserId" msprop:Generator_UserRelationName="FK__aspnet_Pe__UserI__5070F446" msprop:Generator_RelationVarName="relationFK__aspnet_Pe__UserI__5070F446" msprop:Generator_UserChildTable="PersonalizationPerUser" msprop:Generator_UserParentTable="Users" msprop:Generator_ParentPropName="UsersRow" msprop:Generator_ChildPropName="GetPersonalizationPerUserRows" />
+      <msdata:Relationship name="FK__aspnet_Pr__UserI__29572725" msdata:parent="Users" msdata:child="Profile" msdata:parentkey="UserId" msdata:childkey="UserId" msprop:Generator_UserRelationName="FK__aspnet_Pr__UserI__29572725" msprop:Generator_RelationVarName="relationFK__aspnet_Pr__UserI__29572725" msprop:Generator_UserChildTable="Profile" msprop:Generator_UserParentTable="Users" msprop:Generator_ParentPropName="UsersRow" msprop:Generator_ChildPropName="GetProfileRows" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>

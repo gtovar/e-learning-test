@@ -13,10 +13,16 @@ namespace UnnLearningKit.Admin.Groups
         {
             if (!IsPostBack)
             {
-                string departmentID = Request.Params["DepartmentID"];
                 try
                 {
-                    departmentList.SelectedIndex = Convert.ToInt32(departmentID) - 1;
+                    int departmentId = Convert.ToInt32(Request.Params["DepartmentID"]);
+                    for (int i = 0; i < departmentsList.Items.Count; i++)
+                    {
+                        if (Convert.ToInt32(departmentsList.Items[i].Value) == departmentId)
+                        {
+                            departmentsList.SelectedIndex = i;
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -26,14 +32,26 @@ namespace UnnLearningKit.Admin.Groups
 
         protected void departmentList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int departmentID = departmentList.SelectedIndex + 1;
-            Response.Redirect(WebConstants.GroupsUrl + departmentID);
+            try
+            {
+                int departmentID = Convert.ToInt32(departmentsList.SelectedValue);
+                Response.Redirect(WebConstants.GroupsUrl + departmentID);
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         protected void addGroup_Click(object sender, EventArgs e)
         {
-            int departmentID = departmentList.SelectedIndex + 1;
-            Response.Redirect(WebConstants.AddGroupUrl + departmentID);
+            try
+            {
+                int departmentID = Convert.ToInt32(departmentsList.SelectedValue);
+                Response.Redirect(WebConstants.AddGroupUrl + departmentID);
+            }
+            catch (Exception ex)
+            {
+            }
         }
     }
 }

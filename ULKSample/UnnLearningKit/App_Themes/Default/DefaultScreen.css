@@ -48,3 +48,30 @@
     color: Red;
     font-weight: bold;
 }
+
+.button
+{
+    background-color: White;
+    border-color: #C5BBAF;
+    border-style: Solid;
+    border-width: 1px;
+    font-family: Verdana;
+    font-size: 0.8em;
+    color: #1C5E55;
+}
+
+.title
+{
+    background-color: #1C5E55;
+    font-weight:bold;
+    font-size:1.2em; 
+    color: White;
+}
+
+.notice {
+	border: 2px solid green;
+	padding: 1em;
+	margin-bottom: 2em;
+	background-color: #f0f0f0;
+	font: bold large sans-serif;
+}
