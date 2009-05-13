@@ -1,5 +1,0 @@
-C:\Разное\MLG\e-learning-test\UnnLearningKit\ULKLibs\obj\Debug\ResolveAssemblyReference.cache
-C:\Разное\MLG\e-learning-test\UnnLearningKit\ULKLibs\bin\Debug\ULKLibs.dll
-C:\Разное\MLG\e-learning-test\UnnLearningKit\ULKLibs\bin\Debug\ULKLibs.pdb
-C:\Разное\MLG\e-learning-test\UnnLearningKit\ULKLibs\obj\Debug\ULKLibs.dll
-C:\Разное\MLG\e-learning-test\UnnLearningKit\ULKLibs\obj\Debug\ULKLibs.pdb

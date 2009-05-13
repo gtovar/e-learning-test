@@ -5,7 +5,8 @@ using System.Text;
 
 namespace UnnLearningKitLibrary
 {
-    interface IStudentTable : ITable
+    public interface IStudentTable : ITable
     {
+        int GetStudentIdByName(string name);
     }
 }

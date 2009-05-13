@@ -8,3 +8,6 @@ C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\obj\Debug\UnnLearningKitL
 C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\obj\Debug\UnnLearningKitLibrary.pdb
 C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\bin\Debug\UnnLearningKitLibrary.dll
 C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\bin\Debug\UnnLearningKitLibrary.pdb
+C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\bin\Debug\Microsoft.Vbe.Interop.dll
+C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\bin\Debug\office.dll
+C:\MLG\e-learning-test\ULKSample\UnnLearningKitLibrary\bin\Debug\Microsoft.Office.Interop.Word.xml

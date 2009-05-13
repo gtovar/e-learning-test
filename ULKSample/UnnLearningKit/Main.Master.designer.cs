@@ -14,13 +14,22 @@ namespace UnnLearningKit {
     public partial class Main {
         
         /// <summary>
-        /// form1 элемент управления.
+        /// contentForm элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm contentForm;
+        
+        /// <summary>
+        /// scriptManager элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager scriptManager;
         
         /// <summary>
         /// LoginStatus1 элемент управления.

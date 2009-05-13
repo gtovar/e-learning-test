@@ -79,6 +79,15 @@ namespace UnnLearningKit {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на AssignTestsResult.aspx.
+        /// </summary>
+        internal static string AssignTestsResultUrl {
+            get {
+                return ResourceManager.GetString("AssignTestsResultUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на CreateAccount.aspx.
         /// </summary>
         internal static string CreateAccountUrl {
@@ -169,6 +178,15 @@ namespace UnnLearningKit {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на numbers.
+        /// </summary>
+        internal static string NumbersLinesLabelName {
+            get {
+                return ResourceManager.GetString("NumbersLinesLabelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на rolesList.
         /// </summary>
         internal static string RolesListControlName {
@@ -196,11 +214,38 @@ namespace UnnLearningKit {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на status.
+        /// </summary>
+        internal static string StatusLabelName {
+            get {
+                return ResourceManager.GetString("StatusLabelName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на ManageStudents.aspx?GroupID=.
         /// </summary>
         internal static string StudentsUrl {
             get {
                 return ResourceManager.GetString("StudentsUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на testVariantsList.
+        /// </summary>
+        internal static string TestVariantsListControlName {
+            get {
+                return ResourceManager.GetString("TestVariantsListControlName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на UploadWordDocResult.aspx.
+        /// </summary>
+        internal static string UploadWordDocResult {
+            get {
+                return ResourceManager.GetString("UploadWordDocResult", resourceCulture);
             }
         }
         

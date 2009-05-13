@@ -123,6 +123,9 @@
   <data name="AddStudentUrl" xml:space="preserve">
     <value>AddStudent.aspx?GroupID=</value>
   </data>
+  <data name="AssignTestsResultUrl" xml:space="preserve">
+    <value>AssignTestsResult.aspx</value>
+  </data>
   <data name="CreateAccountUrl" xml:space="preserve">
     <value>CreateAccount.aspx</value>
   </data>
@@ -153,6 +156,9 @@
   <data name="MangeAccountsUrl" xml:space="preserve">
     <value>ManageAccounts.aspx</value>
   </data>
+  <data name="NumbersLinesLabelName" xml:space="preserve">
+    <value>numbers</value>
+  </data>
   <data name="RolesListControlName" xml:space="preserve">
     <value>rolesList</value>
   </data>
@@ -162,8 +168,17 @@
   <data name="ShowMessageCssClass" xml:space="preserve">
     <value>showMessage</value>
   </data>
+  <data name="StatusLabelName" xml:space="preserve">
+    <value>status</value>
+  </data>
   <data name="StudentsUrl" xml:space="preserve">
     <value>ManageStudents.aspx?GroupID=</value>
+  </data>
+  <data name="TestVariantsListControlName" xml:space="preserve">
+    <value>testVariantsList</value>
+  </data>
+  <data name="UploadWordDocResult" xml:space="preserve">
+    <value>UploadWordDocResult.aspx</value>
   </data>
   <data name="UserDescriptionControlName" xml:space="preserve">
     <value>Description</value>

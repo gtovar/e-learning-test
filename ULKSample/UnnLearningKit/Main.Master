@@ -6,7 +6,9 @@
     <title>Модуль тестирования</title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="contentForm"  method="post" runat="server" enctype="multipart/form-data">
+    <asp:ScriptManager ID="scriptManager" runat="server">
+    </asp:ScriptManager>
     <table style="width: 100%; height: 309px; border: solid; border-width: 2px; border-color:Gray">
         <tr>
             <td colspan="3">
