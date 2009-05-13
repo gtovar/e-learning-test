@@ -117,16 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdminHomeUrl" xml:space="preserve">
-    <value>Admin/</value>
+  <data name="AdminRoleName" xml:space="preserve">
+    <value>Администратор</value>
   </data>
-  <data name="LoginUrl" xml:space="preserve">
-    <value>Login.aspx</value>
+  <data name="MetodistRoleName" xml:space="preserve">
+    <value>Методист</value>
   </data>
-  <data name="MetodistHomeUrl" xml:space="preserve">
-    <value>Metodist/</value>
-  </data>
-  <data name="UserHomeUrl" xml:space="preserve">
-    <value>User/</value>
+  <data name="UserRoleName" xml:space="preserve">
+    <value>Пользователь</value>
   </data>
 </root>

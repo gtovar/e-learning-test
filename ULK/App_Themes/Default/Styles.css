@@ -148,3 +148,14 @@ A:HOVER
 {
 	background-color: yellow;
 }
+
+.button
+{
+    background-color: White;
+    border-color: blue;
+    border-style: Solid;
+    border-width: 1px;
+    font-family: Verdana;
+    font-size: 0.8em;
+    color: blue;
+}
