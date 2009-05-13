@@ -3,6 +3,10 @@
   <siteMapNode url="Default.aspx" title="Главная"  description="">
     <siteMapNode url="Login.aspx" title="Авторизация"  description="" />
     <siteMapNode url="RegistratedUsers/ChangePassword.aspx" title="Сменить пароль"  description="" />
+    <siteMapNode url="Testing/ManageTesting.aspx" title="Тестирование" >
+      <siteMapNode url="Testing/LoadTests.aspx" title="Загрузка тестов" />
+      <siteMapNode url="Testing/AssignTests.aspx" title="Назначение тестов" />
+    </siteMapNode>
     <siteMapNode url="Admin/Admin.aspx" title="Администрирование" >
       <siteMapNode url="Admin/Users/ManageAccounts.aspx" title="Управление учетными записями" >
         <siteMapNode url="Admin/Users/CreateAccount.aspx" title="Создание учетной записи"  description="" />

@@ -39,6 +39,11 @@ namespace UnnLearningKitLibrary
             return _tableImp.GetAll();
         }
 
+        public int GetStudentIdByName(string name)
+        {
+            return _tableImp.GetStudentIdByName(name);
+        }
+
         public Obj GetById(int id)
         {
             return _tableImp.GetById(id);

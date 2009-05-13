@@ -95,5 +95,14 @@ namespace UnnLearningKit {
                 return ResourceManager.GetString("EmptyMessage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Назначено.
+        /// </summary>
+        internal static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
     }
 }

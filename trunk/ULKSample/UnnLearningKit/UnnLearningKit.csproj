@@ -198,6 +198,48 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Testing\AssignTestsResult.aspx.cs">
+      <DependentUpon>AssignTestsResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing\AssignTestsResult.aspx.designer.cs">
+      <DependentUpon>AssignTestsResult.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing\AssignTests.aspx.cs">
+      <DependentUpon>AssignTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing\AssignTests.aspx.designer.cs">
+      <DependentUpon>AssignTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing\LoadTests.aspx.cs">
+      <DependentUpon>LoadTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing\LoadTests.aspx.designer.cs">
+      <DependentUpon>LoadTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing\ManageTesting.aspx.cs">
+      <DependentUpon>ManageTesting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing\ManageTesting.aspx.designer.cs">
+      <DependentUpon>ManageTesting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing\TestsGenerator.aspx.cs">
+      <DependentUpon>TestsGenerator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing\TestsGenerator.aspx.designer.cs">
+      <DependentUpon>TestsGenerator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Testing\UploadWordDocResult.aspx.cs">
+      <DependentUpon>UploadWordDocResult.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Testing\UploadWordDocResult.aspx.designer.cs">
+      <DependentUpon>UploadWordDocResult.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebConstants.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -278,6 +320,12 @@
     <Content Include="js\Lib.js" />
     <Content Include="RegistratedUsers\ChangePassword.aspx" />
     <Content Include="ForgotPassword.aspx" />
+    <Content Include="Testing\AssignTestsResult.aspx" />
+    <Content Include="Testing\AssignTests.aspx" />
+    <Content Include="Testing\LoadTests.aspx" />
+    <Content Include="Testing\ManageTesting.aspx" />
+    <Content Include="Testing\TestsGenerator.aspx" />
+    <Content Include="Testing\UploadWordDocResult.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
@@ -302,6 +350,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\ExternalTestFiles\" />
+    <Folder Include="Data\QuestionsWordDocFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

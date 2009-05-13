@@ -23,6 +23,61 @@ namespace UnnLearningKitLibrary
             //FIXME: добавить некоторый код
         }
 
+        public int GetStudentIdByName(string name)
+        {
+            // результат выполнения метода - список факультетов
+            int studentId = Constants.FAKE_ID;
+
+            using (SqlConnection connection = new SqlConnection(DbConfig.ConnectionString))
+            {
+                string bodySql = "SELECT id FROM [Student] WHERE name = @name";
+                string sql = DbConstants.BeginTransaction + bodySql + DbConstants.EndTransaction;
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = sql;
+                    command.Parameters.Add("@name", SqlDbType.VarChar, 255);
+                    command.Parameters["@name"].Value = name;
+                    command.CommandType = CommandType.Text;
+                    // результат выполнения запроса
+                    SqlDataReader result = null;
+                    try
+                    {
+                        command.CommandType = CommandType.Text;
+                        // открываем соединение
+                        connection.Open();
+
+                        // выполняем sql запрос
+                        result = command.ExecuteReader();
+
+                        // обрабатываем результат sql запроса
+                        result.Read();
+
+                        // получаем данных из запроса
+                        try
+                        {
+                            studentId = Convert.ToInt32(result["id"].ToString());
+                        }
+                        catch (Exception ex)
+                        {
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        //FIXME: добавить обработчик
+                    }
+                    finally
+                    {
+                        // заканчиваем обрабатывать результат запроса
+                        if (null != result) { result.Close(); }
+                        // закрываем соединение
+                        if (null != connection) { connection.Close(); }
+                    }
+                }
+            }
+            return studentId;
+        }
+
         public void Add(Obj obj)
         {
             Student student = (Student)obj;
