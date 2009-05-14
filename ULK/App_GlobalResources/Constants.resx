@@ -120,6 +120,9 @@
   <data name="AdminRoleName" xml:space="preserve">
     <value>Администратор</value>
   </data>
+  <data name="FAKE_ID" xml:space="preserve">
+    <value>-1</value>
+  </data>
   <data name="MetodistRoleName" xml:space="preserve">
     <value>Методист</value>
   </data>
