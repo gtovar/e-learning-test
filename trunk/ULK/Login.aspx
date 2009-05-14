@@ -14,23 +14,13 @@
 <body>
 <form id="authForm" runat="server">
     <table width="100%">
-    <tr><td></td><td align="right">
-        <asp:LoginStatus ID="loginStatus" runat="server" />
-    </td></tr>
+
     <tr><td colspan="2">
     <div align="center">
         <br />
         <asp:LoginView ID="loginView" runat="server" 
             onviewchanged="loginView_ViewChanged">
             <LoggedInTemplate>
-                <div>
-                    <span style="font-size:15px">Приветствуем Вас,</span>
-                    <b><asp:LoginName ID="loginName" runat="server" /></b>!
-                    <br />
-                    <br />
-                    <asp:Button ID="redirectToHomePage"  runat="server" Text="Перейти на домашнюю страницу" 
-                        CssClass="button" onclick="redirectToHomePage_Click" />
-                </div>
             </LoggedInTemplate>
             <AnonymousTemplate>
                 <div>
