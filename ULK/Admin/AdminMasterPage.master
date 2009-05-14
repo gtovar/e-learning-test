@@ -4,43 +4,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Панель администрирования</title>
+    <title>ULK - Панель администрирования</title>
     <asp:ContentPlaceHolder ID="headAdminMasterPage" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="adminMasterPageForm" runat="server">
+    <div align="center">
+    <hr />
+        <a href="/ULK/Admin/Departments/ManageDepartments.aspx">Факультеты</a>&nbsp;|&nbsp;
+        <a href="/ULK/Admin/Groups/ManageGroups.aspx">Группы</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Chairs/ManageChairs.aspx">
+            Кафедры</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Disciplines/ManageDisciplines.aspx">Дисциплины</a>&nbsp;|&nbsp;
+        <a href="/ULK/Admin/Students/ManageStudents.aspx">Студенты</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Accounts/ManageAccounts.aspx">
+            Учетные записи</a>
+           <hr />
+    </div>
     <asp:ScriptManager ID="scriptManager" runat="server">
     </asp:ScriptManager>
     <table width="100%" height="600px">
-        <tr>
-            <td valign="top" colspan="2">
-                <asp:Menu ID="adminMenu" DisappearAfter="2000" StaticDisplayLevels="2" StaticSubMenuIndent="10px"
-                    Font-Names="Verdana" runat="server" BackColor="#EDF5FF" DynamicHorizontalOffset="2"
-                    Font-Size="Large" ForeColor="#284E98" Orientation="Horizontal" BorderColor="#507CD1"
-                    BorderStyle="Solid" BorderWidth="1px" PathSeparator="|" Width="100%">
-                    <StaticMenuItemStyle BackColor="#EDF5FF" ForeColor="Black" />
-                    <StaticHoverStyle BackColor="LightSkyBlue" />
-                    <DynamicMenuItemStyle BackColor="#EDF5FF" ForeColor="Silver" />
-                    <DynamicHoverStyle BackColor="LightSkyBlue" ForeColor="Black" />
-                    <Items>
-                        <asp:MenuItem NavigateUrl="~/Admin/Departments/ManageDepartments.aspx" Text="Факультеты"
-                            ToolTip="Факультеты">
-                        </asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/Admin/Groups/ManageGroups.aspx" Text="Группы" ToolTip="Группы">
-                        </asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/Admin/Chairs/ManageChairs.aspx" Text="Кафедры" ToolTip="Кафедры">
-                        </asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/Admin/Disciplines/ManageDisciplines.aspx" Text="Дисциплины"
-                            ToolTip="Дисциплины"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/Admin/Students/ManageStudents.aspx" Text="Студенты"
-                            ToolTip="Студенты"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/Admin/Accounts/ManageAccounts.aspx" Text="Учетные записи"
-                            ToolTip="Учетные записи"></asp:MenuItem>
-                    </Items>
-                </asp:Menu>
-            </td>
-        </tr>
         <tr>
             <td colspan="2" valign="top">
                 <div>
@@ -49,12 +30,10 @@
                 </div>
             </td>
         </tr>
-        <tr>
-            <td valign="bottom" align="center" colspan="2">
-                © 2009 ННГУ ВМК
-            </td>
-        </tr>
     </table>
+    <div align="center">
+        <p>© 2009 ННГУ ВМК</p>
+    </div>
     </form>
 </body>
 </html>

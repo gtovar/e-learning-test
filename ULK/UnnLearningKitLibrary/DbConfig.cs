@@ -7,6 +7,6 @@ namespace UnnLearningKitLibrary
 {
     class DbConfig
     {
-        public const string ConnectionString = @"Data Source=ECLIPSE;Initial Catalog=ULK_DB;Integrated Security=True";
+        public const string ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ULK_DB;Integrated Security=True";
     }
 }
