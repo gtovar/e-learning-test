@@ -8,5 +8,6 @@ namespace UnnLearningKitLibrary
     public interface IDisciplineTable : ITable
     {
         List<Obj> GetAllByDepartmentId(int departmentId);
+        void DeleteAllDisciplinesByChairId(int chairId);
     }
 }

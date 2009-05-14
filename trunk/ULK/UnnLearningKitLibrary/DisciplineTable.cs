@@ -34,6 +34,11 @@ namespace UnnLearningKitLibrary
             _tableImp.Delete(id);
         }
 
+        public void DeleteAllDisciplinesByChairId(int chairId)
+        {
+            _tableImp.DeleteAllDisciplinesByChairId(chairId);
+        }
+
         public List<Obj> GetAll()
         {
             return _tableImp.GetAll();
