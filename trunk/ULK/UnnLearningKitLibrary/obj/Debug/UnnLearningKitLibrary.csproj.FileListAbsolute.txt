@@ -19,3 +19,11 @@ C:\MLG\e-learning-test\ULK\UnnLearningKitLibrary\bin\Debug\Microsoft.Office.Inte
 C:\MLG\e-learning-test\ULK\UnnLearningKitLibrary\obj\Debug\ResolveAssemblyReference.cache
 C:\MLG\e-learning-test\ULK\UnnLearningKitLibrary\obj\Debug\UnnLearningKitLibrary.dll
 C:\MLG\e-learning-test\ULK\UnnLearningKitLibrary\obj\Debug\UnnLearningKitLibrary.pdb
+D:\develop\ULK\UnnLearningKitLibrary\bin\Debug\UnnLearningKitLibrary.dll
+D:\develop\ULK\UnnLearningKitLibrary\bin\Debug\UnnLearningKitLibrary.pdb
+D:\develop\ULK\UnnLearningKitLibrary\bin\Debug\Microsoft.Vbe.Interop.dll
+D:\develop\ULK\UnnLearningKitLibrary\bin\Debug\office.dll
+D:\develop\ULK\UnnLearningKitLibrary\obj\Debug\ResolveAssemblyReference.cache
+D:\develop\ULK\UnnLearningKitLibrary\obj\Debug\UnnLearningKitLibrary.dll
+D:\develop\ULK\UnnLearningKitLibrary\obj\Debug\UnnLearningKitLibrary.pdb
+D:\develop\ULK\UnnLearningKitLibrary\bin\Debug\office.xml
