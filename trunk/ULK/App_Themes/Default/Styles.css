@@ -152,10 +152,78 @@ A:HOVER
 .button
 {
     background-color: White;
-    border-color: blue;
+    border-color: #556D89;
     border-style: Solid;
     border-width: 1px;
     font-family: Verdana;
-    font-size: 0.8em;
-    color: blue;
+    font-size: 1.2em;
+    color: #556D89;
 }
+
+.contentPlace
+{
+    height: 239px;
+    width: 100%;
+    vertical-align: top;
+}
+.menu
+{
+    height: 239px;
+    width: 74px;
+    width: 429px;
+    vertical-align: top;
+}
+.line
+{
+    height: 2px;
+    background-color: Gray;
+}
+.foot
+{
+    text-align: center;
+}
+
+.hideMessage
+{
+    display: none;
+    font-weight: bold;
+    font-size: large;
+    color: #993300;
+}
+.showMessage
+{
+    display: inline;
+    font-weight: bold;
+    font-size: large;
+    color: #993300;
+}
+.loginStatus
+{
+    float: right;
+    color: White;
+    font-weight: bold;
+}
+.validation
+{
+    color: Red;
+    font-weight: bold;
+}
+.title
+{
+    background-color: #EDF5FF;
+    font-size:2em; 
+    color: #993300;
+    font-family: Verdana;
+}
+.notice {
+	border: 2px solid green;
+	padding: 1em;
+	margin-bottom: 2em;
+	background-color: #f0f0f0;
+	font: bold large sans-serif;
+}
+.text_center
+{
+    text-align: center;
+}
+    

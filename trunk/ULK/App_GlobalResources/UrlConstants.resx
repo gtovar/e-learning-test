@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddGroupUrl" xml:space="preserve">
+    <value>~/Admin/Groups/AddGroup.aspx</value>
+  </data>
   <data name="AdminHomeUrl" xml:space="preserve">
     <value>Admin/</value>
+  </data>
+  <data name="DepartmentsHomeUrl" xml:space="preserve">
+    <value>~/Admin/Departments/ManageDepartments.aspx</value>
+  </data>
+  <data name="GroupsHomeUrl" xml:space="preserve">
+    <value>~/Admin/Groups/ManageGroups.aspx</value>
   </data>
   <data name="LoginUrl" xml:space="preserve">
     <value>Login.aspx</value>
