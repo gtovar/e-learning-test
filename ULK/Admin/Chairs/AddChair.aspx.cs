@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 using Resources;
 using UnnLearningKitLibrary;
 
-public partial class Admin_Groups_AddGroup : System.Web.UI.Page
+public partial class Admin_Chairs_AddChair : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,15 +32,22 @@ public partial class Admin_Groups_AddGroup : System.Web.UI.Page
             }
         }
     }
-    protected void saveGroup_Click(object sender, EventArgs e)
+    protected void saveChair_Click(object sender, EventArgs e)
     {
-        ITable groupTable = new GroupTable();
-        int departmentID = Convert.ToInt32(departmentsList.SelectedValue.ToString());
-        string title = titleText.Text;
-        string description = descriptionText.Text;
-        groupTable.Add(new Group(UnnLearningKitLibrary.Constants.FAKE_ID, departmentID, title, description));
+        try
+        {
+            ITable chairTable = new ChairTable();
+            int departmentID = Convert.ToInt32(departmentsList.SelectedValue);
+            string title = titleText.Text;
+            string description = descripitonText.Text;
+            
+            chairTable.Add(new Chair(UnnLearningKitLibrary.Constants.FAKE_ID, departmentID, title, description));
 
-        string url = UrlConstants.GroupsHomeUrl + "?DepartmentID=" + departmentID;
-        Response.Redirect(url);
+            string url = UrlConstants.ChairsHomeUrl + "?DepartmentID=" + departmentID;
+            Response.Redirect(url);
+        }
+        catch (Exception ex)
+        {
+        }
     }
 }

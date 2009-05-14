@@ -106,6 +106,40 @@ namespace UnnLearningKitLibrary
             }
         }
 
+        public void DeleteAllDisciplinesByChairId(int chairId)
+        {
+            using (SqlConnection connection = new SqlConnection(DbConfig.ConnectionString))
+            {
+                string bodySql = "DELETE FROM [Discipline] WHERE chair_id = @chair_id";
+                string sql = DbConstants.BeginTransaction + bodySql + DbConstants.EndTransaction;
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = sql;
+                    command.Parameters.Add("@chair_id", SqlDbType.Int, 4);
+                    command.Parameters["@chair_id"].Value = chairId;
+                    command.CommandType = CommandType.Text;
+                    // открываем соединение
+                    connection.Open();
+
+                    try
+                    {
+                        // выполняем sql запрос
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //FIXME: добавить обработчик
+                    }
+                    finally
+                    {
+                        // закрываем соединение
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
         public void Delete(int id)
         {
             using (SqlConnection connection = new SqlConnection(DbConfig.ConnectionString))
