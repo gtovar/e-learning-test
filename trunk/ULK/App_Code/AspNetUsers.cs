@@ -7,7 +7,7 @@ using Resources;
 
 public class AspNetUsers
 {
-    /**
+    
     public static void UpdateRoleId(string userId, string roleId)
     {
         Guid userGuid = new Guid(userId);
@@ -36,7 +36,7 @@ public class AspNetUsers
 
         return user_email;
     }
-    **/
+    
     public static void UpdateUserName(string userId, string userName)
     {
         try
@@ -63,7 +63,7 @@ public class AspNetUsers
         }
     }
     
-    public static string GetUsersRoleId()
+    public static string GetUserRoleId()
     {
         try
         {
