@@ -1,15 +1,15 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdminMasterPage.master.cs"
-    Inherits="Admin_AdminMasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MetodistMasterPage.master.cs"
+    Inherits="Metodist_MasterPage" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>ULK - Панель администрирования</title>
-    <asp:ContentPlaceHolder ID="headAdminMasterPage" runat="server">
+    <title>ULK - Панель методиста</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="adminMasterPageForm" runat="server">
+    <form id="metodistMasterPageForm" runat="server">
     <hr />
     <table width="100%">
         <tr>
@@ -19,11 +19,10 @@
             </td>
             <td width="80%">
                 <div align="center">
-                    <a href="/ULK/Admin/Departments/ManageDepartments.aspx">Факультеты</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Admin/Groups/ManageGroups.aspx">Группы</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Chairs/ManageChairs.aspx">
-                        Кафедры</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Disciplines/ManageDisciplines.aspx">Дисциплины</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Admin/Students/ManageStudents.aspx">Студенты</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Accounts/ManageAccounts.aspx">
-                        Учетные записи</a>
+                    <a href="/ULK/Metodist/Default.aspx">Генератор тестов</a>&nbsp;|&nbsp;
+                    <a href="/ULK/Metodist/Default.aspx">Хранилище тестов</a>&nbsp;|&nbsp; 
+                    <a href="/ULK/Metodist/Default.aspx">Назначенные тесты</a>&nbsp;|&nbsp;
+                    <a href="/ULK/Metodist/Default.aspx">Выполненные тесты</a>
                 </div>
             </td>
             <td width="10%">
@@ -41,7 +40,7 @@
         <tr>
             <td colspan="2" valign="top">
                 <div>
-                    <asp:ContentPlaceHolder ID="adminContentPlaceHolder" runat="server">
+                    <asp:ContentPlaceHolder ID="metodistContentPlaceHolder" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
             </td>
