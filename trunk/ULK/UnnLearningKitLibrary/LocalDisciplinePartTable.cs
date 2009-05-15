@@ -32,12 +32,14 @@ namespace UnnLearningKitLibrary
 
             using (SqlConnection connection = new SqlConnection(DbConfig.ConnectionString))
             {
-                string bodySql = "INSERT INTO [DisciplinePart] ( title ) VALUES ( @title )";
+                string bodySql = "INSERT INTO [DisciplinePart] ( discipline_id, title ) VALUES ( @discipline_id, @title )";
                 string sql = DbConstants.BeginTransaction + bodySql + DbConstants.EndTransaction;
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = connection;
                     command.CommandText = sql;
+                    command.Parameters.Add("@discipline_id", SqlDbType.Int, 4);
+                    command.Parameters["@discipline_id"].Value = disciplinePart.DisciplineId;
                     command.Parameters.Add("@title", SqlDbType.VarChar, 255);
                     command.Parameters["@title"].Value = disciplinePart.Title;
                     command.CommandType = CommandType.Text;
@@ -67,7 +69,7 @@ namespace UnnLearningKitLibrary
 
             using (SqlConnection connection = new SqlConnection(DbConfig.ConnectionString))
             {
-                string bodySql = "UPDATE [DisciplinePart] SET title = @title WHERE id = @id";
+                string bodySql = "UPDATE [DisciplinePart] SET title = @title, discipline_id = @discipline_id WHERE id = @id";
                 string sql = DbConstants.BeginTransaction + bodySql + DbConstants.EndTransaction;
                 using (SqlCommand command = new SqlCommand())
                 {
@@ -75,11 +77,47 @@ namespace UnnLearningKitLibrary
                     command.CommandText = sql;
                     command.Parameters.Add("@title", SqlDbType.VarChar, 255);
                     command.Parameters.Add("@id", SqlDbType.Int, 4);
+                    command.Parameters.Add("@discipline_id", SqlDbType.Int, 4);
                     command.Parameters["@title"].Value = disciplinePart.Title;
                     command.Parameters["@id"].Value = disciplinePart.Id;
+                    command.Parameters["@discipline_id"].Value = disciplinePart.DisciplineId;
                     command.CommandType = CommandType.Text;
                     // открываем соединение
                     connection.Open();
+                    try
+                    {
+                        // выполняем sql запрос
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        //FIXME: добавить обработчик
+                    }
+                    finally
+                    {
+                        // закрываем соединение
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        public void DeleteAllDisciplinePartsByDisciplineId(int disciplineID)
+        {
+            using (SqlConnection connection = new SqlConnection(DbConfig.ConnectionString))
+            {
+                string bodySql = "DELETE FROM [DisciplinePart] WHERE discipline_id = @discipline_id";
+                string sql = DbConstants.BeginTransaction + bodySql + DbConstants.EndTransaction;
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = sql;
+                    command.Parameters.Add("@discipline_id", SqlDbType.Int, 4);
+                    command.Parameters["@discipline_id"].Value = disciplineID;
+                    command.CommandType = CommandType.Text;
+                    // открываем соединение
+                    connection.Open();
+
                     try
                     {
                         // выполняем sql запрос
@@ -162,8 +200,9 @@ namespace UnnLearningKitLibrary
                         {
                             // получаем данных из запроса
                             int id = Convert.ToInt32(result["id"]);
+                            int discipline_id = Convert.ToInt32(result["discipline_id"]);
                             string title = result["title"].ToString();
-                            Obj obj = new Department(id, title);
+                            Obj obj = new DisciplinePart(id, discipline_id, title);
 
                             // добавляем его в результирующий список
                             objects.Add(obj);
@@ -218,8 +257,9 @@ namespace UnnLearningKitLibrary
 
                         // получаем данных из запроса
                         string title = result["title"].ToString();
+                        int discipline_id = Convert.ToInt32(result["discipline_id"]);
 
-                        disciplinePart = new DisciplinePart(id, title);
+                        disciplinePart = new DisciplinePart(id, discipline_id, title);
                     }
                     catch (Exception ex)
                     {

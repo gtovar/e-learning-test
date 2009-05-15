@@ -7,5 +7,6 @@ namespace UnnLearningKitLibrary
 {
     public interface IDisciplinePartTable : ITable
     {
+        void DeleteAllDisciplinePartsByDisciplineId(int disciplineID);
     }
 }

@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>ULK - Панель администратора</title>
+    <title>ULK - Панель администрирования</title>
     <asp:ContentPlaceHolder ID="headAdminMasterPage" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -14,27 +14,29 @@
     <table width="100%">
         <tr>
             <td width="10%">
-                <div align="left">
-                </div>
+            <div align="left">
+            </div>
             </td>
             <td width="80%">
-                <div align="center">
-                    <a href="/ULK/Admin/Departments/ManageDepartments.aspx">Факультеты</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Admin/Groups/ManageGroups.aspx">Группы</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Chairs/ManageChairs.aspx">
-                        Кафедры</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Disciplines/ManageDisciplines.aspx">Дисциплины</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Admin/Students/ManageStudents.aspx">Студенты</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Accounts/ManageAccounts.aspx">
-                        Учетные записи</a>
-                </div>
+            <div align="center">
+            <a href="/ULK/Admin/Departments/ManageDepartments.aspx">Факультеты</a>&nbsp;|&nbsp;
+        <a href="/ULK/Admin/Groups/ManageGroups.aspx">Группы</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Chairs/ManageChairs.aspx">
+            Кафедры</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Disciplines/ManageDisciplines.aspx">Дисциплины</a>&nbsp;|&nbsp;
+        <a href="/ULK/Admin/DisciplineParts/ManageDisciplineParts.aspx">Разделы дисциплины</a>&nbsp;|&nbsp;<a href="/ULK/Admin/Students/ManageStudents.aspx">Студенты</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Accounts/ManageAccounts.aspx">
+            Учетные записи</a>
+            </div>
             </td>
-            <td width="10%">
-                <div align="right">
-                    <asp:LoginStatus ID="loginStatus" runat="server" LogoutAction="RedirectToLoginPage"
-                        LogoutText="Выход" />
-                </div>
+            <td  width="10%">
+            <div align="right">
+            <asp:LoginStatus ID="loginStatus" runat="server" LogoutAction="RedirectToLoginPage" 
+                    LogoutText="Выход" />
+            </div>
             </td>
-        </tr>
+         </tr>
     </table>
-    <hr />
+        
+           <hr />
+    
     <asp:ScriptManager ID="scriptManager" runat="server">
     </asp:ScriptManager>
     <table width="100%" height="600px">
@@ -48,8 +50,7 @@
         </tr>
     </table>
     <div align="center">
-        <p>
-            © 2009 ННГУ ВМК</p>
+        <p>© 2009 ННГУ ВМК</p>
     </div>
     </form>
 </body>

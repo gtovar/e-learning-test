@@ -120,8 +120,17 @@
   <data name="AddChairUrl" xml:space="preserve">
     <value>~/Admin/Chairs/AddChair.aspx</value>
   </data>
+  <data name="AddDisciplinePartUrl" xml:space="preserve">
+    <value>~/Admin/DisciplineParts/AddDisciplinePart.aspx</value>
+  </data>
+  <data name="AddDisciplineUrl" xml:space="preserve">
+    <value>~/Admin/Disciplines/AddDiscipline.aspx</value>
+  </data>
   <data name="AddGroupUrl" xml:space="preserve">
     <value>~/Admin/Groups/AddGroup.aspx</value>
+  </data>
+  <data name="AddStudentUrl" xml:space="preserve">
+    <value>~/Admin/Students/AddStudent.aspx</value>
   </data>
   <data name="AdminHomeUrl" xml:space="preserve">
     <value>Admin/</value>
@@ -132,6 +141,12 @@
   <data name="DepartmentsHomeUrl" xml:space="preserve">
     <value>~/Admin/Departments/ManageDepartments.aspx</value>
   </data>
+  <data name="DisciplinePartsHomeUrl" xml:space="preserve">
+    <value>~/Admin/DisciplineParts/ManageDisciplineParts.aspx</value>
+  </data>
+  <data name="DisciplinesHomeUrl" xml:space="preserve">
+    <value>~/Admin/Disciplines/ManageDisciplines.aspx</value>
+  </data>
   <data name="GroupsHomeUrl" xml:space="preserve">
     <value>~/Admin/Groups/ManageGroups.aspx</value>
   </data>
@@ -140,6 +155,9 @@
   </data>
   <data name="MetodistHomeUrl" xml:space="preserve">
     <value>Metodist/</value>
+  </data>
+  <data name="StudentsHomeUrl" xml:space="preserve">
+    <value>~/Admin/Students/ManageStudents.aspx</value>
   </data>
   <data name="UserHomeUrl" xml:space="preserve">
     <value>User/</value>

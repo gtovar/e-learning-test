@@ -7,7 +7,7 @@
     <br />
     <br />
     <div><div style="float:left">
-    <asp:Label ID="departmentLabel" runat="server" Text="Факультет:"></asp:Label>
+    <asp:Label ID="departmentLabel" Font-Size="Medium" runat="server" Text="Факультет:"></asp:Label>
     <asp:DropDownList ID="departmentsList" runat="server" AutoPostBack="True" 
         DataSourceID="DepartmentsObjectDataSource" DataTextField="title" 
         DataValueField="id" ondatabound="departmentsList_DataBound">
