@@ -29,6 +29,11 @@ namespace UnnLearningKitLibrary
             _tableImp.Update(Obj);
         }
 
+        public void DeleteAllDisciplinePartsByDisciplineId(int disciplineID)
+        {
+            _tableImp.DeleteAllDisciplinePartsByDisciplineId(disciplineID);
+        }
+
         public void Delete(int id)
         {
             _tableImp.Delete(id);

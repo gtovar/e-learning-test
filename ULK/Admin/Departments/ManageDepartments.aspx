@@ -39,7 +39,12 @@
                 <ItemStyle BackColor="#EDF5FF" CssClass="text_center"></ItemStyle>
             </asp:TemplateField>
             <asp:HyperLinkField DataNavigateUrlFields="id" DataNavigateUrlFormatString="~/Admin/Groups/ManageGroups.aspx?DepartmentID={0}"
-                HeaderText="Группы" Text="Группы" ItemStyle-BackColor="#EDF5FF">
+                HeaderText="Группы" Text="Группы" >
+                <ItemStyle BackColor="#EDF5FF" CssClass="text_center"></ItemStyle>
+            </asp:HyperLinkField>
+            <asp:HyperLinkField DataNavigateUrlFields="id" 
+                DataNavigateUrlFormatString="~/Admin/Chairs/ManageChairs.aspx?DepartmentID={0}" 
+                HeaderText="Кафедры" Text="Кафедры" >
                 <ItemStyle BackColor="#EDF5FF" CssClass="text_center"></ItemStyle>
             </asp:HyperLinkField>
         </Columns>
