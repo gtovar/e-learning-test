@@ -19,9 +19,9 @@
             </td>
             <td width="80%">
                 <div align="center">
-                    <a href="/ULK/User/Default.aspx">Общая информация</a>&nbsp;|&nbsp;
-                    <a href="/ULK/User/Default.aspx">Назначенные тесты</a>&nbsp;|&nbsp; 
-                    <a href="/ULK/User/Default.aspx">Выполненные тесты</a>
+                    <a href="/ULK/User/GeneralInfo.aspx">Общая информация</a>&nbsp;|&nbsp;
+                    <a href="/ULK/User/ToDoList.aspx">Назначенные тесты</a>&nbsp;|&nbsp; 
+                    <a href="/ULK/User/DoneList.aspx">Выполненные тесты</a>
                 </div>
             </td>
             <td width="10%">
