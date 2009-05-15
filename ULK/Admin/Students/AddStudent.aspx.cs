@@ -64,7 +64,7 @@ public partial class Admin_Students_AddStudent : System.Web.UI.Page
     protected void createStudent_CreatedUser(object sender, EventArgs e)
     {
         string userId = GetCreatedUserId();
-        string roleId = AspNetUsers.GetUsersRoleId();
+        string roleId = AspNetUsers.GetUserRoleId();
         AspNetUsers.AddUserInRoles(userId, roleId);
         AddStudentToULKDB();
     }
