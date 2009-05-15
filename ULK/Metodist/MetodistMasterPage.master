@@ -19,10 +19,10 @@
             </td>
             <td width="80%">
                 <div align="center">
-                    <a href="/ULK/Metodist/Default.aspx">Генератор тестов</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Metodist/Default.aspx">Хранилище тестов</a>&nbsp;|&nbsp; 
-                    <a href="/ULK/Metodist/Default.aspx">Назначенные тесты</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Metodist/Default.aspx">Выполненные тесты</a>
+                    <a href="/ULK/Metodist/TestGenerator.aspx">Генератор тестов</a>&nbsp;|&nbsp;
+                    <a href="/ULK/Metodist/TestStorage.aspx">Хранилище тестов</a>&nbsp;|&nbsp; 
+                    <a href="/ULK/Metodist/NewAssignments.aspx">Назначенные тесты</a>&nbsp;|&nbsp;
+                    <a href="/ULK/Metodist/DoneAssignments.aspx">Выполненные тесты</a>
                 </div>
             </td>
             <td width="10%">
