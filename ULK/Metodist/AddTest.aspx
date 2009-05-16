@@ -113,7 +113,6 @@
             <asp:Label ID="disciplineTitleLabel" runat="server" Font-Size="Medium" 
                 Text="Путь к файлу с тестом:*"></asp:Label>
             <br />
-            <br />
             <asp:FileUpload ID="testFileUpload" runat="server" />
             <asp:RequiredFieldValidator ID="disciplinePartTitleRequiredValidator" 
                 runat="server" ErrorMessage="Путь к файлу с тестом" ControlToValidate="testFileUpload" 
