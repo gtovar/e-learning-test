@@ -9,6 +9,6 @@ public partial class Metodist_MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        UsersRules.IsUserMetodist(Page.User, Response);
     }
 }
