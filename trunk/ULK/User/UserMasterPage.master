@@ -13,7 +13,7 @@
     <hr />
     <table width="100%">
         <tr>
-            <td width="10%">
+            <td width="15%">
                 <div align="left">
                 </div>
             </td>
@@ -23,7 +23,7 @@
                         Назначенные тесты</a>&nbsp;|&nbsp; <a href="/ULK/User/DoneList.aspx">Выполненные тесты</a>
                 </div>
             </td>
-            <td width="20%">
+            <td width="15%">
                 <div align="right">
                     <a href="/ULK/Share/ChangePassword.aspx">Сменить пароль</a>&nbsp;|&nbsp;
                     <asp:LoginStatus ID="loginStatus" runat="server" LogoutAction="RedirectToLoginPage"

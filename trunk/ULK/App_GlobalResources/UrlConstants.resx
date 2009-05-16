@@ -127,7 +127,7 @@
     <value>~/Admin/Chairs/AddChair.aspx</value>
   </data>
   <data name="AddDisciplinePartTestUrl" xml:space="preserve">
-    <value>~/Metodist/AddTest.aspx</value>
+    <value>~/Metodist/Storage/AddTest.aspx</value>
   </data>
   <data name="AddDisciplinePartUrl" xml:space="preserve">
     <value>~/Admin/DisciplineParts/AddDisciplinePart.aspx</value>
@@ -154,7 +154,7 @@
     <value>~/Admin/DisciplineParts/ManageDisciplineParts.aspx</value>
   </data>
   <data name="DisciplinePartTestsHomeUrl" xml:space="preserve">
-    <value>~/Metodist/TestStorage.aspx</value>
+    <value>~/Metodist/Storage/TestStorage.aspx</value>
   </data>
   <data name="DisciplinesHomeUrl" xml:space="preserve">
     <value>~/Admin/Disciplines/ManageDisciplines.aspx</value>
@@ -169,7 +169,7 @@
     <value>~/Metodist/</value>
   </data>
   <data name="NewAssignmentsHomeUrl" xml:space="preserve">
-    <value>~/Metodist/NewAssignments.aspx</value>
+    <value>~/Metodist/NewTests/NewAssignments.aspx</value>
   </data>
   <data name="StudentsHomeUrl" xml:space="preserve">
     <value>~/Admin/Students/ManageStudents.aspx</value>
@@ -178,6 +178,6 @@
     <value>~/User/</value>
   </data>
   <data name="DoneAssignmentsHomeUrl" xml:space="preserve">
-    <value>~/Metodist/DoneAssignments.aspx</value>
+    <value>~/Metodist/DoneTests/DoneAssignments.aspx</value>
   </data>
 </root>

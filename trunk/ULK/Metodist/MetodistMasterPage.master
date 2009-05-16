@@ -13,20 +13,20 @@
     <hr />
     <table width="100%">
         <tr>
-            <td width="10%">
+            <td width="15%">
                 <div align="left">
                 </div>
             </td>
             <td width="70%">
                 <div align="center">
-                    <a href="/ULK/Metodist/TestGenerator.aspx">Генератор тестов</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Metodist/TestStorage.aspx">Хранилище тестов</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Metodist/AssignningTests.aspx">Назначение тестов</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Metodist/NewAssignments.aspx">Назначенные тесты</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Metodist/DoneAssignments.aspx">Выполненные тесты</a>
+                    <a href="/ULK/Metodist/Generator/TestGenerator.aspx">Генератор тестов</a>&nbsp;|&nbsp;
+                    <a href="/ULK/Metodist/Storage/TestStorage.aspx">Хранилище тестов</a>&nbsp;|&nbsp;
+                    <a href="/ULK/Metodist/NewTests/AssignningTests.aspx">Назначение тестов</a>&nbsp;|&nbsp;
+                    <a href="/ULK/Metodist/NewTests/NewAssignments.aspx">Назначенные тесты</a>&nbsp;|&nbsp;
+                    <a href="/ULK/Metodist/DoneTests/DoneAssignments.aspx">Выполненные тесты</a>
                 </div>
             </td>
-            <td width="20%">
+            <td width="15%">
                 <div align="right">
                             <a href="/ULK/Share/ChangePassword.aspx">Сменить пароль</a>&nbsp;|&nbsp;
                     <asp:LoginStatus ID="loginStatus" runat="server" LogoutAction="RedirectToLoginPage"
