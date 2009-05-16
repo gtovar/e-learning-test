@@ -20,14 +20,18 @@
     <br />
     <br />
     <asp:GridView ID="departmentsGridView" runat="server" CellPadding="4" DataSourceID="DepartmentsObjectDataSource"
-        ForeColor="#333333" GridLines="None" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-        DataKeyNames="id" BackColor="#EDF5FF" Width="100%">
+        ForeColor="#333333" GridLines="None" AllowPaging="True" 
+        AllowSorting="True" AutoGenerateColumns="False"
+        DataKeyNames="id" BackColor="#EDF5FF" Width="100%" CssClass="Grid">
         <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
         <Columns>
             <asp:BoundField DataField="title" HeaderText="Название" SortExpression="title">
                 <ItemStyle BackColor="#EDF5FF"></ItemStyle>
             </asp:BoundField>
-            <asp:CommandField ShowEditButton="True" HeaderText="Операции" ItemStyle-CssClass="text_center">
+            <asp:CommandField ShowEditButton="True" HeaderText="Операции" 
+                ItemStyle-CssClass="text_center" CancelText="Отмена" DeleteText="Удалить" 
+                EditText="Редактировать" InsertText="Вставить" SelectText="Выбрать" 
+                UpdateText="Обновить">
                 <ItemStyle BackColor="#EDF5FF"></ItemStyle>
             </asp:CommandField>
             <asp:TemplateField HeaderText="Операции">
