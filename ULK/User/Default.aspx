@@ -4,7 +4,12 @@
     <div align="center">
         <br />
         <br />
-        <p>Панель пользователя!!!</p>
-        <p>Тут надо написать какую нибудь инструкцию!!!</p>
+        <div class="title">Панель пользователя</div>
+        <br />
+        <asp:Label ID="HelloLabel" runat="server" Text="Здравствуйте!" Font-Size="Medium" Font-Bold="True"></asp:Label>
+        <br />
+        <asp:Label ID="InfoAboutNewTestsLabel" runat="server" Text="В разделе Назначенные тесты вы можете просмотреть список назначенных вам тестов и пройти их." Font-Size="Medium"></asp:Label>
+        <br />
+        <asp:Label ID="InfoAboutDoneTestsLabel" runat="server" Text="В разделе Выполенные тесты вы можете просмотреть список пройденных тестов, а также узнать свой балл за каждый тест." Font-Size="Medium"></asp:Label>
     </div>
 </asp:Content>
