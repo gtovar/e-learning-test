@@ -19,7 +19,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ULK", ".", "{AC1B115D-8DF3-
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "4067"
+		VWDPort = "20877"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnnLearningKitLibrary", "UnnLearningKitLibrary\UnnLearningKitLibrary.csproj", "{2CA32CE2-4625-4400-A70D-538082E35FAF}"

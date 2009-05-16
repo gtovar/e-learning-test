@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Metodist/MetodistMasterPage.master" CodeFile="TestStorage.aspx.cs" Inherits="Metodist_TestStorage" %>
 
 <asp:Content ID="StorageMetodistPage"  ContentPlaceHolderID="metodistContentPlaceHolder" runat="server">
-<asp:Label ID="metodistLabel" runat="server" Text="Хранилище тестов" CssClass="title"></asp:Label>
+    <asp:Label ID="metodistLabel" runat="server" Text="Хранилище тестов" CssClass="title"></asp:Label>
     <asp:UpdatePanel ID="testsStorageUpdatePanel" runat="server">
         <ContentTemplate>
             <br />
@@ -128,10 +128,14 @@
                 ForeColor="#333333" GridLines="None" Width="100%" CssClass="Grid">
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                 <Columns>
-                    <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" 
-                        ReadOnly="True" SortExpression="id" />
-                    <asp:BoundField DataField="title" HeaderText="title" SortExpression="title" />
-                    <asp:BoundField DataField="path" HeaderText="path" SortExpression="path" />
+                    <asp:BoundField DataField="title" HeaderText="Название" 
+                        SortExpression="title" />
+                    <asp:HyperLinkField DataNavigateUrlFields="id" 
+                        DataNavigateUrlFormatString="~/Metodist/EditTest.aspx?DisciplinePartTestID={0}" 
+                        HeaderText="Операции" Text="Редактировать" />
+                    <asp:HyperLinkField DataNavigateUrlFields="id" 
+                        DataNavigateUrlFormatString="~/Metodist/DeleteTest.aspx?DisciplinePartTestID={0}" 
+                        HeaderText="Операции" Text="Удалить" />
                 </Columns>
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
@@ -142,9 +146,19 @@
             </asp:GridView>
             <asp:ObjectDataSource ID="DisciplinePartTestsObjectDataSource" runat="server"
                 OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllTestsVariants"
-                TypeName="dataSetTableAdapters.TestVariantTableAdapter">
+                TypeName="dataSetTableAdapters.TestVariantTableAdapter" 
+                DeleteMethod="Delete" UpdateMethod="Update">
+                <DeleteParameters>
+                    <asp:Parameter Name="Original_id" Type="Int32" />
+                </DeleteParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="title" Type="String" />
+                    <asp:Parameter Name="path" Type="String" />
+                    <asp:Parameter Name="Original_id" Type="Int32" />
+                </UpdateParameters>
                 <SelectParameters>
-                    <asp:Parameter Name="discipline_part_id" Type="Int32" />
+                    <asp:ControlParameter ControlID="disciplinePartsList" Name="discipline_part_id" 
+                        PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
         </ContentTemplate>

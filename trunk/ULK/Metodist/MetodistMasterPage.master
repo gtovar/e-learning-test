@@ -9,7 +9,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="metodistMasterPageForm" runat="server">
+    <form id="metodistMasterPageForm" runat="server" method="post" enctype="multipart/form-data">
     <hr />
     <table width="100%">
         <tr>
