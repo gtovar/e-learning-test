@@ -25,20 +25,16 @@
             <asp:BoundField DataField="title" HeaderText="Название" SortExpression="title">
                 <ItemStyle BackColor="#EDF5FF"></ItemStyle>
             </asp:BoundField>
-            <asp:CommandField ShowEditButton="True" HeaderText="Операции" 
-                ItemStyle-CssClass="text_center" CancelText="Отмена" DeleteText="Удалить" 
-                EditText="Редактировать" InsertText="Вставить" SelectText="Выбрать" 
-                UpdateText="Обновить">
-                <ItemStyle BackColor="#EDF5FF"></ItemStyle>
-            </asp:CommandField>
-            <asp:TemplateField HeaderText="Операции">
-                <ItemTemplate>
-                    <asp:LinkButton ID="lnkDelete" runat="server" CommandName="Delete" Text="Удалить"
-                        OnClientClick="javascript : return confirm('Вы уверены: что хотите удалить факультет?');">
-                    </asp:LinkButton>
-                </ItemTemplate>
+            <asp:HyperLinkField DataNavigateUrlFields="id" 
+                DataNavigateUrlFormatString="~/Admin/Departments/EditDepartment.aspx?DepartmentID={0}" 
+                HeaderText="Операции" Text="Редактировать" >
                 <ItemStyle BackColor="#EDF5FF" CssClass="text_center"></ItemStyle>
-            </asp:TemplateField>
+            </asp:HyperLinkField>
+            <asp:HyperLinkField DataNavigateUrlFields="id" 
+                DataNavigateUrlFormatString="~/Admin/Departments/DeleteDepartment.aspx?DepartmentID={0}" 
+                HeaderText="Операции" Text="Удалить" >
+                <ItemStyle BackColor="#EDF5FF" CssClass="text_center"></ItemStyle>
+            </asp:HyperLinkField>
             <asp:HyperLinkField DataNavigateUrlFields="id" DataNavigateUrlFormatString="~/Admin/Groups/ManageGroups.aspx?DepartmentID={0}"
                 HeaderText="Группы" Text="Группы" >
                 <ItemStyle BackColor="#EDF5FF" CssClass="text_center"></ItemStyle>
