@@ -17,7 +17,7 @@
             <div align="left">
             </div>
             </td>
-            <td width="80%">
+            <td width="70%">
             <div align="center">
             <a href="/ULK/Admin/Departments/ManageDepartments.aspx">Факультеты</a>&nbsp;|&nbsp;
         <a href="/ULK/Admin/Groups/ManageGroups.aspx">Группы</a>&nbsp;|&nbsp; <a href="/ULK/Admin/Chairs/ManageChairs.aspx">
@@ -26,8 +26,9 @@
             Учетные записи</a>
             </div>
             </td>
-            <td  width="10%">
+            <td  width="20%">
             <div align="right">
+            <a href="/ULK/Share/ChangePassword.aspx">Сменить пароль</a>&nbsp;|&nbsp;
             <asp:LoginStatus ID="loginStatus" runat="server" LogoutAction="RedirectToLoginPage" 
                     LogoutText="Выход" />
             </div>

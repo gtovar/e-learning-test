@@ -4,16 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Unn Learning Kit</title>
-    <style type="text/css">
-        #authForm
-        {
-            height: 435px;
-        }
-        </style>
 </head>
 <body>
 <form id="authForm" runat="server">
-    <table width="100%">
+    <table align="center">
 
     <tr><td colspan="2">
     <div align="center">
@@ -40,9 +34,8 @@
                 <asp:Login ID="loginForm" runat="server" BackColor="#EDF5FF" BorderColor="#B5C7DE"
                     BorderPadding="0" BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana"
                     Font-Size="0.8em" ForeColor="#333333" Height="148px" Width="327px">
-                    <TextBoxStyle Font-Size="0.8em" />
-                    <LoginButtonStyle BackColor="White" BorderColor="#507CD1" BorderStyle="Solid" BorderWidth="1px"
-                        Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284E98" Height="20px" Width="100px" />
+                    <TextBoxStyle Font-Size="1.0em" />
+                    <LoginButtonStyle CssClass="button"/>
                     <LayoutTemplate>
                         <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                             <tr>
@@ -69,9 +62,10 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
+                                            <td>
                                                 <asp:CheckBox ID="RememberMe" runat="server" Text="Запомнить меня" />
                                             </td>
+                                            <td align="right"><a href="ForgotPassword.aspx">Забыли пароль?</a></td>
                                         </tr>
                                         <tr>
                                             <td align="center" colspan="2" style="color: Red;">
@@ -92,11 +86,10 @@
                         </table>
                     </LayoutTemplate>
                     <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
-                    <TitleTextStyle BackColor="#507CD1" Font-Bold="True" Font-Size="0.9em" ForeColor="White" />
+                    <TitleTextStyle CssClass="title"/>
                 </asp:Login>
             </AnonymousTemplate>
         </asp:LoginView>
-        
         <br />
     </div>
     <asp:SqlDataSource ID="usersInRolesSqlDataSource" runat="server"></asp:SqlDataSource>
