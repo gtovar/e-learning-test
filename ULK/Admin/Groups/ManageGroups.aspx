@@ -39,7 +39,8 @@
     <br />
     <asp:GridView ID="groupsGridView" runat="server" CellPadding="4" ForeColor="#333333"
         GridLines="None" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-        DataKeyNames="id" DataSourceID="GroupsObjectDataSource" Width="100%">
+        DataKeyNames="id" DataSourceID="GroupsObjectDataSource" Width="100%" 
+        CssClass="Grid">
         <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
         <Columns>
             <asp:BoundField DataField="title" HeaderText="Название" SortExpression="title">

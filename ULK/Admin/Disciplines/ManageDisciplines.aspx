@@ -68,7 +68,7 @@
     </table>
     <asp:GridView ID="chairsGridView" runat="server" AllowPaging="True" AllowSorting="True"
         AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="DisciplinesObjectDataSource"
-        ForeColor="#333333" GridLines="None" Width="100%">
+        ForeColor="#333333" GridLines="None" Width="100%" CssClass="Grid">
         <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
         <Columns>
             <asp:BoundField DataField="title" HeaderText="Название" SortExpression="title">
