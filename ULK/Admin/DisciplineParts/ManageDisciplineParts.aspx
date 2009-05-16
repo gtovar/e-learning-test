@@ -51,6 +51,7 @@
                     </td>
                 </tr>
             </table>
+            <br />
             <asp:ObjectDataSource ID="DepartmentsObjectDataSource" runat="server" DeleteMethod="Delete"
                 InsertMethod="Insert" OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllDepartmentsData"
                 TypeName="dataSetTableAdapters.DepartmentTableAdapter" UpdateMethod="Update">

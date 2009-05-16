@@ -6,8 +6,10 @@
     <asp:Label ID="chairsLabel" runat="server" CssClass="title" Text="Кафедры"></asp:Label>
     <br />
     <br />
-    <div><div style="float:left">
+    <table width="100%"><tr><td width="8%">
     <asp:Label ID="departmentLabel" Font-Size="Medium" runat="server" Text="Факультет:"></asp:Label>
+    </td>
+    <td>
     <asp:DropDownList ID="departmentsList" runat="server" AutoPostBack="True" 
         DataSourceID="DepartmentsObjectDataSource" DataTextField="title" 
         DataValueField="id" ondatabound="departmentsList_DataBound">
@@ -28,12 +30,11 @@
             <asp:Parameter Name="title" Type="String" />
         </InsertParameters>
     </asp:ObjectDataSource>
-    </div>
-    <div style="float:right">
+    </td>
+    <td align="right" valign="bottom">
         <asp:Button ID="addChair" CssClass="button" runat="server" 
             Text="Добавить кафедру" onclick="addChair_Click" /></div>
-    </div>
-    <br />
+</td></tr></table>
     <br />
     <asp:GridView Width="100%" ID="chairsGridView" runat="server" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" 
@@ -43,11 +44,11 @@
         <Columns>
             <asp:BoundField DataField="title" HeaderText="Название" 
                 SortExpression="title" >
-            <ItemStyle BackColor="#EDF5FF"  Width="40%"></ItemStyle>
+            <ItemStyle BackColor="#EDF5FF"  Width="30%"></ItemStyle>
             </asp:BoundField>
             <asp:BoundField DataField="description" HeaderText="Описание" 
                 SortExpression="description" >
-            <ItemStyle BackColor="#EDF5FF"  Width="40%"></ItemStyle>
+            <ItemStyle BackColor="#EDF5FF"  Width="30%"></ItemStyle>
             </asp:BoundField>
             <asp:HyperLinkField DataNavigateUrlFields="id" 
                 DataNavigateUrlFormatString="~/Admin/Chairs/EditChair.aspx?ChairID={0}" 

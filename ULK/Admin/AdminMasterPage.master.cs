@@ -9,6 +9,6 @@ public partial class Admin_AdminMasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        UsersRules.IsUserAdmin(Page.User, Response);
     }
 }

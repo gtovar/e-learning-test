@@ -6,19 +6,16 @@
 </asp:Content>
 <asp:Content ID="contentManageDepartmentsPage" ContentPlaceHolderID="adminContentPlaceHolder"
     runat="Server">
-    <div>
-    <div style="float: left">
+    <br />
+        <table width="100%"><tr><td>
         <asp:Label ID="departmentsLabel" runat="server" CssClass="title" Text="Факультеты"></asp:Label>
-    </div>
-    <div style="float:right">
+</td>
+<td align="right" valign="bottom">
         <asp:Button ID="addDepartment" runat="server" CssClass="button" 
             Text="Добавить факультет" 
             PostBackUrl="~/Admin/Departments/AddDepartments.aspx" />
-    </div>
-    </div>
-    <br />
-    <br />
-    <br />
+    </td></tr></table>
+<br />
     <asp:GridView ID="departmentsGridView" runat="server" CellPadding="4" DataSourceID="DepartmentsObjectDataSource"
         ForeColor="#333333" GridLines="None" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False"

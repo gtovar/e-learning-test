@@ -17,6 +17,15 @@ public class AspNetUsers
         usersInRolesAdapter.UpdateRoleId(roleGuid, userGuid);
     }
 
+    public static string GetRoleIdByRoleName(string roleName)
+    {
+        RolesTableAdapter rolesAdapter = new RolesTableAdapter();
+        dataSet.RolesDataTable rolesTable = rolesAdapter.GetRoleIdByRoleName(roleName);
+        string roleId = rolesTable.Rows[0].ItemArray[0].ToString();
+        
+        return roleId;
+    }
+
     public static string GetRoleId(string userId)
     {
         Guid userGuid = new Guid(userId);
@@ -25,6 +34,16 @@ public class AspNetUsers
         string role_id = usersInRolesTable.Rows[0].ItemArray[1].ToString();
 
         return role_id;
+    }
+
+    public static string GetRoleName(string roleId)
+    {
+        Guid roleGuid = new Guid(roleId);
+        RolesTableAdapter rolesAdapter = new RolesTableAdapter();
+        dataSet.RolesDataTable rolesTable = rolesAdapter.GetRoleNameByRoleId(roleGuid);
+        string roleName = rolesTable.Rows[0].ItemArray[1].ToString();
+
+        return roleName;
     }
 
     public static string GetUserEmail(string userId)
