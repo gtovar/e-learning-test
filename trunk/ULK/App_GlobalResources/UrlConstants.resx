@@ -126,6 +126,9 @@
   <data name="AddChairUrl" xml:space="preserve">
     <value>~/Admin/Chairs/AddChair.aspx</value>
   </data>
+  <data name="AddDisciplinePartTestUrl" xml:space="preserve">
+    <value>~/Metodist/AddTest.aspx</value>
+  </data>
   <data name="AddDisciplinePartUrl" xml:space="preserve">
     <value>~/Admin/DisciplineParts/AddDisciplinePart.aspx</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="DisciplinePartsHomeUrl" xml:space="preserve">
     <value>~/Admin/DisciplineParts/ManageDisciplineParts.aspx</value>
+  </data>
+  <data name="DisciplinePartTestsHomeUrl" xml:space="preserve">
+    <value>~/Metodist/TestStorage.aspx</value>
   </data>
   <data name="DisciplinesHomeUrl" xml:space="preserve">
     <value>~/Admin/Disciplines/ManageDisciplines.aspx</value>
