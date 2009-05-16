@@ -9,6 +9,6 @@ public partial class User_UserMasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        UsersRules.IsUser(Page.User, Response);
     }
 }

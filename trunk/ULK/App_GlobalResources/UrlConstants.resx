@@ -162,6 +162,9 @@
   <data name="MetodistHomeUrl" xml:space="preserve">
     <value>~/Metodist/</value>
   </data>
+  <data name="NewAssignmentsHomeUrl" xml:space="preserve">
+    <value>~/Admin/Metodist/NewAssignments.aspx</value>
+  </data>
   <data name="StudentsHomeUrl" xml:space="preserve">
     <value>~/Admin/Students/ManageStudents.aspx</value>
   </data>

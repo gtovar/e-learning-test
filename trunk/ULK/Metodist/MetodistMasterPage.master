@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>ULK - Панель методиста</title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
+    <asp:ContentPlaceHolder ID="metodistHeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
@@ -20,7 +20,8 @@
             <td width="80%">
                 <div align="center">
                     <a href="/ULK/Metodist/TestGenerator.aspx">Генератор тестов</a>&nbsp;|&nbsp;
-                    <a href="/ULK/Metodist/TestStorage.aspx">Хранилище тестов</a>&nbsp;|&nbsp; 
+                    <a href="/ULK/Metodist/TestStorage.aspx">Хранилище тестов</a>&nbsp;|&nbsp;
+                    <a href="/ULK/Metodist/AssignningTests.aspx">Назначение тестов</a>&nbsp;|&nbsp;
                     <a href="/ULK/Metodist/NewAssignments.aspx">Назначенные тесты</a>&nbsp;|&nbsp;
                     <a href="/ULK/Metodist/DoneAssignments.aspx">Выполненные тесты</a>
                 </div>

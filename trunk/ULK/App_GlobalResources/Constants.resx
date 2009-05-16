@@ -135,11 +135,17 @@
   <data name="MetodistRoleName" xml:space="preserve">
     <value>Методист</value>
   </data>
+  <data name="NumbersLinesLabelName" xml:space="preserve">
+    <value>numbers</value>
+  </data>
   <data name="RolesListControlName" xml:space="preserve">
     <value>rolesList</value>
   </data>
   <data name="SecretAnswerControlName" xml:space="preserve">
     <value>Answer</value>
+  </data>
+  <data name="TestVariantsListControlName" xml:space="preserve">
+    <value>testVariantsList</value>
   </data>
   <data name="UserDescriptionControlName" xml:space="preserve">
     <value>Description</value>
