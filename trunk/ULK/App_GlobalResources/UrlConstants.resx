@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountsHomeUrl" xml:space="preserve">
+    <value>~/Admin/Accounts/ManageAccounts.aspx</value>
+  </data>
+  <data name="AddAccountUrl" xml:space="preserve">
+    <value>~/Admin/Accounts/AddAccount.aspx</value>
+  </data>
   <data name="AddChairUrl" xml:space="preserve">
     <value>~/Admin/Chairs/AddChair.aspx</value>
   </data>
@@ -133,7 +139,7 @@
     <value>~/Admin/Students/AddStudent.aspx</value>
   </data>
   <data name="AdminHomeUrl" xml:space="preserve">
-    <value>Admin/</value>
+    <value>~/Admin/</value>
   </data>
   <data name="ChairsHomeUrl" xml:space="preserve">
     <value>~/Admin/Chairs/ManageChairs.aspx</value>
@@ -151,15 +157,15 @@
     <value>~/Admin/Groups/ManageGroups.aspx</value>
   </data>
   <data name="LoginUrl" xml:space="preserve">
-    <value>Login.aspx</value>
+    <value>~/Login.aspx</value>
   </data>
   <data name="MetodistHomeUrl" xml:space="preserve">
-    <value>Metodist/</value>
+    <value>~/Metodist/</value>
   </data>
   <data name="StudentsHomeUrl" xml:space="preserve">
     <value>~/Admin/Students/ManageStudents.aspx</value>
   </data>
   <data name="UserHomeUrl" xml:space="preserve">
-    <value>User/</value>
+    <value>~/User/</value>
   </data>
 </root>

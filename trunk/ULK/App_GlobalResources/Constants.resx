@@ -135,6 +135,9 @@
   <data name="MetodistRoleName" xml:space="preserve">
     <value>Методист</value>
   </data>
+  <data name="RolesListControlName" xml:space="preserve">
+    <value>rolesList</value>
+  </data>
   <data name="SecretAnswerControlName" xml:space="preserve">
     <value>Answer</value>
   </data>

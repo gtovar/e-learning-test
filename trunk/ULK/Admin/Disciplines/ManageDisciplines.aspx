@@ -66,6 +66,7 @@
             </td>
         </tr>
     </table>
+    <br />
     <asp:GridView ID="chairsGridView" runat="server" AllowPaging="True" AllowSorting="True"
         AutoGenerateColumns="False" CellPadding="4" DataKeyNames="id" DataSourceID="DisciplinesObjectDataSource"
         ForeColor="#333333" GridLines="None" Width="100%" CssClass="Grid">

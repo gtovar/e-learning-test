@@ -3,16 +3,6 @@
 
 <asp:Content ID="headManageStudentsPage" ContentPlaceHolderID="headAdminMasterPage"
     runat="Server">
-    <style type="text/css">
-        .style1
-        {
-            width: 82px;
-        }
-        .style2
-        {
-            width: 286px;
-        }
-    </style>
 </asp:Content>
 <asp:Content ID="contentManageStudentsPage" ContentPlaceHolderID="adminContentPlaceHolder"
     runat="Server">
@@ -23,11 +13,11 @@
             <br />
             <table style="width: 100%;">
                 <tr>
-                    <td class="style1">
+                    <td>
                         <asp:Label ID="departmentsListLabel" runat="server" Text="Факультет:" 
                             Font-Size="Medium"></asp:Label>
                     </td>
-                    <td class="style2">
+                    <td>
                         <asp:DropDownList ID="departmentsList" runat="server" AutoPostBack="True" DataSourceID="DepartmentsObjectDataSource"
                             DataTextField="title" DataValueField="id" OnDataBound="departmentsList_DataBound">
                         </asp:DropDownList>
@@ -51,11 +41,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="style1">
+                    <td>
                         <asp:Label ID="groupsListLabel" runat="server" Text="Группа:" 
                             Font-Size="Medium"></asp:Label>
                     </td>
-                    <td class="style2">
+                    <td>
                         <asp:DropDownList ID="groupsList" runat="server" AutoPostBack="True" DataSourceID="GroupsObjectDataSource"
                             DataTextField="title" DataValueField="id" OnDataBound="groupsList_DataBound">
                         </asp:DropDownList>
@@ -76,7 +66,7 @@
                             </SelectParameters>
                         </asp:ObjectDataSource>
                     </td>
-                    <td align="right">
+                    <td align="right" valign="bottom">
                         <asp:Button ID="addStudent" runat="server" CssClass="button" Text="Добавить студента"
                             OnClick="addStudent_Click" />
                     </td>
