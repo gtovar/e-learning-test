@@ -61,7 +61,7 @@
             <asp:Label ID="disciplinesListLabel" runat="server" Font-Size="Medium" 
                 Text="Дисциплина:*"></asp:Label>
             <br />
-            <asp:DropDownList ID="disciplinesList" runat="server" 
+            <asp:DropDownList ID="disciplinesList" runat="server" AutoPostBack="True" 
                 DataSourceID="DisciplinesObjectDataSource" DataTextField="title" 
                 DataValueField="id" ondatabound="disciplinesList_DataBound">
             </asp:DropDownList>
@@ -85,17 +85,31 @@
             </asp:ObjectDataSource>
             <br />
             <br />
-            <asp:Label ID="disciplineTitleLabel" runat="server" Font-Size="Medium" 
-                Text="Название:*"></asp:Label>
+            <asp:Label ID="Label1" runat="server" Font-Size="Medium" 
+                Text="Раздел:*"></asp:Label>
             <br />
-            <asp:TextBox ID="titleText" runat="server" Width="270px"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="disciplinePartTitleRequiredValidator" 
-                runat="server" ErrorMessage="Название" ControlToValidate="titleText" 
-                CssClass="validation">Название не должно быть пустым</asp:RequiredFieldValidator>
+            <asp:DropDownList ID="disciplinePartsList" runat="server" 
+                DataSourceID="DisciplinePartsObjectDataSource" DataTextField="title" 
+                DataValueField="id" ondatabound="disciplinePartsList_DataBound">
+            </asp:DropDownList>
+            <asp:ObjectDataSource ID="DisciplinePartsObjectDataSource" runat="server" OldValuesParameterFormatString="original_{0}"
+                SelectMethod="GetAllDisciplinePartsDataByDisciplineID" 
+                TypeName="dataSetTableAdapters.DisciplinePartTableAdapter" 
+                DeleteMethod="Delete" UpdateMethod="Update">
+                <DeleteParameters>
+                    <asp:Parameter Name="Original_id" Type="Int32" />
+                </DeleteParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="title" Type="String" />
+                    <asp:Parameter Name="Original_id" Type="Int32" />
+                </UpdateParameters>
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="disciplinesList" Name="discipline_id" PropertyName="SelectedValue"
+                        Type="Int32" DefaultValue="" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
             <br />
             <br />
-            <asp:ValidationSummary ID="disciplinePartsValidationSummary" runat="server" 
-                CssClass="validation" HeaderText="В следующих полях допущены ошибки:" />
                 <asp:Button ID="saveDisciplinePart" runat="server" CssClass="button" 
                 onclick="saveDisciplinePart_Click" Text="Сохранить" />
                 <br />

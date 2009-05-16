@@ -4,6 +4,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Unn Learning Kit</title>
+    <style type="text/css">
+        .style1
+        {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <form id="authForm" runat="server">
@@ -63,9 +69,10 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <asp:CheckBox ID="RememberMe" runat="server" Text="Запомнить меня" />
+                                                <asp:CheckBox ID="RememberMe" runat="server" Text="Запомнить меня" 
+                                                    Font-Size="X-Small" />
                                             </td>
-                                            <td align="right"><a href="ForgotPassword.aspx">Забыли пароль?</a></td>
+                                            <td class="style1"><a href="ForgotPassword.aspx">Забыли пароль?</a></td>
                                         </tr>
                                         <tr>
                                             <td align="center" colspan="2" style="color: Red;">

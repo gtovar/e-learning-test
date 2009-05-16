@@ -2,7 +2,7 @@
 
 <asp:Content ID="contentDeleteDisciplinePartTestPage" ContentPlaceHolderID="metodistContentPlaceHolder" Runat="Server">
     <asp:Label ID="deleteDisciplinePartLabel" runat="server" CssClass="title" 
-        Text="Удаление раздела дисциплины"></asp:Label>
+        Text="Удаление теста"></asp:Label>
     <br />
     <br />
     <br />

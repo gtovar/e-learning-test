@@ -49,7 +49,7 @@
                     </td>
                     <td>
                         <asp:DropDownList ID="disciplinePartsList" runat="server" AutoPostBack="True" DataSourceID="DisciplinePartsObjectDataSource"
-                            DataTextField="title" DataValueField="id" OnDataBound="disciplinesList_DataBound">
+                            DataTextField="title" DataValueField="id" OnDataBound="disciplinePartsList_DataBound">
                         </asp:DropDownList>
                     </td>
                     <td align="right">
@@ -131,10 +131,10 @@
                     <asp:BoundField DataField="title" HeaderText="Название" 
                         SortExpression="title" />
                     <asp:HyperLinkField DataNavigateUrlFields="id" 
-                        DataNavigateUrlFormatString="~/Metodist/EditTest.aspx?DisciplinePartTestID={0}" 
+                        DataNavigateUrlFormatString="~/Metodist/Storage/EditTest.aspx?DisciplinePartTestID={0}" 
                         HeaderText="Операции" Text="Редактировать" />
                     <asp:HyperLinkField DataNavigateUrlFields="id" 
-                        DataNavigateUrlFormatString="~/Metodist/DeleteTest.aspx?DisciplinePartTestID={0}" 
+                        DataNavigateUrlFormatString="~/Metodist/Storage/DeleteTest.aspx?DisciplinePartTestID={0}" 
                         HeaderText="Операции" Text="Удалить" />
                 </Columns>
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

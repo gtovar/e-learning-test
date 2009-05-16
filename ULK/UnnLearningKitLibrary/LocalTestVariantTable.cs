@@ -66,20 +66,20 @@ namespace UnnLearningKitLibrary
 
         public void Update(Obj obj)
         {
-            Department department = (Department)obj;
+            TestVariant testVariant = (TestVariant)obj;
 
             using (SqlConnection connection = new SqlConnection(DbConfig.ConnectionString))
             {
-                string bodySql = "UPDATE [TestVariant] SET title = @title WHERE id = @id";
+                string bodySql = "UPDATE [TestVariant] SET discipline_part_id = @discipline_part_id WHERE id = @id";
                 string sql = DbConstants.BeginTransaction + bodySql + DbConstants.EndTransaction;
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = connection;
                     command.CommandText = sql;
-                    command.Parameters.Add("@title", SqlDbType.VarChar, 255);
+                    command.Parameters.Add("@discipline_part_id", SqlDbType.Int, 4);
                     command.Parameters.Add("@id", SqlDbType.Int, 4);
-                    command.Parameters["@title"].Value = department.Title;
-                    command.Parameters["@id"].Value = department.Id;
+                    command.Parameters["@discipline_part_id"].Value = testVariant.DisciplinePartId;
+                    command.Parameters["@id"].Value = testVariant.Id;
                     command.CommandType = CommandType.Text;
                     // открываем соединение
                     connection.Open();
@@ -105,7 +105,7 @@ namespace UnnLearningKitLibrary
         {
             using (SqlConnection connection = new SqlConnection(DbConfig.ConnectionString))
             {
-                string bodySql = "DELETE FROM [TestVariant] WHERE id = @id";
+                string bodySql = "UPDATE [TestVariant] SET is_deleted = 1 WHERE id = @id";
                 string sql = DbConstants.BeginTransaction + bodySql + DbConstants.EndTransaction;
                 using (SqlCommand command = new SqlCommand())
                 {

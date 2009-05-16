@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using Resources;
 using UnnLearningKitLibrary;
 
-public partial class Metodist_TestStorage : System.Web.UI.Page
+public partial class Metodist_AddTest : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -34,12 +34,6 @@ public partial class Metodist_TestStorage : System.Web.UI.Page
             }
         }
     }
-    protected void addDisciplinePartTest_Click(object sender, EventArgs e)
-    {
-        string url = UrlConstants.AddDisciplinePartTestUrl + "?DepartmentID=" + departmentsList.SelectedValue + "&ChairID="
-            + chairsList.SelectedValue + "&DisciplineID=" + disciplinesList.SelectedValue + "&DisciplinePartID=" + disciplinePartsList.SelectedValue;
-        Response.Redirect(url);
-    }
     protected void chairsList_DataBound(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -60,6 +54,32 @@ public partial class Metodist_TestStorage : System.Web.UI.Page
             }
         }
     }
+
+    protected void saveTest_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            string saveDir = @"\Uploads\";
+            string fileName = testFileUpload.FileName;
+            string appPath = Request.PhysicalApplicationPath;
+            string savePath = appPath + saveDir + Server.HtmlEncode(testFileUpload.FileName);
+
+            testFileUpload.SaveAs(savePath);
+
+            ITable testVariantTable = new TestVariantTable();
+
+            int disciplinePartID = Convert.ToInt32(disciplinePartsList.SelectedValue);
+            testVariantTable.Add(new TestVariant(UnnLearningKitLibrary.Constants.FAKE_ID, disciplinePartID, fileName, savePath));
+
+            string url = UrlConstants.DisciplinePartTestsHomeUrl + "?DepartmentID=" + departmentsList.SelectedValue + "&ChairID=" +
+                chairsList.SelectedValue + "&DisciplineID=" + disciplinesList.SelectedValue + "&DisciplinePartID=" + disciplinePartsList.SelectedValue;
+            Response.Redirect(url);
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
     protected void disciplinesList_DataBound(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -72,6 +92,27 @@ public partial class Metodist_TestStorage : System.Web.UI.Page
                     if (Convert.ToInt32(disciplinesList.Items[i].Value) == disciplineID)
                     {
                         disciplinesList.SelectedIndex = i;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+
+    protected void disciplinePartsList_DataBound(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            try
+            {
+                int disciplinePartID = Convert.ToInt32(Request.Params["DisciplinePartID"]);
+                for (int i = 0; i < disciplinePartsList.Items.Count; i++)
+                {
+                    if (Convert.ToInt32(disciplinePartsList.Items[i].Value) == disciplinePartID)
+                    {
+                        disciplinePartsList.SelectedIndex = i;
                     }
                 }
             }
