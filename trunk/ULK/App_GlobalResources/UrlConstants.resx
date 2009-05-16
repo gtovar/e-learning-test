@@ -169,12 +169,15 @@
     <value>~/Metodist/</value>
   </data>
   <data name="NewAssignmentsHomeUrl" xml:space="preserve">
-    <value>~/Admin/Metodist/NewAssignments.aspx</value>
+    <value>~/Metodist/NewAssignments.aspx</value>
   </data>
   <data name="StudentsHomeUrl" xml:space="preserve">
     <value>~/Admin/Students/ManageStudents.aspx</value>
   </data>
   <data name="UserHomeUrl" xml:space="preserve">
     <value>~/User/</value>
+  </data>
+  <data name="DoneAssignmentsHomeUrl" xml:space="preserve">
+    <value>~/Metodist/DoneAssignments.aspx</value>
   </data>
 </root>

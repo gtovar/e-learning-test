@@ -1,9 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Metodist/MetodistMasterPage.master" CodeFile="NewAssignments.aspx.cs" Inherits="Metodist_NewAssignments" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Metodist/MetodistMasterPage.master"
+    AutoEventWireup="true" CodeFile="ViewGroupDoneTests.aspx.cs" Inherits="Metodist_DoneTests_ViewGroupTest" %>
 
-<asp:Content ID="NewAssignmentsMetodistPage"  ContentPlaceHolderID="metodistContentPlaceHolder" runat="server">
-<asp:UpdatePanel ID="newTestsUpdatePanel" runat="server" ChildrenAsTriggers="True">
+<asp:Content ID="headViewGroupTestPage" ContentPlaceHolderID="metodistHeadPlaceHolder"
+    runat="Server">
+</asp:Content>
+<asp:Content ID="contentViewGroupTestPage" ContentPlaceHolderID="metodistContentPlaceHolder"
+    runat="Server">
+    <asp:UpdatePanel ID="doneAssignmentsUpdatePanel" runat="server" ChildrenAsTriggers="True">
         <ContentTemplate>
-            <asp:Label ID="newTestLabel" CssClass="title" runat="server" Text="Назначенные тестирования"></asp:Label>
+            <asp:Label ID="doneAssignmentLabel" runat="server" CssClass="title" Text="Выполненное тестирование"></asp:Label>
             <br />
             <br />
             <table width="100%">
@@ -105,11 +110,37 @@
                         </asp:ObjectDataSource>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="groupLabel" runat="server" Text="Группа" Font-Size="Medium"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="groupsList" runat="server" DataSourceID="ObjectGroupsDataSource"
+                            DataTextField="title" DataValueField="id" AutoPostBack="True" OnDataBound="groupsList_DataBound">
+                        </asp:DropDownList>
+                        <asp:ObjectDataSource ID="ObjectGroupsDataSource" runat="server" OldValuesParameterFormatString="original_{0}"
+                            SelectMethod="GetAllGroupsDataByDepartmentId" TypeName="dataSetTableAdapters.GroupTableAdapter"
+                            DeleteMethod="Delete" UpdateMethod="Update">
+                            <DeleteParameters>
+                                <asp:Parameter Name="Original_id" Type="Int32" />
+                            </DeleteParameters>
+                            <UpdateParameters>
+                                <asp:Parameter Name="title" Type="String" />
+                                <asp:Parameter Name="description" Type="String" />
+                                <asp:Parameter Name="Original_id" Type="Int32" />
+                            </UpdateParameters>
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="departmentsList" Name="department_id" PropertyName="SelectedValue"
+                                    Type="Int32" DefaultValue="" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </td>
+                </tr>
             </table>
             <br />
-            <asp:GridView ID="viewNewTests" runat="server" AllowPaging="True" AllowSorting="True"
-                AutoGenerateColumns="False" CellPadding="4" DataSourceID="ObjectGroupNewTestsDataSource"
-                OnDataBound="viewNewTests_DataBound" ForeColor="#333333" GridLines="None" Width="100%" CssClass="Grid">
+            <asp:GridView ID="doneAssignmentGridView" runat="server" CellPadding="4" ForeColor="#333333"
+                GridLines="None" DataSourceID="DoneTestsObjectDataSource" CssClass="Grid" AllowPaging="True"
+                AllowSorting="True" AutoGenerateColumns="False" Width="100%">
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                 <Columns>
                     <asp:TemplateField HeaderText="Hомер" runat="server">
@@ -118,35 +149,34 @@
                             <asp:Label ID="numbers" runat="server" Text="1"></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="title" HeaderText="Группа" SortExpression="title">
+                    <asp:BoundField DataField="name" HeaderText="Студент" SortExpression="name">
                         <ItemStyle BackColor="#EDF5FF" CssClass="text_center"></ItemStyle>
                     </asp:BoundField>
-                    <asp:HyperLinkField DataNavigateUrlFields="title" 
-                        DataNavigateUrlFormatString="~/Metodist/NewTests/ViewGroupNewTests.aspx?GroupTitle={0}" 
-                        HeaderText="Операции" Text="Просмотр" >
+                    <asp:BoundField DataField="title" HeaderText="Тестовый вариант" SortExpression="title">
                         <ItemStyle BackColor="#EDF5FF" CssClass="text_center"></ItemStyle>
-                    </asp:HyperLinkField>
+                    </asp:BoundField>
                 </Columns>
-                <FooterStyle BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" />
+                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <EditRowStyle BackColor="#999999" />
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             </asp:GridView>
-            <asp:ObjectDataSource ID="ObjectGroupNewTestsDataSource" runat="server" OldValuesParameterFormatString="original_{0}"
-                SelectMethod="GetGroupNewAssignments" 
-                TypeName="dataSetTableAdapters.GroupAssignmentsTableAdapter">
+            <asp:ObjectDataSource ID="DoneTestsObjectDataSource" runat="server" OldValuesParameterFormatString="original_{0}"
+                SelectMethod="GetAllDoneTestsByGroupId" TypeName="dataSetTableAdapters.GroupTestsTableAdapter">
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="departmentsList" Name="department_id" PropertyName="SelectedValue"
+                    <asp:ControlParameter ControlID="groupsList" Name="group_id" PropertyName="SelectedValue"
                         Type="Int32" />
                     <asp:ControlParameter ControlID="disciplinePartsList" Name="discipline_part_id" PropertyName="SelectedValue"
                         Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
+            <br />
+            <asp:Button ID="backToDoneTests" CssClass="button" runat="server" Text="Назад" OnClick="backToDoneTests_Click" />
         </ContentTemplate>
         <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="viewNewTests" EventName="DataBound" />
+            <asp:AsyncPostBackTrigger ControlID="doneAssignmentGridView" EventName="DataBound" />
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

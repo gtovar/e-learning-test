@@ -24,6 +24,11 @@ namespace UnnLearningKitLibrary
             _tableImp.Add(Obj);
         }
 
+        public Obj GetByGroupTitle(string groupTitle)
+        {
+            return _tableImp.GetByGroupTitle(groupTitle);
+        }
+
         public void Update(Obj Obj)
         {
             _tableImp.Update(Obj);
