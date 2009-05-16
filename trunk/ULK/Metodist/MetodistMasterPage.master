@@ -17,7 +17,7 @@
                 <div align="left">
                 </div>
             </td>
-            <td width="80%">
+            <td width="70%">
                 <div align="center">
                     <a href="/ULK/Metodist/TestGenerator.aspx">Генератор тестов</a>&nbsp;|&nbsp;
                     <a href="/ULK/Metodist/TestStorage.aspx">Хранилище тестов</a>&nbsp;|&nbsp;
@@ -26,8 +26,9 @@
                     <a href="/ULK/Metodist/DoneAssignments.aspx">Выполненные тесты</a>
                 </div>
             </td>
-            <td width="10%">
+            <td width="20%">
                 <div align="right">
+                            <a href="/ULK/Share/ChangePassword.aspx">Сменить пароль</a>&nbsp;|&nbsp;
                     <asp:LoginStatus ID="loginStatus" runat="server" LogoutAction="RedirectToLoginPage"
                         LogoutText="Выход" />
                 </div>

@@ -35,4 +35,15 @@ public class UsersRules
             response.Redirect(url);
         }
     }
+
+    public static void IsUserLogin(System.Security.Principal.IPrincipal user, HttpResponse response)
+    {
+        if (!user.IsInRole(Resources.Constants.UserRoleName)&&
+            !user.IsInRole(Resources.Constants.MetodistRoleName)&&
+            !user.IsInRole(Resources.Constants.AdminRoleName))
+        {
+            string url = UrlConstants.LoginUrl;
+            response.Redirect(url);
+        }
+    }
 }

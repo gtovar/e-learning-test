@@ -5,6 +5,11 @@
 <asp:Content ID="contentAddStudentPage" ContentPlaceHolderID="adminContentPlaceHolder" Runat="Server">
     <asp:UpdatePanel ID="addStudentUpdatePanel" runat="server">
     <ContentTemplate>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div align="center" style="vertical-align:middle">
 <asp:CreateUserWizard ID="createStudent" runat="server" BackColor="#EDF5FF" 
         BorderColor="#B5C7DE" BorderStyle="Solid" BorderWidth="1px" 
         Font-Names="Verdana" Font-Size="1.0em" 
@@ -233,6 +238,7 @@
             </asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
+    </div>
     </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
