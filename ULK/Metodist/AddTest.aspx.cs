@@ -59,17 +59,17 @@ public partial class Metodist_AddTest : System.Web.UI.Page
     {
         try
         {
-            //ITable disciplinePartTable = new DisciplinePartTable();
-
-            //int disciplineID = Convert.ToInt32(disciplinesList.SelectedValue);
-            //disciplinePartTable.Add(new DisciplinePart(UnnLearningKitLibrary.Constants.FAKE_ID, disciplineID, ""));
-
             string saveDir = @"\Uploads\";
             string fileName = testFileUpload.FileName;
             string appPath = Request.PhysicalApplicationPath;
             string savePath = appPath + saveDir + Server.HtmlEncode(testFileUpload.FileName);
 
             testFileUpload.SaveAs(savePath);
+
+            ITable testVariantTable = new TestVariantTable();
+
+            int disciplinePartID = Convert.ToInt32(disciplinePartsList.SelectedValue);
+            testVariantTable.Add(new TestVariant(UnnLearningKitLibrary.Constants.FAKE_ID, disciplinePartID, fileName, savePath));
 
             string url = UrlConstants.DisciplinePartTestsHomeUrl + "?DepartmentID=" + departmentsList.SelectedValue + "&ChairID=" +
                 chairsList.SelectedValue + "&DisciplineID=" + disciplinesList.SelectedIndex + "&DisciplinePartID=" + disciplinePartsList.SelectedIndex;

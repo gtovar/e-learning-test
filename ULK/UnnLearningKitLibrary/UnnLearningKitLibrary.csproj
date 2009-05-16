@@ -79,6 +79,8 @@
     <Compile Include="ITable.cs" />
     <Compile Include="ITestTable.cs" />
     <Compile Include="ITestTableImp.cs" />
+    <Compile Include="ITestVariantTable.cs" />
+    <Compile Include="ITestVariantTableImp.cs" />
     <Compile Include="LocalChairTable.cs" />
     <Compile Include="LocalDepartmentTable.cs" />
     <Compile Include="LocalDisciplieTable.cs" />
@@ -86,12 +88,15 @@
     <Compile Include="LocalGroupTable.cs" />
     <Compile Include="LocalStudentTable.cs" />
     <Compile Include="LocalTestTable.cs" />
+    <Compile Include="LocalTestVariantTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Obj.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentTable.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="TestTable.cs" />
+    <Compile Include="TestVariant.cs" />
+    <Compile Include="TestVariantTable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
