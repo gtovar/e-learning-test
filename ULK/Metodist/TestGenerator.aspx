@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Metodist/MetodistMasterPage.master" CodeFile="TestGenerator.aspx.cs" Inherits="Metodist_TestGenerator" %>
 
 <asp:Content ID="GeneratorMetodistPage"  ContentPlaceHolderID="metodistContentPlaceHolder" runat="server">
+<asp:Label ID="metodistLabel" runat="server" Text="Генератор тестов" CssClass="title"></asp:Label>
     <div align="center">
         <br />
         <br />
