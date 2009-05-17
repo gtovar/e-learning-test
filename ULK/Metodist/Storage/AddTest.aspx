@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Metodist/MetodistMasterPage.master" AutoEventWireup="true" CodeFile="AddTest.aspx.cs" Inherits="Metodist_AddTest" %>
 
 <asp:Content ID="contentAddDisciplinePartTestPage" ContentPlaceHolderID="metodistContentPlaceHolder" Runat="Server">
-    <asp:UpdatePanel ID="addDisciplinePartsUpdatePanel" runat="server">
+
         <ContentTemplate>
             <asp:Label ID="addDisciplinePartLabel" runat="server" 
                 Text="Добавить тест" CssClass="title"></asp:Label>
@@ -113,6 +113,7 @@
             <asp:Label ID="disciplineTitleLabel" runat="server" Font-Size="Medium" 
                 Text="Путь к файлу с тестом:*"></asp:Label>
             <br />
+            <div>
             <asp:FileUpload ID="testFileUpload" runat="server" />
             <asp:RequiredFieldValidator ID="disciplinePartTitleRequiredValidator" 
                 runat="server" ErrorMessage="Путь к файлу с тестом" ControlToValidate="testFileUpload" 
@@ -124,6 +125,7 @@
                 <asp:Button ID="saveDisciplinePartTest" runat="server" CssClass="button" 
                 onclick="saveTest_Click" Text="Сохранить" />
                 <br />
+             </div>
         </ContentTemplate>
-    </asp:UpdatePanel>
+
 </asp:Content>

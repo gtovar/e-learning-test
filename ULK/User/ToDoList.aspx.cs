@@ -33,4 +33,16 @@ public partial class User_ToDoList : System.Web.UI.Page
             }
         }
     }
+    protected void userLoginHidden_DataBinding(object sender, EventArgs e)
+    {
+        
+    }
+    protected void disciplinesList_DataBinding(object sender, EventArgs e)
+    {
+        userLoginHidden.Value = User.Identity.Name;
+    }
+    protected void newTestsGridView_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
