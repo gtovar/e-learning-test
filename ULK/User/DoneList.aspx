@@ -41,8 +41,12 @@
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                 <Columns>
                     <asp:BoundField DataField="TestVariantTitle" HeaderText="Название" 
-                        SortExpression="title" />
-                    <asp:BoundField HeaderText="Оценка" DataField="CurrentTestScore" />
+                        SortExpression="title" >
+                    <ItemStyle BackColor="#EDF5FF" />
+                    </asp:BoundField>
+                    <asp:BoundField HeaderText="Оценка" DataField="CurrentTestScore" >
+                    <ItemStyle BackColor="#EDF5FF" />
+                    </asp:BoundField>
                 </Columns>
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
