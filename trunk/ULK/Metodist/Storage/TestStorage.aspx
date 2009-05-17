@@ -129,13 +129,19 @@
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                 <Columns>
                     <asp:BoundField DataField="title" HeaderText="Название" 
-                        SortExpression="title" />
+                        SortExpression="title" >
+                    <ItemStyle BackColor="#EDF5FF" />
+                    </asp:BoundField>
                     <asp:HyperLinkField DataNavigateUrlFields="id" 
                         DataNavigateUrlFormatString="~/Metodist/Storage/EditTest.aspx?DisciplinePartTestID={0}" 
-                        HeaderText="Операции" Text="Редактировать" />
+                        HeaderText="Операции" Text="Редактировать" >
+                    <ItemStyle BackColor="#EDF5FF" />
+                    </asp:HyperLinkField>
                     <asp:HyperLinkField DataNavigateUrlFields="id" 
                         DataNavigateUrlFormatString="~/Metodist/Storage/DeleteTest.aspx?DisciplinePartTestID={0}" 
-                        HeaderText="Операции" Text="Удалить" />
+                        HeaderText="Операции" Text="Удалить" >
+                    <ItemStyle BackColor="#EDF5FF" />
+                    </asp:HyperLinkField>
                 </Columns>
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
