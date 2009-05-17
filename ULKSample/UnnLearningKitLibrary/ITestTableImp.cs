@@ -5,8 +5,7 @@ using System.Text;
 
 namespace UnnLearningKitLibrary
 {
-    class DbConfig
+    interface ITestTableImp : ITestTable
     {
-        public const string ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=ULK_DB;Integrated Security=True";
     }
 }
