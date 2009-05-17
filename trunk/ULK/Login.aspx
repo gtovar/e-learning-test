@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Unn Learning Kit</title>
+    <link rel="stylesheet" type="text/css" href="Styles.css" />
     <style type="text/css">
         .style1
         {

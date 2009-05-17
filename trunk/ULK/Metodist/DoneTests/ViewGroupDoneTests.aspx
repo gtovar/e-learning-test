@@ -155,6 +155,7 @@
                     <asp:BoundField DataField="title" HeaderText="Тестовый вариант" SortExpression="title">
                         <ItemStyle BackColor="#EDF5FF" CssClass="text_center"></ItemStyle>
                     </asp:BoundField>
+                    <asp:BoundField DataField="score" HeaderText="Оценка" SortExpression="score" />
                 </Columns>
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
