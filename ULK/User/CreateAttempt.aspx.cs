@@ -1,17 +1,3 @@
-/* Copyright (c) Microsoft Corporation. All rights reserved. */
-// MICROSOFT PROVIDES SAMPLE CODE "AS IS" AND WITH ALL FAULTS, AND WITHOUT ANY WARRANTY WHATSOEVER.  
-// MICROSOFT EXPRESSLY DISCLAIMS ALL WARRANTIES WITH RESPECT TO THE SOURCE CODE, INCLUDING BUT NOT 
-// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THERE IS 
-// NO WARRANTY OF TITLE OR NONINFRINGEMENT FOR THE SOURCE CODE.
-
-// CreateAttempt.aspx.cs
-//
-// Dialog box for creating an attempt on a learning package.
-//
-// The parent page passes the ID of the package to begin an attempt on using <dialogArguments>.
-//
-
-
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,6 +11,7 @@ using System.Web.UI.WebControls;
 using Microsoft.LearningComponents;
 using Microsoft.LearningComponents.Storage;
 using Schema = BasicWebPlayer.Schema;
+using dataSetTableAdapters;
 
 public partial class CreateAttempt : BasicWebPlayerBase
 {
@@ -34,52 +21,101 @@ public partial class CreateAttempt : BasicWebPlayerBase
 
     protected void CreateAttemptButton_Click(object sender, EventArgs e)
     {
-        // the hidden "Create Attempt" button was auto-clicked by script on page load...
+        QueriesTableAdapter testStatus = new QueriesTableAdapter();
+        int test_id = Convert.ToInt32(OrganizationId.Value);
+        int status = (int)testStatus.GetTestStatus(test_id);
+        string path = testStatus.GetTestPath(test_id);
 
-        // prevent script from clicking "Create Attempt" again
-        AutoPostScript.Visible = false;
-
-        // hide the "please wait" panel
-        PleaseWait.Visible = false;
-
-		// the OrganizationId hidden form element contains the ID of the organization to attempt --
-		// try to create a new attempt based on that ID; an organization is a root-level activity,
-		// so OrganizationId is actually an ActivityPackageItemIdentifier
-        try
+        if (status == 0)
         {
-            // set <currentUser> to information about the current user; we
-            // need the current user's UserItemIdentifier
-            LStoreUserInfo currentUser  = GetCurrentUserInfo();
+            testStatus.SetTestStatus(1, test_id);
+            long activity_id = UploadPackage(path);
 
-			// set <organizationId> from the OrganizationId hidden form element as described above
-			ActivityPackageItemIdentifier organizationId = new ActivityPackageItemIdentifier(
-				Convert.ToInt64(OrganizationId.Value, CultureInfo.InvariantCulture));
+            AutoPostScript.Visible = false;
 
-			// create an attempt on <organizationId>
-            StoredLearningSession session = StoredLearningSession.CreateAttempt(PStore,
-                currentUser.Id, organizationId, LoggingOptions.LogAll);
+            PleaseWait.Visible = false;
 
-            // the operation was successful, and there are no messages to display to the user, so
-			// update the AttemptId hidden form element with the ID of the newly-created attempt,
-			// update the parent page, and close the dialog
-            AttemptId.Value = Convert.ToString(session.AttemptId.GetKey(), CultureInfo.InvariantCulture);
+            try
+            {
+                LStoreUserInfo currentUser = GetCurrentUserInfo();
+
+                ActivityPackageItemIdentifier organizationId = new ActivityPackageItemIdentifier(
+                    Convert.ToInt64(activity_id.ToString(), CultureInfo.InvariantCulture));
+
+                StoredLearningSession session = StoredLearningSession.CreateAttempt(PStore,
+                    currentUser.Id, organizationId, LoggingOptions.LogAll);
+
+                AttemptId.Value = Convert.ToString(session.AttemptId.GetKey(), CultureInfo.InvariantCulture);
+                testStatus.SetTestActivity(session.AttemptId.GetKey(), test_id);
+                UpdateParentPageScript.Visible = true;
+                CloseDialogScript.Visible = true;
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        else
+        {
+            AutoPostScript.Visible = false;
+
+            long attemptId = (long)testStatus.GetTestActivity(test_id);
+
+            PleaseWait.Visible = false;
+            AttemptId.Value = Convert.ToString(attemptId.ToString(), CultureInfo.InvariantCulture);
             UpdateParentPageScript.Visible = true;
             CloseDialogScript.Visible = true;
         }
+    }
+
+    protected long UploadPackage(string test_file)
+    {
+        long activity_id = -1;
+
+        try
+        {
+            LStoreUserInfo currentUser = GetCurrentUserInfo();
+
+            PackageItemIdentifier packageId;
+            ValidationResults importLog;
+            FileStream testFileStream = new FileStream(test_file, FileMode.Open);
+            using (PackageReader packageReader = PackageReader.Create(testFileStream))
+            {
+                AddPackageResult result = PStore.AddPackage(packageReader, new PackageEnforcement(false, false, false));
+                packageId = result.PackageId;
+                importLog = result.Log;
+            }
+
+            testFileStream.Close();
+
+            FileInfo fi = new FileInfo(test_file);
+            string fileName = fi.Name;
+
+            LearningStoreJob job = LStore.CreateJob();
+            Dictionary<string, object> properties = new Dictionary<string, object>();
+            properties[Schema.PackageItem.Owner] = currentUser.Id;
+            properties[Schema.PackageItem.FileName] = fileName; 
+            properties[Schema.PackageItem.UploadDateTime] = DateTime.Now;
+            job.UpdateItem(packageId, properties);
+            job.Execute();
+
+            job = LStore.CreateJob();
+            RequestMyTraining(job, packageId);
+            
+            DataTable dataTable = job.Execute<DataTable>();
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                activity_id = ((LearningStoreItemIdentifier)dataRow.ItemArray[2]).GetKey();
+            }
+
+        }
+        catch (PackageImportException ex)
+        {
+        }
         catch (Exception ex)
         {
-            // an unexpected error occurred -- display a generic message that
-            // doesn't include the exception message (since that message may
-            // include sensitive information), and write the exception message
-            // to the event log
-            ErrorIntro.Visible = true;
-            ErrorMessage.Visible = true;
-            ErrorMessage.Controls.Add(new System.Web.UI.LiteralControl(
-                Server.HtmlEncode("A serious error occurred.  Please contact your system administrator.  More information has been written to the server event log.")));
-            LogEvent(System.Diagnostics.EventLogEntryType.Error,
-                "An exception occurred while creating an attempt:\n\n{0}\n\n", ex.ToString());
-            Buttons.Visible = true;
         }
+
+        return activity_id;
     }
 
 }

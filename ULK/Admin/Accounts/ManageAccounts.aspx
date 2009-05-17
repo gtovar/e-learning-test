@@ -32,7 +32,7 @@
     <br />
     <asp:GridView ID="accountsGridView" runat="server" AllowPaging="True" AllowSorting="True"
         AutoGenerateColumns="False" CellPadding="4" DataSourceID="AccountsObjectDataSource"
-        ForeColor="#333333" GridLines="None" Width="100%">
+        ForeColor="#333333" GridLines="None" Width="100%" CssClass="Grid">
         <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
         <Columns>
             <asp:BoundField DataField="UserName" HeaderText="Логин" SortExpression="UserName">
