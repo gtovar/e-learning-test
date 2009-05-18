@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FRM_Title" xml:space="preserve">
-    <value>Basic Web Player Training</value>
+    <value>ULK - Проигрыватель теста</value>
     <comment>BWP only</comment>
   </data>
   <data name="FRM_ParameterRequiredTitle" xml:space="preserve">
@@ -137,45 +137,44 @@
     <comment>0 = name of parameter (not localized); 1 = the value provided for the parameter</comment>
   </data>
   <data name="FRM_UnknownExceptionTitle" xml:space="preserve">
-    <value>Error</value>
+    <value>Ошибка</value>
   </data>
   <data name="FRM_UnknownExceptionMsg" xml:space="preserve">
     <value>An error occurred. More information: {0}</value>
     <comment>0=message from exception</comment>
   </data>
   <data name="FRM_InvalidAttemptStatusForViewTitle" xml:space="preserve">
-    <value>Training Not Available</value>
+    <value>Тест не доступен</value>
   </data>
-    <data name="HID_SelectActivityTitleHtml" xml:space="preserve">
-        <value>Select an activity</value>
-        <comment></comment>
-    </data>
-    <data name="HID_SelectActivityMsgHtml" xml:space="preserve">
-        <value>Please select an activity to continue with the training.</value>
-    </data>
-    <data name="HID_SessionCompletedTitle" xml:space="preserve">
-        <value>Training Completed</value>
-    </data>
-    <data name="HID_SessionAbandonedTitle" xml:space="preserve">
-        <value>Training Abandoned</value>
-    </data>
-    <data name="HID_SessionSuspendedTitle" xml:space="preserve">
-        <value>Training Suspended</value>
-    </data>
+  <data name="HID_SelectActivityTitleHtml" xml:space="preserve">
+    <value>Select an activity</value>
+  </data>
+  <data name="HID_SelectActivityMsgHtml" xml:space="preserve">
+    <value>Please select an activity to continue with the training.</value>
+  </data>
+  <data name="HID_SessionCompletedTitle" xml:space="preserve">
+    <value>Тест завершён</value>
+  </data>
+  <data name="HID_SessionAbandonedTitle" xml:space="preserve">
+    <value>Training Abandoned</value>
+  </data>
+  <data name="HID_SessionSuspendedTitle" xml:space="preserve">
+    <value>Training Suspended</value>
+  </data>
   <data name="FRM_ExecuteViewAbandonedSessionMsg" xml:space="preserve">
     <value>This training has been abandoned. You cannot make any further changes.</value>
   </data>
   <data name="FRM_ExecuteViewCompletedSessionMsg" xml:space="preserve">
-    <value>This training has been completed. You cannot make any further changes.</value>
+    <value>Этот тест был здан. Вы больше не можете вносить изменения.</value>
   </data>
   <data name="FRM_ExecuteViewSuspendedSessionMsg" xml:space="preserve">
     <value>This training has been suspended. You can return later to resume the training.</value>
   </data>
   <data name="FRM_CannotDisplayContentTitle" xml:space="preserve">
-    <value>Training Not Available</value>
+    <value>Тест не доступен</value>
   </data>
   <data name="FRM_SessionIsNotActiveMsg" xml:space="preserve">
-    <value>This training has been completed. You cannot make any further changes.</value>
+    <value>Этот тест был здан. Вы больше не можете вносить изменения.</value>
   </data>
   <data name="FRM_ActivityIsNotActiveMsg" xml:space="preserve">
     <value>The page cannot be displayed. Select a different page.</value>
@@ -184,11 +183,11 @@
     <value>An error occurred. More information: {0}</value>
     <comment>0= exception message. BWP only. SLK filters errors so that unknown exceptions are not displayed.</comment>
   </data>
-    <data name="FRM_UnexpectedErrorNoException" xml:space="preserve">
-        <value>The training cannot be displayed. Try refreshing your browser.</value>
-    </data>
+  <data name="FRM_UnexpectedErrorNoException" xml:space="preserve">
+    <value>The training cannot be displayed. Try refreshing your browser.</value>
+  </data>
   <data name="FRM_UnexpectedErrorTitle" xml:space="preserve">
-    <value>Error</value>
+    <value>Ошибка</value>
   </data>
   <data name="FRM_ViewNotSupportedTitle" xml:space="preserve">
     <value>View Not Supported</value>
@@ -201,53 +200,53 @@
   </data>
   <data name="FRM_ViewNotSupportedMsg" xml:space="preserve">
     <value>The requested view is not supported in this application.</value>
-      <comment>This message only occurs if the view parameter on one of the interior frames is invalid.</comment>
+    <comment>This message only occurs if the view parameter on one of the interior frames is invalid.</comment>
   </data>
-  <data name="FRM_NotAvailableTitleHtml">
-        <value>Training Not Available</value>
-        <comment>BWP only</comment>
-    </data>
-    <data name="FRM_ResourceNotFound" xml:space="preserve">
-        <value>The requested resource could not be loaded.</value>
-        <comment>An internal error happened: could not load the requested resource.</comment>
-    </data>
-    <data name="FRM_NotAvailableHtml">
-        <value>This training is not available. This may be because the training does not exist, or 
+  <data name="FRM_NotAvailableTitleHtml" xml:space="preserve">
+    <value>Тест не доступен</value>
+    <comment>BWP only</comment>
+  </data>
+  <data name="FRM_ResourceNotFound" xml:space="preserve">
+    <value>The requested resource could not be loaded.</value>
+    <comment>An internal error happened: could not load the requested resource.</comment>
+  </data>
+  <data name="FRM_NotAvailableHtml" xml:space="preserve">
+    <value>This training is not available. This may be because the training does not exist, or 
         you do not have permission to view it. 
     </value>
-        <comment>BWP only</comment>
-    </data>
+    <comment>BWP only</comment>
+  </data>
   <data name="NAV_NextTitle" xml:space="preserve">
-    <value>Next</value>
+    <value>Следующий</value>
   </data>
   <data name="NAV_PrevTitle" xml:space="preserve">
-    <value>Previous</value>
+    <value>Предыдущий</value>
   </data>
   <data name="NAV_SaveTitle" xml:space="preserve">
-    <value>Save</value>
+    <value>Сохранить</value>
   </data>
   <data name="NAV_MinimizeTitle" xml:space="preserve">
-    <value>Hide Contents</value>
+    <value>Скрыть содержание</value>
   </data>
   <data name="NAV_MaximizeTitle" xml:space="preserve">
-    <value>Show Contents</value>
+    <value>Показать содержание</value>
   </data>
   <data name="HID_ReloadCurrentContent" xml:space="preserve">
-        <value>Continue</value>
-    </data>
+    <value>Продолжить</value>
+  </data>
   <data name="HID_SubmitAttemptTitleHtml" xml:space="preserve">
-        <value>Submit this Assignment?
+    <value>Вы хотите сдать этот тест?
         </value>
-    </data>
+  </data>
   <data name="HID_SubmitAttemptMessageHtml" xml:space="preserve">
-        <value>After you submit this assignment, you will not be able to make any further changes.&lt;br&gt;&lt;br&gt;
+    <value>After you submit this assignment, you will not be able to make any further changes.&lt;br&gt;&lt;br&gt;
         If you have completed the assignment, click &lt;b&gt;Submit&lt;/b&gt;.&lt;br&gt;&lt;br&gt;
         If you are not ready to submit the assignment, you can finish the assignment or close this window. Your work is already saved.
         </value>
-    </data>
+  </data>
   <data name="HID_SubmitLink" xml:space="preserve">
-    <value>Submit</value>
-  </data>  
+    <value>Подтвердить</value>
+  </data>
   <data name="HID_MoveNextFailedHtml" xml:space="preserve">
     <value>You cannot navigate to the next page at this time. Click Continue to return to the current page.</value>
   </data>
@@ -278,27 +277,27 @@
   <data name="HID_ServerErrorTitle" xml:space="preserve">
     <value>Processing Error</value>
   </data>
-    <data name="POST_SubmitHtml" xml:space="preserve">
-        <value>Submit</value>
-    </data>
-    <data name="HID_SubmitPageTitleHtml" xml:space="preserve">
-        <value>Submit this Training?</value>
-    </data>
-    <data name="HID_SubmitPageMessageHtml" xml:space="preserve">
-        <value>You cannot make any further changes after you submit this training.&lt;br&gt;&lt;br&gt;
-        If you have completed the training, click &lt;b&gt;Submit&lt;/b&gt;.&lt;br&gt;&lt;br&gt;
-        If you are not ready to submit the training, click &lt;b&gt;Cancel&lt;/b&gt; to return to the previous page.
+  <data name="POST_SubmitHtml" xml:space="preserve">
+    <value>Подтвердить</value>
+  </data>
+  <data name="HID_SubmitPageTitleHtml" xml:space="preserve">
+    <value>Вы хотите сдать этот тест?</value>
+  </data>
+  <data name="HID_SubmitPageMessageHtml" xml:space="preserve">
+    <value>Вы больше не сможете вносить изменения после здачи теста.&lt;br&gt;&lt;br&gt;
+        Если вы закончили выполнять этот тест, нажмите &lt;b&gt;Подтвердить&lt;/b&gt;.&lt;br&gt;&lt;br&gt;
+        Если вы ещё не готовы здать этот тест , нажмите &lt;b&gt;Отмена&lt;/b&gt; чтобы вернуться к предыдужей странице.
         </value>
-    </data>
-    <data name="HID_SubmitPageMessageNoCurrentActivityHtml" xml:space="preserve">
-        <value>You cannot make any further changes after you submit this training.&lt;br&gt;&lt;br&gt;
+  </data>
+  <data name="HID_SubmitPageMessageNoCurrentActivityHtml" xml:space="preserve">
+    <value>You cannot make any further changes after you submit this training.&lt;br&gt;&lt;br&gt;
         If you have completed the training, click &lt;b&gt;Submit&lt;/b&gt;.&lt;br&gt;&lt;br&gt;
         If you are not ready to submit the training, select an activity to continue the training.
         </value>
-    </data>
-    <data name="POST_ContinueHtml" xml:space="preserve">
-        <value>Cancel</value>
-    </data>
+  </data>
+  <data name="POST_ContinueHtml" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
   <data name="CONV_MappingRequired" xml:space="preserve">
     <value>Interaction and objective information has not been properly initialized.</value>
   </data>
@@ -337,7 +336,7 @@
     <value>The data on this page cannot be updated while reviewing the training.</value>
   </data>
   <data name="CON_PleaseWait" xml:space="preserve">
-    <value>Please wait...</value>
+    <value>Пожалуйста подождите...</value>
     <comment>Message to wait for other frames to load.</comment>
   </data>
   <data name="CON_ContentCannotBeDisplayedTitle" xml:space="preserve">
@@ -356,21 +355,21 @@
   <data name="CON_ResourceNotFoundMsg" xml:space="preserve">
     <value>The page you requested cannot be found. Please select or move to a different page.</value>
   </data>
-    <data name="CON_AttachedFileDoesNotExistHtml" xml:space="preserve">
-        <value>The attached files listed below are empty or do not exist: 
+  <data name="CON_AttachedFileDoesNotExistHtml" xml:space="preserve">
+    <value>The attached files listed below are empty or do not exist: 
         &lt;br&gt;&lt;br&gt; 
         Invalid files:</value>
-    </data>
-    <data name="CON_FileAttachmentErrorEndHtml" xml:space="preserve">
-        <value>Click Continue to return to the current page.</value>
-    </data>
-     <data name="CON_FileAttachmentErrorTitleHtml" xml:space="preserve">
-        <value>File Attachment Error</value>
-    </data>
+  </data>
+  <data name="CON_FileAttachmentErrorEndHtml" xml:space="preserve">
+    <value>Click Continue to return to the current page.</value>
+  </data>
+  <data name="CON_FileAttachmentErrorTitleHtml" xml:space="preserve">
+    <value>File Attachment Error</value>
+  </data>
   <data name="TOC_InvalidJsVersion" xml:space="preserve">
     <value>The browser has cached an old version of files required for this page. Please refresh your browser.</value>
   </data>
-    <data name="TOC_SubmitAttempt" xml:space="preserve">
-        <value>Submit Training</value>
-    </data>
+  <data name="TOC_SubmitAttempt" xml:space="preserve">
+    <value>Сдать тест</value>
+  </data>
 </root>

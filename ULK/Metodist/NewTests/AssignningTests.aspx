@@ -45,7 +45,8 @@
                         </td>
                         <td>
                             <asp:DropDownList ID="chairsList" runat="server" 
-                                DataSourceID="ChairsObjectDataSource" DataTextField="title" DataValueField="id">
+                                DataSourceID="ChairsObjectDataSource" DataTextField="title" 
+                                DataValueField="id" AutoPostBack="True">
                             </asp:DropDownList>
                             <asp:ObjectDataSource ID="ChairsObjectDataSource" runat="server" 
                                 DeleteMethod="Delete" OldValuesParameterFormatString="original_{0}" 
