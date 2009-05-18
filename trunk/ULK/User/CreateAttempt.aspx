@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head id="Head1" runat="server">
 
-    <title>Begin Training</title>
+    <title>Загружается тест</title>
 
     <script type="text/javascript">
     
@@ -55,7 +55,7 @@
         <!-- table that displays when this form is loaded -->
 		<asp:Table ID="PleaseWait" CssClass="FullPageMessage" runat="server">
 			<asp:TableRow>
-				<asp:TableCell>Please wait...</asp:TableCell>
+				<asp:TableCell>Пожалуйста подождите...</asp:TableCell>
 			</asp:TableRow>
 		</asp:Table>
 
@@ -72,7 +72,7 @@
 
     </asp:Panel>
 
-	<asp:Button ID="CreateAttemptButton" Text="Create Attempt" CssClass="Hidden" OnClick="CreateAttemptButton_Click" runat="server" />
+	<asp:Button ID="CreateAttemptButton" Text="Начать" CssClass="Hidden" OnClick="CreateAttemptButton_Click" runat="server" />
 
     <asp:HiddenField ID="OrganizationId" runat="server" />
     <asp:HiddenField ID="AttemptId" runat="server" />

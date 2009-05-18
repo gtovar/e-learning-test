@@ -58,7 +58,7 @@ public partial class Admin_Disciplines_AddDiscipline : System.Web.UI.Page
         int chairID = Convert.ToInt32(chairsList.SelectedValue);
         disciplineTable.Add(new Discipline(UnnLearningKitLibrary.Constants.FAKE_ID, departmentID, chairID, tittleText.Text));
         
-        string url = UrlConstants.DisciplinesHomeUrl + "?DepartmentID=" + "&ChairID=" + chairID;
+        string url = UrlConstants.DisciplinesHomeUrl + "?DepartmentID=" + departmentID + "&ChairID=" + chairID;
         Response.Redirect(url);
     }
 }
