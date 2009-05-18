@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Unn Learning Kit - Восстановление пароля</title>
+    <link rel="stylesheet" type="text/css" href="Styles.css" />
 </head>
 <body>
 <form id="forgotPassword" runat="server">
