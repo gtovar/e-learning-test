@@ -1,0 +1,8 @@
+C:\MvcULK_Editor\MvcULK_Editor.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll.config
+C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll
+C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.pdb
+C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.dll
+C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.pdb
+C:\MvcULK_Editor\MvcULK_Editor.Tests\obj\Debug\MvcULK_Editor.Tests.dll
+C:\MvcULK_Editor\MvcULK_Editor.Tests\obj\Debug\MvcULK_Editor.Tests.pdb
