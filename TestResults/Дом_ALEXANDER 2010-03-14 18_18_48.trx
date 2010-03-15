@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="dfa30cd4-c2e6-4a88-9dcb-a6461ef9a573" name="Дом@ALEXANDER 2010-03-14 18:18:48" runUser="ALEXANDER\Дом" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2006">
+  <TestRunConfiguration name="Default Run Configuration" id="c2d7ab89-b78d-490a-ae82-1f5ac43aed45">
+    <Deployment runDeploymentRoot="C:\MvcULK_Editor\TestResults\Дом_ALEXANDER 2010-03-14 18_18_48">
+      <DeploymentItem filename="C:\MvcULK_Editor\MvcULK_Editor\bin\MvcULK_Editor.dll" />
+    </Deployment>
+    <Hosts skipUnhostableTests="false" />
+    <TestTypeSpecific />
+  </TestRunConfiguration>
+  <ResultSummary outcome="NotRunnable">
+    <Counters total="27" executed="25" passed="25" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="2" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <Times creation="2010-03-14T18:18:48.2031250+03:00" queuing="2010-03-14T18:18:56.9375000+03:00" start="2010-03-14T18:18:57.9218750+03:00" finish="2010-03-14T18:19:00.3437500+03:00" />
+  <TestDefinitions>
+    <UnitTest name="RegisterPostReturnsViewIfUsernameNotSpecified" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="e961008e-04f0-be05-d678-1e89247c1f27">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="dac81a40-91af-4e9a-87d9-d9c06f036c86" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="RegisterPostReturnsViewIfUsernameNotSpecified" />
+    </UnitTest>
+    <UnitTest name="RegisterPostReturnsViewIfPasswordIsNull" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="a3b06522-6ed4-a8a3-d130-0bb9efb592e3">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="d72d86c9-6e2a-4a42-8a18-dd9ea30dcfc8" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="RegisterPostReturnsViewIfPasswordIsNull" />
+    </UnitTest>
+    <UnitTest name="ChangePasswordPostReturnsViewIfCurrentPasswordNotSpecified" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="06f021ff-cef0-32fd-4b44-9ed461ecf3e2">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="a3bb01cd-894d-40c9-bf30-7b5f3c8e01ab" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ChangePasswordPostReturnsViewIfCurrentPasswordNotSpecified" />
+    </UnitTest>
+    <UnitTest name="ChangePasswordPostReturnsViewIfNewPasswordIsNull" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="d66b2c7e-d52e-de8b-adc1-d48738879e8e">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="a66e306d-1e05-4d2b-b8b8-ae10661aea70" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ChangePasswordPostReturnsViewIfNewPasswordIsNull" />
+    </UnitTest>
+    <UnitTest name="LoginGet" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="1d99f009-3bb4-a837-ec9d-bc32c8a7fbfb">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="ad97f76a-85af-4e93-9ee6-22937bbdf9e2" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="LoginGet" />
+    </UnitTest>
+    <UnitTest name="ChangePasswordGetReturnsView" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="033bfd6b-db68-a099-eb9b-9a644219a4ed">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="320ef3ba-47e0-429d-b4ac-eeb85cd18feb" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ChangePasswordGetReturnsView" />
+    </UnitTest>
+    <UnitTest name="RegisterPostReturnsViewIfPasswordIsTooShort" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="d683029a-045d-8d63-802e-fcd19dea7aa3">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="d0367a83-b3dc-47d1-87bd-9cd3a8857fbf" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="RegisterPostReturnsViewIfPasswordIsTooShort" />
+    </UnitTest>
+    <UnitTest name="ChangePasswordPostReturnsViewIfProviderRejectsPassword" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="b404fdb6-3b74-600a-5808-15cbfa9736c5">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="9780f63f-1c37-4956-baee-33971dd7db6a" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ChangePasswordPostReturnsViewIfProviderRejectsPassword" />
+    </UnitTest>
+    <UnitTest name="About" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="793853ad-f12b-0828-36aa-badb564b669b">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.HomeControllerTest, MvcULK_Editor.Tests" name="About" />
+    </UnitTest>
+    <UnitTest name="LoginPostRedirectsToReturnUrlIfLoginSuccessfulAndReturnUrlGiven" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="85e5e0ea-d507-14cb-ffd6-68a7107a5571">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="da29587a-edd4-4495-af64-a0273a954e5c" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="LoginPostRedirectsToReturnUrlIfLoginSuccessfulAndReturnUrlGiven" />
+    </UnitTest>
+    <UnitTest name="RegisterPostReturnsViewIfRegistrationFails" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="a89b4b53-98a6-20c5-630f-ab10d9a2790a">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="a3191d5a-ef6a-462f-a020-c86e3bcb8a15" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="RegisterPostReturnsViewIfRegistrationFails" />
+    </UnitTest>
+    <UnitTest name="LoginPostReturnsViewIfPasswordNotSpecified" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="4fed4cfa-8076-786f-35fb-3997ca7c517f">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="3711371f-a9c3-4906-93e3-29a0dbd34df6" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="LoginPostReturnsViewIfPasswordNotSpecified" />
+    </UnitTest>
+    <UnitTest name="RegisterGet" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="959339c7-48fa-c498-8340-058f6b35cac5">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="6a40a6cb-9e20-4c1d-9ed1-302286edb5d4" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="RegisterGet" />
+    </UnitTest>
+    <UnitTest name="RegisterPostRedirectsHomeIfRegistrationSuccessful" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="6e3a1b84-02e8-2424-3c6e-be7676c81fe8">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="dd0fc4bd-2eaa-4e61-a46a-d56876cc6628" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="RegisterPostRedirectsHomeIfRegistrationSuccessful" />
+    </UnitTest>
+    <UnitTest name="ChangePasswordSuccess" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="b9d9ee7a-3b4e-fcde-b9d5-50fafd6bb165">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="b5da6ece-bd25-461a-80e9-bb801b9f0e0b" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ChangePasswordSuccess" />
+    </UnitTest>
+    <UnitTest name="LoginPostReturnsViewIfUsernameOrPasswordIsIncorrect" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="d556a593-5a20-0c85-1f49-3d238b87debc">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="f325c1ef-4014-42c8-96a0-0e2f0e217d93" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="LoginPostReturnsViewIfUsernameOrPasswordIsIncorrect" />
+    </UnitTest>
+    <UnitTest name="LoginPostReturnsViewIfUsernameNotSpecified" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="3a4625ef-e09d-1aad-c142-92e69464d3d9">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="6575b24d-5c1e-4373-b11e-e5aaab46823e" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="LoginPostReturnsViewIfUsernameNotSpecified" />
+    </UnitTest>
+    <UnitTest name="RegisterPostReturnsViewIfNewPasswordDoesNotMatchConfirmPassword" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="c2dc708d-d413-3b21-bee6-2f048405c5c8">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="33acbd29-4c57-4580-8be1-2c20b00e5bc2" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="RegisterPostReturnsViewIfNewPasswordDoesNotMatchConfirmPassword" />
+    </UnitTest>
+    <UnitTest name="ChangePasswordPostReturnsViewIfNewPasswordDoesNotMatchConfirmPassword" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="d0f5be01-b18a-a566-576a-7db105f7a616">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="140948bb-a721-4acb-9315-27e209aa55a8" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ChangePasswordPostReturnsViewIfNewPasswordDoesNotMatchConfirmPassword" />
+    </UnitTest>
+    <UnitTest name="ConstructorSetsPropertiesToDefaultValues" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="3b2fc2cd-2595-8446-564e-c905f19cec1b">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="3cb71d48-35e4-45f1-a2a4-526675c89fd6" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ConstructorSetsPropertiesToDefaultValues" />
+    </UnitTest>
+    <UnitTest name="Index" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="74733336-c9f2-42c9-e99e-fa929fde3512">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.HomeControllerTest, MvcULK_Editor.Tests" name="Index" />
+    </UnitTest>
+    <UnitTest name="LoginPostRedirectsHomeIfLoginSuccessfulButNoReturnUrlGiven" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="b6a0b87a-f607-b391-d8d3-f2a88560ff1e">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="88a373c4-f347-4251-af21-bfc542d29f8e" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="LoginPostRedirectsHomeIfLoginSuccessfulButNoReturnUrlGiven" />
+    </UnitTest>
+    <UnitTest name="RegisterPostReturnsViewIfEmailNotSpecified" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="36abb905-6cc0-3145-be4f-263c2e313819">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="e55e8174-a6fd-4572-af2e-3b45eced19fc" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="RegisterPostReturnsViewIfEmailNotSpecified" />
+    </UnitTest>
+    <UnitTest name="ChangePasswordPostReturnsViewIfNewPasswordIsTooShort" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="769cd569-90e9-fbfd-4a74-915b1b0e1513">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="f3811f4d-84b1-496b-8d6a-da4aa377d0a4" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ChangePasswordPostReturnsViewIfNewPasswordIsTooShort" />
+    </UnitTest>
+    <UnitTest name="LogOff" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="50223388-f825-cd52-9c1f-2ca8c592f68b">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="2c9a4245-424c-4d03-97f3-3eb4ba58d069" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="LogOff" />
+    </UnitTest>
+    <UnitTest name="ConstructorSetsProperties" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="d5c679b1-81c6-73fd-411e-658362a268e8">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="985ad182-1c6a-4803-bcf9-2f690867e6d1" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ConstructorSetsProperties" />
+    </UnitTest>
+    <UnitTest name="ChangePasswordPostRedirectsOnSuccess" storage="c:\mvculk_editor\mvculk_editor.tests\bin\debug\mvculk_editor.tests.dll" id="94c385bc-ae38-cf6a-ba0e-6da5df0bd0b5">
+      <Css projectStructure="" iteration="" />
+      <Owners>
+        <Owner name="" />
+      </Owners>
+      <Execution id="250eb90a-035c-496a-8ce7-753147681be0" />
+      <TestMethod codeBase="C:\MvcULK_Editor\MvcULK_Editor.Tests\bin\Debug\MvcULK_Editor.Tests.dll" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="MvcULK_Editor.Tests.Controllers.AccountControllerTest, MvcULK_Editor.Tests" name="ChangePasswordPostRedirectsOnSuccess" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="033bfd6b-db68-a099-eb9b-9a644219a4ed" executionId="320ef3ba-47e0-429d-b4ac-eeb85cd18feb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="94c385bc-ae38-cf6a-ba0e-6da5df0bd0b5" executionId="250eb90a-035c-496a-8ce7-753147681be0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="06f021ff-cef0-32fd-4b44-9ed461ecf3e2" executionId="a3bb01cd-894d-40c9-bf30-7b5f3c8e01ab" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d0f5be01-b18a-a566-576a-7db105f7a616" executionId="140948bb-a721-4acb-9315-27e209aa55a8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d66b2c7e-d52e-de8b-adc1-d48738879e8e" executionId="a66e306d-1e05-4d2b-b8b8-ae10661aea70" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="769cd569-90e9-fbfd-4a74-915b1b0e1513" executionId="f3811f4d-84b1-496b-8d6a-da4aa377d0a4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b404fdb6-3b74-600a-5808-15cbfa9736c5" executionId="9780f63f-1c37-4956-baee-33971dd7db6a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b9d9ee7a-3b4e-fcde-b9d5-50fafd6bb165" executionId="b5da6ece-bd25-461a-80e9-bb801b9f0e0b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d5c679b1-81c6-73fd-411e-658362a268e8" executionId="985ad182-1c6a-4803-bcf9-2f690867e6d1" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3b2fc2cd-2595-8446-564e-c905f19cec1b" executionId="3cb71d48-35e4-45f1-a2a4-526675c89fd6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1d99f009-3bb4-a837-ec9d-bc32c8a7fbfb" executionId="ad97f76a-85af-4e93-9ee6-22937bbdf9e2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b6a0b87a-f607-b391-d8d3-f2a88560ff1e" executionId="88a373c4-f347-4251-af21-bfc542d29f8e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="85e5e0ea-d507-14cb-ffd6-68a7107a5571" executionId="da29587a-edd4-4495-af64-a0273a954e5c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4fed4cfa-8076-786f-35fb-3997ca7c517f" executionId="3711371f-a9c3-4906-93e3-29a0dbd34df6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3a4625ef-e09d-1aad-c142-92e69464d3d9" executionId="6575b24d-5c1e-4373-b11e-e5aaab46823e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d556a593-5a20-0c85-1f49-3d238b87debc" executionId="f325c1ef-4014-42c8-96a0-0e2f0e217d93" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="50223388-f825-cd52-9c1f-2ca8c592f68b" executionId="2c9a4245-424c-4d03-97f3-3eb4ba58d069" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="959339c7-48fa-c498-8340-058f6b35cac5" executionId="6a40a6cb-9e20-4c1d-9ed1-302286edb5d4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6e3a1b84-02e8-2424-3c6e-be7676c81fe8" executionId="dd0fc4bd-2eaa-4e61-a46a-d56876cc6628" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="36abb905-6cc0-3145-be4f-263c2e313819" executionId="e55e8174-a6fd-4572-af2e-3b45eced19fc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c2dc708d-d413-3b21-bee6-2f048405c5c8" executionId="33acbd29-4c57-4580-8be1-2c20b00e5bc2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a3b06522-6ed4-a8a3-d130-0bb9efb592e3" executionId="d72d86c9-6e2a-4a42-8a18-dd9ea30dcfc8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d683029a-045d-8d63-802e-fcd19dea7aa3" executionId="d0367a83-b3dc-47d1-87bd-9cd3a8857fbf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a89b4b53-98a6-20c5-630f-ab10d9a2790a" executionId="a3191d5a-ef6a-462f-a020-c86e3bcb8a15" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e961008e-04f0-be05-d678-1e89247c1f27" executionId="dac81a40-91af-4e9a-87d9-d9c06f036c86" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="74733336-c9f2-42c9-e99e-fa929fde3512" executionId="aab9ce7e-e014-4f51-8c26-10eba3b3fd2a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="793853ad-f12b-0828-36aa-badb564b669b" executionId="91a38aad-81fe-49f7-aab5-171640b84776" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="320ef3ba-47e0-429d-b4ac-eeb85cd18feb" testId="033bfd6b-db68-a099-eb9b-9a644219a4ed" testName="ChangePasswordGetReturnsView" computerName="ALEXANDER" duration="00:00:00.5235905" startTime="2010-03-14T18:18:58.0468750+03:00" endTime="2010-03-14T18:18:59.6875000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="250eb90a-035c-496a-8ce7-753147681be0" testId="94c385bc-ae38-cf6a-ba0e-6da5df0bd0b5" testName="ChangePasswordPostRedirectsOnSuccess" computerName="ALEXANDER" duration="00:00:00.0070724" startTime="2010-03-14T18:18:59.7031250+03:00" endTime="2010-03-14T18:18:59.7187500+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a3bb01cd-894d-40c9-bf30-7b5f3c8e01ab" testId="06f021ff-cef0-32fd-4b44-9ed461ecf3e2" testName="ChangePasswordPostReturnsViewIfCurrentPasswordNotSpecified" computerName="ALEXANDER" duration="00:00:00.0019150" startTime="2010-03-14T18:18:59.7187500+03:00" endTime="2010-03-14T18:18:59.7187500+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="140948bb-a721-4acb-9315-27e209aa55a8" testId="d0f5be01-b18a-a566-576a-7db105f7a616" testName="ChangePasswordPostReturnsViewIfNewPasswordDoesNotMatchConfirmPassword" computerName="ALEXANDER" duration="00:00:00.0007581" startTime="2010-03-14T18:18:59.7187500+03:00" endTime="2010-03-14T18:18:59.7187500+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a66e306d-1e05-4d2b-b8b8-ae10661aea70" testId="d66b2c7e-d52e-de8b-adc1-d48738879e8e" testName="ChangePasswordPostReturnsViewIfNewPasswordIsNull" computerName="ALEXANDER" duration="00:00:00.0007204" startTime="2010-03-14T18:18:59.7187500+03:00" endTime="2010-03-14T18:18:59.7343750+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f3811f4d-84b1-496b-8d6a-da4aa377d0a4" testId="769cd569-90e9-fbfd-4a74-915b1b0e1513" testName="ChangePasswordPostReturnsViewIfNewPasswordIsTooShort" computerName="ALEXANDER" duration="00:00:00.0006961" startTime="2010-03-14T18:18:59.7343750+03:00" endTime="2010-03-14T18:18:59.7343750+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="9780f63f-1c37-4956-baee-33971dd7db6a" testId="b404fdb6-3b74-600a-5808-15cbfa9736c5" testName="ChangePasswordPostReturnsViewIfProviderRejectsPassword" computerName="ALEXANDER" duration="00:00:00.0007053" startTime="2010-03-14T18:18:59.7343750+03:00" endTime="2010-03-14T18:18:59.7343750+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="b5da6ece-bd25-461a-80e9-bb801b9f0e0b" testId="b9d9ee7a-3b4e-fcde-b9d5-50fafd6bb165" testName="ChangePasswordSuccess" computerName="ALEXANDER" duration="00:00:00.0007352" startTime="2010-03-14T18:18:59.7343750+03:00" endTime="2010-03-14T18:18:59.7343750+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="985ad182-1c6a-4803-bcf9-2f690867e6d1" testId="d5c679b1-81c6-73fd-411e-658362a268e8" testName="ConstructorSetsProperties" computerName="ALEXANDER" duration="00:00:00.4205447" startTime="2010-03-14T18:18:59.7343750+03:00" endTime="2010-03-14T18:19:00.1562500+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3cb71d48-35e4-45f1-a2a4-526675c89fd6" testId="3b2fc2cd-2595-8446-564e-c905f19cec1b" testName="ConstructorSetsPropertiesToDefaultValues" computerName="ALEXANDER" duration="00:00:00.0007964" startTime="2010-03-14T18:19:00.1562500+03:00" endTime="2010-03-14T18:19:00.1718750+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ad97f76a-85af-4e93-9ee6-22937bbdf9e2" testId="1d99f009-3bb4-a837-ec9d-bc32c8a7fbfb" testName="LoginGet" computerName="ALEXANDER" duration="00:00:00.0005165" startTime="2010-03-14T18:19:00.1718750+03:00" endTime="2010-03-14T18:19:00.1718750+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="88a373c4-f347-4251-af21-bfc542d29f8e" testId="b6a0b87a-f607-b391-d8d3-f2a88560ff1e" testName="LoginPostRedirectsHomeIfLoginSuccessfulButNoReturnUrlGiven" computerName="ALEXANDER" duration="00:00:00.0017485" startTime="2010-03-14T18:19:00.1718750+03:00" endTime="2010-03-14T18:19:00.1875000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="da29587a-edd4-4495-af64-a0273a954e5c" testId="85e5e0ea-d507-14cb-ffd6-68a7107a5571" testName="LoginPostRedirectsToReturnUrlIfLoginSuccessfulAndReturnUrlGiven" computerName="ALEXANDER" duration="00:00:00.0011970" startTime="2010-03-14T18:19:00.1875000+03:00" endTime="2010-03-14T18:19:00.1875000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="3711371f-a9c3-4906-93e3-29a0dbd34df6" testId="4fed4cfa-8076-786f-35fb-3997ca7c517f" testName="LoginPostReturnsViewIfPasswordNotSpecified" computerName="ALEXANDER" duration="00:00:00.0025126" startTime="2010-03-14T18:19:00.1875000+03:00" endTime="2010-03-14T18:19:00.2031250+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6575b24d-5c1e-4373-b11e-e5aaab46823e" testId="3a4625ef-e09d-1aad-c142-92e69464d3d9" testName="LoginPostReturnsViewIfUsernameNotSpecified" computerName="ALEXANDER" duration="00:00:00.0006520" startTime="2010-03-14T18:19:00.2031250+03:00" endTime="2010-03-14T18:19:00.2031250+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f325c1ef-4014-42c8-96a0-0e2f0e217d93" testId="d556a593-5a20-0c85-1f49-3d238b87debc" testName="LoginPostReturnsViewIfUsernameOrPasswordIsIncorrect" computerName="ALEXANDER" duration="00:00:00.0006503" startTime="2010-03-14T18:19:00.2031250+03:00" endTime="2010-03-14T18:19:00.2031250+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="2c9a4245-424c-4d03-97f3-3eb4ba58d069" testId="50223388-f825-cd52-9c1f-2ca8c592f68b" testName="LogOff" computerName="ALEXANDER" duration="00:00:00.0007556" startTime="2010-03-14T18:19:00.2187500+03:00" endTime="2010-03-14T18:19:00.2187500+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="6a40a6cb-9e20-4c1d-9ed1-302286edb5d4" testId="959339c7-48fa-c498-8340-058f6b35cac5" testName="RegisterGet" computerName="ALEXANDER" duration="00:00:00.0009931" startTime="2010-03-14T18:19:00.2187500+03:00" endTime="2010-03-14T18:19:00.2187500+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="dd0fc4bd-2eaa-4e61-a46a-d56876cc6628" testId="6e3a1b84-02e8-2424-3c6e-be7676c81fe8" testName="RegisterPostRedirectsHomeIfRegistrationSuccessful" computerName="ALEXANDER" duration="00:00:00.0023810" startTime="2010-03-14T18:19:00.2187500+03:00" endTime="2010-03-14T18:19:00.2343750+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="e55e8174-a6fd-4572-af2e-3b45eced19fc" testId="36abb905-6cc0-3145-be4f-263c2e313819" testName="RegisterPostReturnsViewIfEmailNotSpecified" computerName="ALEXANDER" duration="00:00:00.0007665" startTime="2010-03-14T18:19:00.2343750+03:00" endTime="2010-03-14T18:19:00.2343750+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="33acbd29-4c57-4580-8be1-2c20b00e5bc2" testId="c2dc708d-d413-3b21-bee6-2f048405c5c8" testName="RegisterPostReturnsViewIfNewPasswordDoesNotMatchConfirmPassword" computerName="ALEXANDER" duration="00:00:00.0007305" startTime="2010-03-14T18:19:00.2343750+03:00" endTime="2010-03-14T18:19:00.2500000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d72d86c9-6e2a-4a42-8a18-dd9ea30dcfc8" testId="a3b06522-6ed4-a8a3-d130-0bb9efb592e3" testName="RegisterPostReturnsViewIfPasswordIsNull" computerName="ALEXANDER" duration="00:00:00.0009143" startTime="2010-03-14T18:19:00.2500000+03:00" endTime="2010-03-14T18:19:00.2500000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="d0367a83-b3dc-47d1-87bd-9cd3a8857fbf" testId="d683029a-045d-8d63-802e-fcd19dea7aa3" testName="RegisterPostReturnsViewIfPasswordIsTooShort" computerName="ALEXANDER" duration="00:00:00.0007308" startTime="2010-03-14T18:19:00.2500000+03:00" endTime="2010-03-14T18:19:00.2500000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="a3191d5a-ef6a-462f-a020-c86e3bcb8a15" testId="a89b4b53-98a6-20c5-630f-ab10d9a2790a" testName="RegisterPostReturnsViewIfRegistrationFails" computerName="ALEXANDER" duration="00:00:00.0016940" startTime="2010-03-14T18:19:00.2500000+03:00" endTime="2010-03-14T18:19:00.2656250+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="dac81a40-91af-4e9a-87d9-d9c06f036c86" testId="e961008e-04f0-be05-d678-1e89247c1f27" testName="RegisterPostReturnsViewIfUsernameNotSpecified" computerName="ALEXANDER" duration="00:00:00.0007235" startTime="2010-03-14T18:19:00.2656250+03:00" endTime="2010-03-14T18:19:00.2656250+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="aab9ce7e-e014-4f51-8c26-10eba3b3fd2a" testId="74733336-c9f2-42c9-e99e-fa929fde3512" testName="Index" computerName="ALEXANDER" duration="00:00:00" startTime="0001-01-01T03:00:00.0000000+03:00" endTime="0001-01-01T03:00:00.0000000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotRunnable" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+        <ErrorInfo>
+          <Message>Unable to get default constructor for class MvcULK_Editor.Tests.Controllers.HomeControllerTest.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="91a38aad-81fe-49f7-aab5-171640b84776" testId="793853ad-f12b-0828-36aa-badb564b669b" testName="About" computerName="ALEXANDER" duration="00:00:00" startTime="0001-01-01T03:00:00.0000000+03:00" endTime="0001-01-01T03:00:00.0000000+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotRunnable" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d">
+      <Output>
+        <ErrorInfo>
+          <Message>Unable to get default constructor for class MvcULK_Editor.Tests.Controllers.HomeControllerTest.</Message>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+  </Results>
+</TestRun>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="MvcULK">
+  <DataContextMoniker Name="/MvcULKDataContext" />
+  <nestedChildShapes>
+    <classShape Id="4d600fcf-0e49-4692-9870-13df0633288a" absoluteBounds="0.5, 1, 2, 1.0961531575520835">
+      <DataClassMoniker Name="/MvcULKDataContext/department" />
+      <nestedChildShapes>
+        <elementListCompartment Id="26deac4d-78cd-4066-b5e7-3da4cd43fff0" absoluteBounds="0.515, 1.46, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="be41fe0e-2bb3-4b1f-acf5-df864fb7ef50" absoluteBounds="0.5, 2.375, 2, 1.2605004882812503">
+      <DataClassMoniker Name="/MvcULKDataContext/discipline" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a0ce6b1a-8bf7-4201-ad12-a24f964383d0" absoluteBounds="0.51500000000000012, 2.835, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8a59f8cf-4a9b-4d2a-9400-a444b36bb951" absoluteBounds="0.5, 5.625, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/MvcULKDataContext/razdel" />
+      <nestedChildShapes>
+        <elementListCompartment Id="573cd75d-a54a-47a7-899f-7c9945147b43" absoluteBounds="0.51500000000000057, 6.085, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a3858daa-0b04-477b-a13f-31b9a3d61e5c" absoluteBounds="0.5, 4, 2, 1.2605004882812503">
+      <DataClassMoniker Name="/MvcULKDataContext/topic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a3fb7b5d-a604-4896-bbd8-68b35838c6dd" absoluteBounds="0.51499999999999968, 4.46, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="58210654-4d53-4f64-933d-c2292f6c0d30" absoluteBounds="4, 4.625, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/MvcULKDataContext/question" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4d4ad169-7104-4213-ab31-06620f7e52f9" absoluteBounds="4.0150000000000006, 5.085, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="91645cd3-7002-4ebe-a2f0-13ae5491f18a" absoluteBounds="4, 2.875, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/MvcULKDataContext/answer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d999f08d-9511-44a7-9388-73b59fe3ab5d" absoluteBounds="4.0150000000000006, 3.335, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.5 : 2.09615315755208); (1.5 : 2.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MvcULKDataContext/department/department_discipline" />
+      <nodes>
+        <classShapeMoniker Id="4d600fcf-0e49-4692-9870-13df0633288a" />
+        <classShapeMoniker Id="be41fe0e-2bb3-4b1f-acf5-df864fb7ef50" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.5 : 5.26050048828125); (1.5 : 5.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MvcULKDataContext/topic/topic_razdel" />
+      <nodes>
+        <classShapeMoniker Id="a3858daa-0b04-477b-a13f-31b9a3d61e5c" />
+        <classShapeMoniker Id="8a59f8cf-4a9b-4d2a-9400-a444b36bb951" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.5 : 3.63550048828125); (1.5 : 4)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MvcULKDataContext/discipline/discipline_topic" />
+      <nodes>
+        <classShapeMoniker Id="be41fe0e-2bb3-4b1f-acf5-df864fb7ef50" />
+        <classShapeMoniker Id="a3858daa-0b04-477b-a13f-31b9a3d61e5c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.5 : 6.33046590169271); (4 : 6.33046590169271)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MvcULKDataContext/razdel/razdel_question" />
+      <nodes>
+        <classShapeMoniker Id="8a59f8cf-4a9b-4d2a-9400-a444b36bb951" />
+        <classShapeMoniker Id="58210654-4d53-4f64-933d-c2292f6c0d30" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5 : 4.625); (5 : 4.29984781901042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/MvcULKDataContext/question/question_answer" />
+      <nodes>
+        <classShapeMoniker Id="58210654-4d53-4f64-933d-c2292f6c0d30" />
+        <classShapeMoniker Id="91645cd3-7002-4ebe-a2f0-13ae5491f18a" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
