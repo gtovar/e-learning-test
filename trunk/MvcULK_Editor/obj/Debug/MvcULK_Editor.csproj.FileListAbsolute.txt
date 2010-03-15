@@ -1,5 +1,0 @@
-C:\MvcULK_Editor\MvcULK_Editor\obj\Debug\ResolveAssemblyReference.cache
-C:\MvcULK_Editor\MvcULK_Editor\bin\MvcULK_Editor.dll
-C:\MvcULK_Editor\MvcULK_Editor\bin\MvcULK_Editor.pdb
-C:\MvcULK_Editor\MvcULK_Editor\obj\Debug\MvcULK_Editor.dll
-C:\MvcULK_Editor\MvcULK_Editor\obj\Debug\MvcULK_Editor.pdb
