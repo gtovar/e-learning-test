@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Common.Logging;
 
 using Microsoft.Office.Interop;
 using Microsoft.Office.Interop.Word;
@@ -83,6 +84,11 @@ namespace WordToScorm
         /// </summary>
         private WdListType answerListType = WdListType.wdListSimpleNumbering;
 
+        /// <summary>
+        /// Объект для логирования всех действий Reader'a
+        /// </summary>
+        private ILog log = Environment.GetLog;
+
         #endregion
 
         #region Constructors
@@ -128,13 +134,30 @@ namespace WordToScorm
             Object documentDirection = Type.Missing;
             Object noEncodingDialog = false;
             Object xmlTransform = Type.Missing;
-
-            wordDocument = wordApplication.Documents.Open(ref filename,
-           ref confirmConversions, ref readOnly, ref addToRecentFiles,
-           ref passwordDocument, ref passwordTemplate, ref revert,
-           ref writePasswordDocument, ref writePasswordTemplate,
-           ref format, ref encoding, ref oVisible,
-           ref openAndRepair, ref documentDirection, ref noEncodingDialog, ref xmlTransform);
+            try
+            {
+                wordDocument = wordApplication.Documents.Open(ref filename,
+               ref confirmConversions, ref readOnly, ref addToRecentFiles,
+               ref passwordDocument, ref passwordTemplate, ref revert,
+               ref writePasswordDocument, ref writePasswordTemplate,
+               ref format, ref encoding, ref oVisible,
+               ref openAndRepair, ref documentDirection, ref noEncodingDialog, ref xmlTransform);
+            }
+            catch (Exception ex)
+            {
+                log.Fatal("!!!!ОШИБКА во время открытия документа выброшено исключение !!!!", ex);
+            }
+            if (null == wordDocument)
+            {
+                log.Fatal("!!!!ОШИБКА документ не был открыт !!!!");
+            }
+            else
+            {
+                log.Trace("====================================================================================");
+                log.Trace("=========================Начата обработка нового документа==========================");
+                log.Trace(wordPath);
+                log.Trace("====================================================================================");
+            }
         }
 
         #endregion
@@ -146,11 +169,22 @@ namespace WordToScorm
         /// </summary>
         private void CloseWordDocument()
         {
-            Object saveChanges = WdSaveOptions.wdPromptToSaveChanges;
-            Object originalFormat = WdOriginalFormat.wdWordDocument;
-            Object routeDocument = Type.Missing;
-            ((Word._Application)wordApplication).Quit(ref saveChanges,
-                                         ref originalFormat, ref routeDocument);
+            try
+            {
+                Object saveChanges = WdSaveOptions.wdPromptToSaveChanges;
+                Object originalFormat = WdOriginalFormat.wdWordDocument;
+                Object routeDocument = Type.Missing;
+                ((Word._Application)wordApplication).Quit(ref saveChanges,
+                                             ref originalFormat, ref routeDocument);
+                log.Trace("====================================================================================");
+                log.Trace(wordPath);
+                log.Trace("========================Обработка документа завершена===============================");
+                log.Trace("====================================================================================");
+            }
+            catch (Exception ex)
+            {
+                log.Error("!!!!ОШИБКА при закрытии документа выброшено сключение !!!!", ex);
+            }
         }
 
         #endregion
@@ -314,15 +348,15 @@ namespace WordToScorm
         private Image GetImage()
         {
             Image image = null;
+            string imageFileName = tempDir + "\\Image" + indexOfPicture.ToString() + ".jpg";
             try
             {
-                image = Image.FromFile(tempDir + "\\Image" + indexOfPicture.ToString() + ".jpg");
+                image = Image.FromFile(imageFileName);
                 indexOfPicture++;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                return null;
+                log.Error("!!!!ОШИБКА Во время получения картинки c ИНДЕКСОМ=" + indexOfPicture.ToString()  + " (по пути " + imageFileName + ") из файловой системы выбрашено исключение !!!!", ex);
             }
 
             return image;
@@ -346,18 +380,40 @@ namespace WordToScorm
                 imageDir.Delete(true);
             imageDir.Create();
 
-            // сохранение рисунков
-            while (enumeratorInlineShapes.MoveNext())
+            try
             {
-                inlineShape = (InlineShape)enumeratorInlineShapes.Current;
-                Clipboard.Clear();
-                inlineShape.Range.CopyAsPicture();
-                Image image = Clipboard.GetImage();
-                image.Save(tempDir + "\\Image" + index.ToString() + ".jpg");
-                index++;
-            }
 
-            Clipboard.Clear();
+                // сохранение рисунков
+                while (enumeratorInlineShapes.MoveNext())
+                {
+                    inlineShape = (InlineShape)enumeratorInlineShapes.Current;
+                    if (null != inlineShape)
+                    {
+                        Clipboard.Clear();
+                        inlineShape.Range.CopyAsPicture();
+                        Image image = Clipboard.GetImage();
+                        if (null != image)
+                        {
+                            image.Save(tempDir + "\\Image" + index.ToString() + ".jpg");
+                            index++;
+                        }
+                        else 
+                        {
+                            log.Error("!!!!ОШИБКА не распознана картика с порядковым ИНДЕКСОМ=" + index.ToString() + " !!!!");
+                        }
+                    }
+                    else
+                    {
+                        log.Trace("!!!!ОШИБКА не распознана картика с порядковым ИНДЕКСОМ=" + index.ToString() + " !!!!");
+                    }
+                }
+
+                Clipboard.Clear();
+            }
+            catch (Exception ex)
+            {
+                log.Trace("!!!!ОШИБКА во время копирования картинки с ИНДЕКСОМ=" + index.ToString() + " в файловую систему выпало исключение !!!!", ex);
+            }
 
         }
 
@@ -388,6 +444,7 @@ namespace WordToScorm
                 {
                     questionImages.AddImage(GetImage());
                     questionStr += " #img:" + index.ToString() + "# ";
+                    log.Trace("Текст вопроса содержит картинку с порядковым ИНДЕКСОМ=" + index.ToString());
                     index++;
                 }
                 // обработка текста вопроса    
@@ -407,6 +464,7 @@ namespace WordToScorm
                 // переход к следующему слову в тексте вопроса
                 GoToNextWord();
             }
+            log.Trace("РАСПОЗНАННЫЙ ТЕКСТ ВОПРОСА: " + questionStr);
 
             // создание вопроса
             Question question = new Question(questionStr, questionImages);
@@ -436,6 +494,7 @@ namespace WordToScorm
                 {
                     questionImages.AddImage(GetImage());
                     questionStr += " #img:" + index.ToString() + "# ";
+                    log.Trace("Текст вопроса содержит картинку с порядковым ИНДЕКСОМ=" + index.ToString());
                     index++;
                 }
                 // обработка текста вопроса    
@@ -455,7 +514,7 @@ namespace WordToScorm
                 // переход к следующему слову в тексте вопроса
                 GoToNextWord();
             }
-
+            log.Trace("РАСПОЗНАННЫЙ ТЕКСТ ВОПРОСА: " + questionStr);
             // создание вопроса
             Question question = new Question(questionStr, questionImages);
 
@@ -473,6 +532,7 @@ namespace WordToScorm
         /// <returns>оценка</returns>
         private int GetScore(string str)
         {
+            log.Trace("    ОТВЕТ ИЗ ФАЙЛА: " + str);
             int score = 0;
             //положительное или отрицательное количество баллов
             bool sign = false;
@@ -492,16 +552,16 @@ namespace WordToScorm
                     string scoreStr = str.Substring(firstIndex + 2, lastIndex - firstIndex - 2);
                     scoreStr.Trim('\n', '\r', ' ');
                     score = Convert.ToInt32(scoreStr);
-                    if(sign) score = -score;
+                    if (sign) score = -score;
                     str = str.Substring(0, firstIndex);
                 }
-                catch
+                catch(Exception ex)
                 {
-                    throw new Exception("Неправильный формат балла в вопросе. \n" +
-                                    "Проверьте правильность заполнения шаблона вопроса в документе.");
+                    log.Error("!!!!ОШИБКА Неправильный формат балла в вопросе. \n" +
+                                    "Проверьте правильность заполнения шаблона вопроса в документе !!!!", ex);
                 }
             }
-
+            log.Trace("    РАСПОЗНАННАЯ ОЦЕНКА: " + score.ToString() + " бал.");
             return score;
         }
 
@@ -519,6 +579,7 @@ namespace WordToScorm
             string answerStr = string.Empty;
 
             // обработка оценки за ответ
+            log.Trace("    ----------------------");
             score = GetScore(paragraph.Range.Text.ToString());
 
             // обработка текста ответа
@@ -532,6 +593,7 @@ namespace WordToScorm
                 {
                     questionImages.AddImage(GetImage());
                     answerStr += " #img:" + index.ToString() + "# ";
+                    log.Trace("    Текст ответа содержит картинку с порядковым ИНДЕКСОМ=" + index.ToString());
                     index++;
                 }
                 // обработка текста ответа    
@@ -551,12 +613,14 @@ namespace WordToScorm
                 // переход к следующему слову в тексте вопроса
                 GoToNextWord();
             }
+            log.Trace("    РАСПОЗНАННЫЙ ТЕКСТ ОТВЕТА: " + answerStr);
+            log.Trace("    ----------------------");
 
             // если еще не достигли оценки за ответ, то переходим дальше
-            if ((wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0) && 
+            if ((wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0) &&
                 (wordApplication.Selection.Words.First.Text.LastIndexOf("(-") < 0))
             {
-               GoToNextWord();
+                GoToNextWord();
             }
 
             // если достигли оценки за ответ, то переходим к следующей строке
@@ -590,6 +654,7 @@ namespace WordToScorm
             string answerStr = string.Empty;
 
             // обработка оценки за ответ
+            log.Trace("    ----------------------");
             score = GetScore(paragraph.Range.Text.ToString());
 
             // переход к слову, следующему за словом "Ответ:"
@@ -605,6 +670,7 @@ namespace WordToScorm
                 {
                     questionImages.AddImage(GetImage());
                     answerStr += " #img:" + index.ToString() + "# ";
+                    log.Trace("    Текст ответа содержит картинку с порядковым ИНДЕКСОМ=" + index.ToString());
                     index++;
                 }
                 // обработка текста ответа    
@@ -623,7 +689,8 @@ namespace WordToScorm
                         }
                     }
                 }
-
+                log.Trace("    РАСПОЗНАННЫЙ ТЕКСТ ОТВЕТА: " + answerStr);
+                log.Trace("    ----------------------");
                 // переход к следующему слову в тексте вопроса
                 GoToNextWord();
             }
@@ -668,7 +735,7 @@ namespace WordToScorm
             {
                 mark += ((Answer)enumeratorAnswer.Current).Score;
             }
-
+            log.Trace("КОЛИЧЕСТВО БАЛЛОВ ЗА ВОПРОС: " + mark.ToString());
             return mark;
         }
 
@@ -692,7 +759,7 @@ namespace WordToScorm
                     mark = currentMark;
                 }
             }
-
+            log.Trace("КОЛИЧЕСТВО БАЛЛОВ ЗА ВОПРОС " + mark.ToString());
             return mark;
         }
 
@@ -709,8 +776,9 @@ namespace WordToScorm
         {
             IEnumerator enumeratorAnswer = answersList.GetEnumerator();
             enumeratorAnswer.Reset();
-
+            log.Trace("НАЗНАЧЕНИЕ БАЛЛОВ");
             int currentMark = 0;
+            int counter = 1;
             while (enumeratorAnswer.MoveNext())
             {
                 currentMark = ((Answer)enumeratorAnswer.Current).Score;
@@ -718,7 +786,8 @@ namespace WordToScorm
                 {
                     ((Answer)enumeratorAnswer.Current).Score = -mark;
                 }
-                
+                log.Trace("За " + counter.ToString() + " ответ назначен: " + ((Answer)enumeratorAnswer.Current).Score.ToString());
+                counter++;
             }
         }
 
@@ -735,7 +804,7 @@ namespace WordToScorm
         {
             IEnumerator enumeratorAnswer = answersList.GetEnumerator();
             enumeratorAnswer.Reset();
-
+            log.Trace("НАЗНАЧЕНИЕ БАЛЛОВ");
             int currentMark = 0;
             int countAnswerWithoutMark = 0;
             // подсчет числа не оцененных вопросов
@@ -757,6 +826,7 @@ namespace WordToScorm
             int additionMark = totalMark - mark * countAnswerWithoutMark;
             // добавок
             int addition = 1;
+            int counter = 1;
             enumeratorAnswer.Reset();
             while (enumeratorAnswer.MoveNext())
             {
@@ -767,7 +837,7 @@ namespace WordToScorm
                     if (additionMark > 0 && mark > 0)
                     {
                         // назначаем балл и добавок
-                        ((Answer)enumeratorAnswer.Current).Score = - mark - addition;
+                        ((Answer)enumeratorAnswer.Current).Score = -mark - addition;
                         // уменьшаем добавок
                         additionMark--;
                     }
@@ -780,7 +850,8 @@ namespace WordToScorm
                         }
                     }
                 }
-
+                log.Trace("За " + counter.ToString() + " ответ назначен: " + ((Answer)enumeratorAnswer.Current).Score.ToString());
+                counter++;
             }
         }
 
@@ -821,8 +892,9 @@ namespace WordToScorm
         {
             IEnumerator enumeratorAnswer = answersList.GetEnumerator();
             enumeratorAnswer.Reset();
-
+            log.Trace("ПЕРЕСЧЕТ БАЛЛОВ");
             int currentMark = 0;
+            int counter = 1;
             while (enumeratorAnswer.MoveNext())
             {
                 currentMark = ((Answer)enumeratorAnswer.Current).Score;
@@ -830,7 +902,8 @@ namespace WordToScorm
                 {
                     ((Answer)enumeratorAnswer.Current).Score = 0;
                 }
-
+                log.Trace("За " + counter.ToString() + " ответ назначен: " + ((Answer)enumeratorAnswer.Current).Score.ToString());
+                counter++;
             }
         }
 
@@ -863,12 +936,14 @@ namespace WordToScorm
             // пересчет баллов за ответы на вопрос, если включена поддержка отрицательных баллов
             if (processQuestion == ProcessingQuestion.withNegativeMark)
             {
+                log.Trace("ПОДДЕРЖКА ОТРИЦ. БАЛЛОВ ВКЛЮЧЕНА, выполняем пересчет баллов");
                 ReCalculateMark(answersList, questionType);
             }
 
             // пересчет баллов за ответы на вопрос, если включена поддержка только положительных баллов
             if (processQuestion == ProcessingQuestion.withOnlyPositiveMark)
             {
+                log.Trace("ПОДДЕРЖИВАЮТСЯ ТОЛЬКО ПОЛОЖ. БАЛЛЫ, выполняем пересчет баллов");
                 ReCalculateMark(answersList);
             }
 
@@ -956,6 +1031,9 @@ namespace WordToScorm
                 // обработка альтернативного вопроса
                 if (paragraph.Range.Text.ToString().IndexOf("Тип - альтернативный вопрос") >= 0)
                 {
+                    log.Trace("                                 ");
+                    log.Trace("Начало обработки АЛЬТЕРНАТИВНОГО ВОПРОСА");
+                    log.Trace("Текущий НОМЕР ВОПРОСА: " + questionNumber.ToString());
                     // альтернативный вопрос
                     questionType = QuestionType.Alternative;
 
@@ -970,6 +1048,9 @@ namespace WordToScorm
                 // обработка дистрибутивного вопроса
                 if (paragraph.Range.Text.ToString().IndexOf("Тип - дистрибутивный вопрос") >= 0)
                 {
+                    log.Trace("                                 ");
+                    log.Trace("Начало обработки ДИСТРИБУТИВНОГО ВОПРОСА");
+                    log.Trace("Текущий НОМЕР ВОПРОСА: " + questionNumber.ToString());
                     // дистрибутивный вопрос
                     questionType = QuestionType.Distributive;
 
@@ -984,6 +1065,9 @@ namespace WordToScorm
                 // обработка простого ответа
                 if (paragraph.Range.Text.ToString().IndexOf("Тип - простой вопрос") >= 0)
                 {
+                    log.Trace("                                 ");
+                    log.Trace("Начало обработки ПРОСТОГО ВОПРОСА");
+                    log.Trace("Текущий НОМЕР ВОПРОСА: " + questionNumber.ToString());
                     // простой вопрос
                     questionType = QuestionType.YourAnswer;
 
