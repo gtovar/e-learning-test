@@ -72,6 +72,17 @@ namespace WordToScorm
 
         //-----------------------------------------------------------------------
 
+        /// <summary>
+        /// Вывод информации из Console.Out в файл
+        /// </summary>    
+        FileStream redirectOutputStream;
+
+        /// <summary>
+        /// Запись информации из Console.Out в файл
+        /// </summary>    
+        StreamWriter redicrectOutputWriter;
+        
+
         #endregion
 
         #region Generate Test Variants
@@ -383,6 +394,23 @@ namespace WordToScorm
         public frmMain()
         {
             InitializeComponent();
+            InitConsoleOutputRedirectToFile();
+        }
+
+        private void InitConsoleOutputRedirectToFile()
+        {
+            string logFileName = Environment.AppDir + "\\" + Environment.LogFileName;
+            try
+            {
+                redirectOutputStream = new FileStream(logFileName, FileMode.Append, FileAccess.Write);
+                redicrectOutputWriter = new StreamWriter(redirectOutputStream);
+                Console.SetOut(redicrectOutputWriter);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Cannot open " + logFileName + " for writing");
+                Console.WriteLine(ex.Message);
+            }
         }
 
         #endregion
@@ -695,7 +723,21 @@ namespace WordToScorm
             Close();
         }
 
-        #endregion
+        private void printingTimer_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                // flash all redirect buffers to file
+                redicrectOutputWriter.Flush();
+                redirectOutputStream.Flush();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Cannot flush buffers for redirecting output to file");
+                Console.WriteLine(ex.Message);
+            }
+        }
 
+        #endregion
     }
 }

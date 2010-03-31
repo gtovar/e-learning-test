@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\CommonLogging\release\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ULKSample\UnnLearningKitLibrary\bin\Debug\Microsoft.Office.Interop.Word.dll</HintPath>
@@ -46,9 +50,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="ZipLib, Version=0.85.4.369, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ZipLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>ZipLib\ZipLib\bin\Release\ZipLib.dll</HintPath>
+      <HintPath>Libs\ZipLib\Release\ZipLib.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

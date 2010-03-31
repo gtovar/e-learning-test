@@ -17,6 +17,12 @@ namespace WordToScorm
             {
                 components.Dispose();
             }
+            // Заканчиваем запись стандартного вывода в файл
+            redicrectOutputWriter.Flush();
+            redirectOutputStream.Flush();
+            redicrectOutputWriter.Close();
+            redirectOutputStream.Close();
+            
             base.Dispose(disposing);
         }
 
@@ -28,6 +34,7 @@ namespace WordToScorm
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblCount = new System.Windows.Forms.Label();
             this.btnReCalc = new System.Windows.Forms.Button();
@@ -81,6 +88,7 @@ namespace WordToScorm
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.OnlyPositiveMark = new System.Windows.Forms.RadioButton();
             this.cbNegativeMark = new System.Windows.Forms.RadioButton();
+            this.printingTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgGroups)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -331,7 +339,7 @@ namespace WordToScorm
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(537, 17);
+            this.lblStatus.Size = new System.Drawing.Size(543, 17);
             this.lblStatus.Spring = true;
             this.lblStatus.Text = "Выберите Word документ...";
             // 
@@ -343,7 +351,7 @@ namespace WordToScorm
             // labelTime
             // 
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(69, 17);
+            this.labelTime.Size = new System.Drawing.Size(63, 17);
             this.labelTime.Text = "0 мин 0 сек";
             // 
             // txtScormPackPath
@@ -605,6 +613,11 @@ namespace WordToScorm
             this.cbNegativeMark.Text = "Разрешить отрицательные баллы";
             this.cbNegativeMark.UseVisualStyleBackColor = true;
             // 
+            // printingTimer
+            // 
+            this.printingTimer.Enabled = true;
+            this.printingTimer.Tick += new System.EventHandler(this.printingTimer_Tick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -621,7 +634,7 @@ namespace WordToScorm
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WordToScorm v1.0.8";
+            this.Text = "WordToScorm v1.0.9";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgGroups)).EndInit();
@@ -698,6 +711,7 @@ namespace WordToScorm
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.RadioButton OnlyPositiveMark;
         private System.Windows.Forms.RadioButton cbNegativeMark;
+        private System.Windows.Forms.Timer printingTimer;
     }
 }
 

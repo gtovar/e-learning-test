@@ -22,7 +22,7 @@ namespace WordToScorm
         {
             // генерируем число которое будет именем каталога для нового скорм-пакета
             Random rnd = new Random(DateTime.Now.Millisecond);
-            int rndval = rnd.Next(1000, 9999);
+            int rndval = rnd.Next(1000, 99999);
             // временный каталог для хранения нового скорм пакета
             string TempDir = Environment.AppTempDir + "\\" + rndval.ToString();
             // создаём новый временный каталог, если каталог с таким именем уже существует - удаляем его

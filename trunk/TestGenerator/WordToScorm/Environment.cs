@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Text;
 using System.IO;
 using System.Reflection;
+using Common.Logging;
+using Common.Logging.Simple;
 
 namespace WordToScorm
 {
@@ -19,10 +22,44 @@ namespace WordToScorm
         static string manifestFileName = "imsmanifest.xml";
         static string testFileName = "assessment.html";
 
+        static string logFileName = "WordToScormLog.txt";
+        static ILog log = null;
+
         static string _AppDir()
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().GetModules()[0].FullyQualifiedName);
         }
+
+        public static ILog GetLog
+        {
+            get
+            {
+                if (null == log)
+                {
+                    // create properties
+                    NameValueCollection properties = new NameValueCollection();
+                    properties["showDateTime"] = "true";
+                    properties["level"] = "All";
+                    properties["showLogName"] = "false";
+                    properties["dateTimeFormat"] = "yyyy/MM/dd HH:mm:ss:fff";
+
+                    // set Adapter
+                    LogManager.Adapter = new Common.Logging.Simple.ConsoleOutLoggerFactoryAdapter(properties);
+                    log = LogManager.GetLogger(LogFileName);
+                }
+
+                return log;
+            }
+        }
+
+        public static string LogFileName
+        {
+            get
+            {
+                return logFileName;
+            }
+        }
+
         // каталог приложения
         public static string AppDir
         {
