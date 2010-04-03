@@ -1,0 +1,147 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru">
+<head id="Head1" runat="server">
+    <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    <link href="../../Content/style.css" rel="stylesheet" media="all" />
+
+    <script type="text/javascript"><!--        //--><![CDATA[//><!--
+        // Для правильного отображения меню в IE6
+        jsHover = function() {
+            var hEls = document.getElementById("nav").getElementsByTagName("LI");
+            for (var i = 0, len = hEls.length; i < len; i++) {
+                hEls[i].onmouseover = function() { this.className += " jshover"; }
+                hEls[i].onmouseout = function() { this.className = this.className.replace(" jshover", ""); }
+            }
+        }
+        if (window.attachEvent && navigator.userAgent.indexOf("Opera") == -1) window.attachEvent("onload", jsHover);
+        //--><!]]></script>
+
+</head>
+<body>
+    <div class="header">
+    
+        <div id="breadcrumbs">
+        e-ВМК
+        <% /*
+             <a href="">хлебные</a>&gt; <a href="">крошки</a> &gt; <a href="">здесь</a> */ %>
+         </div>
+    
+        <div id="admin_mail">
+            <%= Html.ActionLink("Помощь", "Help", "Home")%>
+            <% /*
+	    <a href="mailto:qqq@qqq.ru">Написать письмо администратору портала</a>
+	*/ %>
+        </div>
+        <div id="user_head">
+            <div id="logo">
+            </div>
+            <div id="system_name">
+                Система дистанционного обучения
+            </div>
+            <div id="user_menu">
+                <% /*
+			<a href="#"> sign_in</a> <br>
+			<a href="#"> разные </a> | <a href="#">менюшки</a> <br>
+			<a href="#"> пользователя</a> 
+	    */ %>
+                <% Html.RenderPartial("LogOnUserControl"); %>
+            </div>
+        </div>
+    </div>
+    <div class="menu">
+        <ul id="nav">
+            <li><a href="#">Раздел сайта 1</a>
+                <ul>
+                    <li><a href="#">Страница 1</a></li>
+                    <li><a href="#">Страница 1.1</a></li>
+                    <li><a href="#">Страница 1.2</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Раздел 2</a>
+                <ul>
+                    <li><a href="#">Страница 2</a></li>
+                    <li><a href="#">Страница 2.1</a></li>
+                    <li><a href="#">Страница 2.2</a></li>
+                    <li><a href="#">Страница 2.3</a></li>
+                    <li><a href="#">Страница 2.4</a></li>
+                    <li><a href="#">Страница 2.5</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                </td>
+                <td class="content_title">
+                    <h3>
+                        <%= ViewData["PageTitle"] %></h3>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td class="left_col" valign="top">
+                    <div class="additional_menu">
+                        <%
+                            if (null != ViewData["MenuType"])
+                            {
+                                try
+                                {
+                                    string menuType = (string)ViewData["MenuType"];
+                                    if (null != menuType && !menuType.Equals(String.Empty))
+                                    {
+                                        switch (menuType)
+                                        {
+                                            case "GeneralVmkMenu":
+                                                Html.RenderPartial("GeneralMenu");
+                                                break;
+                                            case "ChairMenu":
+                                                Html.RenderPartial("ChairMenu");
+                                                break;
+                                            case "ProfessorMenu":
+                                                Html.RenderPartial("ProfessorMenu");
+                                                break;
+                                            default:
+                                                Html.RenderPartial("GeneralMenu");
+                                                break;
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Html.RenderPartial("GeneralMenu");
+                                }
+                            }
+                            else
+                            {
+                                Html.RenderPartial("GeneralMenu");
+                            }
+		%>
+                    </div>
+                </td>
+                <td class="content" valign="top">
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                </td>
+                <td class="right_pagemargin">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="footer">
+        <div class="footer_text">
+            © 2010 <a href="http://www.vmk.unn.ru" style="color: rgb(156, 156, 156);">ВМК ННГУ</a>
+            <br />
+            <a href="#" style="color: rgb(156, 156, 156);">О проекте</a> | <a href="#" style="color: rgb(156, 156, 156);">
+                Обратная связь</a> | <a href="#" style="color: rgb(156, 156, 156);">Условия распространения
+                    материалов</a> | <a href="#" style="color: rgb(156, 156, 156);">Политика конфиденциальности</a>
+        </div>
+    </div>
+</body>
+</html>

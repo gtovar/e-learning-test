@@ -1,0 +1,315 @@
+* {
+	margin:0;
+	padding:0;
+	
+}
+
+html {
+	height:100%;
+	margin:0;
+	padding:0;
+	min-width:1000px; 
+}
+
+body{   
+	height:100%;
+	color:#666666;
+	font-family:verdana,arial,helvetica,sans-serif;
+	font-size: 10pt;
+}
+
+a{
+	color:#0000ff;
+}
+a:hover{
+	color:#aa00ff;
+}
+
+/* Шапка  */
+.header{
+	background-color: #FFF;
+	height: 120px;
+	width: expression(((document.documentElement.clientWidth || document.body.clientWidth) < 1000)? '1000px' : '100%')
+}
+
+#breadcrumbs {
+	float:left;
+	background-color: #eee;
+	padding:3px 5px;
+	font-size: 8pt;
+	font-family:tahoma;
+}
+#breadcrumbs  a{
+	color:#777;
+	text-decoration:none;
+}
+
+#admin_mail a{
+	
+	float:right;
+	padding:3px;
+	font-size: 8pt;
+	color:#777;
+	font-family:tahoma;
+	text-decoration:none;
+}
+#user_head{
+	clear:both;
+}
+#logo{
+	background: url(../../Content/Images/eunn-small.gif) no-repeat;
+	height:75px;
+	width:75px;
+	margin:5px;
+	float: left;
+}
+#system_name{
+	font-size: 20pt;
+	font-weight: bold;
+	padding-top:30px;
+	padding-left:10px;
+	float:left;
+}
+#user_menu{
+	float:right;
+	padding:2px 2px;
+	text-align:right;
+}
+
+
+/*Меню*/
+.menu{
+	clear:both;
+	background-color: #FFF;
+}
+
+#nav, #nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ccf;
+  background: #E2EFFF;
+  float: left;
+
+}
+#nav li {
+  float: left;
+  position: relative;
+  background: #E2EFFF;
+  background: none;
+}
+
+#nav a {
+  color: #3764A0;
+  text-decoration: none;
+  display: block;
+  width: 9em;
+  padding: 0.3em 0.5em;
+  background: #E2EFFF;
+}
+#nav a:hover {
+  color: #3764A0;
+  background: #F2F8FF;
+}
+#nav li:hover,
+#nav li.jshover {
+  background: #aaa;
+}
+
+#nav li ul {
+  display: none;
+  position: absolute;
+  background: #E2EFFF;
+  padding: 0.5em 0;
+  width: 9.99em;
+}
+#nav li li a {
+  width: 8.95em;
+  background: none;
+}
+#nav li:hover ul,
+#nav li.jshover ul {
+  display: block;
+}
+
+#nav li:hover li ul,
+#nav li.jshover li ul {
+  display: none;
+  width: 9.99em;
+  top: -0.65em;
+  left: 8.5em;
+  left: 9.6em;
+}
+#nav li:hover li:hover ul,
+#nav li.jshover li.jshover ul {
+  display: block;
+}
+
+
+
+
+
+/* Контент*/
+.main{
+	background: #D6E8FF url(../../Content/Images/pagetitlebkgd.gif) repeat-x;
+	clear:both;
+	padding-top:6px;
+}
+.main table{
+	border-spacing:0;
+}
+.main a{
+	text-decoration:none;
+}
+
+.content a{
+	color:#009999;
+	text-decoration:underline;
+}
+
+.table_header
+{
+    background-color: Silver;
+    color: Black;
+    font-weight: bold;
+}
+
+.table_row 
+{
+    color: Black;
+    text-align:center;
+}
+
+.left_col{
+	width:150px;
+	background: #84B1EC url(../../Content/Images/navshape.jpg) no-repeat;
+	padding-left:5px;
+}
+
+.menu_lev1{
+	font-size: 110%;
+	background: url(../../Content/Images/menu_icon.gif) no-repeat  0 5px;
+	padding-left:12px;
+}
+
+.menu_lev2{
+	font-size:95%;
+	margin-left:20px;
+}
+.menu_lev3{
+	font-size: 80%;
+	margin-left:35px;
+}
+
+.right_pagemargin {
+	background-color:#83B0EC;
+	background-image:url(../../Content/Images/navshape.jpg);
+	background-position:-143px 0;
+	background-repeat:no-repeat;
+	height:550px;
+	width:7px;
+}
+
+.additional_menu{
+	padding:5px;
+	width:140px;
+}
+
+.content_title{
+	color:#000;
+	height:50px;
+	background: #D6E8FF url(../../Content/Images/topshape.jpg) no-repeat;
+	font-size:18px;
+	font-weight:bold;
+	padding-left:5px;
+}
+.content{
+	background: #fff;
+	padding:15px;
+	border: 1px solid #6F9DD9;
+	height:100%;
+}
+
+.description 
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.content h1{
+}
+
+.content h2
+{
+}
+
+.content h3
+{
+}
+
+.content h4{
+}
+
+.content #h4
+{
+    margin-left:10px; 
+    font-size:14px; 
+    font-weight:bold; 
+}
+
+.content #Login 
+{
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size: 15px;
+    width: 150px;
+}
+.content #Password 
+{
+    margin-top:5px;
+    margin-bottom:10px;
+    font-size: 15px;
+    width: 150px;
+}
+.content #SubmitLogOn
+{
+    font-size: 15px;
+    width: 70px;
+}
+.content #helpMessage
+{
+    text-align: center;
+    margin-top:10px;
+    margin-bottom:5px;
+}
+.content #error
+{
+    text-align: center;
+    font-size: 20px;
+    color: Red;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.content ul
+{
+    margin-left: 20px;
+}
+
+.content ul li
+{
+    margin-top: 7px;
+}
+
+/*footer*/
+
+.footer{
+	clear:both;
+	background-color: #bbb;
+	width:100%;
+	height: 50px;
+}
+.footer_text{
+	padding: 5px;
+}
+
