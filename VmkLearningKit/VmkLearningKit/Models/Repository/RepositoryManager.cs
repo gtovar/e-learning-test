@@ -9,6 +9,7 @@ namespace VmkLearningKit.Models.Repository
     public class RepositoryManager : RepositoryData
     {
         private static string connectionString = ConfigurationManager.ConnectionStrings[Constants.CONNECTION_STRING_NAME].ConnectionString;
+        
         private static RepositoryManager repositoryManager = null;
 
         private RepositoryManager()
@@ -150,6 +151,7 @@ namespace VmkLearningKit.Models.Repository
         }
 
         private IEducationPlanRepository educationPlanRepository;
+
         public IEducationPlanRepository GetEducationPlanRepository
         {
             get
@@ -160,6 +162,81 @@ namespace VmkLearningKit.Models.Repository
                 }
 
                 return educationPlanRepository;
+            }
+        }
+
+        private IDisciplineRepository disciplineRepository;
+
+        public IDisciplineRepository GetDisciplineRepository
+        {
+            get
+            {
+                if (disciplineRepository == null)
+                {
+                    disciplineRepository = new DisciplineRepository(DataContext);
+                }
+
+                return disciplineRepository;
+            }
+        }
+
+        private IAnswerRepository answerRepository;
+
+        public IAnswerRepository GetAnswerRepository
+        {
+            get
+            {
+                if (answerRepository == null)
+                {
+                    answerRepository = new AnswerRepository(DataContext);
+                }
+
+                return answerRepository;
+            }
+        }
+
+        private IRazdelRepository razdelRepository;
+
+        public IRazdelRepository GetRazdelRepository
+        {
+            get
+            {
+                if (razdelRepository == null)
+                {
+                    razdelRepository = new RazdelRepository(DataContext);
+                }
+
+                return razdelRepository;
+            }
+        }
+
+        private IQuestionRepository questionRepository;
+
+        public IQuestionRepository GetQuestionRepository
+        {
+            get
+            {
+                if (questionRepository == null)
+                {
+                    questionRepository = new QuestionRepository(DataContext);
+                }
+
+                return questionRepository;
+            }
+        }
+
+        private ITopicRepository topicRepository;
+
+        public ITopicRepository GetTopicRepository
+        {
+            get
+            {
+                if (topicRepository == null)
+                {
+                    topicRepository = new TopicRepository(DataContext);
+                }
+
+                return topicRepository;
             }
         }
     }

@@ -21,5 +21,19 @@ namespace VmkLearningKit.Models.Repository
         {
             return DataContext.Users.SingleOrDefault(t => t.Login == login);
         }
+
+        public void Delete(User obj)
+        {
+            DataContext.Users.DeleteOnSubmit(obj);
+
+            DataContext.SubmitChanges();
+        }
+
+        public void DeleteById(long id)
+        {
+            DataContext.Users.DeleteOnSubmit(GetById(id));
+
+            DataContext.SubmitChanges();
+        }
     }
 }

@@ -20,7 +20,20 @@ namespace VmkLearningKit.Models.Repository
         public IEnumerable<EducationPlan> GetAll()
         {
             return DataContext.EducationPlans.OrderBy(ed => ed.Id);
+        }
 
+        public void Delete(EducationPlan obj)
+        {
+            DataContext.EducationPlans.DeleteOnSubmit(obj);
+
+            DataContext.SubmitChanges();
+        }
+
+        public void DeleteById(long id)
+        {
+            DataContext.EducationPlans.DeleteOnSubmit(GetById(id));
+
+            DataContext.SubmitChanges();
         }
     }
 }

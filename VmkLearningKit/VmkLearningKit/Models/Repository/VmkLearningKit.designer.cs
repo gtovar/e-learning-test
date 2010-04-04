@@ -30,21 +30,45 @@ namespace VmkLearningKit.Models.Repository
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertAnswer(Answer instance);
+    partial void UpdateAnswer(Answer instance);
+    partial void DeleteAnswer(Answer instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
+    partial void InsertAssignedTestVariant(AssignedTestVariant instance);
+    partial void UpdateAssignedTestVariant(AssignedTestVariant instance);
+    partial void DeleteAssignedTestVariant(AssignedTestVariant instance);
     partial void InsertChair(Chair instance);
     partial void UpdateChair(Chair instance);
     partial void DeleteChair(Chair instance);
+    partial void InsertComment(Comment instance);
+    partial void UpdateComment(Comment instance);
+    partial void DeleteComment(Comment instance);
     partial void InsertDepartment(Department instance);
     partial void UpdateDepartment(Department instance);
     partial void DeleteDepartment(Department instance);
+    partial void InsertDiscipline(Discipline instance);
+    partial void UpdateDiscipline(Discipline instance);
+    partial void DeleteDiscipline(Discipline instance);
     partial void InsertEducationPlan(EducationPlan instance);
     partial void UpdateEducationPlan(EducationPlan instance);
     partial void DeleteEducationPlan(EducationPlan instance);
-    partial void InsertLecturePlan(LecturePlan instance);
-    partial void UpdateLecturePlan(LecturePlan instance);
-    partial void DeleteLecturePlan(LecturePlan instance);
+    partial void InsertGeneratedQuestion(GeneratedQuestion instance);
+    partial void UpdateGeneratedQuestion(GeneratedQuestion instance);
+    partial void DeleteGeneratedQuestion(GeneratedQuestion instance);
+    partial void InsertGeneratedTest(GeneratedTest instance);
+    partial void UpdateGeneratedTest(GeneratedTest instance);
+    partial void DeleteGeneratedTest(GeneratedTest instance);
+    partial void InsertGeneratedTestVariant(GeneratedTestVariant instance);
+    partial void UpdateGeneratedTestVariant(GeneratedTestVariant instance);
+    partial void DeleteGeneratedTestVariant(GeneratedTestVariant instance);
     partial void InsertGroup(Group instance);
     partial void UpdateGroup(Group instance);
     partial void DeleteGroup(Group instance);
+    partial void InsertLecturePlan(LecturePlan instance);
+    partial void UpdateLecturePlan(LecturePlan instance);
+    partial void DeleteLecturePlan(LecturePlan instance);
     partial void InsertLectureTimetable(LectureTimetable instance);
     partial void UpdateLectureTimetable(LectureTimetable instance);
     partial void DeleteLectureTimetable(LectureTimetable instance);
@@ -57,6 +81,12 @@ namespace VmkLearningKit.Models.Repository
     partial void InsertProfessor(Professor instance);
     partial void UpdateProfessor(Professor instance);
     partial void DeleteProfessor(Professor instance);
+    partial void InsertQuestion(Question instance);
+    partial void UpdateQuestion(Question instance);
+    partial void DeleteQuestion(Question instance);
+    partial void InsertRazdel(Razdel instance);
+    partial void UpdateRazdel(Razdel instance);
+    partial void DeleteRazdel(Razdel instance);
     partial void InsertSpeciality(Speciality instance);
     partial void UpdateSpeciality(Speciality instance);
     partial void DeleteSpeciality(Speciality instance);
@@ -69,9 +99,9 @@ namespace VmkLearningKit.Models.Repository
     partial void InsertStudent(Student instance);
     partial void UpdateStudent(Student instance);
     partial void DeleteStudent(Student instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
+    partial void InsertTopic(Topic instance);
+    partial void UpdateTopic(Topic instance);
+    partial void DeleteTopic(Topic instance);
     #endregion
 		
 		public VmkLearningKitDataContext() : 
@@ -104,11 +134,43 @@ namespace VmkLearningKit.Models.Repository
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Answer> Answers
+		{
+			get
+			{
+				return this.GetTable<Answer>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AssignedTestVariant> AssignedTestVariants
+		{
+			get
+			{
+				return this.GetTable<AssignedTestVariant>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Chair> Chairs
 		{
 			get
 			{
 				return this.GetTable<Chair>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Comment> Comments
+		{
+			get
+			{
+				return this.GetTable<Comment>();
 			}
 		}
 		
@@ -120,6 +182,14 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
+		public System.Data.Linq.Table<Discipline> Disciplines
+		{
+			get
+			{
+				return this.GetTable<Discipline>();
+			}
+		}
+		
 		public System.Data.Linq.Table<EducationPlan> EducationPlans
 		{
 			get
@@ -128,11 +198,27 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		public System.Data.Linq.Table<LecturePlan> LecturePlans
+		public System.Data.Linq.Table<GeneratedQuestion> GeneratedQuestions
 		{
 			get
 			{
-				return this.GetTable<LecturePlan>();
+				return this.GetTable<GeneratedQuestion>();
+			}
+		}
+		
+		public System.Data.Linq.Table<GeneratedTest> GeneratedTests
+		{
+			get
+			{
+				return this.GetTable<GeneratedTest>();
+			}
+		}
+		
+		public System.Data.Linq.Table<GeneratedTestVariant> GeneratedTestVariants
+		{
+			get
+			{
+				return this.GetTable<GeneratedTestVariant>();
 			}
 		}
 		
@@ -141,6 +227,14 @@ namespace VmkLearningKit.Models.Repository
 			get
 			{
 				return this.GetTable<Group>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LecturePlan> LecturePlans
+		{
+			get
+			{
+				return this.GetTable<LecturePlan>();
 			}
 		}
 		
@@ -176,6 +270,22 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
+		public System.Data.Linq.Table<Question> Questions
+		{
+			get
+			{
+				return this.GetTable<Question>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Razdel> Razdels
+		{
+			get
+			{
+				return this.GetTable<Razdel>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Speciality> Specialities
 		{
 			get
@@ -208,11 +318,816 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		public System.Data.Linq.Table<User> Users
+		public System.Data.Linq.Table<Topic> Topics
 		{
 			get
 			{
-				return this.GetTable<User>();
+				return this.GetTable<Topic>();
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Answers")]
+	public partial class Answer : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _QuestionId;
+		
+		private string _Text;
+		
+		private double _Score;
+		
+		private EntityRef<Question> _Question;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnQuestionIdChanging(long value);
+    partial void OnQuestionIdChanged();
+    partial void OnTextChanging(string value);
+    partial void OnTextChanged();
+    partial void OnScoreChanging(double value);
+    partial void OnScoreChanged();
+    #endregion
+		
+		public Answer()
+		{
+			this._Question = default(EntityRef<Question>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionId", DbType="BigInt NOT NULL")]
+		public long QuestionId
+		{
+			get
+			{
+				return this._QuestionId;
+			}
+			set
+			{
+				if ((this._QuestionId != value))
+				{
+					if (this._Question.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIdChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionId = value;
+					this.SendPropertyChanged("QuestionId");
+					this.OnQuestionIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Text", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Text
+		{
+			get
+			{
+				return this._Text;
+			}
+			set
+			{
+				if ((this._Text != value))
+				{
+					this.OnTextChanging(value);
+					this.SendPropertyChanging();
+					this._Text = value;
+					this.SendPropertyChanged("Text");
+					this.OnTextChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Score", DbType="Float NOT NULL")]
+		public double Score
+		{
+			get
+			{
+				return this._Score;
+			}
+			set
+			{
+				if ((this._Score != value))
+				{
+					this.OnScoreChanging(value);
+					this.SendPropertyChanging();
+					this._Score = value;
+					this.SendPropertyChanged("Score");
+					this.OnScoreChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Question_Answer", Storage="_Question", ThisKey="QuestionId", OtherKey="Id", IsForeignKey=true)]
+		public Question Question
+		{
+			get
+			{
+				return this._Question.Entity;
+			}
+			set
+			{
+				Question previousValue = this._Question.Entity;
+				if (((previousValue != value) 
+							|| (this._Question.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Question.Entity = null;
+						previousValue.Answers.Remove(this);
+					}
+					this._Question.Entity = value;
+					if ((value != null))
+					{
+						value.Answers.Add(this);
+						this._QuestionId = value.Id;
+					}
+					else
+					{
+						this._QuestionId = default(long);
+					}
+					this.SendPropertyChanged("Question");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private string _Login;
+		
+		private string _Password;
+		
+		private string _NickName;
+		
+		private string _Email;
+		
+		private string _SecondName;
+		
+		private string _FirstName;
+		
+		private string _Patronymic;
+		
+		private string _Role;
+		
+		private EntityRef<Professor> _Professor;
+		
+		private EntityRef<Student> _Student;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnLoginChanging(string value);
+    partial void OnLoginChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnNickNameChanging(string value);
+    partial void OnNickNameChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnSecondNameChanging(string value);
+    partial void OnSecondNameChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnPatronymicChanging(string value);
+    partial void OnPatronymicChanged();
+    partial void OnRoleChanging(string value);
+    partial void OnRoleChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Professor = default(EntityRef<Professor>);
+			this._Student = default(EntityRef<Student>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Login", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Login
+		{
+			get
+			{
+				return this._Login;
+			}
+			set
+			{
+				if ((this._Login != value))
+				{
+					this.OnLoginChanging(value);
+					this.SendPropertyChanging();
+					this._Login = value;
+					this.SendPropertyChanged("Login");
+					this.OnLoginChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Password", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_NickName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string NickName
+		{
+			get
+			{
+				return this._NickName;
+			}
+			set
+			{
+				if ((this._NickName != value))
+				{
+					this.OnNickNameChanging(value);
+					this.SendPropertyChanging();
+					this._NickName = value;
+					this.SendPropertyChanged("NickName");
+					this.OnNickNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Email", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SecondName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string SecondName
+		{
+			get
+			{
+				return this._SecondName;
+			}
+			set
+			{
+				if ((this._SecondName != value))
+				{
+					this.OnSecondNameChanging(value);
+					this.SendPropertyChanging();
+					this._SecondName = value;
+					this.SendPropertyChanged("SecondName");
+					this.OnSecondNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Patronymic", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Patronymic
+		{
+			get
+			{
+				return this._Patronymic;
+			}
+			set
+			{
+				if ((this._Patronymic != value))
+				{
+					this.OnPatronymicChanging(value);
+					this.SendPropertyChanging();
+					this._Patronymic = value;
+					this.SendPropertyChanged("Patronymic");
+					this.OnPatronymicChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Role", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Role
+		{
+			get
+			{
+				return this._Role;
+			}
+			set
+			{
+				if ((this._Role != value))
+				{
+					this.OnRoleChanging(value);
+					this.SendPropertyChanging();
+					this._Role = value;
+					this.SendPropertyChanged("Role");
+					this.OnRoleChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_Professor", Storage="_Professor", ThisKey="Id", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
+		public Professor Professor
+		{
+			get
+			{
+				return this._Professor.Entity;
+			}
+			set
+			{
+				Professor previousValue = this._Professor.Entity;
+				if (((previousValue != value) 
+							|| (this._Professor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Professor.Entity = null;
+						previousValue.User = null;
+					}
+					this._Professor.Entity = value;
+					if ((value != null))
+					{
+						value.User = this;
+					}
+					this.SendPropertyChanged("Professor");
+				}
+			}
+		}
+		
+		[Association(Name="User_Student", Storage="_Student", ThisKey="Id", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
+		public Student Student
+		{
+			get
+			{
+				return this._Student.Entity;
+			}
+			set
+			{
+				Student previousValue = this._Student.Entity;
+				if (((previousValue != value) 
+							|| (this._Student.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Student.Entity = null;
+						previousValue.User = null;
+					}
+					this._Student.Entity = value;
+					if ((value != null))
+					{
+						value.User = this;
+					}
+					this.SendPropertyChanged("Student");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="dbo.AssignedTestVariants")]
+	public partial class AssignedTestVariant : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _GeneratedTestVariantId;
+		
+		private long _StudentId;
+		
+		private System.DateTime _AssignedDate;
+		
+		private int _State;
+		
+		private int _Score;
+		
+		private int _Mark;
+		
+		private string _Path;
+		
+		private EntityRef<GeneratedTestVariant> _GeneratedTestVariant;
+		
+		private EntityRef<Student> _Student;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnGeneratedTestVariantIdChanging(long value);
+    partial void OnGeneratedTestVariantIdChanged();
+    partial void OnStudentIdChanging(long value);
+    partial void OnStudentIdChanged();
+    partial void OnAssignedDateChanging(System.DateTime value);
+    partial void OnAssignedDateChanged();
+    partial void OnStateChanging(int value);
+    partial void OnStateChanged();
+    partial void OnScoreChanging(int value);
+    partial void OnScoreChanged();
+    partial void OnMarkChanging(int value);
+    partial void OnMarkChanged();
+    partial void OnPathChanging(string value);
+    partial void OnPathChanged();
+    #endregion
+		
+		public AssignedTestVariant()
+		{
+			this._GeneratedTestVariant = default(EntityRef<GeneratedTestVariant>);
+			this._Student = default(EntityRef<Student>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_GeneratedTestVariantId", DbType="BigInt NOT NULL")]
+		public long GeneratedTestVariantId
+		{
+			get
+			{
+				return this._GeneratedTestVariantId;
+			}
+			set
+			{
+				if ((this._GeneratedTestVariantId != value))
+				{
+					if (this._GeneratedTestVariant.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGeneratedTestVariantIdChanging(value);
+					this.SendPropertyChanging();
+					this._GeneratedTestVariantId = value;
+					this.SendPropertyChanged("GeneratedTestVariantId");
+					this.OnGeneratedTestVariantIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StudentId", DbType="BigInt NOT NULL")]
+		public long StudentId
+		{
+			get
+			{
+				return this._StudentId;
+			}
+			set
+			{
+				if ((this._StudentId != value))
+				{
+					if (this._Student.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStudentIdChanging(value);
+					this.SendPropertyChanging();
+					this._StudentId = value;
+					this.SendPropertyChanged("StudentId");
+					this.OnStudentIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_AssignedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime AssignedDate
+		{
+			get
+			{
+				return this._AssignedDate;
+			}
+			set
+			{
+				if ((this._AssignedDate != value))
+				{
+					this.OnAssignedDateChanging(value);
+					this.SendPropertyChanging();
+					this._AssignedDate = value;
+					this.SendPropertyChanged("AssignedDate");
+					this.OnAssignedDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_State", DbType="Int NOT NULL")]
+		public int State
+		{
+			get
+			{
+				return this._State;
+			}
+			set
+			{
+				if ((this._State != value))
+				{
+					this.OnStateChanging(value);
+					this.SendPropertyChanging();
+					this._State = value;
+					this.SendPropertyChanged("State");
+					this.OnStateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Score", DbType="Int NOT NULL")]
+		public int Score
+		{
+			get
+			{
+				return this._Score;
+			}
+			set
+			{
+				if ((this._Score != value))
+				{
+					this.OnScoreChanging(value);
+					this.SendPropertyChanging();
+					this._Score = value;
+					this.SendPropertyChanged("Score");
+					this.OnScoreChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Mark", DbType="Int NOT NULL")]
+		public int Mark
+		{
+			get
+			{
+				return this._Mark;
+			}
+			set
+			{
+				if ((this._Mark != value))
+				{
+					this.OnMarkChanging(value);
+					this.SendPropertyChanging();
+					this._Mark = value;
+					this.SendPropertyChanged("Mark");
+					this.OnMarkChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Path", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Path
+		{
+			get
+			{
+				return this._Path;
+			}
+			set
+			{
+				if ((this._Path != value))
+				{
+					this.OnPathChanging(value);
+					this.SendPropertyChanging();
+					this._Path = value;
+					this.SendPropertyChanged("Path");
+					this.OnPathChanged();
+				}
+			}
+		}
+		
+		[Association(Name="GeneratedTestVariant_AssignedTestVariant", Storage="_GeneratedTestVariant", ThisKey="GeneratedTestVariantId", OtherKey="Id", IsForeignKey=true)]
+		public GeneratedTestVariant GeneratedTestVariant
+		{
+			get
+			{
+				return this._GeneratedTestVariant.Entity;
+			}
+			set
+			{
+				GeneratedTestVariant previousValue = this._GeneratedTestVariant.Entity;
+				if (((previousValue != value) 
+							|| (this._GeneratedTestVariant.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GeneratedTestVariant.Entity = null;
+						previousValue.AssignedTestVariants.Remove(this);
+					}
+					this._GeneratedTestVariant.Entity = value;
+					if ((value != null))
+					{
+						value.AssignedTestVariants.Add(this);
+						this._GeneratedTestVariantId = value.Id;
+					}
+					else
+					{
+						this._GeneratedTestVariantId = default(long);
+					}
+					this.SendPropertyChanged("GeneratedTestVariant");
+				}
+			}
+		}
+		
+		[Association(Name="Student_AssignedTestVariant", Storage="_Student", ThisKey="StudentId", OtherKey="UserId", IsForeignKey=true)]
+		public Student Student
+		{
+			get
+			{
+				return this._Student.Entity;
+			}
+			set
+			{
+				Student previousValue = this._Student.Entity;
+				if (((previousValue != value) 
+							|| (this._Student.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Student.Entity = null;
+						previousValue.AssignedTestVariants.Remove(this);
+					}
+					this._Student.Entity = value;
+					if ((value != null))
+					{
+						value.AssignedTestVariants.Add(this);
+						this._StudentId = value.UserId;
+					}
+					else
+					{
+						this._StudentId = default(long);
+					}
+					this.SendPropertyChanged("Student");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -524,6 +1439,222 @@ namespace VmkLearningKit.Models.Repository
 		}
 	}
 	
+	[Table(Name="dbo.Comments")]
+	public partial class Comment : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _QuestionId;
+		
+		private long _StudentId;
+		
+		private string _Text;
+		
+		private EntityRef<Question> _Question;
+		
+		private EntityRef<Student> _Student;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnQuestionIdChanging(long value);
+    partial void OnQuestionIdChanged();
+    partial void OnStudentIdChanging(long value);
+    partial void OnStudentIdChanged();
+    partial void OnTextChanging(string value);
+    partial void OnTextChanged();
+    #endregion
+		
+		public Comment()
+		{
+			this._Question = default(EntityRef<Question>);
+			this._Student = default(EntityRef<Student>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionId", DbType="BigInt NOT NULL")]
+		public long QuestionId
+		{
+			get
+			{
+				return this._QuestionId;
+			}
+			set
+			{
+				if ((this._QuestionId != value))
+				{
+					if (this._Question.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIdChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionId = value;
+					this.SendPropertyChanged("QuestionId");
+					this.OnQuestionIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StudentId", DbType="BigInt NOT NULL")]
+		public long StudentId
+		{
+			get
+			{
+				return this._StudentId;
+			}
+			set
+			{
+				if ((this._StudentId != value))
+				{
+					if (this._Student.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStudentIdChanging(value);
+					this.SendPropertyChanging();
+					this._StudentId = value;
+					this.SendPropertyChanged("StudentId");
+					this.OnStudentIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Text", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Text
+		{
+			get
+			{
+				return this._Text;
+			}
+			set
+			{
+				if ((this._Text != value))
+				{
+					this.OnTextChanging(value);
+					this.SendPropertyChanging();
+					this._Text = value;
+					this.SendPropertyChanged("Text");
+					this.OnTextChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Question_Comment", Storage="_Question", ThisKey="QuestionId", OtherKey="Id", IsForeignKey=true)]
+		public Question Question
+		{
+			get
+			{
+				return this._Question.Entity;
+			}
+			set
+			{
+				Question previousValue = this._Question.Entity;
+				if (((previousValue != value) 
+							|| (this._Question.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Question.Entity = null;
+						previousValue.Comments.Remove(this);
+					}
+					this._Question.Entity = value;
+					if ((value != null))
+					{
+						value.Comments.Add(this);
+						this._QuestionId = value.Id;
+					}
+					else
+					{
+						this._QuestionId = default(long);
+					}
+					this.SendPropertyChanged("Question");
+				}
+			}
+		}
+		
+		[Association(Name="Student_Comment", Storage="_Student", ThisKey="StudentId", OtherKey="UserId", IsForeignKey=true)]
+		public Student Student
+		{
+			get
+			{
+				return this._Student.Entity;
+			}
+			set
+			{
+				Student previousValue = this._Student.Entity;
+				if (((previousValue != value) 
+							|| (this._Student.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Student.Entity = null;
+						previousValue.Comments.Remove(this);
+					}
+					this._Student.Entity = value;
+					if ((value != null))
+					{
+						value.Comments.Add(this);
+						this._StudentId = value.UserId;
+					}
+					else
+					{
+						this._StudentId = default(long);
+					}
+					this.SendPropertyChanged("Student");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="dbo.Departments")]
 	public partial class Department : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -535,6 +1666,8 @@ namespace VmkLearningKit.Models.Repository
 		private string _Title;
 		
 		private EntitySet<Chair> _Chairs;
+		
+		private EntitySet<Discipline> _Disciplines;
 		
 		private EntitySet<Group> _Groups;
 		
@@ -553,6 +1686,7 @@ namespace VmkLearningKit.Models.Repository
 		public Department()
 		{
 			this._Chairs = new EntitySet<Chair>(new Action<Chair>(this.attach_Chairs), new Action<Chair>(this.detach_Chairs));
+			this._Disciplines = new EntitySet<Discipline>(new Action<Discipline>(this.attach_Disciplines), new Action<Discipline>(this.detach_Disciplines));
 			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
 			this._Specialities = new EntitySet<Speciality>(new Action<Speciality>(this.attach_Specialities), new Action<Speciality>(this.detach_Specialities));
 			OnCreated();
@@ -608,6 +1742,19 @@ namespace VmkLearningKit.Models.Repository
 			set
 			{
 				this._Chairs.Assign(value);
+			}
+		}
+		
+		[Association(Name="Department_Discipline", Storage="_Disciplines", ThisKey="Id", OtherKey="DepartmentId")]
+		public EntitySet<Discipline> Disciplines
+		{
+			get
+			{
+				return this._Disciplines;
+			}
+			set
+			{
+				this._Disciplines.Assign(value);
 			}
 		}
 		
@@ -669,6 +1816,18 @@ namespace VmkLearningKit.Models.Repository
 			entity.Department = null;
 		}
 		
+		private void attach_Disciplines(Discipline entity)
+		{
+			this.SendPropertyChanging();
+			entity.Department = this;
+		}
+		
+		private void detach_Disciplines(Discipline entity)
+		{
+			this.SendPropertyChanging();
+			entity.Department = null;
+		}
+		
 		private void attach_Groups(Group entity)
 		{
 			this.SendPropertyChanging();
@@ -691,6 +1850,185 @@ namespace VmkLearningKit.Models.Repository
 		{
 			this.SendPropertyChanging();
 			entity.Department = null;
+		}
+	}
+	
+	[Table(Name="dbo.Disciplines")]
+	public partial class Discipline : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _DepartmentId;
+		
+		private string _Title;
+		
+		private EntitySet<Topic> _Topics;
+		
+		private EntityRef<Department> _Department;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnDepartmentIdChanging(long value);
+    partial void OnDepartmentIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    #endregion
+		
+		public Discipline()
+		{
+			this._Topics = new EntitySet<Topic>(new Action<Topic>(this.attach_Topics), new Action<Topic>(this.detach_Topics));
+			this._Department = default(EntityRef<Department>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DepartmentId", DbType="BigInt NOT NULL")]
+		public long DepartmentId
+		{
+			get
+			{
+				return this._DepartmentId;
+			}
+			set
+			{
+				if ((this._DepartmentId != value))
+				{
+					if (this._Department.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDepartmentIdChanging(value);
+					this.SendPropertyChanging();
+					this._DepartmentId = value;
+					this.SendPropertyChanged("DepartmentId");
+					this.OnDepartmentIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Discipline_Topic", Storage="_Topics", ThisKey="Id", OtherKey="DisciplineId")]
+		public EntitySet<Topic> Topics
+		{
+			get
+			{
+				return this._Topics;
+			}
+			set
+			{
+				this._Topics.Assign(value);
+			}
+		}
+		
+		[Association(Name="Department_Discipline", Storage="_Department", ThisKey="DepartmentId", OtherKey="Id", IsForeignKey=true)]
+		public Department Department
+		{
+			get
+			{
+				return this._Department.Entity;
+			}
+			set
+			{
+				Department previousValue = this._Department.Entity;
+				if (((previousValue != value) 
+							|| (this._Department.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Department.Entity = null;
+						previousValue.Disciplines.Remove(this);
+					}
+					this._Department.Entity = value;
+					if ((value != null))
+					{
+						value.Disciplines.Add(this);
+						this._DepartmentId = value.Id;
+					}
+					else
+					{
+						this._DepartmentId = default(long);
+					}
+					this.SendPropertyChanged("Department");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Topics(Topic entity)
+		{
+			this.SendPropertyChanging();
+			entity.Discipline = this;
+		}
+		
+		private void detach_Topics(Topic entity)
+		{
+			this.SendPropertyChanging();
+			entity.Discipline = null;
 		}
 	}
 	
@@ -860,23 +2198,21 @@ namespace VmkLearningKit.Models.Repository
 		}
 	}
 	
-	[Table(Name="dbo.LecturePlans")]
-	public partial class LecturePlan : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.GeneratedQuestions")]
+	public partial class GeneratedQuestion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long _Id;
 		
-		private long _SpecialityDisciplineId;
+		private long _GeneratedTestVariantId;
 		
-		private string _Topic;
+		private long _QuestionId;
 		
-		private System.DateTime _Date;
+		private EntityRef<GeneratedTestVariant> _GeneratedTestVariant;
 		
-		private short _Volume;
-		
-		private EntityRef<SpecialityDiscipline> _SpecialityDiscipline;
+		private EntityRef<Question> _Question;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -884,19 +2220,16 @@ namespace VmkLearningKit.Models.Repository
     partial void OnCreated();
     partial void OnIdChanging(long value);
     partial void OnIdChanged();
-    partial void OnSpecialityDisciplineIdChanging(long value);
-    partial void OnSpecialityDisciplineIdChanged();
-    partial void OnTopicChanging(string value);
-    partial void OnTopicChanged();
-    partial void OnDateChanging(System.DateTime value);
-    partial void OnDateChanged();
-    partial void OnVolumeChanging(short value);
-    partial void OnVolumeChanged();
+    partial void OnGeneratedTestVariantIdChanging(long value);
+    partial void OnGeneratedTestVariantIdChanged();
+    partial void OnQuestionIdChanging(long value);
+    partial void OnQuestionIdChanged();
     #endregion
 		
-		public LecturePlan()
+		public GeneratedQuestion()
 		{
-			this._SpecialityDiscipline = default(EntityRef<SpecialityDiscipline>);
+			this._GeneratedTestVariant = default(EntityRef<GeneratedTestVariant>);
+			this._Question = default(EntityRef<Question>);
 			OnCreated();
 		}
 		
@@ -920,120 +2253,118 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Column(Storage="_SpecialityDisciplineId", DbType="BigInt NOT NULL")]
-		public long SpecialityDisciplineId
+		[Column(Storage="_GeneratedTestVariantId", DbType="BigInt NOT NULL")]
+		public long GeneratedTestVariantId
 		{
 			get
 			{
-				return this._SpecialityDisciplineId;
+				return this._GeneratedTestVariantId;
 			}
 			set
 			{
-				if ((this._SpecialityDisciplineId != value))
+				if ((this._GeneratedTestVariantId != value))
 				{
-					if (this._SpecialityDiscipline.HasLoadedOrAssignedValue)
+					if (this._GeneratedTestVariant.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnSpecialityDisciplineIdChanging(value);
+					this.OnGeneratedTestVariantIdChanging(value);
 					this.SendPropertyChanging();
-					this._SpecialityDisciplineId = value;
-					this.SendPropertyChanged("SpecialityDisciplineId");
-					this.OnSpecialityDisciplineIdChanged();
+					this._GeneratedTestVariantId = value;
+					this.SendPropertyChanged("GeneratedTestVariantId");
+					this.OnGeneratedTestVariantIdChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Topic", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Topic
+		[Column(Storage="_QuestionId", DbType="BigInt NOT NULL")]
+		public long QuestionId
 		{
 			get
 			{
-				return this._Topic;
+				return this._QuestionId;
 			}
 			set
 			{
-				if ((this._Topic != value))
+				if ((this._QuestionId != value))
 				{
-					this.OnTopicChanging(value);
+					if (this._Question.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQuestionIdChanging(value);
 					this.SendPropertyChanging();
-					this._Topic = value;
-					this.SendPropertyChanged("Topic");
-					this.OnTopicChanged();
+					this._QuestionId = value;
+					this.SendPropertyChanged("QuestionId");
+					this.OnQuestionIdChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Date", DbType="DateTime NOT NULL")]
-		public System.DateTime Date
+		[Association(Name="GeneratedTestVariant_GeneratedQuestion", Storage="_GeneratedTestVariant", ThisKey="GeneratedTestVariantId", OtherKey="Id", IsForeignKey=true)]
+		public GeneratedTestVariant GeneratedTestVariant
 		{
 			get
 			{
-				return this._Date;
+				return this._GeneratedTestVariant.Entity;
 			}
 			set
 			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Volume", DbType="SmallInt NOT NULL")]
-		public short Volume
-		{
-			get
-			{
-				return this._Volume;
-			}
-			set
-			{
-				if ((this._Volume != value))
-				{
-					this.OnVolumeChanging(value);
-					this.SendPropertyChanging();
-					this._Volume = value;
-					this.SendPropertyChanged("Volume");
-					this.OnVolumeChanged();
-				}
-			}
-		}
-		
-		[Association(Name="SpecialityDiscipline_LecturePlan", Storage="_SpecialityDiscipline", ThisKey="SpecialityDisciplineId", OtherKey="Id", IsForeignKey=true)]
-		public SpecialityDiscipline SpecialityDiscipline
-		{
-			get
-			{
-				return this._SpecialityDiscipline.Entity;
-			}
-			set
-			{
-				SpecialityDiscipline previousValue = this._SpecialityDiscipline.Entity;
+				GeneratedTestVariant previousValue = this._GeneratedTestVariant.Entity;
 				if (((previousValue != value) 
-							|| (this._SpecialityDiscipline.HasLoadedOrAssignedValue == false)))
+							|| (this._GeneratedTestVariant.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._SpecialityDiscipline.Entity = null;
-						previousValue.LecturePlans.Remove(this);
+						this._GeneratedTestVariant.Entity = null;
+						previousValue.GeneratedQuestions.Remove(this);
 					}
-					this._SpecialityDiscipline.Entity = value;
+					this._GeneratedTestVariant.Entity = value;
 					if ((value != null))
 					{
-						value.LecturePlans.Add(this);
-						this._SpecialityDisciplineId = value.Id;
+						value.GeneratedQuestions.Add(this);
+						this._GeneratedTestVariantId = value.Id;
 					}
 					else
 					{
-						this._SpecialityDisciplineId = default(long);
+						this._GeneratedTestVariantId = default(long);
 					}
-					this.SendPropertyChanged("SpecialityDiscipline");
+					this.SendPropertyChanged("GeneratedTestVariant");
+				}
+			}
+		}
+		
+		[Association(Name="Question_GeneratedQuestion", Storage="_Question", ThisKey="QuestionId", OtherKey="Id", IsForeignKey=true)]
+		public Question Question
+		{
+			get
+			{
+				return this._Question.Entity;
+			}
+			set
+			{
+				Question previousValue = this._Question.Entity;
+				if (((previousValue != value) 
+							|| (this._Question.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Question.Entity = null;
+						previousValue.GeneratedQuestions.Remove(this);
+					}
+					this._Question.Entity = value;
+					if ((value != null))
+					{
+						value.GeneratedQuestions.Add(this);
+						this._QuestionId = value.Id;
+					}
+					else
+					{
+						this._QuestionId = default(long);
+					}
+					this.SendPropertyChanged("Question");
 				}
 			}
 		}
@@ -1056,6 +2387,416 @@ namespace VmkLearningKit.Models.Repository
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[Table(Name="dbo.GeneratedTests")]
+	public partial class GeneratedTest : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _TopicId;
+		
+		private int _VariantsCount;
+		
+		private System.DateTime _GeneratedDate;
+		
+		private int _QuestionsCount;
+		
+		private EntitySet<GeneratedTestVariant> _GeneratedTestVariants;
+		
+		private EntityRef<Topic> _Topic;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnTopicIdChanging(long value);
+    partial void OnTopicIdChanged();
+    partial void OnVariantsCountChanging(int value);
+    partial void OnVariantsCountChanged();
+    partial void OnGeneratedDateChanging(System.DateTime value);
+    partial void OnGeneratedDateChanged();
+    partial void OnQuestionsCountChanging(int value);
+    partial void OnQuestionsCountChanged();
+    #endregion
+		
+		public GeneratedTest()
+		{
+			this._GeneratedTestVariants = new EntitySet<GeneratedTestVariant>(new Action<GeneratedTestVariant>(this.attach_GeneratedTestVariants), new Action<GeneratedTestVariant>(this.detach_GeneratedTestVariants));
+			this._Topic = default(EntityRef<Topic>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TopicId", DbType="BigInt NOT NULL")]
+		public long TopicId
+		{
+			get
+			{
+				return this._TopicId;
+			}
+			set
+			{
+				if ((this._TopicId != value))
+				{
+					if (this._Topic.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTopicIdChanging(value);
+					this.SendPropertyChanging();
+					this._TopicId = value;
+					this.SendPropertyChanged("TopicId");
+					this.OnTopicIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_VariantsCount", DbType="Int NOT NULL")]
+		public int VariantsCount
+		{
+			get
+			{
+				return this._VariantsCount;
+			}
+			set
+			{
+				if ((this._VariantsCount != value))
+				{
+					this.OnVariantsCountChanging(value);
+					this.SendPropertyChanging();
+					this._VariantsCount = value;
+					this.SendPropertyChanged("VariantsCount");
+					this.OnVariantsCountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_GeneratedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime GeneratedDate
+		{
+			get
+			{
+				return this._GeneratedDate;
+			}
+			set
+			{
+				if ((this._GeneratedDate != value))
+				{
+					this.OnGeneratedDateChanging(value);
+					this.SendPropertyChanging();
+					this._GeneratedDate = value;
+					this.SendPropertyChanged("GeneratedDate");
+					this.OnGeneratedDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionsCount", DbType="Int NOT NULL")]
+		public int QuestionsCount
+		{
+			get
+			{
+				return this._QuestionsCount;
+			}
+			set
+			{
+				if ((this._QuestionsCount != value))
+				{
+					this.OnQuestionsCountChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionsCount = value;
+					this.SendPropertyChanged("QuestionsCount");
+					this.OnQuestionsCountChanged();
+				}
+			}
+		}
+		
+		[Association(Name="GeneratedTest_GeneratedTestVariant", Storage="_GeneratedTestVariants", ThisKey="Id", OtherKey="GeneratedTestId")]
+		public EntitySet<GeneratedTestVariant> GeneratedTestVariants
+		{
+			get
+			{
+				return this._GeneratedTestVariants;
+			}
+			set
+			{
+				this._GeneratedTestVariants.Assign(value);
+			}
+		}
+		
+		[Association(Name="Topic_GeneratedTest", Storage="_Topic", ThisKey="TopicId", OtherKey="Id", IsForeignKey=true)]
+		public Topic Topic
+		{
+			get
+			{
+				return this._Topic.Entity;
+			}
+			set
+			{
+				Topic previousValue = this._Topic.Entity;
+				if (((previousValue != value) 
+							|| (this._Topic.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Topic.Entity = null;
+						previousValue.GeneratedTests.Remove(this);
+					}
+					this._Topic.Entity = value;
+					if ((value != null))
+					{
+						value.GeneratedTests.Add(this);
+						this._TopicId = value.Id;
+					}
+					else
+					{
+						this._TopicId = default(long);
+					}
+					this.SendPropertyChanged("Topic");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_GeneratedTestVariants(GeneratedTestVariant entity)
+		{
+			this.SendPropertyChanging();
+			entity.GeneratedTest = this;
+		}
+		
+		private void detach_GeneratedTestVariants(GeneratedTestVariant entity)
+		{
+			this.SendPropertyChanging();
+			entity.GeneratedTest = null;
+		}
+	}
+	
+	[Table(Name="dbo.GeneratedTestVariants")]
+	public partial class GeneratedTestVariant : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _GeneratedTestId;
+		
+		private EntitySet<AssignedTestVariant> _AssignedTestVariants;
+		
+		private EntitySet<GeneratedQuestion> _GeneratedQuestions;
+		
+		private EntityRef<GeneratedTest> _GeneratedTest;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnGeneratedTestIdChanging(long value);
+    partial void OnGeneratedTestIdChanged();
+    #endregion
+		
+		public GeneratedTestVariant()
+		{
+			this._AssignedTestVariants = new EntitySet<AssignedTestVariant>(new Action<AssignedTestVariant>(this.attach_AssignedTestVariants), new Action<AssignedTestVariant>(this.detach_AssignedTestVariants));
+			this._GeneratedQuestions = new EntitySet<GeneratedQuestion>(new Action<GeneratedQuestion>(this.attach_GeneratedQuestions), new Action<GeneratedQuestion>(this.detach_GeneratedQuestions));
+			this._GeneratedTest = default(EntityRef<GeneratedTest>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_GeneratedTestId", DbType="BigInt NOT NULL")]
+		public long GeneratedTestId
+		{
+			get
+			{
+				return this._GeneratedTestId;
+			}
+			set
+			{
+				if ((this._GeneratedTestId != value))
+				{
+					if (this._GeneratedTest.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGeneratedTestIdChanging(value);
+					this.SendPropertyChanging();
+					this._GeneratedTestId = value;
+					this.SendPropertyChanged("GeneratedTestId");
+					this.OnGeneratedTestIdChanged();
+				}
+			}
+		}
+		
+		[Association(Name="GeneratedTestVariant_AssignedTestVariant", Storage="_AssignedTestVariants", ThisKey="Id", OtherKey="GeneratedTestVariantId")]
+		public EntitySet<AssignedTestVariant> AssignedTestVariants
+		{
+			get
+			{
+				return this._AssignedTestVariants;
+			}
+			set
+			{
+				this._AssignedTestVariants.Assign(value);
+			}
+		}
+		
+		[Association(Name="GeneratedTestVariant_GeneratedQuestion", Storage="_GeneratedQuestions", ThisKey="Id", OtherKey="GeneratedTestVariantId")]
+		public EntitySet<GeneratedQuestion> GeneratedQuestions
+		{
+			get
+			{
+				return this._GeneratedQuestions;
+			}
+			set
+			{
+				this._GeneratedQuestions.Assign(value);
+			}
+		}
+		
+		[Association(Name="GeneratedTest_GeneratedTestVariant", Storage="_GeneratedTest", ThisKey="GeneratedTestId", OtherKey="Id", IsForeignKey=true)]
+		public GeneratedTest GeneratedTest
+		{
+			get
+			{
+				return this._GeneratedTest.Entity;
+			}
+			set
+			{
+				GeneratedTest previousValue = this._GeneratedTest.Entity;
+				if (((previousValue != value) 
+							|| (this._GeneratedTest.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GeneratedTest.Entity = null;
+						previousValue.GeneratedTestVariants.Remove(this);
+					}
+					this._GeneratedTest.Entity = value;
+					if ((value != null))
+					{
+						value.GeneratedTestVariants.Add(this);
+						this._GeneratedTestId = value.Id;
+					}
+					else
+					{
+						this._GeneratedTestId = default(long);
+					}
+					this.SendPropertyChanged("GeneratedTest");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AssignedTestVariants(AssignedTestVariant entity)
+		{
+			this.SendPropertyChanging();
+			entity.GeneratedTestVariant = this;
+		}
+		
+		private void detach_AssignedTestVariants(AssignedTestVariant entity)
+		{
+			this.SendPropertyChanging();
+			entity.GeneratedTestVariant = null;
+		}
+		
+		private void attach_GeneratedQuestions(GeneratedQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.GeneratedTestVariant = this;
+		}
+		
+		private void detach_GeneratedQuestions(GeneratedQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.GeneratedTestVariant = null;
 		}
 	}
 	
@@ -1315,6 +3056,205 @@ namespace VmkLearningKit.Models.Repository
 		{
 			this.SendPropertyChanging();
 			entity.Group = null;
+		}
+	}
+	
+	[Table(Name="dbo.LecturePlans")]
+	public partial class LecturePlan : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _SpecialityDisciplineId;
+		
+		private string _Topic;
+		
+		private System.DateTime _Date;
+		
+		private short _Volume;
+		
+		private EntityRef<SpecialityDiscipline> _SpecialityDiscipline;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnSpecialityDisciplineIdChanging(long value);
+    partial void OnSpecialityDisciplineIdChanged();
+    partial void OnTopicChanging(string value);
+    partial void OnTopicChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnVolumeChanging(short value);
+    partial void OnVolumeChanged();
+    #endregion
+		
+		public LecturePlan()
+		{
+			this._SpecialityDiscipline = default(EntityRef<SpecialityDiscipline>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SpecialityDisciplineId", DbType="BigInt NOT NULL")]
+		public long SpecialityDisciplineId
+		{
+			get
+			{
+				return this._SpecialityDisciplineId;
+			}
+			set
+			{
+				if ((this._SpecialityDisciplineId != value))
+				{
+					if (this._SpecialityDiscipline.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSpecialityDisciplineIdChanging(value);
+					this.SendPropertyChanging();
+					this._SpecialityDisciplineId = value;
+					this.SendPropertyChanged("SpecialityDisciplineId");
+					this.OnSpecialityDisciplineIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Topic", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Topic
+		{
+			get
+			{
+				return this._Topic;
+			}
+			set
+			{
+				if ((this._Topic != value))
+				{
+					this.OnTopicChanging(value);
+					this.SendPropertyChanging();
+					this._Topic = value;
+					this.SendPropertyChanged("Topic");
+					this.OnTopicChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Volume", DbType="SmallInt NOT NULL")]
+		public short Volume
+		{
+			get
+			{
+				return this._Volume;
+			}
+			set
+			{
+				if ((this._Volume != value))
+				{
+					this.OnVolumeChanging(value);
+					this.SendPropertyChanging();
+					this._Volume = value;
+					this.SendPropertyChanged("Volume");
+					this.OnVolumeChanged();
+				}
+			}
+		}
+		
+		[Association(Name="SpecialityDiscipline_LecturePlan", Storage="_SpecialityDiscipline", ThisKey="SpecialityDisciplineId", OtherKey="Id", IsForeignKey=true)]
+		public SpecialityDiscipline SpecialityDiscipline
+		{
+			get
+			{
+				return this._SpecialityDiscipline.Entity;
+			}
+			set
+			{
+				SpecialityDiscipline previousValue = this._SpecialityDiscipline.Entity;
+				if (((previousValue != value) 
+							|| (this._SpecialityDiscipline.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SpecialityDiscipline.Entity = null;
+						previousValue.LecturePlans.Remove(this);
+					}
+					this._SpecialityDiscipline.Entity = value;
+					if ((value != null))
+					{
+						value.LecturePlans.Add(this);
+						this._SpecialityDisciplineId = value.Id;
+					}
+					else
+					{
+						this._SpecialityDisciplineId = default(long);
+					}
+					this.SendPropertyChanged("SpecialityDiscipline");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -2588,6 +4528,636 @@ namespace VmkLearningKit.Models.Repository
 		}
 	}
 	
+	[Table(Name="dbo.Questions")]
+	public partial class Question : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _RazdelId;
+		
+		private int _Type;
+		
+		private string _Text;
+		
+		private long _AssignedCount;
+		
+		private long _RightAnswersCount;
+		
+		private long _WrongAnswersCount;
+		
+		private int _DoubleGroup;
+		
+		private int _ExclusionGroup;
+		
+		private byte _IsDeleted;
+		
+		private byte _CanCommented;
+		
+		private EntitySet<Answer> _Answers;
+		
+		private EntitySet<Comment> _Comments;
+		
+		private EntitySet<GeneratedQuestion> _GeneratedQuestions;
+		
+		private EntityRef<Razdel> _Razdel;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnRazdelIdChanging(long value);
+    partial void OnRazdelIdChanged();
+    partial void OnTypeChanging(int value);
+    partial void OnTypeChanged();
+    partial void OnTextChanging(string value);
+    partial void OnTextChanged();
+    partial void OnAssignedCountChanging(long value);
+    partial void OnAssignedCountChanged();
+    partial void OnRightAnswersCountChanging(long value);
+    partial void OnRightAnswersCountChanged();
+    partial void OnWrongAnswersCountChanging(long value);
+    partial void OnWrongAnswersCountChanged();
+    partial void OnDoubleGroupChanging(int value);
+    partial void OnDoubleGroupChanged();
+    partial void OnExclusionGroupChanging(int value);
+    partial void OnExclusionGroupChanged();
+    partial void OnIsDeletedChanging(byte value);
+    partial void OnIsDeletedChanged();
+    partial void OnCanCommentedChanging(byte value);
+    partial void OnCanCommentedChanged();
+    #endregion
+		
+		public Question()
+		{
+			this._Answers = new EntitySet<Answer>(new Action<Answer>(this.attach_Answers), new Action<Answer>(this.detach_Answers));
+			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
+			this._GeneratedQuestions = new EntitySet<GeneratedQuestion>(new Action<GeneratedQuestion>(this.attach_GeneratedQuestions), new Action<GeneratedQuestion>(this.detach_GeneratedQuestions));
+			this._Razdel = default(EntityRef<Razdel>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_RazdelId", DbType="BigInt NOT NULL")]
+		public long RazdelId
+		{
+			get
+			{
+				return this._RazdelId;
+			}
+			set
+			{
+				if ((this._RazdelId != value))
+				{
+					if (this._Razdel.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRazdelIdChanging(value);
+					this.SendPropertyChanging();
+					this._RazdelId = value;
+					this.SendPropertyChanged("RazdelId");
+					this.OnRazdelIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Type", DbType="Int NOT NULL")]
+		public int Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Text", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Text
+		{
+			get
+			{
+				return this._Text;
+			}
+			set
+			{
+				if ((this._Text != value))
+				{
+					this.OnTextChanging(value);
+					this.SendPropertyChanging();
+					this._Text = value;
+					this.SendPropertyChanged("Text");
+					this.OnTextChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_AssignedCount", DbType="BigInt NOT NULL")]
+		public long AssignedCount
+		{
+			get
+			{
+				return this._AssignedCount;
+			}
+			set
+			{
+				if ((this._AssignedCount != value))
+				{
+					this.OnAssignedCountChanging(value);
+					this.SendPropertyChanging();
+					this._AssignedCount = value;
+					this.SendPropertyChanged("AssignedCount");
+					this.OnAssignedCountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_RightAnswersCount", DbType="BigInt NOT NULL")]
+		public long RightAnswersCount
+		{
+			get
+			{
+				return this._RightAnswersCount;
+			}
+			set
+			{
+				if ((this._RightAnswersCount != value))
+				{
+					this.OnRightAnswersCountChanging(value);
+					this.SendPropertyChanging();
+					this._RightAnswersCount = value;
+					this.SendPropertyChanged("RightAnswersCount");
+					this.OnRightAnswersCountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_WrongAnswersCount", DbType="BigInt NOT NULL")]
+		public long WrongAnswersCount
+		{
+			get
+			{
+				return this._WrongAnswersCount;
+			}
+			set
+			{
+				if ((this._WrongAnswersCount != value))
+				{
+					this.OnWrongAnswersCountChanging(value);
+					this.SendPropertyChanging();
+					this._WrongAnswersCount = value;
+					this.SendPropertyChanged("WrongAnswersCount");
+					this.OnWrongAnswersCountChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_DoubleGroup", DbType="Int NOT NULL")]
+		public int DoubleGroup
+		{
+			get
+			{
+				return this._DoubleGroup;
+			}
+			set
+			{
+				if ((this._DoubleGroup != value))
+				{
+					this.OnDoubleGroupChanging(value);
+					this.SendPropertyChanging();
+					this._DoubleGroup = value;
+					this.SendPropertyChanged("DoubleGroup");
+					this.OnDoubleGroupChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ExclusionGroup", DbType="Int NOT NULL")]
+		public int ExclusionGroup
+		{
+			get
+			{
+				return this._ExclusionGroup;
+			}
+			set
+			{
+				if ((this._ExclusionGroup != value))
+				{
+					this.OnExclusionGroupChanging(value);
+					this.SendPropertyChanging();
+					this._ExclusionGroup = value;
+					this.SendPropertyChanged("ExclusionGroup");
+					this.OnExclusionGroupChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_IsDeleted", DbType="TinyInt NOT NULL")]
+		public byte IsDeleted
+		{
+			get
+			{
+				return this._IsDeleted;
+			}
+			set
+			{
+				if ((this._IsDeleted != value))
+				{
+					this.OnIsDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._IsDeleted = value;
+					this.SendPropertyChanged("IsDeleted");
+					this.OnIsDeletedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_CanCommented", DbType="TinyInt NOT NULL")]
+		public byte CanCommented
+		{
+			get
+			{
+				return this._CanCommented;
+			}
+			set
+			{
+				if ((this._CanCommented != value))
+				{
+					this.OnCanCommentedChanging(value);
+					this.SendPropertyChanging();
+					this._CanCommented = value;
+					this.SendPropertyChanged("CanCommented");
+					this.OnCanCommentedChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Question_Answer", Storage="_Answers", ThisKey="Id", OtherKey="QuestionId")]
+		public EntitySet<Answer> Answers
+		{
+			get
+			{
+				return this._Answers;
+			}
+			set
+			{
+				this._Answers.Assign(value);
+			}
+		}
+		
+		[Association(Name="Question_Comment", Storage="_Comments", ThisKey="Id", OtherKey="QuestionId")]
+		public EntitySet<Comment> Comments
+		{
+			get
+			{
+				return this._Comments;
+			}
+			set
+			{
+				this._Comments.Assign(value);
+			}
+		}
+		
+		[Association(Name="Question_GeneratedQuestion", Storage="_GeneratedQuestions", ThisKey="Id", OtherKey="QuestionId")]
+		public EntitySet<GeneratedQuestion> GeneratedQuestions
+		{
+			get
+			{
+				return this._GeneratedQuestions;
+			}
+			set
+			{
+				this._GeneratedQuestions.Assign(value);
+			}
+		}
+		
+		[Association(Name="Razdel_Question", Storage="_Razdel", ThisKey="RazdelId", OtherKey="Id", IsForeignKey=true)]
+		public Razdel Razdel
+		{
+			get
+			{
+				return this._Razdel.Entity;
+			}
+			set
+			{
+				Razdel previousValue = this._Razdel.Entity;
+				if (((previousValue != value) 
+							|| (this._Razdel.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Razdel.Entity = null;
+						previousValue.Questions.Remove(this);
+					}
+					this._Razdel.Entity = value;
+					if ((value != null))
+					{
+						value.Questions.Add(this);
+						this._RazdelId = value.Id;
+					}
+					else
+					{
+						this._RazdelId = default(long);
+					}
+					this.SendPropertyChanged("Razdel");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Answers(Answer entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = this;
+		}
+		
+		private void detach_Answers(Answer entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = null;
+		}
+		
+		private void attach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = this;
+		}
+		
+		private void detach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = null;
+		}
+		
+		private void attach_GeneratedQuestions(GeneratedQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = this;
+		}
+		
+		private void detach_GeneratedQuestions(GeneratedQuestion entity)
+		{
+			this.SendPropertyChanging();
+			entity.Question = null;
+		}
+	}
+	
+	[Table(Name="dbo.Razdels")]
+	public partial class Razdel : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private long _TopicId;
+		
+		private string _Title;
+		
+		private int _QuestionsCount;
+		
+		private EntitySet<Question> _Questions;
+		
+		private EntityRef<Topic> _Topic;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnTopicIdChanging(long value);
+    partial void OnTopicIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnQuestionsCountChanging(int value);
+    partial void OnQuestionsCountChanged();
+    #endregion
+		
+		public Razdel()
+		{
+			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
+			this._Topic = default(EntityRef<Topic>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_TopicId", DbType="BigInt NOT NULL")]
+		public long TopicId
+		{
+			get
+			{
+				return this._TopicId;
+			}
+			set
+			{
+				if ((this._TopicId != value))
+				{
+					if (this._Topic.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTopicIdChanging(value);
+					this.SendPropertyChanging();
+					this._TopicId = value;
+					this.SendPropertyChanged("TopicId");
+					this.OnTopicIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this.OnTitleChanging(value);
+					this.SendPropertyChanging();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_QuestionsCount", DbType="Int NOT NULL")]
+		public int QuestionsCount
+		{
+			get
+			{
+				return this._QuestionsCount;
+			}
+			set
+			{
+				if ((this._QuestionsCount != value))
+				{
+					this.OnQuestionsCountChanging(value);
+					this.SendPropertyChanging();
+					this._QuestionsCount = value;
+					this.SendPropertyChanged("QuestionsCount");
+					this.OnQuestionsCountChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Razdel_Question", Storage="_Questions", ThisKey="Id", OtherKey="RazdelId")]
+		public EntitySet<Question> Questions
+		{
+			get
+			{
+				return this._Questions;
+			}
+			set
+			{
+				this._Questions.Assign(value);
+			}
+		}
+		
+		[Association(Name="Topic_Razdel", Storage="_Topic", ThisKey="TopicId", OtherKey="Id", IsForeignKey=true)]
+		public Topic Topic
+		{
+			get
+			{
+				return this._Topic.Entity;
+			}
+			set
+			{
+				Topic previousValue = this._Topic.Entity;
+				if (((previousValue != value) 
+							|| (this._Topic.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Topic.Entity = null;
+						previousValue.Razdels.Remove(this);
+					}
+					this._Topic.Entity = value;
+					if ((value != null))
+					{
+						value.Razdels.Add(this);
+						this._TopicId = value.Id;
+					}
+					else
+					{
+						this._TopicId = default(long);
+					}
+					this.SendPropertyChanged("Topic");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Questions(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.Razdel = this;
+		}
+		
+		private void detach_Questions(Question entity)
+		{
+			this.SendPropertyChanging();
+			entity.Razdel = null;
+		}
+	}
+	
 	[Table(Name="dbo.Specialities")]
 	public partial class Speciality : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3788,6 +6358,10 @@ namespace VmkLearningKit.Models.Repository
 		
 		private long _GroupId;
 		
+		private EntitySet<AssignedTestVariant> _AssignedTestVariants;
+		
+		private EntitySet<Comment> _Comments;
+		
 		private EntityRef<Group> _Group;
 		
 		private EntityRef<User> _User;
@@ -3804,6 +6378,8 @@ namespace VmkLearningKit.Models.Repository
 		
 		public Student()
 		{
+			this._AssignedTestVariants = new EntitySet<AssignedTestVariant>(new Action<AssignedTestVariant>(this.attach_AssignedTestVariants), new Action<AssignedTestVariant>(this.detach_AssignedTestVariants));
+			this._Comments = new EntitySet<Comment>(new Action<Comment>(this.attach_Comments), new Action<Comment>(this.detach_Comments));
 			this._Group = default(EntityRef<Group>);
 			this._User = default(EntityRef<User>);
 			OnCreated();
@@ -3854,6 +6430,32 @@ namespace VmkLearningKit.Models.Repository
 					this.SendPropertyChanged("GroupId");
 					this.OnGroupIdChanged();
 				}
+			}
+		}
+		
+		[Association(Name="Student_AssignedTestVariant", Storage="_AssignedTestVariants", ThisKey="UserId", OtherKey="StudentId")]
+		public EntitySet<AssignedTestVariant> AssignedTestVariants
+		{
+			get
+			{
+				return this._AssignedTestVariants;
+			}
+			set
+			{
+				this._AssignedTestVariants.Assign(value);
+			}
+		}
+		
+		[Association(Name="Student_Comment", Storage="_Comments", ThisKey="UserId", OtherKey="StudentId")]
+		public EntitySet<Comment> Comments
+		{
+			get
+			{
+				return this._Comments;
+			}
+			set
+			{
+				this._Comments.Assign(value);
 			}
 		}
 		
@@ -3944,35 +6546,49 @@ namespace VmkLearningKit.Models.Repository
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_AssignedTestVariants(AssignedTestVariant entity)
+		{
+			this.SendPropertyChanging();
+			entity.Student = this;
+		}
+		
+		private void detach_AssignedTestVariants(AssignedTestVariant entity)
+		{
+			this.SendPropertyChanging();
+			entity.Student = null;
+		}
+		
+		private void attach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Student = this;
+		}
+		
+		private void detach_Comments(Comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Student = null;
+		}
 	}
 	
-	[Table(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.Topics")]
+	public partial class Topic : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long _Id;
 		
-		private string _Login;
+		private long _DisciplineId;
 		
-		private string _Password;
+		private string _Title;
 		
-		private string _NickName;
+		private EntitySet<GeneratedTest> _GeneratedTests;
 		
-		private string _Email;
+		private EntitySet<Razdel> _Razdels;
 		
-		private string _SecondName;
-		
-		private string _FirstName;
-		
-		private string _Patronymic;
-		
-		private string _Role;
-		
-		private EntityRef<Professor> _Professor;
-		
-		private EntityRef<Student> _Student;
+		private EntityRef<Discipline> _Discipline;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3980,28 +6596,17 @@ namespace VmkLearningKit.Models.Repository
     partial void OnCreated();
     partial void OnIdChanging(long value);
     partial void OnIdChanged();
-    partial void OnLoginChanging(string value);
-    partial void OnLoginChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnNickNameChanging(string value);
-    partial void OnNickNameChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnSecondNameChanging(string value);
-    partial void OnSecondNameChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnPatronymicChanging(string value);
-    partial void OnPatronymicChanged();
-    partial void OnRoleChanging(string value);
-    partial void OnRoleChanged();
+    partial void OnDisciplineIdChanging(long value);
+    partial void OnDisciplineIdChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
     #endregion
 		
-		public User()
+		public Topic()
 		{
-			this._Professor = default(EntityRef<Professor>);
-			this._Student = default(EntityRef<Student>);
+			this._GeneratedTests = new EntitySet<GeneratedTest>(new Action<GeneratedTest>(this.attach_GeneratedTests), new Action<GeneratedTest>(this.detach_GeneratedTests));
+			this._Razdels = new EntitySet<Razdel>(new Action<Razdel>(this.attach_Razdels), new Action<Razdel>(this.detach_Razdels));
+			this._Discipline = default(EntityRef<Discipline>);
 			OnCreated();
 		}
 		
@@ -4025,220 +6630,106 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Column(Storage="_Login", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string Login
+		[Column(Storage="_DisciplineId", DbType="BigInt NOT NULL")]
+		public long DisciplineId
 		{
 			get
 			{
-				return this._Login;
+				return this._DisciplineId;
 			}
 			set
 			{
-				if ((this._Login != value))
+				if ((this._DisciplineId != value))
 				{
-					this.OnLoginChanging(value);
+					if (this._Discipline.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDisciplineIdChanging(value);
 					this.SendPropertyChanging();
-					this._Login = value;
-					this.SendPropertyChanged("Login");
-					this.OnLoginChanged();
+					this._DisciplineId = value;
+					this.SendPropertyChanged("DisciplineId");
+					this.OnDisciplineIdChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Password", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Password
+		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Title
 		{
 			get
 			{
-				return this._Password;
+				return this._Title;
 			}
 			set
 			{
-				if ((this._Password != value))
+				if ((this._Title != value))
 				{
-					this.OnPasswordChanging(value);
+					this.OnTitleChanging(value);
 					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
+					this._Title = value;
+					this.SendPropertyChanged("Title");
+					this.OnTitleChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_NickName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string NickName
+		[Association(Name="Topic_GeneratedTest", Storage="_GeneratedTests", ThisKey="Id", OtherKey="TopicId")]
+		public EntitySet<GeneratedTest> GeneratedTests
 		{
 			get
 			{
-				return this._NickName;
+				return this._GeneratedTests;
 			}
 			set
 			{
-				if ((this._NickName != value))
-				{
-					this.OnNickNameChanging(value);
-					this.SendPropertyChanging();
-					this._NickName = value;
-					this.SendPropertyChanged("NickName");
-					this.OnNickNameChanged();
-				}
+				this._GeneratedTests.Assign(value);
 			}
 		}
 		
-		[Column(Storage="_Email", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string Email
+		[Association(Name="Topic_Razdel", Storage="_Razdels", ThisKey="Id", OtherKey="TopicId")]
+		public EntitySet<Razdel> Razdels
 		{
 			get
 			{
-				return this._Email;
+				return this._Razdels;
 			}
 			set
 			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
+				this._Razdels.Assign(value);
 			}
 		}
 		
-		[Column(Storage="_SecondName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string SecondName
+		[Association(Name="Discipline_Topic", Storage="_Discipline", ThisKey="DisciplineId", OtherKey="Id", IsForeignKey=true)]
+		public Discipline Discipline
 		{
 			get
 			{
-				return this._SecondName;
+				return this._Discipline.Entity;
 			}
 			set
 			{
-				if ((this._SecondName != value))
-				{
-					this.OnSecondNameChanging(value);
-					this.SendPropertyChanging();
-					this._SecondName = value;
-					this.SendPropertyChanged("SecondName");
-					this.OnSecondNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FirstName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Patronymic", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string Patronymic
-		{
-			get
-			{
-				return this._Patronymic;
-			}
-			set
-			{
-				if ((this._Patronymic != value))
-				{
-					this.OnPatronymicChanging(value);
-					this.SendPropertyChanging();
-					this._Patronymic = value;
-					this.SendPropertyChanged("Patronymic");
-					this.OnPatronymicChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Role", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string Role
-		{
-			get
-			{
-				return this._Role;
-			}
-			set
-			{
-				if ((this._Role != value))
-				{
-					this.OnRoleChanging(value);
-					this.SendPropertyChanging();
-					this._Role = value;
-					this.SendPropertyChanged("Role");
-					this.OnRoleChanged();
-				}
-			}
-		}
-		
-		[Association(Name="User_Professor", Storage="_Professor", ThisKey="Id", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
-		public Professor Professor
-		{
-			get
-			{
-				return this._Professor.Entity;
-			}
-			set
-			{
-				Professor previousValue = this._Professor.Entity;
+				Discipline previousValue = this._Discipline.Entity;
 				if (((previousValue != value) 
-							|| (this._Professor.HasLoadedOrAssignedValue == false)))
+							|| (this._Discipline.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Professor.Entity = null;
-						previousValue.User = null;
+						this._Discipline.Entity = null;
+						previousValue.Topics.Remove(this);
 					}
-					this._Professor.Entity = value;
+					this._Discipline.Entity = value;
 					if ((value != null))
 					{
-						value.User = this;
+						value.Topics.Add(this);
+						this._DisciplineId = value.Id;
 					}
-					this.SendPropertyChanged("Professor");
-				}
-			}
-		}
-		
-		[Association(Name="User_Student", Storage="_Student", ThisKey="Id", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
-		public Student Student
-		{
-			get
-			{
-				return this._Student.Entity;
-			}
-			set
-			{
-				Student previousValue = this._Student.Entity;
-				if (((previousValue != value) 
-							|| (this._Student.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
+					else
 					{
-						this._Student.Entity = null;
-						previousValue.User = null;
+						this._DisciplineId = default(long);
 					}
-					this._Student.Entity = value;
-					if ((value != null))
-					{
-						value.User = this;
-					}
-					this.SendPropertyChanged("Student");
+					this.SendPropertyChanged("Discipline");
 				}
 			}
 		}
@@ -4261,6 +6752,30 @@ namespace VmkLearningKit.Models.Repository
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_GeneratedTests(GeneratedTest entity)
+		{
+			this.SendPropertyChanging();
+			entity.Topic = this;
+		}
+		
+		private void detach_GeneratedTests(GeneratedTest entity)
+		{
+			this.SendPropertyChanging();
+			entity.Topic = null;
+		}
+		
+		private void attach_Razdels(Razdel entity)
+		{
+			this.SendPropertyChanging();
+			entity.Topic = this;
+		}
+		
+		private void detach_Razdels(Razdel entity)
+		{
+			this.SendPropertyChanging();
+			entity.Topic = null;
 		}
 	}
 }

@@ -1,0 +1,5 @@
+C:\UNN_REPOSITORY\VmkLearningKit\QWord\obj\Debug\ResolveAssemblyReference.cache
+C:\UNN_REPOSITORY\VmkLearningKit\QWord\bin\Debug\QWord.dll
+C:\UNN_REPOSITORY\VmkLearningKit\QWord\bin\Debug\QWord.pdb
+C:\UNN_REPOSITORY\VmkLearningKit\QWord\obj\Debug\QWord.dll
+C:\UNN_REPOSITORY\VmkLearningKit\QWord\obj\Debug\QWord.pdb

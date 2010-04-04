@@ -87,36 +87,49 @@
     </Compile>
     <Compile Include="Models\Domain\User.cs" />
     <Compile Include="Core\Hash.cs" />
-    <Compile Include="Models\Repository\ChairRepository.cs" />
-    <Compile Include="Models\Repository\DepartmentRepository.cs" />
-    <Compile Include="Models\Repository\EducationPlanRepository.cs" />
-    <Compile Include="Models\Repository\IChairRepository.cs" />
-    <Compile Include="Models\Repository\IDepartmentRepository.cs" />
-    <Compile Include="Models\Repository\IEducationPlanRepository.cs" />
-    <Compile Include="Models\Repository\IProfessorRepository.cs" />
+    <Compile Include="Models\Repository\Answer\AnswerRepository.cs" />
+    <Compile Include="Models\Repository\Chair\ChairRepository.cs" />
+    <Compile Include="Models\Repository\Department\DepartmentRepository.cs" />
+    <Compile Include="Models\Repository\Discipline\DisciplineRepository.cs" />
+    <Compile Include="Models\Repository\EducationPlan\EducationPlanRepository.cs" />
+    <Compile Include="Models\Repository\Answer\IAnswerRepository.cs" />
+    <Compile Include="Models\Repository\Chair\IChairRepository.cs" />
+    <Compile Include="Models\Repository\Department\IDepartmentRepository.cs" />
+    <Compile Include="Models\Repository\Discipline\IDisciplineRepository.cs" />
+    <Compile Include="Models\Repository\EducationPlan\IEducationPlanRepository.cs" />
+    <Compile Include="Models\Repository\LecturePlan\ILecturePlanRepository.cs" />
+    <Compile Include="Models\Repository\PracticePlan\IPracticePlanRepository.cs" />
+    <Compile Include="Models\Repository\Professor\IProfessorRepository.cs" />
+    <Compile Include="Models\Repository\Question\IQuestionRepository.cs" />
+    <Compile Include="Models\Repository\Razdel\IRazdelRepository.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
-    <Compile Include="Models\Repository\ISpecialityDisciplinesRepository.cs" />
-    <Compile Include="Models\Repository\ISpecialityRepository.cs" />
-    <Compile Include="Models\Repository\ISpecializationRepository.cs" />
-    <Compile Include="Models\Repository\IStudentRepository.cs" />
-    <Compile Include="Models\Repository\IUserRepository.cs" />
-    <Compile Include="Models\Repository\LecturePlanRepository.cs" />
-    <Compile Include="Models\Repository\PracticePlanRepository.cs" />
-    <Compile Include="Models\Repository\ProfessorRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplinesRepository.cs" />
+    <Compile Include="Models\Repository\Speciality\ISpecialityRepository.cs" />
+    <Compile Include="Models\Repository\Specialization\ISpecializationRepository.cs" />
+    <Compile Include="Models\Repository\Student\IStudentRepository.cs" />
+    <Compile Include="Models\Repository\Topic\ITopicRepository.cs" />
+    <Compile Include="Models\Repository\User\IUserRepository.cs" />
+    <Compile Include="Models\Repository\LecturePlan\LecturePlanRepository.cs" />
+    <Compile Include="Models\Repository\PracticePlan\PracticePlanRepository.cs" />
+    <Compile Include="Models\Repository\Professor\ProfessorRepository.cs" />
+    <Compile Include="Models\Repository\Question\QuestionRepository.cs" />
+    <Compile Include="Models\Repository\Razdel\RazdelRepository.cs" />
     <Compile Include="Models\Repository\Repository.cs" />
     <Compile Include="Models\Repository\RepositoryData.cs" />
     <Compile Include="Models\Repository\RepositoryManager.cs" />
-    <Compile Include="Models\Repository\SpecialityDisciplinesRepository.cs" />
-    <Compile Include="Models\Repository\SpecialityRepository.cs" />
-    <Compile Include="Models\Repository\SpecializationRepository.cs" />
-    <Compile Include="Models\Repository\StudentRepository.cs" />
-    <Compile Include="Models\Repository\UserRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplinesRepository.cs" />
+    <Compile Include="Models\Repository\Speciality\SpecialityRepository.cs" />
+    <Compile Include="Models\Repository\Specialization\SpecializationRepository.cs" />
+    <Compile Include="Models\Repository\Student\StudentRepository.cs" />
+    <Compile Include="Models\Repository\Topic\TopicRepository.cs" />
+    <Compile Include="Models\Repository\User\UserRepository.cs" />
     <Compile Include="Models\Repository\VmkLearningKit.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VmkLearningKit.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VLKConstants.cs" />
     <Content Include="Views\Shared\GeneralMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +198,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="VmkLearningKitClassDiagram.cd" />
     <None Include="Models\Repository\VmkLearningKit.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>VmkLearningKit.designer.cs</LastGenOutput>

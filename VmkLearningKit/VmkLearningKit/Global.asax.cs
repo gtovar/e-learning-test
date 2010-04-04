@@ -19,7 +19,7 @@ namespace VmkLearningKit
 
             routes.MapRoute(
                 "Default",                                                      // Route name
-                "{controller}/{action}/{alias}/{additional}",                                // URL with parameters
+                "{controller}/{action}/{alias}/{additional}",                   // URL with parameters
                 new { controller = "Home", action = "Index", alias = "", additional = ""}                    // Parameter defaults
             );
             routes.MapRoute(
