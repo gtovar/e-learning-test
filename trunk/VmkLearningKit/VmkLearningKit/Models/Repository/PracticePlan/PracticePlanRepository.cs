@@ -16,5 +16,19 @@ namespace VmkLearningKit.Models.Repository
         {
             return DataContext.PracticePlans.SingleOrDefault(t => t.Id == id);
         }
+
+        public void Delete(PracticePlan obj)
+        {
+            DataContext.PracticePlans.DeleteOnSubmit(obj);
+
+            DataContext.SubmitChanges();
+        }
+
+        public void DeleteById(long id)
+        {
+            DataContext.PracticePlans.DeleteOnSubmit(GetById(id));
+
+            DataContext.SubmitChanges();
+        }
     }
 }

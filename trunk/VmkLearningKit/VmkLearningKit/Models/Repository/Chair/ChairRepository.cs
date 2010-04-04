@@ -36,5 +36,19 @@ namespace VmkLearningKit.Models.Repository
             }
             return false;
         }
+
+        public void Delete(Chair obj)
+        {
+            DataContext.Chairs.DeleteOnSubmit(obj);
+
+            DataContext.SubmitChanges();
+        }
+
+        public void DeleteById(long id)
+        {
+            DataContext.Chairs.DeleteOnSubmit(GetById(id));
+
+            DataContext.SubmitChanges();
+        }
     }
 }

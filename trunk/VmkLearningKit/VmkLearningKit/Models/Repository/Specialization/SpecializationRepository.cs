@@ -16,5 +16,19 @@ namespace VmkLearningKit.Models.Repository
         {
             return DataContext.Specializations.SingleOrDefault(s => s.Id == id);
         }
+
+        public void Delete(Specialization obj)
+        {
+            DataContext.Specializations.DeleteOnSubmit(obj);
+
+            DataContext.SubmitChanges();
+        }
+
+        public void DeleteById(long id)
+        {
+            DataContext.Specializations.DeleteOnSubmit(GetById(id));
+
+            DataContext.SubmitChanges();
+        }
     }
 }
