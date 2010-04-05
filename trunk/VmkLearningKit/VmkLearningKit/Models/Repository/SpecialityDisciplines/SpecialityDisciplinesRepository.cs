@@ -22,6 +22,15 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.SpecialityDisciplines.Where(s => s.Speciality.Alias == specialityAlias);
         }
 
+        public IEnumerable<SpecialityDiscipline> GetAll(string specialityAlias, string educationPlanAlias, string chairAlias, string professorNickName)
+        {
+            return DataContext.SpecialityDisciplines.Where(s => s.Speciality.Alias == specialityAlias &&
+                                                                s.EducationPlan.Alias == educationPlanAlias &&
+                                                                s.Chair.Alias == chairAlias &&
+                                                                s.Professor.User.NickName == professorNickName
+                                                           );
+        }
+
         public bool IsEntryWithAliasExisted(string alias)
         {
             SpecialityDiscipline specialityDiscipline = DataContext.SpecialityDisciplines.SingleOrDefault(s => s.Alias == alias);

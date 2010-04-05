@@ -7,7 +7,7 @@ namespace VmkLearningKit.Models.Repository
 {
     public interface IDepartmentRepository : IRepository<Department>
     {
-        Department GetByTitle(string departmentTitle);
+        Department GetByAlias(string alias);
         
         IEnumerable<Department> GetAll();
 

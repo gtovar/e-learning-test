@@ -56,8 +56,23 @@ a:hover{
 #user_head{
 	clear:both;
 }
+
+.transparent_link
+{
+    background-color:White; 
+    color:White; 
+    text-decoration:none;
+}
+
+.transparent_img
+{
+    border:0;
+    text-decoration:none;
+    color:White;
+}
+
 #logo{
-	background: url(../../Content/Images/eunn-small.gif) no-repeat;
+	/* background: url(../../Content/Images/eunn-small.gif) no-repeat; */
 	height:75px;
 	width:75px;
 	margin:5px;
@@ -90,7 +105,6 @@ a:hover{
   border: 1px solid #ccf;
   background: #E2EFFF;
   float: left;
-
 }
 #nav li {
   float: left;
@@ -103,7 +117,6 @@ a:hover{
   color: #3764A0;
   text-decoration: none;
   display: block;
-  width: 9em;
   padding: 0.3em 0.5em;
   background: #E2EFFF;
 }
@@ -160,11 +173,6 @@ a:hover{
 }
 .main a{
 	text-decoration:none;
-}
-
-.content a{
-	color:#009999;
-	text-decoration:underline;
 }
 
 .table_header
@@ -299,6 +307,18 @@ a:hover{
 .content ul li
 {
     margin-top: 7px;
+}
+
+.content a
+{
+    color:#3764A0;
+    text-decoration:none;
+}
+
+.content a:hover
+{
+    color:#3764A0;
+    text-decoration:underline;
 }
 
 /*footer*/

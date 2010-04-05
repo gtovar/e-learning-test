@@ -18,9 +18,9 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Specialities.SingleOrDefault(s => s.Id == id);
         }
 
-        public IEnumerable<Speciality> GetAll(string departmentTitle)
+        public IEnumerable<Speciality> GetAll(string departmentAlias)
         {
-            return DataContext.Specialities.Where(s => s.Department.Title == departmentTitle);
+            return DataContext.Specialities.Where(s => s.Department.Alias == departmentAlias);
 
         }
 

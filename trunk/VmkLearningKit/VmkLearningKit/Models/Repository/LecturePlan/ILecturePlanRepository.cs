@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VmkLearningKit.Models.Repository
 {
-    public interface ILecturePlanRepository
+    public interface ILecturePlanRepository : IRepository<LecturePlan>
     {
     }
 }

@@ -79,6 +79,24 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AdminNavigation.
+        /// </summary>
+        internal static string ADMIN_NAVIGAITON {
+            get {
+                return ResourceManager.GetString("ADMIN_NAVIGAITON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Администраторская панель.
+        /// </summary>
+        internal static string ADMIN_PANEL_TITLE {
+            get {
+                return ResourceManager.GetString("ADMIN_PANEL_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin.
         /// </summary>
         internal static string ADMIN_ROLE {
@@ -142,6 +160,15 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GeneralNavigation.
+        /// </summary>
+        internal static string GENERAL_NAVIGATION {
+            get {
+                return ResourceManager.GetString("GENERAL_NAVIGATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SHA1.
         /// </summary>
         internal static string HASH_ALGORITHM {
@@ -178,11 +205,38 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NavigationType.
+        /// </summary>
+        internal static string NAVIGATION_TYPE {
+            get {
+                return ResourceManager.GetString("NAVIGATION_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string NONE_ROLE {
+            get {
+                return ResourceManager.GetString("NONE_ROLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PageTitle.
         /// </summary>
         internal static string PAGE_TITLE {
             get {
                 return ResourceManager.GetString("PAGE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Личный кабинет.
+        /// </summary>
+        internal static string PERSON_CABINET {
+            get {
+                return ResourceManager.GetString("PERSON_CABINET", resourceCulture);
             }
         }
         
@@ -304,11 +358,11 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ВМК.
+        ///   Looks up a localized string similar to VMK.
         /// </summary>
-        internal static string VMK_DEPARTMENT_TITLE {
+        internal static string VMK_DEPARTMENT_ALIAS {
             get {
-                return ResourceManager.GetString("VMK_DEPARTMENT_TITLE", resourceCulture);
+                return ResourceManager.GetString("VMK_DEPARTMENT_ALIAS", resourceCulture);
             }
         }
     }

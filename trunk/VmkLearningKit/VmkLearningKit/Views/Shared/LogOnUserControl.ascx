@@ -1,11 +1,13 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%
-    if (Session["UserAuth"] != null && ((bool)Session["UserAuth"]) == true && Session["UserName"] != null &&
-        Session["UserRole"] != null)
+    try
     {
+        if (Session["UserAuth"] != null && ((bool)Session["UserAuth"]) == true && Session["UserName"] != null &&
+            Session["User"] != null)
+        {
 %>
 Добро пожаловать <b> <%= Html.Encode(Session["UserName"])%></b>! <br />
-<% 
+<% /*
         string title = null;
         switch (((string)Session["UserRole"]))
         {
@@ -24,18 +26,24 @@
         }
         if (title != null)
         {
+    */
 %>
-[ <%= Html.ActionLink("Кабинет " + title, (string)Session["UserRole"], "Cabinet")%> ]
-<% } %>
+[ <%= Html.ActionLink(/*"Кабинет " + title*/ "Личный кабинет", "Menu", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%> ]
+<% // } %>
 [ <%= Html.ActionLink("Выйти", "LogOff", "Auth")%> ]
 <%
     }
-    else
-    {
+        else
+        {
 %>
 [
 <%= Html.ActionLink("Войти", "LogOn", "Auth")%>
 ]
 <%
+    }
+    }
+    catch (Exception ex)
+    {
+        Utility.RedirectToErrorPage("LogOnUserControl.ascx: catch exception", ex);   
     }
 %>

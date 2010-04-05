@@ -1,8 +1,0 @@
-C:\UNN_REPOSITORY\VmkLearningKit\VmkLearningKit\bin\VmkLearningKit.dll
-C:\UNN_REPOSITORY\VmkLearningKit\VmkLearningKit\bin\VmkLearningKit.pdb
-C:\UNN_REPOSITORY\VmkLearningKit\VmkLearningKit\obj\Debug\ResolveAssemblyReference.cache
-C:\UNN_REPOSITORY\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.Constants.resources
-C:\UNN_REPOSITORY\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.Messages.resources
-C:\UNN_REPOSITORY\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.csproj.GenerateResource.Cache
-C:\UNN_REPOSITORY\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.dll
-C:\UNN_REPOSITORY\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.pdb

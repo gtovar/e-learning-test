@@ -7,8 +7,8 @@
     <title>
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
-    <link href="../../Content/style.css" rel="stylesheet" media="all" />
-
+    <link href="/Content/style.css" rel="stylesheet" media="all" />
+    <script type="text/javascript" src="/Scripts/Lib.js" />
     <script type="text/javascript"><!--        //--><![CDATA[//><!--
         // Для правильного отображения меню в IE6
         jsHover = function() {
@@ -26,7 +26,7 @@
     <div class="header">
     
         <div id="breadcrumbs">
-        e-ВМК
+        <%= Html.ActionLink("e-ВМК", "Index", "Home")%>
         <% /*
              <a href="">хлебные</a>&gt; <a href="">крошки</a> &gt; <a href="">здесь</a> */ %>
          </div>
@@ -39,6 +39,7 @@
         </div>
         <div id="user_head">
             <div id="logo">
+            <a href="/" class="transparent_link"><img class="transparent_img" src="/Content/Images/eunn-small.gif" alt="Главная страница" /></a>
             </div>
             <div id="system_name">
                 Система дистанционного обучения
@@ -55,23 +56,36 @@
     </div>
     <div class="menu">
         <ul id="nav">
-            <li><a href="#">Раздел сайта 1</a>
-                <ul>
-                    <li><a href="#">Страница 1</a></li>
-                    <li><a href="#">Страница 1.1</a></li>
-                    <li><a href="#">Страница 1.2</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Раздел 2</a>
-                <ul>
-                    <li><a href="#">Страница 2</a></li>
-                    <li><a href="#">Страница 2.1</a></li>
-                    <li><a href="#">Страница 2.2</a></li>
-                    <li><a href="#">Страница 2.3</a></li>
-                    <li><a href="#">Страница 2.4</a></li>
-                    <li><a href="#">Страница 2.5</a></li>
-                </ul>
-            </li>
+        <% 
+            if (null != ViewData["NavigationType"])
+            {
+                try
+                {
+                    string menuType = (string)ViewData["NavigationType"];
+                    if (null != menuType && !menuType.Trim().Equals(String.Empty))
+                    {
+                        switch (menuType)
+                        {
+                            case "GeneralNavigation":
+                                Html.RenderPartial("GeneralNavigation");
+                                break;
+                            default:
+                                Html.RenderPartial("GeneralNavigation");
+                                break;
+                        }
+                        Html.RenderPartial("AdminNavigation");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // FIXME: add some handler
+                }
+            }
+            else
+            {
+                Html.RenderPartial("GeneralNavigation");
+            }
+        %>
         </ul>
     </div>
     <div class="main">

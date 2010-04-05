@@ -10,13 +10,13 @@ namespace VmkLearningKit.Models.Domain
     /// <summary>
     /// Перечисление ролей
     /// </summary>
-    public enum Role
+    public struct Role
     {
-        None,
-        Student,
-        Professor,
-        Metodist,
-        Administrator
+        public static string None = Constants.NONE_ROLE;
+        public static string Admin = Constants.ADMIN_ROLE;
+        public static string Professor = Constants.PROFESSOR_ROLE;
+        public static string Metodist = Constants.METODIST_ROLE;
+        public static string Student = Constants.STUDENT_ROLE;
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ namespace VmkLearningKit.Models.Domain
         /// <summary>
         /// Уровень доступа пользователя
         /// </summary>
-        private Role role = Role.None;
+        private List<string> roles = null;
 
         public User() {}
 
@@ -81,26 +81,30 @@ namespace VmkLearningKit.Models.Domain
             {
                 // выставляем необходимые свойства
                 isLoggedIn = true;
-
-                // получаем роль пользователя
-                switch (dbUser.Role)
+                string[] splitRoles = dbUser.Role.Split(',', ';');
+                roles = new List<string>();
+                foreach (string role in splitRoles)
                 {
-                    case "Student":
-                        role = Role.Student;
-                        break;
-                    case "Metodist":
-                        role = Role.Metodist;
-                        break;
-                    case "Professor":
-                        role = Role.Administrator;
-                        break;
-                    case "Admin":
-                        role = Role.Administrator;
-                        break;
-                    default:
-                        role = Role.None;
-                        lastError = Messages.WRONG_USER_ROLE;
-                        break;
+                    // получаем роль пользователя
+                    switch (role.Trim(' ', ',', ';'))
+                    {
+                        case "Student":
+                            roles.Add(Role.Student);
+                            break;
+                        case "Metodist":
+                            roles.Add(Role.Metodist);
+                            break;
+                        case "Professor":
+                            roles.Add(Role.Professor);
+                            break;
+                        case "Admin":
+                            roles.Add(Role.Admin);
+                            break;
+                        default:
+                            roles.Add(Role.None);
+                            lastError = Messages.WRONG_USER_ROLE;
+                            break;
+                    }
                 }
             }
         }
@@ -118,7 +122,44 @@ namespace VmkLearningKit.Models.Domain
         /// <summary>
         /// Уровень доступа пользователя
         /// </summary>
-        public Role Role { get { return role; } }
+        public List<string> Roles { get { return roles; } }
+
+        public bool HasRole(string role)
+        {
+            return roles.Contains(role);
+        }
+
+        public bool IsAdmin
+        {
+            get
+            {
+                return roles.Contains(Constants.ADMIN_ROLE);
+            }
+        }
+
+        public bool IsProfessor
+        {
+            get
+            {
+                return roles.Contains(Constants.PROFESSOR_ROLE);
+            }
+        }
+
+        public bool IsMetodist
+        {
+            get
+            {
+                return roles.Contains(Constants.METODIST_ROLE);
+            }
+        }
+
+        public bool IsStudent
+        {
+            get
+            {
+                return roles.Contains(Constants.STUDENT_ROLE);
+            }
+        }
 
         public Repository.User DbUser
         {

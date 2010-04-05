@@ -70,6 +70,7 @@
       <DependentUpon>Constants.resx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AbstractController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -133,6 +134,8 @@
     <Content Include="Views\Shared\GeneralMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\delete.png" />
+    <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\eunn-small.gif" />
     <Content Include="Content\Images\index2_close.gif" />
     <Content Include="Content\Images\index2_cn1.gif" />
@@ -145,7 +148,22 @@
     <Content Include="Content\Images\topshape.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Lib.js" />
+    <Content Include="Views\Admin\Chairs.aspx" />
+    <Content Include="Views\Admin\Departments.aspx" />
+    <Content Include="Views\Admin\EducationPlans.aspx" />
+    <Content Include="Views\Admin\Groups.aspx" />
+    <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\Admin\Metodists.aspx" />
+    <Content Include="Views\Admin\Professors.aspx" />
+    <Content Include="Views\Admin\Specialities.aspx" />
+    <Content Include="Views\Admin\SpecialityDisciplines.aspx" />
+    <Content Include="Views\Admin\Specializations.aspx" />
+    <Content Include="Views\Admin\Students.aspx" />
+    <Content Include="Views\Admin\Users.aspx" />
+    <Content Include="Views\Cabinet\AccountSettings.aspx" />
     <Content Include="Views\Cabinet\Admin.aspx" />
+    <Content Include="Views\Cabinet\Menu.aspx" />
     <Content Include="Views\Cabinet\Metodist.aspx" />
     <Content Include="Views\Cabinet\Professor.aspx" />
     <Content Include="Views\Cabinet\Student.aspx" />
@@ -154,8 +172,10 @@
     <Content Include="Views\Home\Specialities.aspx" />
     <Content Include="Views\Professor\Page.aspx" />
     <Content Include="Views\Shared\AboutDepartment.ascx" />
+    <Content Include="Views\Shared\AdminNavigation.ascx" />
     <Content Include="Views\Shared\ChairMenu.ascx" />
     <Content Include="Views\Shared\Error404.aspx" />
+    <Content Include="Views\Shared\GeneralNavigation.ascx" />
     <Content Include="Views\Shared\ProfessorMenu.ascx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.3.2.js" />

@@ -8,5 +8,6 @@ namespace VmkLearningKit.Models.Repository
     public interface IEducationPlanRepository : IRepository<EducationPlan>
     {
         IEnumerable<EducationPlan> GetAll();
+        EducationPlan GetByAlias(string alias);
     }
 }

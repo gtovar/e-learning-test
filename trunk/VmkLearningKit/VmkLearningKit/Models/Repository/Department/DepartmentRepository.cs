@@ -19,9 +19,9 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Departments.SingleOrDefault(d => d.Id == id);
         }
 
-        public Department GetByTitle(string departmentTitle)
+        public Department GetByAlias(string alias)
         {
-            return DataContext.Departments.SingleOrDefault(d => d.Title == departmentTitle);
+            return DataContext.Departments.SingleOrDefault(d => d.Alias == alias);
         }
 
         public IEnumerable<Department> GetAll()

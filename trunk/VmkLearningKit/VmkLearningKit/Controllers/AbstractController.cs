@@ -21,10 +21,10 @@ namespace VmkLearningKit.Controllers
             try
             {
                 ISpecialityRepository specialityRepository = repositoryManager.GetSpecialityRepository;
-                specialities = specialityRepository.GetAll(Constants.VMK_DEPARTMENT_TITLE);
+                specialities = specialityRepository.GetAll(Constants.VMK_DEPARTMENT_ALIAS);
 
                 IChairRepository chairRepository = repositoryManager.GetChairRepository;
-                chairs = chairRepository.GetAll(Constants.VMK_DEPARTMENT_TITLE);
+                chairs = chairRepository.GetAll(Constants.VMK_DEPARTMENT_ALIAS);
 
                 IEducationPlanRepository educationPlanRepository = repositoryManager.GetEducationPlanRepository;
                 educationPlans = educationPlanRepository.GetAll();
@@ -39,6 +39,7 @@ namespace VmkLearningKit.Controllers
             ViewData["EducationPlans"] = educationPlans;
             ViewData[Constants.MENU_TYPE] = Constants.GENERAL_MENU;
             ViewData[Constants.PAGE_TITLE] = Messages.MAIN_TITLE;
+            ViewData[Constants.NAVIGATION_TYPE] = Constants.GENERAL_NAVIGATION;
         }
     }
 }

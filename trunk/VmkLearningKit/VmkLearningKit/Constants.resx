@@ -123,6 +123,12 @@
   <data name="ACTION" xml:space="preserve">
     <value>Action</value>
   </data>
+  <data name="ADMIN_NAVIGAITON" xml:space="preserve">
+    <value>AdminNavigation</value>
+  </data>
+  <data name="ADMIN_PANEL_TITLE" xml:space="preserve">
+    <value>Администраторская панель</value>
+  </data>
   <data name="ADMIN_ROLE" xml:space="preserve">
     <value>Admin</value>
   </data>
@@ -144,6 +150,9 @@
   <data name="GENERAL_MENU" xml:space="preserve">
     <value>GeneralMenu</value>
   </data>
+  <data name="GENERAL_NAVIGATION" xml:space="preserve">
+    <value>GeneralNavigation</value>
+  </data>
   <data name="HASH_ALGORITHM" xml:space="preserve">
     <value>SHA1</value>
   </data>
@@ -156,8 +165,17 @@
   <data name="METODIST_ROLE" xml:space="preserve">
     <value>Metodist</value>
   </data>
+  <data name="NAVIGATION_TYPE" xml:space="preserve">
+    <value>NavigationType</value>
+  </data>
+  <data name="NONE_ROLE" xml:space="preserve">
+    <value>None</value>
+  </data>
   <data name="PAGE_TITLE" xml:space="preserve">
     <value>PageTitle</value>
+  </data>
+  <data name="PERSON_CABINET" xml:space="preserve">
+    <value>Личный кабинет</value>
   </data>
   <data name="PROFESSORS_ACTION_NAME" xml:space="preserve">
     <value>Professors</value>
@@ -198,7 +216,7 @@
   <data name="VIEW_PAGE_ERROR_404" xml:space="preserve">
     <value>Error404</value>
   </data>
-  <data name="VMK_DEPARTMENT_TITLE" xml:space="preserve">
-    <value>ВМК</value>
+  <data name="VMK_DEPARTMENT_ALIAS" xml:space="preserve">
+    <value>VMK</value>
   </data>
 </root>
