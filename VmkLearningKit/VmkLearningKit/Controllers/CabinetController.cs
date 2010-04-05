@@ -9,7 +9,7 @@ using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Controllers
 {
-    public class CabinetController : Controller
+    public class CabinetController : AbstractController
     {
         /// <summary>
         /// Action, отображающий форму кабинета администратора при обращении к domain.ru/Cabinet/Administrator
@@ -18,6 +18,8 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Admin()
         {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
             return View();
         }
 
@@ -28,6 +30,8 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Metodist()
         {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
             return View();
         }
 
@@ -38,6 +42,8 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Professor()
         {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
             return View();
         }
 
@@ -48,6 +54,32 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Student()
         {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+            return View();
+        }
+
+        /// <summary>
+        /// Action, отображающий форму меню (выбора опций управления) при обращении к domain.ru/Cabinet/Menu
+        /// </summary>
+        [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Menu()
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+            return View();
+        }
+
+        /// <summary>
+        /// Action, отображающий форму меню (выбора опций управления) при обращении к domain.ru/Cabinet/Menu
+        /// </summary>
+        [AuthorizeFilter(Roles = "Student, Admin, Professor, Metodist")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult AccountSettings()
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
             return View();
         }
 

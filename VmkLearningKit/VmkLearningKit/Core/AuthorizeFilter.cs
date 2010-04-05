@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Security;
+using VmkLearningKit.Models.Domain;
 
 namespace VmkLearningKit.Core
 {
@@ -13,13 +14,23 @@ namespace VmkLearningKit.Core
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var userRole = filterContext.HttpContext.Session[Constants.SESSION_USER_ROLE];
-            foreach (string definedRole in this.Roles.Split(','))
+            try
             {
-                if (userRole != null && userRole.ToString().Trim().Equals(definedRole))
+                User user = (User)filterContext.HttpContext.Session[Constants.SESSION_USER];
+                if (null != user)
                 {
-                    return;
+                    foreach (string definedRole in this.Roles.Split(','))
+                    {
+                        if (user.HasRole(definedRole.Trim()))
+                        {
+                            return;
+                        }
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Utility.RedirectToErrorPage("AuthorizeFilter: catch exception", ex);
             }
 
             filterContext.HttpContext.Response.Redirect(Constants.ERROR_404_URL);

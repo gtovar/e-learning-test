@@ -14,15 +14,17 @@
     }
     catch (Exception ex)
     {
-        Response.Redirect("/Home/Error/404");
+        Utility.RedirectToErrorPage("GeneralMenu.ascx: catch exception", ex);
     }%>
 <% } %>
-<span class="menu_lev1">Кафедры</span>
-<%/*= Html.ActionLink("Кафедры", "Chairs", "Home", new {id = ""}, new { @class = "menu_lev1" })*/%><br />
+<%/*= Html.ActionLink("Кафедры", "Chairs", "Home", new {id = ""}, new { @class = "menu_lev1" })*/%>
 <% if (null != ViewData["Chairs"])
    { %>
 <% try
    {
+       %>
+       <span class="menu_lev1">Кафедры</span>
+       <%
        foreach (Chair chair in (IEnumerable<Chair>)ViewData["Chairs"])
        { %>
 <%= Html.ActionLink(chair.Abbreviation, "Chairs", "Home", new { alias = Html.Encode(chair.Alias), additional = "" }, new { @class = "menu_lev2" })%>

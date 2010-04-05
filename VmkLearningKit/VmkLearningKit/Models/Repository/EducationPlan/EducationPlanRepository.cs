@@ -17,6 +17,11 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.EducationPlans.SingleOrDefault(ed => ed.Id == id);
         }
 
+        public EducationPlan GetByAlias(string alias)
+        {
+            return DataContext.EducationPlans.SingleOrDefault(s => s.Alias == alias);
+        }
+
         public IEnumerable<EducationPlan> GetAll()
         {
             return DataContext.EducationPlans.OrderBy(ed => ed.Id);

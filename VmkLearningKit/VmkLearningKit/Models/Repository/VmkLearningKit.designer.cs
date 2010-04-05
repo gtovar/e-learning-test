@@ -33,9 +33,6 @@ namespace VmkLearningKit.Models.Repository
     partial void InsertAnswer(Answer instance);
     partial void UpdateAnswer(Answer instance);
     partial void DeleteAnswer(Answer instance);
-    partial void InsertUser(User instance);
-    partial void UpdateUser(User instance);
-    partial void DeleteUser(User instance);
     partial void InsertAssignedTestVariant(AssignedTestVariant instance);
     partial void UpdateAssignedTestVariant(AssignedTestVariant instance);
     partial void DeleteAssignedTestVariant(AssignedTestVariant instance);
@@ -102,6 +99,9 @@ namespace VmkLearningKit.Models.Repository
     partial void InsertTopic(Topic instance);
     partial void UpdateTopic(Topic instance);
     partial void DeleteTopic(Topic instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public VmkLearningKitDataContext() : 
@@ -139,14 +139,6 @@ namespace VmkLearningKit.Models.Repository
 			get
 			{
 				return this.GetTable<Answer>();
-			}
-		}
-		
-		public System.Data.Linq.Table<User> Users
-		{
-			get
-			{
-				return this.GetTable<User>();
 			}
 		}
 		
@@ -325,6 +317,14 @@ namespace VmkLearningKit.Models.Repository
 				return this.GetTable<Topic>();
 			}
 		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
+			}
+		}
 	}
 	
 	[Table(Name="dbo.Answers")]
@@ -477,324 +477,6 @@ namespace VmkLearningKit.Models.Repository
 						this._QuestionId = default(long);
 					}
 					this.SendPropertyChanged("Question");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="dbo.Users")]
-	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _Id;
-		
-		private string _Login;
-		
-		private string _Password;
-		
-		private string _NickName;
-		
-		private string _Email;
-		
-		private string _SecondName;
-		
-		private string _FirstName;
-		
-		private string _Patronymic;
-		
-		private string _Role;
-		
-		private EntityRef<Professor> _Professor;
-		
-		private EntityRef<Student> _Student;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(long value);
-    partial void OnIdChanged();
-    partial void OnLoginChanging(string value);
-    partial void OnLoginChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnNickNameChanging(string value);
-    partial void OnNickNameChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnSecondNameChanging(string value);
-    partial void OnSecondNameChanged();
-    partial void OnFirstNameChanging(string value);
-    partial void OnFirstNameChanged();
-    partial void OnPatronymicChanging(string value);
-    partial void OnPatronymicChanged();
-    partial void OnRoleChanging(string value);
-    partial void OnRoleChanged();
-    #endregion
-		
-		public User()
-		{
-			this._Professor = default(EntityRef<Professor>);
-			this._Student = default(EntityRef<Student>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Login", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string Login
-		{
-			get
-			{
-				return this._Login;
-			}
-			set
-			{
-				if ((this._Login != value))
-				{
-					this.OnLoginChanging(value);
-					this.SendPropertyChanging();
-					this._Login = value;
-					this.SendPropertyChanged("Login");
-					this.OnLoginChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Password", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
-					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_NickName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string NickName
-		{
-			get
-			{
-				return this._NickName;
-			}
-			set
-			{
-				if ((this._NickName != value))
-				{
-					this.OnNickNameChanging(value);
-					this.SendPropertyChanging();
-					this._NickName = value;
-					this.SendPropertyChanged("NickName");
-					this.OnNickNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Email", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SecondName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string SecondName
-		{
-			get
-			{
-				return this._SecondName;
-			}
-			set
-			{
-				if ((this._SecondName != value))
-				{
-					this.OnSecondNameChanging(value);
-					this.SendPropertyChanging();
-					this._SecondName = value;
-					this.SendPropertyChanged("SecondName");
-					this.OnSecondNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FirstName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this.OnFirstNameChanging(value);
-					this.SendPropertyChanging();
-					this._FirstName = value;
-					this.SendPropertyChanged("FirstName");
-					this.OnFirstNameChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Patronymic", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string Patronymic
-		{
-			get
-			{
-				return this._Patronymic;
-			}
-			set
-			{
-				if ((this._Patronymic != value))
-				{
-					this.OnPatronymicChanging(value);
-					this.SendPropertyChanging();
-					this._Patronymic = value;
-					this.SendPropertyChanged("Patronymic");
-					this.OnPatronymicChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Role", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
-		public string Role
-		{
-			get
-			{
-				return this._Role;
-			}
-			set
-			{
-				if ((this._Role != value))
-				{
-					this.OnRoleChanging(value);
-					this.SendPropertyChanging();
-					this._Role = value;
-					this.SendPropertyChanged("Role");
-					this.OnRoleChanged();
-				}
-			}
-		}
-		
-		[Association(Name="User_Professor", Storage="_Professor", ThisKey="Id", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
-		public Professor Professor
-		{
-			get
-			{
-				return this._Professor.Entity;
-			}
-			set
-			{
-				Professor previousValue = this._Professor.Entity;
-				if (((previousValue != value) 
-							|| (this._Professor.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Professor.Entity = null;
-						previousValue.User = null;
-					}
-					this._Professor.Entity = value;
-					if ((value != null))
-					{
-						value.User = this;
-					}
-					this.SendPropertyChanged("Professor");
-				}
-			}
-		}
-		
-		[Association(Name="User_Student", Storage="_Student", ThisKey="Id", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
-		public Student Student
-		{
-			get
-			{
-				return this._Student.Entity;
-			}
-			set
-			{
-				Student previousValue = this._Student.Entity;
-				if (((previousValue != value) 
-							|| (this._Student.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Student.Entity = null;
-						previousValue.User = null;
-					}
-					this._Student.Entity = value;
-					if ((value != null))
-					{
-						value.User = this;
-					}
-					this.SendPropertyChanged("Student");
 				}
 			}
 		}
@@ -1663,7 +1345,13 @@ namespace VmkLearningKit.Models.Repository
 		
 		private long _Id;
 		
+		private string _Alias;
+		
 		private string _Title;
+		
+		private string _Abbreviation;
+		
+		private string _Description;
 		
 		private EntitySet<Chair> _Chairs;
 		
@@ -1679,8 +1367,14 @@ namespace VmkLearningKit.Models.Repository
     partial void OnCreated();
     partial void OnIdChanging(long value);
     partial void OnIdChanged();
+    partial void OnAliasChanging(string value);
+    partial void OnAliasChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
+    partial void OnAbbreviationChanging(string value);
+    partial void OnAbbreviationChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
     #endregion
 		
 		public Department()
@@ -1712,6 +1406,26 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
+		[Column(Storage="_Alias", DbType="NVarChar(64)")]
+		public string Alias
+		{
+			get
+			{
+				return this._Alias;
+			}
+			set
+			{
+				if ((this._Alias != value))
+				{
+					this.OnAliasChanging(value);
+					this.SendPropertyChanging();
+					this._Alias = value;
+					this.SendPropertyChanged("Alias");
+					this.OnAliasChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
 		public string Title
 		{
@@ -1728,6 +1442,46 @@ namespace VmkLearningKit.Models.Repository
 					this._Title = value;
 					this.SendPropertyChanged("Title");
 					this.OnTitleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Abbreviation", DbType="NVarChar(64)")]
+		public string Abbreviation
+		{
+			get
+			{
+				return this._Abbreviation;
+			}
+			set
+			{
+				if ((this._Abbreviation != value))
+				{
+					this.OnAbbreviationChanging(value);
+					this.SendPropertyChanging();
+					this._Abbreviation = value;
+					this.SendPropertyChanged("Abbreviation");
+					this.OnAbbreviationChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
 				}
 			}
 		}
@@ -6051,7 +5805,9 @@ namespace VmkLearningKit.Models.Repository
 		
 		private long _ChairId;
 		
-		private System.Nullable<long> _EducationPlanId;
+		private long _EducationPlanId;
+		
+		private string _Alias;
 		
 		private string _Title;
 		
@@ -6073,8 +5829,10 @@ namespace VmkLearningKit.Models.Repository
     partial void OnSpecialityIdChanged();
     partial void OnChairIdChanging(long value);
     partial void OnChairIdChanged();
-    partial void OnEducationPlanIdChanging(System.Nullable<long> value);
+    partial void OnEducationPlanIdChanging(long value);
     partial void OnEducationPlanIdChanged();
+    partial void OnAliasChanging(string value);
+    partial void OnAliasChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     #endregion
@@ -6156,8 +5914,8 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Column(Storage="_EducationPlanId", DbType="BigInt")]
-		public System.Nullable<long> EducationPlanId
+		[Column(Storage="_EducationPlanId", DbType="BigInt NOT NULL")]
+		public long EducationPlanId
 		{
 			get
 			{
@@ -6176,6 +5934,26 @@ namespace VmkLearningKit.Models.Repository
 					this._EducationPlanId = value;
 					this.SendPropertyChanged("EducationPlanId");
 					this.OnEducationPlanIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Alias", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Alias
+		{
+			get
+			{
+				return this._Alias;
+			}
+			set
+			{
+				if ((this._Alias != value))
+				{
+					this.OnAliasChanging(value);
+					this.SendPropertyChanging();
+					this._Alias = value;
+					this.SendPropertyChanged("Alias");
+					this.OnAliasChanged();
 				}
 			}
 		}
@@ -6274,7 +6052,7 @@ namespace VmkLearningKit.Models.Repository
 					}
 					else
 					{
-						this._EducationPlanId = default(Nullable<long>);
+						this._EducationPlanId = default(long);
 					}
 					this.SendPropertyChanged("EducationPlan");
 				}
@@ -6776,6 +6554,324 @@ namespace VmkLearningKit.Models.Repository
 		{
 			this.SendPropertyChanging();
 			entity.Topic = null;
+		}
+	}
+	
+	[Table(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _Id;
+		
+		private string _Login;
+		
+		private string _Password;
+		
+		private string _NickName;
+		
+		private string _Email;
+		
+		private string _SecondName;
+		
+		private string _FirstName;
+		
+		private string _Patronymic;
+		
+		private string _Role;
+		
+		private EntityRef<Professor> _Professor;
+		
+		private EntityRef<Student> _Student;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(long value);
+    partial void OnIdChanged();
+    partial void OnLoginChanging(string value);
+    partial void OnLoginChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnNickNameChanging(string value);
+    partial void OnNickNameChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnSecondNameChanging(string value);
+    partial void OnSecondNameChanged();
+    partial void OnFirstNameChanging(string value);
+    partial void OnFirstNameChanged();
+    partial void OnPatronymicChanging(string value);
+    partial void OnPatronymicChanged();
+    partial void OnRoleChanging(string value);
+    partial void OnRoleChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Professor = default(EntityRef<Professor>);
+			this._Student = default(EntityRef<Student>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Login", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Login
+		{
+			get
+			{
+				return this._Login;
+			}
+			set
+			{
+				if ((this._Login != value))
+				{
+					this.OnLoginChanging(value);
+					this.SendPropertyChanging();
+					this._Login = value;
+					this.SendPropertyChanged("Login");
+					this.OnLoginChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Password", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_NickName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string NickName
+		{
+			get
+			{
+				return this._NickName;
+			}
+			set
+			{
+				if ((this._NickName != value))
+				{
+					this.OnNickNameChanging(value);
+					this.SendPropertyChanging();
+					this._NickName = value;
+					this.SendPropertyChanged("NickName");
+					this.OnNickNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Email", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SecondName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string SecondName
+		{
+			get
+			{
+				return this._SecondName;
+			}
+			set
+			{
+				if ((this._SecondName != value))
+				{
+					this.OnSecondNameChanging(value);
+					this.SendPropertyChanging();
+					this._SecondName = value;
+					this.SendPropertyChanged("SecondName");
+					this.OnSecondNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_FirstName", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this.OnFirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._FirstName = value;
+					this.SendPropertyChanged("FirstName");
+					this.OnFirstNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Patronymic", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Patronymic
+		{
+			get
+			{
+				return this._Patronymic;
+			}
+			set
+			{
+				if ((this._Patronymic != value))
+				{
+					this.OnPatronymicChanging(value);
+					this.SendPropertyChanging();
+					this._Patronymic = value;
+					this.SendPropertyChanged("Patronymic");
+					this.OnPatronymicChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Role", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Role
+		{
+			get
+			{
+				return this._Role;
+			}
+			set
+			{
+				if ((this._Role != value))
+				{
+					this.OnRoleChanging(value);
+					this.SendPropertyChanging();
+					this._Role = value;
+					this.SendPropertyChanged("Role");
+					this.OnRoleChanged();
+				}
+			}
+		}
+		
+		[Association(Name="User_Professor", Storage="_Professor", ThisKey="Id", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
+		public Professor Professor
+		{
+			get
+			{
+				return this._Professor.Entity;
+			}
+			set
+			{
+				Professor previousValue = this._Professor.Entity;
+				if (((previousValue != value) 
+							|| (this._Professor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Professor.Entity = null;
+						previousValue.User = null;
+					}
+					this._Professor.Entity = value;
+					if ((value != null))
+					{
+						value.User = this;
+					}
+					this.SendPropertyChanged("Professor");
+				}
+			}
+		}
+		
+		[Association(Name="User_Student", Storage="_Student", ThisKey="Id", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
+		public Student Student
+		{
+			get
+			{
+				return this._Student.Entity;
+			}
+			set
+			{
+				Student previousValue = this._Student.Entity;
+				if (((previousValue != value) 
+							|| (this._Student.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Student.Entity = null;
+						previousValue.User = null;
+					}
+					this._Student.Entity = value;
+					if ((value != null))
+					{
+						value.User = this;
+					}
+					this.SendPropertyChanged("Student");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

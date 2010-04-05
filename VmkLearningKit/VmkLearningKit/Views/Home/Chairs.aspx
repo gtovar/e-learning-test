@@ -12,18 +12,21 @@
             {%>
     <h2>
         <%= ((Chair)ViewData["Chair"]).Title%></h2>
-    <% if(null == ViewData["Action"] || ViewData["Action"].ToString().Trim().Equals(String.Empty) || ViewData["Action"].ToString().Equals("About"))
+    <% if (null == ViewData["Action"] || ViewData["Action"].ToString().Trim().Equals(String.Empty) || ViewData["Action"].ToString().Equals("About"))
        { %>
-       <div class="description">
-       <%= Html.Encode(((Chair)ViewData["Chair"]).Description) %>
-       </div>
-    <% } 
-       else if(null != ViewData["Action"] || ViewData["Action"].ToString().Trim().Equals("Professors")) 
+    <div class="description">
+        <%= Html.Encode(((Chair)ViewData["Chair"]).Description) %>
+    </div>
+    <% }
+       else if (null != ViewData["Action"] || ViewData["Action"].ToString().Trim().Equals("Professors"))
        {%>
     <h4 style="margin-top: 10px; margin-bottom: 5px;">
         Преподаватели кафедры</h4>
     <table width="100%" border="1">
         <tr class="table_header">
+            <th>
+                №
+            </th>
             <th>
                 ФИО
             </th>
@@ -36,12 +39,16 @@
             <th>
                 Должность
             </th>
-            </th>
         </tr>
-        <%  foreach (Professor professor in (IEnumerable<Professor>)((Chair)ViewData["Chair"]).Professors)
+        <% 
+            int i = 1;
+            foreach (Professor professor in (IEnumerable<Professor>)((Chair)ViewData["Chair"]).Professors)
             {                    
         %>
         <tr class="table_row">
+            <td style="padding: 7px;">
+                <%= i %>
+            </td>
             <td style="padding: 7px;">
                 <%= Html.ActionLink(Html.Encode(professor.User.SecondName + " " +
                 professor.User.FirstName + " " +
@@ -67,7 +74,8 @@
                 <%= Html.Encode(professor.Position) %>
             </td>
         </tr>
-        <% } %>
+        <% i++;
+            } %>
     </table>
     <%
         }

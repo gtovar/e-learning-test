@@ -14,12 +14,17 @@ namespace VmkLearningKit.Models.Repository
 
         public Professor GetById(long id)
         {
-            return DataContext.Professors.SingleOrDefault(t => t.UserId == id);
+            return DataContext.Professors.SingleOrDefault(p => p.UserId == id);
         }
 
         public Professor GetByNickName(string NickName)
         {
-            return DataContext.Professors.SingleOrDefault(s => s.User.NickName == NickName);
+            return DataContext.Professors.SingleOrDefault(p => p.User.NickName == NickName);
+        }
+
+        public IEnumerable<Professor> GetAll(string chairAlias)
+        {
+            return DataContext.Professors.Where(p => p.Chair.Alias == chairAlias);
         }
 
         public void Delete(Professor obj)

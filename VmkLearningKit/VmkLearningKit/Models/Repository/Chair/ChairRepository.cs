@@ -17,9 +17,9 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Chairs.SingleOrDefault(ch => ch.Id == id);
         }
 
-        public IEnumerable<Chair> GetAll(string departmentTitle)
+        public IEnumerable<Chair> GetAll(string departmentAlias)
         {
-            return DataContext.Chairs.Where(ch => ch.Department.Title == departmentTitle);
+            return DataContext.Chairs.Where(ch => ch.Department.Alias == departmentAlias);
         }
 
         public Chair GetByAlias(string alias)

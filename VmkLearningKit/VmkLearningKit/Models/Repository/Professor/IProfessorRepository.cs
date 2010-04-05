@@ -8,5 +8,6 @@ namespace VmkLearningKit.Models.Repository
     public interface IProfessorRepository : IRepository<Professor>
     {
         Professor GetByNickName(string NickName);
+        IEnumerable<Professor> GetAll(string chairAlias);
     }
 }

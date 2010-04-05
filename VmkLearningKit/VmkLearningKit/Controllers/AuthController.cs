@@ -55,7 +55,6 @@ namespace VmkLearningKit.Controllers
                 Session.Add(Constants.SESSION_USER_AUTH, true);
                 Session.Add(Constants.SESSION_USER, user);
                 Session.Add(Constants.SESSION_USER_NAME, user.Name);
-                Session.Add(Constants.SESSION_USER_ROLE, user.DbUser.Role);
             }
 
             return Redirect(Constants.HOME_URL);
@@ -69,7 +68,6 @@ namespace VmkLearningKit.Controllers
         {
             Session.Remove(Constants.SESSION_USER_AUTH);
             Session.Remove(Constants.SESSION_USER);
-            Session.Remove(Constants.SESSION_USER_ROLE);
             Session.Remove(Constants.SESSION_USER_NAME);
 
             return Redirect(Constants.HOME_URL);
