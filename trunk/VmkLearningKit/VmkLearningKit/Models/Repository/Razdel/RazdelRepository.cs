@@ -25,6 +25,11 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Razdels.AsEnumerable<Razdel>();
         }
 
+        public string GetTitle(long id)
+        {
+            return GetById(id).Title;
+        }
+
         #endregion
 
         #region Set

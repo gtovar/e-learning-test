@@ -14,6 +14,11 @@ namespace VmkLearningKit.Models.Repository
 
         #region Get
 
+        public long GetRazdelIdByQuestionId(long id)
+        {
+            return GetById(id).RazdelId;
+        }
+
         public Question GetById(long id)
         {
             return DataContext.Questions.SingleOrDefault(t => t.Id == id);
