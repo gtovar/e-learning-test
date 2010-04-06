@@ -24,13 +24,18 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Answers.AsEnumerable<Answer>();
         }
 
-        public IEnumerable<Answer> GetAllAnswersByQuestionId(int questionId)
+        public IEnumerable<Answer> GetAllAnswersByQuestionId(long questionId)
         {
             var result = (from c in DataContext.Answers
                           where c.QuestionId == questionId
                           select c);
 
             return (IEnumerable<Answer>)result;
+        }
+
+        public long GetQuestionIdByAnswerId(long id)
+        {
+            return GetById(id).QuestionId;
         }
 
         #endregion

@@ -8,7 +8,8 @@ namespace VmkLearningKit.Models.Repository
     public interface IAnswerRepository : IRepository<Answer>
     {
         IEnumerable<Answer> GetAll();
-        IEnumerable<Answer> GetAllAnswersByQuestionId(int questionId);
+        IEnumerable<Answer> GetAllAnswersByQuestionId(long questionId);
+        long GetQuestionIdByAnswerId(long id);
         void Add(Answer obj);
         void UpdateById(long updatedObjId, long newObjQuestionId, string newObjText, double newObjScore);
         void UpdateById(long updatedObjId, string newObjText, double newObjScore);
