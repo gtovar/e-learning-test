@@ -25,12 +25,6 @@
     <ul>
         <li>
             <%= Html.ActionLink("Академические группы", "Groups", "Admin") %></li>
-        <li>
-            <%= Html.ActionLink("Cтуденты", "Students", "Admin") %></li>
-        <li>
-            <%= Html.ActionLink("Преподаватели", "Professors", "Admin") %></li>
-        <li>
-            <%= Html.ActionLink("Методисты", "Metodists", "Admin") %></li>
     </ul>
 </li>
 <% }

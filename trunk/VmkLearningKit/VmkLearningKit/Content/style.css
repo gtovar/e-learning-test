@@ -238,6 +238,25 @@ a:hover{
 	height:100%;
 }
 
+.text_box
+{
+    width: 350px;
+    font-size: 15px;
+}
+
+.text_area
+{
+    width: 350px;
+    height: 200px;
+    font-size: 15px;
+}
+
+.submit
+{
+    width: 100px;
+    height: 30px;
+}
+
 .description 
 {
     margin-top: 10px;
