@@ -79,6 +79,42 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /Views/Admin/Chair/.
+        /// </summary>
+        internal static string ADMIN_CHAIR_VIEWS {
+            get {
+                return ResourceManager.GetString("ADMIN_CHAIR_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Views/Admin/Department/.
+        /// </summary>
+        internal static string ADMIN_DEPARTMENT_VIEWS {
+            get {
+                return ResourceManager.GetString("ADMIN_DEPARTMENT_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Views/Admin/EducationPlan/.
+        /// </summary>
+        internal static string ADMIN_EDUCATION_PLAN_VIEWS {
+            get {
+                return ResourceManager.GetString("ADMIN_EDUCATION_PLAN_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Views/Admin/Group/.
+        /// </summary>
+        internal static string ADMIN_GROUP_VIEWS {
+            get {
+                return ResourceManager.GetString("ADMIN_GROUP_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AdminNavigation.
         /// </summary>
         internal static string ADMIN_NAVIGAITON {
@@ -102,6 +138,42 @@ namespace VmkLearningKit {
         internal static string ADMIN_ROLE {
             get {
                 return ResourceManager.GetString("ADMIN_ROLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Views/Admin/SpecialityDiscipline/.
+        /// </summary>
+        internal static string ADMIN_SPECIALITY_DISCIPLINE_VIEWS {
+            get {
+                return ResourceManager.GetString("ADMIN_SPECIALITY_DISCIPLINE_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Views/Admin/Speciality/.
+        /// </summary>
+        internal static string ADMIN_SPECIALITY_VIEWS {
+            get {
+                return ResourceManager.GetString("ADMIN_SPECIALITY_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Views/Admin/Specialization/.
+        /// </summary>
+        internal static string ADMIN_SPECIALIZATION_VIEWS {
+            get {
+                return ResourceManager.GetString("ADMIN_SPECIALIZATION_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Views/Admin/User/.
+        /// </summary>
+        internal static string ADMIN_USER_VIEWS {
+            get {
+                return ResourceManager.GetString("ADMIN_USER_VIEWS", resourceCulture);
             }
         }
         

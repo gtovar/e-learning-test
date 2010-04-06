@@ -21,13 +21,40 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Departments(string alias)
+        public ActionResult Departments(string alias, string additional)
         {
-            GeneralMenu();
-            ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
-            IEnumerable<Department> departments = repositoryManager.GetDepartmentRepository.GetAll();
+            IEnumerable<Department> departments = null;
+            Department department = null;
+            try
+            {
+                GeneralMenu();
+                ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
+                if (null != alias && !alias.Trim().Equals(String.Empty))
+                {
+                    switch (alias)
+                    {
+                        case "Add":
+                            return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Add.aspx");
+                            break;
+                        case "Edit":
+                            if (null != additional && !additional.Trim().Equals(String.Empty))
+                            {
+                                department = repositoryManager.GetDepartmentRepository.GetByAlias(additional);
+                                ViewData["Department"] = department;
+
+                                return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Edit.aspx", department);
+                            }
+                            break;
+                    }
+                }
+                departments = repositoryManager.GetDepartmentRepository.GetAll();
+            }
+            catch (Exception ex)
+            {
+                Utility.RedirectToErrorPage("AdminController.departments: catch exception", ex);
+            }
             ViewData["Departments"] = departments;
-            return View();
+            return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Departments.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -67,7 +94,7 @@ namespace VmkLearningKit.Controllers
             {
                 Redirect("/Admin/Chairs");
             }
-            return View();
+            return View(Constants.ADMIN_CHAIR_VIEWS + "Chairs.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -98,7 +125,7 @@ namespace VmkLearningKit.Controllers
             {
                 Utility.RedirectToErrorPage("AdminController.Specialities: catch exception", ex);
             }
-            return View();
+            return View(Constants.ADMIN_CHAIR_VIEWS + "Chairs.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -117,7 +144,7 @@ namespace VmkLearningKit.Controllers
             {
                 Utility.RedirectToErrorPage("AdminController.EducationPlans: catch exception", ex);
             }
-            return View();
+            return View(Constants.ADMIN_EDUCATION_PLAN_VIEWS + "EducationPlans.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -157,7 +184,7 @@ namespace VmkLearningKit.Controllers
             {
                 Redirect("/Admin/Specialities");
             }
-            return View();
+            return View(Constants.ADMIN_SPECIALITY_VIEWS + "Specialities.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -188,7 +215,7 @@ namespace VmkLearningKit.Controllers
             {
                 Utility.RedirectToErrorPage("AdminController.Specialities: catch exception", ex);
             }
-            return View();
+            return View(Constants.ADMIN_SPECIALITY_VIEWS + "Specialities.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -270,7 +297,7 @@ namespace VmkLearningKit.Controllers
             {
                 Redirect("/Admin/Specializations");
             }
-            return View();
+            return View(Constants.ADMIN_SPECIALIZATION_VIEWS + "Specializations.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -327,7 +354,7 @@ namespace VmkLearningKit.Controllers
             {
                 Utility.RedirectToErrorPage("AdminController.Specializations: catch exception", ex);
             }
-            return View();
+            return View(Constants.ADMIN_SPECIALIZATION_VIEWS + "Specializations.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -427,7 +454,7 @@ namespace VmkLearningKit.Controllers
             {
                 Redirect("/Admin/SpecialityDisciplines");
             }
-            return View();
+            return View(Constants.ADMIN_SPECIALITY_DISCIPLINE_VIEWS + "SpecialityDisciplines.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -496,7 +523,7 @@ namespace VmkLearningKit.Controllers
             {
                 Utility.RedirectToErrorPage("AdminController.SpecialityDisciplines: catch exception", ex);
             }
-            return View();
+            return View(Constants.ADMIN_SPECIALITY_DISCIPLINE_VIEWS + "SpecialityDisciplines.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -504,31 +531,7 @@ namespace VmkLearningKit.Controllers
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
-            return View();
-        }
-
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Students()
-        {
-            GeneralMenu();
-            ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
-            return View();
-        }
-
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Professors()
-        {
-            GeneralMenu();
-            ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
-            return View();
-        }
-
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Metodists()
-        {
-            GeneralMenu();
-            ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
-            return View();
+            return View(Constants.ADMIN_USER_VIEWS + "Users.aspx");
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -536,7 +539,7 @@ namespace VmkLearningKit.Controllers
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
-            return View();
+            return View(Constants.ADMIN_GROUP_VIEWS + "Groups.aspx");
         }
 
     }

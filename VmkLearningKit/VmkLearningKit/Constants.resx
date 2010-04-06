@@ -123,6 +123,18 @@
   <data name="ACTION" xml:space="preserve">
     <value>Action</value>
   </data>
+  <data name="ADMIN_CHAIR_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Chair/</value>
+  </data>
+  <data name="ADMIN_DEPARTMENT_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Department/</value>
+  </data>
+  <data name="ADMIN_EDUCATION_PLAN_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/EducationPlan/</value>
+  </data>
+  <data name="ADMIN_GROUP_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Group/</value>
+  </data>
   <data name="ADMIN_NAVIGAITON" xml:space="preserve">
     <value>AdminNavigation</value>
   </data>
@@ -131,6 +143,18 @@
   </data>
   <data name="ADMIN_ROLE" xml:space="preserve">
     <value>Admin</value>
+  </data>
+  <data name="ADMIN_SPECIALITY_DISCIPLINE_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/SpecialityDiscipline/</value>
+  </data>
+  <data name="ADMIN_SPECIALITY_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Speciality/</value>
+  </data>
+  <data name="ADMIN_SPECIALIZATION_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Specialization/</value>
+  </data>
+  <data name="ADMIN_USER_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/User/</value>
   </data>
   <data name="CHAIR_MENU" xml:space="preserve">
     <value>ChairMenu</value>
