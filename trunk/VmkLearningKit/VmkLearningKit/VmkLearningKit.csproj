@@ -73,6 +73,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CabinetController.cs" />
+    <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Core\AuthorizeFilter.cs" />
@@ -167,6 +168,8 @@
     <Content Include="Views\Cabinet\Metodist.aspx" />
     <Content Include="Views\Cabinet\Professor.aspx" />
     <Content Include="Views\Cabinet\Student.aspx" />
+    <Content Include="Views\Editor\Edit.aspx" />
+    <Content Include="Views\Editor\List.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Chairs.aspx" />
     <Content Include="Views\Home\Specialities.aspx" />
