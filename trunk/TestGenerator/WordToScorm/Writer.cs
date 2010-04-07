@@ -139,8 +139,10 @@ namespace WordToScorm
                     }
                 case QuestionType.YourAnswer:
                     {
-                        sw.WriteLine("<td><img src=\"http://localhost:3535/mslamrk,cols=20,id=" + (QID + 1) + ",type=" + Type + ",akey=" + Text + ",maxpts=" + Score + "\"></td>");
-                        sw.WriteLine("<td class=\"ANum\"></td>");
+                        //sw.WriteLine("<td><input type=\"text\" disabled name=\"Q" + QID + "_" + AID + "\" size=\"20\" value=\"\"></td>");
+                        sw.WriteLine("<td><img src=\"http://localhost:3535/mslamrk,cols=20,id=" + (QID + 1) + ",type=1,akey=" + Text + ",maxpts=" + Score + "\"></td>");
+                        //sw.WriteLine("<td class=\"ANum\"></td>");
+                        //sw.WriteLine("<td style=\"WIDTH: 100%\"></td>");
                         break;
                     }
             }
@@ -211,10 +213,7 @@ namespace WordToScorm
                     }
                 case QuestionType.Distributive:
                     {
-                        if(!test.NegativeMarks)
-                            sw.WriteLine("<td><input type=\"checkbox\" disabled name=\"Q" + QID + "\" value=\"" + (AID + 1) + " id=\"question_" +QID + "_" + (AID + 1) +"\" onclick=\"process()\"></td>");
-                        else
-                            sw.WriteLine("<td><input type=\"checkbox\" disabled name=\"Q" + QID + "\" value=\"" + (AID + 1) + " \"></td>");
+                        sw.WriteLine("<td><input type=\"checkbox\" disabled name=\"Q" + QID + "\" value=\"" + (AID + 1) + " \"></td>");
                         sw.WriteLine("<td class=\"ANum\"><nobr>" + (AID + 1) + ".</nobr></td>");
                         sw.WriteLine("<td class=\"AText\" width=\"100%\">" + Text + "</td>");
                         break;
@@ -222,8 +221,8 @@ namespace WordToScorm
                 case QuestionType.YourAnswer:
                     {
                         sw.WriteLine("<td><input type=\"text\" disabled name=\"Q" + QID + "_" + AID + "\" size=\"20\" value=\"\"></td>");
-                        sw.WriteLine("<td class=\"ANum\"></td>");
-                        sw.WriteLine("<td class=\"AText\" width=\"100%\"></td>");
+                        //sw.WriteLine("<td class=\"ANum\"></td>");
+                        //sw.WriteLine("<td class=\"AText\" width=\"100%\"></td>");
                         break;
                     }
             }
