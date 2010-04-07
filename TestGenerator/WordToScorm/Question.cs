@@ -57,16 +57,23 @@ namespace WordToScorm
 
         public void SaveImage(int ImageIndex, string FileName)
         {
-            imglst[ImageIndex].Save(FileName,
-                ImageFormat.Jpeg);
+            if (null != imglst && null != imglst[ImageIndex])
+            {
+                imglst[ImageIndex].Save(FileName,
+                    ImageFormat.Jpeg);
+            }
         }
 
         public void SaveImages(string FileName)
         {
             for (int i = 0; i < imglst.Count; i++)
-
-                imglst[i].Save(FileName + i,
-                ImageFormat.Jpeg);
+            {
+                if (null != imglst && null != imglst[i])
+                {
+                    imglst[i].Save(FileName + i,
+                    ImageFormat.Jpeg);
+                }
+            }
         }
 
         #endregion
