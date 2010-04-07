@@ -1,0 +1,5 @@
+C:\Documents and Settings\Дом\Рабочий стол\Новая папка\VmkLearningKit\QWord\bin\Debug\QWord.dll
+C:\Documents and Settings\Дом\Рабочий стол\Новая папка\VmkLearningKit\QWord\bin\Debug\QWord.pdb
+C:\Documents and Settings\Дом\Рабочий стол\Новая папка\VmkLearningKit\QWord\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Дом\Рабочий стол\Новая папка\VmkLearningKit\QWord\obj\Debug\QWord.dll
+C:\Documents and Settings\Дом\Рабочий стол\Новая папка\VmkLearningKit\QWord\obj\Debug\QWord.pdb

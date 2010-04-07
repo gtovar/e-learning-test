@@ -15,7 +15,7 @@ namespace VmkLearningKit.Controllers
     {
         /// <summary>
         /// Action 
-        /// domain/Editor/Index/id
+        /// domain/Editor/Index/
         /// </summary>
         /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Get)]
@@ -26,68 +26,68 @@ namespace VmkLearningKit.Controllers
 
         /// <summary>
         /// Action, отображающий полный список вопросов по разделу с идентификатором id
-        /// domain/Editor/List/id
+        /// domain/Editor/List/alias
         /// </summary>
-        /// <param name="id">идентификатор раздела</param>
+        /// <param name="alias">идентификатор раздела</param>
         /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult List(long id)
+        public ActionResult List(long alias)
         {
-            ViewData["QuestionsList"] = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelId(id);
-            
+            ViewData["QuestionsList"] = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelId(alias);
+
             return View();
         }
 
         /// <summary>
-        /// Action, отображающий подробную информацию (с возможностью редактирования) для вопроса с идентификатором id
+        /// Action, отображающий подробную информацию (с возможностью редактирования) для вопроса с идентификатором alias
         /// </summary>
-        /// <param name="id">идентификатор вопроса</param>
+        /// <param name="alias">идентификатор вопроса</param>
         /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Edit(long id)
+        public ActionResult Edit(long alias)
         {
-            ViewData["QuestionData"] = repositoryManager.GetQuestionRepository.GetById(id);
-            ViewData["AnswerData"]   = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(id);
+            ViewData["QuestionData"] = repositoryManager.GetQuestionRepository.GetById(alias);
+            ViewData["AnswerData"]   = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias);
 
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Edit(long id, Question question, IEnumerable<Answer> answerList)
+        public ActionResult Edit(long alias, Question question, IEnumerable<Answer> answerList)
         {
             return View();
         }
 
-        public ActionResult Delete(long id)
+        public ActionResult Delete(long alias)
         {
-            long razdelId = repositoryManager.GetQuestionRepository.GetRazdelIdByQuestionId(id);
+            long razdelId = repositoryManager.GetQuestionRepository.GetRazdelIdByQuestionId(alias);
 
-            repositoryManager.GetQuestionRepository.DeleteById(id);
+            repositoryManager.GetQuestionRepository.DeleteById(alias);
 
-            return RedirectToAction("Edit", new { id = razdelId });
+            return RedirectToAction("Edit", new { alias = razdelId });
         }
 
-        public ActionResult DeleteAnswer(long id)
+        public ActionResult DeleteAnswer(long alias)
         {
-            long questionId = repositoryManager.GetAnswerRepository.GetQuestionIdByAnswerId(id);
+            long questionId = repositoryManager.GetAnswerRepository.GetQuestionIdByAnswerId(alias);
 
-            repositoryManager.GetAnswerRepository.DeleteById(id);
+            repositoryManager.GetAnswerRepository.DeleteById(alias);
 
-            return RedirectToAction("Edit", new { id = questionId });
+            return RedirectToAction("Edit", new { alias = questionId });
         }
 
-        public ActionResult CreateAnswer(long id)
+        public ActionResult CreateAnswer(long alias)
         {
             Answer answer = new Answer();
 
-            answer.QuestionId = id;
-            answer.Question   = repositoryManager.GetQuestionRepository.GetById(id);
+            answer.QuestionId = alias;
+            answer.Question   = repositoryManager.GetQuestionRepository.GetById(alias);
             answer.Score      = 0;
             answer.Text       = "Текст ответа";
 
             repositoryManager.GetAnswerRepository.Add(answer);
 
-            return RedirectToAction("Edit", new { id = id });
+            return RedirectToAction("Edit", new { alias = alias });
         }
     }
 }

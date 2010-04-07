@@ -20,7 +20,7 @@ namespace VmkLearningKit.Core
             var userRole = httpContext.Session[Constants.SESSION_USER_ROLE];
             foreach (string definedRole in roles.Split(','))
             {
-                if (userRole != null && userRole.ToString().Trim().Equals(definedRole))
+                if (userRole != null && userRole.ToString().Trim().Equals(definedRole.Trim()))
                 {
                     return true;
                 }
