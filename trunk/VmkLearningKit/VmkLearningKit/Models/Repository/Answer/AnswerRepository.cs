@@ -49,13 +49,24 @@ namespace VmkLearningKit.Models.Repository
             DataContext.SubmitChanges();
         }
 
+        public void Add(long questionId, string text, double score)
+        {
+            Answer addedObj = new Answer();
+
+            addedObj.Text = text;
+            addedObj.Score = score;
+            addedObj.QuestionId = questionId;
+
+            Add(addedObj);
+        }
+
         public void UpdateById(long updatedObjId, long newObjQuestionId, string newObjText, double newObjScore)
         {
             Answer updatedObj = GetById(updatedObjId);
 
             updatedObj.QuestionId = newObjQuestionId;
-            updatedObj.Text       = newObjText;
-            updatedObj.Score      = newObjScore;
+            updatedObj.Text = newObjText;
+            updatedObj.Score = newObjScore;
 
             DataContext.SubmitChanges();
         }
@@ -64,8 +75,18 @@ namespace VmkLearningKit.Models.Repository
         {
             Answer updatedObj = GetById(updatedObjId);
 
-            updatedObj.Text       = newObjText;
-            updatedObj.Score      = newObjScore;
+            updatedObj.Text = newObjText;
+            updatedObj.Score = newObjScore;
+
+            DataContext.SubmitChanges();
+        }
+
+        public void Update(Answer answer)
+        {
+            Answer updatedObj = GetById(answer.Id);
+
+            updatedObj.Text = answer.Text;
+            updatedObj.Score = answer.Score;
 
             DataContext.SubmitChanges();
         }

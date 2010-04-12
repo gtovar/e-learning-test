@@ -168,6 +168,9 @@
   <data name="ERROR_URL" xml:space="preserve">
     <value>/Home/Error/</value>
   </data>
+  <data name="FIELD_MUST_NOT_BE_EMPTY" xml:space="preserve">
+    <value>Поле не может быть пустым</value>
+  </data>
   <data name="FORM_MESSAGE" xml:space="preserve">
     <value>Message</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="PROFESSOR_ROLE" xml:space="preserve">
     <value>Professor</value>
+  </data>
+  <data name="REGULAR_EXPRESSION_VALUE_WITH_POINT" xml:space="preserve">
+    <value>([1-9]\d*\.\d+)|([1-9]\d*)|([0])|([0]\.d+)</value>
   </data>
   <data name="SESSION_USER" xml:space="preserve">
     <value>User</value>

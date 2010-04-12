@@ -67,6 +67,11 @@ namespace VmkLearningKit.Models.Repository
 
         public void Delete(Razdel obj)
         {
+            foreach (Question question in obj.Questions)
+            {
+                DataContext.Questions.DeleteOnSubmit(question);
+            }
+
             DataContext.Razdels.DeleteOnSubmit(obj);
 
             DataContext.SubmitChanges();
@@ -74,6 +79,11 @@ namespace VmkLearningKit.Models.Repository
 
         public void DeleteById(long id)
         {
+            foreach (Question question in GetById(id).Questions)
+            {
+                DataContext.Questions.DeleteOnSubmit(question);
+            }
+
             DataContext.Razdels.DeleteOnSubmit(GetById(id));
 
             DataContext.SubmitChanges();

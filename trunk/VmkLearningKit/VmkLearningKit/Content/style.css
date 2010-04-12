@@ -1,161 +1,179 @@
-* {
-	margin:0;
-	padding:0;
-	
+*
+{
+	margin: 0;
+	padding: 0;
 }
 
-html {
-	height:100%;
-	margin:0;
-	padding:0;
-	min-width:1000px; 
+html
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	min-width: 1000px;
 }
 
-body{   
-	height:100%;
-	color:#666666;
-	font-family:verdana,arial,helvetica,sans-serif;
+body
+{
+	height: 100%;
+	color: #666666;
+	font-family: verdana,arial,helvetica,sans-serif;
 	font-size: 10pt;
 }
 
-a{
-	color:#0000ff;
+a
+{
+	color: #0000ff;
 }
-a:hover{
-	color:#aa00ff;
+a:hover
+{
+	color: #aa00ff;
 }
 
 /* Шапка  */
-.header{
+.header
+{
 	background-color: #FFF;
 	height: 120px;
-	width: expression(((document.documentElement.clientWidth || document.body.clientWidth) < 1000)? '1000px' : '100%')
+	width: expression(((document.documentElement.clientWidth || document.body.clientWidth) < 1000)?  '1000px' : '100%' );
 }
 
-#breadcrumbs {
-	float:left;
+#breadcrumbs
+{
+	float: left;
 	background-color: #eee;
-	padding:3px 5px;
+	padding: 3px 5px;
 	font-size: 8pt;
-	font-family:tahoma;
+	font-family: tahoma;
 }
-#breadcrumbs  a{
-	color:#777;
-	text-decoration:none;
+#breadcrumbs a
+{
+	color: #777;
+	text-decoration: none;
 }
 
-#admin_mail a{
-	
-	float:right;
-	padding:3px;
+#admin_mail a
+{
+	float: right;
+	padding: 3px;
 	font-size: 8pt;
-	color:#777;
-	font-family:tahoma;
-	text-decoration:none;
+	color: #777;
+	font-family: tahoma;
+	text-decoration: none;
 }
-#user_head{
-	clear:both;
+#user_head
+{
+	clear: both;
 }
 
 .transparent_link
 {
-    background-color:White; 
-    color:White; 
-    text-decoration:none;
+	background-color: White;
+	color: White;
+	text-decoration: none;
 }
 
 .transparent_img
 {
-    border:0;
-    text-decoration:none;
-    color:White;
+	border: 0;
+	text-decoration: none;
+	color: White;
 }
 
-#logo{
+#logo
+{
 	/* background: url(../../Content/Images/eunn-small.gif) no-repeat; */
-	height:75px;
-	width:75px;
-	margin:5px;
+	height: 75px;
+	width: 75px;
+	margin: 5px;
 	float: left;
 }
-#system_name{
+#system_name
+{
 	font-size: 20pt;
 	font-weight: bold;
-	padding-top:30px;
-	padding-left:10px;
-	float:left;
+	padding-top: 30px;
+	padding-left: 10px;
+	float: left;
 }
-#user_menu{
-	float:right;
-	padding:2px 2px;
-	text-align:right;
+#user_menu
+{
+	float: right;
+	padding: 2px 2px;
+	text-align: right;
 }
 
 
 /*Меню*/
-.menu{
-	clear:both;
+.menu
+{
+	clear: both;
 	background-color: #FFF;
 }
 
-#nav, #nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border: 1px solid #ccf;
-  background: #E2EFFF;
-  float: left;
+#nav, #nav ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ccf;
+	background: #E2EFFF;
+	float: left;
 }
-#nav li {
-  float: left;
-  position: relative;
-  background: #E2EFFF;
-  background: none;
-}
-
-#nav a {
-  color: #3764A0;
-  text-decoration: none;
-  display: block;
-  padding: 0.3em 0.5em;
-  background: #E2EFFF;
-}
-#nav a:hover {
-  color: #3764A0;
-  background: #F2F8FF;
-}
-#nav li:hover,
-#nav li.jshover {
-  background: #aaa;
+#nav li
+{
+	float: left;
+	position: relative;
+	background: #E2EFFF;
+	background: none;
 }
 
-#nav li ul {
-  display: none;
-  position: absolute;
-  background: #E2EFFF;
-  padding: 0.5em 0;
-  width: 9.99em;
+#nav a
+{
+	color: #3764A0;
+	text-decoration: none;
+	display: block;
+	padding: 0.3em 0.5em;
+	background: #E2EFFF;
 }
-#nav li li a {
-  width: 8.95em;
-  background: none;
+#nav a:hover
+{
+	color: #3764A0;
+	background: #F2F8FF;
 }
-#nav li:hover ul,
-#nav li.jshover ul {
-  display: block;
+#nav li:hover, #nav li.jshover
+{
+	background: #aaa;
 }
 
-#nav li:hover li ul,
-#nav li.jshover li ul {
-  display: none;
-  width: 9.99em;
-  top: -0.65em;
-  left: 8.5em;
-  left: 9.6em;
+#nav li ul
+{
+	display: none;
+	position: absolute;
+	background: #E2EFFF;
+	padding: 0.5em 0;
+	width: 9.99em;
 }
-#nav li:hover li:hover ul,
-#nav li.jshover li.jshover ul {
-  display: block;
+#nav li li a
+{
+	width: 8.95em;
+	background: none;
+}
+#nav li:hover ul, #nav li.jshover ul
+{
+	display: block;
+}
+
+#nav li:hover li ul, #nav li.jshover li ul
+{
+	display: none;
+	width: 9.99em;
+	top: -0.65em;
+	left: 8.5em;
+	left: 9.6em;
+}
+#nav li:hover li:hover ul, #nav li.jshover li.jshover ul
+{
+	display: block;
 }
 
 
@@ -163,107 +181,119 @@ a:hover{
 
 
 /* Контент*/
-.main{
+.main
+{
 	background: #D6E8FF url(../../Content/Images/pagetitlebkgd.gif) repeat-x;
-	clear:both;
-	padding-top:6px;
+	clear: both;
+	padding-top: 6px;
 }
-.main table{
-	border-spacing:0;
+.main table
+{
+	border-spacing: 0;
 }
-.main a{
-	text-decoration:none;
+.main a
+{
+	text-decoration: none;
 }
 
 .table_header
 {
-    background-color: Silver;
-    color: Black;
-    font-weight: bold;
+	background-color: Silver;
+	color: Black;
+	font-weight: bold;
 }
 
-.table_row 
+.table_row
 {
-    color: Black;
-    text-align:center;
+	color: Black;
+	text-align: center;
 }
 
-.left_col{
-	width:150px;
+.left_col
+{
+	width: 150px;
 	background: #84B1EC url(../../Content/Images/navshape.jpg) no-repeat;
-	padding-left:5px;
+	padding-left: 5px;
 }
 
-.menu_lev1{
+.menu_lev1
+{
 	font-size: 110%;
-	background: url(../../Content/Images/menu_icon.gif) no-repeat  0 5px;
-	padding-left:12px;
+	background: url(../../Content/Images/menu_icon.gif) no-repeat 0 5px;
+	padding-left: 12px;
 }
 
-.menu_lev2{
-	font-size:95%;
-	margin-left:20px;
+.menu_lev2
+{
+	font-size: 95%;
+	margin-left: 20px;
 }
-.menu_lev3{
+.menu_lev3
+{
 	font-size: 80%;
-	margin-left:35px;
+	margin-left: 35px;
 }
 
-.right_pagemargin {
-	background-color:#83B0EC;
-	background-image:url(../../Content/Images/navshape.jpg);
-	background-position:-143px 0;
-	background-repeat:no-repeat;
-	height:550px;
-	width:7px;
+.right_pagemargin
+{
+	background-color: #83B0EC;
+	background-image: url(../../Content/Images/navshape.jpg);
+	background-position: -143px 0;
+	background-repeat: no-repeat;
+	height: 550px;
+	width: 7px;
 }
 
-.additional_menu{
-	padding:5px;
-	width:140px;
+.additional_menu
+{
+	padding: 5px;
+	width: 140px;
 }
 
-.content_title{
-	color:#000;
-	height:50px;
+.content_title
+{
+	color: #000;
+	height: 50px;
 	background: #D6E8FF url(../../Content/Images/topshape.jpg) no-repeat;
-	font-size:18px;
-	font-weight:bold;
-	padding-left:5px;
+	font-size: 18px;
+	font-weight: bold;
+	padding-left: 5px;
 }
-.content{
+.content
+{
 	background: #fff;
-	padding:15px;
+	padding: 15px;
 	border: 1px solid #6F9DD9;
-	height:100%;
+	height: 100%;
 }
 
 .text_box
 {
-    width: 350px;
-    font-size: 15px;
+	width: 350px;
+	font-size: 15px;
 }
 
 .text_area
 {
-    width: 350px;
-    height: 200px;
-    font-size: 15px;
+	width: 350px;
+	height: 200px;
+	font-size: 15px;
 }
 
 .submit
 {
-    width: 100px;
-    height: 30px;
+	width: 100px;
+	height: 30px;
 }
 
-.description 
+.description
 {
-    margin-top: 10px;
-    margin-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
-.content h1{
+.content h1
+{
 }
 
 .content h2
@@ -274,81 +304,229 @@ a:hover{
 {
 }
 
-.content h4{
+.content h4
+{
 }
 
 .content #h4
 {
-    margin-left:10px; 
-    font-size:14px; 
-    font-weight:bold; 
+	margin-left: 10px;
+	font-size: 14px;
+	font-weight: bold;
 }
 
-.content #Login 
+.content #Login
 {
-    margin-top:10px;
-    margin-bottom:10px;
-    font-size: 15px;
-    width: 150px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 15px;
+	width: 150px;
 }
-.content #Password 
+.content #Password
 {
-    margin-top:5px;
-    margin-bottom:10px;
-    font-size: 15px;
-    width: 150px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 15px;
+	width: 150px;
 }
 .content #SubmitLogOn
 {
-    font-size: 15px;
-    width: 70px;
+	font-size: 15px;
+	width: 70px;
 }
 .content #helpMessage
 {
-    text-align: center;
-    margin-top:10px;
-    margin-bottom:5px;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 5px;
 }
 .content #error
 {
-    text-align: center;
-    font-size: 20px;
-    color: Red;
-    margin-top:5px;
-    margin-bottom:5px;
+	text-align: center;
+	font-size: 20px;
+	color: Red;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .content ul
 {
-    margin-left: 20px;
+	margin-left: 20px;
 }
 
 .content ul li
 {
-    margin-top: 7px;
+	margin-top: 7px;
 }
 
 .content a
 {
-    color:#3764A0;
-    text-decoration:none;
+	color: #3764A0;
+	text-decoration: none;
 }
 
 .content a:hover
 {
-    color:#3764A0;
-    text-decoration:underline;
+	color: #3764A0;
+	text-decoration: underline;
 }
 
 /*footer*/
 
-.footer{
-	clear:both;
+.footer
+{
+	clear: both;
 	background-color: #bbb;
-	width:100%;
+	width: 100%;
 	height: 50px;
 }
-.footer_text{
+.footer_text
+{
 	padding: 5px;
 }
 
+
+/* QuestionsList
+----------------------------------------------------------*/
+.QuestionsList
+{
+	width: 100%;
+	border-bottom: solid 1px #c4c4c4;
+}
+.QuestionsList .MainQuestionHeader
+{
+	position: relative;
+	background: #e8eef4;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	font-size: medium;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	height:13px;
+}
+.QuestionsList .MainQuestionHeader .QuestionNumber
+{
+	position: absolute;
+	left: 5px;
+}
+.QuestionsList .MainQuestionHeader .QuestionTitle
+{
+	position: absolute;
+	left: 50px;
+}
+.QuestionsList .MainQuestionHeader .QuestionType
+{
+	position: absolute;
+	right: 100px;
+}
+.QuestionsList .Question .QuestionHeader
+{
+	position: relative;
+	background: #edf5e1;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	font-size: small;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	height:13px;
+}
+.QuestionsList .Question .QuestionEditBlock
+{
+	position: relative;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	display: none;
+}
+.QuestionsList .Question .QuestionFooter
+{
+	position: relative;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	font-size: small;
+	height:20px;
+	display: none;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	border-bottom: solid 1px #c4c4c4;
+}
+.QuestionsList .Question .QuestionFooter .QuestionCancel
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionFooter .QuestionSave
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionHeader .QuestionNumber
+{
+	position: absolute;
+	left: 5px;
+}
+.QuestionsList .Question .QuestionHeader .QuestionTitle
+{
+	position: absolute;
+	left: 50px;
+}
+.QuestionsList .Question .QuestionHeader .QuestionType
+{
+	position: absolute;
+	right: 100px;
+}
+.QuestionsList .Question .QuestionHeader .QuestionEdit
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionHeader .QuestionDelete
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionFooter .AnswerAdd
+{
+	position: absolute;
+	top: 10px;
+	right: 70px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionEditBlock .AnswerRemove
+{
+	right: 10px;
+	cursor: pointer;
+}
+/*
+----------------------------------------------------------*/
+p
+{
+    margin-bottom: 20px;
+    margin-right: 10px;
+    line-height: 1.6em;
+}
+table
+{
+	padding: 5px 5px 5px 5px;
+}
+
+table th
+{
+	background-color: #e8eef4; 
+}
+
+table td 
+{
+	vertical-align:top;
+	padding: 5px 5px 5px 5px;
+}

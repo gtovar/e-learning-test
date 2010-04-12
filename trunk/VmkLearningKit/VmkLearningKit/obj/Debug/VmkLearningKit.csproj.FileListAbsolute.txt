@@ -14,3 +14,20 @@ C:\Documents and Settings\Дом\Рабочий стол\Новая папка (
 C:\Documents and Settings\Дом\Рабочий стол\Новая папка (2)\VmkLearningKit\obj\Debug\VmkLearningKit.csproj.GenerateResource.Cache
 C:\Documents and Settings\Дом\Рабочий стол\Новая папка (2)\VmkLearningKit\obj\Debug\VmkLearningKit.dll
 C:\Documents and Settings\Дом\Рабочий стол\Новая папка (2)\VmkLearningKit\obj\Debug\VmkLearningKit.pdb
+C:\Documents and Settings\Дом\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\bin\VmkLearningKit.dll
+C:\Documents and Settings\Дом\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\bin\VmkLearningKit.pdb
+C:\Documents and Settings\Дом\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Дом\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.Constants.resources
+C:\Documents and Settings\Дом\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.Messages.resources
+C:\Documents and Settings\Дом\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.csproj.GenerateResource.Cache
+C:\Documents and Settings\Дом\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.dll
+C:\Documents and Settings\Дом\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.pdb
+C:\Documents and Settings\Марина\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\bin\VmkLearningKit.dll
+C:\Documents and Settings\Марина\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\bin\VmkLearningKit.pdb
+C:\Documents and Settings\Марина\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Марина\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.Constants.resources
+C:\Documents and Settings\Марина\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.Messages.resources
+C:\Documents and Settings\Марина\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.csproj.GenerateResource.Cache
+C:\Documents and Settings\Марина\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.dll
+C:\Documents and Settings\Марина\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\obj\Debug\VmkLearningKit.pdb
+C:\Documents and Settings\Марина\Рабочий стол\VLK\VmkLearningKit\VmkLearningKit\bin\FredCK.FCKeditorV2.dll
