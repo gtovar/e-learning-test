@@ -56,9 +56,35 @@ namespace VmkLearningKit.Models.Repository
             return (IEnumerable<Question>)result;
         }
 
+        public int GetQuestionType(long id)
+        {
+            return GetById(id).Type;
+        }
+
         #endregion
 
         #region Set
+
+        public long Add(long razdelId, string title, int type, string text, byte canCommented)
+        {
+            Question newQuestion = new Question();
+
+            newQuestion.RazdelId            = razdelId;
+            newQuestion.Title               = title;
+            newQuestion.Type                = type;
+            newQuestion.Text                = text;
+            newQuestion.CanCommented        = canCommented;
+            newQuestion.IsDeleted           = VLKConstants.QUESTION_NOT_DELETED;
+            newQuestion.DoubleGroup         = VLKConstants.FAKE_VALUE;
+            newQuestion.ExclusionGroup      = VLKConstants.FAKE_VALUE;
+            newQuestion.AssignedCount       = VLKConstants.FAKE_VALUE;
+            newQuestion.RightAnswersCount   = VLKConstants.FAKE_VALUE;
+            newQuestion.WrongAnswersCount   = VLKConstants.FAKE_VALUE;
+
+            Add(newQuestion);
+
+            return newQuestion.Id;
+        }
 
         public void Add(Question obj)
         {
@@ -67,42 +93,13 @@ namespace VmkLearningKit.Models.Repository
             DataContext.SubmitChanges();
         }
 
-        public void UpdateById(long updatedObjId, 
-                               long newObjRazdelId, 
-                               int newObjType, 
-                               string newObjText, 
-                               int newObjDoubleGroup, 
-                               int newObjExclusionGroup, 
-                               byte newObjIsDeleted, 
-                               byte newObjCanCommented)
+        public void UpdateById(long updatedObjId, string title, string text, byte CanCommented)
         {
             Question updatedObj = GetById(updatedObjId);
 
-            updatedObj.RazdelId         = newObjRazdelId;
-            updatedObj.Type             = newObjType;
-            updatedObj.Text             = newObjText;
-            updatedObj.DoubleGroup      = newObjDoubleGroup;
-            updatedObj.ExclusionGroup   = newObjExclusionGroup;
-            updatedObj.IsDeleted        = newObjIsDeleted;
-            updatedObj.CanCommented     = newObjCanCommented;
-
-            DataContext.SubmitChanges();
-        }
-
-        public void UpdateById(long updatedObjId,
-                               string newObjText,
-                               int newObjDoubleGroup,
-                               int newObjExclusionGroup,
-                               byte newObjIsDeleted,
-                               byte newObjCanCommented)
-        {
-            Question updatedObj = GetById(updatedObjId);
-
-            updatedObj.Text             = newObjText;
-            updatedObj.DoubleGroup      = newObjDoubleGroup;
-            updatedObj.ExclusionGroup   = newObjExclusionGroup;
-            updatedObj.IsDeleted        = newObjIsDeleted;
-            updatedObj.CanCommented     = newObjCanCommented;
+            updatedObj.Title        = title;
+            updatedObj.Text         = text;
+            updatedObj.CanCommented = CanCommented;
 
             DataContext.SubmitChanges();
         }
@@ -135,6 +132,11 @@ namespace VmkLearningKit.Models.Repository
 
         public void Delete(Question obj)
         {
+            foreach (Answer answer in obj.Answers)
+            {
+                DataContext.Answers.DeleteOnSubmit(answer);
+            }
+
             DataContext.Questions.DeleteOnSubmit(obj);
 
             DataContext.SubmitChanges();
@@ -142,6 +144,11 @@ namespace VmkLearningKit.Models.Repository
 
         public void DeleteById(long id)
         {
+            foreach (Answer answer in GetById(id).Answers)
+            {
+                DataContext.Answers.DeleteOnSubmit(answer);
+            }
+            
             DataContext.Questions.DeleteOnSubmit(GetById(id));
 
             DataContext.SubmitChanges();
