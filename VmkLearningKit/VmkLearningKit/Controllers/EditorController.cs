@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using VmkLearningKit.Core;
 using VmkLearningKit.Models.Repository;
+using System.IO;
 
 namespace VmkLearningKit.Controllers
 {
@@ -226,14 +227,54 @@ namespace VmkLearningKit.Controllers
             return RedirectToAction("List", new { alias = alias });
         }
 
-        public ActionResult Upload()
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Upload(long alias)
         {
-            string targetPath = HttpContext.Server.MapPath(Request["folder"]) + "\\";
-            string targetFile = targetPath + Request.Files["Filedata"].FileName;
+            DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Uploads/Word"));
+            long docIndex           = targetDir.GetFiles("*.doc").Length;
+            
+            foreach (string inputTagName in Request.Files)
+            {
+                HttpPostedFileBase file = Request.Files[inputTagName];
+                if (file.ContentLength > 0)
+                {
+                    string filePath = HttpContext.Server.MapPath("/Uploads/Word") + "\\" + (docIndex).ToString() + ".doc";
+                    file.SaveAs(filePath);
 
-            Request.Files["Filedata"].SaveAs(targetFile);
+                    QWord.QReader reader = new QWord.QReader(HttpContext.Server.MapPath("/Uploads/Word") + "\\" + docIndex.ToString() + ".doc", HttpContext.Server.MapPath("/Uploads/Images"));
 
-            return View();
+                    reader.SaveAllImages();
+
+                    QWord.TestQuestionList testQuestionList = reader.ReadWordDocument();
+
+                    for (int i = 0; i < testQuestionList.Count; i++)
+                    {
+                        QWord.TestQuestion testQuestion = testQuestionList[i];
+
+                        int type = -1;
+                        switch (testQuestion.Type)
+                        {
+                            case QWord.QType.Simple:       type = VLKConstants.QUESTION_TYPE_SIMPLE;       break;
+                            case QWord.QType.Alternative:  type = VLKConstants.QUESTION_TYPE_ALTERNATIVE;  break;
+                            case QWord.QType.Distributive: type = VLKConstants.QUESTION_TYPE_DISTRIBUTIVE; break;
+                            case QWord.QType.Formula:      type = VLKConstants.QUESTION_TYPE_FORMULA;      break;
+
+                            default: return RedirectToAction("List", new { alias = alias });
+                        }
+
+                        long questionId = repositoryManager.GetQuestionRepository.Add(alias, VLKConstants.TITLE_IS_ABSENT, type, testQuestion.Question.Text, VLKConstants.QUESTION_CAN_NOT_COMMENTED);
+
+                        for (int j = 0; j < testQuestion.Answers.Count; j++)
+                        {
+                            repositoryManager.GetAnswerRepository.Add(questionId, testQuestion.Answers[j].Text, (double)testQuestion.Answers[j].Score);
+                        }
+
+                        ++docIndex;
+                    }
+                }
+            }
+
+            return RedirectToAction("List", new { alias = alias });
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

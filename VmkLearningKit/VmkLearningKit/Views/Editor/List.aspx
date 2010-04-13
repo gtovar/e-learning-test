@@ -64,6 +64,17 @@
 		    $("img[class=QuestionSave]").click(function(){
                 document.forms["QuestionForm"].submit();
             });
+            
+            $("#LoadFromFile").click(function(){
+                if ($("div[class=UploadContainer]").is(":hidden")) {
+                    $("div[class=QuestionEditBlock]").slideUp("slow").empty();
+                    $("div[class=QuestionFooter]").slideUp("slow");
+                    $("div[class=UploadContainer]").show("slow");                    
+                }
+                else {
+                    $("div[class=UploadContainer]").hide("slow");
+                }
+            });
 		});
     </script>
     
@@ -154,8 +165,18 @@
         </div>
         <br />
         <p>
-            <%= Html.ActionLink("Создать новый вопрос", "Create", new { alias = razdelId }, new { id = "CreateNew" })%>
+            <%= Html.ActionLink("Создать новый вопрос", "Create", new { alias = razdelId }, new { id = "CreateNew" })%> | 
+            <a id="LoadFromFile" style="cursor:pointer;">Загрузить из файла</a>
         </p>
-        
+        <div class="UploadContainer">
+            <% using (Html.BeginForm("Upload", "Editor", new { alias = razdelId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+               { %>
+                    <p>Выберите word-документ в формате <b>.doc</b> и нажмите кнопку <b>добавить</b></p>
+                    <p>
+                        <input type="file" id="FileUpload" name="FileUpload" value="Обзор" />
+                        <input type="submit" value="Добавить" />
+                    </p>
+            <% } %>
+        </div>
 
 </asp:Content>
