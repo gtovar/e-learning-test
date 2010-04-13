@@ -138,7 +138,7 @@ namespace QWord
         /// </summary>
         private void CloseWordDocument()
         {
-            Object saveChanges      = Type.Missing;
+            Object saveChanges      = false;
             Object originalFormat   = Type.Missing;
             Object routeDocument    = Type.Missing;
 

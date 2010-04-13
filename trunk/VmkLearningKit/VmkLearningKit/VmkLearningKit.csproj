@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Мои документы\Загрузки\FCKeditor.Net_2.6.3\bin\Release\2.0\FredCK.FCKeditorV2.dll</HintPath>
     </Reference>
+    <Reference Include="QWord, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\QWord\bin\Debug\QWord.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -578,6 +582,7 @@
     <Content Include="Scripts\Plugins\FCKeditor\fckconfig.js" />
     <Content Include="Scripts\Plugins\FCKeditor\fckeditor.js" />
     <Content Include="Scripts\Plugins\FCKeditor\fckstyles.xml" />
+    <Content Include="Scripts\Plugins\Form\form.js" />
     <Content Include="Scripts\Plugins\Uploadify\cancel.png" />
     <Content Include="Scripts\Plugins\Uploadify\jquery.uploadify.v2.1.0.js" />
     <Content Include="Scripts\Plugins\Uploadify\jquery.uploadify.v2.1.0.min.js" />
@@ -610,6 +615,7 @@
     <Content Include="Views\Editor\Edit.ascx" />
     <Content Include="Views\Editor\Create.aspx" />
     <Content Include="Views\Editor\List.aspx" />
+    <Content Include="Views\Editor\Upload.ascx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Chairs.aspx" />
     <Content Include="Views\Home\Specialities.aspx" />
