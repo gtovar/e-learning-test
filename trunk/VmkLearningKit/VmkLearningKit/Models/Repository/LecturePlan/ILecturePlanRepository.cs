@@ -7,5 +7,6 @@ namespace VmkLearningKit.Models.Repository
 {
     public interface ILecturePlanRepository : IRepository<LecturePlan>
     {
+        LecturePlan SetDateTime(long id, DateTime dateTime);
     }
 }

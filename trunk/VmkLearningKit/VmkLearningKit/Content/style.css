@@ -341,6 +341,15 @@ a:hover
 	margin-bottom: 5px;
 }
 
+.content .error
+{
+	text-align: center;
+	font-size: 13px;
+	color: Red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 .content ul
 {
 	margin-left: 20px;

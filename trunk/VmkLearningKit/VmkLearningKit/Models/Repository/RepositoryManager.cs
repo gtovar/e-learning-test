@@ -216,6 +216,21 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        private ILecturePlanRepository lecturePlanRepository;
+
+        public ILecturePlanRepository GetLecturePlanRepository
+        {
+            get
+            {
+                if (lecturePlanRepository == null)
+                {
+                    lecturePlanRepository = new LecturePlanRepository(DataContext);
+                }
+
+                return lecturePlanRepository;
+            }
+        }
+
         private IDisciplineRepository disciplineRepository;
 
         public IDisciplineRepository GetDisciplineRepository
