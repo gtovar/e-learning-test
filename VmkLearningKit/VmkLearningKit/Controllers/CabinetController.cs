@@ -112,10 +112,51 @@ namespace VmkLearningKit.Controllers
         /// <param name="additional">Алиас дисциплины</param>
         [AuthorizeFilter(Roles = "Professor")]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult LecturePlan(FormCollection form)
+        public ActionResult LecturePlan(FormCollection form, string alias, string additional)
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+
+            string lectruePlanDateString = form["lecturePlanDateArray"];
+            bool isDatesCorrect = true;
+            if (null != lectruePlanDateString && !lectruePlanDateString.Trim().Equals(String.Empty))
+            {
+                string[] lecturePlanIds = lectruePlanDateString.Split(',');
+                if (null != lecturePlanIds && lecturePlanIds.Length > 0)
+                {
+                    foreach (string lecturePlanId in lecturePlanIds)
+                    {
+                        string lecturePlanName = "LecturePlanDate_" + lecturePlanId.Trim();
+                        string lecturePlanDate = form[lecturePlanName];
+                        if (null != lecturePlanDate && !lecturePlanDate.Trim().Equals(String.Empty))
+                        {
+                            try
+                            {
+                                DateTime dateTime = DateTime.Parse(lecturePlanDate);
+                                RepositoryManager.GetRepositoryManager.GetLecturePlanRepository.SetDateTime(Convert.ToInt64(lecturePlanId), dateTime);
+                            }
+                            catch (Exception ex)
+                            {
+                                ViewData[lecturePlanName] = "Неверный формат даты";
+                                isDatesCorrect = false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            ViewData["IsDatesCorrect"] = isDatesCorrect;
+
+            if (null != alias && !alias.Trim().Equals(String.Empty) &&
+                null != additional && !additional.Trim().Equals(String.Empty))
+            {
+                Professor professor = repositoryManager.GetProfessorRepository.GetByNickName(alias);
+                ViewData["Professor"] = professor;
+
+                SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
+                ViewData["SpecialityDiscipline"] = specialityDiscipline;
+            }
+
 
             return View();
         }
