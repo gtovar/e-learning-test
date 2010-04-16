@@ -40,7 +40,7 @@ namespace VmkLearningKit.Models.Repository
             Topic updatedObj = GetById(updatedObjId);
 
             updatedObj.DisciplineId = newObjDisciplineId;
-            updatedObj.Title        = newObjTitle;
+            //updatedObj.Title        = newObjTitle;
 
             DataContext.SubmitChanges();
         }
@@ -49,7 +49,7 @@ namespace VmkLearningKit.Models.Repository
         {
             Topic updatedObj = GetById(updatedObjId);
 
-            updatedObj.Title = newObjTitle;
+            //updatedObj.Title = newObjTitle;
 
             DataContext.SubmitChanges();
         }

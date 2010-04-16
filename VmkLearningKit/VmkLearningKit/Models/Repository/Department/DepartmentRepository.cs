@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Models.Repository
 {
@@ -21,9 +22,67 @@ namespace VmkLearningKit.Models.Repository
 
         public Department GetByAlias(string alias)
         {
-            return DataContext.Departments.SingleOrDefault(d => d.Alias == alias);
+            Department obj = null;
+            try
+            {
+                obj = DataContext.Departments.SingleOrDefault(d => d.Alias == alias);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Department Table in Database contains more then one entry with the same alias: " + alias + "!!!!", ex);
+            }
+
+            return obj;
+        }
+        
+        public Department GetByAbbreviation(string abbreviation)
+        {
+            Department obj = null;
+            try
+            {
+                obj = DataContext.Departments.SingleOrDefault(d => d.Abbreviation == abbreviation);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Department Table in Database contains more then one entry with the same abbreviation: " + abbreviation + "!!!!", ex);
+            }
+
+            return obj;
         }
 
+        public long GetMaxId()
+        {
+            try
+            {
+                IEnumerable<Department> list = DataContext.Departments.OrderByDescending(d => d.Id);
+                if (null != list && list.Count() > 0)
+                {
+                    return list.First().Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't get max id from Department table in database !!!!", ex);
+            }
+            return 0;
+        }
+
+        /*
+        public Department GetByTitle(string title)
+        {
+            Department obj = null;
+            try
+            {
+                obj = DataContext.Departments.SingleOrDefault(d => d.Title == title);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Department Table in Database contains more then one entry with the same title: " + title + "!!!!", ex);
+            }
+
+            return obj;
+        }
+        */
         public IEnumerable<Department> GetAll()
         {
             return DataContext.Departments.AsEnumerable<Department>();
@@ -33,11 +92,76 @@ namespace VmkLearningKit.Models.Repository
 
         #region Set
 
-        public void Add(Department obj)
+        public Department Add(Department obj)
         {
-            DataContext.Departments.InsertOnSubmit(obj);
-
-            DataContext.SubmitChanges();
+            Department objWithTheSameAlias = GetByAlias(obj.Alias);
+            if(null != objWithTheSameAlias &&
+               objWithTheSameAlias.Abbreviation.Equals(obj.Abbreviation) &&
+               objWithTheSameAlias.Title.Equals(obj.Title))
+            {
+                return objWithTheSameAlias;
+            }
+            //Department objWithTheSameTitle = GetByTitle(obj.Title);
+            //Department objWithTheSameAbbreviation = GetByAbbreviation(obj.Abbreviation);
+            /*
+            if (null == objWithTheSameAlias ||
+               null == objWithTheSameTitle ||
+               null == objWithTheSameAbbreviation)
+            {
+                
+                if (null != objWithTheSameAbbreviation)
+                {
+                    obj.Abbreviation = obj.Abbreviation + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                }
+                if (null != objWithTheSameTitle)
+                {
+                    obj.Title = obj.Title + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                }
+                */
+                if (null != objWithTheSameAlias /*&& null == objWithTheSameAbbreviation*/)
+                {
+                    string alias = Transliteration.Front(obj.Abbreviation);
+                    objWithTheSameAlias = GetByAlias(alias);
+                    if (null == objWithTheSameAlias)
+                    {
+                        obj.Alias = alias;
+                    }
+                    else
+                    {
+                        alias = Transliteration.Front(obj.Title);
+                        objWithTheSameAlias = GetByAlias(alias);
+                        if (null == objWithTheSameAlias)
+                        {
+                            obj.Alias = alias;
+                        }
+                        else
+                        {
+                            obj.Alias = obj.Alias + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                        }
+                    }
+                }
+                /*
+                else if (null == objWithTheSameTitle)
+                {
+                    string alias = Transliteration.Front(obj.Title);
+                    objWithTheSameAlias = GetByAlias(alias);
+                    if (null == objWithTheSameAlias)
+                    {
+                        obj.Alias = alias;
+                    }
+                    else
+                    {
+                        obj.Alias = obj.Alias + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                    }
+                }
+                */
+                DataContext.Departments.InsertOnSubmit(obj);
+                DataContext.SubmitChanges();
+                return obj;
+            /*
+            }
+            return objWithTheSameTitle;
+            */
         }
 
         public void UpdateById(long updatedObjId, string newObjTitle)

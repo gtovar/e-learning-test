@@ -35,13 +35,13 @@
         Преподаваемые дисциплины</h4>
     <table width="100%" border="1">
         <tr class="table_header">
-             <th>
+             <th style="padding: 7px;">
                 №
             </th>
-            <th>
+            <th style="padding: 7px;">
                 Дисциплина
             </th>
-            <th>
+            <th style="padding: 7px;">
                 Семестр
             </th>
         </tr>
@@ -56,8 +56,14 @@
             <td style="padding: 7px;">
             <%= Html.Encode(specialityDiscipline.Title)%>
             </td>
+            <% string term = String.Empty;
+               foreach (SpecialityDisciplineTerm specialityDisciplineTerm in (IEnumerable<SpecialityDisciplineTerm>)specialityDiscipline.SpecialityDisciplineTerms)
+               {
+                   term += specialityDisciplineTerm.Term + ", ";
+               }
+            %>
             <td style="padding: 7px;">
-            <%= Html.Encode(specialityDiscipline.Term)%>
+            <%= term.Trim(',', ' ')%>
             </td>
         </tr>
        <% index++;
@@ -70,13 +76,13 @@
         <%= Html.Encode(((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Title) %></h4>
     <table width="100%" border="1">
         <tr class="table_header">
-             <th>
+             <th style="padding: 7px;">
                 №
             </th>
-            <th>
+            <th style="padding: 7px;">
                 Тема
             </th>
-            <th>
+            <th style="padding: 7px;">
                 Количество часов
             </th>
         </tr>
@@ -89,7 +95,7 @@
             <%= index%>
             </td>
             <td style="padding: 7px;">
-            <%= Html.Encode(lecturePlan.Topic)%>
+            <%= Html.Encode(lecturePlan.SpecialityDisciplineTopic.Title)%>
             </td>
             <td style="padding: 7px;">
             <%= Html.Encode(lecturePlan.Volume)%>

@@ -8,5 +8,8 @@ namespace VmkLearningKit.Models.Repository
     public interface IStudentRepository : IRepository<Student>
     {
         Student GetByNickName(string NickName);
+        IEnumerable<Student> GetAll(string groupAlias);
+        long GetMaxId();
+        Student Add(Student obj);
     }
 }

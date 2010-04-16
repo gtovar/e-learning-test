@@ -41,6 +41,12 @@ namespace VmkLearningKit.Models.Repository
             DataContext = new VmkLearningKitDataContext();
         }
 
+
+        public void SubmitChanges()
+        {
+            DataContext.SubmitChanges();
+        }
+
         #endregion
     }
 }

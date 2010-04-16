@@ -1,5 +1,4 @@
-*
-{
+* {
 	margin: 0;
 	padding: 0;
 }
@@ -308,13 +307,6 @@ a:hover
 {
 }
 
-.content #h4
-{
-	margin-left: 10px;
-	font-size: 14px;
-	font-weight: bold;
-}
-
 .content #Login
 {
 	margin-top: 10px;
@@ -509,15 +501,12 @@ a:hover
 }
 /*
 ----------------------------------------------------------*/
+
 p
 {
     margin-bottom: 20px;
     margin-right: 10px;
     line-height: 1.6em;
-}
-table
-{
-	padding: 5px 5px 5px 5px;
 }
 
 table th
@@ -525,11 +514,20 @@ table th
 	background-color: #e8eef4; 
 }
 
+/*
+Нельзя переопределять стили для table, tr, td так как они используются для основной верстки шаблона сайта,
+если их переопределить, шаблон поедет
+table
+{
+	padding: 5px 5px 5px 5px;
+}
+
 table td 
 {
 	vertical-align:top;
 	padding: 5px 5px 5px 5px;
 }
+*/
 
 .UploadContainer
 {

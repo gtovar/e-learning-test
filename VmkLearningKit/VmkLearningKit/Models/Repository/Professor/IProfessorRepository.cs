@@ -9,5 +9,7 @@ namespace VmkLearningKit.Models.Repository
     {
         Professor GetByNickName(string NickName);
         IEnumerable<Professor> GetAll(string chairAlias);
+        long GetMaxId();
+        Professor Add(Professor obj);
     }
 }

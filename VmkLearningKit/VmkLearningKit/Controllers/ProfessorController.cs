@@ -30,7 +30,7 @@ namespace VmkLearningKit.Controllers
                     ViewData[Constants.ACTION] = additional;
                     if (null != additional && !additional.Trim().Equals(String.Empty))
                     {
-                        SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplinesRepository.GetByAlias(additional);
+                        SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
                         if (null != specialityDiscipline)
                         {
                             ViewData["SpecialityDiscipline"] = specialityDiscipline;

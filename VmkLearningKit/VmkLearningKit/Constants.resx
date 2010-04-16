@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ABBREVIATION_DEFAULT_VALUE" xml:space="preserve">
+    <value>Нет</value>
+  </data>
   <data name="ABOUT_ACTION_NAME" xml:space="preserve">
     <value>About</value>
   </data>
@@ -156,17 +159,47 @@
   <data name="ADMIN_USER_VIEWS" xml:space="preserve">
     <value>/Views/Admin/User/</value>
   </data>
+  <data name="ALIAS_DEFAULT_VALUE" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="CABINET_URL" xml:space="preserve">
+    <value>/Cabinet/</value>
+  </data>
   <data name="CHAIR_MENU" xml:space="preserve">
     <value>ChairMenu</value>
   </data>
   <data name="CONNECTION_STRING_NAME" xml:space="preserve">
     <value>VLK_DBConnectionString</value>
   </data>
+  <data name="DATABASE_NAME" xml:space="preserve">
+    <value>DatabaseName</value>
+  </data>
+  <data name="DB_BACKUP_NAME" xml:space="preserve">
+    <value>DbBackup_</value>
+  </data>
+  <data name="DB_BACKUP_PATH" xml:space="preserve">
+    <value>/DbBackups/</value>
+  </data>
+  <data name="DB_DATA_FILE_PATH" xml:space="preserve">
+    <value>DbDataFilePath</value>
+  </data>
+  <data name="DB_LOG_FILE_PATH" xml:space="preserve">
+    <value>DbLogFilePath</value>
+  </data>
+  <data name="DEFAULT_CHAIR_NAME" xml:space="preserve">
+    <value>Не указана</value>
+  </data>
+  <data name="DEFAULT_EMAIL_DOMEN" xml:space="preserve">
+    <value>@unn.ru</value>
+  </data>
   <data name="ERROR_404_URL" xml:space="preserve">
     <value>/Home/Error/404</value>
   </data>
   <data name="ERROR_URL" xml:space="preserve">
     <value>/Home/Error/</value>
+  </data>
+  <data name="EXCEL_FILE_UPLOAD_PATH" xml:space="preserve">
+    <value>/Uploads/Excel</value>
   </data>
   <data name="FIELD_MUST_NOT_BE_EMPTY" xml:space="preserve">
     <value>Поле не может быть пустым</value>
@@ -179,6 +212,9 @@
   </data>
   <data name="GENERAL_NAVIGATION" xml:space="preserve">
     <value>GeneralNavigation</value>
+  </data>
+  <data name="GROUP_DEFAULT_ALIAS" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="HASH_ALGORITHM" xml:space="preserve">
     <value>SHA1</value>
@@ -206,6 +242,24 @@
   </data>
   <data name="PROFESSORS_ACTION_NAME" xml:space="preserve">
     <value>Professors</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_ABOUT" xml:space="preserve">
+    <value>О себе</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_DEGREE" xml:space="preserve">
+    <value>Не указана</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_LOGIN" xml:space="preserve">
+    <value>Professor_None</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_NAME" xml:space="preserve">
+    <value>Не указан</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_NICKNAME" xml:space="preserve">
+    <value>Professor_None</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_POSITION" xml:space="preserve">
+    <value>Не указана</value>
   </data>
   <data name="PROFESSOR_MENU" xml:space="preserve">
     <value>ProfessorMenu</value>
@@ -237,8 +291,23 @@
   <data name="SPECIALITY_ALIAS" xml:space="preserve">
     <value>SpecialityAlias</value>
   </data>
+  <data name="STRING_DEFAULT_VALUE" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
+  <data name="STUDENT_DEFAULT_LOGIN" xml:space="preserve">
+    <value>Studnet_None</value>
+  </data>
+  <data name="STUDENT_DEFAULT_NICKNAME" xml:space="preserve">
+    <value>Student_None</value>
+  </data>
+  <data name="STUDENT_DEFAULT_SECOND_NAME" xml:space="preserve">
+    <value>Не указан</value>
+  </data>
   <data name="STUDENT_ROLE" xml:space="preserve">
     <value>Student</value>
+  </data>
+  <data name="TERM_DEFAULT_REPORTING" xml:space="preserve">
+    <value>Не указано</value>
   </data>
   <data name="VIEW_PAGE_ERROR" xml:space="preserve">
     <value>Error</value>

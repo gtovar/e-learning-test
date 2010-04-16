@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{A3E5C03C-C991-401A-B7BD-9B482FFA9E90}</ProjectGuid>
     <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -31,6 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.ConnectionInfoExtended, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SmoExtended, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SqlWmiManagement, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="FredCK.FCKeditorV2, Version=2.6.3.22451, Culture=neutral, PublicKeyToken=4f86767c9b519a06, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Мои документы\Загрузки\FCKeditor.Net_2.6.3\bin\Release\2.0\FredCK.FCKeditorV2.dll</HintPath>
@@ -86,6 +93,13 @@
     <Compile Include="Controllers\ProfessorController.cs" />
     <Compile Include="Core\AuthorizeFilter.cs" />
     <Compile Include="Core\AuthenticatedConstraint.cs" />
+    <Compile Include="Core\DB.cs" />
+    <Compile Include="Core\ExcelToDB\GroupStructure.cs" />
+    <Compile Include="Core\ExcelToDB\SpecialityDisciplineStructure.cs" />
+    <Compile Include="Core\ExcelToDB\SpecialityDisciplineTopicStructure.cs" />
+    <Compile Include="Core\Transliteration.cs" />
+    <Compile Include="Core\ExcelToDB\DepartmentStructure.cs" />
+    <Compile Include="Core\ExcelToDB\ExcelParser.cs" />
     <Compile Include="Core\Utility.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -107,13 +121,20 @@
     <Compile Include="Models\Repository\Department\IDepartmentRepository.cs" />
     <Compile Include="Models\Repository\Discipline\IDisciplineRepository.cs" />
     <Compile Include="Models\Repository\EducationPlan\IEducationPlanRepository.cs" />
+    <Compile Include="Models\Repository\Group\GroupRepository.cs" />
+    <Compile Include="Models\Repository\Group\IGroupRepository.cs" />
     <Compile Include="Models\Repository\LecturePlan\ILecturePlanRepository.cs" />
     <Compile Include="Models\Repository\PracticePlan\IPracticePlanRepository.cs" />
     <Compile Include="Models\Repository\Professor\IProfessorRepository.cs" />
     <Compile Include="Models\Repository\Question\IQuestionRepository.cs" />
     <Compile Include="Models\Repository\Razdel\IRazdelRepository.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
-    <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplinesRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineTermRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineTopicRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplineCategory.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplineTermRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplineTopicRepository.cs" />
     <Compile Include="Models\Repository\Speciality\ISpecialityRepository.cs" />
     <Compile Include="Models\Repository\Specialization\ISpecializationRepository.cs" />
     <Compile Include="Models\Repository\Student\IStudentRepository.cs" />
@@ -127,7 +148,7 @@
     <Compile Include="Models\Repository\Repository.cs" />
     <Compile Include="Models\Repository\RepositoryData.cs" />
     <Compile Include="Models\Repository\RepositoryManager.cs" />
-    <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplinesRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplineRepository.cs" />
     <Compile Include="Models\Repository\Speciality\SpecialityRepository.cs" />
     <Compile Include="Models\Repository\Specialization\SpecializationRepository.cs" />
     <Compile Include="Models\Repository\Student\StudentRepository.cs" />
@@ -604,8 +625,10 @@
     <Content Include="Views\Admin\User\Users.aspx" />
     <Content Include="Views\Cabinet\AccountSettings.aspx" />
     <Content Include="Views\Cabinet\Admin.aspx" />
+    <Content Include="Views\Cabinet\LecturePlan.aspx" />
     <Content Include="Views\Cabinet\Menu.aspx" />
     <Content Include="Views\Cabinet\Metodist.aspx" />
+    <Content Include="Views\Cabinet\PracticePlan.aspx" />
     <Content Include="Views\Cabinet\Professor.aspx" />
     <Content Include="Views\Cabinet\Student.aspx" />
     <Content Include="Views\Editor\CreateAlternative.ascx" />
@@ -721,7 +744,36 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DbBackups\" />
+    <Folder Include="Uploads\Excel\" />
+    <Folder Include="Uploads\Images\" />
     <Folder Include="Uploads\Word\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -760,6 +812,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

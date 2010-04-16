@@ -18,13 +18,10 @@
             <%= Html.ActionLink("Специализации ", "Specializations", "Admin")%></li>
         <li>
             <%= Html.ActionLink("Дисциплины", "SpecialityDisciplines", "Admin")%></li>
-    </ul>
-</li>
-<li>
-    <%= Html.ActionLink("Управление пользователями", "Users", "Admin") %>
-    <ul>
         <li>
             <%= Html.ActionLink("Академические группы", "Groups", "Admin") %></li>
+        <li>
+            <%= Html.ActionLink("Аккаунты пользователей", "Users", "Admin") %></li>
     </ul>
 </li>
 <% }

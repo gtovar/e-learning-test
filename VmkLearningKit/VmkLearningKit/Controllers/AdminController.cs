@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
+using System.IO;
 using VmkLearningKit.Core;
 using VmkLearningKit.Models.Repository;
+using VmkLearningKit.Core.ExcelToDB;
 
 namespace VmkLearningKit.Controllers
 {
@@ -17,6 +19,75 @@ namespace VmkLearningKit.Controllers
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Index(FormCollection form)
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
+
+            List<string> filePathes = new List<string>();
+            foreach (string file in Request.Files)
+            {
+                var postedFile = Request.Files[file];
+                string filePath = Server.MapPath(Constants.EXCEL_FILE_UPLOAD_PATH) + Path.GetFileNameWithoutExtension(postedFile.FileName) + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + Path.GetExtension(postedFile.FileName);
+                postedFile.SaveAs(filePath);
+
+                filePathes.Add(filePath);
+            }
+            if (filePathes.Count > 0)
+            {
+                foreach (string filePath in filePathes)
+                {
+                    if(null != form["DepartmentStructure"])
+                    {
+                        DepartmentStructure departmentStructure = new DepartmentStructure();
+                        List<DepartmentStructureObj> departmentStructureList = departmentStructure.FromFile(filePath);
+                        foreach (DepartmentStructureObj obj in departmentStructureList)
+                        {
+                            string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "DepartmentStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
+                            DB.Backup(dbBackupFilePath);
+                            obj.Commit();
+                        }
+                    }
+                    if(null != form["SpecialityDisciplineStructure"])
+                    {
+                        SpecialityDisciplineStructure specialityDisciplineStructure = new SpecialityDisciplineStructure();
+                        List<SpecialityDisciplineStructureObj> specialityDisciplineStructureList = specialityDisciplineStructure.FromFile(filePath);
+                        foreach (SpecialityDisciplineStructureObj obj in specialityDisciplineStructureList)
+                        {
+                            string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "SpecialityDisciplineStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
+                            DB.Backup(dbBackupFilePath);
+                            obj.Commit();
+                        }
+                    }
+                    if (null != form["SpecialityDisciplineTopicStructure"])
+                    {
+                        SpecialityDisciplineTopicStructure specialityDisciplineTopicStructure = new SpecialityDisciplineTopicStructure();
+                        List<SpecialityDisciplineTopicStructureObj> specialityDisciplineTopicStructureList = specialityDisciplineTopicStructure.FromFile(filePath);
+                        foreach (SpecialityDisciplineTopicStructureObj obj in specialityDisciplineTopicStructureList)
+                        {
+                            string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "SpecialityDisciplineTopicStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
+                            DB.Backup(dbBackupFilePath);
+                            obj.Commit();
+                        }
+                    }
+                    if (null != form["GroupStructure"])
+                    {
+                        GroupStructure groupStructure = new GroupStructure();
+                        List<GroupStructureObj> groupStructureList = groupStructure.FromFile(filePath);
+                        foreach (GroupStructureObj obj in groupStructureList)
+                        {
+                            string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "GroupStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
+                            DB.Backup(dbBackupFilePath);
+                            obj.Commit();
+                        }
+                    }
+                }
+            }
+
             return View();
         }
 
@@ -427,14 +498,14 @@ namespace VmkLearningKit.Controllers
                         {
                             professor = repositoryManager.GetProfessorRepository.GetByNickName(professorNickName);
                         }
-                        if (null == professor)
+                        if (null == professor || professor.ChairId != chair.Id)
                         {
                             professor = professors.First();
                         }
                     }
                     if (null != speciality && null != educationPlan && null != chair && null != professor)
                     {
-                        specialityDisciplines = repositoryManager.GetSpecialityDisciplinesRepository.GetAll(speciality.Alias, educationPlan.Alias, chair.Alias, professor.User.NickName);
+                        specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetAll(speciality.Alias, educationPlan.Alias, chair.Alias, professor.User.NickName);
                     }
                 }
 
@@ -504,7 +575,7 @@ namespace VmkLearningKit.Controllers
                     }
                     if (null != speciality && null != educationPlan && null != chair && null != professor)
                     {
-                        specialityDisciplines = repositoryManager.GetSpecialityDisciplinesRepository.GetAll(speciality.Alias, educationPlan.Alias, chair.Alias, professor.User.NickName);
+                        specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetAll(speciality.Alias, educationPlan.Alias, chair.Alias, professor.User.NickName);
                     }
                 }
                 ViewData["Department"] = department;

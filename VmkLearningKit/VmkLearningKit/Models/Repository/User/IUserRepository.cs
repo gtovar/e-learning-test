@@ -8,5 +8,6 @@ namespace VmkLearningKit.Models.Repository
     public interface IUserRepository : IRepository<User>
     {
         User GetByLogin(string login);
+        User Add(User add);
     }
 }
