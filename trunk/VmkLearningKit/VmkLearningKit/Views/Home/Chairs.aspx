@@ -24,19 +24,19 @@
         Преподаватели кафедры</h4>
     <table width="100%" border="1">
         <tr class="table_header">
-            <th>
+            <th style="padding: 7px;">
                 №
             </th>
-            <th>
+            <th style="padding: 7px;">
                 ФИО
             </th>
-            <th>
+            <th style="padding: 7px;">
                 Лекции / Практики
             </th>
-            <th>
+            <th style="padding: 7px;">
                 Научная степень
             </th>
-            <th>
+            <th style="padding: 7px;">
                 Должность
             </th>
         </tr>

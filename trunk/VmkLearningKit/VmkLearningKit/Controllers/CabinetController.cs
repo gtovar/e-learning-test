@@ -16,7 +16,7 @@ namespace VmkLearningKit.Controllers
         /// </summary>
         [AuthorizeFilter(Roles = "Admin")]
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Admin()
+        public ActionResult Admin(string alias)
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
@@ -28,7 +28,7 @@ namespace VmkLearningKit.Controllers
         /// </summary>
         [AuthorizeFilter(Roles = "Metodist")]
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Metodist()
+        public ActionResult Metodist(string alias)
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
@@ -37,13 +37,126 @@ namespace VmkLearningKit.Controllers
 
         /// <summary>
         /// Action, отображающий форму кабинета преподавателя при обращении к domain.ru/Cabinet/Professor
+        /// <param name="alias">NickName преподавателя</param>
+        /// <param name="additional">Алиас дисциплины</param>
         /// </summary>
         [AuthorizeFilter(Roles = "Professor")]
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Professor()
+        public ActionResult Professor(string alias, string additional)
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+            if (null != alias && !alias.Trim().Equals(String.Empty))
+            {
+                // отображение детальной информации о дисциплине
+                if (alias.Trim().Equals("Detailed"))
+                {
+                    if (null != additional && !additional.Trim().Equals(String.Empty))
+                    {
+                        SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
+                        ViewData["SpecialityDiscipline"] = specialityDiscipline;
+                        ViewData["Detailed"] = true;
+                        ViewData["Professor"] = specialityDiscipline.Professor;
+                    }
+                }
+                else
+                {
+                    Professor professor = repositoryManager.GetProfessorRepository.GetByNickName(alias);
+                    ViewData["Professor"] = professor;
+                    // отображение тем дисциплины
+                    if (null != additional && !additional.Trim().Equals(String.Empty))
+                    {
+                        SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
+                        ViewData["SpecialityDiscipline"] = specialityDiscipline;
+                        ViewData["SpecialityDisciplineTopics"] = specialityDiscipline.SpecialityDisciplineTopics;
+                    }
+                    // отображение списка дисциплин
+                    else
+                    {
+                        IEnumerable<SpecialityDiscipline> specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetAllByProfessor(professor.User.NickName);
+                        ViewData["ProfessorSpecialityDisciplines"] = specialityDisciplines;
+                    }
+                }
+            }
+
+            return View();
+        }
+        /// <summary>
+        /// Action, отображающий форму плана лекций при обращении к domain.ru/Cabinet/LecturePlan/<ProfessorNickName>/<SpecialityDisciplineAlias>
+        /// </summary>
+        /// <param name="alias">NickName преподавателя</param>
+        /// <param name="additional">Алиас дисциплины</param>
+        [AuthorizeFilter(Roles = "Professor")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult LecturePlan(string alias, string additional)
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+
+            if (null != alias && !alias.Trim().Equals(String.Empty) &&
+                null != additional && !additional.Trim().Equals(String.Empty))
+            {
+                Professor professor = repositoryManager.GetProfessorRepository.GetByNickName(alias);
+                ViewData["Professor"] = professor;
+
+                SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
+                ViewData["SpecialityDiscipline"] = specialityDiscipline;
+            }
+            return View();
+        }
+
+        /// <summary>
+        /// Action, отображающий форму плана лекций при обращении к domain.ru/Cabinet/LecturePlan/<ProfessorNickName>/<SpecialityDisciplineAlias>
+        /// </summary>
+        /// <param name="alias">NickName преподавателя</param>
+        /// <param name="additional">Алиас дисциплины</param>
+        [AuthorizeFilter(Roles = "Professor")]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult LecturePlan(FormCollection form)
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+
+            return View();
+        }
+
+        /// <summary>
+        /// Action, отображающий форму плана практик при обращении к domain.ru/Cabinet/PracticePlan/<ProfessorNickName>/<SpecialityDisciplineAlias>
+        /// </summary>
+        /// <param name="alias">NickName преподавателя</param>
+        /// <param name="additional">Алиас дисциплины</param>
+        [AuthorizeFilter(Roles = "Professor")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult PracticePlan(string alias, string additional)
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+
+            if (null != alias && !alias.Trim().Equals(String.Empty) &&
+                null != additional && !additional.Trim().Equals(String.Empty))
+            {
+                Professor professor = repositoryManager.GetProfessorRepository.GetByNickName(alias);
+                ViewData["Professor"] = professor;
+
+                SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
+                ViewData["SpecialityDiscipline"] = specialityDiscipline;
+            }
+
+            return View();
+        }
+
+        /// <summary>
+        /// Action, отображающий форму плана лекций при обращении к domain.ru/Cabinet/PracticePlan/<ProfessorNickName>/<SpecialityDisciplineAlias>
+        /// </summary>
+        /// <param name="alias">NickName преподавателя</param>
+        /// <param name="additional">Алиас дисциплины</param>
+        [AuthorizeFilter(Roles = "Professor")]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult PracticePlan(FormCollection form)
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+
             return View();
         }
 
@@ -52,7 +165,7 @@ namespace VmkLearningKit.Controllers
         /// </summary>
         [AuthorizeFilter(Roles = "Student")]
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Student()
+        public ActionResult Student(string alias)
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;

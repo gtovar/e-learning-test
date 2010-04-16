@@ -40,7 +40,7 @@ namespace VmkLearningKit.Controllers
                     IEnumerable<EducationPlan> educationPlans = null;
                     try
                     {
-                        specialityDisciplines = repositoryManager.GetSpecialityDisciplinesRepository.GetAll(alias);
+                        specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetAll(alias);
                         educationPlans = repositoryManager.GetEducationPlanRepository.GetAll();
                     }
                     catch (Exception ex)

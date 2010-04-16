@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Configuration;
+using VmkLearningKit.Core;
 
-namespace VmkLearningKit.Models.Repository
+namespace VmkLearningKit.Models.Repository 
 {
     public class RepositoryManager : RepositoryData
     {
@@ -16,7 +17,27 @@ namespace VmkLearningKit.Models.Repository
         {
             DataContext = new VmkLearningKitDataContext(connectionString);
         }
-
+        /*
+        public void RestoreDB()
+        {
+            string sql = @"USE master
+                              RESTORE DATABASE VLK_DB
+	                          FROM  DISK = N'C:\User Files\Education\MLG\svn\VmkLearningKit\VmkLearningKit\DbBackups\VLKDb.bak'
+	                          WITH  FILE = 1,
+	                          MOVE N'VLK_DB' TO N'C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\Data\VLK_DB.mdf',
+	                          MOVE N'VLK_DB_Log' TO N'C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\Data\VLK_DB.ldf',
+	                          NOUNLOAD,  STATS = 10
+                              USE VLK_DB";
+            try
+            {
+                DataContext.ExecuteCommand(sql);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("RepositoryManager.RestoreDB: failed", ex);   
+            }
+        }
+        */
         public static RepositoryManager GetRepositoryManager
         {
             get
@@ -105,18 +126,48 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
-        private ISpecialityDisciplinesRepository specialityDisciplinesRepository;
+        private ISpecialityDisciplineRepository specialityDisciplineRepository;
 
-        public ISpecialityDisciplinesRepository GetSpecialityDisciplinesRepository
+        public ISpecialityDisciplineRepository GetSpecialityDisciplineRepository
         {
             get
             {
-                if (specialityDisciplinesRepository == null)
+                if (specialityDisciplineRepository == null)
                 {
-                    specialityDisciplinesRepository = new SpecialityDisciplinesRepository(DataContext);
+                    specialityDisciplineRepository = new SpecialityDisciplineRepository(DataContext);
                 }
 
-                return specialityDisciplinesRepository;
+                return specialityDisciplineRepository;
+            }
+        }
+
+        private ISpecialityDisciplineTermRepository specialityDisciplineTermRepository;
+
+        public ISpecialityDisciplineTermRepository GetSpecialityDisciplineTermRepository
+        {
+            get
+            {
+                if (specialityDisciplineTermRepository == null)
+                {
+                    specialityDisciplineTermRepository = new SpecialityDisciplineTermRepository(DataContext);
+                }
+
+                return specialityDisciplineTermRepository;
+            }
+        }
+
+        private ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository;
+
+        public ISpecialityDisciplineTopicRepository GetSpecialityDisciplineTopicRepository
+        {
+            get
+            {
+                if (specialityDisciplineTopicRepository == null)
+                {
+                    specialityDisciplineTopicRepository = new SpecialityDisciplineTopicRepository(DataContext);
+                }
+
+                return specialityDisciplineTopicRepository;
             }
         }
 
@@ -237,6 +288,21 @@ namespace VmkLearningKit.Models.Repository
                 }
 
                 return topicRepository;
+            }
+        }
+
+        private IGroupRepository groupRepository;
+
+        public IGroupRepository GetGroupRepository
+        {
+            get
+            {
+                if (groupRepository == null)
+                {
+                    groupRepository = new GroupRepository(DataContext);
+                }
+
+                return groupRepository;
             }
         }
     }

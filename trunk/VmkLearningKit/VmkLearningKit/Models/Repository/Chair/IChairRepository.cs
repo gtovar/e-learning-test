@@ -8,7 +8,9 @@ namespace VmkLearningKit.Models.Repository
     public interface IChairRepository
     {
         IEnumerable<Chair> GetAll(string departmentAlias);
-        bool IsEntryWithAliasExisted(string alias);
         Chair GetByAlias(string alias);
+        Chair GetByAbbreviation(string abbreviation);
+        Chair Add(Chair obj);
+        long GetMaxId();
     }
 }

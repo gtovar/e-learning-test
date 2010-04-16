@@ -9,5 +9,8 @@ namespace VmkLearningKit.Models.Repository
     {
         IEnumerable<EducationPlan> GetAll();
         EducationPlan GetByAlias(string alias);
+        EducationPlan GetByTitle(string title);
+        long GetMaxId();
+        EducationPlan Add(EducationPlan obj);
     }
 }

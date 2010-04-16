@@ -61,6 +61,15 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Нет.
+        /// </summary>
+        internal static string ABBREVIATION_DEFAULT_VALUE {
+            get {
+                return ResourceManager.GetString("ABBREVIATION_DEFAULT_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string ABOUT_ACTION_NAME {
@@ -178,6 +187,24 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string ALIAS_DEFAULT_VALUE {
+            get {
+                return ResourceManager.GetString("ALIAS_DEFAULT_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Cabinet/.
+        /// </summary>
+        internal static string CABINET_URL {
+            get {
+                return ResourceManager.GetString("CABINET_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ChairMenu.
         /// </summary>
         internal static string CHAIR_MENU {
@@ -196,6 +223,69 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DatabaseName.
+        /// </summary>
+        internal static string DATABASE_NAME {
+            get {
+                return ResourceManager.GetString("DATABASE_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DbBackup_.
+        /// </summary>
+        internal static string DB_BACKUP_NAME {
+            get {
+                return ResourceManager.GetString("DB_BACKUP_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /DbBackups/.
+        /// </summary>
+        internal static string DB_BACKUP_PATH {
+            get {
+                return ResourceManager.GetString("DB_BACKUP_PATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DbDataFilePath.
+        /// </summary>
+        internal static string DB_DATA_FILE_PATH {
+            get {
+                return ResourceManager.GetString("DB_DATA_FILE_PATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DbLogFilePath.
+        /// </summary>
+        internal static string DB_LOG_FILE_PATH {
+            get {
+                return ResourceManager.GetString("DB_LOG_FILE_PATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указана.
+        /// </summary>
+        internal static string DEFAULT_CHAIR_NAME {
+            get {
+                return ResourceManager.GetString("DEFAULT_CHAIR_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @unn.ru.
+        /// </summary>
+        internal static string DEFAULT_EMAIL_DOMEN {
+            get {
+                return ResourceManager.GetString("DEFAULT_EMAIL_DOMEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /Home/Error/404.
         /// </summary>
         internal static string ERROR_404_URL {
@@ -210,6 +300,24 @@ namespace VmkLearningKit {
         internal static string ERROR_URL {
             get {
                 return ResourceManager.GetString("ERROR_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Uploads/Excel.
+        /// </summary>
+        internal static string EXCEL_FILE_UPLOAD_PATH {
+            get {
+                return ResourceManager.GetString("EXCEL_FILE_UPLOAD_PATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поле не может быть пустым.
+        /// </summary>
+        internal static string FIELD_MUST_NOT_BE_EMPTY {
+            get {
+                return ResourceManager.GetString("FIELD_MUST_NOT_BE_EMPTY", resourceCulture);
             }
         }
         
@@ -237,6 +345,15 @@ namespace VmkLearningKit {
         internal static string GENERAL_NAVIGATION {
             get {
                 return ResourceManager.GetString("GENERAL_NAVIGATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string GROUP_DEFAULT_ALIAS {
+            get {
+                return ResourceManager.GetString("GROUP_DEFAULT_ALIAS", resourceCulture);
             }
         }
         
@@ -313,6 +430,60 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to О себе.
+        /// </summary>
+        internal static string PROFESSOR_DEFAULT_ABOUT {
+            get {
+                return ResourceManager.GetString("PROFESSOR_DEFAULT_ABOUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указана.
+        /// </summary>
+        internal static string PROFESSOR_DEFAULT_DEGREE {
+            get {
+                return ResourceManager.GetString("PROFESSOR_DEFAULT_DEGREE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Professor_None.
+        /// </summary>
+        internal static string PROFESSOR_DEFAULT_LOGIN {
+            get {
+                return ResourceManager.GetString("PROFESSOR_DEFAULT_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указан.
+        /// </summary>
+        internal static string PROFESSOR_DEFAULT_NAME {
+            get {
+                return ResourceManager.GetString("PROFESSOR_DEFAULT_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Professor_None.
+        /// </summary>
+        internal static string PROFESSOR_DEFAULT_NICKNAME {
+            get {
+                return ResourceManager.GetString("PROFESSOR_DEFAULT_NICKNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указана.
+        /// </summary>
+        internal static string PROFESSOR_DEFAULT_POSITION {
+            get {
+                return ResourceManager.GetString("PROFESSOR_DEFAULT_POSITION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ProfessorMenu.
         /// </summary>
         internal static string PROFESSOR_MENU {
@@ -336,6 +507,15 @@ namespace VmkLearningKit {
         internal static string PROFESSORS_ACTION_NAME {
             get {
                 return ResourceManager.GetString("PROFESSORS_ACTION_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ([1-9]\d*\.\d+)|([1-9]\d*)|([0])|([0]\.d+).
+        /// </summary>
+        internal static string REGULAR_EXPRESSION_VALUE_WITH_POINT {
+            get {
+                return ResourceManager.GetString("REGULAR_EXPRESSION_VALUE_WITH_POINT", resourceCulture);
             }
         }
         
@@ -403,11 +583,56 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Не указано.
+        /// </summary>
+        internal static string STRING_DEFAULT_VALUE {
+            get {
+                return ResourceManager.GetString("STRING_DEFAULT_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Studnet_None.
+        /// </summary>
+        internal static string STUDENT_DEFAULT_LOGIN {
+            get {
+                return ResourceManager.GetString("STUDENT_DEFAULT_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student_None.
+        /// </summary>
+        internal static string STUDENT_DEFAULT_NICKNAME {
+            get {
+                return ResourceManager.GetString("STUDENT_DEFAULT_NICKNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указан.
+        /// </summary>
+        internal static string STUDENT_DEFAULT_SECOND_NAME {
+            get {
+                return ResourceManager.GetString("STUDENT_DEFAULT_SECOND_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Student.
         /// </summary>
         internal static string STUDENT_ROLE {
             get {
                 return ResourceManager.GetString("STUDENT_ROLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указано.
+        /// </summary>
+        internal static string TERM_DEFAULT_REPORTING {
+            get {
+                return ResourceManager.GetString("TERM_DEFAULT_REPORTING", resourceCulture);
             }
         }
         

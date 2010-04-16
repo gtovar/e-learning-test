@@ -8,11 +8,11 @@ namespace VmkLearningKit.Models.Repository
     public interface IDepartmentRepository : IRepository<Department>
     {
         Department GetByAlias(string alias);
-        
+        //Department GetByTitle(string title);
+        Department GetByAbbreviation(string abbreviation);
+        long GetMaxId();
         IEnumerable<Department> GetAll();
-
-        void Add(Department obj);
-
+        Department Add(Department obj);
         void UpdateById(long updatedObjId, string newObjTitle);
     }
 }

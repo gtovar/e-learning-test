@@ -56,8 +56,25 @@ namespace VmkLearningKit.Controllers
                 Session.Add(Constants.SESSION_USER, user);
                 Session.Add(Constants.SESSION_USER_NAME, user.Name);
             }
+            string url = Constants.HOME_URL;
 
-            return Redirect(Constants.HOME_URL);
+            if (user.IsStudent)
+            {
+                url = Constants.CABINET_URL + "Student/" + user.DbUser.NickName;
+            }
+            else if (user.IsProfessor)
+            {
+                url = Constants.CABINET_URL + "Professor/" + user.DbUser.NickName;
+            }
+            else if (user.IsMetodist)
+            {
+                url = Constants.CABINET_URL + "Metodist/" + user.DbUser.NickName;
+            }
+            else if (user.IsAdmin)
+            {
+                url = Constants.CABINET_URL + "Admin/" + user.DbUser.NickName;
+            }
+            return Redirect(url);
         }
 
         /// <summary>

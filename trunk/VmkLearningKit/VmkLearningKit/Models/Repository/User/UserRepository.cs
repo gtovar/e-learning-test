@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Models.Repository
 {
@@ -20,6 +21,26 @@ namespace VmkLearningKit.Models.Repository
         public User GetByLogin(string login)
         {
             return DataContext.Users.SingleOrDefault(t => t.Login == login);
+        }
+
+        public User Add(User obj)
+        {
+            try
+            {
+                User user = GetByLogin(obj.Login);
+                if (null == user)
+                {
+                    DataContext.Users.InsertOnSubmit(obj);
+                    DataContext.SubmitChanges();
+                    return obj;
+                }
+                return user;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("User can't add to database", ex);
+            }
+            return null;
         }
 
         public void Delete(User obj)

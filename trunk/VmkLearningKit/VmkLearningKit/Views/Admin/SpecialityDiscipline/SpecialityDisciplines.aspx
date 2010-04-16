@@ -101,9 +101,17 @@
                                 { %>
                             <option value="<%=Html.Encode(professor.User.NickName) %>" <% if(professor.User.NickName.Equals(((Professor)ViewData["Professor"]).User.NickName)) { %>
                                 selected="true" <% } %>>
-                                <%=Html.Encode(professor.User.SecondName + " " + 
-                                               professor.User.FirstName[0].ToString().ToUpper() + "." +
-                                               professor.User.Patronymic[0].ToString().ToUpper() + ".")%>
+                                <% if (!professor.User.FirstName.Trim().Equals(String.Empty) &&
+                                       !professor.User.Patronymic.Trim().Equals(String.Empty))
+                                   { %>
+                                        <%=Html.Encode(professor.User.SecondName + " " +
+                                                    professor.User.FirstName[0].ToString().ToUpper() + "." +
+                                                    professor.User.Patronymic[0].ToString().ToUpper() + ".")%>
+                                <%}
+                                   else
+                                   { %>
+                                        <%=Html.Encode(professor.User.SecondName)%>
+                                <%} %>
                             </option>
                             <%} %>
                         </select>
