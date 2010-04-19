@@ -53,8 +53,8 @@
 		// Use the following setting it you prefer to explicitely specify the
 		// absolute path. Examples: 'C:\\MySite\\userfiles\\' or '/root/mysite/userfiles/'.
 		// Attention: The above 'UserFilesPath' URL must point to the same directory.
-		UserFilesAbsolutePath = "";
-
+		UserFilesAbsolutePath = HttpContext.Server.MapPath("/Uploads/Images");
+		
 		// Due to security issues with Apache modules, it is recommended to leave the
 		// following setting enabled.
 		ForceSingleExtension = true;

@@ -9,7 +9,7 @@
     <script type="text/javascript" src="/Scripts/Plugins/FCKeditor/fckeditor.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#QuestionTypeList option').click(function(){
+            $('#QuestionTypeList').change(function(){
                 var url;
 		        switch ($(this).attr('value')) {
                     case '0' : url = '/Editor/CreateSimple';       break;

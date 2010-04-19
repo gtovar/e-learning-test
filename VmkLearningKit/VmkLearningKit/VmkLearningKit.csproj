@@ -114,12 +114,10 @@
     <Compile Include="Models\Repository\Answer\AnswerRepository.cs" />
     <Compile Include="Models\Repository\Chair\ChairRepository.cs" />
     <Compile Include="Models\Repository\Department\DepartmentRepository.cs" />
-    <Compile Include="Models\Repository\Discipline\DisciplineRepository.cs" />
     <Compile Include="Models\Repository\EducationPlan\EducationPlanRepository.cs" />
     <Compile Include="Models\Repository\Answer\IAnswerRepository.cs" />
     <Compile Include="Models\Repository\Chair\IChairRepository.cs" />
     <Compile Include="Models\Repository\Department\IDepartmentRepository.cs" />
-    <Compile Include="Models\Repository\Discipline\IDisciplineRepository.cs" />
     <Compile Include="Models\Repository\EducationPlan\IEducationPlanRepository.cs" />
     <Compile Include="Models\Repository\Group\GroupRepository.cs" />
     <Compile Include="Models\Repository\Group\IGroupRepository.cs" />
@@ -138,7 +136,6 @@
     <Compile Include="Models\Repository\Speciality\ISpecialityRepository.cs" />
     <Compile Include="Models\Repository\Specialization\ISpecializationRepository.cs" />
     <Compile Include="Models\Repository\Student\IStudentRepository.cs" />
-    <Compile Include="Models\Repository\Topic\ITopicRepository.cs" />
     <Compile Include="Models\Repository\User\IUserRepository.cs" />
     <Compile Include="Models\Repository\LecturePlan\LecturePlanRepository.cs" />
     <Compile Include="Models\Repository\PracticePlan\PracticePlanRepository.cs" />
@@ -152,7 +149,6 @@
     <Compile Include="Models\Repository\Speciality\SpecialityRepository.cs" />
     <Compile Include="Models\Repository\Specialization\SpecializationRepository.cs" />
     <Compile Include="Models\Repository\Student\StudentRepository.cs" />
-    <Compile Include="Models\Repository\Topic\TopicRepository.cs" />
     <Compile Include="Models\Repository\User\UserRepository.cs" />
     <Compile Include="Models\Repository\VmkLearningKit.designer.cs">
       <AutoGen>True</AutoGen>
@@ -638,7 +634,6 @@
     <Content Include="Views\Editor\Edit.ascx" />
     <Content Include="Views\Editor\Create.aspx" />
     <Content Include="Views\Editor\List.aspx" />
-    <Content Include="Views\Editor\Upload.ascx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Chairs.aspx" />
     <Content Include="Views\Home\Specialities.aspx" />
@@ -692,6 +687,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Models\Repository\VmkLearningKit.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>VmkLearningKit.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\Plugins\FCKeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />
     <None Include="Scripts\Plugins\FCKeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.php" />
     <None Include="Scripts\Plugins\FCKeditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.pl" />
@@ -737,11 +737,6 @@
     <None Include="Scripts\Plugins\FCKeditor\editor\filemanager\connectors\py\zope.py" />
     <None Include="Scripts\Plugins\Uploadify\uploadify.fla" />
     <None Include="VmkLearningKitClassDiagram.cd" />
-    <None Include="Models\Repository\VmkLearningKit.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>VmkLearningKit.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
