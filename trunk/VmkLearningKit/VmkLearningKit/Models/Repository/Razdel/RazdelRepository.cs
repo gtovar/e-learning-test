@@ -45,9 +45,9 @@ namespace VmkLearningKit.Models.Repository
         {
             Razdel updatedObj = GetById(updatedObjId);
 
-            updatedObj.TopicId        = newObjTopicId;
-            updatedObj.Title          = newObjTitle;
-            updatedObj.QuestionsCount = newObjQuestionsCount;
+            updatedObj.SpecialityDisciplineTopicId        = newObjTopicId;
+            updatedObj.Title                              = newObjTitle;
+            updatedObj.QuestionsCount                     = newObjQuestionsCount;
 
             DataContext.SubmitChanges();
         }

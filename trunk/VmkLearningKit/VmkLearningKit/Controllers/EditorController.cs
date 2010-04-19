@@ -241,7 +241,7 @@ namespace VmkLearningKit.Controllers
                     string filePath = HttpContext.Server.MapPath("/Uploads/Word") + "\\" + (docIndex).ToString() + ".doc";
                     file.SaveAs(filePath);
 
-                    QWord.QReader reader = new QWord.QReader(HttpContext.Server.MapPath("/Uploads/Word") + "\\" + docIndex.ToString() + ".doc", HttpContext.Server.MapPath("/Uploads/Images"));
+                    QWord.QReader reader = new QWord.QReader(HttpContext.Server.MapPath("/Uploads/Word") + "\\" + docIndex.ToString() + ".doc", HttpContext.Server.MapPath("/Uploads/Images"), "http://localhost:1111/Uploads/Images");
 
                     reader.SaveAllImages();
 

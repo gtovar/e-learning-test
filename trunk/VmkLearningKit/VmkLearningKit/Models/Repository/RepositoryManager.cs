@@ -231,21 +231,6 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
-        private IDisciplineRepository disciplineRepository;
-
-        public IDisciplineRepository GetDisciplineRepository
-        {
-            get
-            {
-                if (disciplineRepository == null)
-                {
-                    disciplineRepository = new DisciplineRepository(DataContext);
-                }
-
-                return disciplineRepository;
-            }
-        }
-
         private IAnswerRepository answerRepository;
 
         public IAnswerRepository GetAnswerRepository
@@ -288,21 +273,6 @@ namespace VmkLearningKit.Models.Repository
                 }
 
                 return questionRepository;
-            }
-        }
-
-        private ITopicRepository topicRepository;
-
-        public ITopicRepository GetTopicRepository
-        {
-            get
-            {
-                if (topicRepository == null)
-                {
-                    topicRepository = new TopicRepository(DataContext);
-                }
-
-                return topicRepository;
             }
         }
 

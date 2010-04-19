@@ -57,6 +57,11 @@ namespace QWord
         private string imageServerDir;
 
         /// <summary>
+        /// Поле imageServerAddr: путь к директории (на сервере) для хранения изображений
+        /// </summary>
+        private string imageServerAddr;
+
+        /// <summary>
         /// Поле answerListType: тип списка, использующийся для выделения ответов на вопросы в word-документе
         /// </summary>
         private WdListType answerListType;
@@ -71,10 +76,12 @@ namespace QWord
         /// <param name="wordPath">путь к word документу</param>
         /// <param name="processingType">способ обработки баллов за ответы на вопросы</param>
         /// <param name="imageServerDir">путь к директории (на сервере) для хранения изображений</param>
-        public QReader(string wordPath, string imageServerDir)
+        /// <param name="imageServerAddr">путь к директории (на сервере) для хранения изображений</param>
+        public QReader(string wordPath, string imageServerDir, string imageServerAddr)
         {
-            this.wordPath       = wordPath;
-            this.imageServerDir = imageServerDir;
+            this.wordPath        = wordPath;
+            this.imageServerDir  = imageServerDir;
+            this.imageServerAddr = imageServerAddr;
 
             testQuestions       = new TestQuestionList();
             pictureIndex        = 0;
@@ -386,9 +393,9 @@ namespace QWord
                 if (IsImage(wordApplication.Selection.Words.First))
                 {
                     questionText += " <image src=\"" + 
-                                    imageServerDir + 
-                                    "\\Image" + 
-                                    (pictureIndex).ToString() + "\" /> ";
+                                    imageServerAddr  + 
+                                    "/Image" + 
+                                    (pictureIndex).ToString() + ".jpg\" /> ";
                     
                     pictureIndex++;
                 }
@@ -436,8 +443,8 @@ namespace QWord
                 if (IsImage(wordApplication.Selection.Words.First))
                 {
                     questionText += " <image src=\"" + 
-                                    imageServerDir + 
-                                    "\\Image" +
+                                    imageServerAddr  + 
+                                    "/Image" +
                                     (pictureIndex).ToString() + ".jpg\" /> ";
                     
                     pictureIndex++;
@@ -539,10 +546,10 @@ namespace QWord
                 // обработка картинки
                 if (IsImage(wordApplication.Selection.Words.First))
                 {
-                    answerText += " <image src=\"" + 
-                                    imageServerDir + 
-                                    "\\Image" + 
-                                    (pictureIndex).ToString() + "\" /> ";
+                    answerText += " <image src=\""  + 
+                                    imageServerAddr + 
+                                    "/Image" + 
+                                    (pictureIndex).ToString() + ".jpg\" /> ";
                     
                     pictureIndex++;
                 }
@@ -614,10 +621,10 @@ namespace QWord
                 // обработка картинки
                 if (IsImage(wordApplication.Selection.Words.First))
                 {
-                    answerText += " <image src=\"" + 
-                                    imageServerDir + 
-                                    "\\Image" + 
-                                    (pictureIndex).ToString() + "\" /> ";
+                    answerText += " <image src=\""  + 
+                                    imageServerAddr + 
+                                    "/Image" + 
+                                    (pictureIndex).ToString() + ".jpg\" /> ";
                     
                     pictureIndex++;
                 }
