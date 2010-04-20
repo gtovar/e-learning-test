@@ -304,7 +304,7 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /Uploads/Excel.
+        ///   Looks up a localized string similar to /Uploads/Excel/.
         /// </summary>
         internal static string EXCEL_FILE_UPLOAD_PATH {
             get {
@@ -417,6 +417,15 @@ namespace VmkLearningKit {
         internal static string PAGE_TITLE {
             get {
                 return ResourceManager.GetString("PAGE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8.
+        /// </summary>
+        internal static string PASSWORD_LENGTH {
+            get {
+                return ResourceManager.GetString("PASSWORD_LENGTH", resourceCulture);
             }
         }
         

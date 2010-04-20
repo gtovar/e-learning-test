@@ -20,19 +20,23 @@
 <%/*= Html.ActionLink("Кафедры", "Chairs", "Home", new {id = ""}, new { @class = "menu_lev1" })*/%>
 <% if (null != ViewData["Chairs"])
    { %>
-<% try
-   {
-       %>
-       <span class="menu_lev1">Кафедры</span>
-       <%
-       foreach (Chair chair in (IEnumerable<Chair>)ViewData["Chairs"])
-       { %>
-<%= Html.ActionLink(chair.Abbreviation, "Chairs", "Home", new { alias = Html.Encode(chair.Alias), additional = "" }, new { @class = "menu_lev2" })%>
-<br />
-<% }
-   }
-   catch (Exception ex)
-   {
-       Utility.RedirectToErrorPage("GeneralMenu.ascx: catch exception", ex);
-   }%>
+    <% try
+       {
+           %>
+           <span class="menu_lev1">Кафедры</span>
+           <%
+           foreach (Chair chair in (IEnumerable<Chair>)ViewData["Chairs"])
+           {
+               if(!chair.Title.Trim().Equals("Не указана"))
+               {
+           %>
+    <%= Html.ActionLink(chair.Abbreviation, "Chairs", "Home", new { alias = Html.Encode(chair.Alias), additional = "" }, new { @class = "menu_lev2" })%>
+    <br />
+    <%          }
+            }
+       }
+       catch (Exception ex)
+       {
+           Utility.RedirectToErrorPage("GeneralMenu.ascx: catch exception", ex);
+       }%>
 <% } %>

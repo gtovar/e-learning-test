@@ -51,16 +51,17 @@ namespace VmkLearningKit.Core.ExcelToDB
                                         {
                                             if (student.GroupId == groupIdBeforeCommit)
                                             {
-                                                Student studentCopy = Utility.Copy(student);
+                                                long studentIdBeforeCommit = student.User.Id;
+                                                User userCopy = Utility.Copy(student.User);
                                                 Student studentFromDb = null;
-                                                long studentIdBeforeCommit = studentCopy.User.Id;
-                                                studentCopy.GroupId = groupCopy.Id;
-                                                User userFromDB = repositoryManager.GetUserRepository.GetByLogin(studentCopy.User.Login);
+                                                
+                                                User userFromDB = repositoryManager.GetUserRepository.GetByLogin(userCopy.Login);
                                                 if (null == userFromDB)
                                                 {
-                                                    userFromDB = repositoryManager.GetUserRepository.Add(studentCopy.User);
+                                                    userFromDB = repositoryManager.GetUserRepository.Add(userCopy);
                                                     if (null != userFromDB)
                                                     {
+                                                        Student studentCopy = Utility.Copy(student, userFromDB.Id, groupFromDB.Id);
                                                         studentFromDb = repositoryManager.GetStudentRepository.Add(studentCopy);
                                                     }
                                                 }
@@ -69,6 +70,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                                     studentFromDb = repositoryManager.GetStudentRepository.GetById(userFromDB.Id);
                                                     if (null == studentFromDb)
                                                     {
+                                                        Student studentCopy = Utility.Copy(student, userFromDB.Id, groupFromDB.Id);
                                                         studentFromDb = repositoryManager.GetStudentRepository.Add(studentCopy);
                                                     }
                                                 }
@@ -115,14 +117,14 @@ namespace VmkLearningKit.Core.ExcelToDB
                 int columnIndex = 1;
                 int maxColumnIndex = 100; // excelParser.GetMaxColumnCount();
                 int maxRowIndex = 1000; // excelParser.GetMaxRowCount();
-                int departmentColumnIndex = -1;
-                int lastDepartmentId = 0;
-                int specialityColumnIndex = -1;
-                int lastSpecialityId = 0;
-                int groupColumnIndex = -1;
-                int lastGroupId = 0;
-                int studentColumnIndex = -1;
-                int lastStudentId = 0;
+                long departmentColumnIndex = -1;
+                long lastDepartmentId = RepositoryManager.GetRepositoryManager.GetDepartmentRepository.GetMaxId() + 1;
+                long specialityColumnIndex = -1;
+                long lastSpecialityId = RepositoryManager.GetRepositoryManager.GetSpecialityRepository.GetMaxId() + 1;
+                long groupColumnIndex = -1;
+                long lastGroupId = RepositoryManager.GetRepositoryManager.GetGroupRepository.GetMaxId() + 1;
+                long studentColumnIndex = -1;
+                long lastStudentId = 0;//RepositoryManager.GetRepositoryManager.GetUserRepository.GetMaxId() + 1;
 
                 Random rndPasswd = new Random(DateTime.Now.Millisecond);
 
@@ -173,6 +175,9 @@ namespace VmkLearningKit.Core.ExcelToDB
                             }
 
                             groupStructureObj = new GroupStructureObj();
+                            specialities = new List<Speciality>();
+                            groups = new List<Group>();
+                            students = new List<Student>();
                             department = new Department();
                             department.Id = ++lastDepartmentId;
                             department.Abbreviation = currentReadedValue;

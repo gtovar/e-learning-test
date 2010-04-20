@@ -23,6 +23,25 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Users.SingleOrDefault(t => t.Login == login);
         }
 
+        public bool ChangePassword(long id, string password)
+        {
+            try
+            {
+                User user = GetById(id);
+                if (null != user)
+                {
+                    user.Password = password;
+                    DataContext.SubmitChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't change user password by id: " + id + "!!!!", ex);
+            }
+            return false;
+        }
+
         public User Add(User obj)
         {
             try
@@ -41,6 +60,23 @@ namespace VmkLearningKit.Models.Repository
                 Utility.WriteToLog("User can't add to database", ex);
             }
             return null;
+        }
+
+        public long GetMaxId()
+        {
+            try
+            {
+                IEnumerable<User> list = DataContext.Users.OrderByDescending(u => u.Id);
+                if (null != list && list.Count() > 0)
+                {
+                    return list.First().Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't get max id from User table in database !!!!", ex);
+            }
+            return 0;
         }
 
         public void Delete(User obj)

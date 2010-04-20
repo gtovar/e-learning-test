@@ -621,6 +621,7 @@
     <Content Include="Views\Admin\User\Users.aspx" />
     <Content Include="Views\Cabinet\AccountSettings.aspx" />
     <Content Include="Views\Cabinet\Admin.aspx" />
+    <Content Include="Views\Cabinet\ChangePassword.aspx" />
     <Content Include="Views\Cabinet\LecturePlan.aspx" />
     <Content Include="Views\Cabinet\Menu.aspx" />
     <Content Include="Views\Cabinet\Metodist.aspx" />

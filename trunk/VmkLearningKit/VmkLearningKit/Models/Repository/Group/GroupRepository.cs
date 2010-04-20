@@ -70,6 +70,19 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Groups.OrderBy(gr => gr.Id);
         }
 
+        public IEnumerable<Group> GetAllByDepartmentId(long departmentId)
+        {
+            try
+            {
+                return DataContext.Groups.Where(gr => gr.DepartmentId == departmentId).OrderBy(gr => gr.Title);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("Can't get groups by departmentId = " + departmentId, ex);
+            }
+            return null;
+        }
+
         public Group Add(Group obj)
         {
             Group objWithTheSameAlias = GetByAlias(obj.Alias);

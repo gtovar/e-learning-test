@@ -9,6 +9,7 @@ namespace VmkLearningKit.Models.Repository
     public interface IGroupRepository : IRepository<Group>
     {
         IEnumerable<Group> GetAll();
+        IEnumerable<Group> GetAllByDepartmentId(long departmentId);
         Group GetByAlias(string alias);
         Group GetByTitle(string title);
         long GetMaxId();
