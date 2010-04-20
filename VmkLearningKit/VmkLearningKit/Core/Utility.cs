@@ -87,10 +87,34 @@ namespace VmkLearningKit.Core
             return copy;
         }
 
+        public static Student Copy(Student obj, long userId, long groupId)
+        {
+            Student copy = new Student();
+            //copy.UserId = userId;
+            copy.GroupId = groupId;
+            copy.User = RepositoryManager.GetRepositoryManager.GetUserRepository.GetById(userId);
+            if (null == copy.User)
+            {
+                copy.UserId = userId;
+                copy.User = new User();
+                copy.User.Id = userId;
+                copy.User.Login = obj.User.Login;
+                copy.User.NickName = obj.User.NickName;
+                copy.User.Email = obj.User.Email;
+                copy.User.FirstName = obj.User.FirstName;
+                copy.User.SecondName = obj.User.SecondName;
+                copy.User.Patronymic = obj.User.Patronymic;
+                copy.User.Role = obj.User.Role;
+                copy.User.Password = obj.User.Password;
+            }
+
+            return copy;
+        }
+
         public static Student Copy(Student obj)
         {
             Student copy = new Student();
-            copy.UserId = obj.UserId; ;
+            copy.UserId = obj.UserId;
             copy.GroupId = obj.GroupId;
             copy.User = new User();
             copy.User.Id = obj.User.Id;
@@ -105,6 +129,23 @@ namespace VmkLearningKit.Core
 
             return copy;
         }
+
+        public static User Copy(User obj)
+        {
+            User copy = new User();
+            copy.Id = obj.Id;
+            copy.Login = obj.Login;
+            copy.NickName = obj.NickName;
+            copy.Email = obj.Email;
+            copy.FirstName = obj.FirstName;
+            copy.SecondName = obj.SecondName;
+            copy.Patronymic = obj.Patronymic;
+            copy.Role = obj.Role;
+            copy.Password = obj.Password;
+
+            return copy;
+        }
+
         /*
         public static int GetCurrentTerm()
         {

@@ -36,6 +36,30 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+        public IEnumerable<LecturePlan> GetBySpecialityDisciplineTopicId(long specialityDisciplineTopicId)
+        {
+            try
+            {
+                return DataContext.LecturePlans.Where(lp => lp.SpecialityDisciplineTopicId == specialityDisciplineTopicId);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't get lecturePlans by specialityDisciplineTopicId: " + specialityDisciplineTopicId, ex);
+            }
+            return null;
+        }
+
+        public LecturePlan Add(LecturePlan obj)
+        {
+            IEnumerable<LecturePlan> lecturePlans = GetBySpecialityDisciplineTopicId(obj.SpecialityDisciplineTopicId);
+            if (null == lecturePlans || lecturePlans.Count() == 0)
+            {
+                DataContext.LecturePlans.InsertOnSubmit(obj);
+                DataContext.SubmitChanges();
+            }
+            return obj;
+        }
+
         public void Delete(LecturePlan obj)
         {
             DataContext.LecturePlans.DeleteOnSubmit(obj);

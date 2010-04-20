@@ -25,44 +25,51 @@
                 SpecialityDiscipline specialityDiscipline = (SpecialityDiscipline)ViewData["SpecialityDiscipline"];
                 Professor professor = (Professor)ViewData["Professor"];
     %>
-    <% Html.BeginForm("LecturePlan", "Cabinet", FormMethod.Post); %>
-    <span style="float: left; margin-bottom: 5px;">
-        <h3 style="margin-bottom: 5px;">
-            План лекционных занятий</h3>
-        <h4 style="margin-bottom: 5px;">
-            <%= Html.Encode(specialityDiscipline.Title) %></h4>
-    </span>
-    <%
-        foreach (LecturePlan lecturePlan in specialityDiscipline.LecturePlans)
-        {
-            if (!lecturePlan.Date.HasValue)
-            { %>
-    <div style="font-size: 15px; color: Red; text-align: center;">
-        Заполните даты проведения лекций по каждой теме
-    </div>
-    <%          break;
+    <% Html.BeginForm("LecturePlan", "Cabinet", FormMethod.Post, new { name = "LecturePlanForm", id = "LecturePlanForm" }); %>
+    <table width="100%">
+        <tr style="padding-bottom: 5px;">
+            <td>
+                <h3 style="margin-bottom: 5px;">
+                    План лекционных занятий
+                </h3>
+                <h4 style="margin-bottom: 5px;">
+                    <%= Html.ActionLink(Html.Encode(specialityDiscipline.Title), "Professor", "Cabinet", new { alias = professor.User.NickName, additional = specialityDiscipline.Alias }, new { @class = "" } ) %>
+                </h4>
+            </td>
+            <%
+                foreach (LecturePlan lecturePlan in specialityDiscipline.LecturePlans)
+                {
+                    if (!lecturePlan.Date.HasValue && null == ViewData["AreDatesCorrect"])
+                    { %>
+            <td style="font-size: 15px; color: Red; text-align: center;">
+                Заполните даты проведения практик по каждой теме
+            </td>
+            <%          break;
             }
         }
-        string lecturePlanDateArray = String.Empty;
-        foreach (LecturePlan lecturePlan in (IEnumerable<LecturePlan>)specialityDiscipline.LecturePlans)
+        if (null != ViewData["AreDatesCorrect"] && ((Boolean)ViewData["AreDatesCorrect"]))
+        { %>
+            <td style="font-size: 15px; color: Green; text-align: center;">
+                План сохранен успешно!
+            </td>
+            <% }
+       else if (null != ViewData["AreDatesCorrect"])
+       { %>
+            <td style="font-size: 15px; color: Red; text-align: center;">
+                Ошибки при заполнении плана!
+            </td>
+            <% } %>
+        </tr>
+    </table>
+    <%
+        string planDateArray = String.Empty;
+        foreach (PracticePlan practicePlan in (IEnumerable<PracticePlan>)specialityDiscipline.PracticePlans)
         {
-            lecturePlanDateArray += lecturePlan.Id + ",";
+            planDateArray += practicePlan.Id + ",";
         }
-        lecturePlanDateArray = lecturePlanDateArray.Trim(',', ' ');
+        planDateArray = planDateArray.Trim(',', ' ');
     %>
-    <input type="hidden" name="lecturePlanDateArray" id="lecturePlanDateArray" value="<%= lecturePlanDateArray %>" />
-    <% if (null != ViewData["IsDatesCorrect"] && ((Boolean)ViewData["IsDatesCorrect"]))
-       { %>
-    <div style="font-size: 15px; color: Green; text-align: center;">
-        План сохранен успешно!
-    </div>
-    <% }
-       else if (null != ViewData["IsDatesCorrect"])
-       { %>
-    <div style="font-size: 15px; color: Red; text-align: center;">
-        Ошибки на странице!
-    </div>
-    <% } %>
+    <input type="hidden" name="planDateArray" id="planDateArray" value="<%= planDateArray %>" />
     <table width="100%" border="1">
         <tr class="table_header">
             <th style="padding: 7px; width: 30px">
@@ -90,18 +97,18 @@
                 <%= Html.Encode(lecturePlan.SpecialityDisciplineTopic.Title)%>
             </td>
             <td style="padding-right: 3px; width: 170px">
-                <input name="LecturePlanDate_<%= lecturePlan.Id %>" id="LecturePlanDate_<%= lecturePlan.Id %>"
+                <input name="planDate_<%= lecturePlan.Id %>" id="planDate_<%= lecturePlan.Id %>"
                     value="<%= lecturePlan.Date.HasValue ? lecturePlan.Date.Value.ToString() : "" %>"
                     style="width: 140px; height: 15px; float: left; color: Black; font-size: 14px;
                     margin-top: 1px" />
                 <a href="#" class="transparent_link">
                     <img class="transparent_img" style="float: left; height: 20px" src="/Content/Images/cal.gif"
-                        id="LecturePlanDateBtn_<%= lecturePlan.Id %>" alt="Выбирете дату и время проведения занятия" /></a>
-                <% if (null != ViewData["LecturePlanDate_" + lecturePlan.Id])
+                        id="planDateBtn_<%= lecturePlan.Id %>" alt="Выбирете дату и время проведения занятия" /></a>
+                <% if (null != ViewData["planDate_" + lecturePlan.Id])
                    { %>
                 <br />
                 <span class="error">
-                    <%= ViewData["LecturePlanDate_" + lecturePlan.Id]%></span>
+                    <%= ViewData["planDate_" + lecturePlan.Id]%></span>
                 <% } %>
             </td>
             <td style="padding: 7px;">
@@ -120,13 +127,13 @@
         <% foreach (LecturePlan lecturePlan in (IEnumerable<LecturePlan>)specialityDiscipline.LecturePlans)
            {   
         %>
-        cal.manageFields("LecturePlanDateBtn_<%= lecturePlan.Id %>", "LecturePlanDate_<%= lecturePlan.Id %>", "%d.%m.%Y %H:%M:%S");
+        cal.manageFields("planDateBtn_<%= lecturePlan.Id %>", "planDate_<%= lecturePlan.Id %>", "%d.%m.%Y %H:%M:%S");
         <% } %>
         //]]>
     </script>
 
     <div style="float: right; margin-top: 10px; margin-bottom: 10px">
-        <input type="submit" id="LecturePlan" name="LecturePlan" value="Сохранить" style="width: 100px;
+        <input type="submit" id="LecturePlanSubmit" name="LecturePlanSubmit" value="Сохранить" style="width: 100px;
             height: 30px;" />
     </div>
     <% Html.EndForm(); %>

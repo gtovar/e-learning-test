@@ -143,7 +143,7 @@
             </th>
         </tr>
         <% int index = 1;
-           foreach (LecturePlan lecturePlan in (IEnumerable<LecturePlan>)specialityDiscipline.LecturePlans)
+           foreach (SpecialityDisciplineTopic specialityDisciplineTopic in (IEnumerable<SpecialityDisciplineTopic>)specialityDiscipline.SpecialityDisciplineTopics)
            {                    
         %>
         <tr class="table_row">
@@ -151,7 +151,7 @@
                 <%= index%>
             </td>
             <td style="padding: 7px;">
-                <%= Html.Encode(lecturePlan.SpecialityDisciplineTopic.Title)%>
+                <%= Html.Encode(specialityDisciplineTopic.Title)%>
             </td>
             <td style="padding: 7px;">
                 <%= Html.ActionLink("Тестирование", "")%>

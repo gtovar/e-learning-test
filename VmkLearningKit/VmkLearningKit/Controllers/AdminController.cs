@@ -32,61 +32,74 @@ namespace VmkLearningKit.Controllers
             foreach (string file in Request.Files)
             {
                 var postedFile = Request.Files[file];
-                string filePath = Server.MapPath(Constants.EXCEL_FILE_UPLOAD_PATH) + Path.GetFileNameWithoutExtension(postedFile.FileName) + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + Path.GetExtension(postedFile.FileName);
-                postedFile.SaveAs(filePath);
+                if (null != postedFile && !postedFile.FileName.Trim().Equals(String.Empty))
+                {
+                    string filePath = Server.MapPath(Constants.EXCEL_FILE_UPLOAD_PATH) + Path.GetFileNameWithoutExtension(postedFile.FileName) + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + Path.GetExtension(postedFile.FileName);
+                    postedFile.SaveAs(filePath);
 
-                filePathes.Add(filePath);
+                    filePathes.Add(filePath);
+                }
             }
+            bool isFileLoadOk = false;
             if (filePathes.Count > 0)
             {
                 foreach (string filePath in filePathes)
                 {
-                    if(null != form["DepartmentStructure"])
+                    if (null != filePath && !filePath.Trim().Equals(String.Empty))
                     {
-                        DepartmentStructure departmentStructure = new DepartmentStructure();
-                        List<DepartmentStructureObj> departmentStructureList = departmentStructure.FromFile(filePath);
-                        foreach (DepartmentStructureObj obj in departmentStructureList)
+                        if (null != form["DepartmentStructure"])
                         {
-                            string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "DepartmentStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
-                            DB.Backup(dbBackupFilePath);
-                            obj.Commit();
+                            DepartmentStructure departmentStructure = new DepartmentStructure();
+                            List<DepartmentStructureObj> departmentStructureList = departmentStructure.FromFile(filePath);
+                            foreach (DepartmentStructureObj obj in departmentStructureList)
+                            {
+                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "DepartmentStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
+                                DB.Backup(dbBackupFilePath);
+                                obj.Commit();
+                            }
+                            isFileLoadOk = true;
                         }
-                    }
-                    if(null != form["SpecialityDisciplineStructure"])
-                    {
-                        SpecialityDisciplineStructure specialityDisciplineStructure = new SpecialityDisciplineStructure();
-                        List<SpecialityDisciplineStructureObj> specialityDisciplineStructureList = specialityDisciplineStructure.FromFile(filePath);
-                        foreach (SpecialityDisciplineStructureObj obj in specialityDisciplineStructureList)
+                        if (null != form["SpecialityDisciplineStructure"])
                         {
-                            string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "SpecialityDisciplineStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
-                            DB.Backup(dbBackupFilePath);
-                            obj.Commit();
+                            SpecialityDisciplineStructure specialityDisciplineStructure = new SpecialityDisciplineStructure();
+                            List<SpecialityDisciplineStructureObj> specialityDisciplineStructureList = specialityDisciplineStructure.FromFile(filePath);
+                            foreach (SpecialityDisciplineStructureObj obj in specialityDisciplineStructureList)
+                            {
+                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "SpecialityDisciplineStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
+                                DB.Backup(dbBackupFilePath);
+                                obj.Commit();
+                            }
+                            isFileLoadOk = true;
                         }
-                    }
-                    if (null != form["SpecialityDisciplineTopicStructure"])
-                    {
-                        SpecialityDisciplineTopicStructure specialityDisciplineTopicStructure = new SpecialityDisciplineTopicStructure();
-                        List<SpecialityDisciplineTopicStructureObj> specialityDisciplineTopicStructureList = specialityDisciplineTopicStructure.FromFile(filePath);
-                        foreach (SpecialityDisciplineTopicStructureObj obj in specialityDisciplineTopicStructureList)
+                        if (null != form["SpecialityDisciplineTopicStructure"])
                         {
-                            string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "SpecialityDisciplineTopicStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
-                            DB.Backup(dbBackupFilePath);
-                            obj.Commit();
+                            SpecialityDisciplineTopicStructure specialityDisciplineTopicStructure = new SpecialityDisciplineTopicStructure();
+                            List<SpecialityDisciplineTopicStructureObj> specialityDisciplineTopicStructureList = specialityDisciplineTopicStructure.FromFile(filePath);
+                            foreach (SpecialityDisciplineTopicStructureObj obj in specialityDisciplineTopicStructureList)
+                            {
+                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "SpecialityDisciplineTopicStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
+                                DB.Backup(dbBackupFilePath);
+                                obj.Commit();
+                            }
+                            isFileLoadOk = true;
                         }
-                    }
-                    if (null != form["GroupStructure"])
-                    {
-                        GroupStructure groupStructure = new GroupStructure();
-                        List<GroupStructureObj> groupStructureList = groupStructure.FromFile(filePath);
-                        foreach (GroupStructureObj obj in groupStructureList)
+                        if (null != form["GroupStructure"])
                         {
-                            string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "GroupStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
-                            DB.Backup(dbBackupFilePath);
-                            obj.Commit();
+                            GroupStructure groupStructure = new GroupStructure();
+                            List<GroupStructureObj> groupStructureList = groupStructure.FromFile(filePath);
+                            foreach (GroupStructureObj obj in groupStructureList)
+                            {
+                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "GroupStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
+                                DB.Backup(dbBackupFilePath);
+                                obj.Commit();
+                            }
+                            isFileLoadOk = true;
                         }
                     }
                 }
             }
+
+            ViewData["IsFileLoadOk"] = isFileLoadOk;
 
             return View();
         }

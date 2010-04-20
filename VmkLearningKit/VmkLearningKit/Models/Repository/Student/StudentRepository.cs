@@ -84,7 +84,7 @@ namespace VmkLearningKit.Models.Repository
             }
             catch (Exception ex)
             {
-                Utility.WriteToLog("!!!!IMPORTANT Can't get max id from Professor table in database !!!!", ex);
+                Utility.WriteToLog("!!!!IMPORTANT Can't get max id from Student table in database !!!!", ex);
             }
             return 0;
         }

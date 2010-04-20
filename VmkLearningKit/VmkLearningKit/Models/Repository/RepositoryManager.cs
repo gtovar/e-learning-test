@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +17,7 @@ namespace VmkLearningKit.Models.Repository
         {
             DataContext = new VmkLearningKitDataContext(connectionString);
         }
+
         /*
         public void RestoreDB()
         {
@@ -228,6 +229,21 @@ namespace VmkLearningKit.Models.Repository
                 }
 
                 return lecturePlanRepository;
+            }
+        }
+
+        private IPracticePlanRepository practicePlanRepository;
+
+        public IPracticePlanRepository GetPracticePlanRepository
+        {
+            get
+            {
+                if (practicePlanRepository == null)
+                {
+                    practicePlanRepository = new PracticePlanRepository(DataContext);
+                }
+
+                return practicePlanRepository;
             }
         }
 

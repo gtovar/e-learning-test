@@ -199,7 +199,7 @@
     <value>/Home/Error/</value>
   </data>
   <data name="EXCEL_FILE_UPLOAD_PATH" xml:space="preserve">
-    <value>/Uploads/Excel</value>
+    <value>/Uploads/Excel/</value>
   </data>
   <data name="FIELD_MUST_NOT_BE_EMPTY" xml:space="preserve">
     <value>Поле не может быть пустым</value>
@@ -236,6 +236,9 @@
   </data>
   <data name="PAGE_TITLE" xml:space="preserve">
     <value>PageTitle</value>
+  </data>
+  <data name="PASSWORD_LENGTH" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="PERSON_CABINET" xml:space="preserve">
     <value>Личный кабинет</value>
