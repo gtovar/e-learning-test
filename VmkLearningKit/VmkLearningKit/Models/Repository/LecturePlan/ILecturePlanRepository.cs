@@ -9,6 +9,7 @@ namespace VmkLearningKit.Models.Repository
     {
         LecturePlan SetDateTime(long id, DateTime dateTime);
         IEnumerable<LecturePlan> GetBySpecialityDisciplineTopicId(long specialityDisciplineTopicId);
+        IEnumerable<LecturePlan> GetBySpecialityDisciplineId(long specialityDisciplineId);
         LecturePlan Add(LecturePlan obj);
     }
 }

@@ -10,6 +10,8 @@ namespace VmkLearningKit.Models.Repository
         User GetByLogin(string login);
         long GetMaxId();
         bool ChangePassword(long id, string password);
-        User Add(User add);
+        User Add(User obj);
+        User Update(User obj);
+        bool IsNickNameExists(long id, string nickName);
     }
 }

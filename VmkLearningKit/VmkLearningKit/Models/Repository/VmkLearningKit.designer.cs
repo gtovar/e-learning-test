@@ -45,9 +45,6 @@ namespace VmkLearningKit.Models.Repository
     partial void InsertDepartment(Department instance);
     partial void UpdateDepartment(Department instance);
     partial void DeleteDepartment(Department instance);
-    partial void InsertDiscipline(Discipline instance);
-    partial void UpdateDiscipline(Discipline instance);
-    partial void DeleteDiscipline(Discipline instance);
     partial void InsertEducationPlan(EducationPlan instance);
     partial void UpdateEducationPlan(EducationPlan instance);
     partial void DeleteEducationPlan(EducationPlan instance);
@@ -102,9 +99,6 @@ namespace VmkLearningKit.Models.Repository
     partial void InsertStudent(Student instance);
     partial void UpdateStudent(Student instance);
     partial void DeleteStudent(Student instance);
-    partial void InsertTopic(Topic instance);
-    partial void UpdateTopic(Topic instance);
-    partial void DeleteTopic(Topic instance);
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
@@ -177,14 +171,6 @@ namespace VmkLearningKit.Models.Repository
 			get
 			{
 				return this.GetTable<Department>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Discipline> Disciplines
-		{
-			get
-			{
-				return this.GetTable<Discipline>();
 			}
 		}
 		
@@ -329,14 +315,6 @@ namespace VmkLearningKit.Models.Repository
 			get
 			{
 				return this.GetTable<Student>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Topic> Topics
-		{
-			get
-			{
-				return this.GetTable<Topic>();
 			}
 		}
 		
@@ -1377,8 +1355,6 @@ namespace VmkLearningKit.Models.Repository
 		
 		private EntitySet<Chair> _Chairs;
 		
-		private EntitySet<Discipline> _Disciplines;
-		
 		private EntitySet<Group> _Groups;
 		
 		private EntitySet<Speciality> _Specialities;
@@ -1402,7 +1378,6 @@ namespace VmkLearningKit.Models.Repository
 		public Department()
 		{
 			this._Chairs = new EntitySet<Chair>(new Action<Chair>(this.attach_Chairs), new Action<Chair>(this.detach_Chairs));
-			this._Disciplines = new EntitySet<Discipline>(new Action<Discipline>(this.attach_Disciplines), new Action<Discipline>(this.detach_Disciplines));
 			this._Groups = new EntitySet<Group>(new Action<Group>(this.attach_Groups), new Action<Group>(this.detach_Groups));
 			this._Specialities = new EntitySet<Speciality>(new Action<Speciality>(this.attach_Specialities), new Action<Speciality>(this.detach_Specialities));
 			OnCreated();
@@ -1521,19 +1496,6 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Association(Name="Department_Discipline", Storage="_Disciplines", ThisKey="Id", OtherKey="DepartmentId")]
-		public EntitySet<Discipline> Disciplines
-		{
-			get
-			{
-				return this._Disciplines;
-			}
-			set
-			{
-				this._Disciplines.Assign(value);
-			}
-		}
-		
 		[Association(Name="Department_Group", Storage="_Groups", ThisKey="Id", OtherKey="DepartmentId")]
 		public EntitySet<Group> Groups
 		{
@@ -1592,18 +1554,6 @@ namespace VmkLearningKit.Models.Repository
 			entity.Department = null;
 		}
 		
-		private void attach_Disciplines(Discipline entity)
-		{
-			this.SendPropertyChanging();
-			entity.Department = this;
-		}
-		
-		private void detach_Disciplines(Discipline entity)
-		{
-			this.SendPropertyChanging();
-			entity.Department = null;
-		}
-		
 		private void attach_Groups(Group entity)
 		{
 			this.SendPropertyChanging();
@@ -1626,226 +1576,6 @@ namespace VmkLearningKit.Models.Repository
 		{
 			this.SendPropertyChanging();
 			entity.Department = null;
-		}
-	}
-	
-	[Table(Name="dbo.Disciplines")]
-	public partial class Discipline : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _Id;
-		
-		private long _DepartmentId;
-		
-		private long _SpecialityDisciplineId;
-		
-		private EntitySet<Topic> _Topics;
-		
-		private EntityRef<Department> _Department;
-		
-		private EntityRef<SpecialityDiscipline> _SpecialityDiscipline;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(long value);
-    partial void OnIdChanged();
-    partial void OnDepartmentIdChanging(long value);
-    partial void OnDepartmentIdChanged();
-    partial void OnSpecialityDisciplineIdChanging(long value);
-    partial void OnSpecialityDisciplineIdChanged();
-    #endregion
-		
-		public Discipline()
-		{
-			this._Topics = new EntitySet<Topic>(new Action<Topic>(this.attach_Topics), new Action<Topic>(this.detach_Topics));
-			this._Department = default(EntityRef<Department>);
-			this._SpecialityDiscipline = default(EntityRef<SpecialityDiscipline>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DepartmentId", DbType="BigInt NOT NULL")]
-		public long DepartmentId
-		{
-			get
-			{
-				return this._DepartmentId;
-			}
-			set
-			{
-				if ((this._DepartmentId != value))
-				{
-					if (this._Department.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDepartmentIdChanging(value);
-					this.SendPropertyChanging();
-					this._DepartmentId = value;
-					this.SendPropertyChanged("DepartmentId");
-					this.OnDepartmentIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SpecialityDisciplineId", DbType="BigInt NOT NULL")]
-		public long SpecialityDisciplineId
-		{
-			get
-			{
-				return this._SpecialityDisciplineId;
-			}
-			set
-			{
-				if ((this._SpecialityDisciplineId != value))
-				{
-					if (this._SpecialityDiscipline.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSpecialityDisciplineIdChanging(value);
-					this.SendPropertyChanging();
-					this._SpecialityDisciplineId = value;
-					this.SendPropertyChanged("SpecialityDisciplineId");
-					this.OnSpecialityDisciplineIdChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Discipline_Topic", Storage="_Topics", ThisKey="Id", OtherKey="DisciplineId")]
-		public EntitySet<Topic> Topics
-		{
-			get
-			{
-				return this._Topics;
-			}
-			set
-			{
-				this._Topics.Assign(value);
-			}
-		}
-		
-		[Association(Name="Department_Discipline", Storage="_Department", ThisKey="DepartmentId", OtherKey="Id", IsForeignKey=true)]
-		public Department Department
-		{
-			get
-			{
-				return this._Department.Entity;
-			}
-			set
-			{
-				Department previousValue = this._Department.Entity;
-				if (((previousValue != value) 
-							|| (this._Department.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Department.Entity = null;
-						previousValue.Disciplines.Remove(this);
-					}
-					this._Department.Entity = value;
-					if ((value != null))
-					{
-						value.Disciplines.Add(this);
-						this._DepartmentId = value.Id;
-					}
-					else
-					{
-						this._DepartmentId = default(long);
-					}
-					this.SendPropertyChanged("Department");
-				}
-			}
-		}
-		
-		[Association(Name="SpecialityDiscipline_Discipline", Storage="_SpecialityDiscipline", ThisKey="SpecialityDisciplineId", OtherKey="Id", IsForeignKey=true)]
-		public SpecialityDiscipline SpecialityDiscipline
-		{
-			get
-			{
-				return this._SpecialityDiscipline.Entity;
-			}
-			set
-			{
-				SpecialityDiscipline previousValue = this._SpecialityDiscipline.Entity;
-				if (((previousValue != value) 
-							|| (this._SpecialityDiscipline.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SpecialityDiscipline.Entity = null;
-						previousValue.Disciplines.Remove(this);
-					}
-					this._SpecialityDiscipline.Entity = value;
-					if ((value != null))
-					{
-						value.Disciplines.Add(this);
-						this._SpecialityDisciplineId = value.Id;
-					}
-					else
-					{
-						this._SpecialityDisciplineId = default(long);
-					}
-					this.SendPropertyChanged("SpecialityDiscipline");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Topics(Topic entity)
-		{
-			this.SendPropertyChanging();
-			entity.Discipline = this;
-		}
-		
-		private void detach_Topics(Topic entity)
-		{
-			this.SendPropertyChanging();
-			entity.Discipline = null;
 		}
 	}
 	
@@ -2215,7 +1945,7 @@ namespace VmkLearningKit.Models.Repository
 		
 		private long _Id;
 		
-		private long _TopicId;
+		private long _SpecialityDisciplineTopicId;
 		
 		private int _VariantsCount;
 		
@@ -2225,7 +1955,7 @@ namespace VmkLearningKit.Models.Repository
 		
 		private EntitySet<GeneratedTestVariant> _GeneratedTestVariants;
 		
-		private EntityRef<Topic> _Topic;
+		private EntityRef<SpecialityDisciplineTopic> _SpecialityDisciplineTopic;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2233,8 +1963,8 @@ namespace VmkLearningKit.Models.Repository
     partial void OnCreated();
     partial void OnIdChanging(long value);
     partial void OnIdChanged();
-    partial void OnTopicIdChanging(long value);
-    partial void OnTopicIdChanged();
+    partial void OnSpecialityDisciplineTopicIdChanging(long value);
+    partial void OnSpecialityDisciplineTopicIdChanged();
     partial void OnVariantsCountChanging(int value);
     partial void OnVariantsCountChanged();
     partial void OnGeneratedDateChanging(System.DateTime value);
@@ -2246,7 +1976,7 @@ namespace VmkLearningKit.Models.Repository
 		public GeneratedTest()
 		{
 			this._GeneratedTestVariants = new EntitySet<GeneratedTestVariant>(new Action<GeneratedTestVariant>(this.attach_GeneratedTestVariants), new Action<GeneratedTestVariant>(this.detach_GeneratedTestVariants));
-			this._Topic = default(EntityRef<Topic>);
+			this._SpecialityDisciplineTopic = default(EntityRef<SpecialityDisciplineTopic>);
 			OnCreated();
 		}
 		
@@ -2270,26 +2000,26 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Column(Storage="_TopicId", DbType="BigInt NOT NULL")]
-		public long TopicId
+		[Column(Storage="_SpecialityDisciplineTopicId", DbType="BigInt NOT NULL")]
+		public long SpecialityDisciplineTopicId
 		{
 			get
 			{
-				return this._TopicId;
+				return this._SpecialityDisciplineTopicId;
 			}
 			set
 			{
-				if ((this._TopicId != value))
+				if ((this._SpecialityDisciplineTopicId != value))
 				{
-					if (this._Topic.HasLoadedOrAssignedValue)
+					if (this._SpecialityDisciplineTopic.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTopicIdChanging(value);
+					this.OnSpecialityDisciplineTopicIdChanging(value);
 					this.SendPropertyChanging();
-					this._TopicId = value;
-					this.SendPropertyChanged("TopicId");
-					this.OnTopicIdChanged();
+					this._SpecialityDisciplineTopicId = value;
+					this.SendPropertyChanged("SpecialityDisciplineTopicId");
+					this.OnSpecialityDisciplineTopicIdChanged();
 				}
 			}
 		}
@@ -2367,36 +2097,36 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Association(Name="Topic_GeneratedTest", Storage="_Topic", ThisKey="TopicId", OtherKey="Id", IsForeignKey=true)]
-		public Topic Topic
+		[Association(Name="SpecialityDisciplineTopic_GeneratedTest", Storage="_SpecialityDisciplineTopic", ThisKey="SpecialityDisciplineTopicId", OtherKey="Id", IsForeignKey=true)]
+		public SpecialityDisciplineTopic SpecialityDisciplineTopic
 		{
 			get
 			{
-				return this._Topic.Entity;
+				return this._SpecialityDisciplineTopic.Entity;
 			}
 			set
 			{
-				Topic previousValue = this._Topic.Entity;
+				SpecialityDisciplineTopic previousValue = this._SpecialityDisciplineTopic.Entity;
 				if (((previousValue != value) 
-							|| (this._Topic.HasLoadedOrAssignedValue == false)))
+							|| (this._SpecialityDisciplineTopic.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Topic.Entity = null;
+						this._SpecialityDisciplineTopic.Entity = null;
 						previousValue.GeneratedTests.Remove(this);
 					}
-					this._Topic.Entity = value;
+					this._SpecialityDisciplineTopic.Entity = value;
 					if ((value != null))
 					{
 						value.GeneratedTests.Add(this);
-						this._TopicId = value.Id;
+						this._SpecialityDisciplineTopicId = value.Id;
 					}
 					else
 					{
-						this._TopicId = default(long);
+						this._SpecialityDisciplineTopicId = default(long);
 					}
-					this.SendPropertyChanged("Topic");
+					this.SendPropertyChanged("SpecialityDisciplineTopic");
 				}
 			}
 		}
@@ -2914,8 +2644,6 @@ namespace VmkLearningKit.Models.Repository
 		
 		private System.Nullable<System.DateTime> _Date;
 		
-		private short _Volume;
-		
 		private EntityRef<SpecialityDiscipline> _SpecialityDiscipline;
 		
 		private EntityRef<SpecialityDisciplineTopic> _SpecialityDisciplineTopic;
@@ -2932,8 +2660,6 @@ namespace VmkLearningKit.Models.Repository
     partial void OnSpecialityDisciplineTopicIdChanged();
     partial void OnDateChanging(System.Nullable<System.DateTime> value);
     partial void OnDateChanged();
-    partial void OnVolumeChanging(short value);
-    partial void OnVolumeChanged();
     #endregion
 		
 		public LecturePlan()
@@ -3027,26 +2753,6 @@ namespace VmkLearningKit.Models.Repository
 					this._Date = value;
 					this.SendPropertyChanged("Date");
 					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Volume", DbType="SmallInt NOT NULL")]
-		public short Volume
-		{
-			get
-			{
-				return this._Volume;
-			}
-			set
-			{
-				if ((this._Volume != value))
-				{
-					this.OnVolumeChanging(value);
-					this.SendPropertyChanging();
-					this._Volume = value;
-					this.SendPropertyChanged("Volume");
-					this.OnVolumeChanged();
 				}
 			}
 		}
@@ -3154,11 +2860,13 @@ namespace VmkLearningKit.Models.Repository
 		
 		private string _Day;
 		
-		private System.DateTime _Time;
+		private string _Time;
 		
 		private short _Building;
 		
 		private short _Room;
+		
+		private string _Week;
 		
 		private EntityRef<Professor> _Professor;
 		
@@ -3176,12 +2884,14 @@ namespace VmkLearningKit.Models.Repository
     partial void OnProfessorIdChanged();
     partial void OnDayChanging(string value);
     partial void OnDayChanged();
-    partial void OnTimeChanging(System.DateTime value);
+    partial void OnTimeChanging(string value);
     partial void OnTimeChanged();
     partial void OnBuildingChanging(short value);
     partial void OnBuildingChanged();
     partial void OnRoomChanging(short value);
     partial void OnRoomChanged();
+    partial void OnWeekChanging(string value);
+    partial void OnWeekChanged();
     #endregion
 		
 		public LectureTimetable()
@@ -3279,8 +2989,8 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Column(Storage="_Time", DbType="DateTime NOT NULL")]
-		public System.DateTime Time
+		[Column(Storage="_Time", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Time
 		{
 			get
 			{
@@ -3335,6 +3045,26 @@ namespace VmkLearningKit.Models.Repository
 					this._Room = value;
 					this.SendPropertyChanged("Room");
 					this.OnRoomChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Week", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Week
+		{
+			get
+			{
+				return this._Week;
+			}
+			set
+			{
+				if ((this._Week != value))
+				{
+					this.OnWeekChanging(value);
+					this.SendPropertyChanging();
+					this._Week = value;
+					this.SendPropertyChanged("Week");
+					this.OnWeekChanged();
 				}
 			}
 		}
@@ -3862,8 +3592,6 @@ namespace VmkLearningKit.Models.Repository
 		
 		private System.Nullable<System.DateTime> _Date;
 		
-		private short _Volume;
-		
 		private EntityRef<Group> _Group;
 		
 		private EntityRef<SpecialityDiscipline> _SpecialityDiscipline;
@@ -3884,8 +3612,6 @@ namespace VmkLearningKit.Models.Repository
     partial void OnGroupIdChanged();
     partial void OnDateChanging(System.Nullable<System.DateTime> value);
     partial void OnDateChanged();
-    partial void OnVolumeChanging(short value);
-    partial void OnVolumeChanged();
     #endregion
 		
 		public PracticePlan()
@@ -4004,26 +3730,6 @@ namespace VmkLearningKit.Models.Repository
 					this._Date = value;
 					this.SendPropertyChanged("Date");
 					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Volume", DbType="SmallInt NOT NULL")]
-		public short Volume
-		{
-			get
-			{
-				return this._Volume;
-			}
-			set
-			{
-				if ((this._Volume != value))
-				{
-					this.OnVolumeChanging(value);
-					this.SendPropertyChanging();
-					this._Volume = value;
-					this.SendPropertyChanged("Volume");
-					this.OnVolumeChanged();
 				}
 			}
 		}
@@ -4934,7 +4640,7 @@ namespace VmkLearningKit.Models.Repository
 		
 		private long _Id;
 		
-		private long _TopicId;
+		private long _SpecialityDisciplineTopicId;
 		
 		private string _Title;
 		
@@ -4942,7 +4648,7 @@ namespace VmkLearningKit.Models.Repository
 		
 		private EntitySet<Question> _Questions;
 		
-		private EntityRef<Topic> _Topic;
+		private EntityRef<SpecialityDisciplineTopic> _SpecialityDisciplineTopic;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4950,8 +4656,8 @@ namespace VmkLearningKit.Models.Repository
     partial void OnCreated();
     partial void OnIdChanging(long value);
     partial void OnIdChanged();
-    partial void OnTopicIdChanging(long value);
-    partial void OnTopicIdChanged();
+    partial void OnSpecialityDisciplineTopicIdChanging(long value);
+    partial void OnSpecialityDisciplineTopicIdChanged();
     partial void OnTitleChanging(string value);
     partial void OnTitleChanged();
     partial void OnQuestionsCountChanging(int value);
@@ -4961,7 +4667,7 @@ namespace VmkLearningKit.Models.Repository
 		public Razdel()
 		{
 			this._Questions = new EntitySet<Question>(new Action<Question>(this.attach_Questions), new Action<Question>(this.detach_Questions));
-			this._Topic = default(EntityRef<Topic>);
+			this._SpecialityDisciplineTopic = default(EntityRef<SpecialityDisciplineTopic>);
 			OnCreated();
 		}
 		
@@ -4985,26 +4691,26 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Column(Storage="_TopicId", DbType="BigInt NOT NULL")]
-		public long TopicId
+		[Column(Storage="_SpecialityDisciplineTopicId", DbType="BigInt NOT NULL")]
+		public long SpecialityDisciplineTopicId
 		{
 			get
 			{
-				return this._TopicId;
+				return this._SpecialityDisciplineTopicId;
 			}
 			set
 			{
-				if ((this._TopicId != value))
+				if ((this._SpecialityDisciplineTopicId != value))
 				{
-					if (this._Topic.HasLoadedOrAssignedValue)
+					if (this._SpecialityDisciplineTopic.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTopicIdChanging(value);
+					this.OnSpecialityDisciplineTopicIdChanging(value);
 					this.SendPropertyChanging();
-					this._TopicId = value;
-					this.SendPropertyChanged("TopicId");
-					this.OnTopicIdChanged();
+					this._SpecialityDisciplineTopicId = value;
+					this.SendPropertyChanged("SpecialityDisciplineTopicId");
+					this.OnSpecialityDisciplineTopicIdChanged();
 				}
 			}
 		}
@@ -5062,36 +4768,36 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Association(Name="Topic_Razdel", Storage="_Topic", ThisKey="TopicId", OtherKey="Id", IsForeignKey=true)]
-		public Topic Topic
+		[Association(Name="SpecialityDisciplineTopic_Razdel", Storage="_SpecialityDisciplineTopic", ThisKey="SpecialityDisciplineTopicId", OtherKey="Id", IsForeignKey=true)]
+		public SpecialityDisciplineTopic SpecialityDisciplineTopic
 		{
 			get
 			{
-				return this._Topic.Entity;
+				return this._SpecialityDisciplineTopic.Entity;
 			}
 			set
 			{
-				Topic previousValue = this._Topic.Entity;
+				SpecialityDisciplineTopic previousValue = this._SpecialityDisciplineTopic.Entity;
 				if (((previousValue != value) 
-							|| (this._Topic.HasLoadedOrAssignedValue == false)))
+							|| (this._SpecialityDisciplineTopic.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Topic.Entity = null;
+						this._SpecialityDisciplineTopic.Entity = null;
 						previousValue.Razdels.Remove(this);
 					}
-					this._Topic.Entity = value;
+					this._SpecialityDisciplineTopic.Entity = value;
 					if ((value != null))
 					{
 						value.Razdels.Add(this);
-						this._TopicId = value.Id;
+						this._SpecialityDisciplineTopicId = value.Id;
 					}
 					else
 					{
-						this._TopicId = default(long);
+						this._SpecialityDisciplineTopicId = default(long);
 					}
-					this.SendPropertyChanged("Topic");
+					this.SendPropertyChanged("SpecialityDisciplineTopic");
 				}
 			}
 		}
@@ -5406,8 +5112,6 @@ namespace VmkLearningKit.Models.Repository
 		
 		private string _Category;
 		
-		private EntitySet<Discipline> _Disciplines;
-		
 		private EntitySet<LecturePlan> _LecturePlans;
 		
 		private EntitySet<LectureTimetable> _LectureTimetables;
@@ -5452,7 +5156,6 @@ namespace VmkLearningKit.Models.Repository
 		
 		public SpecialityDiscipline()
 		{
-			this._Disciplines = new EntitySet<Discipline>(new Action<Discipline>(this.attach_Disciplines), new Action<Discipline>(this.detach_Disciplines));
 			this._LecturePlans = new EntitySet<LecturePlan>(new Action<LecturePlan>(this.attach_LecturePlans), new Action<LecturePlan>(this.detach_LecturePlans));
 			this._LectureTimetables = new EntitySet<LectureTimetable>(new Action<LectureTimetable>(this.attach_LectureTimetables), new Action<LectureTimetable>(this.detach_LectureTimetables));
 			this._PracticeAndLabTimetables = new EntitySet<PracticeAndLabTimetable>(new Action<PracticeAndLabTimetable>(this.attach_PracticeAndLabTimetables), new Action<PracticeAndLabTimetable>(this.detach_PracticeAndLabTimetables));
@@ -5639,19 +5342,6 @@ namespace VmkLearningKit.Models.Repository
 					this.SendPropertyChanged("Category");
 					this.OnCategoryChanged();
 				}
-			}
-		}
-		
-		[Association(Name="SpecialityDiscipline_Discipline", Storage="_Disciplines", ThisKey="Id", OtherKey="SpecialityDisciplineId")]
-		public EntitySet<Discipline> Disciplines
-		{
-			get
-			{
-				return this._Disciplines;
-			}
-			set
-			{
-				this._Disciplines.Assign(value);
 			}
 		}
 		
@@ -5887,18 +5577,6 @@ namespace VmkLearningKit.Models.Repository
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Disciplines(Discipline entity)
-		{
-			this.SendPropertyChanging();
-			entity.SpecialityDiscipline = this;
-		}
-		
-		private void detach_Disciplines(Discipline entity)
-		{
-			this.SendPropertyChanging();
-			entity.SpecialityDiscipline = null;
 		}
 		
 		private void attach_LecturePlans(LecturePlan entity)
@@ -6233,11 +5911,13 @@ namespace VmkLearningKit.Models.Repository
 		
 		private string _Title;
 		
+		private EntitySet<GeneratedTest> _GeneratedTests;
+		
 		private EntitySet<LecturePlan> _LecturePlans;
 		
 		private EntitySet<PracticePlan> _PracticePlans;
 		
-		private EntitySet<Topic> _Topics;
+		private EntitySet<Razdel> _Razdels;
 		
 		private EntityRef<SpecialityDiscipline> _SpecialityDiscipline;
 		
@@ -6255,9 +5935,10 @@ namespace VmkLearningKit.Models.Repository
 		
 		public SpecialityDisciplineTopic()
 		{
+			this._GeneratedTests = new EntitySet<GeneratedTest>(new Action<GeneratedTest>(this.attach_GeneratedTests), new Action<GeneratedTest>(this.detach_GeneratedTests));
 			this._LecturePlans = new EntitySet<LecturePlan>(new Action<LecturePlan>(this.attach_LecturePlans), new Action<LecturePlan>(this.detach_LecturePlans));
 			this._PracticePlans = new EntitySet<PracticePlan>(new Action<PracticePlan>(this.attach_PracticePlans), new Action<PracticePlan>(this.detach_PracticePlans));
-			this._Topics = new EntitySet<Topic>(new Action<Topic>(this.attach_Topics), new Action<Topic>(this.detach_Topics));
+			this._Razdels = new EntitySet<Razdel>(new Action<Razdel>(this.attach_Razdels), new Action<Razdel>(this.detach_Razdels));
 			this._SpecialityDiscipline = default(EntityRef<SpecialityDiscipline>);
 			OnCreated();
 		}
@@ -6326,6 +6007,19 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
+		[Association(Name="SpecialityDisciplineTopic_GeneratedTest", Storage="_GeneratedTests", ThisKey="Id", OtherKey="SpecialityDisciplineTopicId")]
+		public EntitySet<GeneratedTest> GeneratedTests
+		{
+			get
+			{
+				return this._GeneratedTests;
+			}
+			set
+			{
+				this._GeneratedTests.Assign(value);
+			}
+		}
+		
 		[Association(Name="SpecialityDisciplineTopic_LecturePlan", Storage="_LecturePlans", ThisKey="Id", OtherKey="SpecialityDisciplineTopicId")]
 		public EntitySet<LecturePlan> LecturePlans
 		{
@@ -6352,16 +6046,16 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[Association(Name="SpecialityDisciplineTopic_Topic", Storage="_Topics", ThisKey="Id", OtherKey="SpecialityDisciplineTopicId")]
-		public EntitySet<Topic> Topics
+		[Association(Name="SpecialityDisciplineTopic_Razdel", Storage="_Razdels", ThisKey="Id", OtherKey="SpecialityDisciplineTopicId")]
+		public EntitySet<Razdel> Razdels
 		{
 			get
 			{
-				return this._Topics;
+				return this._Razdels;
 			}
 			set
 			{
-				this._Topics.Assign(value);
+				this._Razdels.Assign(value);
 			}
 		}
 		
@@ -6419,6 +6113,18 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
+		private void attach_GeneratedTests(GeneratedTest entity)
+		{
+			this.SendPropertyChanging();
+			entity.SpecialityDisciplineTopic = this;
+		}
+		
+		private void detach_GeneratedTests(GeneratedTest entity)
+		{
+			this.SendPropertyChanging();
+			entity.SpecialityDisciplineTopic = null;
+		}
+		
 		private void attach_LecturePlans(LecturePlan entity)
 		{
 			this.SendPropertyChanging();
@@ -6443,13 +6149,13 @@ namespace VmkLearningKit.Models.Repository
 			entity.SpecialityDisciplineTopic = null;
 		}
 		
-		private void attach_Topics(Topic entity)
+		private void attach_Razdels(Razdel entity)
 		{
 			this.SendPropertyChanging();
 			entity.SpecialityDisciplineTopic = this;
 		}
 		
-		private void detach_Topics(Topic entity)
+		private void detach_Razdels(Razdel entity)
 		{
 			this.SendPropertyChanging();
 			entity.SpecialityDisciplineTopic = null;
@@ -6826,7 +6532,7 @@ namespace VmkLearningKit.Models.Repository
 			OnCreated();
 		}
 		
-		[Column(Storage="_UserId", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[Column(Storage="_UserId", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
 		public long UserId
 		{
 			get
@@ -7010,254 +6716,6 @@ namespace VmkLearningKit.Models.Repository
 		{
 			this.SendPropertyChanging();
 			entity.Student = null;
-		}
-	}
-	
-	[Table(Name="dbo.Topics")]
-	public partial class Topic : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _Id;
-		
-		private long _DisciplineId;
-		
-		private long _SpecialityDisciplineTopicId;
-		
-		private EntitySet<GeneratedTest> _GeneratedTests;
-		
-		private EntitySet<Razdel> _Razdels;
-		
-		private EntityRef<Discipline> _Discipline;
-		
-		private EntityRef<SpecialityDisciplineTopic> _SpecialityDisciplineTopic;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(long value);
-    partial void OnIdChanged();
-    partial void OnDisciplineIdChanging(long value);
-    partial void OnDisciplineIdChanged();
-    partial void OnSpecialityDisciplineTopicIdChanging(long value);
-    partial void OnSpecialityDisciplineTopicIdChanged();
-    #endregion
-		
-		public Topic()
-		{
-			this._GeneratedTests = new EntitySet<GeneratedTest>(new Action<GeneratedTest>(this.attach_GeneratedTests), new Action<GeneratedTest>(this.detach_GeneratedTests));
-			this._Razdels = new EntitySet<Razdel>(new Action<Razdel>(this.attach_Razdels), new Action<Razdel>(this.detach_Razdels));
-			this._Discipline = default(EntityRef<Discipline>);
-			this._SpecialityDisciplineTopic = default(EntityRef<SpecialityDisciplineTopic>);
-			OnCreated();
-		}
-		
-		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DisciplineId", DbType="BigInt NOT NULL")]
-		public long DisciplineId
-		{
-			get
-			{
-				return this._DisciplineId;
-			}
-			set
-			{
-				if ((this._DisciplineId != value))
-				{
-					if (this._Discipline.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDisciplineIdChanging(value);
-					this.SendPropertyChanging();
-					this._DisciplineId = value;
-					this.SendPropertyChanged("DisciplineId");
-					this.OnDisciplineIdChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_SpecialityDisciplineTopicId", DbType="BigInt NOT NULL")]
-		public long SpecialityDisciplineTopicId
-		{
-			get
-			{
-				return this._SpecialityDisciplineTopicId;
-			}
-			set
-			{
-				if ((this._SpecialityDisciplineTopicId != value))
-				{
-					if (this._SpecialityDisciplineTopic.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSpecialityDisciplineTopicIdChanging(value);
-					this.SendPropertyChanging();
-					this._SpecialityDisciplineTopicId = value;
-					this.SendPropertyChanged("SpecialityDisciplineTopicId");
-					this.OnSpecialityDisciplineTopicIdChanged();
-				}
-			}
-		}
-		
-		[Association(Name="Topic_GeneratedTest", Storage="_GeneratedTests", ThisKey="Id", OtherKey="TopicId")]
-		public EntitySet<GeneratedTest> GeneratedTests
-		{
-			get
-			{
-				return this._GeneratedTests;
-			}
-			set
-			{
-				this._GeneratedTests.Assign(value);
-			}
-		}
-		
-		[Association(Name="Topic_Razdel", Storage="_Razdels", ThisKey="Id", OtherKey="TopicId")]
-		public EntitySet<Razdel> Razdels
-		{
-			get
-			{
-				return this._Razdels;
-			}
-			set
-			{
-				this._Razdels.Assign(value);
-			}
-		}
-		
-		[Association(Name="Discipline_Topic", Storage="_Discipline", ThisKey="DisciplineId", OtherKey="Id", IsForeignKey=true)]
-		public Discipline Discipline
-		{
-			get
-			{
-				return this._Discipline.Entity;
-			}
-			set
-			{
-				Discipline previousValue = this._Discipline.Entity;
-				if (((previousValue != value) 
-							|| (this._Discipline.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Discipline.Entity = null;
-						previousValue.Topics.Remove(this);
-					}
-					this._Discipline.Entity = value;
-					if ((value != null))
-					{
-						value.Topics.Add(this);
-						this._DisciplineId = value.Id;
-					}
-					else
-					{
-						this._DisciplineId = default(long);
-					}
-					this.SendPropertyChanged("Discipline");
-				}
-			}
-		}
-		
-		[Association(Name="SpecialityDisciplineTopic_Topic", Storage="_SpecialityDisciplineTopic", ThisKey="SpecialityDisciplineTopicId", OtherKey="Id", IsForeignKey=true)]
-		public SpecialityDisciplineTopic SpecialityDisciplineTopic
-		{
-			get
-			{
-				return this._SpecialityDisciplineTopic.Entity;
-			}
-			set
-			{
-				SpecialityDisciplineTopic previousValue = this._SpecialityDisciplineTopic.Entity;
-				if (((previousValue != value) 
-							|| (this._SpecialityDisciplineTopic.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SpecialityDisciplineTopic.Entity = null;
-						previousValue.Topics.Remove(this);
-					}
-					this._SpecialityDisciplineTopic.Entity = value;
-					if ((value != null))
-					{
-						value.Topics.Add(this);
-						this._SpecialityDisciplineTopicId = value.Id;
-					}
-					else
-					{
-						this._SpecialityDisciplineTopicId = default(long);
-					}
-					this.SendPropertyChanged("SpecialityDisciplineTopic");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_GeneratedTests(GeneratedTest entity)
-		{
-			this.SendPropertyChanging();
-			entity.Topic = this;
-		}
-		
-		private void detach_GeneratedTests(GeneratedTest entity)
-		{
-			this.SendPropertyChanging();
-			entity.Topic = null;
-		}
-		
-		private void attach_Razdels(Razdel entity)
-		{
-			this.SendPropertyChanging();
-			entity.Topic = this;
-		}
-		
-		private void detach_Razdels(Razdel entity)
-		{
-			this.SendPropertyChanging();
-			entity.Topic = null;
 		}
 	}
 	

@@ -50,9 +50,19 @@
                 <%= i %>
             </td>
             <td style="padding: 7px;">
-                <%= Html.ActionLink(Html.Encode(professor.User.SecondName + " " +
-                professor.User.FirstName + " " +
-                professor.User.Patronymic), "Page", "Professor", new { alias = Html.Encode(professor.User.NickName) }, new { @class = "" })%>
+            <% string fio = String.Empty;
+               if (!professor.User.FirstName.Trim().Equals(String.Empty) &&
+                   !professor.User.Patronymic.Trim().Equals(String.Empty))
+               {
+                   fio = Html.Encode(professor.User.SecondName + " " +
+                                professor.User.FirstName[0].ToString().ToUpper() + "." +
+                                professor.User.Patronymic[0].ToString().ToUpper() + ".");
+               }
+               else
+               {
+                   fio = Html.Encode(professor.User.SecondName);
+               } %>
+            <%= Html.ActionLink(fio, "Page", "Professor", new { alias = Html.Encode(professor.User.NickName) }, new { @class = "" })%>
             </td>
             <td style="padding: 7px;">
                 <%

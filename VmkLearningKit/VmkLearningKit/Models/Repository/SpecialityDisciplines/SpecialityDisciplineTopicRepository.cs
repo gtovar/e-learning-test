@@ -65,9 +65,17 @@ namespace VmkLearningKit.Models.Repository
             return obj;
         }
 
-        public IEnumerable<SpecialityDisciplineTopic> GetAll()
+        public IEnumerable<SpecialityDisciplineTopic> GetAllBySpecialityDisciplineId(long specialityDisciplineId)
         {
-            return DataContext.SpecialityDisciplineTopics.OrderBy(sp => sp.Id);
+            try
+            {
+                return DataContext.SpecialityDisciplineTopics.Where(sp => sp.SpecialityDisciplineId == specialityDisciplineId);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't get specialityDisciplineTopics by specialityDisciplineId: " + specialityDisciplineId, ex);
+            }
+            return null;
         }
 
         public SpecialityDisciplineTopic Add(SpecialityDisciplineTopic obj)
@@ -88,7 +96,7 @@ namespace VmkLearningKit.Models.Repository
             */
             if (null != objWithTheSameTitle)
             {
-                obj.Title = obj.Title + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                obj.Title = obj.Title;
             }
 
             /*
@@ -115,18 +123,51 @@ namespace VmkLearningKit.Models.Repository
             */
         }
 
+        public SpecialityDisciplineTopic SetTitle(long id, string title)
+        {
+            try
+            {
+                SpecialityDisciplineTopic topic = GetById(id);
+                if (null != topic)
+                {
+                    topic.Title = title;
+                    DataContext.SubmitChanges();
+                    return topic;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't get SpecialityDisciplineTopic by id: " + id + "!!!!", ex);
+            }
+            return null;
+        }
+
         public void Delete(SpecialityDisciplineTopic obj)
         {
-            DataContext.SpecialityDisciplineTopics.DeleteOnSubmit(obj);
+            try
+            {
+                DataContext.SpecialityDisciplineTopics.DeleteOnSubmit(obj);
 
-            DataContext.SubmitChanges();
+                DataContext.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't delete specialityDisciplneTopic with id: " + obj.Id, ex);
+            }
         }
 
         public void DeleteById(long id)
         {
-            DataContext.SpecialityDisciplineTopics.DeleteOnSubmit(GetById(id));
+            try
+            {
+                DataContext.SpecialityDisciplineTopics.DeleteOnSubmit(GetById(id));
 
-            DataContext.SubmitChanges();
+                DataContext.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't delete specialityDisciplneTopic by id: " + id, ex);
+            }
         }
     }
 }

@@ -61,11 +61,56 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Настройки успешно обновлены!.
+        /// </summary>
+        internal static string ACCOUNT_SETTINGS_IS_UPDATED {
+            get {
+                return ResourceManager.GetString("ACCOUNT_SETTINGS_IS_UPDATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поле не может быть пустым.
+        /// </summary>
+        internal static string FIELD_MUST_NOT_BE_EMPTY {
+            get {
+                return ResourceManager.GetString("FIELD_MUST_NOT_BE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to eВМК – электронный ВМК.
         /// </summary>
         internal static string MAIN_TITLE {
             get {
                 return ResourceManager.GetString("MAIN_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось обновить настройки преподавателя.
+        /// </summary>
+        internal static string PROFESSOR_SETTINGS_IS_NOT_UPDATED {
+            get {
+                return ResourceManager.GetString("PROFESSOR_SETTINGS_IS_NOT_UPDATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не удалось обновить настройки пользователя.
+        /// </summary>
+        internal static string USER_SETTINGS_IS_NOT_UPDATED {
+            get {
+                return ResourceManager.GetString("USER_SETTINGS_IS_NOT_UPDATED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пользователь с таким NickName уже зарегестрирован.
+        /// </summary>
+        internal static string USER_WITH_THE_SAME_NICKNAME_EXISTS {
+            get {
+                return ResourceManager.GetString("USER_WITH_THE_SAME_NICKNAME_EXISTS", resourceCulture);
             }
         }
         

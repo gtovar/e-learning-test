@@ -23,6 +23,33 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Users.SingleOrDefault(t => t.Login == login);
         }
 
+        public bool IsNickNameExists(long id, string nickName)
+        {
+            try
+            {
+                User user = GetById(id);
+                if (user.NickName.Trim().Equals(nickName.Trim()))
+                {
+                    return false;
+                }
+                IEnumerable<User> users = DataContext.Users.Where(u => u.NickName == nickName);
+                if (null != users && users.Count() > 1)
+                {
+                    Utility.WriteToLog("!!!!IMPORTANT More than on entry exists in user table with the same nickNames: " + nickName, LogLevel.Error);
+                    return true;
+                }
+                if (null == users || users.Count() == 0)
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't get user by nickName: " + nickName, ex);
+            }
+            return true;
+        }
+
         public bool ChangePassword(long id, string password)
         {
             try
@@ -52,6 +79,25 @@ namespace VmkLearningKit.Models.Repository
                     DataContext.Users.InsertOnSubmit(obj);
                     DataContext.SubmitChanges();
                     return obj;
+                }
+                return user;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("User can't add to database", ex);
+            }
+            return null;
+        }
+
+        public User Update(User obj)
+        {
+            try
+            {
+                User user = GetByLogin(obj.Login);
+                if (null != user)
+                {
+                    DataContext.SubmitChanges();
+                    return user;
                 }
                 return user;
             }

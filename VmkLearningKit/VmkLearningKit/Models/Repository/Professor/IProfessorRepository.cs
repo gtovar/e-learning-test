@@ -7,9 +7,11 @@ namespace VmkLearningKit.Models.Repository
 {
     public interface IProfessorRepository : IRepository<Professor>
     {
-        Professor GetByNickName(string NickName);
+        Professor GetByNickName(string nickName);
+        Professor GetByFullName(string fullName);
         IEnumerable<Professor> GetAll(string chairAlias);
         long GetMaxId();
         Professor Add(Professor obj);
+        Professor Update(Professor obj);
     }
 }

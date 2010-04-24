@@ -63,27 +63,6 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
-        public PracticePlan GetDefault(long specialityDisciplineTopicId)
-        {
-            try
-            {
-                return DataContext.PracticePlans.SingleOrDefault(pr => pr.SpecialityDisciplineTopicId == specialityDisciplineTopicId && !pr.GroupId.HasValue);
-            }
-            catch (Exception ex)
-            {
-                IEnumerable<PracticePlan> practicePlans = GetBySpecialityDisciplineTopicId(specialityDisciplineTopicId);
-                foreach (PracticePlan practicePlan in practicePlans)
-                {
-                    if (0 != practicePlan.Volume)
-                    {
-                        return practicePlan;
-                    }
-                }
-                Utility.WriteToLog("!!!!IMPORTANT Can't get default practicePlan by specialityDisciplineTopicId: " + specialityDisciplineTopicId, ex);
-            }
-            return null;
-        }
-
         public IEnumerable<PracticePlan> GetByGroupId(long groupId)
         {
             try

@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACCOUNT_SETTINGS_IS_UPDATED" xml:space="preserve">
+    <value>Настройки успешно обновлены!</value>
+  </data>
+  <data name="FIELD_MUST_NOT_BE_EMPTY" xml:space="preserve">
+    <value>Поле не может быть пустым</value>
+  </data>
   <data name="MAIN_TITLE" xml:space="preserve">
     <value>eВМК – электронный ВМК</value>
+  </data>
+  <data name="PROFESSOR_SETTINGS_IS_NOT_UPDATED" xml:space="preserve">
+    <value>Не удалось обновить настройки преподавателя</value>
+  </data>
+  <data name="USER_SETTINGS_IS_NOT_UPDATED" xml:space="preserve">
+    <value>Не удалось обновить настройки пользователя</value>
+  </data>
+  <data name="USER_WITH_THE_SAME_NICKNAME_EXISTS" xml:space="preserve">
+    <value>Пользователь с таким NickName уже зарегестрирован</value>
   </data>
   <data name="WRONG_USER_LOGIN_OR_PASSWD" xml:space="preserve">
     <value>Введен неверный логин или пароль</value>
