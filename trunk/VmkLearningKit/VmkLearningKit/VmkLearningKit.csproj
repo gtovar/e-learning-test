@@ -31,9 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FredCK.FCKeditorV2, Version=2.6.3.22451, Culture=neutral, PublicKeyToken=4f86767c9b519a06, processorArchitecture=MSIL">
-      <HintPath>DLL\FredCK.FCKeditorV2.dll</HintPath>
-    </Reference>
+    <Reference Include="FredCK.FCKeditorV2, Version=2.6.3.22451, Culture=neutral, PublicKeyToken=4f86767c9b519a06, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.ConnectionInfoExtended, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -41,9 +39,7 @@
     <Reference Include="Microsoft.SqlServer.SmoExtended, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.SqlEnum, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.SqlWmiManagement, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="QWord, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>DLL\QWord.dll</HintPath>
-    </Reference>
+    <Reference Include="QWord, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ComponentModel.DataAnnotations">
@@ -178,8 +174,8 @@
     <Content Include="Content\Images\topnavunselected.gif" />
     <Content Include="Content\Images\topshape.jpg" />
     <Content Include="Content\style.css" />
-    <Content Include="DLL\FredCK.FCKeditorV2.dll" />
-    <Content Include="DLL\QWord.dll" />
+    <Content Include="Libs\FredCK.FCKeditorV2.dll" />
+    <Content Include="Libs\QWord.dll" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\Lib.js" />
     <Content Include="Scripts\Plugins\FCKeditor\editor\css\behaviors\disablehandles.htc" />
@@ -625,7 +621,6 @@
     <Content Include="Views\Cabinet\AccountSettings.aspx" />
     <Content Include="Views\Cabinet\Admin.aspx" />
     <Content Include="Views\Cabinet\ChangePassword.aspx" />
-    <Content Include="Views\Cabinet\Menu.aspx" />
     <Content Include="Views\Cabinet\Metodist.aspx" />
     <Content Include="Views\Cabinet\Professor.aspx" />
     <Content Include="Views\Cabinet\Student.aspx" />
