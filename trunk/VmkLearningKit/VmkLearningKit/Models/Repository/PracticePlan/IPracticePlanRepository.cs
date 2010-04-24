@@ -8,7 +8,6 @@ namespace VmkLearningKit.Models.Repository
     public interface IPracticePlanRepository : IRepository<PracticePlan>
     {
         PracticePlan SetDateTime(long id, DateTime dateTime);
-        PracticePlan GetDefault(long specialityDisciplineTopicId);
         IEnumerable<PracticePlan> GetBySpecialityDisciplineTopicId(long specialityDisciplineTopicId);
         IEnumerable<PracticePlan> GetByGroupId(long groupId);
         IEnumerable<PracticePlan> GetBySpecialityDisciplineTopicIdAndGroupId(long specialityDisciplineTopicId, long groupId);

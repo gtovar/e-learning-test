@@ -10,8 +10,9 @@
            {
                Professor professor = (Professor)ViewData["Professor"];
     %>
-    <h3 style="margin-top: 10px; margin-bottom: 5px;">
-        Преподаваемые дисциплины</h3>
+    <h2 style="margin-top: 5px; margin-bottom: 10px;">
+        Преподаваемые дисциплины
+    </h2>
     <table width="100%" border="1">
         <tr class="table_header">
             <th style="padding: 7px; width: 30px;">
@@ -35,7 +36,7 @@
             <td style="padding: 7px;">
                 <%= index%>
             </td>
-            <td style="padding: 7px;">
+            <td style="padding: 7px;  text-align: left; font-size: 15px">
                 <%= Html.ActionLink(Html.Encode(specialityDiscipline.Title), "Professor", "Cabinet", new { alias = professor.User.NickName, additional = specialityDiscipline.Alias}, new { @class = "" })%>
             </td>
             <% string term = String.Empty;
@@ -59,77 +60,25 @@
            {
                Professor professor = (Professor)ViewData["Professor"];
                SpecialityDiscipline specialityDiscipline = (SpecialityDiscipline)ViewData["SpecialityDiscipline"];
-               if (null != ViewData["SpecialityDisciplineTopics"])
+               if (null != ViewData["SpecialityDisciplineTopics"] && null != ViewData["LecturePlans"])
                {
-                   bool hasLectures = false;
-                   bool hasPractices = false;
-                   if (null != specialityDiscipline.SpecialityDisciplineTerms &&
-                      specialityDiscipline.SpecialityDisciplineTerms.Count > 0)
-                   {
-                       foreach (SpecialityDisciplineTerm specialityDisciplineTerm in specialityDiscipline.SpecialityDisciplineTerms)
-                       {
-                           if (null != specialityDiscipline.SpecialityDisciplineTopics &&
-                               specialityDiscipline.SpecialityDisciplineTopics.Count > 0)
-                           {
-
-                               if (0 != specialityDisciplineTerm.LectureVolume && 
-                                   null != specialityDiscipline.LecturePlans &&
-                                   specialityDiscipline.LecturePlans.Count > 0)
-                               {
-                                   hasLectures = true;
-                               }
-                               if (0 != specialityDisciplineTerm.PracticeVolume &&
-                                   null != specialityDiscipline.PracticePlans &&
-                                   specialityDiscipline.PracticePlans.Count > 0)
-                               {
-                                   hasPractices = true;
-                               }
-                           }
-                       }
-                   }
     %>
-    <h3 style="margin-top: 10px; margin-bottom: 5px;">
-        <span style="float: left; margin-bottom: 5px;">
+    <h2 style="margin-top: 5px; margin-bottom: 10px;">
             <%= Html.Encode(specialityDiscipline.Title) %>
-        </span><span style="float: right; margin-bottom: 5px;">
-            <% if (hasLectures)
-               { %>
-            <%= Html.ActionLink("План лекций", "LecturePlan", "Cabinet", new { alias = professor.User.NickName, additional = specialityDiscipline.Alias }, new { @style = "font-size: 14px" })%>
-            <% } %>
-            <% if (hasPractices)
-               { %>
-            &nbsp;&nbsp;
-            <%= Html.ActionLink("План практик", "PracticePlan", "Cabinet", new { alias = professor.User.NickName, additional = specialityDiscipline.Alias }, new { @style = "font-size: 14px" })%>
-            <% } %>
-        </span>
-    </h3>
-    <% if (hasLectures)
-       {
-           foreach (LecturePlan lecturePlan in specialityDiscipline.LecturePlans)
-           {
-               if (!lecturePlan.Date.HasValue)
-               { %>
-    <div style="font-size: 15px; color: Red; text-align: center; margin: 10px;">
-        Замечание: Не полностью заполнен
-        <%= Html.ActionLink("план лекционных занятий", "LecturePlan", "Cabinet", new { alias = professor.User.NickName, additional = specialityDiscipline.Alias }, new { @style = "color: red; text-decoration: underline" })%></div>
-    <%          break;
-               }
-           }
-       }%>
-    <% 
-        if (hasPractices)
-        {
-            foreach (PracticePlan practicePlan in specialityDiscipline.PracticePlans)
-            {
-                if (!practicePlan.Date.HasValue)
-                { %>
-    <div style="font-size: 15px; color: Red; text-align: center; margin: 10px;">
-        Замечание: Не полностью заполнен
-        <%= Html.ActionLink("план практических занятий", "PracticePlan", "Cabinet", new { alias = professor.User.NickName, additional = specialityDiscipline.Alias }, new { @style = "color: red; text-decoration: underline" })%></div>
-    <%          break;
-                }
-            }
-        } %>
+    </h2>
+    <% if (null != ViewData["LecturePlanSavingHasErrors"] && ((Boolean)ViewData["LecturePlanSavingHasErrors"]))
+       { %>
+        <div style="text-align: center; color:Red; font-size: 16px; margin: 10px">
+            <%= ViewData["LecturePlanErrorMessage"]%>
+        </div>
+    <% }
+       else if (null != ViewData["LecturePlanSavingHasErrors"] && !((Boolean)ViewData["LecturePlanSavingHasErrors"]))
+       { %>
+            <div style="text-align: center; color:Green; font-size: 16px; margin: 10px">
+                Лекционный план сохранен успешно!
+            </div>
+     <%} %>
+    <% Html.BeginForm("Professor", "Cabinet", FormMethod.Post, new { @name = "LectionPlanForm", @id="LectionPlanForm" } ); %>
     <table width="100%" border="1">
         <tr class="table_header">
             <th style="padding: 7px; width: 30px">
@@ -138,36 +87,78 @@
             <th style="padding: 7px;">
                 Тема
             </th>
+            <th style="padding: 7px;">
+                Дата
+            </th>
+            <th style="padding: 7px;">
+                Время
+            </th>
+            <th style="padding: 7px;">
+                Аудитория
+            </th>
             <th style="padding: 7px; width: 150px">
                 Тестирование
             </th>
         </tr>
-        <% int index = 1;
-           foreach (SpecialityDisciplineTopic specialityDisciplineTopic in (IEnumerable<SpecialityDisciplineTopic>)specialityDiscipline.SpecialityDisciplineTopics)
-           {                    
+        <% 
+            string time = String.Empty;
+            string room = String.Empty;
+            string building = String.Empty;
+            foreach (LectureTimetable timetable in specialityDiscipline.LectureTimetables)
+            {
+                if (timetable.SpecialityDisciplineId == specialityDiscipline.Id &&
+                    professor.UserId == timetable.ProfessorId)
+                {
+                    time = timetable.Time;
+                    room = timetable.Room.ToString();
+                    building = timetable.Building.ToString();
+                    break;
+                }
+            }
+                   
+           int index = 1;
+           string lectionPlanIds = String.Empty;
+           foreach (LecturePlan plan in (IEnumerable<LecturePlan>)ViewData["LecturePlans"])
+           {
+               lectionPlanIds += plan.Id + ",";
         %>
         <tr class="table_row">
-            <td style="padding: 7px;">
+            <td style="padding: 7px; width:40px">
                 <%= index%>
             </td>
             <td style="padding: 7px;">
-                <%= Html.Encode(specialityDisciplineTopic.Title)%>
+                <div style="color: Red; font-size: 13px; text-align: left"><%= ViewData["LectionPlan" + plan.Id + "Error"] %></div>
+                <input type="text" style="width:100%; height:20px; font-size: 15px" name="LectionPlanId_<%= plan.Id %>" id="LectionPlanId_<%= plan.Id %>" value="<%= null != ViewData["LecturePlanSavingHasErrors"] && ((Boolean)ViewData["LecturePlanSavingHasErrors"]) ? Html.Encode(ViewData["LectionPlanId_" + plan.Id]) : Html.Encode(plan.SpecialityDisciplineTopic.Title)%>" />
             </td>
-            <td style="padding: 7px;">
+            <td style="padding: 7px; width:60px">
+                <%= plan.Date.HasValue ? plan.Date.Value.ToShortDateString() : String.Empty %>
+            </td>
+            <td style="padding: 7px; width:60px">
+                <%= time %>
+            </td>
+            <td style="padding: 7px; width:60px">
+                <%= room %>&nbsp;(<%= building%>)
+            </td>
+            <td style="padding: 7px; width:80px">
                 <%= Html.ActionLink("Тестирование", "")%>
             </td>
         </tr>
         <% index++;
-           } %>
+           }
+           lectionPlanIds = lectionPlanIds.Trim(',', ' '); 
+           %>
     </table>
+    <input type="submit" style="width: 100px; height: 30px; margin-top: 15px; float: right" name="SaveLecturePlans" id="SaveLecturePlans" value="Сохранить" />
+    <input type="hidden" value="<%= lectionPlanIds %>" name="LectionPlanIds" id="LectionPlanIds" />
+    <% Html.EndForm(); %>
     <%
         }
-
                if (null != ViewData["Detailed"])
                {
     %>
-    <h3 style="margin-top: 10px; margin-bottom: 5px;">
-        <%= Html.Encode(specialityDiscipline.Title) %></h3>
+    <h2 style="margin-top: 5px; margin-bottom: 10px;">
+        <%= Html.Encode(specialityDiscipline.Title) %>
+    </h2>
     <table width="100%" border="1">
         <tr class="table_header">
             <th style="padding: 7px;" rowspan="2">

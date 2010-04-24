@@ -386,6 +386,52 @@ a:hover
 	padding: 5px;
 }
 
+/* AccountSettings
+----------------------------------------------------------*/
+.label
+{
+    font-size: 15px;
+    margin: 10px;
+}
+
+.input
+{
+    width: 350px;
+    height: 18px;
+}
+
+.info
+{
+    font-size: 11px;
+    color: Green;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.fieldError
+{
+	text-align: left;
+	font-size: 13px;
+	color: Red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.errorMessage
+{
+    font-size: 15px;
+    color: Red;
+    text-align: center;
+    margin: 10px;
+}
+
+.message
+{
+    font-size: 15px;
+    color: Green;
+    text-align: center;
+    margin: 10px;
+}
 
 /* QuestionsList
 ----------------------------------------------------------*/

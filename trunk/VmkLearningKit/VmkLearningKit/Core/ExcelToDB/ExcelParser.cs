@@ -94,7 +94,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                     Excel.Range range = workSheet.get_Range(index, index);
                     if (null != range)
                     {
-                        value = range.Value2.ToString();
+                        value = range.Text.ToString(); //.Value2.ToString();
                     }
                 }
             }

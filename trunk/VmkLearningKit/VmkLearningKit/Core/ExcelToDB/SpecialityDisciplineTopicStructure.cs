@@ -7,18 +7,10 @@ using VmkLearningKit.Models.Repository;
 
 namespace VmkLearningKit.Core.ExcelToDB
 {
-    public class SpecialityDisciplineTopicVolume
-    {
-        public short Volume;
-        public long SpecialityDisciplineTopicId;
-    }
-
     public class SpecialityDisciplineTopicStructureObj
     {
         public SpecialityDiscipline SpecialityDiscipline;
         public List<SpecialityDisciplineTopic> SpecialityDisciplineTopics;
-        public List<SpecialityDisciplineTopicVolume> SpecialityDisciplineTopicLectureVolumes;
-        public List<SpecialityDisciplineTopicVolume> SpecialityDisciplineTopicPracticeVolumes;
 
         public void Commit()
         {
@@ -31,13 +23,14 @@ namespace VmkLearningKit.Core.ExcelToDB
                 {
                     if (specialityDisciplineTopic.SpecialityDisciplineId == specialityDisciplineIdBeforeCommit)
                     {
-                        long specialityDisciplineTopicIdBeforeCommit = specialityDisciplineTopic.Id;
-                        specialityDisciplineTopic.SpecialityDisciplineId = specialityDisciplineFromDB.Id;
+                        SpecialityDisciplineTopic specialityDisciplineTopicCopy = Utility.Copy(specialityDisciplineTopic);
+                        specialityDisciplineTopicCopy.SpecialityDisciplineId = specialityDisciplineFromDB.Id;
+                        long specialityDisciplineTopicIdBeforeCommit = specialityDisciplineTopic.Id;                        
                         SpecialityDisciplineTopic specialityDisciplineTopicFromDB = repositoryManager.GetSpecialityDisciplineTopicRepository.GetByTitle(specialityDisciplineTopic.Title);
                         
                         if (null == specialityDisciplineTopicFromDB)
                         {
-                            specialityDisciplineTopicFromDB = repositoryManager.GetSpecialityDisciplineTopicRepository.Add(specialityDisciplineTopic);
+                            specialityDisciplineTopicFromDB = repositoryManager.GetSpecialityDisciplineTopicRepository.Add(specialityDisciplineTopicCopy);
                             if (null == specialityDisciplineTopicFromDB)
                             {
                                 // FIXME: specialityDisciplineTopic isn't added
@@ -56,15 +49,6 @@ namespace VmkLearningKit.Core.ExcelToDB
                                         lecturePlan.Date = null;
                                         lecturePlan.SpecialityDisciplineId = specialityDisciplineFromDB.Id;
                                         lecturePlan.SpecialityDisciplineTopicId = specialityDisciplineTopicFromDB.Id;
-                                        lecturePlan.Volume = 0;
-                                        foreach (SpecialityDisciplineTopicVolume specialityDisciplineTopicVolume in SpecialityDisciplineTopicLectureVolumes)
-                                        {
-                                            if (specialityDisciplineTopicVolume.SpecialityDisciplineTopicId == specialityDisciplineTopicIdBeforeCommit)
-                                            {
-                                                lecturePlan.Volume = specialityDisciplineTopicVolume.Volume;
-                                                break;
-                                            }
-                                        }
                                         LecturePlan lecturePlanFromDB = repositoryManager.GetLecturePlanRepository.Add(lecturePlan);
                                         if (null == lecturePlanFromDB)
                                         {
@@ -81,15 +65,6 @@ namespace VmkLearningKit.Core.ExcelToDB
                                         practicePlan.Date = null;
                                         practicePlan.SpecialityDisciplineId = specialityDisciplineFromDB.Id;
                                         practicePlan.SpecialityDisciplineTopicId = specialityDisciplineTopicFromDB.Id;
-                                        practicePlan.Volume = 0;
-                                        foreach (SpecialityDisciplineTopicVolume specialityDisciplineTopicVolume in SpecialityDisciplineTopicPracticeVolumes)
-                                        {
-                                            if (specialityDisciplineTopicVolume.SpecialityDisciplineTopicId == specialityDisciplineTopicIdBeforeCommit)
-                                            {
-                                                practicePlan.Volume = specialityDisciplineTopicVolume.Volume;
-                                                break;
-                                            }
-                                        }
                                         practicePlan.GroupId = null;
                                         PracticePlan practicePlanFromDB = repositoryManager.GetPracticePlanRepository.Add(practicePlan);
                                         if (null == practicePlanFromDB)
@@ -125,8 +100,6 @@ namespace VmkLearningKit.Core.ExcelToDB
                 SpecialityDisciplineTopicStructureObj specialityDisciplineTopicStructureObj = null;
                 SpecialityDiscipline specialityDiscipline = null;
                 List<SpecialityDisciplineTopic> specialityDisciplineTopics = null;
-                List<SpecialityDisciplineTopicVolume> specialityDisciplineTopicLectureVolumes = null;
-                List<SpecialityDisciplineTopicVolume> specialityDisciplineTopicPracticeVolumes = null;
 
                 string currentReadedValue = String.Empty;
                 int rowIndex = 1;
@@ -137,8 +110,6 @@ namespace VmkLearningKit.Core.ExcelToDB
                 long lastSpecialityDisciplineId = 0;
                 long specialityDisciplineTopicColumnIndex = -1;
                 long lastSpecialityDisciplineTopicId = 0;
-                long specialityDisciplineTopicLectureVolumeColumnIndex = -1;
-                long specialityDisciplineTopicPracticeVolumeColumnIndex = -1;
 
 
                 while (true)
@@ -155,18 +126,6 @@ namespace VmkLearningKit.Core.ExcelToDB
                         case "Тема":
                             {
                                 specialityDisciplineTopicColumnIndex = columnIndex;
-                                columnIndex++;
-                                continue;
-                            }
-                        case "Количество часов лекций":
-                            {
-                                specialityDisciplineTopicLectureVolumeColumnIndex = columnIndex;
-                                columnIndex++;
-                                continue;
-                            }
-                        case "Количество часов практики":
-                            {
-                                specialityDisciplineTopicPracticeVolumeColumnIndex = columnIndex;
                                 maxColumnIndex = columnIndex;
                                 columnIndex++;
                                 continue;
@@ -181,16 +140,12 @@ namespace VmkLearningKit.Core.ExcelToDB
                             {
                                 specialityDisciplineTopicStructureObj.SpecialityDiscipline = specialityDiscipline;
                                 specialityDisciplineTopicStructureObj.SpecialityDisciplineTopics = specialityDisciplineTopics;
-                                specialityDisciplineTopicStructureObj.SpecialityDisciplineTopicLectureVolumes = specialityDisciplineTopicLectureVolumes;
-                                specialityDisciplineTopicStructureObj.SpecialityDisciplineTopicPracticeVolumes = specialityDisciplineTopicPracticeVolumes;
 
                                 specialityDisciplineTopicStructureList.Add(specialityDisciplineTopicStructureObj);
                             }
 
                             specialityDisciplineTopicStructureObj = new SpecialityDisciplineTopicStructureObj();
                             specialityDisciplineTopics = new List<SpecialityDisciplineTopic>();
-                            specialityDisciplineTopicLectureVolumes = new List<SpecialityDisciplineTopicVolume>();
-                            specialityDisciplineTopicPracticeVolumes = new List<SpecialityDisciplineTopicVolume>();
 
                             specialityDiscipline = new SpecialityDiscipline();
                             specialityDiscipline.Id = ++lastSpecialityDisciplineId;
@@ -204,38 +159,6 @@ namespace VmkLearningKit.Core.ExcelToDB
                             specialityDisciplineTopic.Title = currentReadedValue;
                             specialityDisciplineTopic.SpecialityDisciplineId = lastSpecialityDisciplineId;
                             specialityDisciplineTopics.Add(specialityDisciplineTopic);
-                        }
-
-                        if (specialityDisciplineTopicLectureVolumeColumnIndex == columnIndex)
-                        {
-                            SpecialityDisciplineTopicVolume specialityDisciplineTopicVolume = new SpecialityDisciplineTopicVolume();
-                            specialityDisciplineTopicVolume.SpecialityDisciplineTopicId = lastSpecialityDisciplineTopicId;
-                            try
-                            {
-                                specialityDisciplineTopicVolume.Volume = Convert.ToInt16(currentReadedValue);
-                            }
-                            catch (Exception ex)
-                            {
-                                specialityDisciplineTopicVolume.Volume = 0;
-                                Utility.WriteToLog("SpecialityDisciplineTopicStructure.FromFile.ParseLectureVolume: can't convert lectureVolume to short", ex);
-                            }
-                            specialityDisciplineTopicLectureVolumes.Add(specialityDisciplineTopicVolume);
-                        }
-
-                        if (specialityDisciplineTopicPracticeVolumeColumnIndex == columnIndex)
-                        {
-                            SpecialityDisciplineTopicVolume specialityDisciplineTopicVolume = new SpecialityDisciplineTopicVolume();
-                            specialityDisciplineTopicVolume.SpecialityDisciplineTopicId = lastSpecialityDisciplineTopicId;
-                            try
-                            {
-                                specialityDisciplineTopicVolume.Volume = Convert.ToInt16(currentReadedValue);
-                            }
-                            catch (Exception ex)
-                            {
-                                specialityDisciplineTopicVolume.Volume = 0;
-                                Utility.WriteToLog("SpecialityDisciplineTopicStructure.FromFile.ParseLectureVolume: can't convert lectureVolume to short", ex);
-                            }
-                            specialityDisciplineTopicPracticeVolumes.Add(specialityDisciplineTopicVolume);
                         }
                     }
 
@@ -256,8 +179,6 @@ namespace VmkLearningKit.Core.ExcelToDB
                         {
                             specialityDisciplineTopicStructureObj.SpecialityDiscipline = specialityDiscipline;
                             specialityDisciplineTopicStructureObj.SpecialityDisciplineTopics = specialityDisciplineTopics;
-                            specialityDisciplineTopicStructureObj.SpecialityDisciplineTopicLectureVolumes = specialityDisciplineTopicLectureVolumes;
-                            specialityDisciplineTopicStructureObj.SpecialityDisciplineTopicPracticeVolumes = specialityDisciplineTopicPracticeVolumes;
 
                             specialityDisciplineTopicStructureList.Add(specialityDisciplineTopicStructureObj);
                         }

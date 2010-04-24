@@ -26,15 +26,62 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
-        public Professor GetByNickName(string NickName)
+        public Professor GetByFullName(string fullName)
         {
             try
             {
-                return DataContext.Professors.SingleOrDefault(p => p.User.NickName == NickName);
+                string secondName = String.Empty;
+                string firstNameLetter = String.Empty;
+                string patronymicLetter = String.Empty;
+
+                string[] names = fullName.Split(' ');
+                if (null != names && names.Length >= 1)
+                {
+                    secondName = names[0];
+                }
+                if (null != names && names.Length >= 2)
+                {
+                    string[] letters = names[1].Split('.');
+                    if (null != letters && letters.Length >= 1)
+                    {
+                        firstNameLetter = letters[0];
+                    }
+                    if (null != letters && letters.Length >= 2)
+                    {
+                        patronymicLetter = letters[1];
+                    }
+                }
+                if (null != secondName && !secondName.Trim().Equals(String.Empty) &&
+                    null != firstNameLetter && !firstNameLetter.Trim().Equals(String.Empty) &&
+                    null != patronymicLetter && !patronymicLetter.Trim().Equals(String.Empty))
+                {
+                    return DataContext.Professors.SingleOrDefault(p => p.User.SecondName == secondName &&
+                                                                  p.User.Patronymic[0].ToString() == patronymicLetter &&
+                                                                  p.User.FirstName[0].ToString() == firstNameLetter);
+                }
+
+                if (null != secondName && !secondName.Trim().Equals(String.Empty))
+                {
+                    return DataContext.Professors.SingleOrDefault(p => p.User.SecondName == secondName);
+                    
+                }
             }
             catch (Exception ex)
             {
-                Utility.WriteToLog("!!!!IMPORTANT Professor's Table in Database contains more then one entry with the same NickName: " + NickName + "!!!!", ex);
+                Utility.WriteToLog("!!!!IMPORTANT Professor's Table in Database contains more then one entry with the same FullName: " + fullName + "!!!!", ex);
+            }
+            return null;
+        }
+
+        public Professor GetByNickName(string nickName)
+        {
+            try
+            {
+                return DataContext.Professors.SingleOrDefault(p => p.User.NickName == nickName);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Professor's Table in Database contains more then one entry with the same NickName: " + nickName + "!!!!", ex);
             }
             return null;
         }
@@ -62,6 +109,25 @@ namespace VmkLearningKit.Models.Repository
                     DataContext.Professors.InsertOnSubmit(obj);
                     DataContext.SubmitChanges();
                     return obj;
+                }
+                return professor;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't add Professor's entry to database !!!!", ex);
+            }
+            return null;
+        }
+
+        public Professor Update(Professor obj)
+        {
+            try
+            {
+                Professor professor = GetById(obj.UserId);
+                if (null != professor)
+                {
+                    DataContext.SubmitChanges();
+                    return professor;
                 }
                 return professor;
             }

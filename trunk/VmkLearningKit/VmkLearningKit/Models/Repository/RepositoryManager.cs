@@ -306,5 +306,20 @@ namespace VmkLearningKit.Models.Repository
                 return groupRepository;
             }
         }
+
+        private ILectureTimetableRepository lectureTimetableRepository;
+
+        public ILectureTimetableRepository GetLectureTimetableRepository
+        {
+            get
+            {
+                if (lectureTimetableRepository == null)
+                {
+                    lectureTimetableRepository = new LectureTimetableRepository(DataContext);
+                }
+
+                return lectureTimetableRepository;
+            }
+        }
     }
 }

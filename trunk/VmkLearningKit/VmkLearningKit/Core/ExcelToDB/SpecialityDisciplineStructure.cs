@@ -57,17 +57,19 @@ namespace VmkLearningKit.Core.ExcelToDB
                                                 {
                                                     if (professor.ChairId == chairIdBeforeCommit)
                                                     {
+                                                        Professor professorCopy = Utility.Copy(professor);
+                                                        professorCopy.ChairId = chairFromDB.Id;
                                                         long userIdBeforeCommit = professor.User.Id;
                                                         Professor professorFromDB = null;
+
                                                         User userFromDB = repositoryManager.GetUserRepository.GetByLogin(professor.User.Login);
                                                         if (null == userFromDB)
                                                         {
-                                                            userFromDB = repositoryManager.GetUserRepository.Add(professor.User);
+                                                            userFromDB = repositoryManager.GetUserRepository.Add(professorCopy.User);
                                                             if (null != userFromDB)
                                                             {
-                                                                professor.ChairId = chairFromDB.Id;
-                                                                professor.UserId = userFromDB.Id;
-                                                                professorFromDB = repositoryManager.GetProfessorRepository.Add(professor);
+                                                                professorCopy.UserId = userFromDB.Id;
+                                                                professorFromDB = repositoryManager.GetProfessorRepository.Add(professorCopy);
                                                             }
                                                         }
                                                         else
@@ -75,9 +77,8 @@ namespace VmkLearningKit.Core.ExcelToDB
                                                             professorFromDB = repositoryManager.GetProfessorRepository.GetById(userFromDB.Id);
                                                             if (null == professorFromDB)
                                                             {
-                                                                professor.ChairId = chairFromDB.Id;
-                                                                professor.UserId = userFromDB.Id;
-                                                                professorFromDB = repositoryManager.GetProfessorRepository.Add(professor);
+                                                                professorCopy.UserId = userFromDB.Id;
+                                                                professorFromDB = repositoryManager.GetProfessorRepository.Add(professorCopy);
                                                             }
                                                         }
                                                         if (null != professorFromDB)
@@ -90,22 +91,27 @@ namespace VmkLearningKit.Core.ExcelToDB
                                                                    specialityDiscipline.ProfessorId == userIdBeforeCommit)
                                                                 {
                                                                     long specialityDisciplineIdBeforeCommit = specialityDiscipline.Id;
+
                                                                     SpecialityDiscipline specialityDisciplineFromDB = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(specialityDiscipline.Alias);
                                                                     if (null == specialityDisciplineFromDB)
                                                                     {
-                                                                        specialityDiscipline.ChairId = chairFromDB.Id;
-                                                                        specialityDiscipline.EducationPlanId = educationPlanFromDB.Id;
-                                                                        specialityDiscipline.ProfessorId = professorFromDB.User.Id;
-                                                                        specialityDiscipline.SpecialityId = specialityFromDB.Id;
-                                                                        specialityDisciplineFromDB = repositoryManager.GetSpecialityDisciplineRepository.Add(specialityDiscipline);
+                                                                        SpecialityDiscipline specialityDisciplineCopy = Utility.Copy(specialityDiscipline);
+
+                                                                        specialityDisciplineCopy.ChairId = chairFromDB.Id;
+                                                                        specialityDisciplineCopy.EducationPlanId = educationPlanFromDB.Id;
+                                                                        specialityDisciplineCopy.ProfessorId = professorFromDB.User.Id;
+                                                                        specialityDisciplineCopy.SpecialityId = specialityFromDB.Id;
+                                                                        specialityDisciplineFromDB = repositoryManager.GetSpecialityDisciplineRepository.Add(specialityDisciplineCopy);
                                                                         if (null != specialityDisciplineFromDB)
                                                                         {
                                                                             foreach (SpecialityDisciplineTerm specialityDisciplineTerm in SpecialityDisciplineTerms)
                                                                             {
                                                                                 if (specialityDisciplineTerm.SpecialityDisciplineId == specialityDisciplineIdBeforeCommit)
                                                                                 {
-                                                                                    specialityDisciplineTerm.SpecialityDisciplineId = specialityDisciplineFromDB.Id;
-                                                                                    SpecialityDisciplineTerm specialityDisciplineTermFromDB = repositoryManager.GetSpecialityDisciplineTermRepository.Add(specialityDisciplineTerm);
+                                                                                    SpecialityDisciplineTerm specialityDisciplineTermCopy = Utility.Copy(specialityDisciplineTerm);
+                                                                                    specialityDisciplineTermCopy.SpecialityDisciplineId = specialityDisciplineFromDB.Id;
+
+                                                                                    SpecialityDisciplineTerm specialityDisciplineTermFromDB = repositoryManager.GetSpecialityDisciplineTermRepository.Add(specialityDisciplineTermCopy);
                                                                                     if (null == specialityDisciplineTermFromDB)
                                                                                     {
                                                                                         // FIXME: can't add to db
@@ -212,7 +218,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                 {
                     alias = list[1];
                 }
-                else if (list.Count >= 2 && null != title && !title.Trim().Equals(String.Empty))
+                else if (list.Count >= 1 && null != title && !title.Trim().Equals(String.Empty))
                 {
                     alias = Transliteration.Front(title, TransliterationType.ISO);
                 }
@@ -611,7 +617,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                     {
                                         case "э":
                                             {
-                                                specialityDisciplineTerm.Reporting = "Экзам.";
+                                                specialityDisciplineTerm.Reporting = "Экзамен";
                                                 break;
                                             }
                                         case "з":

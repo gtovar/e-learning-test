@@ -167,6 +167,10 @@ namespace VmkLearningKit.Models.Domain
             {
                 return dbUser;
             }
+            set
+            {
+                dbUser = value;
+            }
         }
 
         public string Name

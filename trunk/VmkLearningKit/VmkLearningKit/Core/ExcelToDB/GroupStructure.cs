@@ -26,9 +26,8 @@ namespace VmkLearningKit.Core.ExcelToDB
                 {
                     if (speciality.DepartmentId == departmentIdBeforeCommit)
                     {
-                        Speciality specialityCopy = Utility.Copy(speciality);
-                        long specialityIdBeforeCommit = specialityCopy.Id;
-                        Speciality specialityFromDB = repositoryManager.GetSpecialityRepository.GetByAbbreviation(specialityCopy.Abbreviation);
+                        long specialityIdBeforeCommit = speciality.Id;
+                        Speciality specialityFromDB = repositoryManager.GetSpecialityRepository.GetByAbbreviation(speciality.Abbreviation);
                         if (null != specialityFromDB)
                         {
                             foreach (Group group in Groups)
@@ -36,11 +35,11 @@ namespace VmkLearningKit.Core.ExcelToDB
                                 if (group.DepartmentId == departmentIdBeforeCommit &&
                                    group.SpecialityId == specialityIdBeforeCommit)
                                 {
+                                    long groupIdBeforeCommit = group.Id;
                                     Group groupCopy = Utility.Copy(group);
-                                    long groupIdBeforeCommit = groupCopy.Id;
-                                    groupCopy.DepartmentId = Department.Id;
-                                    groupCopy.SpecialityId = specialityCopy.Id;
-                                    Group groupFromDB = repositoryManager.GetGroupRepository.GetByAlias(groupCopy.Alias);
+                                    groupCopy.DepartmentId = departmentFromDB.Id;
+                                    groupCopy.SpecialityId = specialityFromDB.Id;
+                                    Group groupFromDB = repositoryManager.GetGroupRepository.GetByAlias(group.Alias);
                                     if (null == groupFromDB)
                                     {
                                         groupFromDB = repositoryManager.GetGroupRepository.Add(groupCopy);
@@ -52,16 +51,16 @@ namespace VmkLearningKit.Core.ExcelToDB
                                             if (student.GroupId == groupIdBeforeCommit)
                                             {
                                                 long studentIdBeforeCommit = student.User.Id;
-                                                User userCopy = Utility.Copy(student.User);
                                                 Student studentFromDb = null;
-                                                
-                                                User userFromDB = repositoryManager.GetUserRepository.GetByLogin(userCopy.Login);
+                                                Student studentCopy = Utility.Copy(student);
+                                                studentCopy.GroupId = groupFromDB.Id;
+                                                User userFromDB = repositoryManager.GetUserRepository.GetByLogin(student.User.Login);
                                                 if (null == userFromDB)
                                                 {
-                                                    userFromDB = repositoryManager.GetUserRepository.Add(userCopy);
+                                                    userFromDB = repositoryManager.GetUserRepository.Add(studentCopy.User);
                                                     if (null != userFromDB)
                                                     {
-                                                        Student studentCopy = Utility.Copy(student, userFromDB.Id, groupFromDB.Id);
+                                                        studentCopy.UserId = userFromDB.Id;
                                                         studentFromDb = repositoryManager.GetStudentRepository.Add(studentCopy);
                                                     }
                                                 }
@@ -70,7 +69,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                                     studentFromDb = repositoryManager.GetStudentRepository.GetById(userFromDB.Id);
                                                     if (null == studentFromDb)
                                                     {
-                                                        Student studentCopy = Utility.Copy(student, userFromDB.Id, groupFromDB.Id);
+                                                        studentCopy.UserId = userFromDB.Id;
                                                         studentFromDb = repositoryManager.GetStudentRepository.Add(studentCopy);
                                                     }
                                                 }
@@ -124,7 +123,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                 long groupColumnIndex = -1;
                 long lastGroupId = RepositoryManager.GetRepositoryManager.GetGroupRepository.GetMaxId() + 1;
                 long studentColumnIndex = -1;
-                long lastStudentId = 0;//RepositoryManager.GetRepositoryManager.GetUserRepository.GetMaxId() + 1;
+                long lastStudentId = RepositoryManager.GetRepositoryManager.GetStudentRepository.GetMaxId() + 1;
 
                 Random rndPasswd = new Random(DateTime.Now.Millisecond);
 

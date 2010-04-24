@@ -27,6 +27,7 @@ namespace VmkLearningKit.Models.Repository
                 {
                     lecturePlan.Date = dateTime;
                     DataContext.SubmitChanges();
+                    return lecturePlan;
                 }
             }
             catch (Exception ex)
@@ -45,6 +46,19 @@ namespace VmkLearningKit.Models.Repository
             catch (Exception ex)
             {
                 Utility.WriteToLog("!!!!IMPORTANT Can't get lecturePlans by specialityDisciplineTopicId: " + specialityDisciplineTopicId, ex);
+            }
+            return null;
+        }
+
+        public IEnumerable<LecturePlan> GetBySpecialityDisciplineId(long specialityDisciplineId)
+        {
+            try
+            {
+                return DataContext.LecturePlans.Where(lp => lp.SpecialityDisciplineId == specialityDisciplineId);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't get lecturePlans by specialityDisciplineId: " + specialityDisciplineId, ex);
             }
             return null;
         }

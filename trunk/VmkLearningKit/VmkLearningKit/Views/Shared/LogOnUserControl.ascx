@@ -28,12 +28,12 @@
         {
     */
 %>
+[ <%= Html.ActionLink("Настройки аккаунта", "AccountSettings", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%> ]
+[ <%= Html.ActionLink("Сменить пароль", "ChangePassword", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%> ]
+<br />
 [ <%= Html.ActionLink(/*"Кабинет " + title*/ "Личный кабинет", "Menu", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%> ]
 <% // } %>
 [ <%= Html.ActionLink("Выйти", "LogOff", "Auth")%> ]
-<br />
-[ <%= Html.ActionLink("Настройки аккаунта", "AccountSettings", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%> ]
-[ <%= Html.ActionLink("Сменить пароль", "ChangePassword", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%> ]
 
 <%
     }

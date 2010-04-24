@@ -95,6 +95,18 @@ namespace VmkLearningKit.Controllers
                             }
                             isFileLoadOk = true;
                         }
+                        if (null != form["LectureTimetableStructure"])
+                        {
+                            LectureTimetableStructure lectureTimetableStructure = new LectureTimetableStructure();
+                            List<LectureTimetableStructureObj> lectureTimetableStructureList = lectureTimetableStructure.FromFile(filePath);
+                            foreach (LectureTimetableStructureObj obj in lectureTimetableStructureList)
+                            {
+                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "LectureTimetableStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
+                                DB.Backup(dbBackupFilePath);
+                                obj.Commit();
+                            }
+                            isFileLoadOk = true;
+                        }
                     }
                 }
             }

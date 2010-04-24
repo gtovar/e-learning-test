@@ -95,6 +95,7 @@
     <Compile Include="Core\AuthenticatedConstraint.cs" />
     <Compile Include="Core\DB.cs" />
     <Compile Include="Core\ExcelToDB\GroupStructure.cs" />
+    <Compile Include="Core\ExcelToDB\LectureTimetableStructure.cs" />
     <Compile Include="Core\ExcelToDB\SpecialityDisciplineStructure.cs" />
     <Compile Include="Core\ExcelToDB\SpecialityDisciplineTopicStructure.cs" />
     <Compile Include="Core\Transliteration.cs" />
@@ -122,6 +123,8 @@
     <Compile Include="Models\Repository\Group\GroupRepository.cs" />
     <Compile Include="Models\Repository\Group\IGroupRepository.cs" />
     <Compile Include="Models\Repository\LecturePlan\ILecturePlanRepository.cs" />
+    <Compile Include="Models\Repository\LectureTimetable\ILectureTimetableRepository.cs" />
+    <Compile Include="Models\Repository\LectureTimetable\LectureTimetableRepository.cs" />
     <Compile Include="Models\Repository\PracticePlan\IPracticePlanRepository.cs" />
     <Compile Include="Models\Repository\Professor\IProfessorRepository.cs" />
     <Compile Include="Models\Repository\Question\IQuestionRepository.cs" />
@@ -622,10 +625,8 @@
     <Content Include="Views\Cabinet\AccountSettings.aspx" />
     <Content Include="Views\Cabinet\Admin.aspx" />
     <Content Include="Views\Cabinet\ChangePassword.aspx" />
-    <Content Include="Views\Cabinet\LecturePlan.aspx" />
     <Content Include="Views\Cabinet\Menu.aspx" />
     <Content Include="Views\Cabinet\Metodist.aspx" />
-    <Content Include="Views\Cabinet\PracticePlan.aspx" />
     <Content Include="Views\Cabinet\Professor.aspx" />
     <Content Include="Views\Cabinet\Student.aspx" />
     <Content Include="Views\Editor\CreateAlternative.ascx" />
