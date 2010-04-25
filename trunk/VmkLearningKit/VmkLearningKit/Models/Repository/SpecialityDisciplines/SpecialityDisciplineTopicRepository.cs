@@ -13,6 +13,8 @@ namespace VmkLearningKit.Models.Repository
         {
         }
 
+        #region Get
+
         public SpecialityDisciplineTopic GetById(long id)
         {
             return DataContext.SpecialityDisciplineTopics.SingleOrDefault(sp => sp.Id == id);
@@ -78,6 +80,47 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+        public int GetRazdelCountBySpecialityDisciplineTopicId(long specialityDisciplineTopicId)
+        {
+            int count = 0;
+            foreach (Razdel r in DataContext.Razdels)
+            {
+                if (r.SpecialityDisciplineTopicId == specialityDisciplineTopicId)
+                    count++;
+            }
+
+            return count;
+        }
+
+        public int GetQuestionCountBySpecialityDisciplineTopicId(long specialityDisciplineTopicId)
+        {
+            int count = 0;
+            foreach (Razdel r in DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == specialityDisciplineTopicId))
+            {
+                foreach (Question q in DataContext.Questions.Where(s => s.RazdelId == r.Id))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public int GetQuestionCountInTestVariantBySpecialityDisciplineTopicId(long specialityDisciplineTopicId)
+        {
+            int count = 0;
+            foreach (Razdel r in DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == specialityDisciplineTopicId))
+            {
+                count += r.QuestionsCount;
+            }
+
+            return count;
+        }
+
+        #endregion
+
+        #region Set
+
         public SpecialityDisciplineTopic Add(SpecialityDisciplineTopic obj)
         {
             /*
@@ -142,6 +185,10 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+        #endregion
+
+        #region Delete
+
         public void Delete(SpecialityDisciplineTopic obj)
         {
             try
@@ -169,5 +216,7 @@ namespace VmkLearningKit.Models.Repository
                 Utility.WriteToLog("!!!!IMPORTANT Can't delete specialityDisciplneTopic by id: " + id, ex);
             }
         }
+
+        #endregion
     }
 }

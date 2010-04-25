@@ -13,6 +13,9 @@ namespace VmkLearningKit.Models.Repository
         SpecialityDisciplineTopic GetByTitle(string title);
         SpecialityDisciplineTopic SetTitle(long id, string title);
         long GetMaxId();
+        int GetRazdelCountBySpecialityDisciplineTopicId(long specialityDisciplineTopicId);
+        int GetQuestionCountBySpecialityDisciplineTopicId(long specialityDisciplineTopicId);
+        int GetQuestionCountInTestVariantBySpecialityDisciplineTopicId(long specialityDisciplineTopicId);
         SpecialityDisciplineTopic Add(SpecialityDisciplineTopic obj);
     }
 }

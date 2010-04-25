@@ -9,6 +9,7 @@ namespace VmkLearningKit.Models.Repository
     {
         long GetRazdelIdByQuestionId(long id);
         int GetQuestionType(long id);
+        IEnumerable<Question> GetQuestionsById(long id);
         IEnumerable<Question> GetAll();
         IEnumerable<Question> GetAllQuestionsByRazdelId(long razdelId);
         IEnumerable<Question> GetNotDeletedQuestionsByRazdelId(long razdelId);

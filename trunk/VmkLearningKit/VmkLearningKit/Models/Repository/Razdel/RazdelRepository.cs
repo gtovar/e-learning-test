@@ -30,6 +30,25 @@ namespace VmkLearningKit.Models.Repository
             return GetById(id).Title;
         }
 
+        public IEnumerable<Razdel> GetAllRazdelsBySpecialityDisciplineTopicId(long specialityDisciplineTopicId)
+        {
+            var result = (from c in DataContext.Razdels
+                          where c.SpecialityDisciplineTopicId == specialityDisciplineTopicId
+                          select c);
+            return (IEnumerable<Razdel>)result;
+        }
+
+        public int GetQuestionCountByRazdelId(long razdelId)
+        {
+            int count = 0;
+            foreach (Question q in DataContext.Questions)
+            {
+                if (q.RazdelId == razdelId)
+                    count++;
+            }
+            return count;
+        }
+
         #endregion
 
         #region Set
