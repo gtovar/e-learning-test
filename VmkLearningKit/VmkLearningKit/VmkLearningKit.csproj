@@ -115,6 +115,12 @@
     <Compile Include="Models\Repository\Chair\IChairRepository.cs" />
     <Compile Include="Models\Repository\Department\IDepartmentRepository.cs" />
     <Compile Include="Models\Repository\EducationPlan\IEducationPlanRepository.cs" />
+    <Compile Include="Models\Repository\GeneratedQuestion\GeneratedQuestionRepository.cs" />
+    <Compile Include="Models\Repository\GeneratedQuestion\IGeneratedQuestionRepository.cs" />
+    <Compile Include="Models\Repository\GeneratedTestVariant\GeneratedTestVariantRepository.cs" />
+    <Compile Include="Models\Repository\GeneratedTestVariant\IGeneratedTestVariantRepository.cs" />
+    <Compile Include="Models\Repository\GeneratedTest\GeneratedTestRepository.cs" />
+    <Compile Include="Models\Repository\GeneratedTest\IGeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\Group\GroupRepository.cs" />
     <Compile Include="Models\Repository\Group\IGroupRepository.cs" />
     <Compile Include="Models\Repository\LecturePlan\ILecturePlanRepository.cs" />
