@@ -78,7 +78,9 @@
 		});
     </script>
     
-    <% 
+    <%
+		try
+		{ 
             IEnumerable<Question> questionsList  = (IEnumerable<Question>)ViewData["QuestionsList"];
             long razdelId                        = Convert.ToInt64(ViewData["RazdelId"]);
 
@@ -194,5 +196,12 @@
                     </p>
             <% } %>
         </div>
+        <%
+    }
+    catch (Exception exc)
+    {
+		Utility.RedirectToErrorPage("Editor/List: catch exception", exc);
+    }
+%>
 
 </asp:Content>

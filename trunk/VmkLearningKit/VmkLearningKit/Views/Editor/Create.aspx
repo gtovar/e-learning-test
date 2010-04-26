@@ -49,46 +49,57 @@
             });
         });
     </script>
-    <h2>Создание тестового вопроса</h2>
-    <table class="Editor" style="width:100%;">
-        <tr class="Editor">
-            <td class="Editor" style="width:10%"><b>Дисциплина:</b></td>
-            <td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["DisciplineTitle"])) %></td>
-            <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку дисциплин", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"])}, new { @class = "" })%></td>
-        </tr>
-         <tr class="Editor">
-            <td class="Editor" style="width:10%"><b>Тема:</b></td>
-            <td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["TopicTitle"])) %></td>
-            <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку тем", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"]), additional = Convert.ToString(ViewData["DisciplineAlias"])}, new { @class = "" })%></td>
-        </tr>
-        <tr class="Editor">
-            <td class="Editor" style="width:10%"><b>Раздел:</b></td>
-            <td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["RazdelTitle"])) %></td>
-            <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку разделов", "Index", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%></td>
-        </tr>
-	</table>
-    <br />
     <%
-        long                        razdelId         = Convert.ToInt64(ViewData["RazdelId"]);
-        IEnumerable<SelectListItem> QuestionTypeList = (IEnumerable<SelectListItem>)ViewData["QuestionTypeList"];
+    try
+    {
+		%>
+		<h2>Создание тестового вопроса</h2>
+		<table class="Editor" style="width:100%;">
+			<tr class="Editor">
+				<td class="Editor" style="width:10%"><b>Дисциплина:</b></td>
+				<td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["DisciplineTitle"])) %></td>
+				<td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку дисциплин", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"])}, new { @class = "" })%></td>
+			</tr>
+			 <tr class="Editor">
+				<td class="Editor" style="width:10%"><b>Тема:</b></td>
+				<td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["TopicTitle"])) %></td>
+				<td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку тем", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"]), additional = Convert.ToString(ViewData["DisciplineAlias"])}, new { @class = "" })%></td>
+			</tr>
+			<tr class="Editor">
+				<td class="Editor" style="width:10%"><b>Раздел:</b></td>
+				<td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["RazdelTitle"])) %></td>
+				<td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку разделов", "Index", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%></td>
+			</tr>
+		</table>
+		<br />
+		<%
+			long                        razdelId         = Convert.ToInt64(ViewData["RazdelId"]);
+			IEnumerable<SelectListItem> QuestionTypeList = (IEnumerable<SelectListItem>)ViewData["QuestionTypeList"];
 
-        using (Html.BeginForm("Create", "Editor", new { alias = razdelId }, FormMethod.Post, new { id = "QuestionForm" }))
-        {
-            %>
-            <p>Выберите тип вопроса: <%= Html.DropDownList("QuestionTypeList", QuestionTypeList) %></p>
-            <div class="QuestionsList">
-                <div class="Question">
-                    <div class="QuestionEditBlock"></div>
-                    <div class="QuestionFooter">
-                        <img src="/Content/Images/save.png" class="QuestionSave" alt="Сохранить" width="20" height="20" />
-                    </div>
-                </div>
-            </div>
-            <%
-        } 
-    %>
-    <br />
-    <p>
-        <%= Html.ActionLink("Вернуться к списку вопросов по разделу", "List", new { alias = razdelId }) %>
-    </p>
+			using (Html.BeginForm("Create", "Editor", new { alias = razdelId }, FormMethod.Post, new { id = "QuestionForm" }))
+			{
+				%>
+				<p>Выберите тип вопроса: <%= Html.DropDownList("QuestionTypeList", QuestionTypeList) %></p>
+				<div class="QuestionsList">
+					<div class="Question">
+						<div class="QuestionEditBlock"></div>
+						<div class="QuestionFooter">
+							<img src="/Content/Images/save.png" class="QuestionSave" alt="Сохранить" width="20" height="20" />
+						</div>
+					</div>
+				</div>
+				<%
+			} 
+		%>
+		<br />
+		<p>
+			<%= Html.ActionLink("Вернуться к списку вопросов по разделу", "List", new { alias = razdelId }) %>
+		</p>
+	<%
+	}
+	catch (Exception exc)
+	{
+		Utility.RedirectToErrorPage("Editor/Create: catch exception", ex);
+	}
+	%>
 </asp:Content>
