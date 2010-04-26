@@ -68,125 +68,133 @@
 </script>
 
 <%
-	string disciplineTitle	= Convert.ToString(ViewData["DisciplineTitle"]);
-	string topicTitle		= Convert.ToString(ViewData["TopicTitle"]);
-	
-	IEnumerable<Razdel> razdelsList = (IEnumerable<Razdel>)ViewData["RazdelsList"];
-%>
-	<h2>Список разделов</h2>
-    <table class="Editor" style="width:100%;">
-        <tr class="Editor">
-            <td class="Editor" style="width:10%"><b>Дисциплина:</b></td>
-            <td class="Editor" style="width:60%"><%= Html.Encode(disciplineTitle) %></td>
-            <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку дисциплин", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"])}, new { @class = "" })%></td>
-        </tr>
-         <tr class="Editor">
-            <td class="Editor" style="width:10%"><b>Тема:</b></td>
-            <td class="Editor" style="width:60%"><%= Html.Encode(topicTitle) %></td>
-            <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку тем", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"]), additional = Convert.ToString(ViewData["DisciplineAlias"])}, new { @class = "" })%></td>
-        </tr>
-	</table>
-	<%
-		if (razdelsList.Count<Razdel>() == 0)
-		{
-			%>
-			<br />
-			<p>По данной теме не было создано ни одного раздела</p>
-			<div class="RazdelsList">
-				<div class="MainRazdelFooter">
-					<div class="NewRazdel">
-						<%
-						using (Html.BeginForm("AddRazdel", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post, new { id = "NewRazdelForm", name = "NewRazdelForm" }))
-						{
-						%>
-							<table class="Editor" style="width:100%;">
-								<tr>
-									<td class="Editor" style="width:20%">
-									<label for="NewRazdelTitle">Название раздела:</label>
-									</td>
-									<td class="Editor" style="width:80%">
-									<%= Html.TextBox("NewRazdelTitle", String.Empty, new { style = "width:100%" })%>
-									</td>
-								</tr>
-							</table>
-						<%
-						}
-						%>
-						<div class="NewRazdelFooter">
-							<img src="/Content/Images/save.png" class="NewRazdelSave" alt="Сохранить" width="20" height="20" />
-							<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
-						</div>
-					</div>
-					<a id="RazdelAdd" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a>
-				</div>
-			</div>			
-			<%
-		}
-		else
-		{
-			%>
-			
-			<div class="RazdelsList">
-				<div class="MainRazdelHeader">
-					<div class="RazdelNumber">№</div>   
-					<div class="RazdelTitle">Название</div>
-				</div>
-			
-				<%
-				long razdelNumber = 1;
-				foreach (var razdel in razdelsList)
-				{	 
-					%>
-					<div class="Razdel">
-						<div class="RazdelHeader">
-							<div class="RazdelNumber"><%= Html.Encode(razdelNumber) %></div>
-							<div class="RazdelTitle">
-								<%= Html.ActionLink(razdel.Title, "List", "Editor", new { alias = razdel.Id }, new { @class = "" }) %>
-							</div>
-							<img src="/Content/Images/edit.png" class="RazdelEdit" alt="Редактировать" width="20" height="20" />
-							<img src="/Content/Images/delete.png" class="RazdelDelete" alt="Удалить" width="20" height="20" />
-						</div>
-						<div id="<%= Html.Encode("EditBlock" + razdel.Id.ToString()) %>" class="RazdelEditBlock"></div>
-						<div class="RazdelFooter">
-							<img src="/Content/Images/save.png" class="RazdelSave" alt="Сохранить" width="20" height="20" />
-							<img src="/Content/Images/cancel.png" class="RazdelCancel" alt="Отменить" width="20" height="20" />
-						</div>
-					</div>
-					<%
-					++razdelNumber;
-				}
+	try
+	{
+		string disciplineTitle	= Convert.ToString(ViewData["DisciplineTitle"]);
+		string topicTitle		= Convert.ToString(ViewData["TopicTitle"]);
+		
+		IEnumerable<Razdel> razdelsList = (IEnumerable<Razdel>)ViewData["RazdelsList"];
+		%>
+		<h2>Список разделов</h2>
+		<table class="Editor" style="width:100%;">
+			<tr class="Editor">
+				<td class="Editor" style="width:10%"><b>Дисциплина:</b></td>
+				<td class="Editor" style="width:60%"><%= Html.Encode(disciplineTitle) %></td>
+				<td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку дисциплин", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"])}, new { @class = "" })%></td>
+			</tr>
+			 <tr class="Editor">
+				<td class="Editor" style="width:10%"><b>Тема:</b></td>
+				<td class="Editor" style="width:60%"><%= Html.Encode(topicTitle) %></td>
+				<td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку тем", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"]), additional = Convert.ToString(ViewData["DisciplineAlias"])}, new { @class = "" })%></td>
+			</tr>
+		</table>
+		<%
+			if (razdelsList.Count<Razdel>() == 0)
+			{
 				%>
 				<br />
-				<div class="MainRazdelFooter">
-					<div class="NewRazdel">
-						<%
-						using (Html.BeginForm("AddRazdel", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post, new { id = "NewRazdelForm", name = "NewRazdelForm" }))
-						{
-						%>
-							<table class="Editor" style="width:100%;">
-								<tr>
-									<td class="Editor" style="width:20%">
-									<label for="NewRazdelTitle">Название раздела:</label>
-									</td>
-									<td class="Editor" style="width:80%">
-									<%= Html.TextBox("NewRazdelTitle", String.Empty, new { style = "width:100%" })%>
-									</td>
-								</tr>
-							</table>
-						<%
-						}
-						%>
-						<div class="NewRazdelFooter">
-							<img src="/Content/Images/save.png" class="NewRazdelSave" alt="Сохранить" width="20" height="20" />
-							<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
+				<p>По данной теме не было создано ни одного раздела</p>
+				<div class="RazdelsList">
+					<div class="MainRazdelFooter">
+						<div class="NewRazdel">
+							<%
+							using (Html.BeginForm("AddRazdel", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post, new { id = "NewRazdelForm", name = "NewRazdelForm" }))
+							{
+							%>
+								<table class="Editor" style="width:100%;">
+									<tr>
+										<td class="Editor" style="width:20%">
+										<label for="NewRazdelTitle">Название раздела:</label>
+										</td>
+										<td class="Editor" style="width:80%">
+										<%= Html.TextBox("NewRazdelTitle", String.Empty, new { style = "width:100%" })%>
+										</td>
+									</tr>
+								</table>
+							<%
+							}
+							%>
+							<div class="NewRazdelFooter">
+								<img src="/Content/Images/save.png" class="NewRazdelSave" alt="Сохранить" width="20" height="20" />
+								<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
+							</div>
 						</div>
+						<a id="RazdelAdd" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a>
 					</div>
-					<a id="RazdelAdd" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a> | 
-					<%= Html.ActionLink("Перейти к плану генерации", "") %>
+				</div>			
+				<%
+			}
+			else
+			{
+				%>
+				
+				<div class="RazdelsList">
+					<div class="MainRazdelHeader">
+						<div class="RazdelNumber">№</div>   
+						<div class="RazdelTitle">Название</div>
+					</div>
+				
+					<%
+					long razdelNumber = 1;
+					foreach (var razdel in razdelsList)
+					{	 
+						%>
+						<div class="Razdel">
+							<div class="RazdelHeader">
+								<div class="RazdelNumber"><%= Html.Encode(razdelNumber) %></div>
+								<div class="RazdelTitle">
+									<%= Html.ActionLink(razdel.Title, "List", "Editor", new { alias = razdel.Id }, new { @class = "" }) %>
+								</div>
+								<img src="/Content/Images/edit.png" class="RazdelEdit" alt="Редактировать" width="20" height="20" />
+								<img src="/Content/Images/delete.png" class="RazdelDelete" alt="Удалить" width="20" height="20" />
+							</div>
+							<div id="<%= Html.Encode("EditBlock" + razdel.Id.ToString()) %>" class="RazdelEditBlock"></div>
+							<div class="RazdelFooter">
+								<img src="/Content/Images/save.png" class="RazdelSave" alt="Сохранить" width="20" height="20" />
+								<img src="/Content/Images/cancel.png" class="RazdelCancel" alt="Отменить" width="20" height="20" />
+							</div>
+						</div>
+						<%
+						++razdelNumber;
+					}
+					%>
+					<br />
+					<div class="MainRazdelFooter">
+						<div class="NewRazdel">
+							<%
+							using (Html.BeginForm("AddRazdel", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post, new { id = "NewRazdelForm", name = "NewRazdelForm" }))
+							{
+							%>
+								<table class="Editor" style="width:100%;">
+									<tr>
+										<td class="Editor" style="width:20%">
+										<label for="NewRazdelTitle">Название раздела:</label>
+										</td>
+										<td class="Editor" style="width:80%">
+										<%= Html.TextBox("NewRazdelTitle", String.Empty, new { style = "width:100%" })%>
+										</td>
+									</tr>
+								</table>
+							<%
+							}
+							%>
+							<div class="NewRazdelFooter">
+								<img src="/Content/Images/save.png" class="NewRazdelSave" alt="Сохранить" width="20" height="20" />
+								<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
+							</div>
+						</div>
+						<a id="RazdelAdd" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a> | 
+						<%= Html.ActionLink("Перейти к плану генерации", "") %>
+					</div>
 				</div>
-			</div>
-			<%
-		}
+				<%
+			}
+	}
+	catch(Exception exc)
+	{
+		Utility.RedirectToErrorPage("Testing/Index: catch exception", exc);
+	}
+		
 	%>
 </asp:Content>
 
