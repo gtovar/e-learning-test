@@ -61,6 +61,7 @@ namespace VmkLearningKit.Controllers
 
             return RedirectToAction("Index", new { alias = topicId });
         }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddRazdel(long alias, FormCollection form)
         {

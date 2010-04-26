@@ -163,6 +163,11 @@ namespace VmkLearningKit.Models.Repository
         {
             foreach (Question question in obj.Questions)
             {
+                foreach (Answer answer in question.Answers)
+                {
+                    DataContext.Answers.DeleteOnSubmit(answer);
+                }
+
                 DataContext.Questions.DeleteOnSubmit(question);
             }
 
@@ -175,6 +180,11 @@ namespace VmkLearningKit.Models.Repository
         {
             foreach (Question question in GetById(id).Questions)
             {
+                foreach (Answer answer in question.Answers)
+                {
+                    DataContext.Answers.DeleteOnSubmit(answer);
+                }
+
                 DataContext.Questions.DeleteOnSubmit(question);
             }
 
