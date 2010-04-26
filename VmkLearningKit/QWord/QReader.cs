@@ -633,7 +633,7 @@ namespace QWord
                 {
                     string text = wordApplication.Selection.Words.First.Text;
 
-                    if (!text.Equals("\r"))
+                    if (!text.Equals("\r") && text.IndexOf("#") != 0)
                     {
                         answerText += text.Trim('\n', '\r');
                     }
