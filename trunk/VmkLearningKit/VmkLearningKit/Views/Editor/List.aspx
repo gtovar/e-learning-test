@@ -206,8 +206,8 @@
                { %>
                     <p>Выберите word-документ в формате <b>.doc</b> и нажмите кнопку <b>добавить</b></p>
                     <p>
-                        <input type="file" id="FileUpload" name="FileUpload" value="Обзор" />
-                        <input type="submit" value="Добавить" />
+                        <input type="file" id="FileUpload" name="FileUpload" value="Обзор" class="Button" />
+                        <input type="submit" value="Добавить" class="Button" />
                     </p>
             <% } %>
         </div>
