@@ -2,7 +2,7 @@
 <%@ Import Namespace="VmkLearningKit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Список тестовых вопросов
+	Редактор тестовых вопросов / Список тестовых вопросов
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -78,14 +78,30 @@
 		});
     </script>
     
-    <h2>Список тестовых вопросов</h2>
-    <br />
-        <% 
+    <% 
             IEnumerable<Question> questionsList  = (IEnumerable<Question>)ViewData["QuestionsList"];
             long razdelId                        = Convert.ToInt64(ViewData["RazdelId"]);
 
             long questionNumber = 1;
-        %>
+    %>
+    <h2>Список тестовых вопросов</h2>
+    <table class="Editor" style="width:100%;">
+        <tr class="Editor">
+            <td class="Editor" style="width:10%"><b>Дисциплина:</b></td>
+            <td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["DisciplineTitle"])) %></td>
+            <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку дисциплин", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"])}, new { @class = "" })%></td>
+        </tr>
+         <tr class="Editor">
+            <td class="Editor" style="width:10%"><b>Тема:</b></td>
+            <td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["TopicTitle"])) %></td>
+            <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку тем", "Professor", "Cabinet", new { alias = Convert.ToString(ViewData["ProfessorNickName"]), additional = Convert.ToString(ViewData["DisciplineAlias"])}, new { @class = "" })%></td>
+        </tr>
+        <tr class="Editor">
+            <td class="Editor" style="width:10%"><b>Раздел:</b></td>
+            <td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["RazdelTitle"])) %></td>
+            <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку разделов", "Index", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%></td>
+        </tr>
+	</table>
         <div class="QuestionsList">
             <div class="MainQuestionHeader">
                 <div class="QuestionNumber">№</div>   

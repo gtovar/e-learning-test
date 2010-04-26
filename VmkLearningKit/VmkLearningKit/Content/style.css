@@ -443,10 +443,10 @@ a:hover
 .QuestionsList .MainQuestionHeader
 {
 	position: relative;
-	background: #e8eef4;
+	background: none repeat scroll 0 0 #E2EFFF;
 	padding: 10px 20px 10px;
 	margin: 0;
-	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	font: bold;
 	font-size: medium;
 	border: solid 1px #c4c4c4;
 	border-bottom: none;
@@ -470,10 +470,10 @@ a:hover
 .QuestionsList .Question .QuestionHeader
 {
 	position: relative;
-	background: #edf5e1;
+	background: #ffffff;
 	padding: 10px 20px 10px;
 	margin: 0;
-	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	font: bold;
 	font-size: small;
 	border: solid 1px #c4c4c4;
 	border-bottom: none;
@@ -482,6 +482,7 @@ a:hover
 .QuestionsList .Question .QuestionEditBlock
 {
 	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
 	border-left: solid 1px #c4c4c4;
 	border-right: solid 1px #c4c4c4;
 	display: none;
@@ -489,9 +490,10 @@ a:hover
 .QuestionsList .Question .QuestionFooter
 {
 	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
 	padding: 10px 20px 10px;
 	margin: 0;
-	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	font: bold;
 	font-size: small;
 	height:20px;
 	display: none;
@@ -557,6 +559,149 @@ a:hover
 /*
 ----------------------------------------------------------*/
 
+/* RazdelsList
+----------------------------------------------------------*/
+.RazdelsList
+{
+	width: 100%;
+}
+
+.RazdelsList .MainRazdelHeader
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: medium;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	height:13px;
+}
+.RazdelsList .MainRazdelHeader .RazdelNumber
+{
+	position: absolute;
+	left: 5px;
+}
+.RazdelsList .MainRazdelHeader .RazdelTitle
+{
+	position: absolute;
+	left: 50px;
+}
+
+.RazdelsList .MainRazdelFooter
+{
+	position: relative;
+	background: none repeat scroll 0 0 #FFFFFF;
+	margin: 0;
+	font-size: small;
+}
+.RazdelsList .MainRazdelFooter .NewRazdel
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	border: solid 1px #c4c4c4;
+	display: none;
+}
+.RazdelsList .MainRazdelFooter .NewRazdel .NewRazdelFooter
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: small;
+	height:20px;
+}
+.RazdelsList .MainRazdelFooter .NewRazdel .NewRazdelFooter .NewRazdelCancel
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.RazdelsList .MainRazdelFooter .NewRazdel .NewRazdelFooter .NewRazdelSave
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+
+.RazdelsList .Razdel .RazdelHeader
+{
+	position: relative;
+	background: #ffffff;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: small;
+	border: solid 1px #c4c4c4;
+	height:13px;
+}
+.RazdelsList .Razdel .RazdelHeader .RazdelNumber
+{
+	position: absolute;
+	left: 5px;
+}
+.RazdelsList .Razdel .RazdelHeader .RazdelTitle
+{
+	position: absolute;
+	left: 50px;
+}
+.RazdelsList .Razdel .RazdelHeader .RazdelEdit
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+.RazdelsList .Razdel .RazdelHeader .RazdelDelete
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.RazdelsList .Razdel .RazdelEditBlock
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	display: none;
+}
+.RazdelsList .Razdel .RazdelFooter
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: small;
+	height:20px;
+	display: none;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	border-bottom: solid 1px #c4c4c4;
+}
+.RazdelsList .Razdel .RazdelFooter .RazdelCancel
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.RazdelsList .Razdel .RazdelFooter .RazdelSave
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+/*
+----------------------------------------------------------*/
 p
 {
     margin-bottom: 20px;
@@ -591,3 +736,5 @@ table td .Editor
 	border-top: solid 1px #c4c4c4;
 	display: none;
 }
+/*
+----------------------------------------------------------*/
