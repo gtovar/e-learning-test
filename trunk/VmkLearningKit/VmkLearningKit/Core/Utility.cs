@@ -22,11 +22,11 @@ namespace VmkLearningKit.Core
     {
         public static void RedirectToErrorPage(string message, Exception exception, int? errorCode)
         {
-            if(!errorCode.HasValue) 
+            if (!errorCode.HasValue)
             {
-                new RedirectResult(Constants.ERROR_URL); 
+                new RedirectResult(Constants.ERROR_URL);
             }
-            else 
+            else
             {
                 new RedirectResult(Constants.ERROR_URL + errorCode);
             }
@@ -197,6 +197,98 @@ namespace VmkLearningKit.Core
             copy.Password = obj.Password;
 
             return copy;
+        }
+
+        public static LecturePlan Copy(LecturePlan obj)
+        {
+            LecturePlan copy = new LecturePlan();
+            copy.Id = obj.Id;
+            copy.SpecialityDisciplineId = obj.SpecialityDisciplineId;
+            copy.SpecialityDisciplineTopicId = obj.SpecialityDisciplineTopicId;
+            copy.Date = obj.Date;
+
+            return copy;
+        }
+
+        public static DayOfWeek GetDayOfWeekFromString(string day)
+        {
+            switch (day)
+            {
+                case "Понедельник":
+                    return DayOfWeek.Monday;
+                    break;
+                case "Вторник":
+                    return DayOfWeek.Tuesday;
+                    break;
+                case "Среда":
+                    return DayOfWeek.Wednesday;
+                    break;
+                case "Четверг":
+                    return DayOfWeek.Thursday;
+                    break;
+                case "Пятница":
+                    return DayOfWeek.Friday;
+                    break;
+                case "Суббота":
+                    return DayOfWeek.Saturday;
+                    break;
+                case "Воскресенье":
+                    return DayOfWeek.Sunday;
+                    break;
+            }
+            // if this return is evoked therefore we have an error with day field in LectureTimetable
+            // this return mustn't be evoked
+            return DayOfWeek.Monday;
+        }
+
+        public static string GetTopicTitle(LecturePlan lecturePlan, string day)
+        {
+            string topic = String.Empty;
+            if (null != lecturePlan)
+            {
+                DayOfWeek dayOfWeek = GetDayOfWeekFromString(day);
+                if (lecturePlan.Date.HasValue && lecturePlan.Date.Value.DayOfWeek == dayOfWeek)
+                {
+                    topic = lecturePlan.SpecialityDisciplineTopic.Title;
+                }
+            }
+            return topic;
+        }
+
+        public static string GetSubjectAndRoom(IEnumerable<LecturePlan> lecturePlans, string day, string time, out LecturePlan foundLecturePlan)
+        {
+            string str = String.Empty;
+            DayOfWeek dayOfWeek = GetDayOfWeekFromString(day);
+            foundLecturePlan = null;
+            foreach (LecturePlan lecturePlan in lecturePlans)
+            {
+                if (lecturePlan.Date.HasValue && lecturePlan.Date.Value.DayOfWeek == dayOfWeek)
+                {
+                    foundLecturePlan = lecturePlan;
+                    foreach (LectureTimetable timetable in lecturePlan.SpecialityDiscipline.LectureTimetables)
+                    {
+                        if (timetable.Day.Trim().Equals(day.Trim()) && timetable.Time.Trim().Equals(time.Trim()))
+                        {
+                            string[] titleParts = timetable.SpecialityDiscipline.Title.Split(' ', '-');
+                            string title = String.Empty;
+                            foreach (string titlePart in titleParts)
+                            {
+                                if (null != titlePart && !titlePart.Trim().Equals(String.Empty))
+                                {
+                                    title += titlePart[0].ToString().ToUpper();
+                                }
+                            }
+                            str += title + " " + timetable.Room + "(" + timetable.Building + ")";
+                            break;
+                        }
+                    }
+                    if (!str.Trim().Equals(String.Empty))
+                    {
+                        break;
+                    }
+                }
+            }
+            return str;
         }
 
         /*

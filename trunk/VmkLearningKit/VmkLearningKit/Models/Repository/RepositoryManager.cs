@@ -321,7 +321,7 @@ namespace VmkLearningKit.Models.Repository
                 return lectureTimetableRepository;
             }
         }
-
+        /*
         private IGeneratedQuestionRepository generatedQuestionRepository;
 
         public IGeneratedQuestionRepository GetGeneratedQuestionRepository
@@ -335,7 +335,8 @@ namespace VmkLearningKit.Models.Repository
                 return generatedQuestionRepository;
             }
         }
-
+        */
+        /*
         private IGeneratedTestVariantRepository generatedTestVariantRepository;
 
         public IGeneratedTestVariantRepository GetGeneratedTestVariantRepository
@@ -364,5 +365,6 @@ namespace VmkLearningKit.Models.Repository
                 return generatedTestRepository;
             }
         }
+        */
     }
 }

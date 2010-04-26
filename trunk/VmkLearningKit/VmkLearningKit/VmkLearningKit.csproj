@@ -631,6 +631,7 @@
     <Content Include="Views\Cabinet\Metodist.aspx" />
     <Content Include="Views\Cabinet\Professor.aspx" />
     <Content Include="Views\Cabinet\Student.aspx" />
+    <Content Include="Views\Cabinet\Timetable.aspx" />
     <Content Include="Views\Editor\CreateAlternative.ascx" />
     <Content Include="Views\Editor\CreateDistributive.ascx" />
     <Content Include="Views\Editor\CreateFormula.ascx" />

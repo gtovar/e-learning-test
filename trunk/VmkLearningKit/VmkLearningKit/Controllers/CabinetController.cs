@@ -189,11 +189,46 @@ namespace VmkLearningKit.Controllers
         /// </summary>
         [AuthorizeFilter(Roles = "Student")]
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Student(string alias)
+        public ActionResult Student(string alias, string additional)
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
-            return View();
+            if (null != alias && !alias.Trim().Equals(String.Empty))
+            {
+                Student student = repositoryManager.GetStudentRepository.GetByNickName(alias);
+                if (null != student)
+                {
+                    //if (alias.Trim().Equals("Timetable"))
+                    {
+                        int timetablePage = 1;
+                        if (null != additional && !additional.Trim().Equals(String.Empty))
+                        {
+                            try
+                            {
+                                timetablePage = Convert.ToInt32(additional);
+                            }
+                            catch (Exception ex)
+                            {
+                                Utility.WriteToLog("CabinetController.Timetable: can't convert timetablePage string to int: " + additional, ex);
+                            }
+                        }
+                        int[] pages = GetTimetablePages();
+                        if (timetablePage > pages.Length)
+                        {
+                            timetablePage = pages.Length;
+                            ViewData["InfoMessage"] = "Это последняя учебная неделя";
+                        }
+                        short[] terms = GetTermsByGroupTitle(student.Group.Title);
+                        IEnumerable<LecturePlan> lecturePlans = GetTimetablePageLecturePlans(timetablePage, student.Group.SpecialityId, terms);
+
+                        ViewData["TimetablePage"] = timetablePage;
+                        ViewData["TimetableLecturePlans"] = lecturePlans;
+                        ViewData["TimetablePages"] = pages;
+                        ViewData["MondayDate"] = GetMondayDate(DateTime.Now).AddDays((timetablePage - 1) * weekLength); ;
+                    }
+                }
+            }
+            return View(Constants.CABINET_VIEWS + "Timetable.aspx");
         }
 
         /// <summary>
@@ -448,6 +483,253 @@ namespace VmkLearningKit.Controllers
             return View();
         }
 
+        ///////////////////////////////////////////////////////
+        /// GetTimetablePageLecturePlans begins
+        ///////////////////////////////////////////////////////
+
+        private IEnumerable<LecturePlan> GetTimetablePageLecturePlans(int pageIndex, long specialityId, short[] terms)
+        {
+            DateTime firstTermDate = GetMondayDate(DateTime.Now).AddDays((pageIndex - 1) * weekLength);
+            DateTime lastTermDate = firstTermDate.AddDays(weekLength);
+
+            IEnumerable<SpecialityDiscipline> specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetBySpecialityId(specialityId);
+            List<LecturePlan> lecturePlans = null;
+            foreach (SpecialityDiscipline specialityDiscipline in specialityDisciplines)
+            {
+                bool hasSpecialityDiscipline = false;
+                foreach (SpecialityDisciplineTerm specialityDisciplineTerm in specialityDiscipline.SpecialityDisciplineTerms)
+                {
+                    short[] officialTerms = GetTermsByDate(DateTime.Now);
+                    if (null != terms && terms.Contains(specialityDisciplineTerm.Term) && 
+                        officialTerms.Contains(specialityDisciplineTerm.Term))
+                    {
+                        hasSpecialityDiscipline = true;
+                    }
+                }
+                if (hasSpecialityDiscipline)
+                {
+                    IEnumerable<LecturePlan> allLecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
+
+                    lecturePlans = new List<LecturePlan>();
+                    foreach (LecturePlan lecturePlan in allLecturePlans)
+                    {
+                        if (lecturePlan.Date.HasValue &&
+                            lecturePlan.Date.Value >= firstTermDate &&
+                            lecturePlan.Date.Value <= lastTermDate)
+                        {
+                            lecturePlans.Add(lecturePlan);
+                        }
+                    }
+                }
+            }
+
+            return lecturePlans;
+        }
+
+        private short[] GetTermsByGroupTitle(string groupTitle)
+        {
+            if (null != groupTitle && !groupTitle.Trim().Equals(String.Empty))
+            {
+                if (groupTitle.IndexOf("81") < 2 &&
+                    groupTitle.IndexOf("81") > -1)
+                {
+                    return new short[] {1, 2};
+                }
+
+                if (groupTitle.IndexOf("82") < 2 &&
+                    groupTitle.IndexOf("82") > -1)
+                {
+                    return new short[] {3, 4};
+                }
+
+                if (groupTitle.IndexOf("83") < 2 &&
+                    groupTitle.IndexOf("83") > -1)
+                {
+                    return new short[] {5, 6};
+                }
+
+                if (groupTitle.IndexOf("84") < 2 &&
+                    groupTitle.IndexOf("84") > -1)
+                {
+                    return new short[] {7, 8};
+                }
+
+                if (groupTitle.IndexOf("85") < 2 &&
+                    groupTitle.IndexOf("85") > -1)
+                {
+                    return new short[] {9, 10};
+                }
+
+                if (groupTitle.IndexOf("86") < 2 &&
+                    groupTitle.IndexOf("86") > -1)
+                {
+                    return new short[] { 11, 12 };
+                }
+            }
+            return null;
+        }
+
+        ///////////////////////////////////////////////////////
+        /// GetTimetablePageLecturePlans ends
+        ///////////////////////////////////////////////////////
+
+        ///////////////////////////////////////////////////////
+        /// GetTimetablePageCount begins
+        ///////////////////////////////////////////////////////
+
+        private int GetDaysInMonth(int monthNumber)
+        {
+            switch (monthNumber)
+            {
+                case 1:
+                    {
+                        return 31;
+                        break;
+                    }
+
+                case 2:
+                    {
+                        return 28;
+                        break;
+                    }
+
+                case 3:
+                    {
+                        return 31;
+                        break;
+                    }
+
+                case 4:
+                    {
+                        return 30;
+                        break;
+                    }
+
+                case 5:
+                    {
+                        return 31;
+                        break;
+                    }
+
+                case 6:
+                    {
+                        return 30;
+                        break;
+                    }
+
+                case 7:
+                    {
+                        return 31;
+                        break;
+                    }
+
+                case 8:
+                    {
+                        return 31;
+                        break;
+                    }
+
+                case 9:
+                    {
+                        return 30;
+                        break;
+                    }
+
+                case 10:
+                    {
+                        return 31;
+                        break;
+                    }
+
+                case 11:
+                    {
+                        return 30;
+                        break;
+                    }
+
+                case 12:
+                    {
+                        return 31;
+                        break;
+                    }
+            }
+
+            return 0;
+        }
+
+        private DateTime GetMondayDate(DateTime date)
+        {
+            switch (date.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    {
+                        return date;
+                        break;
+                    }
+                case DayOfWeek.Tuesday:
+                    {
+                        return date.AddDays(-1);
+                        break;
+                    }
+                case DayOfWeek.Wednesday:
+                    {
+                        return date.AddDays(-2);
+                        break;
+                    }
+                case DayOfWeek.Thursday:
+                    {
+                        return date.AddDays(-3);
+                        break;
+                    }
+                case DayOfWeek.Friday:
+                    {
+                        return date.AddDays(-4);
+                        break;
+                    }
+                case DayOfWeek.Saturday:
+                    {
+                        return date.AddDays(-5);
+                        break;
+                    }
+                case DayOfWeek.Sunday:
+                    {
+                        return date.AddDays(-6);
+                        break;
+                    }
+            }
+            return date;
+        }
+
+        private int[] GetTimetablePages()
+        {
+            DateTime firstTermDate = GetMondayDate(DateTime.Now);
+            DateTime lastTermDate = GetLastTermDate();
+            TimeSpan difference = lastTermDate - firstTermDate;
+            int days = (int)(difference.TotalDays);
+            /*
+            int month = firstTermDate.Month + 1;
+            while (month < lastTermDate.Month)
+            {
+                days += GetDaysInMonth(month);
+                month += 1;
+            }
+            
+            days += GetDaysInMonth(firstTermDate.Month) - firstTermDate.Day;
+            days += lastTermDate.Day;
+            */
+            int weeks = (int)(days / weekLength) + 1;
+
+            int[] pages = new int[weeks];
+            for (int i = 0; i < weeks; i++)
+            {
+                pages[i] = i + 1;
+            }
+            return pages;
+        }
+
+        ///////////////////////////////////////////////////////
+        /// GetTimetablePageCount ends
+        ///////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////////
         /// SpecialityDisciplineLecturePlans processing begins
@@ -469,36 +751,24 @@ namespace VmkLearningKit.Controllers
         DateTime oddTermLastDate = new DateTime(DateTime.Now.Year, 12, 25);
         // длина недели 7 дней
         short weekLength = 7;
+        short yearLength = 365;
 
-        private DayOfWeek GetDayOfWeekFromString(string day)
+        private DateTime GetFirstTermDate()
         {
-            switch (day)
+            DateTime firstTermDate = DateTime.Now;
+
+            TermType termType = GetTermTypeByDate(DateTime.Now);
+            if (termType == TermType.Even)
             {
-                case "Понедельник":
-                    return DayOfWeek.Monday;
-                    break;
-                case "Вторник":
-                    return DayOfWeek.Tuesday;
-                    break;
-                case "Среда":
-                    return DayOfWeek.Wednesday;
-                    break;
-                case "Четверг":
-                    return DayOfWeek.Thursday;
-                    break;
-                case "Пятница":
-                    return DayOfWeek.Friday;
-                    break;
-                case "Суббота":
-                    return DayOfWeek.Saturday;
-                    break;
-                case "Воскресенье":
-                    return DayOfWeek.Sunday;
-                    break;
+                return firstTermDate = evenTermFirstDate;
             }
-            // if this return is evoked therefore we have an error with day field in LectureTimetable
+
+            if (termType == TermType.Odd)
+            {
+                return firstTermDate = oddTermFirstDate;
+            }
             // this return mustn't be evoked
-            return DayOfWeek.Monday;
+            return firstTermDate;
         }
 
         private DateTime GetLastTermDate()
@@ -522,7 +792,7 @@ namespace VmkLearningKit.Controllers
         private DateTime GetFirstDateByDay(string day)
         {
             DateTime firstDate = DateTime.Now;
-            DayOfWeek dayOfWeek = GetDayOfWeekFromString(day);
+            DayOfWeek dayOfWeek = Utility.GetDayOfWeekFromString(day);
             TermType termType = GetTermTypeByDate(DateTime.Now);
             if (termType == TermType.Even)
             {
