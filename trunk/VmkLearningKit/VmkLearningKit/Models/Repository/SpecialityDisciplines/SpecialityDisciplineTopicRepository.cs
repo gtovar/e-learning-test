@@ -52,6 +52,15 @@ namespace VmkLearningKit.Models.Repository
             return 0;
         }
 
+        public IEnumerable<SpecialityDisciplineTopic> GetAllNeighbourTopics(long id)
+        {
+            var result = (from c in DataContext.SpecialityDisciplineTopics
+                          where c.SpecialityDisciplineId == GetById(id).SpecialityDisciplineId
+                          select c);
+
+            return (IEnumerable<SpecialityDisciplineTopic>)result;
+        }
+
         public SpecialityDisciplineTopic GetByTitle(string title)
         {
             SpecialityDisciplineTopic obj = null;
@@ -76,6 +85,54 @@ namespace VmkLearningKit.Models.Repository
             catch (Exception ex)
             {
                 Utility.WriteToLog("!!!!IMPORTANT Can't get specialityDisciplineTopics by specialityDisciplineId: " + specialityDisciplineId, ex);
+            }
+            return null;
+        }
+
+        public string GetSpecialityDisciplineTitleByTopicId(long id)
+        {
+            try
+            {
+                return GetById(id).SpecialityDiscipline.Title;
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
+        }
+
+        public string GetSpecialityDisciplineAliasByTopicId(long id)
+        {
+            try
+            {
+                return GetById(id).SpecialityDiscipline.Alias;
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
+        }
+
+        public string GetProfessorNickNameByTopicId(long id)
+        {
+            try
+            {
+                return GetById(id).SpecialityDiscipline.Professor.User.NickName;
+            }
+            catch (Exception ex)
+            {
+            }
+            return null;
+        }
+
+        public string GetTitle(long id)
+        {
+            try
+            {
+                return GetById(id).Title;
+            }
+            catch (Exception ex)
+            {
             }
             return null;
         }
