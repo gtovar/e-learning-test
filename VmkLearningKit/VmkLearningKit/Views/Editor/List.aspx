@@ -104,7 +104,19 @@
             <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку разделов", "Index", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%></td>
         </tr>
 	</table>
-        <div class="QuestionsList">
+	
+	<%
+	if (questionsList.Count<Question>() == 0)
+	{
+	%>
+		<br />
+		<p>По данному разделу нет ни одного тестового вопроса</p>
+	<%
+	}
+	else
+	{
+	%>
+		<div class="QuestionsList">
             <div class="MainQuestionHeader">
                 <div class="QuestionNumber">№</div>   
                 <div class="QuestionTitle">Краткое название</div> 
@@ -181,6 +193,9 @@
             } 
         %>
         </div>
+        <%
+        }
+        %>
         <br />
         <p>
             <%= Html.ActionLink("Создать новый вопрос", "Create", new { alias = razdelId }, new { id = "CreateNew" })%> | 
