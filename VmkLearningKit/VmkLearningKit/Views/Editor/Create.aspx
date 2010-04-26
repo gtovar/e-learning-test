@@ -99,7 +99,7 @@
 	}
 	catch (Exception exc)
 	{
-		Utility.RedirectToErrorPage("Editor/Create: catch exception", ex);
+		Utility.RedirectToErrorPage("Editor/Create: catch exception", exc);
 	}
 	%>
 </asp:Content>
