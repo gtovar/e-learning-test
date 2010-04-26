@@ -10,6 +10,11 @@ namespace VmkLearningKit.Models.Repository
     {
         IEnumerable<SpecialityDisciplineTopic> GetAllBySpecialityDisciplineId(long specialityDisciplineId);
         //SpecialityDisciplineTopic GetByAlias(string alias);
+        IEnumerable<SpecialityDisciplineTopic> GetAllNeighbourTopics(long id);
+        string GetSpecialityDisciplineAliasByTopicId(long id);
+        string GetProfessorNickNameByTopicId(long id);
+        string GetSpecialityDisciplineTitleByTopicId(long id);
+        string GetTitle(long id);
         SpecialityDisciplineTopic GetByTitle(string title);
         SpecialityDisciplineTopic SetTitle(long id, string title);
         long GetMaxId();

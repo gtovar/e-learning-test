@@ -15,17 +15,6 @@ namespace VmkLearningKit.Controllers
     public class EditorController : AbstractController
     {
         /// <summary>
-        /// Action 
-        /// domain/Editor/Index/
-        /// </summary>
-        /// <returns></returns>
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        /// <summary>
         /// Action, отображающий полный список вопросов по разделу с идентификатором id
         /// domain/Editor/List/alias
         /// </summary>
@@ -34,8 +23,18 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult List(long alias)
         {
-            ViewData["QuestionsList"] = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelId(alias);
-            ViewData["RazdelId"]      = alias;
+            GeneralMenu();
+
+            ViewData[Constants.PAGE_TITLE] = "Редактор тестовых вопросов";
+            
+            ViewData["QuestionsList"]     = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelId(alias);
+            ViewData["RazdelId"]          = alias;
+            ViewData["DisciplineTitle"]   = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
+            ViewData["TopicTitle"]        = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
+            ViewData["RazdelTitle"]       = repositoryManager.GetRazdelRepository.GetTitle(alias);
+            ViewData["ProfessorNickName"] = repositoryManager.GetRazdelRepository.GetProfessorNickNameByRazdelId(alias);
+            ViewData["DisciplineAlias"]   = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
+            ViewData["TopicId"]           = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
 
             return View();
         }
@@ -48,6 +47,8 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Edit(long alias)
         {
+            GeneralMenu();
+            
             Question question = repositoryManager.GetQuestionRepository.GetById(alias);
             int questionType  = question.Type;
             ViewData["QuestionData"] = question;
@@ -144,7 +145,17 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Create(long alias)
         {
-            ViewData["RazdelId"] = alias;
+            GeneralMenu();
+            
+            ViewData[Constants.PAGE_TITLE] = "Редактор тестовых вопросов";
+
+            ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
+            ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
+            ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(alias);
+            ViewData["ProfessorNickName"]   = repositoryManager.GetRazdelRepository.GetProfessorNickNameByRazdelId(alias);
+            ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
+            ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
+            ViewData["RazdelId"]            = alias;
 
             List<SelectListItem> QuestionTypeList = new List<SelectListItem>();
 

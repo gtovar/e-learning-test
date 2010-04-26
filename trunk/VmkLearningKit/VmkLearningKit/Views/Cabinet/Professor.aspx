@@ -140,7 +140,7 @@
                 <%= room %>&nbsp;(<%= building%>)
             </td>
             <td style="padding: 7px; width:80px">
-                <%= Html.ActionLink("Тестирование", "")%>
+                <%= Html.ActionLink("Тестирование", "Index", "Testing", new { alias = plan.SpecialityDisciplineTopic.Id }, new { @class = "" })%>
             </td>
         </tr>
         <% index++;
