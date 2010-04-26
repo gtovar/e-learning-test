@@ -31,6 +31,19 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+        public IEnumerable<SpecialityDiscipline> GetBySpecialityId(long specialityId)
+        {
+            try
+            {
+                return DataContext.SpecialityDisciplines.Where(s => s.SpecialityId == specialityId);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't get SpecialityDisciplines by specialityId: " + specialityId, ex);
+            }
+            return null;
+        }
+
         public IEnumerable<SpecialityDiscipline> GetAllByProfessor(string professorNickName)
         {
             try
@@ -39,7 +52,7 @@ namespace VmkLearningKit.Models.Repository
             }
             catch (Exception ex)
             {
-                Utility.WriteToLog("!!!!IMPORTANT Can't get SpecialityDisciplines by professorNickName !!!!", ex);
+                Utility.WriteToLog("!!!!IMPORTANT Can't get SpecialityDisciplines by professorNickName: " + professorNickName, ex);
             }
             return null;
         }

@@ -6,39 +6,57 @@
             Session["User"] != null)
         {
 %>
-Добро пожаловать <b> <%= Html.Encode(Session["UserName"])%></b>! <br />
-<% /*
-        string title = null;
-        switch (((string)Session["UserRole"]))
-        {
-            case "Admin":
-                title = "администратора";
-                break;
-            case "Metodist":
-                title = "методиста";
-                break;
-            case "Professor":
-                title = "преподавателя";
-                break;
-            case "Student":
-                title = "студента";
-                break;
-        }
-        if (title != null)
-        {
-    */
-%>
-[ <%= Html.ActionLink("Настройки аккаунта", "AccountSettings", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%> ]
-[ <%= Html.ActionLink("Сменить пароль", "ChangePassword", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%> ]
+Добро пожаловать <b>
+    <%= Html.Encode(Session["UserName"])%></b>!
 <br />
-[ <%= Html.ActionLink("Личный кабинет", "Professor", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName, additional = String.Empty }, new { @class = "" })%> ]
-<% // } %>
-[ <%= Html.ActionLink("Выйти", "LogOff", "Auth")%> ]
-
+[
+<%= Html.ActionLink("Настройки аккаунта", "AccountSettings", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%>
+] [
+<%= Html.ActionLink("Сменить пароль", "ChangePassword", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName }, new { @class = "" })%>
+]
+<br />
+<%
+    VmkLearningKit.Models.Domain.User user = (VmkLearningKit.Models.Domain.User)Session["user"];
+    if (user.IsAdmin)
+    {
+%>
+[
+<%= Html.ActionLink("Личный кабинет", "Admin", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName, additional = String.Empty }, new { @class = "" })%>
+]
 <%
     }
-        else
-        {
+             else if (user.IsMetodist)
+             {
+%>
+[
+<%= Html.ActionLink("Личный кабинет", "Metodist", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName, additional = String.Empty }, new { @class = "" })%>
+]
+<%
+    }
+             else if (user.IsProfessor)
+             {
+%>
+[
+<%= Html.ActionLink("Личный кабинет", "Professor", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName, additional = String.Empty }, new { @class = "" })%>
+]
+<%
+    }
+             else if (user.IsStudent)
+             {
+%>
+[
+<%= Html.ActionLink("Личный кабинет", "Student", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName, additional = String.Empty }, new { @class = "" })%>
+]
+<%
+    }
+%>
+[
+<%= Html.ActionLink("Выйти", "LogOff", "Auth")%>
+]
+<%
+    }
+    else
+    {
 %>
 [
 <%= Html.ActionLink("Войти", "LogOn", "Auth")%>
@@ -48,6 +66,6 @@
     }
     catch (Exception ex)
     {
-        Utility.RedirectToErrorPage("LogOnUserControl.ascx: catch exception", ex);   
+        Utility.RedirectToErrorPage("LogOnUserControl.ascx: catch exception", ex);
     }
 %>

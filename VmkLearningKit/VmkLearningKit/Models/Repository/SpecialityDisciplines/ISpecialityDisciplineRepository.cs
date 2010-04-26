@@ -9,6 +9,7 @@ namespace VmkLearningKit.Models.Repository
     {
        IEnumerable<SpecialityDiscipline> GetAll(string specialityAlias);
        IEnumerable<SpecialityDiscipline> GetAllByProfessor(string professorNickName);
+       IEnumerable<SpecialityDiscipline> GetBySpecialityId(long specialityId);
        //bool IsEntryWithAliasExisted(string alias);
        SpecialityDiscipline GetByAlias(string alias);
        SpecialityDiscipline GetByTitle(string title);

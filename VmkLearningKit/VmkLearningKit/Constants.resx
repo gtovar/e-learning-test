@@ -165,6 +165,9 @@
   <data name="CABINET_URL" xml:space="preserve">
     <value>/Cabinet/</value>
   </data>
+  <data name="CABINET_VIEWS" xml:space="preserve">
+    <value>/Views/Cabinet/</value>
+  </data>
   <data name="CHAIR_MENU" xml:space="preserve">
     <value>ChairMenu</value>
   </data>
