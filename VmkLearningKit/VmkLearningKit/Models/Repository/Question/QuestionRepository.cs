@@ -29,6 +29,27 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Questions.SingleOrDefault(t => t.Id == id);
         }
 
+        public int GetAnswersCountByQuestionId(long questionId)
+        {
+            int count = 0;
+
+            foreach (Answer an in DataContext.Answers.Where(t => t.QuestionId == questionId))
+            {
+                count++;
+            }
+
+            return count;
+        }
+
+        public IEnumerable<Answer> GetAllAnswersByQuestionId(long questionId)
+        {
+            var result = (from c in DataContext.Answers
+                          where c.QuestionId == questionId
+                          select c);
+
+            return (IEnumerable<Answer>)result;
+        }
+
         public IEnumerable<Question> GetAll()
         {
             return DataContext.Questions.AsEnumerable<Question>();

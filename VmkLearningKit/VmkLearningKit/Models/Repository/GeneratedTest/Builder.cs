@@ -1,0 +1,142 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.IO;
+
+namespace VmkLearningKit.Models.Repository
+{
+    public class Builder
+    {
+        private GeneratedTestVariant gtv;
+        private string FileName = "";
+        private string FilePath = "";
+        private int number;
+        FileStream fs;
+        StreamWriter sw;
+
+        public Builder(string Name, string Path, GeneratedTestVariant variant, int num)
+        {
+            FileName = Name;
+            FilePath = Path;
+            gtv = variant;
+            number = num;
+        }
+
+        private string BuilderImages(string text)
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+
+            }
+
+            return text;
+        }
+
+        private void WriteHtmlHeader()
+        {
+            sw.WriteLine("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+            sw.WriteLine("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+            sw.WriteLine("<head>");
+            sw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
+            sw.WriteLine("<title>Untitled Document</title>");
+            sw.WriteLine("</head>");
+            sw.WriteLine("<body>");
+            sw.WriteLine("<p><label>");
+            sw.WriteLine("<div align=\"center\">Тестовый вариант №" + number + "</div>");
+            sw.WriteLine("</label>");
+            sw.WriteLine("<div align=\"center\">&nbsp;</div>");
+            sw.WriteLine("</p>");
+        }
+
+        void WriteQuestion(string text)
+        {
+            sw.WriteLine("<p>");
+            sw.WriteLine("<label>" + text + "<br />");
+            sw.WriteLine("<br />");
+        }
+
+        void WritePostQuestion()
+        {
+            sw.WriteLine("</label>");
+            sw.WriteLine("</p>");
+        }
+
+
+        void WriteAnswer(int type, string text, int l)
+        {
+            text = BuilderImages(text);
+
+            switch (type)
+            {
+                case 0:
+                    {
+                        sw.WriteLine("<input type=\"text\" name=\"answer\" id=\"answer\" />");
+                        break;
+                    }
+                case 1:
+                    {
+                        sw.WriteLine("<label>");
+                        sw.WriteLine("<input type=\"radio\" name=\"RadioGroup1\" value=\"radio" + l + "\" id=\"RadioGroup1_" + l + "0\" />");
+                        sw.WriteLine(text + "</label>");
+                        sw.WriteLine("<br />");
+                        break;
+                    }
+                case 2:
+                    {
+                        sw.WriteLine("<label>");
+                        sw.WriteLine("<input type=\"checkbox\" name=\"CheckboxGroup1\" value=\"checkbox" + l + "\" id=\"CheckboxGroup1_" + l + "\" />");
+                        sw.WriteLine(text + "</label>");
+                        sw.WriteLine("<br />");
+                        break;
+                    }
+            }
+        }
+
+        void WriteHtmlFooter()
+        {
+            sw.WriteLine("</body>");
+            sw.WriteLine("</html>");
+        }
+
+
+
+        public void WritePage()
+        {
+            fs = new FileStream(FilePath + "\\" + FileName, FileMode.Create);
+            sw = new StreamWriter(fs);
+
+            WriteHtmlHeader();
+
+            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+            IGeneratedQuestionRepository generatedQuestionRepository = repositoryManager.GetGeneratedQuestionRepository;
+            IQuestionRepository questionRepository = repositoryManager.GetQuestionRepository;
+
+            IEnumerable<GeneratedQuestion> generatedQuestion = generatedQuestionRepository.GetAllGeneratedQuestionsByGeneratedTestVariantId(gtv.Id);
+
+            foreach (GeneratedQuestion gq in generatedQuestion)
+            {
+                string text = BuilderImages(gq.Question.Text);
+
+                WriteQuestion(text);
+
+                int count = questionRepository.GetAnswersCountByQuestionId(gq.QuestionId);
+                IEnumerable<Answer> answers = questionRepository.GetAllAnswersByQuestionId(gq.QuestionId);
+
+                int l = 0;
+
+                foreach (Answer an in answers)
+                {
+                    WriteAnswer(gq.Question.Type, an.Text, l);
+                    l++;
+                }
+
+                WritePostQuestion();
+            }
+
+            WriteHtmlFooter();
+            sw.Close();
+            fs.Close();
+        }
+    }
+}
