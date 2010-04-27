@@ -25,9 +25,42 @@ namespace VmkLearningKit.Models.Repository
 
         private string BuilderImages(string text)
         {
-            for (int i = 0; i < text.Length; i++)
+            if (text.IndexOf("<img src=\"") != -1)
             {
+                int k = text.IndexOf("<img src=\"");
+                int start = k + 10;
+                int finish = 0;
+                for (int i = start; i < text.Length; i++)
+                {
+                    if (Convert.ToString(text[i]) == "\"") finish = i - 1;
+                }
 
+                char[] c = new char[finish - start + 1];
+                int t = 0;
+                for (int i = start; i < finish + 1; i++)
+                {
+                    c[t] = text[i];
+                    t++;
+                }
+
+                string path = new string(c);
+
+                int s = path.LastIndexOf("/") + 1;
+
+                char[] g = new char[path.Length - s + 1];
+
+                int r = 0;
+
+                for (int i = s; i < path.Length; i++)
+                {
+                    g[r] = path[i];
+                    r++;
+                }
+
+                string name = new string(g);
+
+                DirectoryInfo d = new DirectoryInfo(path);
+                //d.MoveTo();
             }
 
             return text;
