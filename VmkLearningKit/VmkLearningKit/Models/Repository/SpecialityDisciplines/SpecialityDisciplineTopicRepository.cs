@@ -35,6 +35,7 @@ namespace VmkLearningKit.Models.Repository
             return obj;
         }
         */
+
         public long GetMaxId()
         {
             try

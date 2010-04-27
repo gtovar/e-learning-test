@@ -23,12 +23,17 @@
                     <b>Количество вопросов</b>
                 </td>
             </tr>
+            <% SpecialityDiscipline sd = (SpecialityDiscipline)ViewData["SpecialityDiscipline"];
+               string s1 = sd.Title;
+               SpecialityDisciplineTopic sdt = (SpecialityDisciplineTopic)ViewData["SpecialityDisciplineTopic"];
+               string s2 = sdt.Title;
+                %>
             <tr align="center">
                 <td>
-                    Основы программирования
+                   <%= s1%>
                 </td>
                 <td>
-                    Функции и их аргументы
+                    <%= s2%>
                 </td>
                 <td>
                     <%= ViewData["RazdelCountBySpecialityDisciplineTopic"]%>

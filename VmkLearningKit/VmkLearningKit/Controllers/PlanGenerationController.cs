@@ -10,18 +10,21 @@ namespace VmkLearningKit.Controllers
 {
     public class PlanGenerationController : Controller
     {
-        public ActionResult GetPlanGeneration()
+        public ActionResult GetPlanGeneration(long topicId)
         {
             RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
 
             IRazdelRepository razdelRepository = repositoryManager.GetRazdelRepository;
             ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository = repositoryManager.GetSpecialityDisciplineTopicRepository;
+            ISpecialityDisciplineRepository specialityDisciplineRepository = repositoryManager.GetSpecialityDisciplineRepository;
 
-            ViewData["AllRazdelsBySpecialityDisciplineTopic"] = razdelRepository.GetAllRazdelsBySpecialityDisciplineTopicId(22);
-            ViewData["QuestionCountBySpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetQuestionCountBySpecialityDisciplineTopicId(22);
-            ViewData["QuestionCountInTestVariantBySpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetQuestionCountInTestVariantBySpecialityDisciplineTopicId(22);
+            ViewData["SpecialityDiscipline"] = specialityDisciplineRepository.GetdBySpecialityDisciplineTopicId(topicId);
+            ViewData["SpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetById(topicId);
+            ViewData["AllRazdelsBySpecialityDisciplineTopic"] = razdelRepository.GetAllRazdelsBySpecialityDisciplineTopicId(topicId);
+            ViewData["QuestionCountBySpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetQuestionCountBySpecialityDisciplineTopicId(topicId);
+            ViewData["QuestionCountInTestVariantBySpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetQuestionCountInTestVariantBySpecialityDisciplineTopicId(topicId);
             ViewData["RequiredVariantCount"] = 4;
-            ViewData["RazdelCountBySpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetRazdelCountBySpecialityDisciplineTopicId(22);
+            ViewData["RazdelCountBySpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetRazdelCountBySpecialityDisciplineTopicId(topicId);
 
             ArrayList QuestionCountByRazdels = new ArrayList();
 
@@ -36,13 +39,13 @@ namespace VmkLearningKit.Controllers
             return View();
         }
 
-        public ActionResult AddTest()
+        public ActionResult AddTest(long topicId)
         {
             RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
 
             IGeneratedTestRepository generatedTestRepository = repositoryManager.GetGeneratedTestRepository;
 
-            generatedTestRepository.Add(22);
+            generatedTestRepository.Add(topicId);
 
             return RedirectToAction("GetGeneratedTests", "Tests");
         }
