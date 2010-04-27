@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.IO;
+using System.Collections;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace VmkLearningKit.Models.Repository
 {
@@ -63,6 +66,15 @@ namespace VmkLearningKit.Models.Repository
             DataContext.GeneratedTests.InsertOnSubmit(gt);
             DataContext.SubmitChanges();
 
+            //создаем каталог для хранения scorm-пакетов теста
+            string testDir = @"C:\Users\orlov.leonid\Desktop\Пакеты" + "\\" + "тест";
+
+            DirectoryInfo TestDir = new DirectoryInfo(testDir);
+            if (TestDir.Exists)
+                TestDir.Delete(true);
+            TestDir.Create();
+
+            int s = 1;
 
             for (int i = 0; i < gt.VariantsCount; i++)
             {
@@ -71,43 +83,123 @@ namespace VmkLearningKit.Models.Repository
                 DataContext.GeneratedTestVariants.InsertOnSubmit(gtv);
                 DataContext.SubmitChanges();
 
+                ArrayList ExclusionList = new ArrayList(); // список групп-исключений
+                ArrayList BlackList = new ArrayList(); // "черный" список
+                ArrayList DoubleList = new ArrayList(); // список групп-дублеров
+
                 foreach (Razdel raz in razdels)
                 {
                     long count = raz.QuestionsCount;
                     IEnumerable<Question> li = DataContext.Questions.Where(t => t.RazdelId == raz.Id);
 
-                    while (count != 0)
-                    {
-                        // находим вопрос с минимальным счетчиком
+                    int kol = 0; // количество вопросов раздела
 
-                        int min = 10000;
-                        int n_min = -1;
-                        foreach (Question q in li)
+                    foreach (Question q in li)
+                    {
+                        kol++;
+                    }
+
+                    while ((count != 0) && (kol > 0))
+                    {
+                        bool k = true;
+
+                        while (k)
                         {
-                            int index = questions.IndexOf(q); // индекс вопроса в общем списке вопросов
-                            if (counter[index] < min)
+                            // находим вопрос с минимальным счетчиком
+                            int min = 10000;
+                            int n_min = -1;
+                            foreach (Question q in li)
                             {
-                                min = counter[index];
-                                n_min = index;
+                                if (BlackList.IndexOf(q.Id) == -1)
+                                {
+                                    int index = questions.IndexOf(q); // индекс вопроса в общем списке вопросов
+                                    if (counter[index] < min)
+                                    {
+                                        min = counter[index];
+                                        n_min = index;
+                                    }
+                                }
+                            }
+
+                            Question question = questions[n_min];
+
+                            if (ExclusionList.IndexOf(question.ExclusionGroup) == -1)
+                            {
+
+                                // создаем вопрос для варианта
+
+                                GeneratedQuestion gq = new GeneratedQuestion();
+                                gq.GeneratedTestVariantId = gtv.Id;
+                                gq.QuestionId = question.Id;
+
+                                // увеличиваем счетчик
+                                counter[n_min]++;
+
+                                //добавляем вопрос в базу
+                                DataContext.GeneratedQuestions.InsertOnSubmit(gq);
+                                DataContext.SubmitChanges();
+
+                                count--;
+
+                                // добавляем группу исключений вопроса в список групп-исключений варианта
+                                if (question.ExclusionGroup != -1)
+                                    ExclusionList.Add(question.ExclusionGroup);
+
+                                //добавляем вопрос в "черный" список
+                                BlackList.Add(question.Id);
+                                kol--;
+
+                                //переход к поиску нового вопроса
+                                k = false;
+                            }
+
+                            else
+                            {
+                                //добавляем вопрос в "черный" список
+                                BlackList.Add(question.Id);
+                                kol--;
                             }
                         }
-                        // создаем вопрос для варианта
-
-                        GeneratedQuestion gq = new GeneratedQuestion();
-                        gq.GeneratedTestVariantId = gtv.Id;
-                        Question question = questions[n_min];
-                        gq.QuestionId = question.Id;
-
-                        // увеличиваем счетчик
-                        counter[n_min]++;
-
-                        //добавляем вопрос в базу
-                        DataContext.GeneratedQuestions.InsertOnSubmit(gq);
-                        DataContext.SubmitChanges();
-
-                        count--;
                     }
                 }
+
+                // создаем scorm-пакет варианта
+
+                //создаем каталог для хранения scorm-пакета варианта
+                string Dir = testDir + "\\" + s;
+                s++;
+
+                DirectoryInfo ScormDir = new DirectoryInfo(Dir);
+                ScormDir.Create();
+
+                //создаём каталог для хранения файлов тестового варианта
+                DirectoryInfo QuestionDir = new DirectoryInfo(Dir + "\\P1000");
+                QuestionDir.Create();
+
+                //создаём каталог для хранения изображений тестового варианта
+                DirectoryInfo ImageDir = new DirectoryInfo(Dir + "\\Images");
+                ImageDir.Create();
+
+                // записываем файлы тестового варианта
+                Builder page = new Builder("page.htm", Dir + "\\P1000", gtv, s);
+                page.WritePage();
+                /*Writer csimspage = new Writer(Test, TempDir + "\\P1000", "IMSPage.htm");
+                csimspage.WriteIMSPage();*/
+
+                // записываем файл манифеста во временный каталог
+                Manifest manifest = new Manifest();
+                manifest.Write(Dir + "\\imsmanifest.xml");
+
+                // записываем файл индекса во временный каталог
+                Index index1 = new Index();
+                index1.Write(Dir + "\\Index.xml");
+
+                // упаковываем временный каталог в zip архив
+                FastZip fz = new FastZip();
+                fz.CreateEmptyDirectories = true;
+                fz.CreateZip(Dir + ".zip", Dir, true, "");
+                fz = null;
+                ScormDir.Delete(true);
             }
 
             return gt;
