@@ -18,6 +18,12 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.SpecialityDisciplines.SingleOrDefault(s => s.Id == id);
         }
 
+        public SpecialityDiscipline GetdBySpecialityDisciplineTopicId(long specialityDisciplineTopicId)
+        {
+           SpecialityDisciplineTopic sdt = DataContext.SpecialityDisciplineTopics.SingleOrDefault(t => t.Id == specialityDisciplineTopicId);
+           return GetById(sdt.SpecialityDisciplineId);
+        }
+
         public IEnumerable<SpecialityDiscipline> GetAll(string specialityAlias)
         {
             try
