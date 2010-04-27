@@ -321,51 +321,6 @@ namespace VmkLearningKit.Models.Repository
                 return lectureTimetableRepository;
             }
         }
-        /*
-        private IGeneratedQuestionRepository generatedQuestionRepository;
-
-        public IGeneratedQuestionRepository GetGeneratedQuestionRepository
-        {
-            get
-            {
-                if (generatedQuestionRepository == null)
-                {
-                    generatedQuestionRepository = new GeneratedQuestionRepository(DataContext);
-                }
-                return generatedQuestionRepository;
-            }
-        }
-        */
-        /*
-        private IGeneratedTestVariantRepository generatedTestVariantRepository;
-
-        public IGeneratedTestVariantRepository GetGeneratedTestVariantRepository
-        {
-            get
-            {
-                if (generatedTestVariantRepository == null)
-                {
-                    generatedTestVariantRepository = new GeneratedTestVariantRepository(DataContext);
-                }
-                return generatedTestVariantRepository;
-            }
-
-        }
-
-        private IGeneratedTestRepository generatedTestRepository;
-
-        public IGeneratedTestRepository GetGeneratedTestRepository
-        {
-            get
-            {
-                if (generatedTestRepository == null)
-                {
-                    generatedTestRepository = new GeneratedTestRepository(DataContext);
-                }
-                return generatedTestRepository;
-            }
-        }
-        */
 
         private IGeneratedQuestionRepository generatedQuestionRepository;
 
