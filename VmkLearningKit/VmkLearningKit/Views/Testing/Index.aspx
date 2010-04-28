@@ -32,12 +32,14 @@
         });
 	    
         $("img[class=RazdelDelete]").click(function(){
-            var editBlock = $(this).parent().nextAll("div[class=RazdelEditBlock]").attr("id");
-            var url       = "/Testing/DeleteRazdel/" + editBlock.substr(9);
-            $.post(url,
-	               {}
-                  );
-            $(this).parents(".Razdel").animate({ opacity: "hide" }, "slow");
+            if (confirm("Вы уверены, что хотите удалить раздел?")) {
+				var editBlock = $(this).parent().nextAll("div[class=RazdelEditBlock]").attr("id");
+				var url       = "/Testing/DeleteRazdel/" + editBlock.substr(9);
+				$.post(url,
+					   {}
+					  );
+				$(this).parents(".Razdel").animate({ opacity: "hide" }, "slow");
+			}
 	    });
 	    
 	    $("img[class=RazdelCancel]").click(function(){
@@ -54,7 +56,7 @@
         $("#RazdelAdd").click(function(){
 			$("div[class=RazdelEditBlock]").slideUp("slow").empty();
             $("div[class=RazdelFooter]").slideUp("slow");
-            $(this).prevAll("div[class=NewRazdel]").slideToggle("slow");
+            $(this).prevAll("div[class=NewRazdel]").slideDown("slow");
         });
         
         $("img[class=NewRazdelCancel]").click(function(){

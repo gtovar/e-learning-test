@@ -392,7 +392,7 @@ namespace QWord
                 // обработка картинки
                 if (IsImage(wordApplication.Selection.Words.First))
                 {
-                    questionText += " <image src=\"" + 
+                    questionText += " <img src=\"" + 
                                     imageServerAddr  + 
                                     "/Image" + 
                                     (pictureIndex).ToString() + ".jpg\" /> ";
@@ -442,7 +442,7 @@ namespace QWord
                 // обработка картинки
                 if (IsImage(wordApplication.Selection.Words.First))
                 {
-                    questionText += " <image src=\"" + 
+                    questionText += " <img src=\"" + 
                                     imageServerAddr  + 
                                     "/Image" +
                                     (pictureIndex).ToString() + ".jpg\" /> ";
@@ -546,7 +546,7 @@ namespace QWord
                 // обработка картинки
                 if (IsImage(wordApplication.Selection.Words.First))
                 {
-                    answerText += " <image src=\""  + 
+                    answerText += " <img src=\""  + 
                                     imageServerAddr + 
                                     "/Image" + 
                                     (pictureIndex).ToString() + ".jpg\" /> ";
@@ -621,7 +621,7 @@ namespace QWord
                 // обработка картинки
                 if (IsImage(wordApplication.Selection.Words.First))
                 {
-                    answerText += " <image src=\""  + 
+                    answerText += " <img src=\""  + 
                                     imageServerAddr + 
                                     "/Image" + 
                                     (pictureIndex).ToString() + ".jpg\" /> ";

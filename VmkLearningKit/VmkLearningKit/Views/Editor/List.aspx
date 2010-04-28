@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="/Scripts/Plugins/FCKeditor/fckeditor.js"></script>
+    <script type="text/javascript" src="/Scripts/Plugins/NicEdit/nicEdit.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $("img[class=QuestionEdit]").click(function(){
@@ -23,19 +23,10 @@
                               $("#" + editBlock).append(response).slideDown("slow");
                               $("#" + editBlock).nextAll("div[class=QuestionFooter]").slideDown("slow");
                               
-                              // Подключаем FCKeditor 
-                              var textAreas = document.getElementsByTagName("textarea");
-                              for (var i = 0; i < textAreas.length; i++)
-                              {
-                                  var fCKeditor                          = new FCKeditor(textAreas[i].id);
-                                  fCKeditor.Config.Enabled               = true;
-                                  fCKeditor.Config.UserFilesPath         = "/Uploads/Images/";
-                                  fCKeditor.Config.UserFilesAbsolutePath = "/Uploads/Images/";
-                                  
-                                  fCKeditor.Height   = "150";
-                                  fCKeditor.BasePath = "/Scripts/Plugins/FCKeditor/";
-                                  fCKeditor.ReplaceTextarea();  
-                              }              
+                              // Заменяем все элементы textarea с аттрибутом class="TextAreaNicEditor"
+							  // на wysiwyg-редакторы (nicEdit)
+							  // Замечание: имя класса "TextAreaNicEditor" зашито в файле nicEdit.js
+							  nicEditors.allTextAreas();       
                           }
                          );
                 }
@@ -46,12 +37,14 @@
             });
 		    
             $("img[class=QuestionDelete]").click(function(){
-                var editBlock = $(this).parent().nextAll("div[class=QuestionEditBlock]").attr("id");
-                var url       = "/Editor/Delete/" + editBlock.substr(9);
-                $.post(url,
-		               {}
-                      );
-                $(this).parents(".Question").animate({ opacity: "hide" }, "slow");
+                if (confirm("Вы уверены, что хотите удалить раздел?")) {
+					var editBlock = $(this).parent().nextAll("div[class=QuestionEditBlock]").attr("id");
+					var url       = "/Editor/Delete/" + editBlock.substr(9);
+					$.post(url,
+						   {}
+						  );
+					$(this).parents(".Question").animate({ opacity: "hide" }, "slow");
+				}
 		    });
 		    
 		    $("img[class=QuestionCancel]").click(function(){
