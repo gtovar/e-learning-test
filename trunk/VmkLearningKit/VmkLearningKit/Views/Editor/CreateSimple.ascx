@@ -15,7 +15,7 @@
         </tr>
         <tr class="Editor">
             <td class="Editor"><label for="Text">Текст вопроса:</label></td>
-            <td class="Editor"><%= Html.TextArea("Text") %></td>
+            <td class="Editor"><%= Html.TextArea("Text", new { @class = "TextAreaNicEditor" }) %></td>
         </tr>
         <tr class="Editor">
             <td class="Editor" colspan="2" rowspan="1">
@@ -30,7 +30,7 @@
         </tr>
         <tr class="Editor">
             <td class="Editor">Текст ответа:</td>
-            <td class="Editor"><%= Html.TextArea(VLKConstants.NEW_VARIANT_ANSWER_TEXT + "0") %></td>
+            <td class="Editor"><%= Html.TextArea(VLKConstants.NEW_VARIANT_ANSWER_TEXT + "0", new { @class = "TextAreaNicEditor" }) %></td>
         </tr>
         <tr class="Editor">
             <td class="Editor"><label for="<%= VLKConstants.NEW_VARIANT_ANSWER_SCORE + "0"%>">Количество баллов:</label></td>

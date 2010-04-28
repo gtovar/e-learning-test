@@ -31,7 +31,7 @@
                         <label for="Text">Текст вопроса:</label>
                         </td>
                         <td class="Editor">
-                        <%= Html.TextArea("Text", question.Text)%>
+                        <%= Html.TextArea("Text", question.Text, new { @class = "TextAreaNicEditor" })%>
                         </td>
                     </tr>
                     <tr class="Editor">
@@ -48,7 +48,7 @@
                     <tr class="Editor">
                         <td class="Editor">Ответ</td>
                         <td class="Editor">
-                        <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString(), answer.Text)%>
+                        <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString(), answer.Text, new { @class = "TextAreaNicEditor" })%>
                         </td>
                     </tr>
                     <tr class="Editor">
@@ -113,7 +113,7 @@
                         <label for="Text">Текст вопроса:</label>
                         </td>
                         <td class="Editor">
-                        <%= Html.TextArea("Text", question.Text)%>
+                        <%= Html.TextArea("Text", question.Text, new { @class = "TextAreaNicEditor" })%>
                         </td>
                     </tr>
                     <tr class="Editor">
@@ -135,7 +135,7 @@
                         <tr class="Editor">
                             <td class="Editor">Вариант ответа</td>
                             <td class="Editor">
-                            <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + variantAnswer.Id.ToString(), variantAnswer.Text)%>
+                            <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + variantAnswer.Id.ToString(), variantAnswer.Text, new { @class = "TextAreaNicEditor" })%>
                             </td>
                         </tr>
                         <tr class="Editor">

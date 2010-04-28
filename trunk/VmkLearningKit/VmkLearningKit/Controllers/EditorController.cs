@@ -159,6 +159,11 @@ namespace VmkLearningKit.Controllers
 
             List<SelectListItem> QuestionTypeList = new List<SelectListItem>();
 
+            SelectListItem itemDefault = new SelectListItem();
+            itemDefault.Text = "Выберите тип вопроса";
+            itemDefault.Value = VLKConstants.FAKE_VALUE.ToString();
+            QuestionTypeList.Add(itemDefault);
+
             SelectListItem itemSimple = new SelectListItem();
             itemSimple.Text  = "Простой";
             itemSimple.Value = VLKConstants.QUESTION_TYPE_SIMPLE.ToString();

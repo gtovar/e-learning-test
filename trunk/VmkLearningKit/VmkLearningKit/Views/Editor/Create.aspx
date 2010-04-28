@@ -6,8 +6,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="/Scripts/Plugins/FCKeditor/fckeditor.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src="/Scripts/Plugins/NicEdit/nicEdit.js"></script>
+	<script type="text/javascript">
         $(document).ready(function() {
             $('#QuestionTypeList').change(function(){
                 var url;
@@ -16,7 +16,9 @@
                     case '1' : url = '/Editor/CreateAlternative';  break;
                     case '2' : url = '/Editor/CreateDistributive'; break;
                     case '3' : url = '/Editor/CreateFormula';      break;
-                    default  : url = '#';                          break;
+                    default  : $('div[class=QuestionFooter]').hide('slow');
+							   $('div[class=QuestionEditBlock]').hide('slow').empty();
+							   return;
                 }
 		        
 		        $.post(url,
@@ -26,20 +28,11 @@
                            $('div[class=QuestionEditBlock]').hide('slow').empty();
                            $('div[class=QuestionEditBlock]').append(response).show('slow');
                            $('div[class=QuestionFooter]').show('slow');
-                                        
-                           // Подключаем FCKeditor 
-                           var textAreas = document.getElementsByTagName("textarea");
-                           for (var i = 0; i < textAreas.length; i++)
-                           {
-                               var fCKeditor                          = new FCKeditor(textAreas[i].id);
-                               fCKeditor.Config.Enabled               = true;
-                               fCKeditor.Config.UserFilesPath         = "/Uploads/Images/";
-                               fCKeditor.Config.UserFilesAbsolutePath = "/Uploads/Images/";
-                                          
-                               fCKeditor.Height   = "150";
-                               fCKeditor.BasePath = "/Scripts/Plugins/FCKeditor/";
-                               fCKeditor.ReplaceTextarea();  
-                           } 
+                           
+                           // Заменяем все элементы textarea с аттрибутом class="TextAreaNicEditor"
+                           // на wysiwyg-редакторы (nicEdit)
+                           // Замечание: имя класса "TextAreaNicEditor" зашито в файле nicEdit.js
+                           nicEditors.allTextAreas();       
                        }
                       )
             });

@@ -615,6 +615,8 @@
     <Content Include="Scripts\Plugins\FCKeditor\fckeditor.js" />
     <Content Include="Scripts\Plugins\FCKeditor\fckstyles.xml" />
     <Content Include="Scripts\Plugins\Form\form.js" />
+    <Content Include="Scripts\Plugins\NicEdit\nicEdit.js" />
+    <Content Include="Scripts\Plugins\NicEdit\nicEditorIcons.gif" />
     <Content Include="Scripts\Plugins\Uploadify\cancel.png" />
     <Content Include="Scripts\Plugins\Uploadify\jquery.uploadify.v2.1.0.js" />
     <Content Include="Scripts\Plugins\Uploadify\jquery.uploadify.v2.1.0.min.js" />
