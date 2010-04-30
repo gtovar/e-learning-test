@@ -67,12 +67,22 @@
                 {
                     Answer answer = (Answer)ViewData["AnswerData"];
     %>
+                    <script src="/Scripts/formula-editor.js" type="text/javascript"></script>   
+                    <script type="text/javascript">
+                      $(document).ready(function(){
+			                $(".formula_input").bind("click", display_formula_editor);
+			                document.getElementById('formula_edit').onblur = RunEdit;
+			                document.getElementById('editor_input').onclick = input_and_hide_formula_editor;
+			                document.getElementById('editor_exit').onclick = hide_formula_editor;
+			                generate_pallete(this);
+		                });
+	                </script>
                     <tr class="Editor">
                         <td class="Editor">
                         <label for="Text">Текст вопроса:</label>
                         </td>
                         <td class="Editor">
-                        <%= Html.TextBox("Text", question.Text)%>
+                        <%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
                         </td>
                     </tr>
                     <tr class="Editor">
@@ -89,7 +99,7 @@
                     <tr class="Editor">
                         <td class="Editor">Ответ</td>
                         <td class="Editor">
-                        <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString(), answer.Text)%>
+                            <input class="formula_input" id="<%= VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString() %>" name="<%= VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString()%>" value="<%= answer.Text%>" />
                         </td>
                     </tr>
                     <tr class="Editor">
@@ -100,6 +110,34 @@
                         <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), answer.Score)%>
                         </td>
                     </tr>    
+                    <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////// Раздвигающийся редактор //////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+	<div id="formula_editor" style="" >
+		Палитра:<br>
+		<div id="formula_palette">
+			<button class="btn_pallete" name="\int_{*}^{*}{*}" onclick="insertTextFormul(); return false">  </button>
+			<button class="btn_pallete" name="\sum_{*}^{*}{*}" onclick="insertTextFormul(); return false">  </button>
+			<button class="btn_pallete" name="\sin_{*}^{*}{*}" onclick="insertTextFormul(); return false">  </button>
+			<button class="btn_pallete" name="\exists{*}" onclick="insertTextFormul(); return false">  </button>
+			<button class="btn_pallete" name="\forall{*}" onclick="insertTextFormul(); return false">  </button>
+			<button class="btn_pallete" name="\geq{*}" onclick="insertTextFormul(); return false">  </button>			
+			<button class="btn_pallete" name="\in{*}" onclick="insertTextFormul(); return false">  </button>
+		</div>
+		
+		Формула в LaTex:<br>
+		<div id="div_formula_edit" ><textarea name="formula_edit" id="formula_edit" rows="3" cols="60" onselect="storeCaret(this)" onclick="storeCaret(this)" onkeyup="storeCaret(this)" ></textarea></div>
+		<br>
+		Предварительный просмотр:<br>
+		<div id="formula_display"></div>
+		
+		<button id="editor_input"  onclick=" input_and_hide_formula_editor(this); return false ">Ввести</button>
+		<button id="editor_exit" onclick=" hide_formula_editor(this); return false ">Закрыть</button>
+	</div>
+
+<!--  //////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
     <%
                     break;
                 }
