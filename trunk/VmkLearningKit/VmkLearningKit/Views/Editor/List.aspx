@@ -7,8 +7,11 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="/Scripts/Plugins/NicEdit/nicEdit.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" src="/Scripts/Plugins/JHtmlArea/scripts/jHtmlArea-0.7.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/JHtmlArea/style/jHtmlArea.css" />
+    <script type="text/javascript" src="/Scripts/Plugins/JHtmlArea/scripts/jHtmlArea.ColorPickerMenu-0.7.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/JHtmlArea/style/jHtmlArea.ColorPickerMenu.css" />
+	<script type="text/javascript">
         $(document).ready(function(){
             $("img[class=QuestionEdit]").click(function(){
                 var editBlock = $(this).parent().nextAll("div[class=QuestionEditBlock]").attr("id");
@@ -18,26 +21,32 @@
                     $.get(url,
 		                  {},
                           function(response) {
-                              $("div[class=QuestionEditBlock]").slideUp("slow").empty();
                               $("div[class=QuestionFooter]").slideUp("slow");
-                              $("#" + editBlock).append(response).slideDown("slow");
-                              $("#" + editBlock).nextAll("div[class=QuestionFooter]").slideDown("slow");
-                              
-                              // Заменяем все элементы textarea с аттрибутом class="TextAreaNicEditor"
-							  // на wysiwyg-редакторы (nicEdit)
-							  // Замечание: имя класса "TextAreaNicEditor" зашито в файле nicEdit.js
-							  nicEditors.allTextAreas();       
-                          }
+							  $("div[class=QuestionEditBlock]").slideUp("slow", function(){
+							      $("div[class=QuestionEditBlock]").empty();
+							      $("#" + editBlock).append(response);
+							  });
+							  
+							  $("#" + editBlock).slideDown("slow", function(){
+								  $("#" + editBlock).nextAll("div[class=QuestionFooter]").slideDown("slow");
+								  
+								  // Заменяем все элементы textarea с аттрибутом class="TextEditor"
+						   		  // на wysiwyg-редакторы (jHtmlArea)
+								  $("textarea[class=TextEditor]").htmlarea();
+							  });
+					      }
                          );
                 }
                 else {
-                    $("div[class=QuestionEditBlock]").slideUp("slow").empty();
-                    $("div[class=QuestionFooter]").slideUp("slow");
+                    $("#" + editBlock).nextAll("div[class=QuestionFooter]").slideUp("slow");
+                    $("#" + editBlock).slideUp("slow", function(){
+                        $("#" + editBlock).empty();
+                    });
                 }
             });
 		    
             $("img[class=QuestionDelete]").click(function(){
-                if (confirm("Вы уверены, что хотите удалить раздел?")) {
+                if (confirm("Вы уверены, что хотите удалить вопрос?")) {
 					var editBlock = $(this).parent().nextAll("div[class=QuestionEditBlock]").attr("id");
 					var url       = "/Editor/Delete/" + editBlock.substr(9);
 					$.post(url,
@@ -50,8 +59,10 @@
 		    $("img[class=QuestionCancel]").click(function(){
                 var editBlock = $(this).parent().prevAll("div[class=QuestionEditBlock]").attr("id");
                 
-                $("#" + editBlock).slideUp("slow").empty();
                 $(this).parent("div[class=QuestionFooter]").slideUp("slow");
+                $("#" + editBlock).slideUp("slow", function(){
+					$("#" + editBlock).empty();
+                });                
 		    });
 		    
 		    $("img[class=QuestionSave]").click(function(){
