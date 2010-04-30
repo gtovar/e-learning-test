@@ -6,35 +6,41 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
-    <script type="text/javascript" src="/Scripts/Plugins/NicEdit/nicEdit.js"></script>
+    <script type="text/javascript" src="/Scripts/Plugins/JHtmlArea/scripts/jHtmlArea-0.7.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/JHtmlArea/style/jHtmlArea.css" />
+    <script type="text/javascript" src="/Scripts/Plugins/JHtmlArea/scripts/jHtmlArea.ColorPickerMenu-0.7.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/JHtmlArea/style/jHtmlArea.ColorPickerMenu.css" />
 	<script type="text/javascript">
         $(document).ready(function() {
-            $('#QuestionTypeList').change(function(){
+            $("#QuestionTypeList").change(function(){
                 var url;
-		        switch ($(this).attr('value')) {
-                    case '0' : url = '/Editor/CreateSimple';       break;
-                    case '1' : url = '/Editor/CreateAlternative';  break;
-                    case '2' : url = '/Editor/CreateDistributive'; break;
-                    case '3' : url = '/Editor/CreateFormula';      break;
-                    default  : $('div[class=QuestionFooter]').hide('slow');
-							   $('div[class=QuestionEditBlock]').hide('slow').empty();
+		        switch ($(this).attr("value")) {
+                    case "0" : url = "/Editor/CreateSimple";       break;
+                    case "1" : url = "/Editor/CreateAlternative";  break;
+                    case "2" : url = "/Editor/CreateDistributive"; break;
+                    case "3" : url = "/Editor/CreateFormula";      break;
+                    default  : $("div[class=QuestionFooter]").hide("slow");
+							   $("div[class=QuestionEditBlock]").hide("slow").empty();
 							   return;
                 }
 		        
 		        $.post(url,
 		               {},
                        function(response) {
-                           $('div[class=QuestionFooter]').hide('slow');
-                           $('div[class=QuestionEditBlock]').hide('slow').empty();
-                           $('div[class=QuestionEditBlock]').append(response).show('slow');
-                           $('div[class=QuestionFooter]').show('slow');
-                           
-                           // Заменяем все элементы textarea с аттрибутом class="TextAreaNicEditor"
-                           // на wysiwyg-редакторы (nicEdit)
-                           // Замечание: имя класса "TextAreaNicEditor" зашито в файле nicEdit.js
-                           nicEditors.allTextAreas();       
+                           $("div[class=QuestionFooter]").hide("slow", function(){
+							   $("div[class=QuestionEditBlock]").hide("slow", function(){
+							       $("div[class=QuestionEditBlock]").empty();
+							       $("div[class=QuestionEditBlock]").append(response).show("slow", function(){
+							           $("div[class=QuestionFooter]").show("slow");
+							           
+							           // Заменяем все элементы textarea с аттрибутом class="TextEditor"
+									   // на wysiwyg-редакторы (jHtmlArea)
+									   $("textarea[class=TextEditor]").htmlarea();
+							       });
+							   });
+                           });
                        }
-                      )
+                      );
             });
             
             $("img[class=QuestionSave]").click(function(){

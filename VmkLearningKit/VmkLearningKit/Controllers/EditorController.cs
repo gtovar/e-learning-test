@@ -302,5 +302,11 @@ namespace VmkLearningKit.Controllers
 
             return RedirectToAction("List", new { alias = razdelId });
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ImageUpload()
+        {
+            return PartialView();
+        }
     }
 }
