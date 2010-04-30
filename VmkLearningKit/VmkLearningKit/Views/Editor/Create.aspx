@@ -48,6 +48,24 @@
             });
         });
     </script>
+    <script src="/Scripts/MathJax/MathJax.js" type="text/javascript">
+        //
+        //  This script call is what gets MathJax loaded and running
+        //
+        {
+            MathJax.Hub.Config({
+                jax: ["input/TeX", "output/HTML-CSS"],    // input is TeX and output is HTML-CSS format
+                extensions: ["tex2jax.js"],              // use the tex2jax preprocessor
+                tex2jax: {
+                    //    inlineMath: [['$','$'],['\\(','\\)']], // uncomment to use $...$ for inline math
+                    processEscapes: 1                      // set to 1 to allow \$ to produce a dollar sign
+                }
+            });
+
+        }
+	
+	</script>
+	  <link href="/Content/test.css" rel="stylesheet" type="text/css" />
     <%
     try
     {
