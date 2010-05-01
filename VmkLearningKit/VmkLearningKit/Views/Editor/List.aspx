@@ -11,8 +11,30 @@
     <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/JHtmlArea/style/jHtmlArea.css" />
     <script type="text/javascript" src="/Scripts/Plugins/JHtmlArea/scripts/jHtmlArea.ColorPickerMenu-0.7.0.js"></script>
     <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/JHtmlArea/style/jHtmlArea.ColorPickerMenu.css" />
+	<script type="text/javascript" src="/Scripts/Plugins/FancyBox/scripts/jquery.fancybox-1.3.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="/Scripts/Plugins/FancyBox/style/jquery.fancybox-1.3.1.css" media="screen" />
+	<script type="text/javascript" src="/Scripts/Plugins/AjaxUpload/ajaxupload.js"></script>
 	<script type="text/javascript">
         $(document).ready(function(){
+            new AjaxUpload($("#ImageUploadLink"), 
+						   {
+						       autoSubmit: true,
+							   action: "/Editor/ImageUpload",
+							   name: "UploadedImage",
+							   responseType: "json",
+							   
+							   onSubmit: function(file, extension) {
+							       $("#ImageLink").hide().empty();
+							       $("#ImageUploading").show();
+							   },
+							   
+							   onComplete: function(file, response) {
+							       $("#ImageUploading").hide();
+							       $("#ImageLink").append(response).show();
+                               }
+                           }
+            );
+            
             $("img[class=QuestionEdit]").click(function(){
                 var editBlock = $(this).parent().nextAll("div[class=QuestionEditBlock]").attr("id");
                 var url       = "/Editor/Edit/" + editBlock.substr(9);
@@ -33,6 +55,11 @@
 								  // Заменяем все элементы textarea с аттрибутом class="TextEditor"
 						   		  // на wysiwyg-редакторы (jHtmlArea)
 								  $("textarea[class=TextEditor]").htmlarea();
+								  
+								  $("a[class=ImageUpload]").fancybox({
+									  "titleShow": false,
+									  "modal": true
+							      });
 							  });
 					      }
                          );
@@ -75,10 +102,17 @@
                     $("div[class=QuestionFooter]").slideUp("slow");
                     $("div[class=UploadContainer]").show("slow");                    
                 }
-                else {
-                    $("div[class=UploadContainer]").hide("slow");
-                }
             });
+            
+            $("#HideUploadContainer").click(function(){
+                $("div[class=UploadContainer]").hide("slow");
+            });
+            
+            $("#UploadAndParse").fancybox({
+			    "titleShow": false,
+			    "modal": true,
+			    "onComplete": function() { document.forms["UploadWordForm"].submit(); }
+	        });
 		});
     </script>
     <script src="/Scripts/MathJax/MathJax.js" type="text/javascript">
@@ -218,18 +252,42 @@
         <%
         }
         %>
+        <div style="display:none;">
+			<div id="ImageUploadContainer" style="height:80px;">
+				<p align="center" id="ImageUploading" style="display:none;">
+					<img src="/Content/Images/progress.gif" />
+				</p>
+				<p align="center" id="ImageLink" style="width:400px;"></p>
+				<div id="ImageUploadContainerButtons">
+					<p align="center">
+						<a href="javascript:void(0);" id="ImageUploadLink">Загрузить</a>
+						<a href="javascript:void(0);" id="ImageUploadLink" onclick="$.fancybox.close();">Закрыть</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div style="display:none;">
+			<div id="UploadAndParseContainer">
+				<p align="center">
+					Выполняется загрузка тестовых вопросов.
+				</p>
+				<p align="center">Пожалуйста, подождите</p>
+			</div>
+		</div>
         <br />
         <p>
             <%= Html.ActionLink("Создать новый вопрос", "Create", new { alias = razdelId }, new { id = "CreateNew" })%> | 
-            <a id="LoadFromFile" style="cursor:pointer;">Загрузить из файла</a>
+            <a  href="javascript:void(0);" id="LoadFromFile" style="cursor:pointer;">Загрузить из файла</a>
         </p>
         <div class="UploadContainer">
-            <% using (Html.BeginForm("Upload", "Editor", new { alias = razdelId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            <% using (Html.BeginForm("Upload", "Editor", new { alias = razdelId }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadWordForm", name = "UploadWordForm" }))
                { %>
-                    <p>Выберите word-документ в формате <b>.doc</b> и нажмите кнопку <b>добавить</b></p>
-                    <p>
-                        <input type="file" id="FileUpload" name="FileUpload" value="Обзор" class="Button" />
-                        <input type="submit" value="Добавить" class="Button" />
+                    <p align="center">Выберите word-документ в формате <b>.doc</b> и нажмите <b>добавить</b></p>
+                    <p align="center">
+                        <input type="file" id="FileUpload" name="FileUpload" value="Обзор" class="Button" /> 
+                    </p>
+                    <p align="center">    
+                        <a href="#UploadAndParseContainer" id="UploadAndParse">Добавить</a> | <a href="javascript:void(0);" id="HideUploadContainer">Отмена</a>
                     </p>
             <% } %>
         </div>

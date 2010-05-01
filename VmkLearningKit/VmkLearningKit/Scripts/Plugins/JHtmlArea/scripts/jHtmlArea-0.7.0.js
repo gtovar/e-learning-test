@@ -41,11 +41,6 @@
 
                 var toolbar = this.toolbar = $("<div/>").addClass("ToolBar").appendTo(container);
                 
-                /* VLK improvement:
-                 * added new container for image upload
-                 */
-                $("<div/>").addClass("ImageUpload").appendTo(container);
-                
                 priv.initToolBar.call(this, opts);
 
                 var iframe = this.iframe = $("<iframe/>").height(textarea.height());
@@ -141,14 +136,7 @@
         italic: function() { this.ec("italic"); },
         underline: function() { this.ec("underline"); },
         strikeThrough: function() { this.ec("strikethrough"); },
-        image: function() {
-            $.post("/Editor/ImageUpload",
-                  {},
-                  function(response){
-					  $("div[class=ImageUpload]").append(response).show("slow");					  
-                  }
-                 );
-        },
+        image: function() {},
         removeFormat: function() {
             this.ec("removeFormat", false, []);
             this.unlink();
@@ -323,7 +311,12 @@
             var that = this;
 
             var menuItem = function(className, altText, action) {
-                return $("<li/>").append($("<a href='javascript:void(0);'/>").addClass(className).attr("title", altText).click(function() { action.call(that, $(this)); }));
+                if (className == "image") {
+					return $("<li/>").append($("<a href='#ImageUploadContainer'/>").addClass("ImageUpload").attr("title", altText));
+				}
+				else {
+					return $("<li/>").append($("<a href='javascript:void(0);'/>").addClass(className).attr("title", altText).click(function() { action.call(that, $(this)); }));
+				}
             };
 
             function addButtons(arr) {

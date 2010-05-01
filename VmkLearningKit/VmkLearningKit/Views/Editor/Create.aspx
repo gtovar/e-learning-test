@@ -10,8 +10,30 @@
     <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/JHtmlArea/style/jHtmlArea.css" />
     <script type="text/javascript" src="/Scripts/Plugins/JHtmlArea/scripts/jHtmlArea.ColorPickerMenu-0.7.0.js"></script>
     <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/JHtmlArea/style/jHtmlArea.ColorPickerMenu.css" />
+	<script type="text/javascript" src="/Scripts/Plugins/FancyBox/scripts/jquery.fancybox-1.3.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="/Scripts/Plugins/FancyBox/style/jquery.fancybox-1.3.1.css" media="screen" />
+	<script type="text/javascript" src="/Scripts/Plugins/AjaxUpload/ajaxupload.js"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
+            new AjaxUpload($("#ImageUploadLink"), 
+						   {
+						       autoSubmit: true,
+							   action: "/Editor/ImageUpload",
+							   name: "UploadedImage",
+							   responseType: "json",
+							   
+							   onSubmit: function(file, extension) {
+							       $("#ImageLink").hide().empty();
+							       $("#ImageUploading").show();
+							   },
+							   
+							   onComplete: function(file, response) {
+							       $("#ImageUploading").hide();
+							       $("#ImageLink").append(response).show();
+                               }
+                           }
+            );
+            
             $("#QuestionTypeList").change(function(){
                 var url;
 		        switch ($(this).attr("value")) {
@@ -36,6 +58,11 @@
 							           // Заменяем все элементы textarea с аттрибутом class="TextEditor"
 									   // на wysiwyg-редакторы (jHtmlArea)
 									   $("textarea[class=TextEditor]").htmlarea();
+									   
+									   $("a[class=ImageUpload]").fancybox({
+									       "titleShow": false,
+									       "modal": true
+									   });
 							       });
 							   });
                            });
@@ -45,8 +72,8 @@
             
             $("img[class=QuestionSave]").click(function(){
                 document.forms["QuestionForm"].submit();
-            });
-        });
+            });			
+		});
     </script>
     <script src="/Scripts/MathJax/MathJax.js" type="text/javascript">
         //
@@ -63,7 +90,6 @@
             });
 
         }
-	
 	</script>
 	  <link href="/Content/test.css" rel="stylesheet" type="text/css" />
     <%
@@ -107,7 +133,21 @@
 				</div>
 				<%
 			} 
-		%>
+		%>		
+		<div style="display:none;">
+			<div id="ImageUploadContainer" style="height:80px;">
+				<p align="center" id="ImageUploading" style="display:none;">
+					<img src="/Content/Images/progress.gif" />
+				</p>
+				<p align="center" id="ImageLink" style="width:400px;"></p>
+				<div id="ImageUploadContainerButtons">
+					<p align="center">
+						<a href="javascript:void(0);" id="ImageUploadLink">Загрузить</a>
+						<a href="javascript:void(0);" id="ImageUploadLink" onclick="$.fancybox.close();">Закрыть</a>
+					</p>
+				</div>
+			</div>
+		</div>
 		<br />
 		<p>
 			<%= Html.ActionLink("Вернуться к списку вопросов по разделу", "List", new { alias = razdelId }) %>
