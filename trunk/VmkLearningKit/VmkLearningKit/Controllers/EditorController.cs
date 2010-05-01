@@ -257,7 +257,7 @@ namespace VmkLearningKit.Controllers
                     string filePath = HttpContext.Server.MapPath("/Uploads/Word") + "\\" + (docIndex).ToString() + ".doc";
                     file.SaveAs(filePath);
 
-                    QWord.QReader reader = new QWord.QReader(HttpContext.Server.MapPath("/Uploads/Word") + "\\" + docIndex.ToString() + ".doc", HttpContext.Server.MapPath("/Uploads/Images"), "http://localhost:1111/Uploads/Images");
+                    QWord.QReader reader = new QWord.QReader(HttpContext.Server.MapPath("/Uploads/Word") + "\\" + docIndex.ToString() + ".doc", HttpContext.Server.MapPath("/Uploads/Images"), Request.Url.AbsoluteUri.ToLower().Replace("editor/upload/" + alias.ToString(), "Uploads/Images"));
 
                     reader.SaveAllImages();
 
@@ -304,9 +304,36 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult ImageUpload()
+        public JsonResult ImageUpload()
         {
-            return PartialView();
+            DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Uploads/Images"));
+            long imageIndex         = targetDir.GetFiles("*.jpg").Length;
+
+            string imageLink = "Данный тип файла не поддерживается. Используйте изображения в формате JPEG (*.jpg)";
+            
+            foreach (string inputTagName in Request.Files)
+            {
+                HttpPostedFileBase file = Request.Files[inputTagName];
+
+                if (file.ContentLength > 0 && inputTagName.Equals("UploadedImage"))
+                {
+                    if (file.FileName.EndsWith(".jpg"))
+                    {
+                        string filePath = HttpContext.Server.MapPath("/Uploads/Images") + "\\" + (imageIndex).ToString() + ".jpg";
+                        file.SaveAs(filePath);
+                        
+                        imageLink = Request.Url.AbsoluteUri.ToLower().Replace("editor/imageupload", "Uploads/Images/Image" + (imageIndex).ToString() + ".jpg");
+
+                        ++imageIndex;
+                    }
+                }
+            }
+            
+            return new JsonResult
+            {
+                ContentType = "text/html",
+                Data = imageLink
+            };
         }
     }
 }

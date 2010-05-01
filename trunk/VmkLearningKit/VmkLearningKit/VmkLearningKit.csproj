@@ -184,6 +184,8 @@
     <Content Include="Content\Images\menu_icon.gif" />
     <Content Include="Content\Images\navshape.jpg" />
     <Content Include="Content\Images\pagetitlebkgd.gif" />
+    <Content Include="Content\Images\progress.gif" />
+    <Content Include="Content\Images\progressBig.gif" />
     <Content Include="Content\Images\remove.png" />
     <Content Include="Content\Images\save.png" />
     <Content Include="Content\Images\topnavselected.gif" />
@@ -193,6 +195,12 @@
     <Content Include="Content\test.css" />
     <Content Include="Libs\QWord.dll" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Plugins\AjaxUpload\ajaxupload.js" />
+    <Content Include="Scripts\Plugins\FancyBox\scripts\jquery.easing-1.3.pack.js" />
+    <Content Include="Scripts\Plugins\FancyBox\scripts\jquery.fancybox-1.3.1.js" />
+    <Content Include="Scripts\Plugins\FancyBox\scripts\jquery.fancybox-1.3.1.pack.js" />
+    <Content Include="Scripts\Plugins\FancyBox\scripts\jquery.mousewheel-3.0.2.pack.js" />
+    <Content Include="Scripts\Plugins\FancyBox\style\jquery.fancybox-1.3.1.css" />
     <Content Include="Scripts\formula-editor.js" />
     <Content Include="Scripts\Lib.js" />
     <Content Include="Scripts\Plugins\Form\form.js" />
@@ -256,7 +264,6 @@
     <Content Include="Views\Editor\CreateSimple.ascx" />
     <Content Include="Views\Editor\Edit.ascx" />
     <Content Include="Views\Editor\Create.aspx" />
-    <Content Include="Views\Editor\ImageUpload.ascx" />
     <Content Include="Views\Editor\List.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Chairs.aspx" />
