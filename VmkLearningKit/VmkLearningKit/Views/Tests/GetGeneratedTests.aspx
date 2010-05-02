@@ -4,22 +4,22 @@
     Тесты
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        Сгенерированные тесты</h2>
-    <br />
     <div align="center">
-        <table border="1">
+        <h2>
+            Сгенерированные тесты</h2>
+        <br />
+        <table class="Generator">
             <tr align="center">
-                <td>
+                <td class="Generator">
                     <b>№</b>
                 </td>
-                <td>
+                <td class="Generator">
                     <b>Количество вариантов</b>
                 </td>
-                <td>
+                <td class="Generator">
                     <b>Дата генерации</b>
                 </td>
-                <td>
+                <td class="Generator">
                     <b>Количество вопросов</b>
                 </td>
             </tr>
@@ -31,19 +31,19 @@
                    
             %>
             <tr align="center">
-                <td>
+                <td class="Generator">
                     <%= k++%>
                 </td>
-                <td>
+                <td class="Generator">
                     <%=  gt.VariantsCount %>
                 </td>
-                <td>
+                <td class="Generator">
                     <%= gt.GeneratedDate%>
                 </td>
-                <td>
+                <td class="Generator">
                     <%= gt.QuestionsCount%>
                 </td>
-                <td>
+                <td class="Generator">
                     <%= Html.ActionLink("Подробнее", "GetTest", new { id = gt.Id })%>
                 </td>
             </tr>
@@ -53,6 +53,6 @@
     </div>
     <br />
     <div align="center">
-        <%= Html.ActionLink("Назад", "GetPlanGeneration", "PlanGeneration")%>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <%= Html.ActionLink("Назад", "GetPlanGeneration", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>&nbsp&nbsp&nbsp&nbsp&nbsp
     </div>
 </asp:Content>

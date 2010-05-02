@@ -10,6 +10,8 @@ namespace VmkLearningKit.Models.Repository
         long GetRazdelIdByQuestionId(long id);
         int GetQuestionType(long id);
         int GetAnswersCountByQuestionId(long questionId);
+        int GetQuestionLocalIdByQuestionId(long questionId);
+        string GetFullQuestionLocalIdByQuestionId(long questionId);
         IEnumerable<Answer> GetAllAnswersByQuestionId(long questionId);
         IEnumerable<Question> GetQuestionsById(long id);
         IEnumerable<Question> GetAll();

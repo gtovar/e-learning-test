@@ -51,6 +51,13 @@ namespace VmkLearningKit
                 "Home/Error/{id}",                                              // URL with parameters
                 new { controller = "Home", action = "Error", id = 404 }         // Parameter defaults
             );
+
+            //
+            routes.MapRoute(
+                "qwerty",                                                      // Route name
+                "{controller}/{action}/{alias}/{additional}/{param1}/{param2}",                   // URL with parameters
+                new { controller = "PlanGeneration", action = "Add", alias = "", additional = "", param1 = "", param2 = "" }                    // Parameter defaults
+            );
         }
 
         protected void Application_Start()

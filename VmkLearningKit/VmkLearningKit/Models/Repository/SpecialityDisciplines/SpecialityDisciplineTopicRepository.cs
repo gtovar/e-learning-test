@@ -8,6 +8,8 @@ namespace VmkLearningKit.Models.Repository
 {
     class SpecialityDisciplineTopicRepository : Repository<SpecialityDisciplineTopic>, ISpecialityDisciplineTopicRepository
     {
+        private int variantCount = 3;
+
         public SpecialityDisciplineTopicRepository(VmkLearningKitDataContext dataContext) :
             base(dataContext)
         {
@@ -15,9 +17,20 @@ namespace VmkLearningKit.Models.Repository
 
         #region Get
 
+        public int GetVariantCount()
+        {
+            return variantCount;
+        }
+
         public SpecialityDisciplineTopic GetById(long id)
         {
             return DataContext.SpecialityDisciplineTopics.SingleOrDefault(sp => sp.Id == id);
+        }
+
+        public long GetTopicIdByGeneratedTestId(long generatedTestId)
+        {
+            GeneratedTest gt = DataContext.GeneratedTests.SingleOrDefault(t => t.Id == generatedTestId);
+            return gt.SpecialityDisciplineTopicId;
         }
         /*
         public SpecialityDisciplineTopic GetByAlias(string alias)
@@ -222,6 +235,12 @@ namespace VmkLearningKit.Models.Repository
             }
             return objWithTheSameTitle;
             */
+        }
+
+        public int SetVariantCount ( int newVariantCount)
+        {
+            variantCount = newVariantCount;
+            return variantCount;
         }
 
         public SpecialityDisciplineTopic SetTitle(long id, string title)

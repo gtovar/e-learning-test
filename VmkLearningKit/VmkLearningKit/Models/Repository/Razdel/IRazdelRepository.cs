@@ -10,6 +10,7 @@ namespace VmkLearningKit.Models.Repository
         IEnumerable<Razdel> GetAll();
         IEnumerable<Razdel> GetAllRazdelsBySpecialityDisciplineTopicId(long specialityDisciplineTopicId);
         int GetQuestionCountByRazdelId(long razdelId);
+        int GetRazdelLocalIdByRazdelId(long razdelId);
         string GetTitle(long id);
         string GetSpecialityDisciplineTitle(long id);
         string GetSpecialityDisciplineAlias(long id);
@@ -20,5 +21,6 @@ namespace VmkLearningKit.Models.Repository
         void Add(long newObjTopicId, string newObjTitle);
         void UpdateById(long updatedObjId, long newObjTopicId, string newObjTitle, int newObjQuestionsCount);
         void UpdateById(long updatedObjId, string newObjTitle);
+        void UpdateById(long updatedObjId, int newObjQuestionsCount);
     }
 }
