@@ -197,7 +197,7 @@ a:hover
 
 .table_header
 {
-	background-color: Silver;
+	background-color: #e8eef4;
 	color: Black;
 	font-weight: bold;
 }
@@ -206,6 +206,18 @@ a:hover
 {
 	color: Black;
 	text-align: center;
+}
+
+.table_th
+{
+    color: Black;
+    padding: 5px;
+}
+
+.table_td
+{
+    color: Black;
+    padding: 5px;
 }
 
 .left_col

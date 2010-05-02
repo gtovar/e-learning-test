@@ -255,40 +255,64 @@ namespace VmkLearningKit.Core
             return topic;
         }
 
-        public static string GetSubjectAndRoom(IEnumerable<LecturePlan> lecturePlans, string day, string time, out LecturePlan foundLecturePlan)
+        public static string GetRoom(LecturePlan lecturePlan)
         {
-            string str = String.Empty;
+            string room = String.Empty;
+            if (null != lecturePlan && null != lecturePlan.SpecialityDiscipline && 
+                null != lecturePlan.SpecialityDiscipline.LectureTimetables)
+            {
+                foreach (LectureTimetable timetable in lecturePlan.SpecialityDiscipline.LectureTimetables)
+                {
+                    room = timetable.Room + " (" + timetable.Building + ") ";
+                    break;
+                }
+            }
+
+            return room;
+        }
+
+        public static string GetProfessorFullName(Professor professor)
+        {
+            string professorFullName = String.Empty;
+            if (null != professor && null != professor.User)
+            {
+                if (null != professor.User.FirstName && !professor.User.FirstName.Trim().Equals(String.Empty) &&
+                    null != professor.User.SecondName && !professor.User.SecondName.Trim().Equals(String.Empty) &&
+                    null != professor.User.Patronymic && !professor.User.Patronymic.Trim().Equals(String.Empty)
+                   )
+                {
+                    professorFullName += professor.User.SecondName + " " +
+                        professor.User.FirstName[0].ToString() + "." +
+                        professor.User.Patronymic[0].ToString() + ".";
+                }
+                else if (null != professor.User.SecondName && !professor.User.SecondName.Trim().Equals(String.Empty))
+                {
+                    professorFullName = professor.User.SecondName;
+                }
+            }
+
+            return professorFullName;
+        }
+
+        public static LecturePlan FindLecturePlan(IEnumerable<LecturePlan> lecturePlans, string day, string time)
+        {
             DayOfWeek dayOfWeek = GetDayOfWeekFromString(day);
-            foundLecturePlan = null;
+            LecturePlan foundLecturePlan = null;
             foreach (LecturePlan lecturePlan in lecturePlans)
             {
                 if (lecturePlan.Date.HasValue && lecturePlan.Date.Value.DayOfWeek == dayOfWeek)
                 {
-                    foundLecturePlan = lecturePlan;
                     foreach (LectureTimetable timetable in lecturePlan.SpecialityDiscipline.LectureTimetables)
                     {
                         if (timetable.Day.Trim().Equals(day.Trim()) && timetable.Time.Trim().Equals(time.Trim()))
                         {
-                            string[] titleParts = timetable.SpecialityDiscipline.Title.Split(' ', '-');
-                            string title = String.Empty;
-                            foreach (string titlePart in titleParts)
-                            {
-                                if (null != titlePart && !titlePart.Trim().Equals(String.Empty))
-                                {
-                                    title += titlePart[0].ToString().ToUpper();
-                                }
-                            }
-                            str += title + " " + timetable.Room + "(" + timetable.Building + ")";
+                            foundLecturePlan = lecturePlan;
                             break;
                         }
                     }
-                    if (!str.Trim().Equals(String.Empty))
-                    {
-                        break;
-                    }
                 }
             }
-            return str;
+            return foundLecturePlan;
         }
 
         /*

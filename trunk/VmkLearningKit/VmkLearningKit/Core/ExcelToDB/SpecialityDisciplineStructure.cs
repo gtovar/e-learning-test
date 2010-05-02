@@ -478,6 +478,29 @@ namespace VmkLearningKit.Core.ExcelToDB
                                     specialityDiscipline.Alias = Constants.ALIAS_DEFAULT_VALUE + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff");
                                 }
 
+                                string specialityDisciplineAbbreviation = excelParser.GetCell(rowIndex, columnIndex + 1);
+                                if (null != specialityDisciplineAbbreviation &&
+                                    !specialityDisciplineAbbreviation.Trim().Equals(String.Empty))
+                                {
+                                    specialityDiscipline.Abbreviation = specialityDisciplineAbbreviation;
+                                }
+                                else
+                                {
+                                    specialityDisciplineAbbreviation = String.Empty;
+                                    string[] titleParts = specialityDiscipline.Title.Split(' ', '-');
+                                    if(null != titleParts && titleParts.Length > 0)
+                                    {
+                                        foreach(string titlePart in titleParts)
+                                        {
+                                            if(null != titlePart && !titlePart.Trim().Equals(String.Empty))
+                                            {
+                                                specialityDisciplineAbbreviation += titlePart[0].ToString().ToUpper();
+                                            }
+                                        }
+                                    }
+                                    specialityDiscipline.Abbreviation = specialityDisciplineAbbreviation;
+                                }
+
                                 specialityDiscipline.Category = SpecialityDisciplineCategory.GetCategoryString(category);
 
                                 specialityDiscipline.Id = ++lastSpecialityDisciplineId;

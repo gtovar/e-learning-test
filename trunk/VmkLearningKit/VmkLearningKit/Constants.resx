@@ -162,6 +162,12 @@
   <data name="ALIAS_DEFAULT_VALUE" xml:space="preserve">
     <value>None</value>
   </data>
+  <data name="CABINET_GENERAL_VIEWS" xml:space="preserve">
+    <value>/Views/Cabinet/General/</value>
+  </data>
+  <data name="CABINET_STUDENT_VIEWS" xml:space="preserve">
+    <value>/Views/Cabinet/Student/</value>
+  </data>
   <data name="CABINET_URL" xml:space="preserve">
     <value>/Cabinet/</value>
   </data>
