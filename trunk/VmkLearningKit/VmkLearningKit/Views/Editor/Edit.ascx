@@ -8,7 +8,7 @@
     %>
         <table class="Editor" style="width:100%;">
         <tr class="Editor">
-            <th class="Editor" colspan="2" rowspan="1">Редактирование вопроса</th>
+            <th class="Editor" colspan="2" rowspan="1">Вопрос</th>
             <th class="Editor"></th>
         </tr>
         <tr class="Editor">
@@ -42,11 +42,11 @@
                         <td class="Editor"></td>
                     </tr>
                     <tr class="Editor">
-                        <th class="Editor" colspan="2" rowspan="1">Редактирование ответа</th>
+                        <th class="Editor" colspan="2" rowspan="1">Ответ</th>
                         <th class="Editor"></th>
                     </tr>
                     <tr class="Editor">
-                        <td class="Editor">Ответ</td>
+                        <td class="Editor">Текст ответа:</td>
                         <td class="Editor">
                         <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString(), answer.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
                         </td>
@@ -93,11 +93,11 @@
                         <td class="Editor"></td>
                     </tr>
                     <tr class="Editor">
-                        <th class="Editor" colspan="2" rowspan="1">Редактирование ответа</th>
+                        <th class="Editor" colspan="2" rowspan="1">Ответ</th>
                         <th class="Editor"></th>
                     </tr>
                     <tr class="Editor">
-                        <td class="Editor">Ответ</td>
+                        <td class="Editor">Текст ответа:</td>
                         <td class="Editor">
                             <input class="formula_input" id="<%= VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString() %>" name="<%= VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString()%>" value="<%= answer.Text%>" />
                         </td>
@@ -162,7 +162,7 @@
                         <td class="Editor"></td>
                     </tr>
                     <tr class="Editor">
-                        <th class="Editor" colspan="2" rowspan="1">Редактирование вариантов ответа</th>
+                        <th class="Editor" colspan="2" rowspan="1">Варианты ответа</th>
                         <th class="Editor"></th>
                     </tr>
     <%
@@ -171,7 +171,7 @@
                     {
     %>
                         <tr class="Editor">
-                            <td class="Editor">Вариант ответа</td>
+                            <td class="Editor">Текст ответа:</td>
                             <td class="Editor">
                             <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + variantAnswer.Id.ToString(), variantAnswer.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
                             </td>

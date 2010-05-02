@@ -271,7 +271,7 @@
         "justifyleft", "justifycenter", "justifyright", "|",
         "link", "unlink", "image", "horizontalrule", "|",
         "p", "h1", "h2", "h3", "h4", "h5", "h6", "|",
-        "cut", "copy", "paste"
+        "cut", "copy", "paste", "|", "html"
     ],
         css: "/Scripts/Plugins/JHtmlArea/style/jHtmlArea.Editor.css",
         toolbarText: {
