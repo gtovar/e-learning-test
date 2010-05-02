@@ -12,6 +12,7 @@ namespace VmkLearningKit.Controllers
 {
     [HandleError]
     [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
+    [OutputCache(Location = System.Web.UI.OutputCacheLocation.None)]
     public class EditorController : AbstractController
     {
         /// <summary>
@@ -24,7 +25,7 @@ namespace VmkLearningKit.Controllers
         public ActionResult List(long alias)
         {
             GeneralMenu();
-
+            
             ViewData[Constants.PAGE_TITLE] = "Редактор тестовых вопросов";
             
             ViewData["QuestionsList"]     = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelId(alias);
@@ -319,7 +320,7 @@ namespace VmkLearningKit.Controllers
                 {
                     if (file.FileName.EndsWith(".jpg"))
                     {
-                        string filePath = HttpContext.Server.MapPath("/Uploads/Images") + "\\" + (imageIndex).ToString() + ".jpg";
+                        string filePath = HttpContext.Server.MapPath("/Uploads/Images") + "\\Image" + (imageIndex).ToString() + ".jpg";
                         file.SaveAs(filePath);
                         
                         imageLink = Request.Url.AbsoluteUri.ToLower().Replace("editor/imageupload", "Uploads/Images/Image" + (imageIndex).ToString() + ".jpg");

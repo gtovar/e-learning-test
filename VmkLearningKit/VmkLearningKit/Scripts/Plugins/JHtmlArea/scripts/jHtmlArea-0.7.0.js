@@ -6,7 +6,7 @@
 * http://jhtmlarea.codeplex.com/license
 */
 (function($) {
-    $.fn.htmlarea = function(opts) {
+	$.fn.htmlarea = function(opts) {
         if (opts && typeof (opts) === "string") {
             var args = [];
             for (var i = 1; i < arguments.length; i++) { args.push(arguments[i]); }
@@ -312,7 +312,7 @@
 
             var menuItem = function(className, altText, action) {
                 if (className == "image") {
-					return $("<li/>").append($("<a href='#ImageUploadContainer'/>").addClass("ImageUpload").attr("title", altText));
+					return $("<li/>").append($("<a href='javascript:void(0);'/>").addClass(className).attr("title", altText));
 				}
 				else {
 					return $("<li/>").append($("<a href='javascript:void(0);'/>").addClass(className).attr("title", altText).click(function() { action.call(that, $(this)); }));
