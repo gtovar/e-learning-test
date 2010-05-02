@@ -56,10 +56,18 @@
 						   		  // на wysiwyg-редакторы (jHtmlArea)
 								  $("textarea[class=TextEditor]").htmlarea();
 								  
-								  $("a[class=ImageUpload]").fancybox({
-									  "titleShow": false,
-									  "modal": true
-							      });
+								  $("a[class=image]").click(function(){
+									   var associatedFrame = $(this).parents("div[class=ToolBar]").next("div").children("iframe")[0];
+									   $.fancybox({
+									       "href": "#ImageUploadContainer",
+									       "titleShow": false,
+									       "modal": true,
+									       "onClosed": function() {
+										       associatedFrame.contentWindow.focus();
+										       associatedFrame.contentWindow.document.execCommand("insertimage", false, $("#ImageLink").html());
+										   }
+								       }); 
+								   });
 							  });
 					      }
                          );
@@ -261,7 +269,7 @@
 				<div id="ImageUploadContainerButtons">
 					<p align="center">
 						<a href="javascript:void(0);" id="ImageUploadLink">Загрузить</a>
-						<a href="javascript:void(0);" id="ImageUploadLink" onclick="$.fancybox.close();">Закрыть</a>
+						<a href="javascript:void(0);" id="ImageUploadClose" onclick="$.fancybox.close();">Закрыть</a>
 					</p>
 				</div>
 			</div>

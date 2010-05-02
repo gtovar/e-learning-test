@@ -3,7 +3,7 @@
     <% 
     Question question = (Question)ViewData["QuestionData"];
 
-    using (Html.BeginForm("Edit", "Editor", new { alias = question.Id }, FormMethod.Post, new { id = "QuestionForm" }))
+    using (Html.BeginForm("Edit", "Editor", new { alias = question.Id }, FormMethod.Post, new { id = "QuestionForm", name = "QuestionForm" }))
     {
     %>
         <table class="Editor" style="width:100%;">
