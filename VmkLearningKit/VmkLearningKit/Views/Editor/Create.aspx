@@ -30,7 +30,14 @@
 							   
 							   onComplete: function(file, response) {
 							       $("#ImageUploading").hide();
-							       $("#ImageLink").append(response).show();
+							       $("#ImageLink").append(response);
+							       
+							       if($("#ImageLink").html().substring(0, 4) == "http") {
+									   $.fancybox.close();
+								   }
+							       else {
+							           $("#ImageLink").show("slow");
+							       }
                                }
                            }
             );
@@ -58,7 +65,18 @@
 							           
 							           // Заменяем все элементы textarea с аттрибутом class="TextEditor"
 									   // на wysiwyg-редакторы (jHtmlArea)
-									   $("textarea[class=TextEditor]").htmlarea();
+									   $("textarea[class=TextEditor]").htmlarea({
+									      toolbar: ["forecolor", "|", 
+													"bold", "italic", "underline", "strikethrough", "|", 
+													"subscript", "superscript", "|",
+													"increasefontsize", "decreasefontsize", "|",
+													"orderedlist", "unorderedlist", "|",
+													"indent", "outdent", "|",
+													"link", "unlink", "image", "horizontalrule", "|",
+													"cut", "copy", "paste", "|",
+													"html"
+													]
+									   });
 									   
 									   $("a[class=image]").click(function(){
 										   var associatedFrame = $(this).parents("div[class=ToolBar]").next("div").children("iframe")[0];
@@ -67,8 +85,14 @@
 										       "titleShow": false,
 										       "modal": true,
 										       "onClosed": function() {
-											       associatedFrame.contentWindow.focus();
-											       associatedFrame.contentWindow.document.execCommand("insertimage", false, $("#ImageLink").html());
+											       if ($("#ImageLink").html().substring(0, 4) == "http") {
+													   associatedFrame.contentWindow.focus();
+											           associatedFrame.contentWindow.document.execCommand("insertimage", false, $("#ImageLink").html());
+											           $("#ImageLink").empty();
+											       }
+											       else {
+													   $("#ImageLink").empty();
+											       }
 											   }
 									       }); 
 									   });
@@ -144,15 +168,15 @@
 			} 
 		%>		
 		<div style="display:none;">
-			<div id="ImageUploadContainer" style="height:80px;">
+			<div id="ImageUploadContainer" style="width:700px; height:70px;">
 				<p align="center" id="ImageUploading" style="display:none;">
 					<img src="/Content/Images/progress.gif" />
 				</p>
-				<p align="center" id="ImageLink" style="width:400px;"></p>
+				<p align="center" id="ImageLink"></p>
 				<div id="ImageUploadContainerButtons">
 					<p align="center">
-						<a href="javascript:void(0);" id="ImageUploadLink">Загрузить</a>
-						<a href="javascript:void(0);" id="ImageUploadClose" onclick="$.fancybox.close();">Закрыть</a>
+						<a href="javascript:void(0);" id="ImageUploadLink">Загрузить</a> | 
+						<a href="javascript:void(0);" id="ImageUploadClose" onclick="$.fancybox.close();">Отмена</a>
 					</p>
 				</div>
 			</div>
