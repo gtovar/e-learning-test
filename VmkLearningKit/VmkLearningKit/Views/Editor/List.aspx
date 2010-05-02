@@ -15,6 +15,8 @@
 	<link rel="stylesheet" type="text/css" href="/Scripts/Plugins/FancyBox/style/jquery.fancybox-1.3.1.css" media="screen" />
 	<script type="text/javascript" src="/Scripts/Plugins/AjaxUpload/ajaxupload.js"></script>
 	<script type="text/javascript">
+        var newVariantAnswerStartIndex = 0;
+        
         $(document).ready(function(){
             new AjaxUpload($("#ImageUploadLink"), 
 						   {
@@ -92,6 +94,17 @@
 										   }
 								       }); 
 								   });
+								   
+								   $("img[class=AnswerRemove]").click(function(){
+										// Удаление варианта ответа
+										if (confirm("Вы уверены, что хотите удалить вариант ответа?")) {
+											var currentRow = $(this).parents("tr")[0];
+							                
+											$(currentRow).prev("tr").remove();
+											$(currentRow).prev("tr").remove();
+											$(currentRow).remove();
+										}
+								   });
 							  });
 					      }
                          );
@@ -127,7 +140,7 @@
 		    $("img[class=QuestionSave]").click(function(){
                 document.forms["QuestionForm"].submit();
             });
-            
+		    
             $("#LoadFromFile").click(function(){
                 if ($("div[class=UploadContainer]").is(":hidden")) {
                     $("div[class=QuestionEditBlock]").slideUp("slow").empty();
@@ -145,6 +158,70 @@
 			    "modal": true,
 			    "onComplete": function() { document.forms["UploadWordForm"].submit(); }
 	        });
+	        
+	        $("img[class=AnswerAdd]").click(function(){
+				var table = $(this).parents("div[class=QuestionFooter]").prevAll("div[class=QuestionEditBlock]").children("form").children("table");
+				
+				var text = "<tr class=\"Editor\">" +
+						   "    <td class=\"Editor\">Текст ответа:</td>" +
+						   "    <td class=\"Editor\"><textarea id=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_TEXT) %>" + newVariantAnswerStartIndex + "\" name=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_TEXT) %>" + newVariantAnswerStartIndex + "\" class=\"TextEditor\" style=\"width:100%;height:100px;\" /></td>" +
+						   "</tr>" +
+						   "<tr class=\"Editor\">" +
+						   "    <td class=\"Editor\"><label for=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex + "\">Количество баллов:</label></td>" +
+						   "    <td class=\"Editor\"><input type=\"text\" id=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex + "\" name=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex + "\" /></td>" +
+						   "</tr>" +
+						   "<tr class=\"Editor\">" +
+                           "    <td class=\"Editor\" colspan=\"2\" rowspan=\"1\"></td>" + 
+                           "    <td class=\"Editor\"><img class=\"AnswerRemove\" src=\"/Content/Images/remove.png\" alt=\"Удалить вариант ответа\" width=\"20\" height=\"20\" /></td>" +
+						   "</tr>";
+				
+				$(table).append(text);
+				
+				$("textarea[id=<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_TEXT) %>" + newVariantAnswerStartIndex + "]").htmlarea({
+		 	        toolbar: ["forecolor", "|", 
+						"bold", "italic", "underline", "strikethrough", "|", 
+						"subscript", "superscript", "|",
+						"increasefontsize", "decreasefontsize", "|",
+						"orderedlist", "unorderedlist", "|",
+						"indent", "outdent", "|",
+						"link", "unlink", "image", "horizontalrule", "|",
+						"cut", "copy", "paste", "|",
+						"html"
+						]
+			    });
+			    
+			    $("a[class=image]").click(function(){
+				    var associatedFrame = $(this).parents("div[class=ToolBar]").next("div").children("iframe")[0];
+				    $.fancybox({
+					    "href": "#ImageUploadContainer",
+					    "titleShow": false,
+					    "modal": true,
+					    "onClosed": function() {
+						    if ($("#ImageLink").html().substring(0, 4) == "http") {
+						 	    associatedFrame.contentWindow.focus();
+						 	    associatedFrame.contentWindow.document.execCommand("insertimage", false, $("#ImageLink").html());
+							    $("#ImageLink").empty();
+						    }
+						    else {
+							    $("#ImageLink").empty();
+						    }
+					    }
+				    }); 
+				});
+				
+				$("img[class=AnswerRemove]").click(function(){
+					// Удаление варианта ответа
+					if (confirm("Вы уверены, что хотите удалить вариант ответа?")) {
+						var currentRow = $(this).parents("tr")[0];
+		                
+						$(currentRow).prev("tr").remove();
+						$(currentRow).prev("tr").remove();
+						$(currentRow).remove();
+					}
+				});
+			    
+			    ++newVariantAnswerStartIndex;
+            });	        
 		});
     </script>
     <script src="/Scripts/MathJax/MathJax.js" type="text/javascript">

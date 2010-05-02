@@ -120,14 +120,16 @@ namespace VmkLearningKit.Controllers
                 }
             }
 
-            long newVariantAnswerIndex = 0;
-            while (null != form[VLKConstants.NEW_VARIANT_ANSWER_TEXT + newVariantAnswerIndex.ToString()])
+            foreach (string key in form.AllKeys)
             {
-                repositoryManager.GetAnswerRepository.Add(alias,
-                                                          form[VLKConstants.NEW_VARIANT_ANSWER_TEXT + newVariantAnswerIndex.ToString()],
-                                                          Convert.ToDouble(form[VLKConstants.NEW_VARIANT_ANSWER_SCORE + newVariantAnswerIndex.ToString()]));
+                if (key.StartsWith(VLKConstants.NEW_VARIANT_ANSWER_TEXT))
+                {
+                    string number = key.Substring(VLKConstants.NEW_VARIANT_ANSWER_TEXT.Length);
 
-                ++newVariantAnswerIndex;
+                    repositoryManager.GetAnswerRepository.Add(alias,
+                                                              form[key],
+                                                              Convert.ToDouble(form[VLKConstants.NEW_VARIANT_ANSWER_SCORE + number]));
+                }
             }
 
             return RedirectToAction("List", new { alias = updatedQuestion.RazdelId });
@@ -231,14 +233,17 @@ namespace VmkLearningKit.Controllers
             
             long questionId = repositoryManager.GetQuestionRepository.Add(alias, title, type, text, canCommented);
 
-            long newVariantAnswerIndex = 0;
-            while (null != form[VLKConstants.NEW_VARIANT_ANSWER_TEXT + newVariantAnswerIndex.ToString()])
+            foreach (string key in form.AllKeys)
             {
-                repositoryManager.GetAnswerRepository.Add(questionId,
-                                                          form[VLKConstants.NEW_VARIANT_ANSWER_TEXT + newVariantAnswerIndex.ToString()],
-                                                          Convert.ToDouble(form[VLKConstants.NEW_VARIANT_ANSWER_SCORE + newVariantAnswerIndex.ToString()]));
+                if (key.StartsWith(VLKConstants.NEW_VARIANT_ANSWER_TEXT))
+                {
+                    string number = key.Substring(VLKConstants.NEW_VARIANT_ANSWER_TEXT.Length);
 
-                ++newVariantAnswerIndex;
+                    string ll = form[key];
+                    repositoryManager.GetAnswerRepository.Add(questionId,
+                                                              form[key],
+                                                              Convert.ToDouble(form[VLKConstants.NEW_VARIANT_ANSWER_SCORE + number]));
+                }
             }
 
             return RedirectToAction("List", new { alias = alias });

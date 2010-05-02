@@ -191,7 +191,7 @@
                             if (answersCount > VLKConstants.MINIMNUM_ANSWERS_NUMBER)
                             {
     %>
-                                <img id="<%= Html.Encode("AnswerRemove" + variantAnswer.Id.ToString()) %>" class="AnswerRemove" src="/Content/Images/Remove.png" alt="Удалить вариант ответа" width="20" height="20" />
+                                <img class="AnswerRemove" src="/Content/Images/remove.png" alt="Удалить вариант ответа" width="20" height="20" />
     <%
                             }
     %>                     
