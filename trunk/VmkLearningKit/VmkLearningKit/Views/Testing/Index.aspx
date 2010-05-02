@@ -186,7 +186,7 @@
 							</div>
 						</div>
 						<a id="RazdelAdd" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a> | 
-						<%= Html.ActionLink("Перейти к плану генерации", "") %>
+						<%= Html.ActionLink("Перейти к плану генерации", "GetPlanGeneration", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>
 					</div>
 				</div>
 				<%

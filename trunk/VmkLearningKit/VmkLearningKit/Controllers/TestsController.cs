@@ -10,28 +10,37 @@ namespace VmkLearningKit.Controllers
 {
     public class TestsController : Controller
     {
-        public ActionResult GetGeneratedTests()
+        public ActionResult GetGeneratedTests(long topicId)
         {
+            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+
             RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
 
             IGeneratedTestRepository generatedTestRepository = repositoryManager.GetGeneratedTestRepository;
 
-            ViewData["AllGeneratedTestsBySpecialityDisciplineTopic"] = generatedTestRepository.GetAllGeneratedTestsBySpecialityDisciplineTopicId(22);
+            ViewData["AllGeneratedTestsBySpecialityDisciplineTopic"] = generatedTestRepository.GetAllGeneratedTestsBySpecialityDisciplineTopicId((int)topicId);
+            ViewData["TopicId"] = topicId;
 
             return View();
         }
 
         public ActionResult GetTest(long id)
         {
+            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+
             RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
 
             IGeneratedTestVariantRepository generatedTestVariantRepository = repositoryManager.GetGeneratedTestVariantRepository;
             IGeneratedQuestionRepository generatedQuestionRepository = repositoryManager.GetGeneratedQuestionRepository;
+            ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository = repositoryManager.GetSpecialityDisciplineTopicRepository;
+            IRazdelRepository razdelRepository = repositoryManager.GetRazdelRepository;
 
             ViewData["AllGeneratedTestVariantsByGeneratedTest"] = generatedTestVariantRepository.GetAllGeneratedTestVariantsByGeneratedTestId(id);
+            ViewData["TopicId"] = specialityDisciplineTopicRepository.GetTopicIdByGeneratedTestId(id);
+            ViewData["AllRazdelsByTopic"] = razdelRepository.GetAllRazdelsBySpecialityDisciplineTopicId(Convert.ToInt64(ViewData["TopicId"]));
 
             ArrayList list = new ArrayList();
-            ArrayList temp = new ArrayList();
+            ArrayList localIdList = new ArrayList();
 
             foreach (GeneratedTestVariant gtv in (IEnumerable<GeneratedTestVariant>)ViewData["AllGeneratedTestVariantsByGeneratedTest"])
             {
@@ -48,6 +57,8 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult GetTestVariant(long id)
         {
+            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+
             RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
 
             IGeneratedQuestionRepository generatedQuestionRepository = repositoryManager.GetGeneratedQuestionRepository;

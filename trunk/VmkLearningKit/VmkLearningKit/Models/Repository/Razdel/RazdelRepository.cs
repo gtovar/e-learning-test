@@ -37,6 +37,33 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+        public int GetRazdelLocalIdByRazdelId(long razdelId)
+        {
+            //получаем раздел
+            Razdel r = DataContext.Razdels.SingleOrDefault(t => t.Id == razdelId);
+            
+            // получаем тему
+            SpecialityDisciplineTopic sdt = DataContext.SpecialityDisciplineTopics.SingleOrDefault(t => t.Id == r.SpecialityDisciplineTopicId);
+        
+            //получаем список разделов темы
+            IEnumerable<Razdel> razdels = DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == sdt.Id);
+
+            int numerator = 1;
+            int localId = 0;
+
+            foreach (Razdel raz in razdels)
+            {
+                if (raz.Id == razdelId)
+                {
+                    localId = numerator;
+                    break;
+                }
+                numerator++;
+            }
+
+            return localId;
+        }
+
         public string GetProfessorNickNameByRazdelId(long id)
         {
             Razdel razdel = GetById(id);
@@ -152,6 +179,15 @@ namespace VmkLearningKit.Models.Repository
 
             updatedObj.Title = newObjTitle;
             
+            DataContext.SubmitChanges();
+        }
+
+        public void UpdateById(long updatedObjId, int newObjQuestionsCount)
+        {
+            Razdel updatedObj = GetById(updatedObjId);
+
+            updatedObj.QuestionsCount = newObjQuestionsCount;
+
             DataContext.SubmitChanges();
         }
 

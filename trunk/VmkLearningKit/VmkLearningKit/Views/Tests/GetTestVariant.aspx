@@ -6,39 +6,39 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         Вопросы варианта</h2>
-    <table border="1" cellpadding="10px" cellspacing="10px">
+    <table class="Generator">
         <tr align="center">
-            <td>
+            <td class="Generator">
                 <b>№</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Раздел</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Тип</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Название</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Количество баллов</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Правильных ответов</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Неправильных ответов</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Группа дублеров</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Гуппа исключений</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Состояние</b>
             </td>
-            <td>
+            <td class="Generator">
                 <b>Возможность комментария</b>
             </td>
         </tr>
@@ -56,41 +56,42 @@
             {
         %>
         <tr align="center">
-            <td>
+            <td class="Generator">
                 <%= q.Id %>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.Razdel.Title%>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.Type%>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.Title%>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.AssignedCount%>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.RightAnswersCount%>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.WrongAnswersCount%>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.DoubleGroup%>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.ExclusionGroup%>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.IsDeleted %>
             </td>
-            <td>
+            <td class="Generator">
                 <%= q.CanCommented %>
             </td>
-            <td>
-                <%= Html.ActionLink("Редактировать", "EditQuestion")%>
+            <td class="Generator">
+            <img src="/Content/Images/edit.png" class="QuestionEdit" alt="Редактировать" width="20" height="20" />
+                
             </td>
         </tr>
         <%}

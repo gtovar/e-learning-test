@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Collections;
 
 namespace VmkLearningKit.Models.Repository
 {
@@ -17,6 +18,87 @@ namespace VmkLearningKit.Models.Repository
         public IEnumerable<Question> GetQuestionsById(long id)
         {
             return DataContext.Questions.Where(t => t.Id == id);
+        }
+
+        /*
+        // локальный id в списке вопросов темы
+        public int GetQuestionLocalIdByQuestionId(long questionId)
+        {              
+            // получаем вопрос
+            Question q = DataContext.Questions.SingleOrDefault(t => t.Id == questionId);
+
+            // получаем раздел
+            Razdel r = DataContext.Razdels.SingleOrDefault(t => t.Id == q.RazdelId);
+
+            // получаем тему
+            SpecialityDisciplineTopic sdt = DataContext.SpecialityDisciplineTopics.SingleOrDefault(t => t.Id == r.SpecialityDisciplineTopicId);
+
+            //получаем список разделов по теме
+            IEnumerable<Razdel> raz = DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == sdt.Id);
+
+            List<Question> questions = new List<Question>();
+
+            //получаем список вопросов по теме
+            foreach (Razdel ra in raz)
+            {
+                IEnumerable<Question> ques = DataContext.Questions.Where(t => t.RazdelId == ra.Id);
+                foreach (Question qu in ques)
+                {
+                    questions.Add(qu);
+                }
+            }
+
+            int localId = 0;
+            int numerator = 1;
+
+            foreach (Question qu in questions)
+            {
+                if (qu.Id == questionId) localId = numerator;
+                numerator++;
+            }
+
+            return localId;
+        }*/
+
+        // локальный id в списке вопросов раздела
+        public int GetQuestionLocalIdByQuestionId(long questionId)
+        {
+            // получаем вопрос
+            Question q = DataContext.Questions.SingleOrDefault(t => t.Id == questionId);
+
+            // получаем раздел
+            Razdel r = DataContext.Razdels.SingleOrDefault(t => t.Id == q.RazdelId);
+
+            //получаем список вопросов по разделу
+            IEnumerable<Question> questions = DataContext.Questions.Where(t => t.RazdelId == r.Id);
+
+            int localId = 0;
+            int numerator = 1;
+
+            foreach (Question qu in questions)
+            {
+                if (qu.Id == questionId)
+                {
+                    localId = numerator;
+                    break;
+                }
+                numerator++;
+            }
+
+            return localId;
+
+        }
+
+        public string GetFullQuestionLocalIdByQuestionId(long questionId)
+        {
+            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+            IRazdelRepository razdelRepository = repositoryManager.GetRazdelRepository;
+
+            int localId = GetQuestionLocalIdByQuestionId(questionId);
+            long razdelId = GetRazdelIdByQuestionId(questionId);
+            int localRazdelId = razdelRepository.GetRazdelLocalIdByRazdelId(razdelId);
+            string s = localId + "(" + localRazdelId + ")";
+            return s;
         }
 
         public long GetRazdelIdByQuestionId(long id)

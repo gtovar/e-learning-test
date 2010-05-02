@@ -759,3 +759,36 @@ table td .Editor
 }
 /*
 ----------------------------------------------------------*/
+
+table .Generator
+{
+	border: solid 1px #e8eef4;
+	padding: 5px 5px 5px 5px;
+}
+
+table th .Generator
+{
+	background-color: #e8eef4;
+}
+
+table td .Generator
+{
+	vertical-align: middle;
+	padding: 5px 5px 5px 5px;
+}
+
+table td .Generator2
+{
+	vertical-align: middle;
+	padding: 5px 5px 5px 5px;
+	color: Green;
+	border: solid 1px #e8eef4;
+}
+
+table td .Generator3
+{
+	vertical-align:top;
+	padding: 5px 5px 5px 5px;
+	color: Blue;
+	border: solid 1px #e8eef4;
+}

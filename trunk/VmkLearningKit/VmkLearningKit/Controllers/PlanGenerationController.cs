@@ -12,6 +12,8 @@ namespace VmkLearningKit.Controllers
     {
         public ActionResult GetPlanGeneration(long topicId)
         {
+            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+
             RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
 
             IRazdelRepository razdelRepository = repositoryManager.GetRazdelRepository;
@@ -23,8 +25,9 @@ namespace VmkLearningKit.Controllers
             ViewData["AllRazdelsBySpecialityDisciplineTopic"] = razdelRepository.GetAllRazdelsBySpecialityDisciplineTopicId(topicId);
             ViewData["QuestionCountBySpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetQuestionCountBySpecialityDisciplineTopicId(topicId);
             ViewData["QuestionCountInTestVariantBySpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetQuestionCountInTestVariantBySpecialityDisciplineTopicId(topicId);
-            ViewData["RequiredVariantCount"] = 4;
+            ViewData["VariantCount"] = specialityDisciplineTopicRepository.GetVariantCount();
             ViewData["RazdelCountBySpecialityDisciplineTopic"] = specialityDisciplineTopicRepository.GetRazdelCountBySpecialityDisciplineTopicId(topicId);
+            ViewData["TopicId"] = topicId;
 
             ArrayList QuestionCountByRazdels = new ArrayList();
 
@@ -39,15 +42,43 @@ namespace VmkLearningKit.Controllers
             return View();
         }
 
-        public ActionResult AddTest(long topicId)
+        public ActionResult AddTest(long topicId, int variantCount, int questionCount)
         {
             RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
 
             IGeneratedTestRepository generatedTestRepository = repositoryManager.GetGeneratedTestRepository;
 
-            generatedTestRepository.Add(topicId);
+            generatedTestRepository.Add(topicId, variantCount, questionCount);
 
-            return RedirectToAction("GetGeneratedTests", "Tests");
+            return RedirectToAction("GetGeneratedTests", "Tests", new { topicId = topicId });
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Edit(long topicId)
+        {
+            return RedirectToAction("GetPlanGeneration", "PlanGeneration", new { topicId = topicId });
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Edit(long topicId, FormCollection form)
+        {
+            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+            IRazdelRepository razdelRepository = repositoryManager.GetRazdelRepository;
+
+            IEnumerable<Razdel> razdels = razdelRepository.GetAllRazdelsBySpecialityDisciplineTopicId(topicId);
+            int count = 0;
+            foreach (Razdel r in razdels)
+            { 
+                string name = form.GetKey(count);
+                razdelRepository.UpdateById(r.Id, Convert.ToInt32(form.Get(count)));
+                count++;
+            }
+
+            ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository = repositoryManager.GetSpecialityDisciplineTopicRepository;
+
+            specialityDisciplineTopicRepository.SetVariantCount(Convert.ToInt32(form["variantCount"]));
+
+            return RedirectToAction("GetPlanGeneration", "PlanGeneration", new { topicId = topicId });
         }
 
     }

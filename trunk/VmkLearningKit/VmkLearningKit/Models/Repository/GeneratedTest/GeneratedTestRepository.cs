@@ -34,7 +34,7 @@ namespace VmkLearningKit.Models.Repository
 
         #region Set
 
-        public GeneratedTest Add(long specialityDisciplineTopicId)
+        public GeneratedTest Add(long specialityDisciplineTopicId, int variantCount, int questionCount)
         {
             IEnumerable<Razdel> razdels = (IEnumerable<Razdel>)DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == specialityDisciplineTopicId); // список разделов
 
@@ -60,14 +60,14 @@ namespace VmkLearningKit.Models.Repository
 
             GeneratedTest gt = new GeneratedTest();
             gt.SpecialityDisciplineTopicId = specialityDisciplineTopicId;
-            gt.VariantsCount = 3;
+            gt.VariantsCount = variantCount;
             gt.GeneratedDate = DateTime.Now;
-            gt.QuestionsCount = 11;
+            gt.QuestionsCount = questionCount;
             DataContext.GeneratedTests.InsertOnSubmit(gt);
             DataContext.SubmitChanges();
 
             //создаем каталог для хранения scorm-пакетов теста
-            string testDir = @"C:\Users\orlov.leonid\Desktop\Пакеты" + "\\" + "тест";
+            string testDir = @"C:\Users\orlov.leonid\Desktop\Пакеты" + "\\" + gt.Id;
 
             DirectoryInfo TestDir = new DirectoryInfo(testDir);
             if (TestDir.Exists)
