@@ -185,7 +185,39 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, отображающий форму студента преподавателя при обращении к domain.ru/Cabinet/Student
+        /// Action, отображающий расписание студента
+        /// </summary>
+        [AuthorizeFilter(Roles = "Student")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Schedule(string alias, string additional)
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+
+            return View(Constants.CABINET_STUDENT_VIEWS + "Schedule.aspx");
+        }
+
+        /// <summary>
+        /// Action, отображающий список тестовых заданий студента
+        /// </summary>
+        [AuthorizeFilter(Roles = "Student")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Testing(string alias, string additional)
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+            if (null != Session["user"])
+            {
+                VmkLearningKit.Models.Domain.User user = (VmkLearningKit.Models.Domain.User)Session["user"];
+                IEnumerable<AssignedTestVariant> assignedTestVariants = repositoryManager.GetAssignedTestVariantRepository.GetAll(user.DbUser.Id);
+
+                ViewData["AssignedTestVariants"] = assignedTestVariants;
+            }
+            return View(Constants.CABINET_STUDENT_VIEWS + "Testing.aspx");
+        }
+
+        /// <summary>
+        /// Action, отображающий график занятий студента
         /// </summary>
         [AuthorizeFilter(Roles = "Student")]
         [AcceptVerbs(HttpVerbs.Get)]
@@ -212,6 +244,11 @@ namespace VmkLearningKit.Controllers
                                 Utility.WriteToLog("CabinetController.Timetable: can't convert timetablePage string to int: " + additional, ex);
                             }
                         }
+                        else
+                        {
+                            timetablePage = GetRelevantTimetablePage();
+                        }
+
                         int[] pages = GetTimetablePages();
                         if (timetablePage > pages.Length)
                         {
@@ -224,11 +261,11 @@ namespace VmkLearningKit.Controllers
                         ViewData["TimetablePage"] = timetablePage;
                         ViewData["TimetableLecturePlans"] = lecturePlans;
                         ViewData["TimetablePages"] = pages;
-                        ViewData["MondayDate"] = GetMondayDate(DateTime.Now).AddDays((timetablePage - 1) * weekLength); ;
+                        ViewData["MondayDate"] = GetMondayDate(GetFirstTermDate()).AddDays((timetablePage - 1) * weekLength); ;
                     }
                 }
             }
-            return View(Constants.CABINET_VIEWS + "Timetable.aspx");
+            return View(Constants.CABINET_STUDENT_VIEWS + "Timetable.aspx");
         }
 
         /// <summary>
@@ -241,7 +278,7 @@ namespace VmkLearningKit.Controllers
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
 
-            return View();
+            return View(Constants.CABINET_GENERAL_VIEWS + "AccountSettings.aspx");
         }
 
         /// <summary>
@@ -382,7 +419,7 @@ namespace VmkLearningKit.Controllers
                 }
             }
 
-            return View();
+            return View(Constants.CABINET_GENERAL_VIEWS + "AccountSettings.aspx");
         }
 
         /// <summary>
@@ -395,7 +432,7 @@ namespace VmkLearningKit.Controllers
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
             ViewData["PasswordLength"] = Constants.PASSWORD_LENGTH;
-            return View();
+            return View(Constants.CABINET_GENERAL_VIEWS + "ChangePassword.aspx");
         }
 
         /// <summary>
@@ -480,7 +517,7 @@ namespace VmkLearningKit.Controllers
 
             ViewData["ChangePasswordResult"] = !hasErrors;
 
-            return View();
+            return View(Constants.CABINET_GENERAL_VIEWS + "ChangePassword.aspx");
         }
 
         ///////////////////////////////////////////////////////
@@ -489,7 +526,7 @@ namespace VmkLearningKit.Controllers
 
         private IEnumerable<LecturePlan> GetTimetablePageLecturePlans(int pageIndex, long specialityId, short[] terms)
         {
-            DateTime firstTermDate = GetMondayDate(DateTime.Now).AddDays((pageIndex - 1) * weekLength);
+            DateTime firstTermDate = GetMondayDate(GetFirstTermDate()).AddDays((pageIndex - 1) * weekLength);
             DateTime lastTermDate = firstTermDate.AddDays(weekLength);
 
             IEnumerable<SpecialityDiscipline> specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetBySpecialityId(specialityId);
@@ -508,7 +545,22 @@ namespace VmkLearningKit.Controllers
                 }
                 if (hasSpecialityDiscipline)
                 {
-                    IEnumerable<LecturePlan> allLecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
+                    List<LecturePlan> allLecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id).ToList<LecturePlan>();
+
+                    int lecturePlanCount = allLecturePlans.Count();
+                    for (int i = 0; i < lecturePlanCount; i++)
+                    {
+                        LecturePlan lecturePlan = allLecturePlans[i];
+                        if (null != lecturePlan && !lecturePlan.Date.HasValue)
+                        {
+                            SetLecturePlanDates(lecturePlan.SpecialityDisciplineId);
+                            allLecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id).ToList<LecturePlan>();
+                            if (null != allLecturePlans)
+                            {
+                                lecturePlanCount = allLecturePlans.Count();
+                            }
+                        }
+                    }
 
                     lecturePlans = new List<LecturePlan>();
                     foreach (LecturePlan lecturePlan in allLecturePlans)
@@ -700,9 +752,22 @@ namespace VmkLearningKit.Controllers
             return date;
         }
 
-        private int[] GetTimetablePages()
+        private int GetRelevantTimetablePage()
         {
             DateTime firstTermDate = GetMondayDate(DateTime.Now);
+            DateTime lastTermDate = GetLastTermDate();
+            TimeSpan difference = lastTermDate - firstTermDate;
+            int days = (int)(difference.TotalDays);
+
+            int weeksFromNow = (int)(days / weekLength) + 1;
+            int[] allWeeks = GetTimetablePages();
+
+            return allWeeks.Length - weeksFromNow + 1;
+        }
+
+        private int[] GetTimetablePages()
+        {
+            DateTime firstTermDate = GetMondayDate(GetFirstTermDate());
             DateTime lastTermDate = GetLastTermDate();
             TimeSpan difference = lastTermDate - firstTermDate;
             int days = (int)(difference.TotalDays);
@@ -741,12 +806,12 @@ namespace VmkLearningKit.Controllers
         enum TermType { Even, Odd }
 
         // дата первого учебного дня в четных семестрах
-        DateTime evenTermFirstDate = new DateTime(DateTime.Now.Year, 2, 10);
+        DateTime evenTermFirstDate = new DateTime(DateTime.Now.Year, 2, 12);
         // дата последнего учебного дня в четных семестрах
-        DateTime evenTermLastDate = new DateTime(DateTime.Now.Year, 5, 10);
+        DateTime evenTermLastDate = new DateTime(DateTime.Now.Year, 5, 25);
 
         // дата первого учебного дня в нечетных семестрах
-        DateTime oddTermFirstDate = new DateTime(DateTime.Now.Year, 9, 3);
+        DateTime oddTermFirstDate = new DateTime(DateTime.Now.Year, 9, 2);
         // дата последнего учебного дня в нечетных семестрах
         DateTime oddTermLastDate = new DateTime(DateTime.Now.Year, 12, 25);
         // длина недели 7 дней

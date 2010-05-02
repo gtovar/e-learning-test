@@ -364,5 +364,19 @@ namespace VmkLearningKit.Models.Repository
                 return generatedTestRepository;
             }
         }
+
+        private IAssignedTestVariantRepository assignedTestVariantRepository;
+
+        public IAssignedTestVariantRepository GetAssignedTestVariantRepository
+        {
+            get
+            {
+                if (assignedTestVariantRepository == null)
+                {
+                    assignedTestVariantRepository = new AssignedTestVariantRepository(DataContext);
+                }
+                return assignedTestVariantRepository;
+            }
+        }
     }
 }

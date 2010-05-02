@@ -196,6 +196,24 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /Views/Cabinet/General/.
+        /// </summary>
+        internal static string CABINET_GENERAL_VIEWS {
+            get {
+                return ResourceManager.GetString("CABINET_GENERAL_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Views/Cabinet/Student/.
+        /// </summary>
+        internal static string CABINET_STUDENT_VIEWS {
+            get {
+                return ResourceManager.GetString("CABINET_STUDENT_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /Cabinet/.
         /// </summary>
         internal static string CABINET_URL {
