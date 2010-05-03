@@ -664,6 +664,15 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /Cabinet/Timetable/.
+        /// </summary>
+        internal static string STUDENT_TIMETABLE_URL {
+            get {
+                return ResourceManager.GetString("STUDENT_TIMETABLE_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не указано.
         /// </summary>
         internal static string TERM_DEFAULT_REPORTING {

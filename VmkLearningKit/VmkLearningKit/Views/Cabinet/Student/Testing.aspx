@@ -20,8 +20,15 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        Тестирование</h2>
+    <div style="float: left">
+        <h2 style="margin-bottom: 10px">Тестирование</h2>
+    </div>
+    <div style="float: right; margin-top: 8px">
+        <%= Html.ActionLink("Расписание", "Schedule") %>
+        &nbsp;
+        <%= Html.ActionLink("График занятий", "Timetable", new { alias = String.Empty, additional = String.Empty } )%>
+    </div>
+    <br />
     <br />
     <div id="tabs">
         <ul>

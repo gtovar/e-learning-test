@@ -193,7 +193,15 @@ namespace VmkLearningKit.Controllers
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
-
+            if (null != Session["user"])
+            {
+                Student student = ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.Student;
+                if (null != student)
+                {
+                    IEnumerable<SpecialityDiscipline> specialityDisciplines = GetStudentCurrentTermSpecialityDiscipline(student);
+                    ViewData["SpecialityDisciplines"] = specialityDisciplines;
+                }
+            }
             return View(Constants.CABINET_STUDENT_VIEWS + "Schedule.aspx");
         }
 
@@ -217,20 +225,33 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, отображающий график занятий студента
+        /// Action, отображающий кабинет студента
         /// </summary>
         [AuthorizeFilter(Roles = "Student")]
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Student(string alias, string additional)
         {
+            alias = String.Empty;
+            additional = String.Empty;
+            Response.Redirect(Constants.STUDENT_TIMETABLE_URL);
+            return View();
+        }
+
+        /// <summary>
+        /// Action, отображающий график занятий студента
+        /// </summary>
+        [AuthorizeFilter(Roles = "Student")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Timetable(string alias, string additional)
+        {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
-            if (null != alias && !alias.Trim().Equals(String.Empty))
+            if (null != alias && (alias.Trim().Equals("Page") || alias.Trim().Equals(String.Empty)))
             {
-                Student student = repositoryManager.GetStudentRepository.GetByNickName(alias);
-                if (null != student)
+                if (null != Session["user"])
                 {
-                    //if (alias.Trim().Equals("Timetable"))
+                    Student student = ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.Student;
+                    if (null != student)
                     {
                         int timetablePage = 1;
                         if (null != additional && !additional.Trim().Equals(String.Empty))
@@ -520,6 +541,34 @@ namespace VmkLearningKit.Controllers
             return View(Constants.CABINET_GENERAL_VIEWS + "ChangePassword.aspx");
         }
 
+        ///////////////////////////////////////////////////////////////
+        /// Schedule: GetStudentCurrentTermSpecialityDiscipline begins
+        ///////////////////////////////////////////////////////////////
+
+        private IEnumerable<SpecialityDiscipline> GetStudentCurrentTermSpecialityDiscipline(Student student)
+        {
+            DateTime firstTermDate = GetFirstTermDate();
+            DateTime lastTermDate = GetLastTermDate();
+            short[] terms = GetTermsByGroupTitle(student.Group.Title);
+
+            List<SpecialityDiscipline> foundSpecialityDisciplines = new List<SpecialityDiscipline>();
+
+            IEnumerable<SpecialityDiscipline> specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetBySpecialityId(student.Group.SpecialityId);
+            foreach (SpecialityDiscipline specialityDiscipline in specialityDisciplines)
+            {
+                foreach (SpecialityDisciplineTerm specialityDisciplineTerm in specialityDiscipline.SpecialityDisciplineTerms)
+                {
+                    short[] officialTerms = GetTermsByDate(DateTime.Now);
+                    if (null != terms && terms.Contains(specialityDisciplineTerm.Term) &&
+                        officialTerms.Contains(specialityDisciplineTerm.Term))
+                    {
+                        foundSpecialityDisciplines.Add(specialityDiscipline);
+                    }
+                }
+            }
+            return foundSpecialityDisciplines;
+        }
+
         ///////////////////////////////////////////////////////
         /// GetTimetablePageLecturePlans begins
         ///////////////////////////////////////////////////////
@@ -537,7 +586,7 @@ namespace VmkLearningKit.Controllers
                 foreach (SpecialityDisciplineTerm specialityDisciplineTerm in specialityDiscipline.SpecialityDisciplineTerms)
                 {
                     short[] officialTerms = GetTermsByDate(DateTime.Now);
-                    if (null != terms && terms.Contains(specialityDisciplineTerm.Term) && 
+                    if (null != terms && terms.Contains(specialityDisciplineTerm.Term) &&
                         officialTerms.Contains(specialityDisciplineTerm.Term))
                     {
                         hasSpecialityDiscipline = true;
@@ -585,31 +634,31 @@ namespace VmkLearningKit.Controllers
                 if (groupTitle.IndexOf("81") < 2 &&
                     groupTitle.IndexOf("81") > -1)
                 {
-                    return new short[] {1, 2};
+                    return new short[] { 1, 2 };
                 }
 
                 if (groupTitle.IndexOf("82") < 2 &&
                     groupTitle.IndexOf("82") > -1)
                 {
-                    return new short[] {3, 4};
+                    return new short[] { 3, 4 };
                 }
 
                 if (groupTitle.IndexOf("83") < 2 &&
                     groupTitle.IndexOf("83") > -1)
                 {
-                    return new short[] {5, 6};
+                    return new short[] { 5, 6 };
                 }
 
                 if (groupTitle.IndexOf("84") < 2 &&
                     groupTitle.IndexOf("84") > -1)
                 {
-                    return new short[] {7, 8};
+                    return new short[] { 7, 8 };
                 }
 
                 if (groupTitle.IndexOf("85") < 2 &&
                     groupTitle.IndexOf("85") > -1)
                 {
-                    return new short[] {9, 10};
+                    return new short[] { 9, 10 };
                 }
 
                 if (groupTitle.IndexOf("86") < 2 &&
