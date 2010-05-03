@@ -13,5 +13,6 @@ namespace VmkLearningKit.Models.Repository
         User Add(User obj);
         User Update(User obj);
         bool IsNickNameExists(long id, string nickName);
+        IEnumerable<User> GetByGroupId(long id);
     }
 }

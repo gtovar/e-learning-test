@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Models.Repository
 {
@@ -19,13 +20,62 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.GeneratedTestVariants.SingleOrDefault(t => t.Id == id);
         }
 
-        public IEnumerable<GeneratedTestVariant> GetAllGeneratedTestVariantsByGeneratedTestId(long generatedTestId)
+       public IEnumerable<GeneratedTestVariant> GetAllGeneratedTestVariantsByGeneratedTestId(long generatedTestId)
         {
-            var result = (from c in DataContext.GeneratedTestVariants
-                          where c.GeneratedTestId == generatedTestId
-                          select c);
+            try
+            {
+                var result = DataContext.GeneratedTestVariants.Where(c => c.GeneratedTestId == generatedTestId);
+                return (IEnumerable<GeneratedTestVariant>)result;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("в бд нет сгенерированных тестовых вариантов с generatedTest id =" + generatedTestId.ToString());
+                return null;
+            }
 
-            return (IEnumerable<GeneratedTestVariant>)result;
+        }
+        public IEnumerable<GeneratedTestVariant> GetCurrentVariantsTestByTopicId(long topicId)
+        {
+            try
+            {
+                IEnumerable<GeneratedTest> res = (from gt in DataContext.GeneratedTests
+                                                  where gt.SpecialityDisciplineTopicId == topicId
+                                                  select gt).OrderBy(o => o.GeneratedDate);
+                GeneratedTest _gt = res.Last();
+                IEnumerable<GeneratedTestVariant> gtv =
+                DataContext.GeneratedTestVariants.Where(t => t.GeneratedTestId == _gt.Id);
+                return gtv;
+
+            }
+
+            catch (Exception ex)
+            {
+                // Utility.WriteToLog("в базе нет GeneratedTestVariant c GeneratedTest.ID=");
+                return null;
+            }
+
+        }
+
+        public long GetLocalNumGeneratedTestVariantVariant(long idGeneratedTestVariant)
+        {
+            GeneratedTestVariant gt = DataContext.GeneratedTestVariants.Single(v => v.Id == idGeneratedTestVariant);
+            IEnumerable<GeneratedTestVariant> gtv = DataContext.GeneratedTestVariants.Where(g => g.GeneratedTestId == gt.GeneratedTestId).OrderBy(o => o.Id);
+            Array tmp = gtv.ToArray<GeneratedTestVariant>();
+
+            for (int i = 0; i < gtv.ToArray<GeneratedTestVariant>().Length; i++)
+            {
+                if ((gtv.ToArray<GeneratedTestVariant>()[i]).Id == idGeneratedTestVariant) return i;
+            }
+            return -1;
+
+        }
+
+        public long GetCountCurrentTopicTestVariants(long topicId)
+        {
+            IEnumerable<GeneratedTestVariant> gtv = GetCurrentVariantsTestByTopicId(topicId);
+            if (gtv != null)
+                return gtv.Count();
+            else return 0;
         }
 
         #endregion

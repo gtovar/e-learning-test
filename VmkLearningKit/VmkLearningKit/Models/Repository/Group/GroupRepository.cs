@@ -83,6 +83,25 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+        public IEnumerable<Group> GetAllByDisciplineProfessor(long disciplineId, long professorId)
+        {
+            try
+            {
+                var res = from sp in DataContext.Specialities
+                          from gr in DataContext.Groups
+                          where sp.Id == (DataContext.SpecialityDisciplines.SingleOrDefault(d => d.Id == disciplineId)).SpecialityId &&
+                                gr.SpecialityId == sp.Id
+                          select gr;
+                return res;
+            }
+            catch (Exception ex)
+            {
+                //  Utility.WriteToLog("Can't get groups by departmentId = " + departmentId, ex);
+            }
+            return null;
+        }
+
+
         public Group Add(Group obj)
         {
             Group objWithTheSameAlias = GetByAlias(obj.Alias);

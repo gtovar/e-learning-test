@@ -360,7 +360,7 @@ namespace VmkLearningKit.Core
             string schedule = String.Empty;
             if (null != foundDiscipline && null != foundTimetable)
             {
-                schedule = foundDiscipline.Abbreviation + foundTimetable.Room + " (" + foundTimetable.Building + ") ";
+                schedule = foundDiscipline.Alias + foundTimetable.Room + " (" + foundTimetable.Building + ") ";
             }
 
             return schedule;

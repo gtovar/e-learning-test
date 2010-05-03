@@ -35,7 +35,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.ConnectionInfoExtended, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -90,6 +90,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanGenerationController.cs" />
     <Compile Include="Controllers\ProfessorController.cs" />
+    <Compile Include="Controllers\StatementController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Core\AuthorizeFilter.cs" />
@@ -275,6 +276,8 @@
     <Content Include="Views\Shared\Error404.aspx" />
     <Content Include="Views\Shared\GeneralNavigation.ascx" />
     <Content Include="Views\Shared\ProfessorMenu.ascx" />
+    <Content Include="Views\Statement\chooseStatement.aspx" />
+    <Content Include="Views\Statement\Statement.aspx" />
     <Content Include="Views\Testing\EditRazdel.ascx" />
     <Content Include="Views\Testing\Index.aspx" />
     <Content Include="Views\Tests\GetGeneratedTests.aspx" />
@@ -335,7 +338,7 @@
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
-      <VersionMinor>4</VersionMinor>
+      <VersionMinor>3</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
