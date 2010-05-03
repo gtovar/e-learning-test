@@ -9,5 +9,7 @@ namespace VmkLearningKit.Models.Repository
     {
         IEnumerable<GeneratedTest> GetAllGeneratedTestsBySpecialityDisciplineTopicId(int specialityDisciplineTopicId);
         GeneratedTest Add(long specialityDisciplineTopicId, int variantCount, int questionCount);
+        GeneratedTest GetLastGeneratedTestByTopicId(long topicId);
+        IEnumerable<GeneratedTest> GetAllGeneratedTestsByTopicId(long topicId);
     }
 }

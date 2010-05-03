@@ -125,6 +125,24 @@ namespace VmkLearningKit.Models.Repository
             return 0;
         }
 
+        public IEnumerable<User> GetByGroupId(long id)
+        {
+            try
+            {
+                var res = from st in DataContext.Students
+                          from u in DataContext.Users
+                          where st.GroupId == id && u.Id == st.UserId
+                          select u;
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!в базе данных нет студентов принадлежащих группе с id " + id + "!!!!", ex);
+
+                return null;
+            }
+        }
+
         public void Delete(User obj)
         {
             DataContext.Users.DeleteOnSubmit(obj);

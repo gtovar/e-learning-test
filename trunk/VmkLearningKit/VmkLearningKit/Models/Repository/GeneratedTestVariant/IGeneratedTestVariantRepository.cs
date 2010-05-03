@@ -9,5 +9,8 @@ namespace VmkLearningKit.Models.Repository
     {
         IEnumerable<GeneratedTestVariant> GetAllGeneratedTestVariantsByGeneratedTestId(long testId);
         GeneratedTestVariant Add(long testId);
+        IEnumerable<GeneratedTestVariant> GetCurrentVariantsTestByTopicId(long topicId);
+        long GetCountCurrentTopicTestVariants(long topicId);
+        long GetLocalNumGeneratedTestVariantVariant(long idGeneratedTestVariant);
     }
 }

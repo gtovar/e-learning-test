@@ -5,6 +5,7 @@ using System.Web;
 using System.IO;
 using System.Collections;
 using ICSharpCode.SharpZipLib.Zip;
+using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Models.Repository
 {
@@ -29,6 +30,37 @@ namespace VmkLearningKit.Models.Repository
                           select c);
             return (IEnumerable<GeneratedTest>)result;
         }
+
+        public GeneratedTest GetLastGeneratedTestByTopicId(long topicId)
+        {
+            try
+            {
+                GeneratedTest res = GetAllGeneratedTestsByTopicId(topicId).OrderBy(o => o.GeneratedDate).Last();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("нет сгенерированных тестов(GeneratedTest) по теме " + topicId.ToString());
+                return null;
+            }
+
+        }
+        public IEnumerable<GeneratedTest> GetAllGeneratedTestsByTopicId(long topicId)
+        {
+            try
+            {
+                var result = (from c in DataContext.GeneratedTests
+                              where c.SpecialityDisciplineTopicId == topicId
+                              select c);
+                return (IEnumerable<GeneratedTest>)result;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("в базе данных нет сгенерированных тест по теме с id= " + topicId.ToString() + ex.ToString());
+                return null;
+            }
+        }
+
 
         #endregion
 

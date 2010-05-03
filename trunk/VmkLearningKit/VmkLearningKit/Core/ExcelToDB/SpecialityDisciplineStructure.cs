@@ -482,7 +482,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                 if (null != specialityDisciplineAbbreviation &&
                                     !specialityDisciplineAbbreviation.Trim().Equals(String.Empty))
                                 {
-                                    specialityDiscipline.Abbreviation = specialityDisciplineAbbreviation;
+                                    specialityDiscipline.Alias = specialityDisciplineAbbreviation;
                                 }
                                 else
                                 {
@@ -498,7 +498,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                             }
                                         }
                                     }
-                                    specialityDiscipline.Abbreviation = specialityDisciplineAbbreviation;
+                                    specialityDiscipline.Alias = specialityDisciplineAbbreviation;
                                 }
 
                                 specialityDiscipline.Category = SpecialityDisciplineCategory.GetCategoryString(category);

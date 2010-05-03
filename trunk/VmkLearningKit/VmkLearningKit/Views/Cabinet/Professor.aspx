@@ -150,7 +150,12 @@
     </table>
     <input type="submit" style="width: 100px; height: 30px; margin-top: 15px; float: right" name="SaveLecturePlans" id="SaveLecturePlans" value="Сохранить" />
     <input type="hidden" value="<%= lectionPlanIds %>" name="LectionPlanIds" id="LectionPlanIds" />
+    
+    <!----------------------------->
+    <%=Html.ActionLink("К ведомости", "chooseStatement", "Statement", new { alias = ((Professor)ViewData["Professor"]).User.NickName, additional = ((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Alias }, new { @class = "" })%>
+    <!----------------------------->
     <% Html.EndForm(); %>
+    
     <%
         }
                if (null != ViewData["Detailed"])
@@ -206,6 +211,7 @@
         <% index++;
            } %>
     </table>
+    
     <%
         }
            }
@@ -214,4 +220,5 @@
        {
            Utility.RedirectToErrorPage("Cabinet.Professor: catch exception", ex);
        } %>
+       
 </asp:Content>

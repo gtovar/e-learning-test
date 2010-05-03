@@ -14,5 +14,6 @@ namespace VmkLearningKit.Models.Repository
         Group GetByTitle(string title);
         long GetMaxId();
         Group Add(Group obj);
+        IEnumerable<Group> GetAllByDisciplineProfessor(long disciplineId, long professorId);
     }
 }
