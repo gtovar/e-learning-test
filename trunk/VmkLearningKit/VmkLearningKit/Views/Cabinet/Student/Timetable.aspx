@@ -18,8 +18,7 @@
                 </h4>
             </td>
             <td style="padding-bottom: 10px">
-                <% if (null != ViewData["TimetableLecturePlans"] &&
-           null != ViewData["TimetablePages"])
+                <% if (null != ViewData["TimetableLecturePlans"] && null != ViewData["TimetablePages"])
                    {
                        IEnumerable<LecturePlan> lecturePlans = (IEnumerable<LecturePlan>)ViewData["TimetableLecturePlans"];
                        int[] pages = (int[])ViewData["TimetablePages"];
@@ -51,7 +50,7 @@
                         <%  }
                         else
                         { %>
-                        <%= Html.ActionLink(page.ToString(), "Student", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.NickName, additional = page.ToString() }, new { @class = "pagerDB-next active", @title = "Перейти к " + page.ToString() + " странице" })%>
+                        <%= Html.ActionLink(page.ToString(), "Timetable", "Cabinet", new { alias = "Page", additional = page.ToString() }, new { @class = "pagerDB-next active", @title = "Перейти к " + page.ToString() + " странице" })%>
                         <%
                     }
                     }
@@ -76,8 +75,8 @@
            DateTime today = mondayDate;
         %>
         <tr>
-            <td rowspan="9" style="width: 20px; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>background-color: #534d00;<% } %>">
-                <font style="layout-flow: vertical-ideographic; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>color: White;<% } %>"><b>
+            <td rowspan="9" style="width: 20px; <% if (today.Date.Equals(DateTime.Now.Date)) { %>background-color: #534d00;<% } %>">
+                <font style="layout-flow: vertical-ideographic; <% if (today.Date.Equals(DateTime.Now.Date)) { %>color: White;<% } %>"><b>
                     <%= day %>
                     &nbsp;&nbsp;&nbsp;
                     <%= today.ToString("d MMMM")%>
@@ -534,8 +533,8 @@
            today = mondayDate.AddDays(1);
         %>
         <tr>
-            <td rowspan="9" style="width: 20px; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>background-color: #534d00;<% } %>">
-                <font style="layout-flow: vertical-ideographic; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>color: White;<% } %>"><b>
+            <td rowspan="9" style="width: 20px; <% if (today.Date.Equals(DateTime.Now.Date)) { %>background-color: #534d00;<% } %>">
+                <font style="layout-flow: vertical-ideographic; <% if (today.Date.Equals(DateTime.Now.Date)) { %>color: White;<% } %>"><b>
                     <%= day %>
                     &nbsp;&nbsp;&nbsp;
                     <%= today.ToString("d MMMM") %>
@@ -992,8 +991,8 @@
            today = mondayDate.AddDays(2);
         %>
         <tr>
-            <td rowspan="9" style="width: 20px; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>background-color: #534d00;<% } %>">
-                <font style="layout-flow: vertical-ideographic; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>color: White;<% } %>"><b>
+            <td rowspan="9" style="width: 20px; <% if (today.Date.Equals(DateTime.Now.Date)) { %>background-color: #534d00;<% } %>">
+                <font style="layout-flow: vertical-ideographic; <% if (today.Date.Equals(DateTime.Now.Date)) { %>color: White;<% } %>"><b>
                     <%= day %>
                     &nbsp;&nbsp;&nbsp;
                     <%= today.ToString("d MMMM")%>
@@ -1450,8 +1449,8 @@
            today = mondayDate.AddDays(3);
         %>
         <tr>
-            <td rowspan="9" style="width: 20px; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>background-color: #534d00;<% } %>">
-                <font style="layout-flow: vertical-ideographic; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>color: White;<% } %>"><b>
+            <td rowspan="9" style="width: 20px; <% if (today.Date.Equals(DateTime.Now.Date)) { %>background-color: #534d00;<% } %>">
+                <font style="layout-flow: vertical-ideographic; <% if (today.Date.Equals(DateTime.Now.Date)) { %>color: White;<% } %>"><b>
                     <%= day %>
                     &nbsp;&nbsp;&nbsp;
                     <%= today.ToString("d MMMM")%>
@@ -1908,8 +1907,8 @@
            today = mondayDate.AddDays(4);
         %>
         <tr>
-            <td rowspan="9" style="width: 20px; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>background-color: #534d00;<% } %>">
-                <font style="layout-flow: vertical-ideographic; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>color: White;<% } %>"><b>
+            <td rowspan="9" style="width: 20px; <% if (today.Date.Equals(DateTime.Now.Date)) { %>background-color: #534d00;<% } %>">
+                <font style="layout-flow: vertical-ideographic; <% if (today.Date.Equals(DateTime.Now.Date)) { %>color: White;<% } %>"><b>
                     <%= day %>
                     &nbsp;&nbsp;&nbsp;
                     <%= today.ToString("d MMMM")%>
@@ -2366,8 +2365,8 @@
            today = mondayDate.AddDays(5);
         %>
         <tr>
-            <td rowspan="9" style="width: 20px; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>background-color: #534d00;<% } %>">
-                <font style="layout-flow: vertical-ideographic; <% if (today.DayOfWeek == DateTime.Now.DayOfWeek) { %>color: White;<% } %>"><b>
+            <td rowspan="9" style="width: 20px; <% if (today.Date.Equals(DateTime.Now.Date)) { %>background-color: #534d00;<% } %>">
+                <font style="layout-flow: vertical-ideographic; <% if (today.Date.Equals(DateTime.Now.Date)) { %>color: White;<% } %>"><b>
                     <%= day %>
                     &nbsp;&nbsp;&nbsp;
                     <%= today.ToString("d MMMM")%>

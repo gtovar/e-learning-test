@@ -258,7 +258,7 @@ namespace VmkLearningKit.Core
         public static string GetRoom(LecturePlan lecturePlan)
         {
             string room = String.Empty;
-            if (null != lecturePlan && null != lecturePlan.SpecialityDiscipline && 
+            if (null != lecturePlan && null != lecturePlan.SpecialityDiscipline &&
                 null != lecturePlan.SpecialityDiscipline.LectureTimetables)
             {
                 foreach (LectureTimetable timetable in lecturePlan.SpecialityDiscipline.LectureTimetables)
@@ -298,13 +298,22 @@ namespace VmkLearningKit.Core
         {
             DayOfWeek dayOfWeek = GetDayOfWeekFromString(day);
             LecturePlan foundLecturePlan = null;
+
+            string timeWithZero = String.Empty;
+            // 8:00, 9:00
+            if (time.Length < 5)
+            {
+                timeWithZero = "0" + time;
+            }
+
             foreach (LecturePlan lecturePlan in lecturePlans)
             {
                 if (lecturePlan.Date.HasValue && lecturePlan.Date.Value.DayOfWeek == dayOfWeek)
                 {
                     foreach (LectureTimetable timetable in lecturePlan.SpecialityDiscipline.LectureTimetables)
                     {
-                        if (timetable.Day.Trim().Equals(day.Trim()) && timetable.Time.Trim().Equals(time.Trim()))
+                        if (timetable.Day.Trim().Equals(day.Trim()) && 
+                           (timetable.Time.Trim().Equals(time.Trim()) || timetable.Time.Trim().Equals(timeWithZero.Trim())))
                         {
                             foundLecturePlan = lecturePlan;
                             break;
@@ -315,11 +324,46 @@ namespace VmkLearningKit.Core
             return foundLecturePlan;
         }
 
-        /*
-        public static int GetCurrentTerm()
+        public static string FindSchedule(IEnumerable<SpecialityDiscipline> specialityDisciplines, string day, string time)
         {
-            int month = DateTime.Now.Month;
+            DayOfWeek dayOfWeek = GetDayOfWeekFromString(day);
+            SpecialityDiscipline foundDiscipline = null;
+            LectureTimetable foundTimetable = null;
+
+            string timeWithZero = String.Empty;
+            // 8:00, 9:00
+            if (time.Length < 5)
+            {
+                timeWithZero = "0" + time;
+            }
+
+            foreach (SpecialityDiscipline discipline in specialityDisciplines)
+            {
+                foreach (LectureTimetable timetable in discipline.LectureTimetables)
+                {
+                    if (timetable.Day.Trim().Equals(day.Trim()) && 
+                       (timetable.Time.Trim().Equals(time.Trim()) || timetable.Time.Trim().Equals(timeWithZero.Trim())))
+                    {
+                        foreach (LecturePlan lecturePlan in discipline.LecturePlans)
+                        {
+                            if (lecturePlan.Date.HasValue && lecturePlan.Date.Value.DayOfWeek == dayOfWeek)
+                            {
+                                foundDiscipline = discipline;
+                                foundTimetable = timetable;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            string schedule = String.Empty;
+            if (null != foundDiscipline && null != foundTimetable)
+            {
+                schedule = foundDiscipline.Abbreviation + foundTimetable.Room + " (" + foundTimetable.Building + ") ";
+            }
+
+            return schedule;
         }
-        */
     }
 }

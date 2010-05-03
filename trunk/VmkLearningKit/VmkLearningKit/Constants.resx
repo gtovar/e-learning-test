@@ -318,6 +318,9 @@
   <data name="STUDENT_ROLE" xml:space="preserve">
     <value>Student</value>
   </data>
+  <data name="STUDENT_TIMETABLE_URL" xml:space="preserve">
+    <value>/Cabinet/Timetable/</value>
+  </data>
   <data name="TERM_DEFAULT_REPORTING" xml:space="preserve">
     <value>Не указано</value>
   </data>
