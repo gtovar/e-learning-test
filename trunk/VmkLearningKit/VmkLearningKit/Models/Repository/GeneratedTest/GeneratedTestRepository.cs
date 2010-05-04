@@ -23,6 +23,12 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.GeneratedTests.SingleOrDefault(t => t.Id == id);
         }
 
+        public long GetGeneratedTestIdByGeneratedTestVariantId(long generatedTestVariantId)
+        {
+            GeneratedTestVariant gtv = DataContext.GeneratedTestVariants.SingleOrDefault(t => t.Id == generatedTestVariantId);
+            return gtv.GeneratedTestId;
+        }
+
         public IEnumerable<GeneratedTest> GetAllGeneratedTestsBySpecialityDisciplineTopicId(int specialityDisciplineTopicId)
         {
             var result = (from c in DataContext.GeneratedTests
@@ -215,6 +221,7 @@ namespace VmkLearningKit.Models.Repository
                 // записываем файлы тестового варианта
                 Builder page = new Builder("page.htm", Dir + "\\P1000", gtv, s);
                 page.WritePage();
+
                 /*Writer csimspage = new Writer(Test, TempDir + "\\P1000", "IMSPage.htm");
                 csimspage.WriteIMSPage();*/
 
@@ -231,7 +238,7 @@ namespace VmkLearningKit.Models.Repository
                 fz.CreateEmptyDirectories = true;
                 fz.CreateZip(Dir + ".zip", Dir, true, "");
                 fz = null;
-                ScormDir.Delete(true);
+                //ScormDir.Delete(true);
             }
 
             return gt;

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using VmkLearningKit.Models.Repository;
 using System.Collections;
+using System.IO;
 
 namespace VmkLearningKit.Controllers
 {
@@ -76,6 +77,21 @@ namespace VmkLearningKit.Controllers
             ViewData["AllQuestionByGeneratedTestVariant"] = al;
 
             return View();
+        }
+
+        public ActionResult Show(long id)
+        {
+            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+            IGeneratedTestRepository generatedTestRepository = repositoryManager.GetGeneratedTestRepository;
+            IGeneratedTestVariantRepository generatedTestVariantRepository = repositoryManager.GetGeneratedTestVariantRepository;
+
+
+            long generatedTestId = generatedTestRepository.GetGeneratedTestIdByGeneratedTestVariantId(id);
+            int localId = generatedTestVariantRepository.GetGeneratedTestVariantLocalIdByGeneratedTestVariantId(id);
+            string Dir = @"file:///C:/Users/orlov.leonid/Desktop/Пакеты" + "/" + generatedTestId + "/" + localId + "/P1000/page.htm";
+            Response.Redirect(Dir);
+
+            return RedirectToAction("GetTest", "Test", new { id = id});
         }
 
     }

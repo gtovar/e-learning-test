@@ -52,12 +52,15 @@
             ViewData["ques"] = l[m++];
             testId = gq.GeneratedTestVariant.GeneratedTestId;
 
+            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+            IQuestionRepository questionRepository = repositoryManager.GetQuestionRepository;
+
             foreach (Question q in (IEnumerable<Question>)ViewData["ques"])
             {
         %>
         <tr align="center">
             <td class="Generator">
-                <%= q.Id %>
+                <%= questionRepository.GetQuestionLocalIdByQuestionId(q.Id) %>
             </td>
             <td class="Generator">
                 <%= q.Razdel.Title%>
@@ -78,20 +81,43 @@
                 <%= q.WrongAnswersCount%>
             </td>
             <td class="Generator">
-                <%= q.DoubleGroup%>
+            <% if (q.DoubleGroup == -1)
+               {%>
+                Нет
+                <% }
+               else {%>
+                <%= q.DoubleGroup %>
+                <% } %>                
             </td>
             <td class="Generator">
-                <%= q.ExclusionGroup%>
+                <% if (q.ExclusionGroup == -1)
+               {%>
+                Нет
+                <% }
+               else {%>
+                <%= q.ExclusionGroup %>
+                <% } %>
             </td>
             <td class="Generator">
-                <%= q.IsDeleted %>
+                <% if (q.IsDeleted == 0)
+               {%>
+                Не удален
+                <% }
+               else {%>
+                Удален
+                <% } %>
             </td>
             <td class="Generator">
-                <%= q.CanCommented %>
+                <% if (q.CanCommented == 0)
+               {%>
+                Нет
+                <% }
+               else {%>
+                Да
+                <% } %>
             </td>
             <td class="Generator">
-            <img src="/Content/Images/edit.png" class="QuestionEdit" alt="Редактировать" width="20" height="20" />
-                
+               <%= Html.ActionLink("Ред.", "Edit", "Editor", new { alias = q.Id }, new { @class = "" })%> 
             </td>
         </tr>
         <%}
