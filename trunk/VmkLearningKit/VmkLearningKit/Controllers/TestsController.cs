@@ -81,17 +81,20 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult Show(long id)
         {
-            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+
+            /*RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+
             IGeneratedTestRepository generatedTestRepository = repositoryManager.GetGeneratedTestRepository;
             IGeneratedTestVariantRepository generatedTestVariantRepository = repositoryManager.GetGeneratedTestVariantRepository;
-
 
             long generatedTestId = generatedTestRepository.GetGeneratedTestIdByGeneratedTestVariantId(id);
             int localId = generatedTestVariantRepository.GetGeneratedTestVariantLocalIdByGeneratedTestVariantId(id);
             string Dir = @"file:///C:/Users/orlov.leonid/Desktop/Пакеты" + "/" + generatedTestId + "/" + localId + "/P1000/page.htm";
-            Response.Redirect(Dir);
+            //Response.Redirect(Dir);*/
 
-            return RedirectToAction("GetTest", "Test", new { id = id});
+            ViewData["Id"] = id;
+            return View();
         }
 
     }

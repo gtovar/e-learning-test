@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.IO;
-using Microsoft.Office.Core;
+//using Microsoft.Office.Core;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace VmkLearningKit.Core.ExcelToDB

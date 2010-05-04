@@ -91,8 +91,8 @@ namespace VmkLearningKit.Models.Repository
 
         void WritePostQuestion()
         {
-            sw.WriteLine("</label>");
-            sw.WriteLine("</p>");
+        sw.WriteLine("</label>");
+        sw.WriteLine("</p>");
         }
 
 
@@ -104,13 +104,13 @@ namespace VmkLearningKit.Models.Repository
             {
                 case 0:
                     {
-                        sw.WriteLine("<input type=\"text\" name=\"answer" + index + "\" id=\"answer\" />");
+                        sw.WriteLine("<input type=\"text\" name=\"answer" + index + "\" id=\"answer" + index + "\" />");
                         break;
                     }
                 case 1:
                     {
                         sw.WriteLine("<label>");
-                        sw.WriteLine("<input type=\"radio\" name=\"RadioGroup" + index + "\" value=\"radio" + l + "\" id=\"RadioGroup1_" + l + "0\" />");
+                        sw.WriteLine("<input type=\"radio\" name=\"RadioGroup" + index + "\" value=\"radio" + l + "\" id=\"RadioGroup1_" + l + "\" />");
                         sw.WriteLine(text + "</label>");
                         sw.WriteLine("<br />");
                         break;
