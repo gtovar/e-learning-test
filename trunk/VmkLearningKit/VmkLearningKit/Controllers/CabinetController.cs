@@ -68,7 +68,7 @@ namespace VmkLearningKit.Controllers
                     if (null != additional && !additional.Trim().Equals(String.Empty))
                     {
                         SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
-                        SetLecturePlanDates(specialityDiscipline.Id);
+                        SetLecturePlanDates(specialityDiscipline);
                         ViewData["SpecialityDiscipline"] = specialityDiscipline;
                         ViewData["SpecialityDisciplineTopics"] = specialityDiscipline.SpecialityDisciplineTopics;
                         ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
@@ -168,7 +168,7 @@ namespace VmkLearningKit.Controllers
                 if (null != additional && !additional.Trim().Equals(String.Empty))
                 {
                     SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
-                    SetLecturePlanDates(specialityDiscipline.Id);
+                    SetLecturePlanDates(specialityDiscipline);
                     ViewData["SpecialityDiscipline"] = specialityDiscipline;
                     ViewData["SpecialityDisciplineTopics"] = specialityDiscipline.SpecialityDisciplineTopics;
                     ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
@@ -276,13 +276,12 @@ namespace VmkLearningKit.Controllers
                             timetablePage = pages.Length;
                             ViewData["InfoMessage"] = "Это последняя учебная неделя";
                         }
-                        short[] terms = GetTermsByGroupTitle(student.Group.Title);
-                        IEnumerable<LecturePlan> lecturePlans = GetTimetablePageLecturePlans(timetablePage, student.Group.SpecialityId, terms);
+                        IEnumerable<LecturePlan> lecturePlans = GetTimetablePageLecturePlans(timetablePage, student);
 
                         ViewData["TimetablePage"] = timetablePage;
                         ViewData["TimetableLecturePlans"] = lecturePlans;
                         ViewData["TimetablePages"] = pages;
-                        ViewData["MondayDate"] = GetMondayDate(GetFirstTermDate()).AddDays((timetablePage - 1) * weekLength); ;
+                        ViewData["MondayDate"] = GetMondayDate(Utility.GetFirstTermDate()).AddDays((timetablePage - 1) * Utility.weekLength); ;
                     }
                 }
             }
@@ -547,9 +546,9 @@ namespace VmkLearningKit.Controllers
 
         private IEnumerable<SpecialityDiscipline> GetStudentCurrentTermSpecialityDiscipline(Student student)
         {
-            DateTime firstTermDate = GetFirstTermDate();
-            DateTime lastTermDate = GetLastTermDate();
-            short[] terms = GetTermsByGroupTitle(student.Group.Title);
+            DateTime firstTermDate = Utility.GetFirstTermDate();
+            DateTime lastTermDate = Utility.GetLastTermDate();
+            short[] terms = GetTermsByGroup(student.Group);
 
             List<SpecialityDiscipline> foundSpecialityDisciplines = new List<SpecialityDiscipline>();
 
@@ -573,13 +572,14 @@ namespace VmkLearningKit.Controllers
         /// GetTimetablePageLecturePlans begins
         ///////////////////////////////////////////////////////
 
-        private IEnumerable<LecturePlan> GetTimetablePageLecturePlans(int pageIndex, long specialityId, short[] terms)
+        private IEnumerable<LecturePlan> GetTimetablePageLecturePlans(int pageIndex, Student student)
         {
-            DateTime firstTermDate = GetMondayDate(GetFirstTermDate()).AddDays((pageIndex - 1) * weekLength);
-            DateTime lastTermDate = firstTermDate.AddDays(weekLength);
+            DateTime firstTermDate = GetMondayDate(Utility.GetFirstTermDate()).AddDays((pageIndex - 1) * Utility.weekLength);
+            DateTime lastTermDate = firstTermDate.AddDays(Utility.weekLength);
+            short[] terms = GetTermsByGroup(student.Group);
 
-            IEnumerable<SpecialityDiscipline> specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetBySpecialityId(specialityId);
-            List<LecturePlan> lecturePlans = null;
+            IEnumerable<SpecialityDiscipline> specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetBySpecialityId(student.Group.SpecialityId);
+            List<LecturePlan> lecturePlans = new List<LecturePlan>();
             foreach (SpecialityDiscipline specialityDiscipline in specialityDisciplines)
             {
                 bool hasSpecialityDiscipline = false;
@@ -594,29 +594,14 @@ namespace VmkLearningKit.Controllers
                 }
                 if (hasSpecialityDiscipline)
                 {
+                    SetLecturePlanDates(specialityDiscipline);
                     List<LecturePlan> allLecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id).ToList<LecturePlan>();
 
-                    int lecturePlanCount = allLecturePlans.Count();
-                    for (int i = 0; i < lecturePlanCount; i++)
-                    {
-                        LecturePlan lecturePlan = allLecturePlans[i];
-                        if (null != lecturePlan && !lecturePlan.Date.HasValue)
-                        {
-                            SetLecturePlanDates(lecturePlan.SpecialityDisciplineId);
-                            allLecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id).ToList<LecturePlan>();
-                            if (null != allLecturePlans)
-                            {
-                                lecturePlanCount = allLecturePlans.Count();
-                            }
-                        }
-                    }
-
-                    lecturePlans = new List<LecturePlan>();
                     foreach (LecturePlan lecturePlan in allLecturePlans)
                     {
                         if (lecturePlan.Date.HasValue &&
                             lecturePlan.Date.Value >= firstTermDate &&
-                            lecturePlan.Date.Value <= lastTermDate)
+                            lecturePlan.Date.Value < lastTermDate)
                         {
                             lecturePlans.Add(lecturePlan);
                         }
@@ -627,8 +612,9 @@ namespace VmkLearningKit.Controllers
             return lecturePlans;
         }
 
-        private short[] GetTermsByGroupTitle(string groupTitle)
+        private short[] GetTermsByGroup(Group group)
         {
+            string groupTitle = null != group ? group.Title : String.Empty;
             if (null != groupTitle && !groupTitle.Trim().Equals(String.Empty))
             {
                 if (groupTitle.IndexOf("81") < 2 &&
@@ -804,11 +790,11 @@ namespace VmkLearningKit.Controllers
         private int GetRelevantTimetablePage()
         {
             DateTime firstTermDate = GetMondayDate(DateTime.Now);
-            DateTime lastTermDate = GetLastTermDate();
+            DateTime lastTermDate = Utility.GetLastTermDate();
             TimeSpan difference = lastTermDate - firstTermDate;
             int days = (int)(difference.TotalDays);
 
-            int weeksFromNow = (int)(days / weekLength) + 1;
+            int weeksFromNow = (int)(days / Utility.weekLength) + 1;
             int[] allWeeks = GetTimetablePages();
 
             return allWeeks.Length - weeksFromNow + 1;
@@ -816,8 +802,8 @@ namespace VmkLearningKit.Controllers
 
         private int[] GetTimetablePages()
         {
-            DateTime firstTermDate = GetMondayDate(GetFirstTermDate());
-            DateTime lastTermDate = GetLastTermDate();
+            DateTime firstTermDate = GetMondayDate(Utility.GetFirstTermDate());
+            DateTime lastTermDate = Utility.GetLastTermDate();
             TimeSpan difference = lastTermDate - firstTermDate;
             int days = (int)(difference.TotalDays);
             /*
@@ -831,7 +817,7 @@ namespace VmkLearningKit.Controllers
             days += GetDaysInMonth(firstTermDate.Month) - firstTermDate.Day;
             days += lastTermDate.Day;
             */
-            int weeks = (int)(days / weekLength) + 1;
+            int weeks = (int)(days / Utility.weekLength) + 1;
 
             int[] pages = new int[weeks];
             for (int i = 0; i < weeks; i++)
@@ -849,73 +835,19 @@ namespace VmkLearningKit.Controllers
         /// SpecialityDisciplineLecturePlans processing begins
         ////////////////////////////////////////////////////////
 
-        private short[] evenTerms = new short[] { 2, 4, 6, 8, 10, 12 };
-        private short[] oddTerms = new short[] { 1, 3, 5, 7, 9, 11 };
-
-        enum TermType { Even, Odd }
-
-        // дата первого учебного дня в четных семестрах
-        DateTime evenTermFirstDate = new DateTime(DateTime.Now.Year, 2, 12);
-        // дата последнего учебного дня в четных семестрах
-        DateTime evenTermLastDate = new DateTime(DateTime.Now.Year, 5, 25);
-
-        // дата первого учебного дня в нечетных семестрах
-        DateTime oddTermFirstDate = new DateTime(DateTime.Now.Year, 9, 2);
-        // дата последнего учебного дня в нечетных семестрах
-        DateTime oddTermLastDate = new DateTime(DateTime.Now.Year, 12, 25);
-        // длина недели 7 дней
-        short weekLength = 7;
-        short yearLength = 365;
-
-        private DateTime GetFirstTermDate()
-        {
-            DateTime firstTermDate = DateTime.Now;
-
-            TermType termType = GetTermTypeByDate(DateTime.Now);
-            if (termType == TermType.Even)
-            {
-                return firstTermDate = evenTermFirstDate;
-            }
-
-            if (termType == TermType.Odd)
-            {
-                return firstTermDate = oddTermFirstDate;
-            }
-            // this return mustn't be evoked
-            return firstTermDate;
-        }
-
-        private DateTime GetLastTermDate()
-        {
-            DateTime lastTermDate = DateTime.Now;
-
-            TermType termType = GetTermTypeByDate(DateTime.Now);
-            if (termType == TermType.Even)
-            {
-                return lastTermDate = evenTermLastDate;
-            }
-
-            if (termType == TermType.Odd)
-            {
-                return lastTermDate = oddTermLastDate;
-            }
-            // this return mustn't be evoked
-            return lastTermDate;
-        }
-
         private DateTime GetFirstDateByDay(string day)
         {
             DateTime firstDate = DateTime.Now;
             DayOfWeek dayOfWeek = Utility.GetDayOfWeekFromString(day);
-            TermType termType = GetTermTypeByDate(DateTime.Now);
+            TermType termType = Utility.GetTermTypeByDate(DateTime.Now);
             if (termType == TermType.Even)
             {
-                firstDate = evenTermFirstDate;
+                firstDate = Utility.evenTermFirstDate;
             }
 
             if (termType == TermType.Odd)
             {
-                firstDate = oddTermFirstDate;
+                firstDate = Utility.oddTermFirstDate;
             }
 
             while (firstDate.DayOfWeek != dayOfWeek)
@@ -926,29 +858,15 @@ namespace VmkLearningKit.Controllers
             return firstDate;
         }
 
-        private TermType GetTermTypeByDate(DateTime date)
-        {
-            if (9 <= date.Month && date.Month < 2)
-            {
-                return TermType.Odd;
-            }
-            if (2 <= date.Month && date.Month < 9)
-            {
-                return TermType.Even;
-            }
-
-            return TermType.Odd;
-        }
-
         private short[] GetTermsByDate(DateTime date)
         {
             if (9 <= date.Month && date.Month < 2)
             {
-                return oddTerms;
+                return Utility.oddTerms;
             }
             if (2 <= date.Month && date.Month < 9)
             {
-                return evenTerms;
+                return Utility.evenTerms;
             }
             return null;
         }
@@ -995,7 +913,7 @@ namespace VmkLearningKit.Controllers
             switch (week)
             {
                 case "Верхняя":
-                    if (IsDayOnUpWeek(date))
+                    if (Utility.IsDayOnUpWeek(date))
                     {
                         // дата относится к верхней неделе
                         // занятие идет по верхним неделям
@@ -1011,7 +929,7 @@ namespace VmkLearningKit.Controllers
                     }
                     break;
                 case "Нижняя":
-                    if (IsDayOnUpWeek(date))
+                    if (Utility.IsDayOnUpWeek(date))
                     {
                         // дата относится к верхней неделе
                         // занятие идет по нижним неделям
@@ -1033,193 +951,160 @@ namespace VmkLearningKit.Controllers
             return 1;
         }
 
-        private bool IsDayOnUpWeek(DateTime date)
+        private void SetLecturePlanDates(SpecialityDiscipline specialityDiscipline)
         {
-            DateTime currentDate = new DateTime(date.Year, date.Month, 1);
-            while (currentDate.DayOfWeek != DayOfWeek.Monday)
-            {
-                currentDate = currentDate.AddDays(1);
-            }
-            if (1 <= date.Day && date.Day < currentDate.Day)
-            {
-                // неделя, к которой относиться передаваемая дата четная (нижняя)
-                return false;
-            }
-            if (currentDate.Day <= date.Day && date.Day < currentDate.Day + weekLength)
-            {
-                // неделя, к которой относиться передаваемая дата нечетная (верхняя)
-                return true;
-            }
-            if (currentDate.Day + weekLength <= date.Day && date.Day < currentDate.Day + 2 * weekLength)
-            {
-                // неделя, к которой относиться передаваемая дата четная (нижняя)
-                return false;
-            }
-            if (currentDate.Day + 2 * weekLength <= date.Day && date.Day < currentDate.Day + 3 * weekLength && currentDate.Day + 3 * weekLength <= 31)
-            {
-                // неделя, к которой относиться передаваемая дата нечетная (верхняя)
-                return true;
-            }
-            if (currentDate.Day + 3 * weekLength <= date.Day && date.Day < currentDate.Day + 4 * weekLength && currentDate.Day + 4 * weekLength <= 31)
-            {
-                // неделя, к которой относиться передаваемая дата четная (нижняя)
-                return false;
-            }
-
-            // this return mustn't be evoked
-            return true;
-        }
-
-        private void SetLecturePlanDates(long specialityDisciplineId)
-        {
-            SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetById(specialityDisciplineId);
             if (null != specialityDiscipline)
             {
                 if (IsDisciplineContainsCurrentTerms(specialityDiscipline))
                 {
                     string day = String.Empty;
                     string week = String.Empty;
+                    int currentDateIndex = 0;
+                    List<DateTime> currentTermDates = new List<DateTime>();
+                    List<string> lectureDays = new List<string>();
                     IEnumerable<LectureTimetable> lectureTimetables = repositoryManager.GetLectureTimetableRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
                     foreach (LectureTimetable timetable in lectureTimetables)
                     {
                         if (timetable.SpecialityDisciplineId == specialityDiscipline.Id &&
-                            specialityDiscipline.ProfessorId == timetable.ProfessorId)
+                            specialityDiscipline.ProfessorId == timetable.ProfessorId &&
+                            !lectureDays.Contains(timetable.Day))
                         {
+                            lectureDays.Add(timetable.Day);
                             day = timetable.Day;
                             week = timetable.Week;
-                            break;
-                        }
-                    }
 
-                    DateTime firstDate = GetFirstDateByDay(day);
-                    DateTime lastDate = GetLastTermDate();
-                    DateTime currentDate = firstDate;
-                    List<DateTime> currentTermDates = new List<DateTime>();
+                            DateTime firstDate = GetFirstDateByDay(day);
+                            DateTime lastDate = Utility.GetLastTermDate();
+                            DateTime currentDate = firstDate;
 
-                    // получаем когда будет первое занятие
-                    int firstDateStep = FirstDateStep(currentDate, week);
-                    // на этой неделе
-                    if (1 == firstDateStep)
-                    {
-                        // currentDate - это первое занятие
-                    }
-                    // на следующей неделе
-                    else if (2 == firstDateStep)
-                    {
-                        currentDate = currentDate.AddDays(weekLength);
-                    }
-                    currentTermDates.Add(currentDate);
-
-                    int frequency = DateStep(week);
-                    while (currentDate < lastDate)
-                    {
-                        currentDate = currentDate.AddDays(frequency * weekLength);
-                        if (currentDate < lastDate)
-                        {
+                            // получаем когда будет первое занятие
+                            int firstDateStep = FirstDateStep(currentDate, week);
+                            // на этой неделе
+                            if (1 == firstDateStep)
+                            {
+                                // currentDate - это первое занятие
+                            }
+                            // на следующей неделе
+                            else if (2 == firstDateStep)
+                            {
+                                currentDate = currentDate.AddDays(Utility.weekLength);
+                            }
                             currentTermDates.Add(currentDate);
-                        }
-                    }
 
-                    IEnumerable<LecturePlan> lecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
-                    int currentDateIndex = 0;
-                    foreach (LecturePlan plan in lecturePlans)
-                    {
-                        if (currentDateIndex < currentTermDates.Count)
-                        {
-                            plan.Date = currentTermDates[currentDateIndex];
-                            LecturePlan planFromDB = repositoryManager.GetLecturePlanRepository.SetDateTime(plan.Id, plan.Date.Value);
-                            if (null == planFromDB)
+                            int frequency = DateStep(week);
+                            while (currentDate < lastDate)
                             {
-                                // FIXME: can't set lecture plan date
-                            }
-                        }
-                        currentDateIndex++;
-                    }
-
-                    IEnumerable<SpecialityDisciplineTopic> topics = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(specialityDiscipline.Id);
-                    if (null != topics && currentTermDates.Count > topics.Count())
-                    {
-                        while (currentDateIndex < currentTermDates.Count)
-                        {
-                            SpecialityDisciplineTopic topic = new SpecialityDisciplineTopic();
-                            topic.Title = "Тема еще не определена";
-                            topic.SpecialityDisciplineId = specialityDiscipline.Id;
-                            SpecialityDisciplineTopic topicFromDB = repositoryManager.GetSpecialityDisciplineTopicRepository.Add(topic);
-                            if (null != topicFromDB)
-                            {
-                                LecturePlan plan = new LecturePlan();
-                                plan.SpecialityDisciplineId = specialityDiscipline.Id;
-                                plan.SpecialityDisciplineTopicId = topicFromDB.Id;
-                                plan.Date = currentTermDates[currentDateIndex];
-                                LecturePlan planFromDB = repositoryManager.GetLecturePlanRepository.Add(plan);
-                                if (null == planFromDB)
+                                currentDate = currentDate.AddDays(frequency * Utility.weekLength);
+                                if (currentDate < lastDate)
                                 {
-                                    // FIXME: can't add lecture plan
+                                    currentTermDates.Add(currentDate);
                                 }
                             }
-                            currentDateIndex++;
-                        }
-                    }
 
-                    if (null != topics && currentTermDates.Count < topics.Count())
-                    {
-                        int currentIndex = currentTermDates.Count;
-                        while (currentIndex < specialityDiscipline.SpecialityDisciplineTopics.Count)
-                        {
-                            IEnumerable<LecturePlan> lecturePlansForDelete = specialityDiscipline.SpecialityDisciplineTopics[currentIndex].LecturePlans;
-                            if (null != lecturePlansForDelete && lecturePlansForDelete.Count() > 0)
+                            IEnumerable<LecturePlan> lecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
+                            if (currentDateIndex < lecturePlans.Count())
                             {
-                                try
+                                foreach (LecturePlan plan in lecturePlans)
                                 {
-                                    int lecturePlansForDeleteCount = lecturePlansForDelete.Count();
-                                    for (int i = 0; i < lecturePlansForDeleteCount; i++)
+                                    if (currentDateIndex < currentTermDates.Count)
                                     {
-                                        LecturePlan lecturePlanForDelete = lecturePlansForDelete.ElementAt(i);
+                                        plan.Date = currentTermDates[currentDateIndex];
+                                        LecturePlan planFromDB = repositoryManager.GetLecturePlanRepository.SetDateTime(plan.Id, plan.Date.Value);
+                                        if (null == planFromDB)
+                                        {
+                                            // FIXME: can't set lecture plan date
+                                        }
+                                        currentDateIndex++;
+                                    }
+                                }
+                            }
+
+                            IEnumerable<SpecialityDisciplineTopic> topics = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(specialityDiscipline.Id);
+                            if (null != topics && currentTermDates.Count > topics.Count())
+                            {
+                                while (currentDateIndex < currentTermDates.Count)
+                                {
+                                    SpecialityDisciplineTopic topic = new SpecialityDisciplineTopic();
+                                    topic.Title = "Тема еще не определена";
+                                    topic.SpecialityDisciplineId = specialityDiscipline.Id;
+                                    SpecialityDisciplineTopic topicFromDB = repositoryManager.GetSpecialityDisciplineTopicRepository.Add(topic);
+                                    if (null != topicFromDB)
+                                    {
+                                        LecturePlan plan = new LecturePlan();
+                                        plan.SpecialityDisciplineId = specialityDiscipline.Id;
+                                        plan.SpecialityDisciplineTopicId = topicFromDB.Id;
+                                        plan.Date = currentTermDates[currentDateIndex];
+                                        LecturePlan planFromDB = repositoryManager.GetLecturePlanRepository.Add(plan);
+                                        if (null == planFromDB)
+                                        {
+                                            // FIXME: can't add lecture plan
+                                        }
+                                    }
+                                    currentDateIndex++;
+                                }
+                            }
+
+                            topics = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(specialityDiscipline.Id);
+                            if (null != topics && currentTermDates.Count < topics.Count())
+                            {
+                                int currentIndex = currentTermDates.Count;
+                                while (currentIndex < specialityDiscipline.SpecialityDisciplineTopics.Count)
+                                {
+                                    IEnumerable<LecturePlan> lecturePlansForDelete = specialityDiscipline.SpecialityDisciplineTopics[currentIndex].LecturePlans;
+                                    if (null != lecturePlansForDelete && lecturePlansForDelete.Count() > 0)
+                                    {
                                         try
                                         {
-                                            repositoryManager.GetLecturePlanRepository.Delete(lecturePlanForDelete);
+                                            int lecturePlansForDeleteCount = lecturePlansForDelete.Count();
+                                            for (int i = 0; i < lecturePlansForDeleteCount; i++)
+                                            {
+                                                LecturePlan lecturePlanForDelete = lecturePlansForDelete.ElementAt(i);
+                                                try
+                                                {
+                                                    repositoryManager.GetLecturePlanRepository.Delete(lecturePlanForDelete);
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    Utility.WriteToLog("!!!!IMPORTANT: RecalculateLecturePlanDates: Can't remove lecturePlan with id: " + lecturePlanForDelete.Id, ex);
+                                                }
+                                            }
                                         }
                                         catch (Exception ex)
                                         {
-                                            Utility.WriteToLog("!!!!IMPORTANT: RecalculateLecturePlanDates: Can't remove lecturePlan with id: " + lecturePlanForDelete.Id, ex);
+                                            Utility.WriteToLog("RecalculateLecturePlanDates: Not important exception", ex);
                                         }
                                     }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Utility.WriteToLog("RecalculateLecturePlanDates: Not important exception", ex);
-                                }
-                            }
 
-                            IEnumerable<PracticePlan> practicePlansForDelete = specialityDiscipline.SpecialityDisciplineTopics[currentIndex].PracticePlans;
-                            if (null != practicePlansForDelete && practicePlansForDelete.Count() > 0)
-                            {
-                                try
-                                {
-                                    int practicePlansForDeleteCount = practicePlansForDelete.Count();
-                                    for (int i = 0; i < practicePlansForDeleteCount; i++)
+                                    IEnumerable<PracticePlan> practicePlansForDelete = specialityDiscipline.SpecialityDisciplineTopics[currentIndex].PracticePlans;
+                                    if (null != practicePlansForDelete && practicePlansForDelete.Count() > 0)
                                     {
-                                        PracticePlan practicePlanForDelete = practicePlansForDelete.ElementAt(i);
                                         try
                                         {
-                                            repositoryManager.GetPracticePlanRepository.Delete(practicePlanForDelete);
+                                            int practicePlansForDeleteCount = practicePlansForDelete.Count();
+                                            for (int i = 0; i < practicePlansForDeleteCount; i++)
+                                            {
+                                                PracticePlan practicePlanForDelete = practicePlansForDelete.ElementAt(i);
+                                                try
+                                                {
+                                                    repositoryManager.GetPracticePlanRepository.Delete(practicePlanForDelete);
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    Utility.WriteToLog("!!!!IMPORTANT: RecalculatePracticePlanDates: Can't remove practicePlan with id: " + practicePlanForDelete.Id, ex);
+                                                }
+                                            }
                                         }
                                         catch (Exception ex)
                                         {
-                                            Utility.WriteToLog("!!!!IMPORTANT: RecalculatePracticePlanDates: Can't remove practicePlan with id: " + practicePlanForDelete.Id, ex);
+                                            Utility.WriteToLog("RecalculateLecturePlanDates: Not important exception", ex);
                                         }
                                     }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Utility.WriteToLog("RecalculateLecturePlanDates: Not important exception", ex);
+                                    repositoryManager.GetSpecialityDisciplineTopicRepository.Delete(specialityDiscipline.SpecialityDisciplineTopics[currentIndex]);
+                                    //currentIndex++;
                                 }
                             }
-                            repositoryManager.GetSpecialityDisciplineTopicRepository.Delete(specialityDiscipline.SpecialityDisciplineTopics[currentIndex]);
-                            //currentIndex++;
                         }
                     }
-
                 }
             }
         }

@@ -313,6 +313,15 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Нижняя.
+        /// </summary>
+        internal static string DOWN_WEEK {
+            get {
+                return ResourceManager.GetString("DOWN_WEEK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to /Home/Error/404.
         /// </summary>
         internal static string ERROR_404_URL {
@@ -327,6 +336,15 @@ namespace VmkLearningKit {
         internal static string ERROR_URL {
             get {
                 return ResourceManager.GetString("ERROR_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Каждая.
+        /// </summary>
+        internal static string EVERY_WEEK {
+            get {
+                return ResourceManager.GetString("EVERY_WEEK", resourceCulture);
             }
         }
         
@@ -678,6 +696,15 @@ namespace VmkLearningKit {
         internal static string TERM_DEFAULT_REPORTING {
             get {
                 return ResourceManager.GetString("TERM_DEFAULT_REPORTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Верхняя.
+        /// </summary>
+        internal static string UP_WEEK {
+            get {
+                return ResourceManager.GetString("UP_WEEK", resourceCulture);
             }
         }
         

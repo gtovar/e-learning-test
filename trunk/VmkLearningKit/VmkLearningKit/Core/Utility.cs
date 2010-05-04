@@ -8,6 +8,8 @@ using VmkLearningKit.Models.Repository;
 
 namespace VmkLearningKit.Core
 {
+    public enum TermType { Even, Odd }
+
     public enum LogLevel
     {
         Trace,
@@ -116,6 +118,7 @@ namespace VmkLearningKit.Core
             copy.Category = obj.Category;
             copy.Alias = obj.Alias;
             copy.Title = obj.Title;
+            copy.Abbreviation = obj.Abbreviation;
 
             return copy;
         }
@@ -255,16 +258,34 @@ namespace VmkLearningKit.Core
             return topic;
         }
 
-        public static string GetRoom(LecturePlan lecturePlan)
+        public static string GetRoom(LecturePlan lecturePlan, string day, string time)
         {
+            string timeWithZero = String.Empty;
+            // 8:00, 9:00
+            if (time.Length < 5)
+            {
+                timeWithZero = "0" + time;
+            }
+            bool isDayOnUpWeek = Utility.IsDayOnUpWeek(lecturePlan.Date.Value);
             string room = String.Empty;
             if (null != lecturePlan && null != lecturePlan.SpecialityDiscipline &&
                 null != lecturePlan.SpecialityDiscipline.LectureTimetables)
             {
                 foreach (LectureTimetable timetable in lecturePlan.SpecialityDiscipline.LectureTimetables)
                 {
-                    room = timetable.Room + " (" + timetable.Building + ") ";
-                    break;
+                    if (timetable.Day.Trim().Equals(day.Trim()) &&
+                       (timetable.Time.Trim().Equals(time.Trim()) || timetable.Time.Trim().Equals(timeWithZero.Trim())) &&
+                       ((timetable.Week.Trim().Equals(Constants.UP_WEEK) && isDayOnUpWeek) ||
+                        (timetable.Week.Trim().Equals(Constants.DOWN_WEEK) && !isDayOnUpWeek) ||
+                        (timetable.Week.Trim().Equals(Constants.EVERY_WEEK))
+                        ))
+                    {
+                        if (timetable.Room != 0)
+                        {
+                            room = timetable.Room + " (" + timetable.Building + ") ";
+                        }
+                        break;
+                    }
                 }
             }
 
@@ -315,8 +336,14 @@ namespace VmkLearningKit.Core
                         if (timetable.Day.Trim().Equals(day.Trim()) && 
                            (timetable.Time.Trim().Equals(time.Trim()) || timetable.Time.Trim().Equals(timeWithZero.Trim())))
                         {
-                            foundLecturePlan = lecturePlan;
-                            break;
+                            if ((timetable.Week.Trim().Equals(Constants.EVERY_WEEK)) ||
+                                (timetable.Week.Trim().Equals(Constants.UP_WEEK) && Utility.IsDayOnUpWeek(lecturePlan.Date.Value)) ||
+                                (timetable.Week.Trim().Equals(Constants.DOWN_WEEK) && !Utility.IsDayOnUpWeek(lecturePlan.Date.Value))
+                               )
+                            {
+                                foundLecturePlan = lecturePlan;
+                                break;
+                            }
                         }
                     }
                 }
@@ -324,11 +351,101 @@ namespace VmkLearningKit.Core
             return foundLecturePlan;
         }
 
-        public static string FindSchedule(IEnumerable<SpecialityDiscipline> specialityDisciplines, string day, string time)
+        // дата первого учебного дня в четных семестрах
+        public static DateTime evenTermFirstDate = new DateTime(DateTime.Now.Year, 2, 12);
+        // дата последнего учебного дня в четных семестрах
+        public static DateTime evenTermLastDate = new DateTime(DateTime.Now.Year, 5, 25);
+
+        // дата первого учебного дня в нечетных семестрах
+        public static DateTime oddTermFirstDate = new DateTime(DateTime.Now.Year, 9, 2);
+        // дата последнего учебного дня в нечетных семестрах
+        public static DateTime oddTermLastDate = new DateTime(DateTime.Now.Year, 12, 25);
+        // длина недели 7 дней
+        public static short weekLength = 7;
+        public static short yearLength = 365;
+
+        public static short[] evenTerms = new short[] { 2, 4, 6, 8, 10, 12 };
+        public static short[] oddTerms = new short[] { 1, 3, 5, 7, 9, 11 };
+
+        public static TermType GetTermTypeByDate(DateTime date)
+        {
+            if (9 <= date.Month && date.Month < 2)
+            {
+                return TermType.Odd;
+            }
+            if (2 <= date.Month && date.Month < 9)
+            {
+                return TermType.Even;
+            }
+
+            return TermType.Odd;
+        }
+
+        public static DateTime GetFirstTermDate()
+        {
+            DateTime firstTermDate = DateTime.Now;
+
+            TermType termType = GetTermTypeByDate(DateTime.Now);
+            if (termType == TermType.Even)
+            {
+                return firstTermDate = evenTermFirstDate;
+            }
+
+            if (termType == TermType.Odd)
+            {
+                return firstTermDate = oddTermFirstDate;
+            }
+            // this return mustn't be evoked
+            return firstTermDate;
+        }
+
+        public static DateTime GetLastTermDate()
+        {
+            DateTime lastTermDate = DateTime.Now;
+
+            TermType termType = GetTermTypeByDate(DateTime.Now);
+            if (termType == TermType.Even)
+            {
+                return lastTermDate = evenTermLastDate;
+            }
+
+            if (termType == TermType.Odd)
+            {
+                return lastTermDate = oddTermLastDate;
+            }
+            // this return mustn't be evoked
+            return lastTermDate;
+        }
+
+        public static bool IsDayOnUpWeek(DateTime date)
+        {
+            DateTime firstDate = GetFirstTermDate();
+            DateTime lastDate = date;
+            while (firstDate.DayOfWeek != DayOfWeek.Monday)
+            {
+                firstDate = firstDate.AddDays(-1);
+            }
+            while (lastDate.DayOfWeek != DayOfWeek.Monday)
+            {
+                lastDate = lastDate.AddDays(+1);
+            }
+
+            TimeSpan difference = lastDate - firstDate;
+            int days = (int)(difference.TotalDays);
+            
+            int weeks = (int)(days / weekLength);
+            if (weeks % 2 == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static List<LectureTimetable> FindSchedule(IEnumerable<SpecialityDiscipline> specialityDisciplines, string day, string time)
         {
             DayOfWeek dayOfWeek = GetDayOfWeekFromString(day);
-            SpecialityDiscipline foundDiscipline = null;
-            LectureTimetable foundTimetable = null;
+            List<LectureTimetable> foundTimetables = new List<LectureTimetable>();
 
             string timeWithZero = String.Empty;
             // 8:00, 9:00
@@ -348,8 +465,7 @@ namespace VmkLearningKit.Core
                         {
                             if (lecturePlan.Date.HasValue && lecturePlan.Date.Value.DayOfWeek == dayOfWeek)
                             {
-                                foundDiscipline = discipline;
-                                foundTimetable = timetable;
+                                foundTimetables.Add(timetable);
                                 break;
                             }
                         }
@@ -357,13 +473,7 @@ namespace VmkLearningKit.Core
                 }
             }
 
-            string schedule = String.Empty;
-            if (null != foundDiscipline && null != foundTimetable)
-            {
-                schedule = foundDiscipline.Alias + foundTimetable.Room + " (" + foundTimetable.Building + ") ";
-            }
-
-            return schedule;
+            return foundTimetables;
         }
     }
 }

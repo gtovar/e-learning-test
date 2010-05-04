@@ -201,11 +201,17 @@
   <data name="DEFAULT_EMAIL_DOMEN" xml:space="preserve">
     <value>@unn.ru</value>
   </data>
+  <data name="DOWN_WEEK" xml:space="preserve">
+    <value>Нижняя</value>
+  </data>
   <data name="ERROR_404_URL" xml:space="preserve">
     <value>/Home/Error/404</value>
   </data>
   <data name="ERROR_URL" xml:space="preserve">
     <value>/Home/Error/</value>
+  </data>
+  <data name="EVERY_WEEK" xml:space="preserve">
+    <value>Каждая</value>
   </data>
   <data name="EXCEL_FILE_UPLOAD_PATH" xml:space="preserve">
     <value>/Uploads/Excel/</value>
@@ -323,6 +329,9 @@
   </data>
   <data name="TERM_DEFAULT_REPORTING" xml:space="preserve">
     <value>Не указано</value>
+  </data>
+  <data name="UP_WEEK" xml:space="preserve">
+    <value>Верхняя</value>
   </data>
   <data name="VIEW_PAGE_ERROR" xml:space="preserve">
     <value>Error</value>
