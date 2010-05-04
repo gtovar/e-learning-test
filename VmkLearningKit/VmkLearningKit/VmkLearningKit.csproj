@@ -283,6 +283,7 @@
     <Content Include="Views\Tests\GetGeneratedTests.aspx" />
     <Content Include="Views\Tests\GetTest.aspx" />
     <Content Include="Views\Tests\GetTestVariant.aspx" />
+    <Content Include="Views\Tests\Show.aspx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />

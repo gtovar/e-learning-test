@@ -68,25 +68,25 @@ namespace VmkLearningKit.Models.Repository
 
         private void WriteHtmlHeader()
         {
-            sw.WriteLine("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
-            sw.WriteLine("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+            //sw.WriteLine("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+            sw.WriteLine("<html>");/*xmlns=\"http://www.w3.org/1999/xhtml\">*/
             sw.WriteLine("<head>");
             sw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
-            sw.WriteLine("<title>Untitled Document</title>");
+            sw.WriteLine("<title>Test</title>");
             sw.WriteLine("</head>");
             sw.WriteLine("<body>");
             sw.WriteLine("<p><label>");
-            sw.WriteLine("<div align=\"center\">Тестовый вариант №" + number + "</div>");
+            sw.WriteLine("<div align=\"center\"><b>Тестовый вариант №" + (number-1) + "</b></div>");
             sw.WriteLine("</label>");
             sw.WriteLine("<div align=\"center\">&nbsp;</div>");
             sw.WriteLine("</p>");
         }
 
-        void WriteQuestion(string text)
+        void WriteQuestion(string text, int n)
         {
             sw.WriteLine("<p>");
-            sw.WriteLine("<label>" + text + "<br />");
-            sw.WriteLine("<br />");
+            sw.WriteLine("<label>" + n + ". " + text + "<br />");
+            //sw.WriteLine("<br />");
         }
 
         void WritePostQuestion()
@@ -96,7 +96,7 @@ namespace VmkLearningKit.Models.Repository
         }
 
 
-        void WriteAnswer(int type, string text, int l)
+        void WriteAnswer(int type, string text, int l, int index)
         {
             text = BuilderImages(text);
 
@@ -104,13 +104,13 @@ namespace VmkLearningKit.Models.Repository
             {
                 case 0:
                     {
-                        sw.WriteLine("<input type=\"text\" name=\"answer\" id=\"answer\" />");
+                        sw.WriteLine("<input type=\"text\" name=\"answer" + index + "\" id=\"answer\" />");
                         break;
                     }
                 case 1:
                     {
                         sw.WriteLine("<label>");
-                        sw.WriteLine("<input type=\"radio\" name=\"RadioGroup1\" value=\"radio" + l + "\" id=\"RadioGroup1_" + l + "0\" />");
+                        sw.WriteLine("<input type=\"radio\" name=\"RadioGroup" + index + "\" value=\"radio" + l + "\" id=\"RadioGroup1_" + l + "0\" />");
                         sw.WriteLine(text + "</label>");
                         sw.WriteLine("<br />");
                         break;
@@ -118,7 +118,7 @@ namespace VmkLearningKit.Models.Repository
                 case 2:
                     {
                         sw.WriteLine("<label>");
-                        sw.WriteLine("<input type=\"checkbox\" name=\"CheckboxGroup1\" value=\"checkbox" + l + "\" id=\"CheckboxGroup1_" + l + "\" />");
+                        sw.WriteLine("<input type=\"checkbox\" name=\"CheckboxGroup"+ index + "\" value=\"checkbox" + l + "\" id=\"CheckboxGroup1_" + l + "\" />");
                         sw.WriteLine(text + "</label>");
                         sw.WriteLine("<br />");
                         break;
@@ -147,11 +147,12 @@ namespace VmkLearningKit.Models.Repository
 
             IEnumerable<GeneratedQuestion> generatedQuestion = generatedQuestionRepository.GetAllGeneratedQuestionsByGeneratedTestVariantId(gtv.Id);
 
+            int index = 1;
             foreach (GeneratedQuestion gq in generatedQuestion)
             {
                 string text = BuilderImages(gq.Question.Text);
 
-                WriteQuestion(text);
+                WriteQuestion(text, index);
 
                 int count = questionRepository.GetAnswersCountByQuestionId(gq.QuestionId);
                 IEnumerable<Answer> answers = questionRepository.GetAllAnswersByQuestionId(gq.QuestionId);
@@ -160,11 +161,12 @@ namespace VmkLearningKit.Models.Repository
 
                 foreach (Answer an in answers)
                 {
-                    WriteAnswer(gq.Question.Type, an.Text, l);
+                    WriteAnswer(gq.Question.Type, an.Text, l, index);
                     l++;
                 }
 
                 WritePostQuestion();
+                index++;
             }
 
             WriteHtmlFooter();
