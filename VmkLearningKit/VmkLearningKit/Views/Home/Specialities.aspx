@@ -74,14 +74,17 @@
                    }
                    else
                    {
-                       if (lastContainedCategory.Trim().Equals(String.Empty))
+                       if (!lastContainedCategory.Trim().Equals(String.Empty))
                        {
                            int foundIndex = prevCategories.IndexOf(lastContainedCategory);
-                           int categoryIndex = prevCategories.Count - 1;
-                           while (categoryIndex > foundIndex)
+                           if (-1 != foundIndex)
                            {
-                               prevCategories.RemoveAt(categoryIndex);
-                               categoryIndex--;
+                               int categoryIndex = prevCategories.Count - 1;
+                               while (categoryIndex > foundIndex)
+                               {
+                                   prevCategories.RemoveAt(categoryIndex);
+                                   categoryIndex--;
+                               }
                            }
                        }
                        prevCategories.Add(category);

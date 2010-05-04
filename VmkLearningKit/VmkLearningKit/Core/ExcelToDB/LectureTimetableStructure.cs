@@ -99,18 +99,13 @@ namespace VmkLearningKit.Core.ExcelToDB
                 if (null != list && list.Count >= 1 && !list[0].Trim().Equals(String.Empty))
                 {
                     room = list[0];
+                    result.Add(room);
                 }
                 if (null != list && list.Count >= 2 && !list[1].Trim().Equals(String.Empty))
                 {
                     building = list[1];
+                    result.Add(building);
                 }
-                else
-                {
-                    // по умолчанию занаятия ведуться во втором корпусе
-                    building = "2";
-                }
-                result.Add(room);
-                result.Add(building);
             }
             catch (Exception ex)
             {
@@ -229,6 +224,13 @@ namespace VmkLearningKit.Core.ExcelToDB
 
                             specialityDiscipline.Id = ++lastSpecialityDisciplineId;
                             specialityDiscipline.Title = currentReadedValue;
+
+                            // новая дисциплина, обнуляем старые значения
+                            day = String.Empty;
+                            time = String.Empty;
+                            room = String.Empty;
+                            building = String.Empty;
+                            week = String.Empty;
                         }
                         else if (columnIndex == professorIndex)
                         {
@@ -258,10 +260,16 @@ namespace VmkLearningKit.Core.ExcelToDB
                             {
                                 building = content[1];
                             }
-                            else
+                            else if (null != room && !room.Trim().Equals(String.Empty))
                             {
                                 // занятия по-умолчанию проводятся во втором корпусе
                                 building = "2";
+                            }
+
+                            if (null == content || content.Count == 0)
+                            {
+                                room = String.Empty;
+                                building = String.Empty;
                             }
                         }
                         else if (columnIndex == weekIndex)
@@ -269,8 +277,6 @@ namespace VmkLearningKit.Core.ExcelToDB
                             week = currentReadedValue;
                             if (null != day && !day.Trim().Equals(String.Empty) &&
                                 null != time && !time.Trim().Equals(String.Empty) &&
-                                null != room && !room.Trim().Equals(String.Empty) &&
-                                null != building && !building.Trim().Equals(String.Empty) &&
                                 null != week && !week.Trim().Equals(String.Empty))
                             {
                                 LectureTimetable lectureTimetable = new LectureTimetable();
@@ -281,13 +287,22 @@ namespace VmkLearningKit.Core.ExcelToDB
                                 lectureTimetable.Time = time;
                                 try
                                 {
-                                    lectureTimetable.Room = Convert.ToInt16(room);
-                                    lectureTimetable.Building = Convert.ToInt16(building);
+                                    if (null != room && !room.Trim().Equals(String.Empty))
+                                    {
+                                        lectureTimetable.Room = Convert.ToInt16(room);
+                                    }
+                                    else { lectureTimetable.Room = 0; }
+
+                                    if (null != building && !building.Trim().Equals(String.Empty))
+                                    {
+                                        lectureTimetable.Building = Convert.ToInt16(building);
+                                    }
+                                    else { lectureTimetable.Building = 0; }
                                 }
                                 catch (Exception ex)
                                 {
                                     lectureTimetable.Room = 0;
-                                    lectureTimetable.Building = 2;
+                                    lectureTimetable.Building = 0;
                                     Utility.WriteToLog("!!!!IMPORTANT: LectureTimetableParser: Can't convert room and building string to short: room = " + room + " building = " + building, ex);
                                 }
                                 lectureTimetable.Week = week;
@@ -295,10 +310,12 @@ namespace VmkLearningKit.Core.ExcelToDB
                                 lectureTimetables.Add(lectureTimetable);
                             }
                         }
+                       /*
                         else
                         {
                             columnIndex++;
                         }
+                        */
                     }
                     if (columnIndex < maxColumnIndex)
                     {

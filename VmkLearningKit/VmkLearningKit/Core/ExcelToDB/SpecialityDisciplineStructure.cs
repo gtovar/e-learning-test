@@ -482,7 +482,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                 if (null != specialityDisciplineAbbreviation &&
                                     !specialityDisciplineAbbreviation.Trim().Equals(String.Empty))
                                 {
-                                    specialityDiscipline.Alias = specialityDisciplineAbbreviation;
+                                    specialityDiscipline.Abbreviation = specialityDisciplineAbbreviation;
                                 }
                                 else
                                 {
@@ -498,7 +498,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                             }
                                         }
                                     }
-                                    specialityDiscipline.Alias = specialityDisciplineAbbreviation;
+                                    specialityDiscipline.Abbreviation = specialityDisciplineAbbreviation;
                                 }
 
                                 specialityDiscipline.Category = SpecialityDisciplineCategory.GetCategoryString(category);
@@ -565,7 +565,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                 SpecialityDisciplineTerm specialityDisciplineTerm = new SpecialityDisciplineTerm();
                                 specialityDisciplineTerm.Id = ++lastSpecialityDisciplineTermId;
                                 specialityDisciplineTerm.SpecialityDisciplineId = lastSpecialityDisciplineId;
-                                if(null != termLectionVolumes && termLectionVolumes.Count >= ind && null != termLectionVolumes[ind])
+                                if(null != termLectionVolumes && termLectionVolumes.Count > ind && null != termLectionVolumes[ind])
                                 {
                                     try
                                     {
@@ -582,7 +582,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                     specialityDisciplineTerm.LectureVolume = 0;
                                 }
 
-                                if (null != termPracticeVolumes && termPracticeVolumes.Count >= ind && null != termPracticeVolumes[ind])
+                                if (null != termPracticeVolumes && termPracticeVolumes.Count > ind && null != termPracticeVolumes[ind])
                                 {
                                     try
                                     {
@@ -599,7 +599,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                     specialityDisciplineTerm.PracticeVolume = 0;
                                 }
 
-                                if (null != termLabVolumes && termLabVolumes.Count >= ind && null != termLabVolumes[ind])
+                                if (null != termLabVolumes && termLabVolumes.Count > ind && null != termLabVolumes[ind])
                                 {
                                     try
                                     {
@@ -616,7 +616,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                     specialityDisciplineTerm.LabVolume = 0;
                                 }
 
-                                if (null != terms && terms.Count >= ind && null != terms[ind])
+                                if (null != terms && terms.Count > ind && null != terms[ind])
                                 {
                                     try
                                     {
@@ -634,7 +634,7 @@ namespace VmkLearningKit.Core.ExcelToDB
                                     specialityDisciplineTerm.Term = 0;
                                 }
 
-                                if (null != termReportings && termReportings.Count >= ind && null != termReportings[ind])
+                                if (null != termReportings && termReportings.Count > ind && null != termReportings[ind])
                                 {
                                     switch (termReportings[ind].value.ToLower())
                                     {
@@ -806,11 +806,11 @@ namespace VmkLearningKit.Core.ExcelToDB
                         {
 
                         }
-                        */
                         else
                         {
                             columnIndex++;
                         }
+                        */
                     }
                     if (columnIndex < maxColumnIndex)
                     {

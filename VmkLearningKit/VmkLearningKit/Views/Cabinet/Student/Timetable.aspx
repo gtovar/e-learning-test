@@ -88,7 +88,7 @@
                 <% string time = "8:00"; %>
                 8<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     LecturePlan foundLecturePlan = null;
                     string foundTime = String.Empty;
@@ -105,17 +105,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     string room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     string professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -143,7 +143,7 @@
                 <% time = "9:40"; %>
                 9<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -160,17 +160,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -198,7 +198,7 @@
                 <% time = "11:20"; %>
                 11<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -215,17 +215,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -253,7 +253,7 @@
                 <% time = "13:00"; %>
                 13<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -270,17 +270,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -308,7 +308,7 @@
                 <% time = "14:40"; %>
                 14<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -325,17 +325,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -363,7 +363,7 @@
                 <% time = "16:20"; %>
                 16<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -380,17 +380,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -418,7 +418,7 @@
                 <% time = "18:00"; %>
                 18<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -435,17 +435,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -473,7 +473,7 @@
                 <% time = "19:40"; %>
                 19<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -490,17 +490,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -546,7 +546,7 @@
                 <% time = "8:00"; %>
                 8<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -563,17 +563,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -601,7 +601,7 @@
                 <% time = "9:40"; %>
                 9<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -618,17 +618,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -656,7 +656,7 @@
                 <% time = "11:20"; %>
                 11<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -673,17 +673,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -711,7 +711,7 @@
                 <% time = "13:00"; %>
                 13<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -728,17 +728,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -766,7 +766,7 @@
                 <% time = "14:40"; %>
                 14<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -783,17 +783,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -821,7 +821,7 @@
                 <% time = "16:20"; %>
                 16<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -838,17 +838,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -876,7 +876,7 @@
                 <% time = "18:00"; %>
                 18<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -893,17 +893,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -931,7 +931,7 @@
                 <% time = "19:40"; %>
                 19<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -948,17 +948,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1004,7 +1004,7 @@
                 <% time = "8:00"; %>
                 8<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1021,17 +1021,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1059,7 +1059,7 @@
                 <% time = "9:40"; %>
                 9<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1076,17 +1076,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1114,7 +1114,7 @@
                 <% time = "11:20"; %>
                 11<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1131,17 +1131,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1169,7 +1169,7 @@
                 <% time = "13:00"; %>
                 13<sup>00</sup>
             </td>
-             <td style="width: 100px; padding: 5px; text-align: center">
+             <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1186,17 +1186,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1224,7 +1224,7 @@
                 <% time = "14:40"; %>
                 14<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1241,17 +1241,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1279,7 +1279,7 @@
                 <% time = "16:20"; %>
                 16<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1296,17 +1296,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1334,7 +1334,7 @@
                 <% time = "18:00"; %>
                 18<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1351,17 +1351,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1389,7 +1389,7 @@
                 <% time = "19:40"; %>
                 19<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1406,17 +1406,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1462,7 +1462,7 @@
                 <% time = "8:00"; %>
                 8<sup>00</sup>
             </td>
-             <td style="width: 100px; padding: 5px; text-align: center">
+             <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1479,17 +1479,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1517,7 +1517,7 @@
                 <% time = "9:40"; %>
                 9<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1534,17 +1534,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1572,7 +1572,7 @@
                 <% time = "11:20"; %>
                 11<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1589,17 +1589,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1627,7 +1627,7 @@
                 <% time = "13:00"; %>
                 13<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1644,17 +1644,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1682,7 +1682,7 @@
                 <% time = "14:40"; %>
                 14<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1699,17 +1699,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1737,7 +1737,7 @@
                 <% time = "16:20"; %>
                 16<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1754,17 +1754,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1792,7 +1792,7 @@
                 <% time = "18:00"; %>
                 18<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1809,17 +1809,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1847,7 +1847,7 @@
                 <% time = "19:40"; %>
                 19<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1864,17 +1864,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1920,7 +1920,7 @@
                 <% time = "8:00"; %>
                 8<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1937,17 +1937,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -1975,7 +1975,7 @@
                 <% time = "9:40"; %>
                 9<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -1992,17 +1992,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2030,7 +2030,7 @@
                 <% time = "11:20"; %>
                 11<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2047,17 +2047,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2085,7 +2085,7 @@
                 <% time = "13:00"; %>
                 13<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2102,17 +2102,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2140,7 +2140,7 @@
                 <% time = "14:40"; %>
                 14<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2157,17 +2157,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2195,7 +2195,7 @@
                 <% time = "16:20"; %>
                 16<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2212,17 +2212,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2250,7 +2250,7 @@
                 <% time = "18:00"; %>
                 18<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2267,17 +2267,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2305,7 +2305,7 @@
                 <% time = "19:40"; %>
                 19<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2322,17 +2322,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2378,7 +2378,7 @@
                 <% time = "8:00"; %>
                 8<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2395,17 +2395,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2433,7 +2433,7 @@
                 <% time = "9:40"; %>
                 9<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2450,17 +2450,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2488,7 +2488,7 @@
                 <% time = "11:20"; %>
                 11<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2505,17 +2505,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2543,7 +2543,7 @@
                 <% time = "13:00"; %>
                 13<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2560,17 +2560,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2598,7 +2598,7 @@
                 <% time = "14:40"; %>
                 14<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2615,17 +2615,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2653,7 +2653,7 @@
                 <% time = "16:20"; %>
                 16<sup>20</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2670,17 +2670,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2708,7 +2708,7 @@
                 <% time = "18:00"; %>
                 18<sup>00</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2725,17 +2725,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
@@ -2763,7 +2763,7 @@
                 <% time = "19:40"; %>
                 19<sup>40</sup>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     foundLecturePlan = null;
                     foundTime = String.Empty;
@@ -2780,17 +2780,17 @@
                 %>
                 <%= disciplineAbbreviation %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     room = String.Empty;
                     if (null != foundLecturePlan)
                     {
-                        room = Utility.GetRoom(foundLecturePlan);
+                        room = Utility.GetRoom(foundLecturePlan, day, time);
                     }
                 %>
                 <%= room %>
             </td>
-            <td style="width: 100px; padding: 5px; text-align: center">
+            <td style="width: 150px; padding: 5px; text-align: center">
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&

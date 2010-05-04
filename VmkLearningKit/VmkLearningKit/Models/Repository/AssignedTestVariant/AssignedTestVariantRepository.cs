@@ -20,7 +20,9 @@ namespace VmkLearningKit.Models.Repository
 
         public IEnumerable<AssignedTestVariant> GetAll(long studentId)
         {
-            return DataContext.AssignedTestVariants.Where(t => t.StudentId == studentId);
+            int how_long_show_test = Math.Max(VLKConstants.HOW_LONG_SHOW_DONE_TEST, VLKConstants.HOW_LONG_SHOW_CHECKED_TEST);
+            return DataContext.AssignedTestVariants.Where(t => t.StudentId == studentId &&
+                ((int)(t.AssignedDate.Date - DateTime.Now.Date).TotalDays) < how_long_show_test);
         }
 
         public IEnumerable<AssignedTestVariant> GetUserTests(long idStudent)

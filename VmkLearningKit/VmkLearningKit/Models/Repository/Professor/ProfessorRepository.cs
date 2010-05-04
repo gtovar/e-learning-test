@@ -34,30 +34,39 @@ namespace VmkLearningKit.Models.Repository
                 string firstNameLetter = String.Empty;
                 string patronymicLetter = String.Empty;
 
-                string[] names = fullName.Split(' ');
-                if (null != names && names.Length >= 1)
+                if (!fullName.Trim().Equals(Constants.PROFESSOR_DEFAULT_NAME))
                 {
-                    secondName = names[0];
-                }
-                if (null != names && names.Length >= 2)
-                {
-                    string[] letters = names[1].Split('.');
-                    if (null != letters && letters.Length >= 1)
+                    string[] names = fullName.Split(' ');
+                    if (null != names && names.Length >= 1)
                     {
-                        firstNameLetter = letters[0];
+                        secondName = names[0];
                     }
-                    if (null != letters && letters.Length >= 2)
+                    if (null != names && names.Length >= 2)
                     {
-                        patronymicLetter = letters[1];
+                        string[] letters = names[1].Split('.');
+                        if (null != letters && letters.Length >= 1)
+                        {
+                            firstNameLetter = letters[0];
+                        }
+                        if (null != letters && letters.Length >= 2)
+                        {
+                            patronymicLetter = letters[1];
+                        }
+                    }
+                    if (null != secondName && !secondName.Trim().Equals(String.Empty) &&
+                        null != firstNameLetter && !firstNameLetter.Trim().Equals(String.Empty) &&
+                        null != patronymicLetter && !patronymicLetter.Trim().Equals(String.Empty))
+                    {
+                        return DataContext.Professors.SingleOrDefault(p => p.User.SecondName == secondName &&
+                                                                      p.User.Patronymic[0].ToString() == patronymicLetter &&
+                                                                      p.User.FirstName[0].ToString() == firstNameLetter);
                     }
                 }
-                if (null != secondName && !secondName.Trim().Equals(String.Empty) &&
-                    null != firstNameLetter && !firstNameLetter.Trim().Equals(String.Empty) &&
-                    null != patronymicLetter && !patronymicLetter.Trim().Equals(String.Empty))
+                // Преподаватель по-умолчанию "Не указан" 
+                // обрабатывается отдельно
+                else
                 {
-                    return DataContext.Professors.SingleOrDefault(p => p.User.SecondName == secondName &&
-                                                                  p.User.Patronymic[0].ToString() == patronymicLetter &&
-                                                                  p.User.FirstName[0].ToString() == firstNameLetter);
+                    secondName = fullName;
                 }
 
                 if (null != secondName && !secondName.Trim().Equals(String.Empty))

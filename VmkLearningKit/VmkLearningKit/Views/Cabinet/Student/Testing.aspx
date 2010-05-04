@@ -59,7 +59,8 @@
                    foreach (AssignedTestVariant assignedTestVariant in assignedTestVariants)
                    {
                        // выводим только новые тесты
-                       if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_NEW)
+                       if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_NEW &&
+                           assignedTestVariant.AssignedDate.Date.Equals(DateTime.Now.Date))
                        {
                 %>
                 <tr class="table_row">
@@ -130,7 +131,8 @@
                    foreach (AssignedTestVariant assignedTestVariant in assignedTestVariants)
                    {
                        // выводим только выполненые тесты
-                       if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_DONE)
+                       if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_DONE &&
+                           ((int)(DateTime.Now.Date - assignedTestVariant.AssignedDate.Date).TotalDays) < VLKConstants.HOW_LONG_SHOW_DONE_TEST)
                        {
                 %>
                 <tr class="table_row">
@@ -207,7 +209,9 @@
                    foreach (AssignedTestVariant assignedTestVariant in assignedTestVariants)
                    {
                        // выводим только проверенные тесты
-                       if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_CHECKED)
+                       if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_CHECKED &&
+                           ((int)(DateTime.Now.Date - assignedTestVariant.AssignedDate.Date).TotalDays) < VLKConstants.HOW_LONG_SHOW_CHECKED_TEST)
+
                        {
                 %>
                 <tr class="table_row">

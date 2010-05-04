@@ -15,6 +15,11 @@ namespace VmkLearningKit.Models.Repository
 
         #region Get
 
+        public int GetGeneratedTestVariantLocalIdByGeneratedTestVariantId(long generatedTestVariantId)
+        {
+            return 0;
+        }
+
         public GeneratedTestVariant GetById(long id)
         {
             return DataContext.GeneratedTestVariants.SingleOrDefault(t => t.Id == id);
