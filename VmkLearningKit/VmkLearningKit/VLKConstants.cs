@@ -29,12 +29,12 @@ namespace VmkLearningKit
         public const int    TEST_VARIANT_STATE_NEW      = 1;
         // состояние тестового варианта, когда он был выполнен студентом
         public const int    TEST_VARIANT_STATE_DONE     = 2;
+        // состояние тестового варианта, когда он был проверен преподавателем
+        public const int    TEST_VARIANT_STATE_CHECKED  = 3;
         // как долго отображать выполненные тесты студентом (втечение 14 дней по-умолчанию)
         public const int    HOW_LONG_SHOW_DONE_TEST     = 14;
-        // состояние тестового варианта, когда он был проверен преподавателем
         // как долго отображать проверенные тесты студента (втечение 14 дней по-умолчанию)
         public const int    HOW_LONG_SHOW_CHECKED_TEST  = 14;
-        public const int    TEST_VARIANT_STATE_CHECKED  = 3;
 
         // указание в расписании по каким неделям идут занятия
         public const string UP_WEEK                     = "Верхняя";
