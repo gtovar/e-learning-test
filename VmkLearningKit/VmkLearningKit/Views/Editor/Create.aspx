@@ -13,23 +13,46 @@
 	<script type="text/javascript" src="/Scripts/Plugins/FancyBox/scripts/jquery.fancybox-1.3.1.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Scripts/Plugins/FancyBox/style/jquery.fancybox-1.3.1.css" media="screen" />
 	<script type="text/javascript" src="/Scripts/Plugins/AjaxUpload/ajaxupload.js"></script>
+	<script type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
 	<script type="text/javascript">
+        
+        // Индекс для аттрибута id нового варианта ответа
         var newVariantAnswerStartIndex = <%= Html.Encode(VLKConstants.MINIMNUM_ANSWERS_NUMBER) %>;
         
         $(document).ready(function() {
-            new AjaxUpload($("#ImageUploadLink"), 
+		    
+		    // Добавляем валидацию элементов формы "QuestionForm"
+	        $("#QuestionForm").validate({
+                focusInvalid: false,
+                focusCleanup: true
+            });
+		
+		    /*
+			 * Асинхронная загрузка изображений на сервер с использованием plugin'a "ajaxupload".
+			 * Расширяет стандартный набор возможностей используемого wysiwyg-редактора (jHtmlArea).
+			 *
+			 */
+			new AjaxUpload($("#ImageUploadLink"), 
 						   {
 						       autoSubmit: true,
 							   action: "/Editor/ImageUpload",
 							   name: "UploadedImage",
 							   responseType: "json",
 							   
-							   onSubmit: function(file, extension) {
-							       $("#ImageLink").hide().empty();
-							       $("#ImageUploading").show();
+							   onSubmit: function(file, ext) {
+							       if ((ext && /^(jpg|png|jpeg|gif)$/i.test(ext))) {
+							           $("#ImageLink").hide().empty();
+							           $("#ImageUploading").show();
+							           $("#ImageUploadContainerButtons").hide();
+							       }
+							       else {
+							           $("#ImageLink").empty().append("Используйте файлы jpg | png | gif").show();
+							           return false;
+							       }
 							   },
 							   
 							   onComplete: function(file, response) {
+							       $("#ImageUploadContainerButtons").show();
 							       $("#ImageUploading").hide();
 							       $("#ImageLink").append(response);
 							       
@@ -43,6 +66,10 @@
                            }
             );
             
+            /*
+             * Обработка события "Выбор типа вопроса"
+             *
+             */
             $("#QuestionTypeList").change(function(){
                 var url;
 		        switch ($(this).attr("value")) {
@@ -87,6 +114,7 @@
 													]
 									   });
 									   
+									   // Добавляем обработчик для загрузки изображений
 									   $("a[class=image]").click(function(){
 										   var associatedFrame = $(this).parents("div[class=ToolBar]").next("div").children("iframe")[0];
 										   $.fancybox({
@@ -105,6 +133,31 @@
 											   }
 									       }); 
 									   });
+									   
+									   // Добавляем валидацию элементов формы "QuestionForm"
+								       $(document).find("input[id^='<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>']").each(function(index){
+								           $(this).rules("add",
+												         { 
+													         required: true,
+													         number: true, 
+													         range: [0, 100],
+													         messages: {
+														         required: "Количество баллов за вариант ответа не может быть пустым",
+														         number: "Количество баллов за вариант ответа должно быть числом от 0 до 100",
+														         range: "Количество баллов за вариант ответа должно быть числом от 0 до 100"
+													         }													
+												         }
+											            );
+							           });
+							           
+							           $("#Title").rules("add",
+												         { 
+													         required: true,
+													         messages: {
+														         required: "Краткое название вопроса не может быть пустым"
+														     }
+														 }
+														);
 							       });
 							   });
                            });
@@ -112,8 +165,14 @@
                       );
             });
             
-            $("img[class=QuestionSave]").click(function(){
-                document.forms["QuestionForm"].submit();
+            /*
+             * Обработка события "Сохранение вопроса"
+             *
+             */
+		    $("img[class=QuestionSave]").click(function(){
+                if($("#QuestionForm").valid()) {
+					document.forms["QuestionForm"].submit();
+				}
             });
             
             $("img[class=AnswerAdd]").click(function(){
@@ -176,6 +235,21 @@
 						$(currentRow).remove();
 					}
 				});
+				
+				var newVariantAnswerScore = "#" + "<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex;
+				
+				$(newVariantAnswerScore).rules("add",
+			                  { 
+				                  required: true,
+				                  number: true, 
+				                  range: [0, 100],
+				                  messages: {
+					                  required: "Количество баллов за вариант ответа не может быть пустым",
+					                  number: "Количество баллов за вариант ответа должно быть числом от 0 до 100",
+					                  range: "Количество баллов за вариант ответа должно быть числом от 0 до 100"
+				                  }													
+			                  }
+		        );
 			    
 			    ++newVariantAnswerStartIndex;
             });		
@@ -225,7 +299,7 @@
 			long                        razdelId         = Convert.ToInt64(ViewData["RazdelId"]);
 			IEnumerable<SelectListItem> QuestionTypeList = (IEnumerable<SelectListItem>)ViewData["QuestionTypeList"];
 
-			using (Html.BeginForm("Create", "Editor", new { alias = razdelId }, FormMethod.Post, new { id = "QuestionForm" }))
+			using (Html.BeginForm("Create", "Editor", new { alias = razdelId }, FormMethod.Post, new { id = "QuestionForm", name = "QuestionForm" }))
 			{
 				%>
 				<p>Выберите тип вопроса: <%= Html.DropDownList("QuestionTypeList", QuestionTypeList) %></p>
@@ -242,15 +316,16 @@
 			} 
 		%>		
 		<div style="display:none;">
-			<div id="ImageUploadContainer" style="width:700px; height:70px;">
+			<div id="ImageUploadContainer" style="width:300px; height:130px;">
+			    <p align="center" style="background-color:#E2EFFF;">Загрузка изображений на сервер</p>
 				<p align="center" id="ImageUploading" style="display:none;">
-					<img src="/Content/Images/progress.gif" />
+					<img src="/Content/Images/progress.gif" alt="Идет загрузка" />
 				</p>
 				<p align="center" id="ImageLink"></p>
 				<div id="ImageUploadContainerButtons">
 					<p align="center">
 						<a href="javascript:void(0);" id="ImageUploadLink">Загрузить</a> | 
-						<a href="javascript:void(0);" id="ImageUploadClose" onclick="$.fancybox.close();">Отмена</a>
+						<a href="javascript:void(0);" id="ImageUploadClose" onclick="$.fancybox.close();">Закрыть</a>
 					</p>
 				</div>
 			</div>

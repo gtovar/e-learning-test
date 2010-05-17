@@ -7,9 +7,25 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("img[class=RazdelEdit]").click(function(){
+		$("#NewRazdelForm").validate({
+			focusInvalid: false,
+			focusCleanup: true,
+			rules: {
+				NewRazdelTitle: {
+					required: true
+				}
+			},
+			messages: {
+				NewRazdelTitle: {
+					required: "Название раздела не может быть пустым"
+				}
+			}
+		});
+		
+		$("img[class=RazdelEdit]").click(function(){
             var editBlock = $(this).parent().nextAll("div[class=RazdelEditBlock]").attr("id");
             var url       = "/Testing/EditRazdel/" + editBlock.substr(9);
             
@@ -22,6 +38,21 @@
                           $("div[class=RazdelFooter]").slideUp("slow");
                           $("#" + editBlock).append(response).slideDown("slow");
                           $("#" + editBlock).nextAll("div[class=RazdelFooter]").slideDown("slow");
+                          
+                          $("#RazdelForm").validate({
+							  focusInvalid: false,
+							  focusCleanup: true,
+							  rules: {
+								  Title: {
+							          required: true
+							      }
+						      },
+						      messages: {
+						 	      Title: {
+								      required: "Название раздела не может быть пустым"
+							      }
+						      }
+						  });
                       }
                      );
             }
@@ -50,7 +81,9 @@
 	    });
 	    
 	    $("img[class=RazdelSave]").click(function(){
-            document.forms["RazdelForm"].submit();
+            if($("#RazdelForm").valid()) {
+				document.forms["RazdelForm"].submit();
+			}
         });
         
         $("#RazdelAdd").click(function(){
@@ -64,7 +97,9 @@
 	    });
 	    
 	    $("img[class=NewRazdelSave]").click(function(){
-            document.forms["NewRazdelForm"].submit();
+            if($("#NewRazdelForm").valid()) {
+				document.forms["NewRazdelForm"].submit();
+			}
         });
 	});
 </script>
@@ -78,6 +113,7 @@
 		IEnumerable<Razdel> razdelsList = (IEnumerable<Razdel>)ViewData["RazdelsList"];
 		%>
 		<h2>Список разделов</h2>
+		<br />
 		<table class="Editor" style="width:100%;">
 			<tr class="Editor">
 				<td class="Editor" style="width:10%"><b>Дисциплина:</b></td>

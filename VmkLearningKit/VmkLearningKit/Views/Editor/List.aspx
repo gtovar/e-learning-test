@@ -14,23 +14,40 @@
 	<script type="text/javascript" src="/Scripts/Plugins/FancyBox/scripts/jquery.fancybox-1.3.1.js"></script>
 	<link rel="stylesheet" type="text/css" href="/Scripts/Plugins/FancyBox/style/jquery.fancybox-1.3.1.css" media="screen" />
 	<script type="text/javascript" src="/Scripts/Plugins/AjaxUpload/ajaxupload.js"></script>
+	<script type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
 	<script type="text/javascript">
+        
+        // Индекс для аттрибута id нового варианта ответа
         var newVariantAnswerStartIndex = 0;
         
         $(document).ready(function(){
-            new AjaxUpload($("#ImageUploadLink"), 
+			
+			/*
+			 * Асинхронная загрузка изображений на сервер с использованием plugin'a "ajaxupload".
+			 * Расширяет стандартный набор возможностей используемого wysiwyg-редактора (jHtmlArea).
+			 *
+			 */
+			new AjaxUpload($("#ImageUploadLink"), 
 						   {
 						       autoSubmit: true,
 							   action: "/Editor/ImageUpload",
 							   name: "UploadedImage",
 							   responseType: "json",
 							   
-							   onSubmit: function(file, extension) {
-							       $("#ImageLink").hide().empty();
-							       $("#ImageUploading").show();
+							   onSubmit: function(file, ext) {
+							       if ((ext && /^(jpg|png|jpeg|gif)$/i.test(ext))) {
+							           $("#ImageLink").hide().empty();
+							           $("#ImageUploading").show();
+							           $("#ImageUploadContainerButtons").hide();
+							       }
+							       else {
+							           $("#ImageLink").empty().append("Используйте файлы jpg | png | gif").show();
+							           return false;
+							       }
 							   },
 							   
 							   onComplete: function(file, response) {
+							       $("#ImageUploadContainerButtons").show();
 							       $("#ImageUploading").hide();
 							       $("#ImageLink").append(response);
 							       
@@ -44,10 +61,23 @@
                            }
             );
             
+            /*
+             * Обработка события "Редактирование вопроса"
+             *
+             */            
             $("img[class=QuestionEdit]").click(function(){
+                
+                // Получаем атрибут id ближайшего элемента div с классом "QuestionEditBlock"
                 var editBlock = $(this).parent().nextAll("div[class=QuestionEditBlock]").attr("id");
+                
+                /*
+                 * Формируем url страницы, содержащей подробную информацию о вопросе.
+                 * Идентификтор вопроса (в БД) заложен в полученный аттрибут.
+                 *
+                 */
                 var url       = "/Editor/Edit/" + editBlock.substr(9);
                 
+                // Загружаем/Скрываем полученную информацию о вопросе                
                 if ($("#" + editBlock).is(":hidden")) {
                     $.get(url,
 		                  {},
@@ -76,6 +106,7 @@
 												]
 								  });
 								  
+								  // Добавляем обработчик для загрузки изображений
 								  $("a[class=image]").click(function(){
 									   var associatedFrame = $(this).parents("div[class=ToolBar]").next("div").children("iframe")[0];
 									   $.fancybox({
@@ -95,8 +126,8 @@
 								       }); 
 								   });
 								   
+								   // Добавляем обработчик для удаления вариантов ответа
 								   $("img[class=AnswerRemove]").click(function(){
-										// Удаление варианта ответа
 										if (confirm("Вы уверены, что хотите удалить вариант ответа?")) {
 											var currentRow = $(this).parents("tr")[0];
 							                
@@ -105,6 +136,37 @@
 											$(currentRow).remove();
 										}
 								   });
+								   
+								   // Добавляем валидацию элементов формы "QuestionForm"
+								   $("#QuestionForm").validate({
+							           focusInvalid: false,
+							           focusCleanup: true,
+							           rules: {
+							               Title: { 
+							                   required: true 
+							               }
+							           },
+							           messages: {
+							               Title: { 
+							                   required: "Краткое название вопроса не может быть пустым" 
+							               }
+							           }
+							       });
+							       
+							       $(document).find("input[id^='<%= Html.Encode(VLKConstants.VARIANT_ANSWER_SCORE) %>']").each(function(index){
+								       $(this).rules("add",
+												     { 
+													     required: true,
+													     number: true, 
+													     range: [0, 100],
+													     messages: {
+														     required: "Количество баллов за вариант ответа не может быть пустым",
+														     number: "Количество баллов за вариант ответа должно быть числом от 0 до 100",
+														     range: "Количество баллов за вариант ответа должно быть числом от 0 до 100"
+													     }													
+												     }
+											        );
+							       });
 							  });
 					      }
                          );
@@ -117,9 +179,21 @@
                 }
             });
 		    
+		    /*
+             * Обработка события "Удаление вопроса"
+             *
+             */
             $("img[class=QuestionDelete]").click(function(){
                 if (confirm("Вы уверены, что хотите удалить вопрос?")) {
+					
+					// Получаем атрибут id ближайшего элемента div с классом "QuestionEditBlock"
 					var editBlock = $(this).parent().nextAll("div[class=QuestionEditBlock]").attr("id");
+					
+					/*
+                     * Формируем url страницы для удаления вопроса.
+                     * Идентификтор вопроса (в БД) заложен в полученный аттрибут.
+                     *
+                     */
 					var url       = "/Editor/Delete/" + editBlock.substr(9);
 					$.post(url,
 						   {}
@@ -128,7 +202,13 @@
 				}
 		    });
 		    
+		    /*
+             * Обработка события "Отмена редактирования вопроса"
+             *
+             */
 		    $("img[class=QuestionCancel]").click(function(){
+                
+                // Получаем атрибут id ближайшего элемента div с классом "QuestionEditBlock"
                 var editBlock = $(this).parent().prevAll("div[class=QuestionEditBlock]").attr("id");
                 
                 $(this).parent("div[class=QuestionFooter]").slideUp("slow");
@@ -137,10 +217,20 @@
                 });                
 		    });
 		    
+		    /*
+             * Обработка события "Сохранение вопроса"
+             *
+             */
 		    $("img[class=QuestionSave]").click(function(){
-                document.forms["QuestionForm"].submit();
+                if($("#QuestionForm").valid()) {
+					document.forms["QuestionForm"].submit();
+				}
             });
 		    
+		    /*
+             * Обработка события "Загрузка списка вопросов из файла"
+             *
+             */
             $("#LoadFromFile").click(function(){
                 if ($("div[class=UploadContainer]").is(":hidden")) {
                     $("div[class=QuestionEditBlock]").slideUp("slow").empty();
@@ -149,6 +239,10 @@
                 }
             });
             
+            /*
+             * Обработка события "Отмена загрузки списка вопросов из файла"
+             *
+             */
             $("#HideUploadContainer").click(function(){
                 $("div[class=UploadContainer]").hide("slow");
             });
@@ -159,6 +253,10 @@
 			    "onComplete": function() { document.forms["UploadWordForm"].submit(); }
 	        });
 	        
+	        /*
+             * Обработка события "Добавление варианта ответа"
+             *
+             */
 	        $("img[class=AnswerAdd]").click(function(){
 				var table = $(this).parents("div[class=QuestionFooter]").prevAll("div[class=QuestionEditBlock]").children("form").children("table");
 				
@@ -210,7 +308,6 @@
 				});
 				
 				$("img[class=AnswerRemove]").click(function(){
-					// Удаление варианта ответа
 					if (confirm("Вы уверены, что хотите удалить вариант ответа?")) {
 						var currentRow = $(this).parents("tr")[0];
 		                
@@ -219,6 +316,21 @@
 						$(currentRow).remove();
 					}
 				});
+				
+				var newVariantAnswerScore = "#" + "<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex;
+				
+				$(newVariantAnswerScore).rules("add",
+			                  { 
+				                  required: true,
+				                  number: true, 
+				                  range: [0, 100],
+				                  messages: {
+					                  required: "Количество баллов за вариант ответа не может быть пустым",
+					                  number: "Количество баллов за вариант ответа должно быть числом от 0 до 100",
+					                  range: "Количество баллов за вариант ответа должно быть числом от 0 до 100"
+				                  }													
+			                  }
+		        );
 			    
 			    ++newVariantAnswerStartIndex;
             });	        
@@ -362,9 +474,10 @@
         }
         %>
         <div style="display:none;">
-			<div id="ImageUploadContainer" style="width:700px; height:70px;">
+			<div id="ImageUploadContainer" style="width:300px; height:130px;">
+			    <p align="center" style="background-color:#E2EFFF;">Загрузка изображений на сервер</p>
 				<p align="center" id="ImageUploading" style="display:none;">
-					<img src="/Content/Images/progress.gif" />
+					<img src="/Content/Images/progress.gif" alt="Идет загрузка" />
 				</p>
 				<p align="center" id="ImageLink"></p>
 				<div id="ImageUploadContainerButtons">
@@ -377,9 +490,12 @@
 		</div>
 		<div style="display:none;">
 			<div id="UploadAndParseContainer">
-				<p align="center">
+			    <p align="center">
 					Выполняется загрузка тестовых вопросов.
 				</p>
+				<p align="center">
+			        <img src="/Content/Images/progress.gif" alt="Идет загрузка" />
+			    </p>
 				<p align="center">Пожалуйста, подождите</p>
 			</div>
 		</div>

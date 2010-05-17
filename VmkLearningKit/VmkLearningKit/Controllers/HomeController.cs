@@ -156,5 +156,13 @@ namespace VmkLearningKit.Controllers
 
             return View(Constants.VIEW_PAGE_ERROR);
         }
+
+        /// <summary>
+        /// Действие отображения страниц ошибок в зависимости от кода
+        /// </summary>
+        public ActionResult PartialViewError()
+        {
+            return View(Constants.PARTIALVIEW_PAGE_ERROR);
+        }
     }
 }
