@@ -13,62 +13,130 @@ namespace VmkLearningKit.Controllers
     [OutputCache(Location = System.Web.UI.OutputCacheLocation.None)]
     public class TestingController : AbstractController
     {
+        /// <summary>
+        /// Действие, отображающее список разделов по теме
+        /// </summary>
+        /// <param name="alias">Идентификатор темы</param>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Index(long alias)
         {
-            GeneralMenu();
-            
-            ViewData[Constants.PAGE_TITLE] = "Тестирование"; 
+            try 
+            {
+                ViewData[Constants.PAGE_TITLE] = "Тестирование";
+                
+                GeneralMenu();
+                
+                ViewData["RazdelsList"]       = 
+                    repositoryManager.GetRazdelRepository.GetAllBySpecialityDisciplineTopicId(alias);
+                
+                ViewData["DisciplineTitle"]   = 
+                    HttpUtility.HtmlEncode(repositoryManager.GetSpecialityDisciplineTopicRepository.GetSpecialityDisciplineTitleByTopicId(alias));
+                
+                ViewData["TopicTitle"]        = 
+                    repositoryManager.GetSpecialityDisciplineTopicRepository.GetTitle(alias);
+                
+                ViewData["TopicId"]           = alias;
 
-            ViewData["RazdelsList"]       = repositoryManager.GetRazdelRepository.GetAllBySpecialityDisciplineTopicId(alias);
-            ViewData["DisciplineTitle"]   = repositoryManager.GetSpecialityDisciplineTopicRepository.GetSpecialityDisciplineTitleByTopicId(alias);
-            ViewData["TopicTitle"]        = repositoryManager.GetSpecialityDisciplineTopicRepository.GetTitle(alias);
-            ViewData["TopicId"]           = alias;
-            ViewData["DisciplineAlias"]   = repositoryManager.GetSpecialityDisciplineTopicRepository.GetSpecialityDisciplineAliasByTopicId(alias);
-            ViewData["ProfessorNickName"] = repositoryManager.GetSpecialityDisciplineTopicRepository.GetProfessorNickNameByTopicId(alias);
-            
-
-            return View();
+                ViewData["DisciplineAlias"]   = 
+                    repositoryManager.GetSpecialityDisciplineTopicRepository.GetSpecialityDisciplineAliasByTopicId(alias);
+                
+                ViewData["ProfessorNickName"] = 
+                    repositoryManager.GetSpecialityDisciplineTopicRepository.GetProfessorNickNameByTopicId(alias);
+                
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
+        /// <summary>
+        /// Действие для редактирования раздела 
+        /// </summary>
+        /// <param name="alias">Идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult EditRazdel(long alias)
         {
-            ViewData[Constants.PAGE_TITLE] = "Тестирование"; 
+            try
+            {
+                ViewData["RazdelTitle"] = HttpUtility.HtmlEncode(repositoryManager.GetRazdelRepository.GetTitle(alias));
+                ViewData["RazdelId"]    = alias;
 
-            ViewData["RazdelTitle"] = repositoryManager.GetRazdelRepository.GetTitle(alias);
-            ViewData["RazdelId"]    = alias;
-
-            return View();
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("PartialViewError", "Home");
+            }
         }
 
+        /// <summary>
+        /// Действие для обработки изменений о разделе
+        /// </summary>
+        /// <param name="alias">Идентификатор раздела</param>
+        /// <param name="form">Полученная форма</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditRazdel(long alias, FormCollection form)
         {
-            long    topicId         = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
-            string  newRazdelTitle  = form["Title"];
+            try
+            {
+                long topicId          =
+                    repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
 
-            repositoryManager.GetRazdelRepository.UpdateById(alias, newRazdelTitle);
+                string newRazdelTitle = HttpUtility.HtmlDecode(form["Title"]);
 
-            return RedirectToAction("Index", new { alias = topicId });
+                repositoryManager.GetRazdelRepository.UpdateById(alias, newRazdelTitle);
+
+                return RedirectToAction("Index", new { alias = topicId });
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
+        /// <summary>
+        /// Действие для удаления раздела
+        /// </summary>
+        /// <param name="alias">Идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult DeleteRazdel(long alias)
         {
-            long topicId = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
+            try
+            {
+                long topicId = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
 
-            repositoryManager.GetRazdelRepository.DeleteById(alias);
+                repositoryManager.GetRazdelRepository.DeleteById(alias);
 
-            return RedirectToAction("Index", new { alias = topicId });
+                return RedirectToAction("Index", new { alias = topicId });
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
+        /// <summary>
+        /// Действие для добавления нового раздела
+        /// </summary>
+        /// <param name="alias">Идентификатор темы</param>
+        /// <param name="form">Полученная форма</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddRazdel(long alias, FormCollection form)
         {
-            repositoryManager.GetRazdelRepository.Add(alias, form["NewRazdelTitle"]);
+            try
+            {
+                string newRazdelTitle = HttpUtility.HtmlDecode(form["NewRazdelTitle"]);
 
-            return RedirectToAction("Index", new { alias = alias });
+                repositoryManager.GetRazdelRepository.Add(alias, newRazdelTitle);
+
+                return RedirectToAction("Index", new { alias = alias });
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
     }
 }

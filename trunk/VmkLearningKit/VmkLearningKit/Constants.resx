@@ -252,6 +252,9 @@
   <data name="PAGE_TITLE" xml:space="preserve">
     <value>PageTitle</value>
   </data>
+  <data name="PARTIALVIEW_PAGE_ERROR" xml:space="preserve">
+    <value>PartialViewError</value>
+  </data>
   <data name="PASSWORD_LENGTH" xml:space="preserve">
     <value>8</value>
   </data>

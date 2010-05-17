@@ -466,6 +466,15 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PartialViewError.
+        /// </summary>
+        internal static string PARTIALVIEW_PAGE_ERROR {
+            get {
+                return ResourceManager.GetString("PARTIALVIEW_PAGE_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 8.
         /// </summary>
         internal static string PASSWORD_LENGTH {
