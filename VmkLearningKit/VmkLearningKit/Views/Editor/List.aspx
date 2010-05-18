@@ -377,7 +377,7 @@
         </tr>
         <tr class="Editor">
             <td class="Editor" style="width:10%"><b>Раздел:</b></td>
-            <td class="Editor" style="width:60%"><%= Convert.ToString(ViewData["RazdelTitle"]) %></td>
+            <td class="Editor" style="width:60%"><%= Html.Encode(Convert.ToString(ViewData["RazdelTitle"])) %></td>
             <td class="Editor" style="width:30%"><%= Html.ActionLink("Перейти к списку разделов", "Index", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%></td>
         </tr>
 	</table>
@@ -407,7 +407,7 @@
             <div class="Question">
                 <div class="QuestionHeader">
                     <div class="QuestionNumber"><%= Html.Encode(questionNumber) %></div>
-                    <div class="QuestionTitle"><%= question.Title %></div>
+                    <div class="QuestionTitle"><%= Html.Encode(question.Title) %></div>
                     <div class="QuestionType">
                     <%
                         switch (question.Type)
