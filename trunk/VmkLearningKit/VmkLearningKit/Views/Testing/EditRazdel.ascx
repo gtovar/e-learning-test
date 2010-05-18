@@ -9,7 +9,7 @@ using (Html.BeginForm("EditRazdel", "Testing", new { alias = Convert.ToInt64(Vie
             <label for="Title">Новое название:</label>
             </td>
             <td class="Editor" style="width:80%">
-            <%= Html.TextBox("Title", Html.Encode(Convert.ToString(ViewData["RazdelTitle"])), new { style = "width:100%" })%>
+            <%= Html.TextBox("Title", Convert.ToString(ViewData["RazdelTitle"]), new { style = "width:100%" })%>
             </td>
         </tr>
     </table>

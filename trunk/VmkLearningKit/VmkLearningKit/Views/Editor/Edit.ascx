@@ -16,7 +16,7 @@
             <label for="Title">Краткое название:</label>
             </td>
             <td class="Editor" style="width:85%">
-            <%= Html.TextBox("Title", Html.Encode(question.Title), new { style = "width:100%" })%>
+            <%= Html.TextBox("Title", question.Title, new { style = "width:100%" })%>
             </td>
         </tr>
     <%
@@ -31,7 +31,7 @@
                         <label for="Text">Текст вопроса:</label>
                         </td>
                         <td class="Editor">
-                        <%= Html.TextArea("Text", Html.Encode(question.Text), new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                        <%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
                         </td>
                     </tr>
                     <tr class="Editor">
@@ -48,7 +48,7 @@
                     <tr class="Editor">
                         <td class="Editor">Текст ответа:</td>
                         <td class="Editor">
-                        <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString(), Html.Encode(answer.Text), new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                        <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString(), answer.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
                         </td>
                     </tr>
                     <tr class="Editor">
@@ -56,7 +56,7 @@
                         <label for="<%= VLKConstants.VARIANT_ANSWER_SCORE  + answer.Id.ToString() %>">Количество баллов:</label>
                         </td>
                         <td class="Editor">
-                        <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), Html.Encode(answer.Score))%>
+                        <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), answer.Score)%>
                         </td>
                     </tr>
     
@@ -82,7 +82,7 @@
                         <label for="Text">Текст вопроса:</label>
                         </td>
                         <td class="Editor">
-                        <%= Html.TextArea("Text", Html.Encode(question.Text), new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                        <%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
                         </td>
                     </tr>
                     <tr class="Editor">
@@ -107,7 +107,7 @@
                         <label for="<%= VLKConstants.VARIANT_ANSWER_SCORE  + answer.Id.ToString() %>">Количество баллов:</label>
                         </td>
                         <td class="Editor">
-                        <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), Html.Encode(answer.Score))%>
+                        <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), answer.Score)%>
                         </td>
                     </tr>    
                     <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,7 +151,7 @@
                         <label for="Text">Текст вопроса:</label>
                         </td>
                         <td class="Editor">
-                        <%= Html.TextArea("Text", Html.Encode(question.Text), new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                        <%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
                         </td>
                     </tr>
                     <tr class="Editor">
@@ -173,7 +173,7 @@
                         <tr class="Editor">
                             <td class="Editor">Текст ответа:</td>
                             <td class="Editor">
-                            <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + variantAnswer.Id.ToString(), Html.Encode(variantAnswer.Text), new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                            <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + variantAnswer.Id.ToString(), variantAnswer.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
                             </td>
                         </tr>
                         <tr class="Editor">
@@ -181,7 +181,7 @@
                             <label for="<%= VLKConstants.VARIANT_ANSWER_SCORE + variantAnswer.Id.ToString() %>">Количество баллов:</label>
                             </td>
                             <td class="Editor">
-                            <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + variantAnswer.Id.ToString(), Html.Encode(variantAnswer.Score))%>
+                            <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + variantAnswer.Id.ToString(), variantAnswer.Score)%>
                             </td>                
                         </tr>
                         <tr class="Editor">
