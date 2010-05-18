@@ -30,7 +30,7 @@ namespace VmkLearningKit.Controllers
                     repositoryManager.GetRazdelRepository.GetAllBySpecialityDisciplineTopicId(alias);
                 
                 ViewData["DisciplineTitle"]   = 
-                    HttpUtility.HtmlEncode(repositoryManager.GetSpecialityDisciplineTopicRepository.GetSpecialityDisciplineTitleByTopicId(alias));
+                    repositoryManager.GetSpecialityDisciplineTopicRepository.GetSpecialityDisciplineTitleByTopicId(alias);
                 
                 ViewData["TopicTitle"]        = 
                     repositoryManager.GetSpecialityDisciplineTopicRepository.GetTitle(alias);
@@ -60,7 +60,7 @@ namespace VmkLearningKit.Controllers
         {
             try
             {
-                ViewData["RazdelTitle"] = HttpUtility.HtmlEncode(repositoryManager.GetRazdelRepository.GetTitle(alias));
+                ViewData["RazdelTitle"] = repositoryManager.GetRazdelRepository.GetTitle(alias);
                 ViewData["RazdelId"]    = alias;
 
                 return View();
@@ -76,6 +76,7 @@ namespace VmkLearningKit.Controllers
         /// </summary>
         /// <param name="alias">Идентификатор раздела</param>
         /// <param name="form">Полученная форма</param>
+        [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditRazdel(long alias, FormCollection form)
         {
@@ -122,6 +123,7 @@ namespace VmkLearningKit.Controllers
         /// </summary>
         /// <param name="alias">Идентификатор темы</param>
         /// <param name="form">Полученная форма</param>
+        [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddRazdel(long alias, FormCollection form)
         {

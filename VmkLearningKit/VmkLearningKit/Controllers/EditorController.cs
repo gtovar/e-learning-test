@@ -20,67 +20,81 @@ namespace VmkLearningKit.Controllers
         /// domain/Editor/List/alias
         /// </summary>
         /// <param name="alias">идентификатор раздела</param>
-        /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult List(long alias)
         {
-            GeneralMenu();
+            try
+            {
+                GeneralMenu();
             
-            ViewData[Constants.PAGE_TITLE] = "Редактор тестовых вопросов";
-            
-            ViewData["QuestionsList"]     = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelId(alias);
-            ViewData["RazdelId"]          = alias;
-            ViewData["DisciplineTitle"]   = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
-            ViewData["TopicTitle"]        = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
-            ViewData["RazdelTitle"]       = repositoryManager.GetRazdelRepository.GetTitle(alias);
-            ViewData["ProfessorNickName"] = repositoryManager.GetRazdelRepository.GetProfessorNickNameByRazdelId(alias);
-            ViewData["DisciplineAlias"]   = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
-            ViewData["TopicId"]           = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
+                ViewData[Constants.PAGE_TITLE] = "Редактор тестовых вопросов";
+                
+                ViewData["QuestionsList"]     = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelId(alias);
+                ViewData["RazdelId"]          = alias;
+                ViewData["DisciplineTitle"]   = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
+                ViewData["TopicTitle"]        = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
+                ViewData["RazdelTitle"]       = repositoryManager.GetRazdelRepository.GetTitle(alias);
+                ViewData["ProfessorNickName"] = repositoryManager.GetRazdelRepository.GetProfessorNickNameByRazdelId(alias);
+                ViewData["DisciplineAlias"]   = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
+                ViewData["TopicId"]           = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
 
-            return View();
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         /// <summary>
-        /// Action, отображающий подробную информацию (с возможностью редактирования) для вопроса с идентификатором alias
+        /// Action, отображающий подробную информацию (с возможностью редактирования) для вопроса 
+        /// с идентификатором alias
         /// </summary>
         /// <param name="alias">идентификатор вопроса</param>
-        /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Edit(long alias)
         {
-            GeneralMenu();
-            
-            Question question = repositoryManager.GetQuestionRepository.GetById(alias);
-            int questionType  = question.Type;
-            ViewData["QuestionData"] = question;
-            ViewData["QuestionType"] = questionType;
-
-            switch (questionType)
+            try
             {
-                case VLKConstants.QUESTION_TYPE_SIMPLE:
-                    {
-                        ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias).FirstOrDefault<Answer>();
-                        break;
-                    }
-                case VLKConstants.QUESTION_TYPE_FORMULA:
-                    {
-                        ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias).FirstOrDefault<Answer>();
-                        break;
-                    }
-                case VLKConstants.QUESTION_TYPE_ALTERNATIVE:
-                    {
-                        ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias);
-                        break;
-                    }
-                case VLKConstants.QUESTION_TYPE_DISTRIBUTIVE:
-                    {
-                        ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias);
-                        break;
-                    }
-                default: break;
-            }
+                GeneralMenu();
+            
+                Question question = repositoryManager.GetQuestionRepository.GetById(alias);
+                int questionType  = question.Type;
 
-            return View();
+                ViewData["QuestionData"] = question;
+                ViewData["QuestionType"] = questionType;
+
+                switch (questionType)
+                {
+                    case VLKConstants.QUESTION_TYPE_SIMPLE:
+                        {
+                            ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias).FirstOrDefault<Answer>();
+                            break;
+                        }
+                    case VLKConstants.QUESTION_TYPE_FORMULA:
+                        {
+                            ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias).FirstOrDefault<Answer>();
+                            break;
+                        }
+                    case VLKConstants.QUESTION_TYPE_ALTERNATIVE:
+                        {
+                            ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias);
+                            break;
+                        }
+                    case VLKConstants.QUESTION_TYPE_DISTRIBUTIVE:
+                        {
+                            ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias);
+                            break;
+                        }
+                    default: break;
+                }
+
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("PartialViewError", "Home");
+            }
         }
 
         /// <summary>
@@ -88,258 +102,411 @@ namespace VmkLearningKit.Controllers
         /// </summary>
         /// <param name="alias">идентификатор вопроса</param>
         /// <param name="form">форма, отправленная на сервер</param>
-        /// <returns></returns>
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(long alias, FormCollection form)
         {
-            Question updatedQuestion = repositoryManager.GetQuestionRepository.GetById(alias);
-
-            string title = form["Title"];
-            string text  = form["Text"];
-            byte canCommented = 1;
-
-            if (form["CanCommented"].ToLower().Equals(false.ToString().ToLower()))
+            try
             {
-                canCommented = 0;
+                Question updatedQuestion = repositoryManager.GetQuestionRepository.GetById(alias);
+
+                string title = HttpUtility.HtmlDecode(form["Title"]);
+                string text  = HttpUtility.HtmlDecode(form["Text"]);
+                
+                byte canCommented = 1;
+
+                if (form["CanCommented"].ToLower().Equals(false.ToString().ToLower()))
+                {
+                    canCommented = 0;
+                }
+
+                repositoryManager.GetQuestionRepository.UpdateById(alias, title, text, canCommented);
+
+                foreach (Answer answer in repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias))
+                {
+                    if (null != form[VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString()])
+                    {
+                        repositoryManager.GetAnswerRepository.UpdateById(answer.Id,
+                                                                         HttpUtility.HtmlDecode(form[VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString()]),
+                                                                         Convert.ToDouble(form[VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString()]));
+                    }
+                    else
+                    {
+                        repositoryManager.GetAnswerRepository.Delete(answer);
+                    }
+                }
+
+                foreach (string key in form.AllKeys)
+                {
+                    if (key.StartsWith(VLKConstants.NEW_VARIANT_ANSWER_TEXT))
+                    {
+                        string number = key.Substring(VLKConstants.NEW_VARIANT_ANSWER_TEXT.Length);
+
+                        repositoryManager.GetAnswerRepository.Add(alias,
+                                                                  HttpUtility.HtmlDecode(form[key]),
+                                                                  Convert.ToDouble(form[VLKConstants.NEW_VARIANT_ANSWER_SCORE + number]));
+                    }
+                }
+
+                return RedirectToAction("List", new { alias = updatedQuestion.RazdelId });
             }
-
-            repositoryManager.GetQuestionRepository.UpdateById(alias, title, text, canCommented);
-
-            foreach (Answer answer in repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias))
+            catch (Exception exc)
             {
-                if (null != form[VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString()])
-                {
-                    repositoryManager.GetAnswerRepository.UpdateById(answer.Id,
-                                                                     form[VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString()],
-                                                                     Convert.ToDouble(form[VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString()]));
-                }
-                else
-                {
-                    repositoryManager.GetAnswerRepository.Delete(answer);
-                }
+                return RedirectToAction("Error", "Home");
             }
-
-            foreach (string key in form.AllKeys)
-            {
-                if (key.StartsWith(VLKConstants.NEW_VARIANT_ANSWER_TEXT))
-                {
-                    string number = key.Substring(VLKConstants.NEW_VARIANT_ANSWER_TEXT.Length);
-
-                    repositoryManager.GetAnswerRepository.Add(alias,
-                                                              form[key],
-                                                              Convert.ToDouble(form[VLKConstants.NEW_VARIANT_ANSWER_SCORE + number]));
-                }
-            }
-
-            return RedirectToAction("List", new { alias = updatedQuestion.RazdelId });
         }
 
+        /// <summary>
+        /// Action, выполняющий удаление вопроса с идентификатором alias
+        /// </summary>
+        /// <param name="alias">идентификатор вопроса</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Delete(long alias)
         {
-            long razdelId = repositoryManager.GetQuestionRepository.GetRazdelIdByQuestionId(alias);
+            try
+            {
+                long razdelId = repositoryManager.GetQuestionRepository.GetRazdelIdByQuestionId(alias);
 
-            repositoryManager.GetQuestionRepository.ChangeIsDeletedState(alias, VLKConstants.QUESTION_DELETED);
+                repositoryManager.GetQuestionRepository.ChangeIsDeletedState(alias, VLKConstants.QUESTION_DELETED);
 
-            return RedirectToAction("List", new { alias = razdelId });
+                return RedirectToAction("List", new { alias = razdelId });
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
+        /// <summary>
+        /// Action, отображающий главную форму для создания вопроса (в разделе с идентификатором alias)
+        /// </summary>
+        /// <param name="alias">идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Create(long alias)
         {
-            GeneralMenu();
-            
-            ViewData[Constants.PAGE_TITLE] = "Редактор тестовых вопросов";
+            try
+            {
+                GeneralMenu();
+                
+                ViewData[Constants.PAGE_TITLE] = "Редактор тестовых вопросов";
 
-            ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
-            ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
-            ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(alias);
-            ViewData["ProfessorNickName"]   = repositoryManager.GetRazdelRepository.GetProfessorNickNameByRazdelId(alias);
-            ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
-            ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
-            ViewData["RazdelId"]            = alias;
+                ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
+                ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
+                ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(alias);
+                ViewData["ProfessorNickName"]   = repositoryManager.GetRazdelRepository.GetProfessorNickNameByRazdelId(alias);
+                ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
+                ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
+                ViewData["RazdelId"]            = alias;
 
-            List<SelectListItem> QuestionTypeList = new List<SelectListItem>();
+                List<SelectListItem> QuestionTypeList = new List<SelectListItem>();
 
-            SelectListItem itemDefault = new SelectListItem();
-            itemDefault.Text = "Тип вопроса";
-            itemDefault.Value = VLKConstants.FAKE_VALUE.ToString();
-            QuestionTypeList.Add(itemDefault);
+                SelectListItem itemDefault = new SelectListItem();
+                itemDefault.Text = "Тип вопроса";
+                itemDefault.Value = VLKConstants.FAKE_VALUE.ToString();
+                QuestionTypeList.Add(itemDefault);
 
-            SelectListItem itemSimple = new SelectListItem();
-            itemSimple.Text  = "Простой";
-            itemSimple.Value = VLKConstants.QUESTION_TYPE_SIMPLE.ToString();
-            QuestionTypeList.Add(itemSimple);
+                SelectListItem itemSimple = new SelectListItem();
+                itemSimple.Text  = "Простой";
+                itemSimple.Value = VLKConstants.QUESTION_TYPE_SIMPLE.ToString();
+                QuestionTypeList.Add(itemSimple);
 
-            SelectListItem itemAlternative = new SelectListItem();
-            itemAlternative.Text  = "Альтернативный";
-            itemAlternative.Value = VLKConstants.QUESTION_TYPE_ALTERNATIVE.ToString();
-            QuestionTypeList.Add(itemAlternative);
+                SelectListItem itemAlternative = new SelectListItem();
+                itemAlternative.Text  = "Альтернативный";
+                itemAlternative.Value = VLKConstants.QUESTION_TYPE_ALTERNATIVE.ToString();
+                QuestionTypeList.Add(itemAlternative);
 
-            SelectListItem itemDistributive = new SelectListItem();
-            itemDistributive.Text  = "Дистрибутивный";
-            itemDistributive.Value = VLKConstants.QUESTION_TYPE_DISTRIBUTIVE.ToString();
-            QuestionTypeList.Add(itemDistributive);
+                SelectListItem itemDistributive = new SelectListItem();
+                itemDistributive.Text  = "Дистрибутивный";
+                itemDistributive.Value = VLKConstants.QUESTION_TYPE_DISTRIBUTIVE.ToString();
+                QuestionTypeList.Add(itemDistributive);
 
-            SelectListItem itemFormula = new SelectListItem();
-            itemFormula.Text  = "Формула";
-            itemFormula.Value = VLKConstants.QUESTION_TYPE_FORMULA.ToString();
-            QuestionTypeList.Add(itemFormula);
+                SelectListItem itemFormula = new SelectListItem();
+                itemFormula.Text  = "Формула";
+                itemFormula.Value = VLKConstants.QUESTION_TYPE_FORMULA.ToString();
+                QuestionTypeList.Add(itemFormula);
 
-            ViewData["QuestionTypeList"] = QuestionTypeList.AsEnumerable<SelectListItem>();
+                ViewData["QuestionTypeList"] = QuestionTypeList.AsEnumerable<SelectListItem>();
 
-            return View();
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("PartialViewError", "Home");
+            }
         }
 
+        /// <summary>
+        /// Action, загружающий форму для создания простого вопроса
+        /// </summary>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateSimple()
         {
-            return PartialView();
+            try
+            {
+                return PartialView();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("PartialViewError", "Home");
+            }
         }
 
+        /// <summary>
+        /// Action, загружающий форму для создания дистрибутивного вопроса
+        /// </summary>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateDistributive()
         {
-            return PartialView();
+            try
+            {
+                return PartialView();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("PartialViewError", "Home");
+            }
         }
 
+        /// <summary>
+        /// Action, загружающий форму для создания альтернативного вопроса
+        /// </summary>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateAlternative()
         {
-            return PartialView();
+            try
+            {
+                return PartialView();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("PartialViewError", "Home");
+            }
         }
 
+        /// <summary>
+        /// Action, загружающий форму для создания вопроса типа "формула"
+        /// </summary>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateFormula()
         {
-            return PartialView();
+            try
+            {
+                return PartialView();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("PartialViewError", "Home");
+            }
         }
 
+        /// <summary>
+        /// Action, выполняющий создание вопроса (в разделе с идентификатором alias)
+        /// </summary>
+        /// <param name="alias">идентификатор раздела</param>
+        /// <param name="form">форма, отправленная на сервер</param>
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(long alias, FormCollection form)
         {
-            string title = form["Title"];
-            string text  = form["Text"];
-            int    type  = Convert.ToInt32(form["QuestionTypeList"]);
-
-            byte canCommented = 1;
-
-            if (form["CanCommented"].ToLower().Equals(false.ToString().ToLower()))
+            try
             {
-                canCommented = 0;
-            }
-            
-            long questionId = repositoryManager.GetQuestionRepository.Add(alias, title, type, text, canCommented);
+                string title = HttpUtility.HtmlDecode(form["Title"]);
+                string text  = HttpUtility.HtmlDecode(form["Text"]);
+                int    type  = Convert.ToInt32(form["QuestionTypeList"]);
 
-            foreach (string key in form.AllKeys)
-            {
-                if (key.StartsWith(VLKConstants.NEW_VARIANT_ANSWER_TEXT))
+                byte canCommented = 1;
+
+                if (form["CanCommented"].ToLower().Equals(false.ToString().ToLower()))
                 {
-                    string number = key.Substring(VLKConstants.NEW_VARIANT_ANSWER_TEXT.Length);
-
-                    string ll = form[key];
-                    repositoryManager.GetAnswerRepository.Add(questionId,
-                                                              form[key],
-                                                              Convert.ToDouble(form[VLKConstants.NEW_VARIANT_ANSWER_SCORE + number]));
+                    canCommented = 0;
                 }
-            }
+                
+                long questionId = repositoryManager.GetQuestionRepository.Add(alias, title, type, text, canCommented);
 
-            return RedirectToAction("List", new { alias = alias });
+                foreach (string key in form.AllKeys)
+                {
+                    if (key.StartsWith(VLKConstants.NEW_VARIANT_ANSWER_TEXT))
+                    {
+                        string number = key.Substring(VLKConstants.NEW_VARIANT_ANSWER_TEXT.Length);
+
+                        string ll = form[key];
+                        repositoryManager.GetAnswerRepository.Add(questionId,
+                                                                  HttpUtility.HtmlDecode(form[key]),
+                                                                  Convert.ToDouble(form[VLKConstants.NEW_VARIANT_ANSWER_SCORE + number]));
+                    }
+                }
+
+                return RedirectToAction("List", new { alias = alias });
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
+        /// <summary>
+        /// Action, выполняющий загрузку и разбор word-документов 
+        /// (подготвленный преподавателем список тестовых вопросов)
+        /// </summary>
+        /// <param name="alias">идентификатор раздела</param>
+        /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Upload(long alias)
         {
-            DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Uploads/Word"));
-            long docIndex           = targetDir.GetFiles("*.doc").Length;
-            
-            foreach (string inputTagName in Request.Files)
+            try
             {
-                HttpPostedFileBase file = Request.Files[inputTagName];
-                if (file.ContentLength > 0)
+                DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Uploads/Word"));
+                long docIndex           = targetDir.GetFiles("*.doc").Length;
+                
+                foreach (string inputTagName in Request.Files)
                 {
-                    string filePath = HttpContext.Server.MapPath("/Uploads/Word") + "\\" + (docIndex).ToString() + ".doc";
-                    file.SaveAs(filePath);
-
-                    QWord.QReader reader = new QWord.QReader(HttpContext.Server.MapPath("/Uploads/Word") + "\\" + docIndex.ToString() + ".doc", HttpContext.Server.MapPath("/Uploads/Images"), Request.Url.AbsoluteUri.ToLower().Replace("editor/upload/" + alias.ToString(), "Uploads/Images"));
-
-                    reader.SaveAllImages();
-
-                    QWord.TestQuestionList testQuestionList = reader.ReadWordDocument();
-
-                    for (int i = 0; i < testQuestionList.Count; i++)
+                    HttpPostedFileBase file = Request.Files[inputTagName];
+                    if (file.ContentLength > 0)
                     {
-                        QWord.TestQuestion testQuestion = testQuestionList[i];
+                        string filePath = HttpContext.Server.MapPath("/Uploads/Word") + "\\" + (docIndex).ToString() + ".doc";
+                        file.SaveAs(filePath);
 
-                        int type = -1;
-                        switch (testQuestion.Type)
+                        QWord.QReader reader = new QWord.QReader(HttpContext.Server.MapPath("/Uploads/Word") + "\\" + docIndex.ToString() + ".doc", HttpContext.Server.MapPath("/Uploads/Images"), Request.Url.AbsoluteUri.ToLower().Replace("editor/upload/" + alias.ToString(), "Uploads/Images"));
+
+                        reader.SaveAllImages();
+
+                        QWord.TestQuestionList testQuestionList = reader.ReadWordDocument();
+
+                        for (int i = 0; i < testQuestionList.Count; i++)
                         {
-                            case QWord.QType.Simple:       type = VLKConstants.QUESTION_TYPE_SIMPLE;       break;
-                            case QWord.QType.Alternative:  type = VLKConstants.QUESTION_TYPE_ALTERNATIVE;  break;
-                            case QWord.QType.Distributive: type = VLKConstants.QUESTION_TYPE_DISTRIBUTIVE; break;
-                            case QWord.QType.Formula:      type = VLKConstants.QUESTION_TYPE_FORMULA;      break;
+                            QWord.TestQuestion testQuestion = testQuestionList[i];
 
-                            default: return RedirectToAction("List", new { alias = alias });
+                            int type = -1;
+                            switch (testQuestion.Type)
+                            {
+                                case QWord.QType.Simple:       type = VLKConstants.QUESTION_TYPE_SIMPLE;       break;
+                                case QWord.QType.Alternative:  type = VLKConstants.QUESTION_TYPE_ALTERNATIVE;  break;
+                                case QWord.QType.Distributive: type = VLKConstants.QUESTION_TYPE_DISTRIBUTIVE; break;
+                                case QWord.QType.Formula:      type = VLKConstants.QUESTION_TYPE_FORMULA;      break;
+
+                                default: return RedirectToAction("List", new { alias = alias });
+                            }
+
+                            long questionId = repositoryManager.GetQuestionRepository.Add(alias, VLKConstants.TITLE_IS_ABSENT, type, testQuestion.Question.Text, VLKConstants.QUESTION_CAN_NOT_COMMENTED);
+
+                            for (int j = 0; j < testQuestion.Answers.Count; j++)
+                            {
+                                repositoryManager.GetAnswerRepository.Add(questionId, testQuestion.Answers[j].Text, (double)testQuestion.Answers[j].Score);
+                            }
+
+                            ++docIndex;
                         }
-
-                        long questionId = repositoryManager.GetQuestionRepository.Add(alias, VLKConstants.TITLE_IS_ABSENT, type, testQuestion.Question.Text, VLKConstants.QUESTION_CAN_NOT_COMMENTED);
-
-                        for (int j = 0; j < testQuestion.Answers.Count; j++)
-                        {
-                            repositoryManager.GetAnswerRepository.Add(questionId, testQuestion.Answers[j].Text, (double)testQuestion.Answers[j].Score);
-                        }
-
-                        ++docIndex;
                     }
                 }
-            }
 
-            return RedirectToAction("List", new { alias = alias });
+                return RedirectToAction("List", new { alias = alias });
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
+        /// <summary>
+        /// Action, выполняющий удаление ответа с идентификатором alias
+        /// </summary>
+        /// <param name="alias">идентификатор ответа</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AnswerDelete(long alias)
         {
-            long razdelId = repositoryManager.GetAnswerRepository.GetById(alias).Question.RazdelId;;
-            
-            repositoryManager.GetAnswerRepository.DeleteById(alias);
+            try
+            {
+                long razdelId = repositoryManager.GetAnswerRepository.GetById(alias).Question.RazdelId; ;
 
-            return RedirectToAction("List", new { alias = razdelId });
+                repositoryManager.GetAnswerRepository.DeleteById(alias);
+
+                return RedirectToAction("List", new { alias = razdelId });
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home"); 
+            }
         }
 
+        /// <summary>
+        /// Action, выполняющий загрузку изображений на сервер
+        /// </summary>
+        /// <returns>ссылка на загруженное изображение или ошибка</returns>
         [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult ImageUpload()
         {
-            DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Uploads/Images"));
-            long imageIndex         = targetDir.GetFiles("*.jpg").Length;
-
-            string imageLink = "Данный тип файла не поддерживается. Используйте изображения в формате JPEG (*.jpg)";
-            
-            foreach (string inputTagName in Request.Files)
+            try
             {
-                HttpPostedFileBase file = Request.Files[inputTagName];
+                DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Uploads/Images"));
 
-                if (file.ContentLength > 0 && inputTagName.Equals("UploadedImage"))
+                long imageIndex         = 0;
+
+                long imageNumber        = 0;
+
+                foreach (FileInfo image in targetDir.GetFiles("Image*"))
                 {
-                    if (file.FileName.EndsWith(".jpg"))
+                    imageNumber = Convert.ToInt64(image.Name.Substring(5,
+                                                                       image.Name.LastIndexOf(image.Extension) - 5));
+
+
+                    if (imageNumber > imageIndex)
                     {
-                        string filePath = HttpContext.Server.MapPath("/Uploads/Images") + "\\Image" + (imageIndex).ToString() + ".jpg";
-                        file.SaveAs(filePath);
-                        
-                        imageLink = Request.Url.AbsoluteUri.ToLower().Replace("editor/imageupload", "Uploads/Images/Image" + (imageIndex).ToString() + ".jpg");
+                        imageIndex = imageNumber;
+                    }
+                }
+
+                ++imageIndex;
+
+                string imageLink = "Используйте файлы jpg | png | gif";
+
+                foreach (string inputTagName in Request.Files)
+                {
+                    HttpPostedFileBase file = Request.Files[inputTagName];
+
+                    if (file.ContentLength > 0 && inputTagName.Equals("UploadedImage"))
+                    {
+                        if (file.FileName.EndsWith(".jpg"))
+                        {
+                            string filePath = HttpContext.Server.MapPath("/Uploads/Images") + "\\Image" + (imageIndex).ToString() + ".jpg";
+                            file.SaveAs(filePath);
+
+                            imageLink = Request.Url.AbsoluteUri.ToLower().Replace("editor/imageupload", "Uploads/Images/Image" + (imageIndex).ToString() + ".jpg");
+                        }
+                        else if (file.FileName.EndsWith(".gif"))
+                        {
+                            string filePath = HttpContext.Server.MapPath("/Uploads/Images") + "\\Image" + (imageIndex).ToString() + ".gif";
+                            file.SaveAs(filePath);
+
+                            imageLink = Request.Url.AbsoluteUri.ToLower().Replace("editor/imageupload", "Uploads/Images/Image" + (imageIndex).ToString() + ".gif");
+                        }
+                        else if (file.FileName.EndsWith(".png"))
+                        {
+                            string filePath = HttpContext.Server.MapPath("/Uploads/Images") + "\\Image" + (imageIndex).ToString() + ".png";
+                            file.SaveAs(filePath);
+
+                            imageLink = Request.Url.AbsoluteUri.ToLower().Replace("editor/imageupload", "Uploads/Images/Image" + (imageIndex).ToString() + ".png");
+                        }
 
                         ++imageIndex;
                     }
                 }
+
+                return new JsonResult
+                {
+                    ContentType = "text/html",
+
+                    Data = imageLink
+                };
             }
-            
-            return new JsonResult
+            catch (Exception exc)
             {
-                ContentType = "text/html",
-                Data = imageLink
-            };
+                return new JsonResult
+                {
+                    ContentType = "text/html",
+
+                    Data = "Ошибка на сервере"
+                };
+            }
         }
     }
 }

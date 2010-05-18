@@ -755,7 +755,8 @@ namespace QWord
                 foreach (FileInfo image in images)
                 {
                     int imageNumber = Convert.ToInt32(image.Name.Substring(5,
-                                                                           image.Name.LastIndexOf(".jpg") - 5));
+                                                                           image.Name.LastIndexOf(image.Extension) - 5));
+
 
                     if (imageNumber > startIndex)
                     {

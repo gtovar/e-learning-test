@@ -86,7 +86,7 @@
 			}
         });
         
-        $("#RazdelAdd").click(function(){
+        $("a[name=RazdelAdd]").click(function(){
 			$("div[class=RazdelEditBlock]").slideUp("slow").empty();
             $("div[class=RazdelFooter]").slideUp("slow");
             $(this).prevAll("div[class=NewRazdel]").slideDown("slow");
@@ -157,7 +157,7 @@
 								<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
 							</div>
 						</div>
-						<a id="RazdelAdd" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a>
+						<a href="javascript:void(0);" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a>
 					</div>
 				</div>			
 				<%
@@ -179,7 +179,7 @@
 						%>
 						<div class="Razdel">
 							<div class="RazdelHeader">
-								<div class="RazdelNumber"><%= Html.Encode(razdelNumber) %></div>
+								<div class="RazdelNumber"><%= razdelNumber %></div>
 								<div class="RazdelTitle">
 									<%= Html.ActionLink(razdel.Title, "List", "Editor", new { alias = razdel.Id }, new { @class = "" }) %>
 								</div>
@@ -221,7 +221,7 @@
 								<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
 							</div>
 						</div>
-						<a id="RazdelAdd" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a> | 
+						<a href="javascript:void(0);" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a> | 
 						<%= Html.ActionLink("Перейти к плану генерации", "GetPlanGeneration", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>
 					</div>
 				</div>
