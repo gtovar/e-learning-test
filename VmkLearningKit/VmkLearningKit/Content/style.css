@@ -556,6 +556,28 @@ a:hover
 	right: 10px;
 	cursor: pointer;
 }
+.QuestionsList .Question .QuestionHeader .QuestionRestore
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionHeader .QuestionRestored
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	display: none;
+}
+.QuestionsList .Question .QuestionHeader .QuestionCancelRestore
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	display: none;
+}
 .QuestionsList .Question .QuestionFooter .AnswerAdd
 {
 	position: absolute;

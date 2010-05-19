@@ -361,7 +361,7 @@ namespace VmkLearningKit.Controllers
                 foreach (string inputTagName in Request.Files)
                 {
                     HttpPostedFileBase file = Request.Files[inputTagName];
-                    if (file.ContentLength > 0)
+                    if (file.ContentLength > 0 && file.FileName.EndsWith(".doc"))
                     {
                         string filePath = HttpContext.Server.MapPath("/Uploads/Word") + "\\" + (docIndex).ToString() + ".doc";
                         file.SaveAs(filePath);
@@ -506,6 +506,53 @@ namespace VmkLearningKit.Controllers
 
                     Data = "ќшибка на сервере"
                 };
+            }
+        }
+
+        /// <summary>
+        /// Action, отображающий список вопросов с атрибутом IsDeleted == 1 (удаленные вопросы)
+        /// с возможностью их восстановлени€
+        /// </summary>
+        /// <param name="alias">идентификатор раздела</param>
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Restore(long alias)
+        {
+            try
+            {
+                GeneralMenu();
+                
+                ViewData[Constants.PAGE_TITLE] = "–едактор тестовых вопросов";
+
+                ViewData["QuestionsList"]       = repositoryManager.GetQuestionRepository.GetDeletedQuestionsByRazdelId(alias);
+                ViewData["RazdelId"]            = alias;
+                ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
+                ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
+                ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(alias);
+                ViewData["ProfessorNickName"]   = repositoryManager.GetRazdelRepository.GetProfessorNickNameByRazdelId(alias);
+                ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
+                ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
+
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home"); 
+            }
+        }
+
+        /// <summary>
+        /// Action, выполн€ющий восстановление вопроса с идентификатором alias
+        /// </summary>
+        /// <param name="alias">идентификатор вопроса</param>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void RestoreQuestion(long alias)
+        {
+            try
+            {
+                repositoryManager.GetQuestionRepository.ChangeIsDeletedState(alias, VLKConstants.QUESTION_NOT_DELETED);
+            }
+            catch (Exception exc)
+            {
             }
         }
     }
