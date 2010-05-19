@@ -272,6 +272,7 @@
     <Content Include="Views\Editor\Edit.ascx" />
     <Content Include="Views\Editor\Create.aspx" />
     <Content Include="Views\Editor\List.aspx" />
+    <Content Include="Views\Editor\Question.aspx" />
     <Content Include="Views\Editor\Restore.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Chairs.aspx" />
@@ -399,11 +400,10 @@
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
-          <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>12121</DevelopmentServerPort>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>19119</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/VmkLearningKit</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
