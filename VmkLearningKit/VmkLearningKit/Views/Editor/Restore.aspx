@@ -165,8 +165,8 @@
                     %>
                     </div>
                     <img id="<%= Html.Encode("Restored" + question.Id.ToString())%>" src="/Content/Images/apply.png" class="QuestionRestored" alt="Восстановлено" width="20" height="20" />
-                    <img id="<%= Html.Encode("Restore" + question.Id.ToString()) %>" src="/Content/Images/add.png" class="QuestionRestore" alt="Восстановить" width="20" height="20" />
-                    <img id="<%= Html.Encode("CancelRestore" + question.Id.ToString())%>" src="/Content/Images/cancel.png" class="QuestionCancelRestore" alt="Отмена" width="20" height="20" />
+                    <img id="<%= Html.Encode("Restore" + question.Id.ToString()) %>" src="/Content/Images/add.png" title="Восстановить" class="QuestionRestore" alt="Восстановить" width="20" height="20" />
+                    <img id="<%= Html.Encode("CancelRestore" + question.Id.ToString())%>" src="/Content/Images/cancel.png" title="Удалить" class="QuestionCancelRestore" alt="Отмена" width="20" height="20" />
                 </div>
                 </div>
                 <% 

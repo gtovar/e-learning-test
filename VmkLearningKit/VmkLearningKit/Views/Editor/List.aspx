@@ -270,7 +270,7 @@
 						   "</tr>" +
 						   "<tr class=\"Editor\">" +
                            "    <td class=\"Editor\" colspan=\"2\" rowspan=\"1\"></td>" + 
-                           "    <td class=\"Editor\"><img class=\"AnswerRemove\" src=\"/Content/Images/remove.png\" alt=\"Удалить вариант ответа\" width=\"20\" height=\"20\" /></td>" +
+                           "    <td class=\"Editor\"><img class=\"AnswerRemove\" src=\"/Content/Images/remove.png\" title=\"Удалить вариант ответа\" alt=\"Удалить\" width=\"20\" height=\"20\" /></td>" +
 						   "</tr>";
 				
 				$(table).append(text);
@@ -449,8 +449,8 @@
                         }
                     %>
                     </div>
-                    <img src="/Content/Images/edit.png" class="QuestionEdit" alt="Редактировать" width="20" height="20" />
-                    <img src="/Content/Images/delete.png" class="QuestionDelete" alt="Удалить" width="20" height="20" />
+                    <img src="/Content/Images/edit.png" title="Редактировать" class="QuestionEdit" alt="Редактировать" width="20" height="20" />
+                    <img src="/Content/Images/delete.png" title="Удалить" class="QuestionDelete" alt="Удалить" width="20" height="20" />
                 </div>
                 <div id="<%= Html.Encode("EditBlock" + question.Id.ToString()) %>" class="QuestionEditBlock"></div>
                 <div class="QuestionFooter">
@@ -458,12 +458,12 @@
                        if (question.Type == VLKConstants.QUESTION_TYPE_DISTRIBUTIVE || question.Type == VLKConstants.QUESTION_TYPE_ALTERNATIVE)
                        {
                            %>
-                            <img src="/Content/Images/add.png" class="AnswerAdd" alt="Добавить вариант ответа" width="20" height="20" />
+                            <img src="/Content/Images/add.png" title="Добавить вариант ответа" class="AnswerAdd" alt="Добавить" width="20" height="20" />
                            <%
                        }
                     %>
-                    <img src="/Content/Images/save.png" class="QuestionSave" alt="Сохранить" width="20" height="20" />
-                    <img src="/Content/Images/cancel.png" class="QuestionCancel" alt="Отменить" width="20" height="20" />
+                    <img src="/Content/Images/save.png" title="Сохранить" class="QuestionSave" alt="Сохранить" width="20" height="20" />
+                    <img src="/Content/Images/cancel.png" title="Отменить редактирование" class="QuestionCancel" alt="Отменить" width="20" height="20" />
                 </div>
             </div>
         <% 

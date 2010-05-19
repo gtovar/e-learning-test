@@ -191,7 +191,7 @@
                             if (answersCount > VLKConstants.MINIMNUM_ANSWERS_NUMBER)
                             {
     %>
-                                <img class="AnswerRemove" src="/Content/Images/remove.png" alt="Удалить вариант ответа" width="20" height="20" />
+                                <img class="AnswerRemove" src="/Content/Images/remove.png" title="Удалить вариант ответа" alt="Удалить" width="20" height="20" />
     <%
                             }
     %>                     

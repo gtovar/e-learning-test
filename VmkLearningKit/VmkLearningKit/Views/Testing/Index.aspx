@@ -153,8 +153,8 @@
 							}
 							%>
 							<div class="NewRazdelFooter">
-								<img src="/Content/Images/save.png" class="NewRazdelSave" alt="Сохранить" width="20" height="20" />
-								<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
+								<img src="/Content/Images/save.png" title="Сохранить" class="NewRazdelSave" alt="Сохранить" width="20" height="20" />
+								<img src="/Content/Images/cancel.png" title="Отменить" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
 							</div>
 						</div>
 						<br />
@@ -184,13 +184,13 @@
 								<div class="RazdelTitle">
 									<%= Html.ActionLink(razdel.Title, "List", "Editor", new { alias = razdel.Id }, new { @class = "" }) %>
 								</div>
-								<img src="/Content/Images/edit.png" class="RazdelEdit" alt="Редактировать" width="20" height="20" />
-								<img src="/Content/Images/delete.png" class="RazdelDelete" alt="Удалить" width="20" height="20" />
+								<img src="/Content/Images/edit.png" title="Редактировать" class="RazdelEdit" alt="Редактировать" width="20" height="20" />
+								<img src="/Content/Images/delete.png" title="Удалить" class="RazdelDelete" alt="Удалить" width="20" height="20" />
 							</div>
 							<div id="<%= Html.Encode("EditBlock" + razdel.Id.ToString()) %>" class="RazdelEditBlock"></div>
 							<div class="RazdelFooter">
-								<img src="/Content/Images/save.png" class="RazdelSave" alt="Сохранить" width="20" height="20" />
-								<img src="/Content/Images/cancel.png" class="RazdelCancel" alt="Отменить" width="20" height="20" />
+								<img src="/Content/Images/save.png" title="Сохранить" class="RazdelSave" alt="Сохранить" width="20" height="20" />
+								<img src="/Content/Images/cancel.png" title="Отменить" class="RazdelCancel" alt="Отменить" width="20" height="20" />
 							</div>
 						</div>
 						<%
@@ -218,8 +218,8 @@
 							}
 							%>
 							<div class="NewRazdelFooter">
-								<img src="/Content/Images/save.png" class="NewRazdelSave" alt="Сохранить" width="20" height="20" />
-								<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
+								<img src="/Content/Images/save.png" title="Сохранить" class="NewRazdelSave" alt="Сохранить" width="20" height="20" />
+								<img src="/Content/Images/cancel.png" title="Отменить" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
 							</div>
 						</div>
 						<br />
