@@ -188,7 +188,7 @@
 						   "</tr>" +
 						   "<tr class=\"Editor\">" +
                            "    <td class=\"Editor\" colspan=\"2\" rowspan=\"1\"></td>" + 
-                           "    <td class=\"Editor\"><img class=\"AnswerRemove\" src=\"/Content/Images/remove.png\" alt=\"Удалить вариант ответа\" width=\"20\" height=\"20\" /></td>" +
+                           "    <td class=\"Editor\"><img class=\"AnswerRemove\" src=\"/Content/Images/remove.png\" title=\"Удалить вариант ответа\" alt=\"Удалить\" width=\"20\" height=\"20\" /></td>" +
 						   "</tr>";
 				
 				$(table).append(text);
@@ -308,8 +308,8 @@
 					<div class="Question">
 						<div class="QuestionEditBlock"></div>
 						<div class="QuestionFooter">
-							<img src="/Content/Images/add.png" class="AnswerAdd" alt="Новый вариант ответа" width="20" height="20" style="display:none;" />
-							<img src="/Content/Images/save.png" class="QuestionSave" alt="Сохранить" width="20" height="20" />
+							<img src="/Content/Images/add.png" title="Добавить вариант ответа" class="AnswerAdd" alt="Добавить" width="20" height="20" style="display:none;" />
+							<img src="/Content/Images/save.png" title="Сохранить" class="QuestionSave" alt="Сохранить" width="20" height="20" />
 						</div>
 					</div>
 				</div>
