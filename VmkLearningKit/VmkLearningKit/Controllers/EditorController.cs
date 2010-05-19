@@ -68,22 +68,30 @@ namespace VmkLearningKit.Controllers
                 {
                     case VLKConstants.QUESTION_TYPE_SIMPLE:
                         {
-                            ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias).FirstOrDefault<Answer>();
+                            ViewData["AnswerData"]         = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias).FirstOrDefault<Answer>();
+                            ViewData["QuestionTypeString"] = "простой";
+                            
                             break;
                         }
                     case VLKConstants.QUESTION_TYPE_FORMULA:
                         {
                             ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias).FirstOrDefault<Answer>();
+                            ViewData["QuestionTypeString"] = "формула";
+
                             break;
                         }
                     case VLKConstants.QUESTION_TYPE_ALTERNATIVE:
                         {
                             ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias);
+                            ViewData["QuestionTypeString"] = "альтернативный";
+
                             break;
                         }
                     case VLKConstants.QUESTION_TYPE_DISTRIBUTIVE:
                         {
                             ViewData["AnswerData"] = repositoryManager.GetAnswerRepository.GetAllAnswersByQuestionId(alias);
+                            ViewData["QuestionTypeString"] = "дистрибутивный";
+
                             break;
                         }
                     default: break;
@@ -553,6 +561,38 @@ namespace VmkLearningKit.Controllers
             }
             catch (Exception exc)
             {
+            }
+        }
+
+        /// <summary>
+        /// Action, выполн€ющий отображение вопроса с идентификатором alias
+        /// </summary>
+        /// <param name="alias">идентификатор вопроса</param>
+        public ActionResult Question(long alias)
+        {
+            try
+            {
+                GeneralMenu();
+
+                ViewData[Constants.PAGE_TITLE] = "–едактор тестовых вопросов";
+
+                long razdelId = repositoryManager.GetQuestionRepository.GetRazdelIdByQuestionId(alias);
+                
+                ViewData["QuestionType"]        = repositoryManager.GetQuestionRepository.GetQuestionType(alias);                
+                ViewData["QuestionId"]          = alias;
+
+                ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(razdelId);
+                ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(razdelId);
+                ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(razdelId);
+                ViewData["ProfessorNickName"]   = repositoryManager.GetRazdelRepository.GetProfessorNickNameByRazdelId(razdelId);
+                ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(razdelId);
+                ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(razdelId).SpecialityDisciplineTopicId;
+
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
             }
         }
     }

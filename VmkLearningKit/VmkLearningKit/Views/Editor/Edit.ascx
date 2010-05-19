@@ -12,6 +12,10 @@
             <th class="Editor"></th>
         </tr>
         <tr class="Editor">
+            <td class="Editor" style="width:15%">Тип вопроса:</td>
+            <td class="Editor" style="width:85%"><%= Html.Encode(ViewData["QuestionTypeString"]) %></td>
+        </tr>
+        <tr class="Editor">
             <td class="Editor" style="width:15%">
             <label for="Title">Краткое название:</label>
             </td>
