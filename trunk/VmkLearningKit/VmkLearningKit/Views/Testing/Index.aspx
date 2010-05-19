@@ -33,11 +33,11 @@
                 $.get(url,
 	                  {},
                       function(response) {
-						  $("div[class=NewRazdel]").slideUp("slow");
-                          $("div[class=RazdelEditBlock]").slideUp("slow").empty();
-                          $("div[class=RazdelFooter]").slideUp("slow");
-                          $("#" + editBlock).append(response).slideDown("slow");
-                          $("#" + editBlock).nextAll("div[class=RazdelFooter]").slideDown("slow");
+						  $("div[class=NewRazdel]").hide("slow");
+                          $("div[class=RazdelEditBlock]").hide("slow").empty();
+                          $("div[class=RazdelFooter]").hide("slow");
+                          $("#" + editBlock).append(response).show("slow");
+                          $("#" + editBlock).nextAll("div[class=RazdelFooter]").show("slow");
                           
                           $("#RazdelForm").validate({
 							  focusInvalid: false,
@@ -57,8 +57,8 @@
                      );
             }
             else {
-                $("div[class=RazdelEditBlock]").slideUp("slow").empty();
-                $("div[class=RazdelFooter]").slideUp("slow");
+                $("div[class=RazdelEditBlock]").hide("slow").empty();
+                $("div[class=RazdelFooter]").hide("slow");
             }
         });
 	    
@@ -76,8 +76,8 @@
 	    $("img[class=RazdelCancel]").click(function(){
             var editBlock = $(this).parent().prevAll("div[class=RazdelEditBlock]").attr("id");
             
-            $("#" + editBlock).slideUp("slow").empty();
-            $(this).parent("div[class=RazdelFooter]").slideUp("slow");
+            $("#" + editBlock).hide("slow").empty();
+            $(this).parent("div[class=RazdelFooter]").hide("slow");
 	    });
 	    
 	    $("img[class=RazdelSave]").click(function(){
@@ -87,13 +87,13 @@
         });
         
         $("a[name=RazdelAdd]").click(function(){
-			$("div[class=RazdelEditBlock]").slideUp("slow").empty();
-            $("div[class=RazdelFooter]").slideUp("slow");
-            $(this).prevAll("div[class=NewRazdel]").slideDown("slow");
+			$("div[class=RazdelEditBlock]").hide("slow").empty();
+            $("div[class=RazdelFooter]").hide("slow");
+            $(this).prevAll("div[class=NewRazdel]").show("slow");
         });
         
         $("img[class=NewRazdelCancel]").click(function(){
-            $("div[class=NewRazdel]").slideUp("slow");
+            $("div[class=NewRazdel]").hide("slow");
 	    });
 	    
 	    $("img[class=NewRazdelSave]").click(function(){
@@ -157,6 +157,7 @@
 								<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
 							</div>
 						</div>
+						<br />
 						<a href="javascript:void(0);" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a>
 					</div>
 				</div>			
@@ -165,7 +166,7 @@
 			else
 			{
 				%>
-				
+				<br />
 				<div class="RazdelsList">
 					<div class="MainRazdelHeader">
 						<div class="RazdelNumber">№</div>   
@@ -221,7 +222,8 @@
 								<img src="/Content/Images/cancel.png" class="NewRazdelCancel" alt="Отменить" width="20" height="20" />
 							</div>
 						</div>
-						<a href="javascript:void(0);" name="RazdelAdd" style="cursor:pointer;">Добавить раздел</a> | 
+						<br />
+						<a href="javascript:void(0);" name="RazdelAdd" style="cursor:pointer;">Создать раздел</a> | 
 						<%= Html.ActionLink("Перейти к плану генерации", "GetPlanGeneration", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>
 					</div>
 				</div>

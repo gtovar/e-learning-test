@@ -277,6 +277,7 @@
     {
 		%>
 		<h2>Создание тестового вопроса</h2>
+		<br />
 		<table class="Editor" style="width:100%;">
 			<tr class="Editor">
 				<td class="Editor" style="width:10%"><b>Дисциплина:</b></td>

@@ -82,14 +82,14 @@
                     $.get(url,
 		                  {},
                           function(response) {
-                              $("div[class=QuestionFooter]").slideUp("slow");
-							  $("div[class=QuestionEditBlock]").slideUp("slow", function(){
+                              $("div[class=QuestionFooter]").hide("slow");
+							  $("div[class=QuestionEditBlock]").hide("slow", function(){
 							      $("div[class=QuestionEditBlock]").empty();
 							      $("#" + editBlock).append(response);
 							  });
 							  
-							  $("#" + editBlock).slideDown("slow", function(){
-								  $("#" + editBlock).nextAll("div[class=QuestionFooter]").slideDown("slow");
+							  $("#" + editBlock).show("slow", function(){
+								  $("#" + editBlock).nextAll("div[class=QuestionFooter]").show("slow");
 								  
 								  // Заменяем все элементы textarea с аттрибутом class="TextEditor"
 						   		  // на wysiwyg-редакторы (jHtmlArea)
@@ -172,8 +172,8 @@
                          );
                 }
                 else {
-                    $("#" + editBlock).nextAll("div[class=QuestionFooter]").slideUp("slow");
-                    $("#" + editBlock).slideUp("slow", function(){
+                    $("#" + editBlock).nextAll("div[class=QuestionFooter]").hide("slow");
+                    $("#" + editBlock).hide("slow", function(){
                         $("#" + editBlock).empty();
                     });
                 }
@@ -211,8 +211,8 @@
                 // Получаем атрибут id ближайшего элемента div с классом "QuestionEditBlock"
                 var editBlock = $(this).parent().prevAll("div[class=QuestionEditBlock]").attr("id");
                 
-                $(this).parent("div[class=QuestionFooter]").slideUp("slow");
-                $("#" + editBlock).slideUp("slow", function(){
+                $(this).parent("div[class=QuestionFooter]").hide("slow");
+                $("#" + editBlock).hide("slow", function(){
 					$("#" + editBlock).empty();
                 });                
 		    });
@@ -233,8 +233,8 @@
              */
             $("#LoadFromFile").click(function(){
                 if ($("div[class=UploadContainer]").is(":hidden")) {
-                    $("div[class=QuestionEditBlock]").slideUp("slow").empty();
-                    $("div[class=QuestionFooter]").slideUp("slow");
+                    $("div[class=QuestionEditBlock]").hide("slow").empty();
+                    $("div[class=QuestionFooter]").hide("slow");
                     $("div[class=UploadContainer]").show("slow");                    
                 }
             });
@@ -364,6 +364,7 @@
             long questionNumber = 1;
     %>
     <h2>Список тестовых вопросов</h2>
+    <br />
     <table class="Editor" style="width:100%;">
         <tr class="Editor">
             <td class="Editor" style="width:10%"><b>Дисциплина:</b></td>
@@ -393,6 +394,7 @@
 	else
 	{
 	%>
+	    <br />
 		<div class="QuestionsList">
             <div class="MainQuestionHeader">
                 <div class="QuestionNumber">№</div>   
@@ -501,7 +503,8 @@
 		</div>
         <br />
         <p>
-            <%= Html.ActionLink("Создать новый вопрос", "Create", new { alias = razdelId }, new { id = "CreateNew" })%> | 
+            <%= Html.ActionLink("Создать вопрос", "Create", new { alias = razdelId })%> | 
+            <%= Html.ActionLink("Восстановить вопрос", "Restore", new { alias = razdelId })%> | 
             <a  href="javascript:void(0);" id="LoadFromFile" style="cursor:pointer;">Загрузить из файла</a>
         </p>
         <div class="UploadContainer">

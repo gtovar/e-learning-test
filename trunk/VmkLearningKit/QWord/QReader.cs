@@ -17,7 +17,10 @@ namespace QWord
 {
     public class QReader
     {
-        public QResult result;
+        /// <summary>
+        /// Поле result: результат разбора документа
+        /// </summary>
+        public QResult result = new QResult();
 
         #region Private Fields
 
@@ -92,8 +95,6 @@ namespace QWord
 
         #region Private Methods
 
-        #region Word Document
-
         /// <summary>
         /// Метод OpenWordDocument: открыть word-документ
         /// </summary>
@@ -120,24 +121,31 @@ namespace QWord
             Object noEncodingDialog      = false;
             Object xmlTransform          = Type.Missing;
 
-            wordDocument = wordApplication.Documents.Open(
-                                                          ref filename,
-                                                          ref confirmConversions, 
-                                                          ref readOnly, 
-                                                          ref addToRecentFiles,
-                                                          ref passwordDocument, 
-                                                          ref passwordTemplate, 
-                                                          ref revert,
-                                                          ref writePasswordDocument, 
-                                                          ref writePasswordTemplate,
-                                                          ref format, 
-                                                          ref encoding, 
-                                                          ref visible,
-                                                          ref openAndRepair, 
-                                                          ref documentDirection, 
-                                                          ref noEncodingDialog, 
-                                                          ref xmlTransform
-                                                         );
+            try
+            {
+                wordDocument = wordApplication.Documents.Open(
+                                                              ref filename,
+                                                              ref confirmConversions,
+                                                              ref readOnly,
+                                                              ref addToRecentFiles,
+                                                              ref passwordDocument,
+                                                              ref passwordTemplate,
+                                                              ref revert,
+                                                              ref writePasswordDocument,
+                                                              ref writePasswordTemplate,
+                                                              ref format,
+                                                              ref encoding,
+                                                              ref visible,
+                                                              ref openAndRepair,
+                                                              ref documentDirection,
+                                                              ref noEncodingDialog,
+                                                              ref xmlTransform
+                                                             );
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при открытии документа", exc);
+            }
         }
 
         /// <summary>
@@ -180,16 +188,28 @@ namespace QWord
             // итератор для обхода списка параграфов
             IEnumerator enumeratorParagraphs = wordParagraphs.GetEnumerator();
 
-            enumeratorParagraphs.Reset();
-
-            while (enumeratorParagraphs.MoveNext())
+            try
             {
-                paragraph = (Paragraph)enumeratorParagraphs.Current;
+                enumeratorParagraphs.Reset();
 
-                // каждый вопрос начинается с метки "Тип - "
-                if (paragraph.Range.Text.IndexOf("Тип -") >= 0)
+                while (enumeratorParagraphs.MoveNext())
                 {
-                    count++;
+                    paragraph = (Paragraph)enumeratorParagraphs.Current;
+
+                    // каждый вопрос начинается с метки "Тип - "
+                    if (paragraph.Range.Text.IndexOf("Тип -") >= 0)
+                    {
+                        count++;
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при подсчете числа вопросов", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
                 }
             }
 
@@ -203,16 +223,29 @@ namespace QWord
         /// <returns>параграф, к которому был осуществен переход</returns>
         private Paragraph GoToNextParagraph(IEnumerator enumeratorParagraphs)
         {
-            enumeratorParagraphs.MoveNext();
+            Paragraph paragraph = null;
             
-            Paragraph paragraph = (Paragraph)enumeratorParagraphs.Current;
+            try
+            {
+                enumeratorParagraphs.MoveNext();
 
-            GoToNextParagraph();
+                paragraph = (Paragraph)enumeratorParagraphs.Current;
 
+                GoToNextParagraph();
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при переходе к следующему параграфу", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
+            }
+            
             return paragraph;
         }
-
-
+        
         /// <summary>
         /// Метод GoToNextParagraph: перевод курсора к следующему параграфу
         /// </summary>
@@ -232,13 +265,27 @@ namespace QWord
         /// <returns>параграф - начало списка с ответами</returns>
         private Paragraph GoToAnswerList(IEnumerator enumeratorParagraphs)
         {
-            enumeratorParagraphs.MoveNext();
-            Paragraph paragraph = (Paragraph)enumeratorParagraphs.Current;
+            Paragraph paragraph = null;
 
-            while (paragraph.Range.ListFormat.ListType != answerListType)
+            try
             {
                 enumeratorParagraphs.MoveNext();
                 paragraph = (Paragraph)enumeratorParagraphs.Current;
+
+                while (paragraph.Range.ListFormat.ListType != answerListType)
+                {
+                    enumeratorParagraphs.MoveNext();
+                    paragraph = (Paragraph)enumeratorParagraphs.Current;
+                }
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при переходе к нумерованному списку с ответами", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
             }
 
             return paragraph;
@@ -262,13 +309,29 @@ namespace QWord
         /// <param name="enumeratorParagraphs">итератор для списка параграфов</param>
         private Paragraph GoToAnswerOnSimpleQuestion(IEnumerator enumeratorParagraphs)
         {
-            enumeratorParagraphs.MoveNext();
-            Paragraph paragraph = (Paragraph)enumeratorParagraphs.Current;
+            Paragraph paragraph = null;
 
-            while (paragraph.Range.Text.IndexOf("#Ответ#") < 0)
+            try
             {
                 enumeratorParagraphs.MoveNext();
+
                 paragraph = (Paragraph)enumeratorParagraphs.Current;
+
+                while (paragraph.Range.Text.IndexOf("#Ответ#") < 0)
+                {
+                    enumeratorParagraphs.MoveNext();
+
+                    paragraph = (Paragraph)enumeratorParagraphs.Current;
+                }
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при переходе к ответу на простой вопрос", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
             }
 
             return paragraph;
@@ -279,21 +342,31 @@ namespace QWord
         /// </summary>
         private void GoToAnswerOnSimpleQuestion()
         {
-            if (wordApplication.Selection.Words.First.Text.IndexOf("#") >= 0)
+            try
             {
-                GoToNextWord();
+                if (wordApplication.Selection.Words.First.Text.IndexOf("#") >= 0)
+                {
+                    GoToNextWord();
+                }
+                if (wordApplication.Selection.Words.First.Text.IndexOf("Ответ") >= 0)
+                {
+                    GoToNextWord();
+                }
+                if (wordApplication.Selection.Words.First.Text.IndexOf("#") >= 0)
+                {
+                    GoToNextWord();
+                }
             }
-            if (wordApplication.Selection.Words.First.Text.IndexOf("Ответ") >= 0)
+            catch (Exception exc)
             {
-                GoToNextWord();
-            }
-            if (wordApplication.Selection.Words.First.Text.IndexOf("#") >= 0)
-            {
-                GoToNextWord();
+                result = new QResult(QResultType.ERROR, "Ошибка при распознавании маркера ответа на простой вопрос", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
             }
         }
-
-        #endregion
 
         /// <summary>
         /// Метод IsImage: является ли просматриваемый объект картинкой
@@ -306,121 +379,64 @@ namespace QWord
         }
 
         /// <summary>
-        /// Метод SaveAllImages: сохранение всех картинок на жесткий диск (на сервере)
-        /// </summary>
-        public void SaveAllImages()
-        {
-            if (wordApplication == null)
-            {
-                // открытие документа word
-                OpenWordDocument();
-            }
-
-            InlineShape inlineShape;
-            
-            // индекс картинки
-            pictureIndex = GetStartImageIndex();
-
-            int index = pictureIndex;
-
-            // итератор для обхода списка рисунков
-            IEnumerator enumeratorInlineShapes = wordDocument.InlineShapes.GetEnumerator();
-
-            enumeratorInlineShapes.Reset();
-
-            // создание директории для хранения рисунков
-            DirectoryInfo imageDir = new DirectoryInfo(imageServerDir);
-            
-            if (!imageDir.Exists)
-            {
-                imageDir.Create();
-            }
-
-            // сохранение рисунков
-            while (enumeratorInlineShapes.MoveNext())
-            {
-                // сохраняем изображение во временный файл
-                inlineShape = (InlineShape)enumeratorInlineShapes.Current;
-
-                byte [] imageBytes = (byte[])inlineShape.Range.EnhMetaFileBits;
-
-                FileStream imageFile = new FileStream(imageServerDir + "\\temp" + index.ToString() + ".jpg",
-                                                      FileMode.Create, 
-                                                      FileAccess.Write);
-                
-                imageFile.Write(imageBytes, 0, imageBytes.Length);
-
-                imageFile.Close();
-
-                // FIXME: ??? Картинки сохраняются в 75% масштабе, увеличиваем размер
-                inlineShape.ScaleWidth  = 400.0f / 3.0f;
-                inlineShape.ScaleHeight = 400.0f / 3.0f;
-
-                Bitmap bitmap = new Bitmap(Image.FromFile(imageServerDir + "\\temp" + index.ToString() + ".jpg"),
-                                           (int)inlineShape.Width,
-                                           (int)inlineShape.Height);
-
-                bitmap.Save(imageServerDir + "\\Image" + index.ToString() + ".jpg");
-
-                index++;
-            }
-
-            // закрытие документа word
-            CloseWordDocument();
-
-            // обнуление ссылок
-            wordApplication = null;
-            wordDocument    = null;
-            wordParagraphs  = null;
-        }
-
-        /// <summary>
         /// Метод ReadQuestion: чтение текста вопроса (альтернативного или дистрибутивного)
         /// </summary>
         /// <param name="enumeratorParagraphs">итератор для списка параграфов</param>
         /// <returns>вопрос</returns>
         private Question ReadQuestion(IEnumerator enumeratorParagraphs)
         {
-            string questionText    = string.Empty;
+            string questionText = string.Empty;
 
-            // переход к следующему параграфу
-            Paragraph paragraph = GoToNextParagraph(enumeratorParagraphs);
-
-            // обработка вопроса
-            while (wordApplication.Selection.Words.First.ListFormat.ListType != answerListType)
+            try
             {
-                // обработка картинки
-                if (IsImage(wordApplication.Selection.Words.First))
-                {
-                    questionText += " <img src=\"" + 
-                                    imageServerAddr  + 
-                                    "/Image" + 
-                                    (pictureIndex).ToString() + ".jpg\" /> ";
-                    
-                    pictureIndex++;
-                }
-                // обработка текста вопроса    
-                else
-                {
-                    string text = wordApplication.Selection.Words.First.Text;
+                // переход к следующему параграфу
+                Paragraph paragraph = GoToNextParagraph(enumeratorParagraphs);
 
-                    if (!text.Equals("\r"))
+                // обработка вопроса
+                while (wordApplication.Selection.Words.First.ListFormat.ListType != answerListType)
+                {
+                    // обработка картинки
+                    if (IsImage(wordApplication.Selection.Words.First))
                     {
-                        questionText += text.Trim('\n', '\r');
+                        questionText += " <img src=\"" +
+                                        imageServerAddr +
+                                        "/Image" +
+                                        (pictureIndex).ToString() + ".jpg\" /> ";
+
+                        pictureIndex++;
                     }
+                    // обработка текста вопроса    
                     else
                     {
-                        questionText += "<br /> ";
+                        string text = wordApplication.Selection.Words.First.Text;
+
+                        if (!text.Equals("\r"))
+                        {
+                            questionText += text.Trim('\n', '\r');
+                        }
+                        else
+                        {
+                            questionText += "<br /> ";
+                        }
                     }
+
+                    // переход к следующему слову в тексте вопроса
+                    GoToNextWord();
                 }
-
-                // переход к следующему слову в тексте вопроса
-                GoToNextWord();
             }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при чтении альтернативного/дистрибутивного вопроса", exc);
 
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
+            }
+            
             // создание вопроса
             Question question = new Question(questionText);
-
+            
             return question;
         }
 
@@ -431,41 +447,53 @@ namespace QWord
         /// <returns>текст вопроса</returns>
         private Question ReadSimpleQuestion(IEnumerator enumeratorParagraphs)
         {
-            string questionText    = string.Empty;
+            string questionText = string.Empty;
 
-            // переход к следующему параграфу
-            Paragraph paragraph = GoToNextParagraph(enumeratorParagraphs);
-
-            // обработка вопроса
-            while (wordApplication.Selection.Words.First.Text.IndexOf("#") < 0)
+            try
             {
-                // обработка картинки
-                if (IsImage(wordApplication.Selection.Words.First))
-                {
-                    questionText += " <img src=\"" + 
-                                    imageServerAddr  + 
-                                    "/Image" +
-                                    (pictureIndex).ToString() + ".jpg\" /> ";
-                    
-                    pictureIndex++;
-                }
-                // обработка текста вопроса    
-                else
-                {
-                    string text = wordApplication.Selection.Words.First.Text;
+                // переход к следующему параграфу
+                Paragraph paragraph = GoToNextParagraph(enumeratorParagraphs);
 
-                    if (!text.Equals("\r"))
+                // обработка вопроса
+                while (wordApplication.Selection.Words.First.Text.IndexOf("#") < 0)
+                {
+                    // обработка картинки
+                    if (IsImage(wordApplication.Selection.Words.First))
                     {
-                        questionText += text.Trim('\n', '\r');
+                        questionText += " <img src=\"" +
+                                        imageServerAddr +
+                                        "/Image" +
+                                        (pictureIndex).ToString() + ".jpg\" /> ";
+
+                        pictureIndex++;
                     }
+                    // обработка текста вопроса    
                     else
                     {
-                        questionText += "<br /> ";
-                    }
-                }
+                        string text = wordApplication.Selection.Words.First.Text;
 
-                // переход к следующему слову в тексте вопроса
-                GoToNextWord();
+                        if (!text.Equals("\r"))
+                        {
+                            questionText += text.Trim('\n', '\r');
+                        }
+                        else
+                        {
+                            questionText += "<br /> ";
+                        }
+                    }
+
+                    // переход к следующему слову в тексте вопроса
+                    GoToNextWord();
+                }
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при чтении простого вопроса", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
             }
 
             // создание вопроса
@@ -482,47 +510,48 @@ namespace QWord
         private int GetScore(string str)
         {
             int score = 0;
-            
-            //положительное или отрицательное количество баллов
-            bool sign = false;
 
-            // поиск оценки в строке
-            int firstIndex = str.LastIndexOf("(+");
-            int lastIndex  = str.LastIndexOf("бал");
-            
-            if (firstIndex < 0)
+            try
             {
-                firstIndex = str.LastIndexOf("(-");
-                sign = true;
-            }
-            
-            if (firstIndex > 0 && lastIndex > 0)
-            {
-                try 
+                //положительное или отрицательное количество баллов
+                bool sign = false;
+
+                // поиск оценки в строке
+                int firstIndex = str.LastIndexOf("(+");
+                int lastIndex = str.LastIndexOf("бал");
+
+                if (firstIndex < 0)
+                {
+                    firstIndex = str.LastIndexOf("(-");
+                    sign = true;
+                }
+
+                if (firstIndex > 0 && lastIndex > 0)
                 {
                     string scoreStr = str.Substring(firstIndex + 2, lastIndex - firstIndex - 2);
                     scoreStr.Trim('\n', '\r', ' ');
                     score = Convert.ToInt32(scoreStr);
-                    
-                    if (sign) 
+
+                    if (sign)
                     {
                         score = -score;
                     }
 
                     str = str.Substring(0, firstIndex);
                 }
-                catch
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при получении баллов за ответ", exc);
+
+                if (wordApplication != null)
                 {
-                    result.resultType = QResultType.ERROR;
-                    result.message    = "Указанное количество баллов имеет неверный формат";
+                    CloseWordDocument();
                 }
             }
 
-            result.resultType = QResultType.OK;
-
             return score;
         }
-
 
         /// <summary>
         /// Метод ReadAnswer: чтение ответа вопроса (дистрибутивного или альтернативного)
@@ -534,61 +563,74 @@ namespace QWord
             int score              = 0;
             string answerText      = string.Empty;
 
-            // обработка оценки за ответ
-            score = GetScore(paragraph.Range.Text.ToString());
 
-            // обработка ответа
-            while (wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0 &&
-                   wordApplication.Selection.Words.First.Text.LastIndexOf("(-") < 0 &&
-                   wordApplication.Selection.Words.First.ListFormat.ListType == answerListType &&
-                   !wordApplication.Selection.Words.First.Text.Equals("\r"))
+            try
             {
-                // обработка картинки
-                if (IsImage(wordApplication.Selection.Words.First))
-                {
-                    answerText += " <img src=\""  + 
-                                    imageServerAddr + 
-                                    "/Image" + 
-                                    (pictureIndex).ToString() + ".jpg\" /> ";
-                    
-                    pictureIndex++;
-                }
-                // обработка текста ответа    
-                else
-                {
-                    string text = wordApplication.Selection.Words.First.Text;
+                // обработка оценки за ответ
+                score = GetScore(paragraph.Range.Text.ToString());
 
-                    if (!text.Equals("\r"))
+                // обработка ответа
+                while (wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0 &&
+                       wordApplication.Selection.Words.First.Text.LastIndexOf("(-") < 0 &&
+                       wordApplication.Selection.Words.First.ListFormat.ListType == answerListType &&
+                       !wordApplication.Selection.Words.First.Text.Equals("\r"))
+                {
+                    // обработка картинки
+                    if (IsImage(wordApplication.Selection.Words.First))
                     {
-                        answerText += text.Trim('\n', '\r');
+                        answerText += " <img src=\"" +
+                                        imageServerAddr +
+                                        "/Image" +
+                                        (pictureIndex).ToString() + ".jpg\" /> ";
+
+                        pictureIndex++;
                     }
+                    // обработка текста ответа    
                     else
                     {
-                        answerText += "<br /> ";
+                        string text = wordApplication.Selection.Words.First.Text;
+
+                        if (!text.Equals("\r"))
+                        {
+                            answerText += text.Trim('\n', '\r');
+                        }
+                        else
+                        {
+                            answerText += "<br /> ";
+                        }
                     }
+
+                    // переход к следующему слову в тексте вопроса
+                    GoToNextWord();
                 }
 
-                // переход к следующему слову в тексте вопроса
-                GoToNextWord();
-            }
+                // если еще не достигли оценки за ответ, то переходим дальше
+                if ((wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0) &&
+                    (wordApplication.Selection.Words.First.Text.LastIndexOf("(-") < 0))
+                {
+                    GoToNextWord();
+                }
 
-            // если еще не достигли оценки за ответ, то переходим дальше
-            if ((wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0) &&
-                (wordApplication.Selection.Words.First.Text.LastIndexOf("(-") < 0))
-            {
-                GoToNextWord();
-            }
+                // если достигли оценки за ответ, то переходим к следующей строке
+                if (wordApplication.Selection.Words.First.Text.LastIndexOf("(+") >= 0)
+                {
+                    GoToNextParagraph();
+                }
 
-            // если достигли оценки за ответ, то переходим к следующей строке
-            if (wordApplication.Selection.Words.First.Text.LastIndexOf("(+") >= 0)
-            {
-                GoToNextParagraph();
+                // если достигли оценки за ответ, то переходим к следующей строке
+                if (wordApplication.Selection.Words.First.Text.LastIndexOf("(-") >= 0)
+                {
+                    GoToNextParagraph();
+                }
             }
-
-            // если достигли оценки за ответ, то переходим к следующей строке
-            if (wordApplication.Selection.Words.First.Text.LastIndexOf("(-") >= 0)
+            catch (Exception exc)
             {
-                GoToNextParagraph();
+                result = new QResult(QResultType.ERROR, "Ошибка при чтении ответа на альтернативный/дистрибутивный вопрос", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
             }
 
             // создаем ответ
@@ -607,65 +649,76 @@ namespace QWord
             int score              = 0;
             string answerText      = string.Empty;
 
-            // обработка оценки за ответ
-            score = GetScore(paragraph.Range.Text.ToString());
-
-            // переход к ответу
-            GoToAnswerOnSimpleQuestion();
-
-            // обработка текста ответа
-            while (wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0 &&
-                   wordApplication.Selection.Words.First.Text.LastIndexOf("(-") < 0 &&
-                  !wordApplication.Selection.Words.First.Text.Equals("\r"))
+            try
             {
-                // обработка картинки
-                if (IsImage(wordApplication.Selection.Words.First))
-                {
-                    answerText += " <img src=\""  + 
-                                    imageServerAddr + 
-                                    "/Image" + 
-                                    (pictureIndex).ToString() + ".jpg\" /> ";
-                    
-                    pictureIndex++;
-                }
-                // обработка текста ответа    
-                else
-                {
-                    string text = wordApplication.Selection.Words.First.Text;
+                // обработка оценки за ответ
+                score = GetScore(paragraph.Range.Text.ToString());
 
-                    if (!text.Equals("\r") && text.IndexOf("#") != 0)
+                // переход к ответу
+                GoToAnswerOnSimpleQuestion();
+
+                // обработка текста ответа
+                while (wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0 &&
+                       wordApplication.Selection.Words.First.Text.LastIndexOf("(-") < 0 &&
+                      !wordApplication.Selection.Words.First.Text.Equals("\r"))
+                {
+                    // обработка картинки
+                    if (IsImage(wordApplication.Selection.Words.First))
                     {
-                        answerText += text.Trim('\n', '\r');
+                        answerText += " <img src=\"" +
+                                        imageServerAddr +
+                                        "/Image" +
+                                        (pictureIndex).ToString() + ".jpg\" /> ";
+
+                        pictureIndex++;
                     }
+                    // обработка текста ответа    
                     else
                     {
-                        answerText += "<br /> ";
+                        string text = wordApplication.Selection.Words.First.Text;
+
+                        if (!text.Equals("\r") && text.IndexOf("#") != 0)
+                        {
+                            answerText += text.Trim('\n', '\r');
+                        }
+                        else
+                        {
+                            answerText += "<br /> ";
+                        }
                     }
+
+                    // переход к следующему слову в тексте вопроса
+                    GoToNextWord();
                 }
 
-                // переход к следующему слову в тексте вопроса
-                GoToNextWord();
-            }
+                // если еще не достигли оценки за ответ, то переходим дальше
+                if ((wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0) &&
+                    (wordApplication.Selection.Words.First.Text.LastIndexOf("(-") < 0))
+                {
+                    GoToNextWord();
+                }
 
-            // если еще не достигли оценки за ответ, то переходим дальше
-            if ((wordApplication.Selection.Words.First.Text.LastIndexOf("(+") < 0) &&
-                (wordApplication.Selection.Words.First.Text.LastIndexOf("(-") < 0))
+                // если достигли оценки за ответ, то переходим к следующей строке
+                if (wordApplication.Selection.Words.First.Text.LastIndexOf("(+") >= 0)
+                {
+                    GoToNextParagraph();
+                }
+
+                // если достигли оценки за ответ, то переходим к следующей строке
+                if (wordApplication.Selection.Words.First.Text.LastIndexOf("(-") >= 0)
+                {
+                    GoToNextParagraph();
+                }
+            }
+            catch (Exception exc)
             {
-                GoToNextWord();
-            }
+                result = new QResult(QResultType.ERROR, "Ошибка при чтении ответа на простой вопрос", exc);
 
-            // если достигли оценки за ответ, то переходим к следующей строке
-            if (wordApplication.Selection.Words.First.Text.LastIndexOf("(+") >= 0)
-            {
-                GoToNextParagraph();
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
             }
-
-            // если достигли оценки за ответ, то переходим к следующей строке
-            if (wordApplication.Selection.Words.First.Text.LastIndexOf("(-") >= 0)
-            {
-                GoToNextParagraph();
-            }
-
             // создаем ответ
             QAnswer answer = new QAnswer(answerText, score);
 
@@ -688,19 +741,32 @@ namespace QWord
 
             // обработка списка ответов
             List<QAnswer> answersList = new List<QAnswer>();
-            while (paragraph != null && paragraph.Range.ListFormat.ListType == answerListType)
-            {
-                // чтение ответа вопроса и добавление его в список ответов
-                answersList.Add(ReadAnswer(paragraph));
 
-                // переход к следующему ответу
-                enumeratorParagraphs.MoveNext();
-                paragraph = (Paragraph)enumeratorParagraphs.Current;
+            try
+            {
+                while (paragraph != null && paragraph.Range.ListFormat.ListType == answerListType)
+                {
+                    // чтение ответа вопроса и добавление его в список ответов
+                    answersList.Add(ReadAnswer(paragraph));
+
+                    // переход к следующему ответу
+                    enumeratorParagraphs.MoveNext();
+                    paragraph = (Paragraph)enumeratorParagraphs.Current;
+                }
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при чтении альтернативного/дистрибутивного тестового вопроса", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
             }
 
             // создание тестового вопроса
             TestQuestion testQuestion = new TestQuestion(question, questionType, answersList);
-            
+
             return testQuestion;
         }
 
@@ -719,23 +785,122 @@ namespace QWord
 
             // обработка списка ответов
             List<QAnswer> answersList = new List<QAnswer>();
-            // признаком ответа на вопрос является слово "Ответ"
-            while (paragraph != null && paragraph.Range.Text.IndexOf("#Ответ#") >= 0)
-            {
-                // чтение ответа вопроса и добавление его в список ответов
-                if (!paragraph.Range.Text.Equals("\r"))
-                {
-                    answersList.Add(ReadSimpleAnswer(paragraph));
-                }
 
-                // переход к следующему ответу
-                enumeratorParagraphs.MoveNext();
-                paragraph = (Paragraph)enumeratorParagraphs.Current;
+            try
+            {
+                // признаком ответа на вопрос является слово "Ответ"
+                while (paragraph != null && paragraph.Range.Text.IndexOf("#Ответ#") >= 0)
+                {
+                    // чтение ответа вопроса и добавление его в список ответов
+                    if (!paragraph.Range.Text.Equals("\r"))
+                    {
+                        answersList.Add(ReadSimpleAnswer(paragraph));
+                    }
+
+                    // переход к следующему ответу
+                    enumeratorParagraphs.MoveNext();
+                    paragraph = (Paragraph)enumeratorParagraphs.Current;
+                }
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при чтении простого тестового вопроса", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
             }
 
             // создание тестового вопроса
             TestQuestion testQuestion = new TestQuestion(question, questionType, answersList);
+            
             return testQuestion;
+        }
+        
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Метод SaveAllImages: сохранение всех картинок на жесткий диск (на сервере)
+        /// </summary>
+        public void SaveAllImages()
+        {
+            try
+            {
+                if (wordApplication == null)
+                {
+                    // открытие документа word
+                    OpenWordDocument();
+                }
+
+                InlineShape inlineShape;
+
+                // индекс картинки
+                pictureIndex = GetStartImageIndex();
+
+                int index = pictureIndex;
+
+                // итератор для обхода списка рисунков
+                IEnumerator enumeratorInlineShapes = wordDocument.InlineShapes.GetEnumerator();
+
+                enumeratorInlineShapes.Reset();
+
+                // создание директории для хранения рисунков
+                DirectoryInfo imageDir = new DirectoryInfo(imageServerDir);
+
+                if (!imageDir.Exists)
+                {
+                    imageDir.Create();
+                }
+
+                // сохранение рисунков
+                while (enumeratorInlineShapes.MoveNext())
+                {
+                    // сохраняем изображение во временный файл
+                    inlineShape = (InlineShape)enumeratorInlineShapes.Current;
+
+                    byte[] imageBytes = (byte[])inlineShape.Range.EnhMetaFileBits;
+
+                    FileStream imageFile = new FileStream(imageServerDir + "\\temp" + index.ToString() + ".jpg",
+                                                          FileMode.Create,
+                                                          FileAccess.Write);
+
+                    imageFile.Write(imageBytes, 0, imageBytes.Length);
+
+                    imageFile.Close();
+
+                    // FIXME: ??? Картинки сохраняются в 75% масштабе, увеличиваем размер
+                    inlineShape.ScaleWidth  = 400.0f / 3.0f;
+                    inlineShape.ScaleHeight = 400.0f / 3.0f;
+
+                    Bitmap bitmap = new Bitmap(Image.FromFile(imageServerDir + "\\temp" + index.ToString() + ".jpg"),
+                                               (int)inlineShape.Width,
+                                               (int)inlineShape.Height);
+
+                    bitmap.Save(imageServerDir + "\\Image" + index.ToString() + ".jpg");
+
+                    index++;
+                }
+
+                // закрытие документа word
+                CloseWordDocument();
+
+                // обнуление ссылок
+                wordApplication = null;
+                wordDocument    = null;
+                wordParagraphs  = null;
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при сохранении картинок на сервере", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
+            }
         }
 
         /// <summary>
@@ -745,26 +910,38 @@ namespace QWord
         public int GetStartImageIndex()
         {
             int startIndex = 0;
-            
-            DirectoryInfo imageDir = new DirectoryInfo(imageServerDir);
 
-            if (imageDir.Exists)
+            try
             {
-                FileInfo[] images = imageDir.GetFiles("Image*");
+                DirectoryInfo imageDir = new DirectoryInfo(imageServerDir);
 
-                foreach (FileInfo image in images)
+                if (imageDir.Exists)
                 {
-                    int imageNumber = Convert.ToInt32(image.Name.Substring(5,
-                                                                           image.Name.LastIndexOf(image.Extension) - 5));
+                    FileInfo[] images = imageDir.GetFiles("Image*");
 
-
-                    if (imageNumber > startIndex)
+                    foreach (FileInfo image in images)
                     {
-                        startIndex = imageNumber;
-                    }
-                }
+                        int imageNumber = Convert.ToInt32(image.Name.Substring(5,
+                                                                               image.Name.LastIndexOf(image.Extension) - 5));
 
-                ++startIndex;
+
+                        if (imageNumber > startIndex)
+                        {
+                            startIndex = imageNumber;
+                        }
+                    }
+
+                    ++startIndex;
+                }
+            }
+            catch (Exception exc)
+            {
+                result = new QResult(QResultType.ERROR, "Ошибка при получении стартового индекса изображений", exc);
+
+                if (wordApplication != null)
+                {
+                    CloseWordDocument();
+                }
             }
 
             return startIndex;
@@ -776,84 +953,98 @@ namespace QWord
         /// <returns>список прочитанных вопросов</returns>
         public TestQuestionList ReadWordDocument()
         {
-            if (wordApplication == null)
+            try
             {
-                // открытие документа word
-                OpenWordDocument();
+                if (wordApplication == null)
+                {
+                    // открытие документа word
+                    OpenWordDocument();
+                }
+                // получение списка параграфов документа
+                wordParagraphs = GetParagraphs();
+
+                // получение общего количества вопросов в документе
+                int count = GetQuestionsCount();
+                int questionNumber = 1;
+
+                Paragraph paragraph;
+
+                // итератор для обхода списка параграфов
+                IEnumerator enumeratorParagraphs = wordParagraphs.GetEnumerator();
+                enumeratorParagraphs.Reset();
+
+                // объявление необходимых переменных
+                TestQuestionList testQuestionList = new TestQuestionList();
+                QType questionType = QType.None;
+
+                while (enumeratorParagraphs.MoveNext())
+                {
+                    paragraph = (Paragraph)enumeratorParagraphs.Current;
+
+                    // обработка альтернативного вопроса
+                    if (paragraph.Range.Text.ToString().IndexOf("Тип - альтернативный вопрос") >= 0)
+                    {
+                        // альтернативный вопрос
+                        questionType = QType.Alternative;
+
+                        // создание тестового вопроса и добавление его в список всех вопросов
+                        testQuestionList.Add(ReadTestQuestion(enumeratorParagraphs, questionType));
+
+                        questionNumber++;
+                    }
+
+                    // обработка дистрибутивного вопроса
+                    if (paragraph.Range.Text.ToString().IndexOf("Тип - дистрибутивный вопрос") >= 0)
+                    {
+                        // дистрибутивный вопрос
+                        questionType = QType.Distributive;
+
+                        // создание тестового вопроса и добавление его в список всех вопросов
+                        testQuestionList.Add(ReadTestQuestion(enumeratorParagraphs, questionType));
+
+                        questionNumber++;
+                    }
+
+                    // обработка простого ответа
+                    if (paragraph.Range.Text.ToString().IndexOf("Тип - простой вопрос") >= 0)
+                    {
+                        // простой вопрос
+                        questionType = QType.Simple;
+
+                        // создание тестового вопроса и добавление его в список всех вопросов
+                        testQuestionList.Add(ReadSimpleTestQuestion(enumeratorParagraphs, questionType));
+
+                        questionNumber++;
+                    }
+                    // если встретилась пустая строка, то переходим к следующей
+                    if (paragraph != null)
+                    {
+                        GoToNextParagraph();
+                    }
+                }
+
+
+                // закрытие документа word
+                CloseWordDocument();
+
+                // обнуление ссылок
+                wordApplication = null;
+                wordDocument    = null;
+                wordParagraphs  = null;
+
+                return testQuestionList;
             }
-            // получение списка параграфов документа
-            wordParagraphs = GetParagraphs();
-
-            // получение общего количества вопросов в документе
-            int count          = GetQuestionsCount();
-            int questionNumber = 1;
-
-            Paragraph paragraph;
-
-            // итератор для обхода списка параграфов
-            IEnumerator enumeratorParagraphs = wordParagraphs.GetEnumerator();
-            enumeratorParagraphs.Reset();
-
-            // объявление необходимых переменных
-            TestQuestionList testQuestionList = new TestQuestionList();
-            QType questionType = QType.None;
-
-            while (enumeratorParagraphs.MoveNext())
+            catch (Exception exc)
             {
-                paragraph = (Paragraph)enumeratorParagraphs.Current;
+                result = new QResult(QResultType.ERROR, "Ошибка при чтении документа", exc);
 
-                // обработка альтернативного вопроса
-                if (paragraph.Range.Text.ToString().IndexOf("Тип - альтернативный вопрос") >= 0)
+                if (wordApplication != null)
                 {
-                    // альтернативный вопрос
-                    questionType = QType.Alternative;
-
-                    // создание тестового вопроса и добавление его в список всех вопросов
-                    testQuestionList.Add(ReadTestQuestion(enumeratorParagraphs, questionType));
-
-                    questionNumber++;
-                }
-
-                // обработка дистрибутивного вопроса
-                if (paragraph.Range.Text.ToString().IndexOf("Тип - дистрибутивный вопрос") >= 0)
-                {
-                    // дистрибутивный вопрос
-                    questionType = QType.Distributive;
-
-                    // создание тестового вопроса и добавление его в список всех вопросов
-                    testQuestionList.Add(ReadTestQuestion(enumeratorParagraphs, questionType));
-
-                    questionNumber++;
-                }
-
-                // обработка простого ответа
-                if (paragraph.Range.Text.ToString().IndexOf("Тип - простой вопрос") >= 0)
-                {
-                    // простой вопрос
-                    questionType = QType.Simple;
-
-                    // создание тестового вопроса и добавление его в список всех вопросов
-                    testQuestionList.Add(ReadSimpleTestQuestion(enumeratorParagraphs, questionType));
-
-                    questionNumber++;
-                }
-                // если встретилась пустая строка, то переходим к следующей
-                if (paragraph != null)
-                {
-                    GoToNextParagraph();
+                    CloseWordDocument();
                 }
             }
 
-
-            // закрытие документа word
-            CloseWordDocument();
-
-            // обнуление ссылок
-            wordApplication = null;
-            wordDocument = null;
-            wordParagraphs = null;
-
-            return testQuestionList;
+            return null;
         }
 
         #endregion
