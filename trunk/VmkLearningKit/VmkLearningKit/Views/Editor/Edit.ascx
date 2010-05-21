@@ -114,34 +114,58 @@
                         <div style="width:100%"><%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), answer.Score)%></div>
                         </td>
                     </tr>    
-                    <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////// Раздвигающийся редактор //////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                    
+		<!--  //////////////////////////////////////////////////////////////////////////////////////////////////////
+                  ////////////////////////////// Раздвигающийся редактор //////////////////////////////////////
+                  //////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
-	<div id="formula_editor" style="" >
-		Палитра:<br>
-		<div id="formula_palette">
-			<button class="btn_pallete" name="\int_{*}^{*}{*}" onclick="insertTextFormul(); return false">  </button>
-			<button class="btn_pallete" name="\sum_{*}^{*}{*}" onclick="insertTextFormul(); return false">  </button>
-			<button class="btn_pallete" name="\sin_{*}^{*}{*}" onclick="insertTextFormul(); return false">  </button>
-			<button class="btn_pallete" name="\exists{*}" onclick="insertTextFormul(); return false">  </button>
-			<button class="btn_pallete" name="\forall{*}" onclick="insertTextFormul(); return false">  </button>
-			<button class="btn_pallete" name="\geq{*}" onclick="insertTextFormul(); return false">  </button>			
-			<button class="btn_pallete" name="\in{*}" onclick="insertTextFormul(); return false">  </button>
-		</div>
-		
-		Формула в LaTex:<br>
-		<div id="div_formula_edit" ><textarea name="formula_edit" id="formula_edit" rows="3" cols="60" onselect="storeCaret(this)" onclick="storeCaret(this)" onkeyup="storeCaret(this)" ></textarea></div>
-		<br>
-		Предварительный просмотр:<br>
-		<div id="formula_display"></div>
-		
-		<button id="editor_input"  onclick=" input_and_hide_formula_editor(this); return false ">Ввести</button>
-		<button id="editor_exit" onclick=" hide_formula_editor(this); return false ">Закрыть</button>
-	</div>
+                    <div id="formula_editor" style="" >
+                        <div id="formula_teacher_palette" style="" >
+	                        Полная палитра:<br>
+	                        <button class="btn_big_palette" name="\int_{*}^{*}{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\sum_{*}^{*}{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\sin_{*}^{*}{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\exists{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\forall{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\geq{*}" onclick="addToPalette(); return false">  </button>			
+	                        <button class="btn_big_palette" name="\in{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\alpha" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\varepsilon" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\varphi" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\pi" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="{*}^{*}" onclick="addToPalette(); return false">  </button>
+                            <br />
+                            Произвольный символ/формула в TeX:<br />
+	                        <input id="newPaletteFormula"/>
+	                        <button class="" onclick="addNewToPalette($('#newPaletteFormula')[0]); return false"> Ввести </button>
+	                        <br />
+	                        <br />
+	                        <button class="" onclick="clearStudentPalette(); return false"> Очистить палитру студента </button>
+                        </div>
+	                    Палитра:<br>
+	                    <div id="formula_palette">
+		                    
+	                    </div>
+                		
+	                    Формула в LaTex:<br>
+	                    <div id="div_formula_edit" ><textarea name="formula_edit" id="formula_edit" rows="3" cols="60" onselect="storeCaret(this)" onclick="storeCaret(this)" onkeyup="storeCaret(this)" ></textarea></div>
+	                    <br>
+	                    Предварительный просмотр:<br>
+	                    <div id="formula_display"></div>
+                		
+	                    <button id="editor_input" onclick=" input_and_hide_formula_editor(this); return false ">Ввести</button>
+	                    <button id="editor_exit" onclick=" hide_formula_editor(this); return false ">Закрыть</button>
+	                    
+	                    
+	                    
+                    </div>
+                    
+                    
+                    
+	                    
 
-<!--  //////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
+                <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                   
     <%
                     break;
                 }

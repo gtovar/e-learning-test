@@ -1,6 +1,6 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl" %>
 <%@ Import Namespace="VmkLearningKit" %>
-    <script src="/Scripts/formula-editor.js" type="text/javascript"></script>   
+    <script src="/Scripts/formula-editor.js" type="text/javascript"></script> 
     <script type="text/javascript">
         $(document).ready(function() {
             $(".formula_input").bind("click", display_formula_editor);
@@ -49,20 +49,36 @@
             <td class="Editor" style="width:80%"><%= Html.TextBox(VLKConstants.NEW_VARIANT_ANSWER_SCORE + "0") %></td>
         </tr>
     </table>
-     <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////
+    <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////
                   ////////////////////////////// Раздвигающийся редактор //////////////////////////////////////
                   //////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
                     <div id="formula_editor" style="" >
+                        <div id="formula_teacher_palette" style="" >
+	                        Полная палитра:<br>
+	                        <button class="btn_big_palette" name="\int_{*}^{*}{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\sum_{*}^{*}{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\sin_{*}^{*}{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\exists{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\forall{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\geq{*}" onclick="addToPalette(); return false">  </button>			
+	                        <button class="btn_big_palette" name="\in{*}" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\alpha" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\varepsilon" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\varphi" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="\pi" onclick="addToPalette(); return false">  </button>
+	                        <button class="btn_big_palette" name="{*}^{*}" onclick="addToPalette(); return false">  </button>
+                            <br />
+                            Произвольный символ/формула в TeX:<br />
+	                        <input id="newPaletteFormula"/>
+	                        <button class="" onclick="addNewToPalette($('#newPaletteFormula')[0]); return false"> Ввести </button>
+	                        <br />
+	                        <br />
+	                        <button class="" onclick="clearStudentPalette(); return false"> Очистить палитру студента </button>
+                        </div>
 	                    Палитра:<br>
 	                    <div id="formula_palette">
-		                    <button class="btn_pallete" name="\int_{*}^{*}{*}" onclick="insertTextFormul(); return false">  </button>
-		                    <button class="btn_pallete" name="\sum_{*}^{*}{*}" onclick="insertTextFormul(); return false">  </button>
-		                    <button class="btn_pallete" name="\sin_{*}^{*}{*}" onclick="insertTextFormul(); return false">  </button>
-		                    <button class="btn_pallete" name="\exists{*}" onclick="insertTextFormul(); return false">  </button>
-		                    <button class="btn_pallete" name="\forall{*}" onclick="insertTextFormul(); return false">  </button>
-		                    <button class="btn_pallete" name="\geq{*}" onclick="insertTextFormul(); return false">  </button>			
-		                    <button class="btn_pallete" name="\in{*}" onclick="insertTextFormul(); return false">  </button>
+		                    
 	                    </div>
                 		
 	                    Формула в LaTex:<br>
@@ -73,6 +89,15 @@
                 		
 	                    <button id="editor_input" onclick=" input_and_hide_formula_editor(this); return false ">Ввести</button>
 	                    <button id="editor_exit" onclick=" hide_formula_editor(this); return false ">Закрыть</button>
+	                    
+	                    
+	                    
                     </div>
+                    
+                    
+                    
+	                    
 
                 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////-->
+                    
+     

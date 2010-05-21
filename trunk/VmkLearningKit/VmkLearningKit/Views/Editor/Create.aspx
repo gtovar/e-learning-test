@@ -271,6 +271,7 @@
 
         }
 	</script>
+
 	  <link href="/Content/test.css" rel="stylesheet" type="text/css" />
     <%
     try
@@ -335,6 +336,8 @@
 		<p>
 			<%= Html.ActionLink("Перейти к списку вопросов по разделу", "List", new { alias = razdelId }) %>
 		</p>
+		
+		
 	<%
 	}
 	catch (Exception exc)
