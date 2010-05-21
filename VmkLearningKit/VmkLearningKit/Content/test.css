@@ -49,10 +49,8 @@
 	width:450px;
 }
 
-.formula_palette{
-	width:500px;
-	height:180px;
-	background: #af43e2;
+#formula_palette{
+	width:350px;
 	margin:5px;
 }
 
@@ -63,24 +61,34 @@
 	margin:5px;
 }
 
-.formula_display{
+
+
+#div_formula_edit
+{
 	width:500px;
-	height:90px;
-	background: #bbb;
-	margin:5px 0 12px 0;
-	padding:5px;
 }
 
-#formula_display{
+#formula_display
+{
+	width:500px;
 	min-height:50px;
 	margin: 10px;
 }
 
 #formula_editor{
 	background-color: #dddddd;
-	width:505px;
+	width:725px;
+	min-height:375px;
 	padding:25px 5px;
-	 display:none;
+	display:none;
+}
+
+#formula_teacher_palette{
+	float:right;
+	background-color: #dddddd;
+	width:200px;
+	padding-left:10px;
+	
 }
 
 .MathJax_Display {
@@ -93,7 +101,7 @@ input.formula_input{
 	width:510px;
 }
 
-.btn_pallete{
+.btn_pallete, .btn_big_palette{
 	cursor:pointer;
 	width:51px;
 	height:61px;
