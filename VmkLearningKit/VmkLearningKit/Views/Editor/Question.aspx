@@ -302,6 +302,10 @@
 			</div>
 		</div>
 	</div>
+	<br />
+	<p>
+		<%= Html.ActionLink("Перейти к списку вопросов по разделу", "List", new { alias = Convert.ToInt64(ViewData["RazdelId"]) }) %>
+	</p>
     <%
         }
         catch (Exception exc)

@@ -333,7 +333,7 @@
 		</div>
 		<br />
 		<p>
-			<%= Html.ActionLink("Вернуться к списку вопросов по разделу", "List", new { alias = razdelId }) %>
+			<%= Html.ActionLink("Перейти к списку вопросов по разделу", "List", new { alias = razdelId }) %>
 		</p>
 	<%
 	}
