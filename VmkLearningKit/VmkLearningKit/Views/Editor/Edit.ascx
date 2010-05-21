@@ -8,19 +8,19 @@
     %>
         <table class="Editor" style="width:100%;">
         <tr class="Editor">
-            <th class="Editor" colspan="2" rowspan="1">Вопрос</th>
-            <th class="Editor"></th>
+            <th class="Editor" colspan="2" rowspan="1" style="width:20%">Вопрос</th>
+            <th class="Editor" style="width:80%"></th>
         </tr>
         <tr class="Editor">
-            <td class="Editor" style="width:15%">Тип вопроса:</td>
-            <td class="Editor" style="width:85%"><%= Html.Encode(ViewData["QuestionTypeString"]) %></td>
+            <td class="Editor" style="width:20%">Тип вопроса:</td>
+            <td class="Editor" style="width:80%"><%= Html.Encode(ViewData["QuestionTypeString"]) %></td>
         </tr>
         <tr class="Editor">
-            <td class="Editor" style="width:15%">
+            <td class="Editor" style="width:20%">
             <label for="Title">Краткое название:</label>
             </td>
-            <td class="Editor" style="width:85%">
-            <%= Html.TextBox("Title", question.Title, new { style = "width:100%" })%>
+            <td class="Editor" style="width:80%">
+            <div style="width:100%"><%= Html.TextBox("Title", question.Title, new { style = "width:inherit" })%></div>
             </td>
         </tr>
     <%
@@ -31,36 +31,36 @@
                     Answer answer = (Answer)ViewData["AnswerData"];
     %>
                     <tr class="Editor">
-                        <td class="Editor">
+                        <td class="Editor" style="width:20%">
                         <label for="Text">Текст вопроса:</label>
                         </td>
-                        <td class="Editor">
-                        <%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                        <td class="Editor" style="width:80%">
+                        <div style="width:100%"><%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:inherit; height: 100px;" })%></div>
                         </td>
                     </tr>
                     <tr class="Editor">
-                        <td class="Editor" colspan="2" rowspan="1">
+                        <td class="Editor" colspan="2" rowspan="1" style="width:20%">
                         <%= Html.CheckBox("CanCommented", (question.CanCommented == VLKConstants.QUESTION_CAN_COMMENTED ? true : false))%>
                         Включить возможность комментирования вопроса студентами
                         </td>
-                        <td class="Editor"></td>
+                        <td class="Editor" style="width:80%"></td>
                     </tr>
                     <tr class="Editor">
-                        <th class="Editor" colspan="2" rowspan="1">Ответ</th>
-                        <th class="Editor"></th>
+                        <th class="Editor" colspan="2" rowspan="1" style="width:20%">Ответ</th>
+                        <th class="Editor" style="width:80%"></th>
                     </tr>
                     <tr class="Editor">
-                        <td class="Editor">Текст ответа:</td>
-                        <td class="Editor">
-                        <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString(), answer.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                        <td class="Editor" style="width:20%">Текст ответа:</td>
+                        <td class="Editor" style="width:80%">
+                        <div style="width:100%"><%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString(), answer.Text, new { @class = "TextEditor", style = "width:inherit; height: 100px;" })%></div>
                         </td>
                     </tr>
                     <tr class="Editor">
-                        <td class="Editor">
+                        <td class="Editor" style="width:20%">
                         <label for="<%= VLKConstants.VARIANT_ANSWER_SCORE  + answer.Id.ToString() %>">Количество баллов:</label>
                         </td>
-                        <td class="Editor">
-                        <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), answer.Score)%>
+                        <td class="Editor" style="width:80%">
+                        <div style="width:100%"><%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), answer.Score)%></div>
                         </td>
                     </tr>
     
@@ -82,36 +82,36 @@
 		                });
 	                </script>
                     <tr class="Editor">
-                        <td class="Editor">
+                        <td class="Editor" style="width:20%">
                         <label for="Text">Текст вопроса:</label>
                         </td>
-                        <td class="Editor">
-                        <%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                        <td class="Editor" style="width:80%">
+                        <div style="width:100%"><%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:inherit; height: 100px;" })%></div>
                         </td>
                     </tr>
                     <tr class="Editor">
-                        <td class="Editor" colspan="2" rowspan="1">
+                        <td class="Editor" colspan="2" rowspan="1" style="width:20%">
                         <%= Html.CheckBox("CanCommented", (question.CanCommented == VLKConstants.QUESTION_CAN_COMMENTED ? true : false))%>
                         Включить возможность комментирования вопроса студентами
                         </td>
-                        <td class="Editor"></td>
+                        <td class="Editor" style="width:80%"></td>
                     </tr>
                     <tr class="Editor">
-                        <th class="Editor" colspan="2" rowspan="1">Ответ</th>
-                        <th class="Editor"></th>
+                        <th class="Editor" colspan="2" rowspan="1" style="width:20%">Ответ</th>
+                        <th class="Editor" style="width:80%"></th>
                     </tr>
                     <tr class="Editor">
-                        <td class="Editor">Текст ответа:</td>
-                        <td class="Editor">
+                        <td class="Editor" style="width:20%">Текст ответа:</td>
+                        <td class="Editor" style="width:80%">
                             <input class="formula_input" id="<%= VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString() %>" name="<%= VLKConstants.VARIANT_ANSWER_TEXT + answer.Id.ToString()%>" value="<%= answer.Text%>" />
                         </td>
                     </tr>
                     <tr class="Editor">
-                        <td class="Editor">
+                        <td class="Editor" style="width:20%">
                         <label for="<%= VLKConstants.VARIANT_ANSWER_SCORE  + answer.Id.ToString() %>">Количество баллов:</label>
                         </td>
-                        <td class="Editor">
-                        <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), answer.Score)%>
+                        <td class="Editor" style="width:80%">
+                        <div style="width:100%"><%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + answer.Id.ToString(), answer.Score)%></div>
                         </td>
                     </tr>    
                     <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,23 +151,23 @@
                     IEnumerable<Answer> answersList = (IEnumerable<Answer>)ViewData["AnswerData"];
     %>
                     <tr class="Editor">
-                        <td class="Editor">
+                        <td class="Editor" style="width:20%">
                         <label for="Text">Текст вопроса:</label>
                         </td>
-                        <td class="Editor">
-                        <%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                        <td class="Editor" style="width:80%">
+                        <div style="width:100%"><%= Html.TextArea("Text", question.Text, new { @class = "TextEditor", style = "width:inherit; height: 100px;" })%></div>
                         </td>
                     </tr>
                     <tr class="Editor">
-                        <td class="Editor" colspan="2" rowspan="1">
+                        <td class="Editor" colspan="2" rowspan="1" style="width:20%">
                         <%= Html.CheckBox("CanCommented", (question.CanCommented == VLKConstants.QUESTION_CAN_COMMENTED ? true : false))%>
                         Включить возможность комментирования вопроса студентами
                         </td>
-                        <td class="Editor"></td>
+                        <td class="Editor" style="width:80%"></td>
                     </tr>
                     <tr class="Editor">
-                        <th class="Editor" colspan="2" rowspan="1">Варианты ответа</th>
-                        <th class="Editor"></th>
+                        <th class="Editor" colspan="2" rowspan="1" style="width:20%">Варианты ответа</th>
+                        <th class="Editor" style="width:80%"></th>
                     </tr>
     <%
                     long answersCount = 1;
@@ -175,22 +175,22 @@
                     {
     %>
                         <tr class="Editor">
-                            <td class="Editor">Текст ответа:</td>
-                            <td class="Editor">
-                            <%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + variantAnswer.Id.ToString(), variantAnswer.Text, new { @class = "TextEditor", style = "width:100%; height: 100px;" })%>
+                            <td class="Editor" style="width:20%">Текст ответа:</td>
+                            <td class="Editor" style="width:80%">
+                            <div style="width:100%"><%= Html.TextArea(VLKConstants.VARIANT_ANSWER_TEXT + variantAnswer.Id.ToString(), variantAnswer.Text, new { @class = "TextEditor", style = "width:inherit; height: 100px;" })%></div>
                             </td>
                         </tr>
                         <tr class="Editor">
-                            <td class="Editor">
+                            <td class="Editor" style="width:20%">
                             <label for="<%= VLKConstants.VARIANT_ANSWER_SCORE + variantAnswer.Id.ToString() %>">Количество баллов:</label>
                             </td>
-                            <td class="Editor">
-                            <%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + variantAnswer.Id.ToString(), variantAnswer.Score)%>
+                            <td class="Editor" style="width:80%">
+                            <div style="width:100%"><%= Html.TextBox(VLKConstants.VARIANT_ANSWER_SCORE + variantAnswer.Id.ToString(), variantAnswer.Score)%></div>
                             </td>                
                         </tr>
                         <tr class="Editor">
-                            <td class="Editor" colspan="2" rowspan="1"></td>
-                            <td class="Editor">
+                            <td class="Editor" colspan="2" rowspan="1" style="width:20%"></td>
+                            <td class="Editor" style="width:80%">
     <%
                             if (answersCount > VLKConstants.MINIMNUM_ANSWERS_NUMBER)
                             {
