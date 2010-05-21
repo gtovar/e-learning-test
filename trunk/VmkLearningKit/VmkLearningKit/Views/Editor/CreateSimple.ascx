@@ -2,38 +2,38 @@
 <%@ Import Namespace="VmkLearningKit" %>
     <table class="Editor" style="width:100%;">
         <tr class="Editor">
-            <th class="Editor" colspan="2" rowspan="1">Вопрос</th>
-            <th class="Editor"></th>
+            <th class="Editor" colspan="2" rowspan="1" style="width:20%">Вопрос</th>
+            <th class="Editor" style="width:80%"></th>
         </tr>
         <tr class="Editor">
-            <td class="Editor" style="width:15%">Тип вопроса:</td>
-            <td class="Editor" style="width:85%"><%= Html.Encode("простой") %></td>
+            <td class="Editor" style="width:20%">Тип вопроса:</td>
+            <td class="Editor" style="width:80%"><%= Html.Encode("простой") %></td>
         </tr>
         <tr class="Editor">
-            <td class="Editor"><label for="Title">Краткое название:</label></td>
-            <td class="Editor"><%= Html.TextBox("Title", "", new { style = "width:100%" })%></td>
+            <td class="Editor" style="width:20%"><label for="Title">Краткое название:</label></td>
+            <td class="Editor" style="width:80%"><div style="width:100%"><%= Html.TextBox("Title", "", new { style = "width:inherit" })%></div></td>
         </tr>
         <tr class="Editor">
-            <td class="Editor"><label for="Text">Текст вопроса:</label></td>
-            <td class="Editor"><%= Html.TextArea("Text", new { @class = "TextEditor", style = "width:100%; height: 100px;" }) %></td>
+            <td class="Editor" style="width:20%"><label for="Text">Текст вопроса:</label></td>
+            <td class="Editor" style="width:80%"><div style="width:100%"><%= Html.TextArea("Text", new { @class = "TextEditor", style = "width:inherit; height: 100px;" }) %></div></td>
         </tr>
         <tr class="Editor">
-            <td class="Editor" colspan="2" rowspan="1">
+            <td class="Editor" colspan="2" rowspan="1" style="width:20%">
                 <%= Html.CheckBox("CanCommented", false) %>
                 Включить возможность комментирования вопроса студентами
             </td>
-            <td class="Editor"></td>
+            <td class="Editor" style="width:80%"></td>
         </tr>
         <tr class="Editor">
-            <th class="Editor" colspan="2" rowspan="1">Ответ</th>
-            <th class="Editor"></th>
+            <th class="Editor" colspan="2" rowspan="1" style="width:20%">Ответ</th>
+            <th class="Editor" style="width:80%"></th>
         </tr>
         <tr class="Editor">
-            <td class="Editor">Текст ответа:</td>
-            <td class="Editor"><%= Html.TextArea(VLKConstants.NEW_VARIANT_ANSWER_TEXT + "0", new { @class = "TextEditor", style = "width:100%; height: 100px;" }) %></td>
+            <td class="Editor" style="width:20%">Текст ответа:</td>
+            <td class="Editor" style="width:80%"><div style="width:100%"><%= Html.TextArea(VLKConstants.NEW_VARIANT_ANSWER_TEXT + "0", new { @class = "TextEditor", style = "width:inherit; height: 100px;" }) %></div></td>
         </tr>
         <tr class="Editor">
-            <td class="Editor"><label for="<%= VLKConstants.NEW_VARIANT_ANSWER_SCORE + "0"%>">Количество баллов:</label></td>
-            <td class="Editor"><%= Html.TextBox(VLKConstants.NEW_VARIANT_ANSWER_SCORE + "0") %></td>
+            <td class="Editor" style="width:20%"><label for="<%= VLKConstants.NEW_VARIANT_ANSWER_SCORE + "0"%>">Количество баллов:</label></td>
+            <td class="Editor" style="width:80%"><div style="width:100%"><%= Html.TextBox(VLKConstants.NEW_VARIANT_ANSWER_SCORE + "0") %></div></td>
         </tr>
     </table>

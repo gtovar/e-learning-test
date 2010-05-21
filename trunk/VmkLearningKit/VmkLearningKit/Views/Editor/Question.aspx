@@ -78,16 +78,16 @@
 	            var table = $(this).parents("div[class=QuestionFooter]").prevAll("div[class=QuestionEditBlock]").children("form").children("table");
 
 	            var text = "<tr class=\"Editor\">" +
-						   "    <td class=\"Editor\">Текст ответа:</td>" +
-						   "    <td class=\"Editor\"><textarea id=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_TEXT) %>" + newVariantAnswerStartIndex + "\" name=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_TEXT) %>" + newVariantAnswerStartIndex + "\" class=\"TextEditor\" style=\"width:100%;height:100px;\" /></td>" +
+						   "    <td class=\"Editor\" style=\"width:20%\">Текст ответа:</td>" +
+						   "    <td class=\"Editor\" style=\"width:80%\"><div style=\"width:100%\"><textarea id=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_TEXT) %>" + newVariantAnswerStartIndex + "\" name=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_TEXT) %>" + newVariantAnswerStartIndex + "\" class=\"TextEditor\" style=\"width:inherit;height:100px;\" /></div></td>" +
 						   "</tr>" +
 						   "<tr class=\"Editor\">" +
-						   "    <td class=\"Editor\"><label for=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex + "\">Количество баллов:</label></td>" +
-						   "    <td class=\"Editor\"><input type=\"text\" id=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex + "\" name=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex + "\" /></td>" +
+						   "    <td class=\"Editor\" style=\"width:20%\"><label for=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex + "\">Количество баллов:</label></td>" +
+						   "    <td class=\"Editor\" style=\"width:80%\"><div style=\"width:100%\"><input type=\"text\" id=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex + "\" name=\"<%= Html.Encode(VLKConstants.NEW_VARIANT_ANSWER_SCORE) %>" + newVariantAnswerStartIndex + "\" /></div></td>" +
 						   "</tr>" +
 						   "<tr class=\"Editor\">" +
-                           "    <td class=\"Editor\" colspan=\"2\" rowspan=\"1\"></td>" +
-                           "    <td class=\"Editor\"><img class=\"AnswerRemove\" src=\"/Content/Images/remove.png\" title=\"Удалить вариант ответа\" alt=\"Удалить\" width=\"20\" height=\"20\" /></td>" +
+                           "    <td class=\"Editor\" colspan=\"2\" rowspan=\"1\" style=\"width:20%\"></td>" +
+                           "    <td class=\"Editor\" style=\"width:80%\"><img class=\"AnswerRemove\" src=\"/Content/Images/remove.png\" title=\"Удалить вариант ответа\" alt=\"Удалить\" width=\"20\" height=\"20\" /></td>" +
 						   "</tr>";
 
 	            $(table).append(text);
