@@ -581,6 +581,7 @@ namespace VmkLearningKit.Controllers
                 ViewData["QuestionType"]        = repositoryManager.GetQuestionRepository.GetQuestionType(alias);                
                 ViewData["QuestionId"]          = alias;
 
+                ViewData["RazdelId"]            = razdelId;
                 ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(razdelId);
                 ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(razdelId);
                 ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(razdelId);
