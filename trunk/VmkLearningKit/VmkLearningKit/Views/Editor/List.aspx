@@ -395,6 +395,10 @@
 	{
 	%>
 	    <br />
+	    <p>
+	        <%= Html.ActionLink("Группы вопросов-дублеров", "Grouping", new { alias = VLKConstants.QUESTION_GROUP_DOUBLE , additional = razdelId }) %> | 
+	        <%= Html.ActionLink("Группы вопросов-исключений", "Grouping", new { alias = VLKConstants.QUESTION_GROUP_EXCLUSION , additional = razdelId }) %>
+	    </p>
 		<div class="QuestionsList">
             <div class="MainQuestionHeader">
                 <div class="QuestionNumber">№</div>   
