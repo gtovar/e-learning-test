@@ -17,7 +17,7 @@ namespace VmkLearningKit.Models.Repository
             sw.WriteLine("<LearningResource xmlns=\"urn:schemas-microsoft-com:learning-resource\" Version=\"1.0\">");
             sw.WriteLine("<PackageDescription>");
             sw.WriteLine("<General>");
-            sw.WriteLine("<Language>" + "test.Language" + "</Language> ");//*
+            sw.WriteLine("<Language>" + "ru" + "</Language> ");//*
             sw.WriteLine("<Title>" + "TestName" + "</Title> ");//*
             sw.WriteLine("<Description /> ");
             sw.WriteLine("<Keywords /> ");

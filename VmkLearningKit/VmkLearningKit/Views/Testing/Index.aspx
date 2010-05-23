@@ -224,7 +224,7 @@
 						</div>
 						<br />
 						<a href="javascript:void(0);" name="RazdelAdd" style="cursor:pointer;">Создать раздел</a> | 
-						<%= Html.ActionLink("Перейти к плану генерации", "GetPlanGeneration", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>
+						<%= Html.ActionLink("Перейти к плану генерации", "GetPlanGeneration", "PlanGeneration", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>
 					</div>
 				</div>
 				<%

@@ -139,6 +139,7 @@
     <Compile Include="Models\Repository\GeneratedTest\IGeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Index.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Manifest.cs" />
+    <Compile Include="Models\Repository\GeneratedTest\Theme.cs" />
     <Compile Include="Models\Repository\Group\GroupRepository.cs" />
     <Compile Include="Models\Repository\Group\IGroupRepository.cs" />
     <Compile Include="Models\Repository\LecturePlan\ILecturePlanRepository.cs" />
@@ -191,18 +192,25 @@
     <Content Include="Content\Images\index2_close.gif" />
     <Content Include="Content\Images\index2_cn1.gif" />
     <Content Include="Content\Images\index2_cn2.gif" />
+    <Content Include="Content\Images\ko.png" />
+    <Content Include="Content\Images\list.png" />
     <Content Include="Content\Images\menu_icon.gif" />
     <Content Include="Content\Images\navshape.jpg" />
+    <Content Include="Content\Images\ok.png" />
     <Content Include="Content\Images\pagetitlebkgd.gif" />
+    <Content Include="Content\Images\pencil.png" />
     <Content Include="Content\Images\progress.gif" />
     <Content Include="Content\Images\progressBig.gif" />
+    <Content Include="Content\Images\rarrow.png" />
     <Content Include="Content\Images\remove.png" />
     <Content Include="Content\Images\save.png" />
+    <Content Include="Content\Images\search.png" />
     <Content Include="Content\Images\topnavselected.gif" />
     <Content Include="Content\Images\topnavunselected.gif" />
     <Content Include="Content\Images\topshape.jpg" />
     <Content Include="Content\style.css" />
     <Content Include="Content\test.css" />
+    <Content Include="Content\themes.css" />
     <Content Include="Global.asax" />
     <Content Include="Libs\QWord.dll" />
     <Content Include="Scripts\Plugins\AjaxUpload\ajaxupload.js" />
@@ -370,6 +378,7 @@
     <Folder Include="DbBackups\" />
     <Folder Include="Uploads\Excel\" />
     <Folder Include="Uploads\Images\" />
+    <Folder Include="Uploads\Pacages\" />
     <Folder Include="Uploads\Word\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
