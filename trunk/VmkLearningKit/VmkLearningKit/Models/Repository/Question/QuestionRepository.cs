@@ -15,6 +15,26 @@ namespace VmkLearningKit.Models.Repository
 
         #region Get
 
+        public int GetDifferentDoubleGroupsCountInRazdel(long razdelId)
+        {
+            var result = (from c in DataContext.Questions
+                          where (c.RazdelId == razdelId &&
+                                 c.DoubleGroup != VLKConstants.FAKE_VALUE)
+                          select c.DoubleGroup);
+
+            return result.Distinct<int>().Count<int>();
+        }
+
+        public int GetDifferentExclusionGroupsCountInRazdel(long razdelId)
+        {
+            var result = (from c in DataContext.Questions
+                          where (c.RazdelId == razdelId &&
+                                 c.ExclusionGroup != VLKConstants.FAKE_VALUE)
+                          select c.ExclusionGroup);
+
+            return result.Distinct<int>().Count<int>();
+        }
+
         public IEnumerable<Question> GetQuestionsById(long id)
         {
             return DataContext.Questions.Where(t => t.Id == id);
@@ -146,6 +166,52 @@ namespace VmkLearningKit.Models.Repository
             return (IEnumerable<Question>)result;
         }
 
+        public IEnumerable<Question> GetNotDeletedQuestionsByRazdelIdSortedByDoubleGroup(long razdelId)
+        {
+            var result = (from c in DataContext.Questions
+                          where (c.RazdelId == razdelId && 
+                                 c.IsDeleted == VLKConstants.QUESTION_NOT_DELETED && 
+                                 c.DoubleGroup != VLKConstants.FAKE_VALUE) 
+                          orderby c.DoubleGroup
+                          select c);
+
+            return (IEnumerable<Question>)result;
+        }
+
+        public IEnumerable<Question> GetNotDeletedQuestionsByRazdelIdSortedByExclusionGroup(long razdelId)
+        {
+            var result = (from c in DataContext.Questions
+                          where (c.RazdelId == razdelId &&
+                                 c.IsDeleted == VLKConstants.QUESTION_NOT_DELETED &&
+                                 c.ExclusionGroup != VLKConstants.FAKE_VALUE)
+                          orderby c.ExclusionGroup
+                          select c);
+
+            return (IEnumerable<Question>)result;
+        }
+
+        public IEnumerable<Question> GetNotDeletedQuestionsByRazdelIdWithFakeDoubleGroup(long razdelId)
+        {
+            var result = (from c in DataContext.Questions
+                          where (c.RazdelId == razdelId &&
+                                 c.IsDeleted == VLKConstants.QUESTION_NOT_DELETED &&
+                                 c.DoubleGroup == VLKConstants.FAKE_VALUE)
+                          select c);
+
+            return (IEnumerable<Question>)result;
+        }
+
+        public IEnumerable<Question> GetNotDeletedQuestionsByRazdelIdWithFakeExclusionGroup(long razdelId)
+        {
+            var result = (from c in DataContext.Questions
+                          where (c.RazdelId == razdelId &&
+                                 c.IsDeleted == VLKConstants.QUESTION_NOT_DELETED &&
+                                 c.ExclusionGroup == VLKConstants.FAKE_VALUE)
+                          select c);
+
+            return (IEnumerable<Question>)result;
+        }
+
         public IEnumerable<Question> GetNotDeletedQuestionsByRazdelId(long razdelId)
         {
             var result = (from c in DataContext.Questions
@@ -167,6 +233,24 @@ namespace VmkLearningKit.Models.Repository
         public int GetQuestionType(long id)
         {
             return GetById(id).Type;
+        }
+
+        public int GetMaxQuestionDoubleGroupInRazdel(long razdelId)
+        {
+            var result = (from c in DataContext.Questions
+                          where (c.RazdelId == razdelId && c.IsDeleted == VLKConstants.QUESTION_NOT_DELETED)
+                          select c.DoubleGroup);
+
+            return ((IEnumerable<int>)result).Max();
+        }
+
+        public int GetMaxQuestionExclusionGroupInRazdel(long razdelId)
+        {
+            var result = (from c in DataContext.Questions
+                          where (c.RazdelId == razdelId && c.IsDeleted == VLKConstants.QUESTION_NOT_DELETED)
+                          select c.ExclusionGroup);
+
+            return ((IEnumerable<int>)result).Max();
         }
 
         #endregion
@@ -232,6 +316,20 @@ namespace VmkLearningKit.Models.Repository
 
                 DataContext.SubmitChanges();
             }
+        }
+
+        public void ChangeDoubleGroup(long id, int groupIndex)
+        {
+            GetById(id).DoubleGroup = groupIndex;
+
+            DataContext.SubmitChanges();
+        }
+
+        public void ChangeExclusionGroup(long id, int groupIndex)
+        {
+            GetById(id).ExclusionGroup = groupIndex;
+
+            DataContext.SubmitChanges();
         }
 
         #endregion

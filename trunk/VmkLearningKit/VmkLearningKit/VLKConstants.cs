@@ -24,6 +24,8 @@ namespace VmkLearningKit
         public const int    MINIMNUM_ANSWERS_NUMBER     = 2;
         public const int    FAKE_VALUE                  = -1;
         public const string TITLE_IS_ABSENT             = "Краткое название отсутствует (документ старого образца)";
+        public const string QUESTION_GROUP_DOUBLE       = "Double";
+        public const string QUESTION_GROUP_EXCLUSION    = "Exclusion";
 
         // состояние тестового варианта, когда он только был назначен и еще не выполнялся
         public const int    TEST_VARIANT_STATE_NEW      = 1;
