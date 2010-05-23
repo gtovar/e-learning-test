@@ -38,8 +38,10 @@
         $(document).ready(function() {
             $("#AddGroup").click(function() {
                 ++groupStartIndex;
-
-                var newGroup = "<ul class=\"Grouping\" id=\"Group" + groupStartIndex + "\"><b>Группа " + localGroupStartIndex + "</b><br /></ul><br />";
+                
+                var typeString = '<%= (Convert.ToString(ViewData["QuestionGroupType"]) == VLKConstants.QUESTION_GROUP_DOUBLE ? "Группа вопросов-дублеров " : "Группа вопросов-исключений ") %>';
+                
+                var newGroup = "<ul class=\"Grouping\" id=\"Group" + groupStartIndex + "\">" + typeString + localGroupStartIndex + "<br /></ul><br />";
                 
                 ++localGroupStartIndex;
 
@@ -108,6 +110,10 @@
             </tr>
 	    </table>
 	    <br />
+	    <p>
+	        <%= Html.ActionLink("Группы вопросов-дублеров", "Grouping", new { alias = VLKConstants.QUESTION_GROUP_DOUBLE , additional = razdelId }) %> | 
+	        <%= Html.ActionLink("Группы вопросов-исключений", "Grouping", new { alias = VLKConstants.QUESTION_GROUP_EXCLUSION , additional = razdelId }) %>
+	    </p>
 	    <div id="WorkField">
 	    <%
 	    if (questionsList.Count<Question>() == 0)
@@ -123,31 +129,30 @@
                 case VLKConstants.QUESTION_GROUP_DOUBLE:
                     {
                         %>
-                        <table>
+                        <p style="text-align:center; background-color: #E2EFFF;"><b>Группы вопросов-дублеров</b></p>
+                        <table border="0">
                             <tr>
                                 <td style="width:58%; vertical-align:top; text-align:left;">
                                     <div id="QuestionsList" style="width:100%;">
-                                        <ul id="Group<%= VLKConstants.FAKE_VALUE %>" class="Grouping" style="border: none;">
-                                        <b>Список тестовых вопросов по разделу</b>
-                                        <br />
+                                        <p style="text-align:center;"><b>Список тестовых вопросов по разделу</b></p>
+                                        <ul id="Group<%= VLKConstants.FAKE_VALUE %>" class="Grouping" style="border: solid 3px #c4c4c4;">
                                         <%
                                         foreach (Question question in questionsList)
                                         {
                                             if (question.DoubleGroup == VLKConstants.FAKE_VALUE)
                                             {
                                             %>
-                                            <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.Encode(question.Title) %></li>
+                                            <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
                                             <%
                                             }
                                         } 
                                         %>
                                         </ul>
                                     </div>
-                                    <br />
-                                    <p><a href="javascript:void(0);" id="AddGroup">Добавить группу вопросов-дублеров</a></p>
                                 </td>
                                 <td style="width:2%;"></td>
                                 <td style="width:40%; vertical-align:top; text-align:left;">
+                                    <p style="text-align:center;"><a href="javascript:void(0);" id="AddGroup">Добавить группу вопросов-дублеров</a></p>
                                     <div id="GroupsList" style="width:100%">
                                         <%
                                         IEnumerable<Question> questions = (IEnumerable<Question>)ViewData["QuestionsListSortedByGroupIndex"];
@@ -156,7 +161,7 @@
                                         {
                                             %>
                                             <ul class="Grouping" id="Group<%= questions.First<Question>().DoubleGroup.ToString() %>">
-                                            <b>Группа 1</b>
+                                            Группа вопросов-дублеров 1
                                             <br />
                                             <%
                                             
@@ -175,15 +180,15 @@
                                                     </ul>
                                                     <br />
                                                     <ul class="Grouping" id="Group<%= questionGroupIndex.ToString() %>">
-                                                        <b>Группа <%= localGroupsCount.ToString() %></b>
+                                                        Группа вопросов-дублеров <%= localGroupsCount.ToString() %>
                                                         <br />
-                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.Encode(question.Title) %></li>
+                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
                                                     <%
                                                 }
                                                 else if (question.DoubleGroup == questionGroupIndex)
                                                 {
                                                     %>
-                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.Encode(question.Title) %></li>
+                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
                                                     <%
                                                 }
                                             }
@@ -204,32 +209,31 @@
                 case VLKConstants.QUESTION_GROUP_EXCLUSION:
                     {
                         %>
+                        <p style="text-align:center; background-color: #E2EFFF;"><b>Группы вопросов-исключений</b></p>
                         <table>
                             <tr>
                                 <td style="width:58%; vertical-align:top; text-align:left;">
                                     <div id="QuestionsList" style="width:100%">
-                                        <ul id="Group<%= VLKConstants.FAKE_VALUE %>" class="Grouping"  style="border: none;">
-                                        <b>Список тестовых вопросов по разделу</b>
-                                        <br />
+                                        <p style="text-align:center;"><b>Список тестовых вопросов по разделу</b></p>
+                                        <ul id="Group<%= VLKConstants.FAKE_VALUE %>" class="Grouping" style="border: solid 3px #c4c4c4;">
                                         <%
                                         foreach (Question question in questionsList)
                                         {
                                             if (question.ExclusionGroup == VLKConstants.FAKE_VALUE)
                                             {
                                             %>
-                                            <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.Encode(question.Title) %></li>
+                                            <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
                                             <%
                                             }
                                         } 
                                         %>
                                         </ul>
                                     </div>
-                                    <br />
-                                    <p><a href="javascript:void(0);" id="AddGroup">Добавить группу вопросов-исключений</a></p>
                                 </td>
                                 <td style="width:2%;"></td>
                                 <td style="width:40%; vertical-align:top; text-align:left;">
                                     <div id="GroupsList" style="width:100%">
+                                    <p style="text-align:center;"><a href="javascript:void(0);" id="AddGroup">Добавить группу вопросов-дублеров</a></p>
                                         <% 
                                         IEnumerable<Question> questions = (IEnumerable<Question>)ViewData["QuestionsListSortedByGroupIndex"];
                                         
@@ -237,27 +241,34 @@
                                         {
                                             %>
                                             <ul class="Grouping" id="Group<%= questions.First<Question>().ExclusionGroup.ToString() %>">
+                                            Группа вопросов-исключений 1
+                                            <br />
                                             <%
                                             
                                             int questionGroupIndex = questions.First<Question>().ExclusionGroup;
-                                        
+                                            int localGroupsCount   = 1;
+                                            
                                             foreach (Question question in questions)
                                             {
                                                 if (question.ExclusionGroup > questionGroupIndex)
                                                 {
                                                     questionGroupIndex = question.ExclusionGroup;
+
+                                                    ++localGroupsCount;
                                                     
                                                     %>
                                                     </ul>
                                                     <br />
                                                     <ul class="Grouping" id="Group<%= questionGroupIndex.ToString() %>">
-                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.Encode(question.Title) %></li>
+                                                        Группа вопросов-исключений <%= localGroupsCount.ToString() %>
+                                                        <br />
+                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
                                                     <%
                                                 }
                                                 else if (question.ExclusionGroup == questionGroupIndex)
                                                 {
                                                     %>
-                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.Encode(question.Title) %></li>
+                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
                                                     <%
                                                 }
                                             }
