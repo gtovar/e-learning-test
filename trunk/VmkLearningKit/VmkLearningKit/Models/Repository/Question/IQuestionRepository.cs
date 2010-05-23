@@ -13,6 +13,7 @@ namespace VmkLearningKit.Models.Repository
         int GetQuestionType(long id);
         int GetAnswersCountByQuestionId(long questionId);
         int GetQuestionLocalIdByQuestionId(long questionId);
+        double GetMaxScoreQuestionByQuestionId(long questionId);
         string GetFullQuestionLocalIdByQuestionId(long questionId);
         IEnumerable<Answer> GetAllAnswersByQuestionId(long questionId);
         IEnumerable<Question> GetQuestionsById(long id);

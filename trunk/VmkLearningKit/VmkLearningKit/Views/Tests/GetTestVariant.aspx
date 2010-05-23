@@ -4,8 +4,39 @@
     Вопросы
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        Вопросы варианта</h2>
+
+<script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
+
+<script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        /*
+        * Обработка события "Редактирование вопроса"
+        *
+        */
+        $("img[class=QuestionEdit]").click(function() {
+
+            // Получаем атрибут id родителя элемента
+            var id = $(this).parent().attr("id");
+            /*
+            * Формируем url страницы для получение списка вопросов варианта.
+            * Идентификтор варианта (в БД) заложен в полученный аттрибут.
+            *
+            */
+            var url = "/Editor/Edit/" + id;
+            //alert(url);
+            window.location = url;
+        });
+    });
+</script>
+
+    <div align="center">
+        <h2>
+            Вопросы варианта</h2>
+    </div>
+    <br />
     <table class="Generator">
         <tr align="center">
             <td class="Generator">
@@ -46,6 +77,7 @@
             int m = 0; long testId = 0;
             ArrayList l = new ArrayList((ICollection)ViewData["AllQuestionByGeneratedTestVariant"]);
 
+            int k = 1;
             foreach (GeneratedQuestion gq in (IEnumerable<GeneratedQuestion>)ViewData["AllGeneratedQuestionsByGeneratedTestVariant"])
             {%>
         <%    
@@ -55,12 +87,14 @@
             RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
             IQuestionRepository questionRepository = repositoryManager.GetQuestionRepository;
 
+
             foreach (Question q in (IEnumerable<Question>)ViewData["ques"])
             {
+                
         %>
         <tr align="center">
             <td class="Generator">
-                <%= questionRepository.GetQuestionLocalIdByQuestionId(q.Id) %>
+                <%= k++ %>
             </td>
             <td class="Generator">
                 <%= q.Razdel.Title%>
@@ -81,43 +115,47 @@
                 <%= q.WrongAnswersCount%>
             </td>
             <td class="Generator">
-            <% if (q.DoubleGroup == -1)
-               {%>
+                <% if (q.DoubleGroup == -1)
+                   {%>
                 Нет
                 <% }
-               else {%>
+                   else
+                   {%>
                 <%= q.DoubleGroup %>
-                <% } %>                
+                <% } %>
             </td>
             <td class="Generator">
                 <% if (q.ExclusionGroup == -1)
-               {%>
+                   {%>
                 Нет
                 <% }
-               else {%>
+                   else
+                   {%>
                 <%= q.ExclusionGroup %>
                 <% } %>
             </td>
             <td class="Generator">
                 <% if (q.IsDeleted == 0)
-               {%>
+                   {%>
                 Не удален
                 <% }
-               else {%>
+                   else
+                   {%>
                 Удален
                 <% } %>
             </td>
             <td class="Generator">
                 <% if (q.CanCommented == 0)
-               {%>
+                   {%>
                 Нет
                 <% }
-               else {%>
+                   else
+                   {%>
                 Да
                 <% } %>
             </td>
-            <td class="Generator">
-               <%= Html.ActionLink("Ред.", "Edit", "Editor", new { alias = q.Id }, new { @class = "" })%> 
+            <td class="Generator" id="<%= Html.Encode(q.Id.ToString())%>">
+                <img src="/Content/Images/pencil.png" class="QuestionEdit" alt="К вопросам" width="20" height="20" />
             </td>
         </tr>
         <%}
@@ -126,6 +164,6 @@
     </table>
     <br />
     <div align="center">
-        <%= Html.ActionLink("Назад", "GetTest", new { id = testId })%>
+        <%= Html.ActionLink("Назад", "GetTest", new { alias = testId })%>
     </div>
 </asp:Content>

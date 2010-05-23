@@ -4,6 +4,22 @@
     Генератор
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+<script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
+	<script type="text/javascript">
+
+	    $().ready(function() {
+	        $("form").validate({
+	            rules: {
+	                
+	            },
+	            messages: {
+	                
+	            }
+	        });
+	    });	
+</script>
 <% using (Html.BeginForm("Edit", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post))
    { %>
     <div align="center">
@@ -101,7 +117,7 @@
         </tr>
     </table>
     <br />
-    <div align="right"><button type="submit" name="ok"><p>&nbsp ОК</p></button> </div>
+    <div align="right"><input type="image" name="submit" src="/Content/Images/ok.png" width="40" height="40" value="Сохранить"></div>
     
     <div align="left">
         <table class="Generator">
@@ -119,7 +135,7 @@
     <div align="center">
         <%= Html.ActionLink("Назад", "Index", "Home")%>&nbsp&nbsp&nbsp&nbsp&nbsp
         <%= Html.ActionLink("Сгенерировать тест", "AddTest", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]), variantCount = Convert.ToInt32(ViewData["VariantCount"]), questionCount = Convert.ToInt32(ViewData["QuestionCountInTestVariantBySpecialityDisciplineTopic"]) }, new { @class = "" })%>&nbsp&nbsp&nbsp&nbsp&nbsp
-        <%= Html.ActionLink("Посмотреть сгенерированные тесты", "GetGeneratedTests", "Tests", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>
+        <%= Html.ActionLink("Посмотреть сгенерированные тесты", "GetGeneratedTests", "Tests", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>
     </div>
     <%
     }

@@ -105,7 +105,7 @@ namespace VmkLearningKit.Models.Repository
             DataContext.SubmitChanges();
 
             //создаем каталог для хранения scorm-пакетов теста
-            string testDir = @"C:\Users\orlov.leonid\Desktop\Пакеты" + "\\" + gt.Id;
+            string testDir = @"VmkLearningKit\Uploads\Pacages" + "\\" + gt.Id;
 
             DirectoryInfo TestDir = new DirectoryInfo(testDir);
             if (TestDir.Exists)
@@ -128,6 +128,8 @@ namespace VmkLearningKit.Models.Repository
                 foreach (Razdel raz in razdels)
                 {
                     long count = raz.QuestionsCount;
+
+                    // список вопросов раздела
                     IEnumerable<Question> li = DataContext.Questions.Where(t => t.RazdelId == raz.Id);
 
                     int kol = 0; // количество вопросов раздела
@@ -161,7 +163,73 @@ namespace VmkLearningKit.Models.Repository
 
                             Question question = questions[n_min];
 
-                            if (ExclusionList.IndexOf(question.ExclusionGroup) == -1)
+                            // группа-исключений вопроса уникальна, а группа-дублеров имеет качественное значение
+                            if ((ExclusionList.IndexOf(question.ExclusionGroup) == -1) && (question.DoubleGroup != -1))
+                            {
+                                // создаем вопрос для варианта
+
+                                GeneratedQuestion gq = new GeneratedQuestion();
+                                gq.GeneratedTestVariantId = gtv.Id;
+                                gq.QuestionId = question.Id;
+
+                                // увеличиваем счетчик
+                                counter[n_min]++;
+
+                                //добавляем вопрос в базу
+                                DataContext.GeneratedQuestions.InsertOnSubmit(gq);
+                                DataContext.SubmitChanges();
+
+                                count--;
+
+                                // добавляем группу исключений вопроса в список групп-исключений варианта
+                                if (question.ExclusionGroup != -1)
+                                    ExclusionList.Add(question.ExclusionGroup);
+
+                                //добавляем вопрос в "черный" список
+                                BlackList.Add(question.Id);
+                                kol--;
+
+                                // теперь находим и добавляем в вариант вопрос с такой же группой дублеров
+                                
+                                long group = question.DoubleGroup; //группа-дублеров вопроса
+
+                                foreach (Question q in li)
+                                {
+                                    if ((q.DoubleGroup == group) && (q.Id != question.Id)
+                                        && (ExclusionList.IndexOf(q.ExclusionGroup) == -1) && BlackList.IndexOf(q.Id) == -1)
+                                    {
+                                        // создаем вопрос-дублер для варианта
+
+                                        GeneratedQuestion gq2 = new GeneratedQuestion();
+                                        gq2.GeneratedTestVariantId = gtv.Id;
+                                        gq2.QuestionId = q.Id;
+
+                                        // увеличиваем счетчик
+                                        counter[questions.IndexOf(q)]++;
+
+                                        //добавляем вопрос в базу
+                                        DataContext.GeneratedQuestions.InsertOnSubmit(gq2);
+                                        DataContext.SubmitChanges();
+
+                                        count--;
+
+                                        // добавляем группу исключений вопроса в список групп-исключений варианта
+                                        if (q.ExclusionGroup != -1)
+                                            ExclusionList.Add(q.ExclusionGroup);
+
+                                        //добавляем вопрос в "черный" список
+                                        BlackList.Add(q.Id);
+                                        kol--;
+                                        break;
+                                    }
+                                }
+
+                                //переход к поиску нового вопроса
+                                k = false;
+                            }
+
+                            // группа-исключений вопроса уникальна, а группа-дублеров не имеет качественного значения
+                            else if ((ExclusionList.IndexOf(question.ExclusionGroup) == -1) && question.DoubleGroup == -1)
                             {
 
                                 // создаем вопрос для варианта
@@ -219,11 +287,11 @@ namespace VmkLearningKit.Models.Repository
                 ImageDir.Create();
 
                 // записываем файлы тестового варианта
+                Builder imspage = new Builder("Imspage.htm", Dir + "\\P1000", gtv, s);
+                imspage.WriteImsPage();
+
                 Builder page = new Builder("page.htm", Dir + "\\P1000", gtv, s);
                 page.WritePage();
-
-                /*Writer csimspage = new Writer(Test, TempDir + "\\P1000", "IMSPage.htm");
-                csimspage.WriteIMSPage();*/
 
                 // записываем файл манифеста во временный каталог
                 Manifest manifest = new Manifest();
@@ -233,12 +301,20 @@ namespace VmkLearningKit.Models.Repository
                 Index index1 = new Index();
                 index1.Write(Dir + "\\Index.xml");
 
+                // записываем файл темы во временный каталог
+                DirectoryInfo ThemeDir = new DirectoryInfo(Dir + "\\Shared");
+                if (ThemeDir.Exists)
+                    ThemeDir.Delete(true);
+                ThemeDir.Create();
+                Theme theme = new Theme();
+                theme.Write(Dir + "\\Shared\\themes.css");
+
                 // упаковываем временный каталог в zip архив
                 FastZip fz = new FastZip();
                 fz.CreateEmptyDirectories = true;
                 fz.CreateZip(Dir + ".zip", Dir, true, "");
                 fz = null;
-                //ScormDir.Delete(true);
+                ScormDir.Delete(true);
             }
 
             return gt;

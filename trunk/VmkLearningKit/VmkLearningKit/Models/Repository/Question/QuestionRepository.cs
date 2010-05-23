@@ -40,6 +40,19 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.Questions.Where(t => t.Id == id);
         }
 
+        public double GetMaxScoreQuestionByQuestionId(long questionId)
+        {
+            double maxScore = 0;
+
+            IEnumerable<Answer> answers = DataContext.Answers.Where(t => t.QuestionId == questionId);
+            foreach (Answer a in answers)
+            {
+                if (a.Score > 0) maxScore += a.Score;
+            }
+
+            return maxScore;
+        }
+
         /*
         // локальный id в списке вопросов темы
         public int GetQuestionLocalIdByQuestionId(long questionId)
