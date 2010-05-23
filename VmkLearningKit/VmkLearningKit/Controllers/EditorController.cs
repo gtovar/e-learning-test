@@ -596,5 +596,85 @@ namespace VmkLearningKit.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult Grouping(string alias, long additional)
+        {
+            try
+            {
+                GeneralMenu();
+
+                ViewData[Constants.PAGE_TITLE] = "Редактор тестовых вопросов";
+
+                ViewData["QuestionsList"]       = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelId(additional);
+                ViewData["RazdelId"]            = additional;
+                ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(additional);
+                ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(additional);
+                ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(additional);
+                ViewData["ProfessorNickName"]   = repositoryManager.GetRazdelRepository.GetProfessorNickNameByRazdelId(additional);
+                ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(additional);
+                ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(additional).SpecialityDisciplineTopicId;
+
+                switch (alias)
+                {
+                    case VLKConstants.QUESTION_GROUP_DOUBLE:
+                        {
+                            ViewData["QuestionsListSortedByGroupIndex"] = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelIdSortedByDoubleGroup(additional);
+                            ViewData["MaxQuestionGroupIndex"]           = repositoryManager.GetQuestionRepository.GetMaxQuestionDoubleGroupInRazdel(additional);
+                            ViewData["QuestionGroupType"]               = VLKConstants.QUESTION_GROUP_DOUBLE;
+                            ViewData["AddToGroupMethod"]                = "AddToDoubleGroup";
+                            ViewData["GroupsCount"]                     = repositoryManager.GetQuestionRepository.GetDifferentDoubleGroupsCountInRazdel(additional);
+                            
+                            break;
+                        }
+                    case VLKConstants.QUESTION_GROUP_EXCLUSION:
+                        {
+                            ViewData["QuestionsListSortedByGroupIndex"] = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelIdSortedByExclusionGroup(additional);
+                            ViewData["MaxQuestionGroupIndex"]           = repositoryManager.GetQuestionRepository.GetMaxQuestionExclusionGroupInRazdel(additional);
+                            ViewData["QuestionGroupType"]               = VLKConstants.QUESTION_GROUP_EXCLUSION;
+                            ViewData["AddToGroupMethod"]                = "AddToExclusionGroup";
+                            ViewData["GroupsCount"]                     = repositoryManager.GetQuestionRepository.GetDifferentExclusionGroupsCountInRazdel(additional);
+
+                            break;
+                        }
+                    default:
+                        {
+                            return RedirectToAction("Error", "Home", new { alias = "404" });
+                        }
+                }
+                
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void AddToDoubleGroup(long alias, int additional)
+        {
+            try
+            {
+                repositoryManager.GetQuestionRepository.ChangeDoubleGroup(alias, additional);
+            }
+            catch (Exception exc)
+            {
+                RedirectToAction("Error", "Home");
+            }
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void AddToExclusionGroup(long alias, int additional)
+        {
+            try
+            {
+                repositoryManager.GetQuestionRepository.ChangeExclusionGroup(alias, additional);
+            }
+            catch (Exception exc)
+            {
+                RedirectToAction("Error", "Home");
+            }
+        }
     }
 }

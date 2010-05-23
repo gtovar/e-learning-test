@@ -244,6 +244,7 @@
     <Content Include="Scripts\Plugins\JHtmlArea\style\jqueryui\ui-lightness\images\ui-icons_ffd27a_256x240.png" />
     <Content Include="Scripts\Plugins\JHtmlArea\style\jqueryui\ui-lightness\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Scripts\Plugins\JHtmlArea\style\jqueryui\ui-lightness\jquery-ui-1.7.2.custom.css" />
+    <Content Include="Scripts\Plugins\UI\Sortable\jquery-ui-1.7.3.custom.min.js" />
     <Content Include="Views\Admin\Chair\Chairs.aspx" />
     <Content Include="Views\Admin\Department\Add.aspx" />
     <Content Include="Views\Admin\Department\DepartmentForm.ascx" />
@@ -271,6 +272,7 @@
     <Content Include="Views\Editor\CreateSimple.ascx" />
     <Content Include="Views\Editor\Edit.ascx" />
     <Content Include="Views\Editor\Create.aspx" />
+    <Content Include="Views\Editor\Grouping.aspx" />
     <Content Include="Views\Editor\List.aspx" />
     <Content Include="Views\Editor\Question.aspx" />
     <Content Include="Views\Editor\Restore.aspx" />
