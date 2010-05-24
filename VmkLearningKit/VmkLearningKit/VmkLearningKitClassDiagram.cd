@@ -1,68 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="VmkLearningKit.Constants" Collapsed="true">
-    <Position X="42.25" Y="1.5" Width="1.5" />
+    <Position X="66.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EApCBAIAKAIAEiIiAAABEAAAAQAMAAZIAAAEQEABQIA=</HashCode>
+      <HashCode>0QpCREJAOCIMGiJibCAPEASBCSAMwC5MAgEkVGJBgIY=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.MvcApplication" Collapsed="true">
-    <Position X="42.25" Y="3.5" Width="1.5" />
+    <Position X="61.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAIAAAAAAAAAAA=</HashCode>
       <FileName>Global.asax.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.Messages" Collapsed="true">
-    <Position X="40.5" Y="3.5" Width="1.5" />
+    <Position X="59.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAABAAAAAAAABEAAAAQAAAAAAAAAAEAAAAIA=</HashCode>
+      <HashCode>AAwAAAAAgABAAAAAAAABEAAAAQACAAgAAQAAEAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.VLKConstants" Collapsed="true">
-    <Position X="45.75" Y="5.5" Width="1.5" />
+    <Position X="63" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAABAAEAAAAQAAAAAAA=</HashCode>
+      <HashCode>qAgAASAgAAAAASEQgIAAEAAAkAAJAAEAAAAQECAgCAQ=</HashCode>
       <FileName>VLKConstants.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.Controllers.AbstractController" Collapsed="true">
-    <Position X="2.75" Y="7.5" Width="1.5" />
+    <Position X="9.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQACAAA=</HashCode>
       <FileName>Controllers\AbstractController.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="VmkLearningKit.Controllers.AdminController" Collapsed="true">
+    <Position X="9.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAEGAQAAAAAAAAACAAAAAAAAAAAAAAAAEAAAAAAEA=</HashCode>
+      <FileName>Controllers\AdminController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="VmkLearningKit.Controllers.AuthController" Collapsed="true">
-    <Position X="0.5" Y="9" Width="1.5" />
+    <Position X="11.75" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAQAAAA=</HashCode>
       <FileName>Controllers\AuthController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.Controllers.CabinetController" Collapsed="true">
-    <Position X="47.5" Y="0.5" Width="1.5" />
+    <Position X="14" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAQAAAAAAQAAAAAQCAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>QAAABAACQBEAgEAQAEAgEQCAAEEAAAJEAAAAgAAgggA=</HashCode>
       <FileName>Controllers\CabinetController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VmkLearningKit.Controllers.HomeController" Collapsed="true">
-    <Position X="2.75" Y="9" Width="1.5" />
+  <Class Name="VmkLearningKit.Controllers.EditorController" Collapsed="true">
+    <Position X="16.25" Y="9" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQQAAAAAAAAIAQEAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <HashCode>QBAAAgAAAAAAIAAAAAADAAgEACEAAEAGBCAAAAAAIAI=</HashCode>
+      <FileName>Controllers\EditorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Controllers.HomeController" Collapsed="true">
+    <Position X="18.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAAAQAAAAIAQEAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\HomeController.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="VmkLearningKit.Controllers.PlanGenerationController" Collapsed="true">
+    <Position X="63" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\PlanGenerationController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="VmkLearningKit.Controllers.ProfessorController" Collapsed="true">
-    <Position X="5" Y="8.5" Width="1.5" />
+    <Position X="0.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Controllers\ProfessorController.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="VmkLearningKit.Controllers.StatementController" Collapsed="true">
+    <Position X="2.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAACAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\StatementController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Controllers.TestingController" Collapsed="true">
+    <Position X="5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAEAAAQIAAA=</HashCode>
+      <FileName>Controllers\TestingController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Controllers.TestsController" Collapsed="true">
+    <Position X="66.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAIAAAAAAAAAAAEAAACEAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\TestsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Controllers.ViewTestController" Collapsed="true">
+    <Position X="7.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAgAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\ViewTestController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="VmkLearningKit.Core.AuthenticatedConstraint" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="44" Y="0.5" Width="1.5" />
+    <Position X="57.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAgAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Core\AuthenticatedConstraint.cs</FileName>
@@ -70,480 +119,724 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Core.AuthorizeFilter" Collapsed="true">
-    <Position X="45.75" Y="0.5" Width="1.5" />
+    <Position X="59.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Core\AuthorizeFilter.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="VmkLearningKit.Core.DB" Collapsed="true">
+    <Position X="54.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgAAAoAAAAAAAAAAAAECIAAAAAAAAAAAAAiAAAEAAAA=</HashCode>
+      <FileName>Core\DB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="VmkLearningKit.Core.Hash" Collapsed="true">
-    <Position X="45.75" Y="2.5" Width="1.5" />
+    <Position X="61.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
       <FileName>Core\Hash.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VmkLearningKit.Core.Utility" Collapsed="true">
-    <Position X="44" Y="5.5" Width="1.5" />
+  <Class Name="VmkLearningKit.Core.Transliteration" Collapsed="true">
+    <Position X="56" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AQAAEAABAAAAAAAAAAAAAIAAQAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Core\Transliteration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.Utility" Collapsed="true">
+    <Position X="61.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEgigAFAAAABBAAAAABAADAAgQAQgAQAAAAQAAAQBQ=</HashCode>
       <FileName>Core\Utility.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="VmkLearningKit.Models.Domain.User" Collapsed="true">
-    <Position X="42.25" Y="5.5" Width="1.5" />
+  <Class Name="VmkLearningKit.Core.ExcelToDB.DepartmentStructureObj" Collapsed="true">
+    <Position X="59.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAgEAAAIAAAAAAAEAAAABQAAAAAAAAAAAACAIAAAhA=</HashCode>
+      <HashCode>AQQAEEAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Core\ExcelToDB\DepartmentStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.DepartmentStructure" Collapsed="true">
+    <Position X="57.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEASCAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\DepartmentStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.ExcelParser" Collapsed="true">
+    <Position X="63" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEAQAAAUQAAIAACAAAAAAAAQAAAAAAAAIAADACAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\ExcelParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.GroupStructureObj" Collapsed="true">
+    <Position X="59.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQIAAEAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\GroupStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.GroupStructure" Collapsed="true">
+    <Position X="57.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\GroupStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.LectureTimetableStructureObj" Collapsed="true">
+    <Position X="56" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAQAAAAAAAQAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\LectureTimetableStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.LectureTimetableStructure" Collapsed="true">
+    <Position X="54.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEASCAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\LectureTimetableStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.Term" Collapsed="true">
+    <Position X="64.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\SpecialityDisciplineStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.SpecialityDisciplineStructureObj" Collapsed="true">
+    <Position X="66.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAEEAQAAAAAAAQAAAAAAAAEAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\SpecialityDisciplineStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.SpecialityDisciplineStructure" Collapsed="true">
+    <Position X="64.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAEASCAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\SpecialityDisciplineStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.SpecialityDisciplineTopicStructureObj" Collapsed="true">
+    <Position X="59.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\SpecialityDisciplineTopicStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Core.ExcelToDB.SpecialityDisciplineTopicStructure" Collapsed="true">
+    <Position X="57.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAACAAAAAAAA=</HashCode>
+      <FileName>Core\ExcelToDB\SpecialityDisciplineTopicStructure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Models.Domain.User" Collapsed="true">
+    <Position X="57.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgEAAAIUAAAAAAAAACAAQACgAAEAAAAAACAIAAAhA=</HashCode>
       <FileName>Models\Domain\User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.AnswerRepository" Collapsed="true">
-    <Position X="24.5" Y="3.25" Width="1.5" />
+    <Position X="27" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAIAAAAAAAAAAAAAAACEAAAAAAgAAAACAAIA=</HashCode>
+      <HashCode>AAYAAAAAAIAAAAAABAAAAAAAACEAAAAAAgAAAACAAIA=</HashCode>
       <FileName>Models\Repository\Answer\AnswerRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VmkLearningKit.Models.Repository.ChairRepository" Collapsed="true">
-    <Position X="31.25" Y="3.25" Width="1.5" />
+  <Class Name="VmkLearningKit.Models.Repository.AssignedTestVariantRepository" Collapsed="true">
+    <Position X="36" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAiEAAAAAQgAAAAAAAIA=</HashCode>
+      <HashCode>AAIAQAAAAAAAAIAAAAAAAQAIACEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Repository\AssignedTestVariant\AssignedTestVariantRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.ChairRepository" Collapsed="true">
+    <Position X="45" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAgAAAAAAQAAAAAAAAAAAAAiEAAAAAAgAAAAAAAIA=</HashCode>
       <FileName>Models\Repository\Chair\ChairRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.DepartmentRepository" Collapsed="true">
-    <Position X="4.25" Y="3.25" Width="1.5" />
+    <Position X="2.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAIAAAAACEAAAAAAgAAAACAAIA=</HashCode>
+      <HashCode>AAIAgAAAAAAQAAAAAAAAAAAAAiEAAAAAAgAAAACAAIA=</HashCode>
       <FileName>Models\Repository\Department\DepartmentRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VmkLearningKit.Models.Repository.DisciplineRepository" Collapsed="true">
-    <Position X="11" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAACEAAAAAAgAAAACAAIA=</HashCode>
-      <FileName>Models\Repository\Discipline\DisciplineRepository.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="VmkLearningKit.Models.Repository.EducationPlanRepository" Collapsed="true">
-    <Position X="20" Y="3.25" Width="1.5" />
+    <Position X="13.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACEAAAAAAgAAAAAAAIA=</HashCode>
+      <HashCode>AAIAgAAAAAAAAAAAAAAIAAAAAiEAAAAAAgAAAAAAAIA=</HashCode>
       <FileName>Models\Repository\EducationPlan\EducationPlanRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VmkLearningKit.Models.Repository.LecturePlanRepository" Collapsed="true">
-    <Position X="2" Y="3.25" Width="1.5" />
+  <Class Name="VmkLearningKit.Models.Repository.GeneratedQuestionRepository" Collapsed="true">
+    <Position X="22.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAKA=</HashCode>
+      <FileName>Models\Repository\GeneratedQuestion\GeneratedQuestionRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.Builder" Collapsed="true">
+    <Position X="61.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAwAAAAAkAgQACAAQGBBAAAAEIAIAEAAIZAAABAAAA=</HashCode>
+      <FileName>Models\Repository\GeneratedTest\Builder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.GeneratedTestRepository" Collapsed="true">
+    <Position X="38.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAEAAAAAAAAAAAAAAAAACEAAAABAAAAAQAAAIA=</HashCode>
+      <FileName>Models\Repository\GeneratedTest\GeneratedTestRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.Index" Collapsed="true">
+    <Position X="63" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Repository\GeneratedTest\Index.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.Manifest" Collapsed="true">
+    <Position X="57.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Repository\GeneratedTest\Manifest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.Theme" Collapsed="true">
+    <Position X="54.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Repository\GeneratedTest\Theme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.GeneratedTestVariantRepository" Collapsed="true">
+    <Position X="11.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAACAAgAAAAACEAABBAAAAAAAAAhIA=</HashCode>
+      <FileName>Models\Repository\GeneratedTestVariant\GeneratedTestVariantRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.GroupRepository" Collapsed="true">
+    <Position X="20.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAgAAAAAAAAAAAAAAIAAAACiEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Models\Repository\Group\GroupRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.LecturePlanRepository" Collapsed="true">
+    <Position X="40.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAIAAAAAAAAAAAEAAAACEAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>Models\Repository\LecturePlan\LecturePlanRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VmkLearningKit.Models.Repository.PracticePlanRepository" Collapsed="true">
-    <Position X="8.75" Y="3.25" Width="1.5" />
+  <Class Name="VmkLearningKit.Models.Repository.LectureTimetableRepository" Collapsed="true">
+    <Position X="47.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAIAgAAAIAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Models\Repository\LectureTimetable\LectureTimetableRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.PracticePlanRepository" Collapsed="true">
+    <Position X="4.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAAAAAAAAAAAAAEAAAACEAAAAAAAAEAAAAAKA=</HashCode>
       <FileName>Models\Repository\PracticePlan\PracticePlanRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.ProfessorRepository" Collapsed="true">
-    <Position X="15.5" Y="3.25" Width="1.5" />
+    <Position X="15.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAACEAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAYAgAAAAEAAAgAAAAAAAAAAACEAAAAAAgAAAAAAAIA=</HashCode>
       <FileName>Models\Repository\Professor\ProfessorRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.QuestionRepository" Collapsed="true">
-    <Position X="26.75" Y="3.25" Width="1.5" />
+    <Position X="24.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAIAAAAQAAABBAAAIAAAACEAAAAAAgAAAACAAIA=</HashCode>
+      <HashCode>AEIAAAIQAIAQABBRBACAJABQACEBAEAAAiAAgADAAoA=</HashCode>
       <FileName>Models\Repository\Question\QuestionRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.RazdelRepository" Collapsed="true">
-    <Position X="33.5" Y="3.25" Width="1.5" />
+    <Position X="31.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAACEAAAAAAgAAAACAAIA=</HashCode>
+      <HashCode>AAIAAAAAQAEJAAAAAAAAAAAAACEAAAIAAgAACAiAAIM=</HashCode>
       <FileName>Models\Repository\Razdel\RazdelRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Repository&lt;T&gt;" Collapsed="true">
-    <Position X="18.75" Y="1.75" Width="1.5" />
+    <Position X="25.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Repository\Repository.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.RepositoryData" Collapsed="true">
-    <Position X="20" Y="0.5" Width="1.5" />
+    <Position X="27" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <HashCode>gAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
       <FileName>Models\Repository\RepositoryData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.RepositoryManager" Collapsed="true">
-    <Position X="38" Y="1.75" Width="1.5" />
+    <Position X="51.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQQABAEAgAAAAgARACgJA5IAAiAEACQAAAAFYAEIBA=</HashCode>
+      <HashCode>CEQgERCEAhEAAAlAVgAANAZIQAgBEACQAACAFYUEYBA=</HashCode>
       <FileName>Models\Repository\RepositoryManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.SpecialityRepository" Collapsed="true">
-    <Position X="17.75" Y="2.75" Width="1.5" />
+    <Position X="6.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAiEAAAAAQgAAAAAAAIA=</HashCode>
+      <HashCode>AAIAgAAAAAAQAAAAAAAAAAAAAiEAAAAAAgAAAAAAAIA=</HashCode>
       <FileName>Models\Repository\Speciality\SpecialityRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VmkLearningKit.Models.Repository.SpecialityDisciplinesRepository" Collapsed="true">
-    <Position X="29" Y="3.25" Width="1.5" />
+  <Class Name="VmkLearningKit.Models.Repository.SpecialityDisciplineCategory" Collapsed="true">
+    <Position X="63" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAiEAAAAAQgAAAAAAAIA=</HashCode>
-      <FileName>Models\Repository\SpecialityDisciplines\SpecialityDisciplinesRepository.cs</FileName>
+      <HashCode>AAAAAAAAQAAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Repository\SpecialityDisciplines\SpecialityDisciplineCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.SpecialityDisciplineRepository" Collapsed="true">
+    <Position X="29.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAgAAAAAAAAAAAQAAIAAAAAiEAAAAAAwAAACAAAIA=</HashCode>
+      <FileName>Models\Repository\SpecialityDisciplines\SpecialityDisciplineRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.SpecialityDisciplineTermRepository" Collapsed="true">
+    <Position X="33.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAgAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Models\Repository\SpecialityDisciplines\SpecialityDisciplineTermRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.SpecialityDisciplineTopicRepository" Collapsed="true">
+    <Position X="42.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBgIgEwAAAAAAgAAEIAAAAACEAQAgAAAAAAAQIAKA=</HashCode>
+      <FileName>Models\Repository\SpecialityDisciplines\SpecialityDisciplineTopicRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.SpecializationRepository" Collapsed="true">
-    <Position X="35.75" Y="3.25" Width="1.5" />
+    <Position X="49.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAIAgAAAAAAAAAAAAAAIAAAAAiEAAAAAAgAAAAAAAIA=</HashCode>
       <FileName>Models\Repository\Specialization\SpecializationRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.StudentRepository" Collapsed="true">
-    <Position X="6.5" Y="3.25" Width="1.5" />
+    <Position X="9" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAACEAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAIAgAAAAAAAAgAAAAAAAAAAACEAAAAAAgAAAAAAAIA=</HashCode>
       <FileName>Models\Repository\Student\StudentRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="VmkLearningKit.Models.Repository.TopicRepository" Collapsed="true">
-    <Position X="13.25" Y="3.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAACEAAAAAAgAAAACAAIA=</HashCode>
-      <FileName>Models\Repository\Topic\TopicRepository.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="VmkLearningKit.Models.Repository.UserRepository" Collapsed="true">
-    <Position X="22.25" Y="3.25" Width="1.5" />
+    <Position X="18" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAACEAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAYAgAAAAAAAgAAAAACAAAQAACEAAAAAAAAAAAAAAKA=</HashCode>
       <FileName>Models\Repository\User\UserRepository.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.VmkLearningKitDataContext" Collapsed="true">
-    <Position X="47.5" Y="5.5" Width="1.5" />
+    <Position X="64.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ARdRUHZURzCOgQAUUDoGZgEAESxACBQGQXkIJWWkM1g=</HashCode>
+      <HashCode>gRdRUHZ0RzCOgQAUUToGZgEAES1ICBQGQXkIBUUkM1g=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Answer" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="40.5" Y="0.5" Width="1.5" />
+    <Position X="54.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAiCgABAAAAAgoAQAEACBAhjCAAAgAEAAAACAQUBAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="VmkLearningKit.Models.Repository.User" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="40.5" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AIAjAWgBRCAAgEAAVBEUBgKRjSUAAEECCAAYAAAUAAA=</HashCode>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
   <Class Name="VmkLearningKit.Models.Repository.AssignedTestVariant" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="42.25" Y="0.5" Width="1.5" />
+    <Position X="56" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIrAwARRAAI4woAQAEAAAYBjCAAAggAQACAjCNWAAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Chair" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="49.25" Y="0.5" Width="1.5" />
+    <Position X="63" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BCAiAUBRAEcggEIQSAEBAAABnaEAABAEAAQCBADUAkA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Comment" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="40.5" Y="1.5" Width="1.5" />
+    <Position X="64.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAiCAABQAAIIAIAQAEACBIhjCAAAAAEQAAACAQWBAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Department" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="44" Y="1.5" Width="1.5" />
+    <Position X="56" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AQQiIMABQAAAAEAAQAMJEQABjKABAAgAAAAABEAUBAA=</HashCode>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="VmkLearningKit.Models.Repository.Discipline" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="45.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAiABABAAQAgEIASAEBAAABnKAAAAAAAAAABCAUBAA=</HashCode>
+      <HashCode>BQQiAcBBQEMgAEAAQAMJEQABjKABABAEAAQCBEAUAAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.EducationPlan" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="47.5" Y="1.5" Width="1.5" />
+    <Position X="61.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAiAQARAAIAAEAAQAEBAAABjaAAABAAAAAABADUAkA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.GeneratedQuestion" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="49.25" Y="1.5" Width="1.5" />
+    <Position X="64.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAiAQARAAAAgQIAQAEACBQBjCAAAAgEAAAAAAQUAAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.GeneratedTest" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="40.5" Y="2.5" Width="1.5" />
+    <Position X="66.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgAiEAERAgAAAoCAQUGAEAADnCBEAAAAAQAARKAUAAA=</HashCode>
+      <HashCode>AgAikAARAAAAIoCAQUGAEAgRnCBAAAAAAQAARAAcAAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.GeneratedTestVariant" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="42.25" Y="2.5" Width="1.5" />
+    <Position X="54.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAiEAABiCAAgAAIQAEBAAABjGBAAAACAgAAAAAUAAw=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Group" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="44" Y="2.5" Width="1.5" />
+    <Position X="56" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABMmAAAJAAQAgEIAaAUBAAIBnKAIBAAAAAAAFCw0BAA=</HashCode>
+      <HashCode>BBMmAQAJAAYAgEIAaAUBAAIBnKAIBBAAAAAAFCw0BAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.LecturePlan" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="47.5" Y="2.5" Width="1.5" />
+    <Position X="64.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAiEAARAAAAQgEQQEECCEABjCAEAAABBgYACCAUAAA=</HashCode>
+      <HashCode>AAAigAARAAAAYgEQQAEAAAgRjCAAAAABBgQACAAcAAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.LectureTimetable" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="49.25" Y="2.5" Width="1.5" />
+    <Position X="66.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAIiABARIAAAIgGQQFEACACBjCBQQIAABgQQBDQUAQE=</HashCode>
+      <HashCode>CAYiABARIAAAKgGQQFEAGACBjCBQQIAABgQQBLQUAQE=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.PracticeAndLabTimetable" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="44" Y="3.5" Width="1.5" />
+    <Position X="64.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAIiAFAVIEABIgGRQFEACCCBrCBQQIAQDgwQBDQUAUE=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.PracticePlan" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="45.75" Y="3.5" Width="1.5" />
+    <Position X="66.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAiEEAVAAAAQgERQAEAAGABrCAEAAARBgQACCAUAAA=</HashCode>
+      <HashCode>AAAigEAVAAAAYgERQAEAACgRrCAAAAARBgQACAAcAAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Professor" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="47.5" Y="3.5" Width="1.5" />
+    <Position X="54.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QA8hAECZBAEAAIEoQAUAhgwRiCCABBAAACAAACDCAgg=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Question" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="49.25" Y="3.5" Width="1.5" />
+    <Position X="56" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>FSBnGAABIuABAaRCSAURBgMhjCAAQAgAQYCcCQA0JAg=</HashCode>
+      <HashCode>FSBnGAABIuABAeRCSAURBgMhjKAAQAgAQYCcDQA0JAg=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Razdel" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="40.5" Y="4.5" Width="1.5" />
+    <Position X="57.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QCAiAAEBAgAAAMAAQQEBAAADjKBEAAAEAQAARKAUAAA=</HashCode>
+      <HashCode>QCAigAABAAAAIMAAQQEBAAgRjKBAAAAEAQAARAAcAAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Speciality" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="42.25" Y="4.5" Width="1.5" />
+    <Position X="59.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAiAQBRAEYAgEIASAEBAAABnaAAABAAAAACBADUAkA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.SpecialityDiscipline" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="44" Y="4.5" Width="1.5" />
+    <Position X="61.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>TJ8mAQAJhQcAAECgcgUDBQCBnLAYRBSgEBAQBGz3DCQ=</HashCode>
+      <HashCode>xh8nAQBNBUcAAECAYAUDBAiBjPEYRBAgAAASBGz3HCQ=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.SpecialityDisciplineTerm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="54.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>DIEiAAARgAAAAgEwcgEAAQABnCAIAASAEhQABAQUAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VmkLearningKit.Models.Repository.SpecialityDisciplineTopic" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="56" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAiAAAVAQQAA0EQYAEDAAABjagIABAAAgQAhgQ0AAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Specialization" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="45.75" Y="4.5" Width="1.5" />
+    <Position X="61.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QB8mAAAJAAAAAEAAQAUBAAABjKAABAAgAAAABGgXBCQ=</HashCode>
+      <HashCode>RB8mAQAJAAIAAEAAQAUBAAABjKAABBAgAAAABGgXBCQ=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="VmkLearningKit.Models.Repository.Student" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="47.5" Y="4.5" Width="1.5" />
+    <Position X="63" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAhAEAFAIAAgIAJQAEBAiwBqGAAAAASAAAQAAAAIAg=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="VmkLearningKit.Models.Repository.Topic" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="49.25" Y="4.5" Width="1.5" />
+  <Class Name="VmkLearningKit.Models.Repository.User" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABQiAAAFAAIAAUAAQAERAAABjagAAAAAEgAApgAUBAA=</HashCode>
+      <HashCode>AIAjAWgBRCAAgEAAVBEUBgKRjSUAAEECCAAYAAAUAAA=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Interface Name="VmkLearningKit.Models.Repository.IAnswerRepository" Collapsed="true">
-    <Position X="24" Y="5.5" Width="1.5" />
+  <Struct Name="VmkLearningKit.Models.Domain.Role" Collapsed="true">
+    <Position X="54.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAgAAAACAAAA=</HashCode>
+      <HashCode>AAAAAAAAQAAAAAAQAAAAAQCAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Domain\User.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="VmkLearningKit.Models.Repository.IAnswerRepository" Collapsed="true">
+    <Position X="35.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAIAAAAAABAAAAAAAAAAAAAAAAgAAAACAAAA=</HashCode>
       <FileName>Models\Repository\Answer\IAnswerRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="VmkLearningKit.Models.Repository.IChairRepository" Collapsed="true">
-    <Position X="40.5" Y="6.75" Width="1.5" />
+  <Interface Name="VmkLearningKit.Models.Repository.IAssignedTestVariantRepository" Collapsed="true">
+    <Position X="40.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQgAAAAAAAAA=</HashCode>
+      <HashCode>AAIAQAAAAAAAAIAAAAAAAQAIAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Repository\AssignedTestVariant\IAssignedTestVariantRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VmkLearningKit.Models.Repository.IChairRepository" Collapsed="true">
+    <Position X="54.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAgAAAAAAQAAAAAAAAAAAAAgAAAAAAAgAAAAAAAIA=</HashCode>
       <FileName>Models\Repository\Chair\IChairRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.IDepartmentRepository" Collapsed="true">
-    <Position X="3.75" Y="5.75" Width="1.5" />
+    <Position X="8.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAgAAAACAAAA=</HashCode>
+      <HashCode>AAIAgAAAAAAQAAAAAAAAAAAAAgAAAAAAAgAAAACAAAA=</HashCode>
       <FileName>Models\Repository\Department\IDepartmentRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="VmkLearningKit.Models.Repository.IDisciplineRepository" Collapsed="true">
-    <Position X="12.75" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAACAAAA=</HashCode>
-      <FileName>Models\Repository\Discipline\IDisciplineRepository.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.IEducationPlanRepository" Collapsed="true">
-    <Position X="21.75" Y="5.5" Width="1.5" />
+    <Position X="22.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <HashCode>AAIAgAAAAAAAAAAAAAAIAAAAAgAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Models\Repository\EducationPlan\IEducationPlanRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="VmkLearningKit.Models.Repository.IGeneratedQuestionRepository" Collapsed="true">
+    <Position X="31.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Models\Repository\GeneratedQuestion\IGeneratedQuestionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VmkLearningKit.Models.Repository.IGeneratedTestRepository" Collapsed="true">
+    <Position X="42.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAEAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAA=</HashCode>
+      <FileName>Models\Repository\GeneratedTest\IGeneratedTestRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VmkLearningKit.Models.Repository.IGeneratedTestVariantRepository" Collapsed="true">
+    <Position X="17.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAACAAgAAAAAAAAABBAAAAAAAAAhAA=</HashCode>
+      <FileName>Models\Repository\GeneratedTestVariant\IGeneratedTestVariantRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VmkLearningKit.Models.Repository.IGroupRepository" Collapsed="true">
+    <Position X="29" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAgAAAAAAAAAAAAAAIAAAACgAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Repository\Group\IGroupRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.IRepository&lt;T&gt;" Collapsed="true">
-    <Position X="15" Y="4.5" Width="1.5" />
+    <Position X="24.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>Models\Repository\IRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.ILecturePlanRepository" Collapsed="true">
-    <Position X="42.25" Y="6.75" Width="1.5" />
+    <Position X="38" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAJAAAAAIAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Repository\LecturePlan\ILecturePlanRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="VmkLearningKit.Models.Repository.IPracticePlanRepository" Collapsed="true">
-    <Position X="44" Y="6.75" Width="1.5" />
+  <Interface Name="VmkLearningKit.Models.Repository.ILectureTimetableRepository" Collapsed="true">
+    <Position X="44.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAgAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Repository\LectureTimetable\ILectureTimetableRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VmkLearningKit.Models.Repository.IPracticePlanRepository" Collapsed="true">
+    <Position X="2" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAEAAAAACA=</HashCode>
       <FileName>Models\Repository\PracticePlan\IPracticePlanRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.IProfessorRepository" Collapsed="true">
-    <Position X="8.25" Y="5.75" Width="1.5" />
+    <Position X="11" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAYAgAAAAEAAAgAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Models\Repository\Professor\IProfessorRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.IQuestionRepository" Collapsed="true">
-    <Position X="17.25" Y="5.5" Width="1.5" />
+    <Position X="24.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAIAAAAQAAABBAAAIAAAAAAAAAAAAgAAAACAAAA=</HashCode>
+      <HashCode>AEIAAAIQAIAQABBRBACAJABQAAABAEAAAiAAgADAAgA=</HashCode>
       <FileName>Models\Repository\Question\IQuestionRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.IRazdelRepository" Collapsed="true">
-    <Position X="26.25" Y="5.75" Width="1.5" />
+    <Position X="33.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAACAAAA=</HashCode>
+      <HashCode>AAIAAAAAQAEJAAAAAAAAAAAAAAAAAAIAAgAACAiAAAM=</HashCode>
       <FileName>Models\Repository\Razdel\IRazdelRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.ISpecialityRepository" Collapsed="true">
-    <Position X="10.5" Y="5.75" Width="1.5" />
+    <Position X="4.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQgAAAAAAAAA=</HashCode>
+      <HashCode>AAIAgAAAAAAQAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Models\Repository\Speciality\ISpecialityRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="VmkLearningKit.Models.Repository.ISpecialityDisciplinesRepository" Collapsed="true">
-    <Position X="19.5" Y="5.75" Width="1.5" />
+  <Interface Name="VmkLearningKit.Models.Repository.ISpecialityDisciplineRepository" Collapsed="true">
+    <Position X="13.25" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAQgAAAAAAAAA=</HashCode>
-      <FileName>Models\Repository\SpecialityDisciplines\ISpecialityDisciplinesRepository.cs</FileName>
+      <HashCode>AAIAgAAAAAAAAAAAQAAIAAAAAgAAAAAAAwAAACAAAAA=</HashCode>
+      <FileName>Models\Repository\SpecialityDisciplines\ISpecialityDisciplineRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VmkLearningKit.Models.Repository.ISpecialityDisciplineTermRepository" Collapsed="true">
+    <Position X="20" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Repository\SpecialityDisciplines\ISpecialityDisciplineTermRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="VmkLearningKit.Models.Repository.ISpecialityDisciplineTopicRepository" Collapsed="true">
+    <Position X="26.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBgIgEwAAAAAAAAAEIAAAAAAAAQAgAAAAAAAQIACA=</HashCode>
+      <FileName>Models\Repository\SpecialityDisciplines\ISpecialityDisciplineTopicRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.ISpecializationRepository" Collapsed="true">
-    <Position X="28.5" Y="5.75" Width="1.5" />
+    <Position X="47" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAgAAAAAAAAAAAAAAIAAAAAgAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Models\Repository\Specialization\ISpecializationRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.IStudentRepository" Collapsed="true">
-    <Position X="1.5" Y="5.75" Width="1.5" />
+    <Position X="6.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAgAAAAAAAAgAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
       <FileName>Models\Repository\Student\IStudentRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="VmkLearningKit.Models.Repository.ITopicRepository" Collapsed="true">
-    <Position X="6" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAACAAAA=</HashCode>
-      <FileName>Models\Repository\Topic\ITopicRepository.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="VmkLearningKit.Models.Repository.IUserRepository" Collapsed="true">
-    <Position X="15" Y="5.75" Width="1.5" />
+    <Position X="15.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAYAgAAAAAAAgAAAAACAAAQAAAAAAAAAAAAAAAAAACA=</HashCode>
       <FileName>Models\Repository\User\IUserRepository.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Enum Name="VmkLearningKit.Models.Domain.Role" Collapsed="true">
-    <Position X="40.5" Y="7.75" Width="1.5" />
+  <Enum Name="VmkLearningKit.Core.TransliterationType" Collapsed="true">
+    <Position X="57.75" Y="10" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAQAAAAAAQAAAAAACAAAEAAAAAAAAAAAEAAAA=</HashCode>
-      <FileName>Models\Domain\User.cs</FileName>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Core\Transliteration.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VmkLearningKit.Core.TermType" Collapsed="true">
+    <Position X="56" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Core\Utility.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="VmkLearningKit.Core.LogLevel" Collapsed="true">
+    <Position X="54.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYAAAAAAAAAAAAAAABEAAAAAAEAEAAA=</HashCode>
+      <FileName>Core\Utility.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Tahoma" Size="8.25" />
