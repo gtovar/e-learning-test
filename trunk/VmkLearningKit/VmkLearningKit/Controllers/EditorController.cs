@@ -597,6 +597,12 @@ namespace VmkLearningKit.Controllers
             }
         }
 
+        /// <summary>
+        /// Action, отображающий форму дл€ распределени€ вопросов 
+        /// (из раздела с идентификатором additional) по группам
+        /// </summary>
+        /// <param name="alias">тип группы (Double или Exclusion)</param>
+        /// <param name="additional">идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Grouping(string alias, long additional)
         {
@@ -651,6 +657,12 @@ namespace VmkLearningKit.Controllers
             }
         }
 
+        /// <summary>
+        /// Action, выполн€ющий добавление вопроса с идентификатором alias в группу вопросов-дублеров
+        /// с номером additional
+        /// </summary>
+        /// <param name="alias">идентификатор вопроса</param>
+        /// <param name="additional">номер группы</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public void AddToDoubleGroup(long alias, int additional)
         {
@@ -664,6 +676,12 @@ namespace VmkLearningKit.Controllers
             }
         }
 
+        /// <summary>
+        /// Action, выполн€ющий добавление вопроса с идентификатором alias в группу вопросов-дублеров
+        /// с номером additional
+        /// </summary>
+        /// <param name="alias">идентификатор вопроса</param>
+        /// <param name="additional">номер группы</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public void AddToExclusionGroup(long alias, int additional)
         {
