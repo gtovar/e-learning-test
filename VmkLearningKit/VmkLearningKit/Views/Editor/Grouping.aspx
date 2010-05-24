@@ -136,6 +136,7 @@
                                     <div id="QuestionsList" style="width:100%;">
                                         <p style="text-align:center;"><b>Список тестовых вопросов по разделу</b></p>
                                         <ul id="Group<%= VLKConstants.FAKE_VALUE %>" class="Grouping" style="border: solid 3px #c4c4c4;">
+                                        <br />
                                         <%
                                         foreach (Question question in questionsList)
                                         {
@@ -216,6 +217,7 @@
                                     <div id="QuestionsList" style="width:100%">
                                         <p style="text-align:center;"><b>Список тестовых вопросов по разделу</b></p>
                                         <ul id="Group<%= VLKConstants.FAKE_VALUE %>" class="Grouping" style="border: solid 3px #c4c4c4;">
+                                        <br />
                                         <%
                                         foreach (Question question in questionsList)
                                         {
@@ -291,6 +293,7 @@
             }
         }
         %>
+        <p style="text-align:center; color: #c4c4c4; font-size:x-small; ">Для добавления вопроса в группу вопросов-дублеров перетащите его в эту группу. Изменения сохранятся автоматически.</p>
         </div>
         <br />
 		<p>
