@@ -12,5 +12,6 @@ namespace VmkLearningKit.Models.Repository
         GeneratedTest Add(long specialityDisciplineTopicId, int variantCount, int questionCount);
         GeneratedTest GetLastGeneratedTestByTopicId(long topicId);
         IEnumerable<GeneratedTest> GetAllGeneratedTestsByTopicId(long topicId);
+        
     }
 }

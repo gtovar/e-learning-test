@@ -99,6 +99,7 @@
     <Compile Include="Controllers\StatementController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
+    <Compile Include="Controllers\ViewTestController.cs" />
     <Compile Include="Core\AuthorizeFilter.cs" />
     <Compile Include="Core\AuthenticatedConstraint.cs" />
     <Compile Include="Core\DB.cs" />
@@ -296,7 +297,6 @@
     <Content Include="Views\Shared\Error404.aspx" />
     <Content Include="Views\Shared\GeneralNavigation.ascx" />
     <Content Include="Views\Shared\ProfessorMenu.ascx" />
-    <Content Include="Views\Statement\chooseStatement.aspx" />
     <Content Include="Views\Statement\Statement.aspx" />
     <Content Include="Views\Testing\EditRazdel.ascx" />
     <Content Include="Views\Testing\Index.aspx" />
@@ -304,6 +304,7 @@
     <Content Include="Views\Tests\GetTest.aspx" />
     <Content Include="Views\Tests\GetTestVariant.aspx" />
     <Content Include="Views\Tests\Show.aspx" />
+    <Content Include="Views\ViewTest\ViewTest.aspx" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />
@@ -376,6 +377,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DbBackups\" />
+    <Folder Include="Uploads\AssignedTests\" />
     <Folder Include="Uploads\Excel\" />
     <Folder Include="Uploads\Images\" />
     <Folder Include="Uploads\Pacages\" />
