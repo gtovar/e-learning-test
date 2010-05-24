@@ -152,7 +152,7 @@
     <input type="hidden" value="<%= lectionPlanIds %>" name="LectionPlanIds" id="LectionPlanIds" />
     
     <!----------------------------->
-    <%=Html.ActionLink("К ведомости", "chooseStatement", "Statement", new { alias = ((Professor)ViewData["Professor"]).User.NickName, additional = ((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Alias }, new { @class = "" })%>
+    <%=Html.ActionLink("К ведомости", "Statement", "Statement", new { alias = ((Professor)ViewData["Professor"]).User.NickName, additional = ((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Alias}, new { @class = "" })%>
     <!----------------------------->
     <% Html.EndForm(); %>
     

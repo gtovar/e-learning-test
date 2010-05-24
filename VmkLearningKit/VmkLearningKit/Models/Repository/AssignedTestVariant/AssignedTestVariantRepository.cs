@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using VmkLearningKit.Core;
+using System.IO;
 
 namespace VmkLearningKit.Models.Repository
 {
@@ -61,7 +62,7 @@ namespace VmkLearningKit.Models.Repository
                         atv.Add(it);
             }
             return atv;
-       }
+        }
 
 
         public AssignedTestVariant GetLastStudentTopicTest(long idTopic, long idStudent)
@@ -76,28 +77,65 @@ namespace VmkLearningKit.Models.Repository
                 Utility.WriteToLog("у студента с id= " + idStudent.ToString() + "нет назначенных тестов по теме" + idTopic.ToString());
                 return null;
             }
-       }
+        }
 
-
-        public void SetAssignedTestVariant(long idGeneratedTestVariant, long idStudent, DateTime date)
+        public bool UpdateMark(long id, int mark)
         {
-            AssignedTestVariant atv = new AssignedTestVariant
+            DataContext.AssignedTestVariants.Single(atv => atv.Id == id).Mark = mark;
+            try
+            {
+                DataContext.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("ошибка при мзменении данных " + ex.ToString());
+                return false;
+            }
+
+
+        }
+
+        public long Add(long idGeneratedTestVariant, long idStudent, DateTime date)
+        {
+            AssignedTestVariant newAtv = new AssignedTestVariant
             {
                 StudentId = idStudent,
                 GeneratedTestVariantId = idGeneratedTestVariant,
                 AssignedDate = (DateTime)date,
-                Path = "1",
+                State = VLKConstants.TEST_VARIANT_STATE_NEW,
+                Path = "",
                 Score = 0,
+                Mark = 0
             };
+
             try
             {
-                DataContext.AssignedTestVariants.InsertOnSubmit(atv);
+                DataContext.AssignedTestVariants.InsertOnSubmit(newAtv);
                 DataContext.SubmitChanges();
+                long gt = DataContext.GeneratedTestVariants.Single(gtv => gtv.Id == idGeneratedTestVariant).GeneratedTestId;
+                long firstId = DataContext.GeneratedTestVariants.Where(gtv => gtv.GeneratedTestId == gt).OrderBy(o => o.Id).First().Id;
+                string serverPath = HttpContext.Current.Server.MapPath("/Uploads");
+                string sourcePath = serverPath + "/Pacages" + "/" + gt.ToString() + "/" + (idGeneratedTestVariant - firstId + 1).ToString() + ".zip";
+                string destPath = serverPath + "/AssignedTests" + "/student_" + idStudent.ToString() + "/" + newAtv.Id.ToString();
+                DirectoryInfo dir = new DirectoryInfo(destPath);
+                if (!dir.Exists)
+                    dir.Create();
+                FileInfo test = new FileInfo(sourcePath);
+                string copyPath = destPath + "/" + (idGeneratedTestVariant - firstId + 1).ToString() + ".zip";
+                test.CopyTo(copyPath, true);
+                newAtv.Path = copyPath;
+
             }
             catch (Exception ex)
             {
                 Utility.WriteToLog("ошибка при встакве в бд " + ex.ToString());
+                return -1;
             }
+
+            return newAtv.Id;
+
+
         }
 
         public void Delete(AssignedTestVariant obj)

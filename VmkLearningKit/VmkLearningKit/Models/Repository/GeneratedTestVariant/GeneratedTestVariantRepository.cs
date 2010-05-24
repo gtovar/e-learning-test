@@ -61,7 +61,7 @@ namespace VmkLearningKit.Models.Repository
 
         }
 
-        public long GetLocalNumGeneratedTestVariantVariant(long idGeneratedTestVariant)
+        public long GetLocalNumGeneratedTestVariant(long idGeneratedTestVariant)
         {
             GeneratedTestVariant gt = DataContext.GeneratedTestVariants.Single(v => v.Id == idGeneratedTestVariant);
             IEnumerable<GeneratedTestVariant> gtv = DataContext.GeneratedTestVariants.Where(g => g.GeneratedTestId == gt.GeneratedTestId).OrderBy(o => o.Id);
@@ -83,6 +83,25 @@ namespace VmkLearningKit.Models.Repository
             else return 0;
         }
 
+        public IEnumerable<GeneratedTestVariant> GetAllGeneratedTestVariantsByTopicId(long topicId)
+        {
+            try
+            {
+                IEnumerable<GeneratedTestVariant> res = (from gt in DataContext.GeneratedTests
+                                                         from gtv in DataContext.GeneratedTestVariants
+                                                         where gt.SpecialityDisciplineTopicId == topicId
+                                                         where gt.Id == gtv.GeneratedTestId
+                                                         select gtv);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                // Utility.WriteToLog("в базе нет GeneratedTestVariant c GeneratedTest.ID=");
+                return null;
+            }
+        }
+
+       
         #endregion
 
         #region Set

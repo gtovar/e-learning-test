@@ -170,7 +170,7 @@ namespace VmkLearningKit.Controllers
             IGeneratedTestVariantRepository generatedTestVariantRepository = repositoryManager.GetGeneratedTestVariantRepository;
 
             ViewData["Id"] = id;
-            ViewData["TestNumber"] = generatedTestVariantRepository.GetLocalNumGeneratedTestVariantVariant(id);
+            ViewData["TestNumber"] = generatedTestVariantRepository.GetLocalNumGeneratedTestVariant(id);
            
             ViewData["TestId"] = generatedTestRepository.GetGeneratedTestIdByGeneratedTestVariantId(id);
             return View();
