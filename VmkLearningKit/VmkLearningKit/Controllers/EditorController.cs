@@ -384,7 +384,7 @@ namespace VmkLearningKit.Controllers
                         {
                             QWord.TestQuestion testQuestion = testQuestionList[i];
 
-                            int type = -1;
+                            int type = VLKConstants.FAKE_VALUE;
                             switch (testQuestion.Type)
                             {
                                 case QWord.QType.Simple:       type = VLKConstants.QUESTION_TYPE_SIMPLE;       break;
@@ -395,11 +395,11 @@ namespace VmkLearningKit.Controllers
                                 default: return RedirectToAction("List", new { alias = alias });
                             }
 
-                            long questionId = repositoryManager.GetQuestionRepository.Add(alias, VLKConstants.TITLE_IS_ABSENT, type, testQuestion.Question.Text, VLKConstants.QUESTION_CAN_NOT_COMMENTED);
+                            long questionId = repositoryManager.GetQuestionRepository.Add(alias, VLKConstants.TITLE_DEFAULT + " " + (i+1).ToString(), type, HttpUtility.HtmlDecode(testQuestion.Question.Text), VLKConstants.QUESTION_CAN_NOT_COMMENTED);
 
                             for (int j = 0; j < testQuestion.Answers.Count; j++)
                             {
-                                repositoryManager.GetAnswerRepository.Add(questionId, testQuestion.Answers[j].Text, (double)testQuestion.Answers[j].Score);
+                                repositoryManager.GetAnswerRepository.Add(questionId, HttpUtility.HtmlDecode(testQuestion.Answers[j].Text), (double)testQuestion.Answers[j].Score);
                             }
 
                             ++docIndex;
