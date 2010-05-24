@@ -23,7 +23,7 @@ namespace VmkLearningKit
         public const string NEW_VARIANT_ANSWER_SCORE    = "NewVariantAnswerScore";
         public const int    MINIMNUM_ANSWERS_NUMBER     = 2;
         public const int    FAKE_VALUE                  = -1;
-        public const string TITLE_IS_ABSENT             = "Краткое название отсутствует (документ старого образца)";
+        public const string TITLE_DEFAULT               = "Вопрос";
         public const string QUESTION_GROUP_DOUBLE       = "Double";
         public const string QUESTION_GROUP_EXCLUSION    = "Exclusion";
 
