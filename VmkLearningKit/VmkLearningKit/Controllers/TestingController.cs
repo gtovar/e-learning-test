@@ -22,9 +22,9 @@ namespace VmkLearningKit.Controllers
         {
             try 
             {
-                ViewData[Constants.PAGE_TITLE] = "Тестирование";
-                
                 GeneralMenu();
+                
+                ViewData[Constants.PAGE_TITLE] = "Тестирование";
                 
                 ViewData["RazdelsList"]       = 
                     repositoryManager.GetRazdelRepository.GetAllBySpecialityDisciplineTopicId(alias);
