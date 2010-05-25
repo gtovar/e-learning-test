@@ -413,7 +413,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>19119</DevelopmentServerPort>
+          <DevelopmentServerPort>5061</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/VmkLearningKit</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -102,7 +102,7 @@
                     if (parseInt(temp) <= 0) {
                         return alert("Ќеверно задан номер варианта! Ќомер варианта не может быть меньше или равно 0");
                     }
-                    
+
                     var topic = fl.split("_");
 
                     var max = $("#hiden_" + topic[1]).val();
@@ -131,19 +131,25 @@
             };
             $.post("/Statement/SetVariants", data, function(str) {
                 var dataTemp = str.split("[");
+                if (parseInt(dataTemp[dataTemp.length - 1]) == -1) {
+                    tmp = " ";
+                    $("input[id^=changeInput]").replaceWith(tmp);
 
+                }
 
-                for (var i = 1; i < dataTemp.length; i++) {
+                else {
+                    for (var i = 1; i < dataTemp.length; i++) {
 
-                    var setVariant = dataTemp[i].split("_");
+                        var setVariant = dataTemp[i].split("_");
 
-                    var student = setVariant[0];
-                    var topic = setVariant[1];
-                    var numVar = setVariant[2];
+                        var student = setVariant[0];
+                        var topic = setVariant[1];
+                        var numVar = setVariant[2];
 
-                    var Help = "/ViewTest/ViewTest/" + '<%=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
-                    var tmp = $('<a href=' + Help + '>' + numVar + '</a>');
-                    var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
+                        var Help = "/ViewTest/ViewTest/" + '<%=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
+                        var tmp = $('<a href=' + Help + '>' + numVar + '</a>');
+                        var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
+                    }
                 }
                 alert(dataTemp[0]);
 
@@ -171,16 +177,16 @@
         $("#Button3").click(function() {
 
             if (currentRow > 21) {
-                
+
                 currentRow -= 10;
                 $("#mainStatementTable tr").hide();
                 var tmp = currentRow - 10;
-                var tmp2=tmp-10;
+                var tmp2 = tmp - 10;
                 $("#mainStatementTable tr:lt(" + tmp2 + ")").hide();
                 $("#mainStatementTable tr:gt(" + tmp2 + ")").show();
                 $("#mainStatementTable tr:gt(" + tmp + ")").hide();
                 $('#mainStatementTable tr:lt(2)').show();
-                
+
 
             };
         })
