@@ -153,8 +153,8 @@
                                 </td>
                                 <td style="width:2%;"></td>
                                 <td style="width:40%; vertical-align:top; text-align:left;">
-                                    <p style="text-align:center;"><a href="javascript:void(0);" id="AddGroup">Добавить группу вопросов-дублеров</a></p>
                                     <div id="GroupsList" style="width:100%">
+                                        <p style="text-align:center;"><a href="javascript:void(0);" id="AddGroup">Добавить группу вопросов-дублеров</a></p>
                                         <%
                                         IEnumerable<Question> questions = (IEnumerable<Question>)ViewData["QuestionsListSortedByGroupIndex"];
                                         
@@ -235,7 +235,7 @@
                                 <td style="width:2%;"></td>
                                 <td style="width:40%; vertical-align:top; text-align:left;">
                                     <div id="GroupsList" style="width:100%">
-                                    <p style="text-align:center;"><a href="javascript:void(0);" id="AddGroup">Добавить группу вопросов-дублеров</a></p>
+                                        <p style="text-align:center;"><a href="javascript:void(0);" id="AddGroup">Добавить группу вопросов-исключений</a></p>
                                         <% 
                                         IEnumerable<Question> questions = (IEnumerable<Question>)ViewData["QuestionsListSortedByGroupIndex"];
                                         
