@@ -131,21 +131,19 @@
             };
             $.post("/Statement/SetVariants", data, function(str) {
                 var dataTemp = str.split("[");
-                if (parseInt(dataTemp[dataTemp.length - 1]) == -1) {
-                    tmp = " ";
-                    $("input[id^=changeInput]").replaceWith(tmp);
 
-                }
+                for (var i = 1; i < dataTemp.length; i++) {
 
-                else {
-                    for (var i = 1; i < dataTemp.length; i++) {
+                    var setVariant = dataTemp[i].split("_");
 
-                        var setVariant = dataTemp[i].split("_");
-
-                        var student = setVariant[0];
-                        var topic = setVariant[1];
-                        var numVar = setVariant[2];
-
+                    var student = setVariant[0];
+                    var topic = setVariant[1];
+                    var numVar = setVariant[2];
+                    if (parseInt(setVariant[3]) == -1) {
+                        tmp = " ";
+                        $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
+                    }
+                    else {
                         var Help = "/ViewTest/ViewTest/" + '<%=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
                         var tmp = $('<a href=' + Help + '>' + numVar + '</a>');
                         var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);

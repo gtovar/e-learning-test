@@ -120,7 +120,7 @@ namespace VmkLearningKit.Controllers
                 string str = "";
                 int fl = 1;
                 long idAddedNewAssignedTestVariant;
-                List<int> errors = new List<int>();
+                List<string> errors = new List<string >();
                 try
                 {
                     for (int i = 0; i < tmp1.Length - 1; i++)
@@ -140,42 +140,16 @@ namespace VmkLearningKit.Controllers
                                 GeneratedTestVariant tmp = gtv.ElementAt((int)(variantNumsId - 1));
                                 idAddedNewAssignedTestVariant = repositoryManager.GetAssignedTestVariantRepository.Add(tmp.Id, studentsId, DateTime.Now, professor.UserId);
                                 if (idAddedNewAssignedTestVariant == -1)
-                                    return new JsonResult
-                                    {
-                                        ContentType = "text/html",
-                                        Data = "не найден архив с тестовым вариантом[-1"
-                                    };
+                                {
+                                    fl = 0;
+                                    errors.Add("[" + studentsId.ToString() + "_" + topicsId.ToString() + "_" + variantNumsId.ToString() + "_" + idAddedNewAssignedTestVariant.ToString());
+                                }
                                 str += "[" + studentsId.ToString() + "_" + topicsId.ToString() + "_" + variantNumsId.ToString() + "_" + idAddedNewAssignedTestVariant.ToString();
                             }
-                            else
-                            {
-                                /*return new JsonResult
-                                {
-                                    ContentType = "text/html",
-                                    Data = "Ошибка в назначении тестовых вариантов:нет сгенерированных тестов по теме " + repositoryManager.GetSpecialityDisciplineTopicRepository.GetById(topicsId).Title.ToString()
-                                 };*/
-                                errors.Add(i);
-                                fl = 0;
-                            }
+                          
                         }
                         // else 
                     }
-                    if (fl == 0)
-                    {
-                        String errMessege = "";
-                        foreach (int erItem in errors)
-                        {
-                            errMessege += repositoryManager.GetSpecialityDisciplineTopicRepository.GetById(Convert.ToInt64(tmp2[erItem])).Title.ToString();
-                        }
-                        return new JsonResult
-                        {
-                            ContentType = "text/html",
-                            Data = "Ошибка в назначении тестовых вариантов:нет сгенерированных тестов по теме " + errMessege
-
-                        };
-                    }
-
-
                 }
                 catch (Exception ex)
                 {
@@ -193,6 +167,20 @@ namespace VmkLearningKit.Controllers
                         Data = "Назначение тестов выполненно успешно" + str
 
                     };
+                if (fl == 0)
+                {
+                    String errMessege = "";
+                    foreach (string erItem in errors)
+                    {
+                        errMessege += erItem;
+                    }
+                    return new JsonResult
+                    {
+                        ContentType = "text/html",
+                        Data = "Ошибка в назначении тестовых вариантов. Не найден архив с данными для вариантов." + errMessege
+
+                    };
+                }
 
             }
             return RedirectToAction("Statement");
