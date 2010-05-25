@@ -139,6 +139,12 @@ namespace VmkLearningKit.Controllers
                                 int d = Convert.ToInt16(form["dateDay"]);
                                 GeneratedTestVariant tmp = gtv.ElementAt((int)(variantNumsId - 1));
                                 idAddedNewAssignedTestVariant = repositoryManager.GetAssignedTestVariantRepository.Add(tmp.Id, studentsId, DateTime.Now, professor.UserId);
+                                if (idAddedNewAssignedTestVariant == -1)
+                                    return new JsonResult
+                                    {
+                                        ContentType = "text/html",
+                                        Data = "не найден архив с тестовым вариантом[-1"
+                                    };
                                 str += "[" + studentsId.ToString() + "_" + topicsId.ToString() + "_" + variantNumsId.ToString() + "_" + idAddedNewAssignedTestVariant.ToString();
                             }
                             else

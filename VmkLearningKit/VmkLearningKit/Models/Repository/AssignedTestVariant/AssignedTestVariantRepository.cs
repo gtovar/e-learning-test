@@ -111,17 +111,25 @@ namespace VmkLearningKit.Models.Repository
                 ProfessorKey = Hash.ComputeHash(professorId.ToString()),
                 // идентификатор пакета в базе данных плеера
                 // данный идентификатор кладется плеером
-                PackageId = VLKConstants.PACKAGE_DEFAULT_ID;
+                PackageId = VLKConstants.PACKAGE_DEFAULT_ID
             };
 
             try
             {
-                DataContext.AssignedTestVariants.InsertOnSubmit(newAtv);
-                DataContext.SubmitChanges();
                 long gt = DataContext.GeneratedTestVariants.Single(gtv => gtv.Id == idGeneratedTestVariant).GeneratedTestId;
                 long firstId = DataContext.GeneratedTestVariants.Where(gtv => gtv.GeneratedTestId == gt).OrderBy(o => o.Id).First().Id;
                 string serverPath = HttpContext.Current.Server.MapPath("/Uploads");
                 string sourcePath = serverPath + "/Pacages" + "/" + gt.ToString() + "/" + (idGeneratedTestVariant - firstId + 1).ToString() + ".zip";
+                DirectoryInfo source = new DirectoryInfo(sourcePath);
+                if (!source.Exists)
+                {
+                    Utility.WriteToLog("не найдет архив тестового варианта " + (idGeneratedTestVariant - firstId + 1).ToString());
+                    return -1;
+                }
+
+                DataContext.AssignedTestVariants.InsertOnSubmit(newAtv);
+                DataContext.SubmitChanges();
+                
                 string destPath = serverPath + "/AssignedTests" + "/student_" + idStudent.ToString() + "/" + newAtv.Id.ToString();
                 DirectoryInfo dir = new DirectoryInfo(destPath);
                 if (!dir.Exists)
