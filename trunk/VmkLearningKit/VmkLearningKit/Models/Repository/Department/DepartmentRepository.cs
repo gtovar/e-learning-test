@@ -15,6 +15,7 @@ namespace VmkLearningKit.Models.Repository
 
         #region Get
 
+        /* Получить объект факультета по идентификатору */
         public Department GetById(long id)
         {
             return DataContext.Departments.SingleOrDefault(d => d.Id == id);

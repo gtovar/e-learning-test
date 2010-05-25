@@ -43,7 +43,7 @@
             <a href="/" class="transparent_link"><img class="transparent_img" src="/Content/Images/eunn-small.gif" alt="Главная страница" /></a>
             </div>
             <div id="system_name">
-                Система дистанционного обучения
+                Система управления обучением
             </div>
             <div id="user_menu">
                 <% /*

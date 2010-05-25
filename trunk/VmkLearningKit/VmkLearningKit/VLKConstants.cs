@@ -42,6 +42,9 @@ namespace VmkLearningKit
         public const string UP_WEEK                     = "Верхняя";
         public const string DOWN_WEEK                   = "Нижняя";
         public const string EVERY_WEEK                  = "Каждая";
+        // идентификатор пакета по-умолчанию для таблицы AssignedTestVariants
+        // данный идентификатор обновляется плеером после добавления теста в его БД
+        public const int    PACKAGE_DEFAULT_ID          = 0;
 
     }
 }

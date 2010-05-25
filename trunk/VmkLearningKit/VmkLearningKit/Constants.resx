@@ -159,6 +159,9 @@
   <data name="ADMIN_USER_VIEWS" xml:space="preserve">
     <value>/Views/Admin/User/</value>
   </data>
+  <data name="ADMIN_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/</value>
+  </data>
   <data name="ALIAS_DEFAULT_VALUE" xml:space="preserve">
     <value>None</value>
   </data>
