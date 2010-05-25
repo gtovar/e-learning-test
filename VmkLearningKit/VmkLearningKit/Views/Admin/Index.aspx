@@ -34,7 +34,7 @@
         <% } %>
     </p>
     <p align="left" style="font-size: 16px; margin-top: 10px">
-        Загрузка тем по дисциплинам:
+        Загрузка программы дисциплин:
         <% using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", id = "SpecialityDisciplineTopicStructure" }))
            { %>
         <input type="file" id="uploadSpecialityDisciplineTopicStructureFile" name="uploadSpecialityDisciplineTopicStructureFile"

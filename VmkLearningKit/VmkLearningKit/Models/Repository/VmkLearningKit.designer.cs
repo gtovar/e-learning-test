@@ -524,6 +524,12 @@ namespace VmkLearningKit.Models.Repository
 		
 		private string _Path;
 		
+		private string _StudentKey;
+		
+		private string _ProfessorKey;
+		
+		private long _PackageId;
+		
 		private EntityRef<GeneratedTestVariant> _GeneratedTestVariant;
 		
 		private EntityRef<Student> _Student;
@@ -548,6 +554,12 @@ namespace VmkLearningKit.Models.Repository
     partial void OnMarkChanged();
     partial void OnPathChanging(string value);
     partial void OnPathChanged();
+    partial void OnStudentKeyChanging(string value);
+    partial void OnStudentKeyChanged();
+    partial void OnProfessorKeyChanging(string value);
+    partial void OnProfessorKeyChanged();
+    partial void OnPackageIdChanging(long value);
+    partial void OnPackageIdChanged();
     #endregion
 		
 		public AssignedTestVariant()
@@ -721,6 +733,66 @@ namespace VmkLearningKit.Models.Repository
 					this._Path = value;
 					this.SendPropertyChanged("Path");
 					this.OnPathChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_StudentKey", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string StudentKey
+		{
+			get
+			{
+				return this._StudentKey;
+			}
+			set
+			{
+				if ((this._StudentKey != value))
+				{
+					this.OnStudentKeyChanging(value);
+					this.SendPropertyChanging();
+					this._StudentKey = value;
+					this.SendPropertyChanged("StudentKey");
+					this.OnStudentKeyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ProfessorKey", DbType="Text NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public string ProfessorKey
+		{
+			get
+			{
+				return this._ProfessorKey;
+			}
+			set
+			{
+				if ((this._ProfessorKey != value))
+				{
+					this.OnProfessorKeyChanging(value);
+					this.SendPropertyChanging();
+					this._ProfessorKey = value;
+					this.SendPropertyChanged("ProfessorKey");
+					this.OnProfessorKeyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_PackageId", DbType="BigInt NOT NULL")]
+		public long PackageId
+		{
+			get
+			{
+				return this._PackageId;
+			}
+			set
+			{
+				if ((this._PackageId != value))
+				{
+					this.OnPackageIdChanging(value);
+					this.SendPropertyChanging();
+					this._PackageId = value;
+					this.SendPropertyChanged("PackageId");
+					this.OnPackageIdChanged();
 				}
 			}
 		}

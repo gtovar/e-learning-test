@@ -187,6 +187,15 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /Views/Admin/.
+        /// </summary>
+        internal static string ADMIN_VIEWS {
+            get {
+                return ResourceManager.GetString("ADMIN_VIEWS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
         internal static string ALIAS_DEFAULT_VALUE {

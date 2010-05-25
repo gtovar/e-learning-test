@@ -96,6 +96,21 @@ namespace VmkLearningKit.Controllers
         {
             if (Request.IsAjaxRequest())
             {
+                // получаем объект текущего зарегестрированного пользователя
+                Professor professor = null;
+                if(null != Session["user"])
+                {
+                    try
+                    {
+                        professor = ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.Professor;
+                    }
+                    catch(Exception ex)
+                    {
+                        // текущий пользователь - это не профессор, такого быть не должно, так как назначать тестирование
+                        // может только преподаватель
+                        Utility.WriteToLog("!!!!IMPORTANT Current user working with statement isn't a professor !!!!", ex);
+                    }
+                }
                 string[] tmp1, tmp2, tmp3;
                 long studentsId, topicsId, variantNumsId;
 
@@ -123,7 +138,7 @@ namespace VmkLearningKit.Controllers
                                 int m = Convert.ToInt16(form["dateMonth"]);
                                 int d = Convert.ToInt16(form["dateDay"]);
                                 GeneratedTestVariant tmp = gtv.ElementAt((int)(variantNumsId - 1));
-                                idAddedNewAssignedTestVariant = repositoryManager.GetAssignedTestVariantRepository.Add(tmp.Id, studentsId, DateTime.Now);
+                                idAddedNewAssignedTestVariant = repositoryManager.GetAssignedTestVariantRepository.Add(tmp.Id, studentsId, DateTime.Now, professor.UserId);
                                 str += "[" + studentsId.ToString() + "_" + topicsId.ToString() + "_" + variantNumsId.ToString() + "_" + idAddedNewAssignedTestVariant.ToString();
                             }
                             else

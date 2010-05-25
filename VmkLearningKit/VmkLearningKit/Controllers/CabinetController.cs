@@ -21,7 +21,7 @@ namespace VmkLearningKit.Controllers
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
-            return View();
+            return View(Constants.ADMIN_VIEWS + "Index.aspx");
         }
 
         /// <summary>
@@ -77,8 +77,19 @@ namespace VmkLearningKit.Controllers
                     // отображение списка дисциплин
                     else
                     {
-                        IEnumerable<SpecialityDiscipline> specialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetAllByProfessor(professor.User.NickName);
-                        ViewData["ProfessorSpecialityDisciplines"] = specialityDisciplines;
+                        IEnumerable<SpecialityDiscipline> allSpecialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetAllByProfessor(professor.User.NickName);
+                        if (null != allSpecialityDisciplines)
+                        {
+                            List<SpecialityDiscipline> specialityDisciplines = new List<SpecialityDiscipline>();
+                            foreach (SpecialityDiscipline specialityDiscipline in allSpecialityDisciplines)
+                            {
+                                if (IsDisciplineContainsCurrentTerms(specialityDiscipline))
+                                {
+                                    specialityDisciplines.Add(specialityDiscipline);
+                                }
+                            }
+                            ViewData["ProfessorSpecialityDisciplines"] = specialityDisciplines;
+                        }
                     }
                 }
             }
@@ -953,7 +964,7 @@ namespace VmkLearningKit.Controllers
 
         private void SetLecturePlanDates(SpecialityDiscipline specialityDiscipline)
         {
-            if (null != specialityDiscipline)
+            if (null != specialityDiscipline && null == Session["UpdateLecturePlanDates_" + specialityDiscipline.Id])
             {
                 if (IsDisciplineContainsCurrentTerms(specialityDiscipline))
                 {
@@ -1101,6 +1112,8 @@ namespace VmkLearningKit.Controllers
                                     }
                                     repositoryManager.GetSpecialityDisciplineTopicRepository.Delete(specialityDiscipline.SpecialityDisciplineTopics[currentIndex]);
                                     //currentIndex++;
+
+                                    Session["UpdateLecturePlanDates_" + specialityDiscipline.Id] = true;
                                 }
                             }
                         }

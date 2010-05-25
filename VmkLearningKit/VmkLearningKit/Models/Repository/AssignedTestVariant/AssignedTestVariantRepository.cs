@@ -96,7 +96,7 @@ namespace VmkLearningKit.Models.Repository
 
         }
 
-        public long Add(long idGeneratedTestVariant, long idStudent, DateTime date)
+        public long Add(long idGeneratedTestVariant, long idStudent, DateTime date, long professorId)
         {
             AssignedTestVariant newAtv = new AssignedTestVariant
             {
@@ -106,7 +106,12 @@ namespace VmkLearningKit.Models.Repository
                 State = VLKConstants.TEST_VARIANT_STATE_NEW,
                 Path = "",
                 Score = 0,
-                Mark = 0
+                Mark = 0,
+                StudentKey = Hash.ComputeHash(idStudent.ToString()),
+                ProfessorKey = Hash.ComputeHash(professorId.ToString()),
+                // идентификатор пакета в базе данных плеера
+                // данный идентификатор кладется плеером
+                PackageId = VLKConstants.PACKAGE_DEFAULT_ID;
             };
 
             try

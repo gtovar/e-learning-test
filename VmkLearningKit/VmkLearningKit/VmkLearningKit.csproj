@@ -354,7 +354,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\Plugins\JHtmlArea\style\jqueryui\ui-lightness\images\Thumbs.db" />
-    <None Include="VmkLearningKitClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
