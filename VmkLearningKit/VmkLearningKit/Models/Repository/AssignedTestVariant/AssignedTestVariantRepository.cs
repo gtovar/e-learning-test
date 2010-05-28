@@ -121,12 +121,12 @@ namespace VmkLearningKit.Models.Repository
                 string serverPath = HttpContext.Current.Server.MapPath("/Uploads");
                 string sourcePath = serverPath + "/Pacages" + "/" + gt.ToString() + "/" + (idGeneratedTestVariant - firstId + 1).ToString() + ".zip";
                 DirectoryInfo source = new DirectoryInfo(sourcePath);
-                if (!source.Exists)
+             /*   if (!source.Exists)
                 {
                     Utility.WriteToLog("не найдет архив тестового варианта " + (idGeneratedTestVariant - firstId + 1).ToString());
                     return -1;
                 }
-
+            */
                 DataContext.AssignedTestVariants.InsertOnSubmit(newAtv);
                 DataContext.SubmitChanges();
                 
