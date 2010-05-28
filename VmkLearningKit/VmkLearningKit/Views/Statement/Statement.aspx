@@ -41,24 +41,71 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
+<link type="text/css" href="/Scripts/Plugins/DatePicker/jquery-ui-1.7.3.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="/Scripts/Plugins/DatePicker/jquery-ui-1.7.3.custom.min.js"></script>
+<script type="text/javascript" src="/Scripts/Plugins/DatePicker/ui.datepicker-ru.js"></script>
+<style>
 
-        var flags = new Array();
+td.changeble {
+ background-color:#F5f9ff;
+ text-align:center;
+}
+td.unactive,
+td.secondAssignement {
+ 
+ text-align:center;
+}
+
+</style>
+<script type="text/javascript">
+      $(document).ready(function() {
+             
+       
+       
+        $.datepicker.setDefaults($.extend
+        ($.datepicker.regional["ru"])
+        );
+        $('#datepicker').datepicker({
+					inline: true
+				});
+
         var countRow = $("#mainStatementTable tr").length;
         //alert(countRow);
         $("#mainStatementTable tr").hide();
         $("#mainStatementTable tr:lt(12)").show();
         var currentRow = 11;
-
+        var flags = new Array();
+        var initFlag=0;
+        var flagMap = [];
+        var initFlagMap=0;
+       
+        
         $("td.changeble").click(function() {
-
+           if(initFlagMap==0)
+           { 
+                <%for(int i=0;i<((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).Count();i++) {%>
+                    flagMap[<%=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).ElementAt(i).Id%>]=[];
+                    <%for(int j=0;j<((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).Count();j++) {%>
+                    flagMap[<%=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).ElementAt(i).Id%>][<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(j).Id%>]=0;
+                     <%} %>
+                 <%} %>
+                 initFlagMap=1;
+           }
             var me = $(this).attr('Id');
-
-            flags.push(me);
+            var meArr=(me.split("_"));
+            var student=meArr[0];
+            var topic = meArr[1];
+            
+            if(flagMap[student][topic]==0)
+            {  
+                flags.push(me);
+                flagMap[student][topic]=1;
+             };
+            
+            
             if (this.firstChild.nodeType == 3) {
                 var tmp = ($("input[id^=changeInput]").val());
-                var topic = (me.split("_"))[1];
+                
                 var max = $("#hiden_" + topic).val();
                 if (parseInt(tmp) > parseInt(max)) {
                     alert("Неверно задан номер варианта! Максимально возможное значение :" + max);
@@ -76,15 +123,20 @@
             };
         });
 
+        $("input[id^='changeInput_']").blur(function(){
+           var tmp=this.val();
+           this.replaceWith(tmp);
+                
+        });
+        
         $("td.unactive").click(function() {
             var me = $(this).attr('Id');
             var topic = (me.split("_"))[1];
             if (confirm("По данной теме нет сгенерированных вариантов! Перейти на страницу создания тестовых вариантов?")) {
                 var path = "/Testing/Index/" + topic;
                 location.replace(path);
-            }
+            };
         })
-
 
         $("#SetVariants").click(function() {
             var tmpArr = new Array();
@@ -102,52 +154,34 @@
                     if (parseInt(temp) <= 0) {
                         return alert("Неверно задан номер варианта! Номер варианта не может быть меньше или равно 0");
                     }
-
                     var topic = fl.split("_");
-
                     var max = $("#hiden_" + topic[1]).val();
-
                     if (parseInt(temp) > parseInt(max)) {
                         return alert("Неверно задан номер варианта! Максимально возможное значение: " + max);
                     };
                 }
                 else temp = $('#' + fl).text();
-
                 strStudents = strStudents + tmpArr[0] + "_";
                 strTopics = strTopics + tmpArr[1] + "_";
                 strVariants = strVariants + temp + "_";
-
             }
 
             var _startTime = $("#startTime").val();
             var data = { "students": strStudents,
                 "topics": strTopics,
                 "variantNums": strVariants,
-                "dateYear": $("#yearSelect").val(),
-                "dateMonth": $("#monthSelect").val(),
-                "dateDay": $("#daySelect").val(),
-                "startTime": ($('#startTime').val()),
-                "endTime": ($('#finishTime').val())
+                "date": $("#datepicker").val()
             };
             $.post("/Statement/SetVariants", data, function(str) {
                 var dataTemp = str.split("[");
-
                 for (var i = 1; i < dataTemp.length; i++) {
-
                     var setVariant = dataTemp[i].split("_");
-
                     var student = setVariant[0];
                     var topic = setVariant[1];
                     var numVar = setVariant[2];
-                    if (parseInt(setVariant[3]) == -1) {
-                        tmp = " ";
-                        $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
-                    }
-                    else {
-                        var Help = "/ViewTest/ViewTest/" + '<%=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
-                        var tmp = $('<a href=' + Help + '>' + numVar + '</a>');
-                        var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
-                    }
+                    var Help = "/ViewTest/ViewTest/" + '<%=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
+                    var tmp = $('<a href=' + Help + '>' + numVar + '</a>');
+                    var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
                 }
                 alert(dataTemp[0]);
 
@@ -155,8 +189,34 @@
             flags = new Array();
         });
 
+        var colFlag = 0;
+        var hiddens = $("input[id^='hiden_']");
+        HideCol(5, hiddens.length - 5, hiddens);
 
-        $("#Button4").click(function() {
+
+        $("#Button1").click(function() {
+            if (colFlag + 5 < hiddens.length) {
+
+                HideCol(colFlag, 5, hiddens);
+                colFlag += 5;
+                var showCount = 5;
+                if (hiddens.length - colFlag - 1 < 5) showCount = hiddens.length - colFlag;
+                ShowCol(colFlag, showCount, hiddens);
+
+            }
+        });
+
+        $("#Button2").click(function() {
+            if (colFlag - 5 >= 0) {
+                var hideCount = 5;
+                if (hiddens.length - colFlag - 1 < 5) hideCount = hiddens.length - colFlag - 1;
+                HideCol(colFlag, hideCount, hiddens)
+                colFlag -= 5;
+                ShowCol(colFlag, 5, hiddens);
+            }
+        });
+
+         $("#Button4").click(function() {
 
             if (currentRow - 10 <= countRow) {
 
@@ -190,6 +250,9 @@
         })
 
 
+
+
+
     });
 
     //---------------------------------------
@@ -206,15 +269,42 @@
         var tmp = str.replace(/^\s*/g, "");
         return tmp.replace(/\s*$/g, "");
     }
+    //спрятать столбцы от сolRow 5 штук
+    function HideCol(currentColRow, count, hiddens) {
+        var topicItem;
+        var topicId;
+        var str = "";
+        for (var i = currentColRow; i < currentColRow + count; i++) {
+            topicItem = hiddens[i];
+            topicId = topicItem.id.split("_")[1];
+            str = "td[id *= _" + topicId + "_]";
+            $(str).hide();
+            $("td #" + topicId).hide();
+        };
+    }
 
-    
-   
+    //показать столбцы от сolRow 5 штук
+    function ShowCol(currentColRow, count, hiddens) {
+        var topicItem;
+        var topicId;
+        var str = "";
+        for (var i = currentColRow; i < currentColRow + count; i++) {
+            topicItem = hiddens[i];
+            topicId = topicItem.id.split("_")[1];
+            str = "td[id *= _" + topicId + "_]";
+            $("td #" + topicId).show();
+            $(str).show();
+        };
+    }
 </script>
+
+
+
 
 <%using (Html.BeginForm("Statement", "Statement", new { additional = ViewData["DisciplineId"], alias = ViewData["ProfessorId"] }, FormMethod.Get, new { id = "groupFilter" }))%>
    <%  { %>
-    
-    <table >
+  
+    <table  >
         <tr>
            <td style="padding: 3px;">Дисциплина:&nbsp;&nbsp; </td>
            <td> <b> <%=ViewData["Discipline"]%> </b> </td>
@@ -223,7 +313,7 @@
            <td><b><%=ViewData["Department"]%></b></td>
         </tr>
         <tr>
-           <td>Преподаватель: &nbsp;&nbsp;</td>
+           <td >Преподаватель: &nbsp;&nbsp;</td>
            <td> <b><%=ViewData["ProfessorName"]%></b> </td>
            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
            <td style="padding: 3px;">Группа: &nbsp;&nbsp;</td>
@@ -239,40 +329,55 @@
         </tr>
     </table>
     <br/>  
-<div    style=" width:1000px; height:500px;">
-<table id="mainStatementTable" border="1"  width="10%" style=" width:100%; " >
+    
+<div style="width:20px; height:450px; background:f7f7f7; float:left">
+<table>
+<tr  style="height:50px">
+</tr>
+    <tr>
+        <td ><img id="Button3" alt="" src="/Content/Images/up.png" height=20px width=20px  />
+        </td>
+    </tr>
 
-        <tr id='head1' align="center"  style="background-color: Silver; color: Black; font-weight: bold;" >
-			<td rowspan="2">№</td>
-			<td rowspan="2">ФИО</td>
+    <tr>
+        <td><img id="Button4" alt="" src="/Content/Images/down.png" height=20px width=20px  /></td>
+    </tr>
+</table>
+   </div> 
+<div>
+<table id="mainStatementTable" border="1"  style=" width:90%;" >
+<thead >
+        <tr id='head1' align="center" style="background-color: Silver; color: Black; font-weight: bold;" >
+			<th rowspan="2" style="width:30px">№</th>
+			<th rowspan="2" style=" width:150px;">ФИО</th>
               <%int topicCount = 0;
                 foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
                 {%>
             <input type="hidden" id="hiden_<%=topicItem.Id %>"  value=<%=((List<long>)ViewData["CountVariants"])[topicCount]%>  />
-			<td id="<%=topicItem.Id %>" name="<%=topicItem.Title %>" colspan="6" style="font-size:x-small;"> <%=topicItem.Title %>(
+			<th id="<%=topicItem.Id %>" name="<%=topicItem.Title %>" colspan="6" style="font-size:x-small; width:180px"> <%=topicItem.Title %> (
                     <%=((List<long>)ViewData["CountVariants"])[topicCount]%>)
-			</td>
+			</th>
                 <% topicCount++;
                  } %>
         </tr>
         
         
         
-        <tr id="head2" align="center"  style="background-color: Silver; color: Black; font-weight: bold;   font-size:xx-small;">
+        <tr id="head2" align="center"  style="background-color: Silver; color: Black; font-size:xx-small;">
             <% for (int i=0;i<topicCount;i++)
                  for(int j=0;j<3;j++)
                 {%>
-			<td >Вар </td>    
-			<td >Балл</td>
-                <%} %>
+			<td id="var_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">Вар </td>    
+			<td id="ball_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">Балл</td>
+                <%}%>
         </tr>
-    
+ <tbody style="height:240px; overflow:auto; text-align: center"> 
             <%int studentCount = 1;
             foreach (VmkLearningKit.Models.Repository.User studentItem in (IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"])
             {%>
-        <tr id="student_<%=studentItem.Id%>"  style=" height:10px">
-			<td><%=Html.Encode(studentCount)%></td>
-			<td><%=Html.Encode(GetStudentName(studentItem.Id))%></td>
+        <tr id="student_<%=studentItem.Id%>"  style=" height:20px;">
+			<td  style=" background-color:#ffffff;"><%=Html.Encode(studentCount)%></td>
+			<td style=" background-color:#ffffff; text-align:justify"><%=Html.Encode(GetStudentName(studentItem.Id))%></td>
                 <%int topicCounter2 = 0; %>			
               <%  foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
                 {%> 
@@ -293,7 +398,7 @@
                       <%;}
                              else  { %>
                                             
-			                <td colspan=2><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new  { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+			                <td style=" width:60px;" id="fake_<%=topicItem.Id%>_<%=i%>_var" colspan=2><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new  { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
 			                </td>  
                              <%} %>
                         <%}%>
@@ -305,7 +410,7 @@
 			<%if( ((List<long>)ViewData["CountVariants"])[topicCounter2]!=0 ){%>
 			<%if(j==i+1) {%> class="changeble"<%;}else{%>class="secondAssignement"<% } %>
 			<%;}%> 
-			<% else {%>class="unactive" <%;}%>  align=center > &nbsp;
+			<% else {%>class="unactive" <%;}%>  > &nbsp;
 			</td>
                
                    <%} %>
@@ -315,84 +420,55 @@
           
              <% studentCount++; 
             } %>
-  
+  </tbody>  
      </table>
-          </div> 
+ </div> 
+ <div>
+ <table width=90%>
+    <tr>
+    <td  style="width:850px"></td>
+        <td   style=" text-align:right">
+        <img id="Button2" alt="" src="/Content/Images/left.png" height=20px width=20px  />
+        </td>
+        <td style=" width:10px">    </td>
+        <td >
+        <img id="Button1" alt="" src="/Content/Images/right.png" height=20px width=20px  />
+        </td>
+        <td>
+        </td>
+    </tr>
+ </table> 
+ </div> 
+       
     <br />
      
-    <table  border="0">
-        <tr>
-            <td>Время начала:</td>
-            <td> 
-                <select id="startTime">
-                    <option value="8:00" selected="selected">8:00</option>   
-                    <option value="9:40">9:40</option>
-                    <option value="11:20">11:20</option>
-                    <option value="13:00">13:00</option>
-                    <option value="14:40">14:40</option>
-                    <option value="16:20">16:20</option>
-                    <option value="18:00">18:00</option>
-                </select>
-            </td>
-        </tr>
-        <tr></tr>
-        <tr>
-            <td>Время окончания:</td>
-            <td>
-                <select id="finishTime">
-                    <option value="9.30" selected="selected">9.30</option>   
-                    <option value="11:10">11:10</option>
-                    <option value="12:50">12:50</option>
-                    <option value="14:30">14:30</option>
-                    <option value="16:10">16:10</option>
-                    <option value="17:50">17:50</option>
-                    <option value="19:30">19:30</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Дата:</td>
-            <td><select id="yearSelect" name="year">
-                    <option value='2010' selected="selected">2010</option>
-                    <option value='2011'>2011</option>
-                </select></td>
-            <td>
-                <select id="monthSelect" name="month">
-                    <option value='1' selected="selected">январь</option>
-                    <option value='2'>февраль</option>
-                    <option value='3'>март</option>
-                    <option value='4'>апрель</option>
-                    <option value='5'>май</option>
-                    <option value='6'>июнь</option>
-                    <option value='9'>сентябрь</option>
-                    <option value='10'>октябрь</option>
-                    <option value='11'>ноябрь</option>
-                    <option value='12'>декабрь</option>
-                </select>
-            </td>    
-            <td>
-                <select id="daySelect" name="day">
-                <%for (int i = 1; i<32; i++)
-                  {%>
-                <option value='<%=i%>' selected="selected"><%=i %></option>
-                <%} %>
-                </select>
-            </td>
-        </tr>
-    </table >
-    <p>  
-    <input id="SetVariants" type="button" value="Назначить тесты" />
-    </p>
     
-    <input id="setRandomVariant" type="button" value="Назначить тесты автоматически" />
-   
+   <div>
+   <input id="setRandomVariant" type="button" value="Расставить варианты автоматически" />
+   </div>
+    
+   <div style="float:left;">
+   <table>
+        <tr style="height:40px">
+            <td>Дата прохождения:
+            </td>
+            <td><input id="datepicker" type="text" style="width:100px">
+            </td>
+        </tr>
+        <tr> <td></td>
+        </tr>
+        <tr><td><input id="SetVariants" type="button" value="Назначить тесты"   style="height:25px;"/></td>
+        </tr>
+   </table>
+   </div>
      
    <%} %> 
-    <input id="Button1" type="button" value=">   " />
-    <input id="Button2" type="button" value="<   " />
-     <input id="Button3" type="button" value="^   " />
-    <input id="Button4" type="button" value="!^   " />
+    <div style="float:right">
+    
  <%=Html.ActionLink("К списку дисциплин","Professor","Cabinet",new{alias=ViewData["ProfessorId"]},new{@class=""}) %>
+ <p></p>
+ </div>        
+ 
  <%Html.EndForm();%>
 
 </asp:Content>
