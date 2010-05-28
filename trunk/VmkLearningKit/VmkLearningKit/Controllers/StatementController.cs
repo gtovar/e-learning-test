@@ -118,6 +118,16 @@ namespace VmkLearningKit.Controllers
                 tmp2 = form["topics"].Split('_');
                 tmp3 = form["variantNums"].Split('_');
                 string str = "";
+                if (form["date"] == "")
+                    return new JsonResult
+                    {
+                        ContentType = "text/html",
+                        Data = "Задайте дату прохождения тестов "
+
+                    };
+                int y = Convert.ToInt16(form["date"].Split('.')[2]);
+                int m = Convert.ToInt16(form["date"].Split('.')[1]);
+                int d = Convert.ToInt16(form["date"].Split('.')[0]);
                 int fl = 1;
                 long idAddedNewAssignedTestVariant;
                 List<string> errors = new List<string >();
@@ -134,9 +144,6 @@ namespace VmkLearningKit.Controllers
                             IEnumerable<GeneratedTestVariant> gtv = repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicsId);
                             if (gtv != null)
                             {
-                                int y = Convert.ToInt16(form["dateYear"]);
-                                int m = Convert.ToInt16(form["dateMonth"]);
-                                int d = Convert.ToInt16(form["dateDay"]);
                                 GeneratedTestVariant tmp = gtv.ElementAt((int)(variantNumsId - 1));
                                 idAddedNewAssignedTestVariant = repositoryManager.GetAssignedTestVariantRepository.Add(tmp.Id, studentsId, DateTime.Now, professor.UserId);
                                 if (idAddedNewAssignedTestVariant == -1)
