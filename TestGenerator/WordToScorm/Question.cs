@@ -186,7 +186,10 @@ namespace WordToScorm
         #region Private Fields
 
         // текст вопроса
-        private  string questionText = string.Empty;
+        private string questionText = string.Empty;
+
+        // максимальное количество баллов за ответ
+        private int questionMaxScore = 0;
 
         // картинки содержащиеся в вопросе
         private QuestionImages questionImages = new QuestionImages();
@@ -210,6 +213,19 @@ namespace WordToScorm
         #region Properties
 
         // возвращает или устанавливает текст вопроса
+        public int MaxScore
+        {
+            get
+            {
+                return questionMaxScore;
+            }
+            set
+            {
+                questionMaxScore = value;
+            }
+        }
+
+        // возвращает или устанавливает максимальное количество баллов за вопроса
         public string Text
         {
             get
@@ -221,6 +237,7 @@ namespace WordToScorm
                 questionText = value;
             }
         }
+
         // возвращает нобор картинок содержащихся в вопросе
         public QuestionImages QuestionImages
         {

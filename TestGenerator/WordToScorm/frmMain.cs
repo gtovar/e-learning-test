@@ -348,43 +348,44 @@ namespace WordToScorm
                 testsSet.InsertTest(test);
             }
 
-            
-            List<string> lst = new List<string>();
-            string s;
-            for (i = 0; i < n; i++)
+            if (cbShowInfo.Checked == true)
             {
-                s = ToStr(SQu[i], 2, "0") + " " + ToStr(Qu[i], 4, " ");
-                lst.Add(s);
-            }
-            lst.Sort();
-            s = "   ";
-            for (i = 0; i < VariantsCount; i++)
-            {
-                s = s + ToStr(i + 1, 5, " ");
-            }
-            lst.Add(s);
-
-            for (j = 0; j < QuestionsInVariant; j++)
-            {
-                s = ToStr(j + 1, 2, " ") + ")";
+                List<string> lst = new List<string>();
+                string s;
+                for (i = 0; i < n; i++)
+                {
+                    s = ToStr(SQu[i], 2, "0") + " " + ToStr(Qu[i], 4, " ");
+                    lst.Add(s);
+                }
+                lst.Sort();
+                s = "   ";
                 for (i = 0; i < VariantsCount; i++)
                 {
-                    s = s + ToStr(Vars[i, j], 5, " ");
+                    s = s + ToStr(i + 1, 5, " ");
                 }
                 lst.Add(s);
-            }
 
-            string InfoFile = Path.GetDirectoryName(txtDocFile.Text) + "\\info.txt";
-            FileStream fs = new FileStream(InfoFile, FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            for (i = 0; i < lst.Count; i++)
-                sw.WriteLine(lst[i]);
-            sw.Close();
-            fs.Close();
+                for (j = 0; j < QuestionsInVariant; j++)
+                {
+                    s = ToStr(j + 1, 2, " ") + ")";
+                    for (i = 0; i < VariantsCount; i++)
+                    {
+                        s = s + ToStr(Vars[i, j], 5, " ");
+                    }
+                    lst.Add(s);
+                }
 
-            if (cbShowInfo.Checked == true)
+                string InfoFile = Path.GetDirectoryName(txtDocFile.Text) + "\\info.txt";
+                FileStream fs = new FileStream(InfoFile, FileMode.Create);
+                StreamWriter sw = new StreamWriter(fs);
+                for (i = 0; i < lst.Count; i++)
+                    sw.WriteLine(lst[i]);
+                sw.Close();
+                fs.Close();
+
+
                 System.Diagnostics.Process.Start("notepad.exe", InfoFile);
-
+            }
         }
 
         #endregion

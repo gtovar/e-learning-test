@@ -713,7 +713,6 @@ namespace WordToScorm
             {
                 GoToNextParagraph();
             }
-
             // создаем ответ
             Answer answer = new Answer(answerStr, score, questionImages);
 
@@ -782,10 +781,13 @@ namespace WordToScorm
             while (enumeratorAnswer.MoveNext())
             {
                 currentMark = ((Answer)enumeratorAnswer.Current).Score;
+                // за не правильные ответы на альтернативный вопрос назначается 0 баллов
+                /*
                 if (currentMark == 0)
                 {
                     ((Answer)enumeratorAnswer.Current).Score = -mark;
                 }
+                */
                 log.Trace("За " + counter.ToString() + " ответ назначен: " + ((Answer)enumeratorAnswer.Current).Score.ToString());
                 counter++;
             }
@@ -936,16 +938,33 @@ namespace WordToScorm
             // пересчет баллов за ответы на вопрос, если включена поддержка отрицательных баллов
             if (processQuestion == ProcessingQuestion.withNegativeMark)
             {
-                log.Trace("ПОДДЕРЖКА ОТРИЦ. БАЛЛОВ ВКЛЮЧЕНА, выполняем пересчет баллов");
+                if (questionType == QuestionType.Distributive)
+                {
+                    log.Trace("ПОДДЕРЖКА ОТРИЦ. БАЛЛОВ ВКЛЮЧЕНА, выполняем пересчет баллов");
+                }
                 ReCalculateMark(answersList, questionType);
             }
 
             // пересчет баллов за ответы на вопрос, если включена поддержка только положительных баллов
             if (processQuestion == ProcessingQuestion.withOnlyPositiveMark)
             {
-                log.Trace("ПОДДЕРЖИВАЮТСЯ ТОЛЬКО ПОЛОЖ. БАЛЛЫ, выполняем пересчет баллов");
+                if (questionType == QuestionType.Distributive)
+                {
+                    log.Trace("ПОДДЕРЖИВАЮТСЯ ТОЛЬКО ПОЛОЖ. БАЛЛЫ, выполняем пересчет баллов");
+                }
                 ReCalculateMark(answersList);
             }
+
+            // максимальное количество баллов за вопрос равно сумме баллов за ответы
+            int questionMaxScore = 0;
+            IEnumerator answerListEnumerator = answersList.GetEnumerator();
+            answerListEnumerator.Reset();
+            while (answerListEnumerator.MoveNext())
+            {
+                Answer answer = (Answer)answerListEnumerator.Current;
+                questionMaxScore += answer.Score;
+            }
+            question.MaxScore = questionMaxScore;
 
             // создание тестового вопроса
             TestQuestion testQuestion = new TestQuestion(question, questionType, answersList);
@@ -967,19 +986,24 @@ namespace WordToScorm
 
             // обработка списка ответов
             List<Answer> answersList = new List<Answer>();
+            // максимальное количество баллов за вопрос равно сумме баллов за ответы
+            int questionMaxScore = 0;
             // признаком ответа на вопрос является слово "Ответ"
             while (paragraph != null && paragraph.Range.Text.IndexOf("#Ответ#") >= 0)
             {
                 // чтение ответа вопроса и добавление его в список ответов
                 if (!paragraph.Range.Text.Equals("\r"))
                 {
-                    answersList.Add(ReadSimpleAnswer(paragraph));
+                    Answer answer = ReadSimpleAnswer(paragraph);
+                    questionMaxScore += answer.Score;
+                    answersList.Add(answer);
                 }
 
                 // переход к следующему ответу
                 enumeratorParagraphs.MoveNext();
                 paragraph = (Paragraph)enumeratorParagraphs.Current;
             }
+            question.MaxScore = questionMaxScore;
 
             // создание тестового вопроса
             TestQuestion testQuestion = new TestQuestion(question, questionType, answersList);

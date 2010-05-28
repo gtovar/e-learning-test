@@ -59,7 +59,7 @@ namespace WordToScorm
             {
                 WritePreQuestion_Page();
                 string Text = ProcessTextWithImages(test[i].Question.Text, test[i].Question.QuestionImages);
-                WriteQuestion_Page(Text, 20, i + 1);
+                WriteQuestion_Page(Text, test[i].Question.MaxScore, i + 1);
                 for (int k = 0; k < test[i].AnswersCount; k++)
                 {
                     string text = ProcessTextWithImages(test[i][k].Text, test[i][k].Images);
@@ -101,7 +101,7 @@ namespace WordToScorm
             sw.Close();
             fs.Close();
         }
-
+        // http://localhost:3535/mslamrk,id=QID,type=
         // 1 - svoy otver
         // 2 - svobodniy otvet
         // 3 - radio
