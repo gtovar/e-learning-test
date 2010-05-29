@@ -43,7 +43,7 @@
                             </td>
                             <td class="QPts" style="text-align: right">
                                 <font face="Arial,Helvetica,sans-serif" size="2">
-                                    <nobr><b>MaxScore</b></nobr>
+                                    <nobr><b></b></nobr>
                                 </font>
                             </td>
                         </tr>
@@ -59,38 +59,52 @@
                                {
                                    case 0:
                                        {%>
+                                       <tr>
+                                       <td></td>
                 <td>
-                    <input type="text" name="Q<%= index %>_<%= l %>" size="20" value="1" />
+                    <input type="text" name="Q<%= index %>_<%= l %>" size="20" value="" />
                 </td>
             <%break;
                                        }
                                    case 1:
                                        {%>
+                                       <tr>
+                                       <td></td>
             <td>
                 <input type="radio" name="Q<%= index %>" value="<%= l+1 %>" />
             </td>
             <td class="ANum">
-                <nobr><%= l + 1 %>.</nobr>
+                <nobr><!--<%= l + 1 %>.--></nobr>
             </td>
             <td class="AText" width="100%">
                 <%= an.Text %>
             </td>
-            <br />
             <%break;
                                        }
                                    case 2:
                                        {%>
+                                       <tr>
+                                       <td></td>
             <td>
                 <input type="checkbox" name="Q<%= index %>" value="<%= l+1 %>" />
             </td>
             <td class="ANum">
-                <nobr><%= l + 1 %>.</nobr>
+                <nobr><!--<%= l + 1 %>.--></nobr>
             </td>
             <td class="AText" width="100%">
                 <%= an.Text %>
             </td>
             <%break;
                                            }
+                                       case 3:
+                                       {%>
+                                       <tr>
+                                       <td></td>
+                <td>
+                    <input type="text" name="Q<%= index %>_<%= l %>" size="20" value="" id="Q<%= index %>_<%= l %>" />
+                </td>
+            <%break;
+                                       }
                                }%>
             <td>
             </td>

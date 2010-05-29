@@ -784,19 +784,23 @@ table td .Editor
 
 table .Generator
 {
-	border: solid 1px #e8eef4;
-	padding: 5px 5px 5px 5px;
+	
 }
 
-table th .Generator
+table td .Generator4
 {
-	background-color: #e8eef4;
+	vertical-align: middle;
+	padding: 5px 5px 5px 5px;
+	background-color: #E2EFFF;
+	border: solid 1px #e8eef4;
 }
 
 table td .Generator
 {
 	vertical-align: middle;
 	padding: 5px 5px 5px 5px;
+	border: solid 1px #e8eef4;
+	background-color: #FFFFFF;
 }
 
 table td .Generator2

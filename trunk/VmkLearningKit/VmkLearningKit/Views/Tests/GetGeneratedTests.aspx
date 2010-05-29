@@ -54,18 +54,18 @@
         <h2>
             Сгенерированные тесты</h2>
         <br />
-        <table class="Generator">
+        <table>
             <tr align="center">
-                <td class="Generator">
+                <td class="Generator4">
                     <b>№</b>
                 </td>
-                <td class="Generator">
+                <td class="Generator4">
                     <b>Количество вариантов</b>
                 </td>
-                <td class="Generator">
+                <td class="Generator4">
                     <b>Дата генерации</b>
                 </td>
-                <td class="Generator">
+                <td class="Generator4">
                     <b>Количество вопросов</b>
                 </td>
             </tr>

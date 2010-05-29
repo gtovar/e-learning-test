@@ -182,7 +182,8 @@ namespace VmkLearningKit.Models.Repository
             int count = 0;
             foreach (Razdel r in DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == specialityDisciplineTopicId))
             {
-                count += r.QuestionsCount;
+                if (r.QuestionsCount > 0)
+                    count += r.QuestionsCount;
             }
 
             return count;
