@@ -10,15 +10,25 @@
 	<script type="text/javascript">
 
 	    $().ready(function() {
-	        $("form").validate({
-	            rules: {
-	                
-	            },
-	            messages: {
-	                
-	            }
-	        });
-	    });	
+	        $(document).find("input[id^='in']").each(function(index) {
+	            var count = $(this).parent().attr("id")
+	            //alert(count);
+	            $(this).rules("add",
+                                   {
+                                       required: true,
+                                       number: true,
+                                       range: [0, count],
+                                       messages: {
+                                           required: "Количество вопросов в варианте из раздела не может быть пустым",
+                                           number: " Количество вопросов в варианте из раздела должно быть числом ",
+                                           range: " Количество вопросов в варианте из раздела  не должно превышать общего  числа  вопросов раздела"
+                                       }
+                                   }
+	                                );
+
+
+	        }); //*/
+	    });
 </script>
 <% using (Html.BeginForm("Edit", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post))
    { %>
@@ -26,20 +36,20 @@
         <h2>
             План генерации</h2>
         <br />
-        <table class="Generator">
+        <table>
             <tr align="center">
-                <td class="Generator">
+                <td class="Generator4">
                     <b>Дисциплина</b>
                 </td>
-                <td class="Generator">
+                <td class="Generator4">
                     <b>Тема</b>
                 </td>
-                <td class="Generator">
+                <td class="Generator4">
                     <b>Количество разделов</b>
                 </td>
-                <td class="Generator">
+                <th class="Generator4">
                     <b>Количество вопросов</b>
-                </td>
+                </th>
             </tr>
             <% SpecialityDiscipline sd = (SpecialityDiscipline)ViewData["SpecialityDiscipline"];
                string s1 = sd.Title;
@@ -63,18 +73,18 @@
         </table>
     </div>
     <br />
-    <table class="Generator" width="100%">
+    <table width="100%">
         <tr align="center">
-            <td class="Generator">
+            <td class="Generator4">
                 <b>№</b>
             </td>
-            <td class="Generator">
+            <td class="Generator4">
                 <b>Название раздела</b>
             </td>
-            <td class="Generator">
+            <td class="Generator4">
                 <b>Количество вопросов в разделе</b>
             </td>
-            <td class="Generator">
+            <td class="Generator4">
                 <b>Вопросов раздела в тестовом варианте</b>
             </td>
         </tr>
@@ -94,10 +104,17 @@
                 <%= r.Title%>
             </td>
             <td class="Generator">
-                <%= temp[s++]%>
+                <%= temp[s]%>
             </td>
-            <td class="Generator">
-               <input type="text" value="<%= r.QuestionsCount %> " size="1" name = "in<%= index %> " class ="Generator"/>
+            <td class="Generator" id="<%= temp[s++]%>">
+            <% if (Convert.ToString(r.QuestionsCount).IndexOf("-") == -1)
+               { %>
+               <input type="text" value="<%= r.QuestionsCount %>" size="1" name = "in<%= index %>" id = "in<%= index %>" class ="Generator"/>
+               <% }
+               else
+               {%>
+               <input type="text" value="<%= 0 %>" size="1" name = "in<%= index %>" id = "in<%= index %>" class ="Generator"/>
+               <%} %>
             </td>
         </tr>
         <% 
@@ -117,12 +134,12 @@
         </tr>
     </table>
     <br />
-    <div align="right"><input type="image" name="submit" src="/Content/Images/ok.png" width="40" height="40" value="Сохранить"></div>
+    <div align="right"><input type="image" name="submit" src="/Content/Images/ok.png" alt="сохранить" width="40" height="30" value="Сохранить"></div>
     
     <div align="left">
-        <table class="Generator">
+        <table>
             <tr align="center">
-                <td class="Generator">
+                <td class="Generator4">
                     <b>Количество тестовых вариантов для генерации</b>
                 </td>
                 <td class="Generator">

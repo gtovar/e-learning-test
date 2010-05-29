@@ -75,7 +75,7 @@ namespace VmkLearningKit.Models.Repository
                 string temp = new string(h);
                 localPath = "VmkLearningKit" + temp;
 
-                text.Replace(path,@"./"+ name);
+                //text.Replace(path,@"./"+ name);
 
                 //DirectoryInfo d = new DirectoryInfo(localPath);
                 //d.MoveTo("VmkLearningKit");           
@@ -83,7 +83,7 @@ namespace VmkLearningKit.Models.Repository
             return text;
         }
 
-        private void WriteImsHtmlHeader()
+        private void WriteImsHtmlHeader()//+
         {
             string UnitName = "Тестовый вариант №" + (number - 1);
             
@@ -95,9 +95,9 @@ namespace VmkLearningKit.Models.Repository
             sw.WriteLine("<script language=\"javascript\">");
             sw.WriteLine("var ECS_ViewType = 5;");
             sw.WriteLine("</script>");
-            sw.WriteLine("<link rel=\"stylesheet\" type=\"text/css\" href=\"/CSInc/common.css\">");
-            sw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
+            sw.WriteLine("<link rel=\"stylesheet\" type=\"text/css\" href=\"/CSInc/common.css\">");            
             sw.WriteLine("<link rel=\"stylesheet\" type=\"text/css\" href=\"/CSWebapp/UIcss.aspx\">");
+            sw.WriteLine("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">");
             sw.WriteLine("<link rel=\"stylesheet\" type=\"text/css\" href=\"../Shared/themes.css\">");
             sw.WriteLine("</head>");
             sw.WriteLine("<body ecs_viewtype=\"5\" contenteditable=\"false\">");
@@ -131,9 +131,9 @@ namespace VmkLearningKit.Models.Repository
             sw.WriteLine("<span id=\"questionsTable\" lrece=\"true\">");
         }
 
-        void WriteImsPreQuestion()
+        void WriteImsPreQuestion()//+
         {
-            sw.WriteLine("<table class=\"QTable\" width=\"95%\" lreq2=\"3\">");
+            sw.WriteLine("<table class=\"QTable\" width=\"95%\" lreq2=\"3\">");//+
         }
 
         void WritePreQuestion()
@@ -141,7 +141,7 @@ namespace VmkLearningKit.Models.Repository
             sw.WriteLine("<table class=\"QTable\" width=\"95%\" lreq2=\"3\">");
         }
 
-        void WriteImsQuestion(string text, int n)
+        void WriteImsQuestion(string text, int n)//+
         {
             int QuestionNum = n;
 
@@ -151,6 +151,8 @@ namespace VmkLearningKit.Models.Repository
             sw.WriteLine("<td class=\"QPts\" style=\"TEXT-ALIGN: right\">");
             sw.WriteLine("<font face=\"Arial,Helvetica,sans-serif\" size=\"2\"><nobr><b>MaxScore</b></nobr></font></td>");
             sw.WriteLine("</tr>");
+            //sw.WriteLine("<tr>");
+            //sw.WriteLine("<td></td>");
         }
 
         void WriteQuestion(string text, double MaxScore, int n)
@@ -165,7 +167,7 @@ namespace VmkLearningKit.Models.Repository
             sw.WriteLine("</tr>");
         }
 
-        void WriteImsAnswer(int type, string text, int qid, int aid)
+        void WriteImsAnswer(int type, string text, int qid, int aid)//+
         {
             text = BuilderImages(text);
 
@@ -173,22 +175,36 @@ namespace VmkLearningKit.Models.Repository
             {
                 case 0:
                     {
-                        sw.WriteLine("<td><input type=\"text\" disabled name=\"Q" + qid + "_" + aid + "\" size=\"20\" value=\"1\"></td>");
+                        sw.WriteLine("<tr>");
+                        sw.WriteLine("<td></td>");
+                        sw.WriteLine("<td><input type=\"text\" disabled name=\"Q" + qid + "_" + aid + "\" size=\"20\" value=\"\"></td>");
                         break;
                     }
                 case 1:
                     {
+                        sw.WriteLine("<tr>");
+                        sw.WriteLine("<td></td>");
                         sw.WriteLine("<td><input type=\"radio\" disabled name=\"Q" + qid + "\" value=\"" + (aid + 1) + " \"></td>");
-                        sw.WriteLine("<td class=\"ANum\"><nobr>" + (aid + 1) + ".</nobr></td>");
+                        sw.WriteLine("<td class=\"ANum\"><nobr>" + /*(aid + 1) +*/ "</nobr></td>");
                         sw.WriteLine("<td class=\"AText\" width=\"100%\">" + text + "</td>");
-                        sw.WriteLine("<br />");
+                        //sw.WriteLine("<br />");
                         break;
                     }
                 case 2:
                     {
+                        sw.WriteLine("<tr>");
+                        sw.WriteLine("<td></td>");
                         sw.WriteLine("<td><input type=\"checkbox\" disabled name=\"Q" + qid + "\" value=\"" + (aid + 1) + " \"></td>");
-                        sw.WriteLine("<td class=\"ANum\"><nobr>" + (aid + 1) + ".</nobr></td>");
+                        sw.WriteLine("<td class=\"ANum\"><nobr>" + /*(aid + 1) +*/ "</nobr></td>");
                         sw.WriteLine("<td class=\"AText\" width=\"100%\">" + text + "</td>");
+                        break;
+                    }
+
+                case 4:
+                    {
+                        sw.WriteLine("<tr>");
+                        sw.WriteLine("<td></td>");
+                        sw.WriteLine("<td><input type=\"text\" disabled name=\"Q" + qid + "_" + aid + "\" size=\"20\" id=\"Q" + qid + "_" + aid + "\" value=\"\"></td>");
                         break;
                     }
             }
@@ -210,7 +226,7 @@ namespace VmkLearningKit.Models.Repository
                 case 1:
                     {
                         sw.WriteLine("<td><img src=\"http://localhost:12121/mslamrk,id=" + (qid + 1) + ",type=3,maxpts=" + score + "\"></td>");
-                        sw.WriteLine("<td class=\"ANum\"><nobr>" + (aid + 1) + ".</nobr></td>");
+                        sw.WriteLine("<td class=\"ANum\"><nobr>" + /*(aid + 1) +*/".</nobr></td>");
                         sw.WriteLine("<td style=\"WIDTH: 100%\">" + text + "</td>");
                         
                         break;
@@ -218,8 +234,14 @@ namespace VmkLearningKit.Models.Repository
                 case 2:
                     {
                         sw.WriteLine("<td><img src=\"http://localhost:12121/mslamrk,id=" + (qid + 1) + ",type=4,maxpts=" + score + "\"></td>");
-                        sw.WriteLine("<td class=\"ANum\"><nobr>" + (aid + 1) + ".</nobr></td>");
+                        sw.WriteLine("<td class=\"ANum\"><nobr>" + /*(aid + 1) +*/".</nobr></td>");
                         sw.WriteLine("<td style=\"WIDTH: 100%\">" + text + "</td>");
+                        break;
+                    }
+
+                case 3:
+                    {
+                        sw.WriteLine("<td><img src=\"http://localhost:12121/mslamrk,cols=20,id=" + (qid + 1) + ",type=1,akey=" + text + ",maxpts=" + score + "\"></td>");
                         break;
                     }
             }
@@ -227,7 +249,7 @@ namespace VmkLearningKit.Models.Repository
             sw.WriteLine("</tr>");
         }
 
-        void WriteImsPostQuestion()
+        void WriteImsPostQuestion()//+
         {
             sw.WriteLine("</table>");
         }
@@ -237,7 +259,7 @@ namespace VmkLearningKit.Models.Repository
             sw.WriteLine("</table>");
         }
 
-        void WriteImsHtmlFooter()
+        void WriteImsHtmlFooter()//+
         {
             sw.WriteLine("</span></td>");
             sw.WriteLine("</tr>");
