@@ -82,7 +82,7 @@ namespace VmkLearningKit.Controllers
                     if (repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicItem.Id) != null)
                         foreach (GeneratedTestVariant item in repositoryManager.GetGeneratedTestVariantRepository.GetAllGeneratedTestVariantsByTopicId(topicItem.Id))
                         {
-                            ViewData[topicItem.Id.ToString() + "_" + item.Id.ToString()] = repositoryManager.GetGeneratedTestVariantRepository.GetLocalNumGeneratedTestVariant(item.Id) + 1;
+                            ViewData[topicItem.Id.ToString() + "_" + item.Id.ToString()] = repositoryManager.GetGeneratedTestVariantRepository.GetLocalNumGeneratedTestVariant(item.Id);
                         }
                 }
             }
@@ -127,9 +127,6 @@ namespace VmkLearningKit.Controllers
                         Data = "Задайте дату прохождения тестов "
 
                     };
-                /*int y = Convert.ToInt16(form["date"].Split('.')[2]);
-                int m = Convert.ToInt16(form["date"].Split('.')[1]);
-                int d = Convert.ToInt16(form["date"].Split('.')[0]);*/
                 int fl = 1;
                 long idAddedNewAssignedTestVariant;
                 List<string> errors = new List<string >();
@@ -195,7 +192,7 @@ namespace VmkLearningKit.Controllers
             return RedirectToAction("Statement");
         }
         //-------------------------------------------------------------
-      /*  [AcceptVerbs(HttpVerbs.Post)]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult RandomVariants(long topicId, string groupId)
         {
             if (Request.IsAjaxRequest())
@@ -235,7 +232,7 @@ namespace VmkLearningKit.Controllers
             return RedirectToAction("Statement");
 
         }
-       */
+       
     }
 
 }

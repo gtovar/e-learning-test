@@ -50,6 +50,14 @@ td.changeble {
  background-color:#F5f9ff;
  text-align:center;
 }
+td.newAssignement
+{
+    background-color:#F5f9ff;
+border-color:silver;
+border-width:3px;
+ text-align:center;   
+}
+
 td.unactive,
 td.secondAssignement {
  
@@ -76,29 +84,33 @@ td.secondAssignement {
         $("#mainStatementTable tr:lt(12)").show();
         var currentRow = 21;
         var flags = new Array();
-
+        var flagExistInputChange = 0
         var flagMap = [];
 
 
 
-       /* $("#setRandomVariant").click(function() {
-
+        $("#setRandomVariant").click(function() {
+        if ($("#SelectTopic").val()!=-1){
             $.post("/Statement/RandomVariants", { topicId: $("#SelectTopic").val(), groupId: $("#param1").val() },
         function(str) {
-            alert(str);
+            flags = [];
             var mas = str.split("]");
-            for(var i=0;i<mas.length;i++)
+            var tmp;
+            var td;
+            for (var i = 0; i < mas.length - 1; i++) {
+                tmp = mas[i].split("_");
+                td = $("td[id^=" + tmp[0] + "_" + tmp[1] + "_" + "].changeble");
+                td.empty().append(tmp[2]);
+                flags.push(td[0].id);
+            }
+            alert("для назначения тестов нажмите:Назначить тесты");
             
         }, "json");
-
+             }
         });
-*/
 
-        $("input[id^='changeInput_']").blur(function() {
-            var tmp = this.val();
-            this.replaceWith(tmp);
 
-        });
+
 
         $("td.unactive").click(function() {
             var me = $(this).attr('Id');
@@ -113,6 +125,21 @@ td.secondAssignement {
         })
 
         $("#SetVariants").click(function() {
+            if (flagExistInputChange == 1) {
+                var InputChange = $("input[id^=changeInput]");
+                var tmp = (InputChange.val());
+
+                var max = $("#hiden_" + (InputChange.attr("Id")).split("_")[2]).val();
+                if (parseInt(tmp) > parseInt(max)) {
+                    return alert("Неверно задан номер варианта! Максимально возможное значение :" + max);
+                }
+                else if (parseInt(tmp) <= 0)
+                { return alert("Неверно задан номер варианта! Номер варианта не может быть меньше или равно 0"); }
+                else {
+                    $("input[id^=changeInput]").replaceWith(tmp);
+                }
+            }
+
             var tmpArr = new Array();
             var strStudents = "";
             var strTopics = "";
@@ -123,18 +150,7 @@ td.secondAssignement {
                 tmpArr = ParseTdId(fl);
                 var temp;
 
-                if (i == (flags.length - 1)) {
-                    temp = $("input[id^=changeInput]").val();
-                    if (parseInt(temp) <= 0) {
-                        return alert("Неверно задан номер варианта! Номер варианта не может быть меньше или равно 0");
-                    }
-                    var topic = fl.split("_");
-                    var max = $("#hiden_" + topic[1]).val();
-                    if (parseInt(temp) > parseInt(max)) {
-                        return alert("Неверно задан номер варианта! Максимально возможное значение: " + max);
-                    };
-                }
-                else temp = $('#' + fl).text();
+                temp = $('#' + fl).text();
                 strStudents = strStudents + tmpArr[0] + "_";
                 strTopics = strTopics + tmpArr[1] + "_";
                 strVariants = strVariants + temp + "_";
@@ -157,7 +173,9 @@ td.secondAssignement {
                         var Help = "/ViewTest/ViewTest/" + '<%=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
                         var tmp = $('<a href=' + Help + '>' + numVar + '</a>');
                         var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
+                        t.attr('class', 'newAssignement');
                         flags = new Array();
+                        flagExistInputChange = 0;
                     }
                 }
                 alert(dataTemp[0]);
@@ -229,7 +247,7 @@ td.secondAssignement {
 
 
         $("td.changeble").click(function() {
-
+            flagExistInputChange = 1;
             var me = $(this).attr('Id');
             var meArr = (me.split("_"));
             var student = meArr[0];
@@ -237,7 +255,7 @@ td.secondAssignement {
             var existFlag = 0;
 
             for (var i = 0; i < flagMap.length; i++) {
-                if (parseInt(student) * 100 + parseInt(topic) == flagMap[i]) {
+                if ((flagMap[i].split("_")[0] == student) && (flagMap[i].split("_")[1] == topic)) {
                     existFlag = 1;
                     break;
                 };
@@ -246,7 +264,7 @@ td.secondAssignement {
 
             if (existFlag == 0) {
                 flags.push(me);
-                flagMap.push(parseInt(student) * 100 + parseInt(topic));
+                flagMap.push(student + "_" + topic);
             };
 
 
@@ -393,7 +411,7 @@ td.secondAssignement {
 			<td id="ball_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">Балл</td>
                 <%}%>
         </tr>
- <tbody style="height:240px; text-align: center"> 
+ <tbody style=" text-align: center"> 
             <%int studentCount = 1;
             foreach (VmkLearningKit.Models.Repository.User studentItem in (IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"])
             {%>
@@ -466,7 +484,18 @@ td.secondAssignement {
      
     
    <div>
-   <input id="setRandomVariant" type="button" value="Расставить варианты автоматически" />
+   <select id="SelectTopic"  style=" width:300px">
+   <option disabled selected="selected" value=-1>выберите тему...
+   </option>
+ <%int tCount=0;
+     foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])%>
+ <%{  %>
+    <option value=<%=topicItem.Id%> <%if(((List<long>)ViewData["CountVariants"])[tCount++]==0){%>disabled <%}%>><%=topicItem.Title%>
+    </option>
+ <%}; %>
+    </select>
+    <br/>
+   <input id="setRandomVariant" type="button" value="Расставить варианты автоматически"  style="width:300px"/>
    </div>
     
    <div style="float:left;">
@@ -490,17 +519,8 @@ td.secondAssignement {
  <%=Html.ActionLink("К списку дисциплин","Professor","Cabinet",new{alias=ViewData["ProfessorId"]},new{@class=""}) %>
  <p></p>
  </div>        
- <!---
-  <select id="SelectTopic" >
- <%//int tCount=0;
-     //foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])%>
- <%//{  %>
-    <option value=<%//=topicItem.Id%> <%//if(((List<long>)ViewData["CountVariants"])[tCount++]==0){%>disabled <%//}%>><%//=topicItem.Title%>
-    </option>
- <%//}; %>
-    </select>
- -->
  
+   
  <%Html.EndForm();%>
 
 </asp:Content>
