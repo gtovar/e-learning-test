@@ -69,7 +69,7 @@ namespace VmkLearningKit.Models.Repository
             long lastIdGtv=gtv.Last().Id;
             if (idGeneratedTestVariant <= lastIdGtv && idGeneratedTestVariant >= firstIdGtv)
             {
-                return idGeneratedTestVariant - firstIdGtv + 1;
+                return idGeneratedTestVariant - firstIdGtv+1;
             }
             else { return -1; }
             /*Array tmp = gtv.ToArray<GeneratedTestVariant>();
