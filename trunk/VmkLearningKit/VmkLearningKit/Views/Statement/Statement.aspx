@@ -58,84 +58,58 @@ td.secondAssignement {
 
 </style>
 <script type="text/javascript">
-      $(document).ready(function() {
-             
-       
-       
+    $(document).ready(function() {
+
+
+
         $.datepicker.setDefaults($.extend
         ($.datepicker.regional["ru"])
         );
         $('#datepicker').datepicker({
-					inline: true
-				});
+            inline: true,
+            minDate: "0"
+        });
 
         var countRow = $("#mainStatementTable tr").length;
         //alert(countRow);
         $("#mainStatementTable tr").hide();
         $("#mainStatementTable tr:lt(12)").show();
-        var currentRow = 11;
+        var currentRow = 21;
         var flags = new Array();
-        var initFlag=0;
+
         var flagMap = [];
-        var initFlagMap=0;
-       
-        
-        $("td.changeble").click(function() {
-           if(initFlagMap==0)
-           { 
-                <%for(int i=0;i<((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).Count();i++) {%>
-                    flagMap[<%=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).ElementAt(i).Id%>]=[];
-                    <%for(int j=0;j<((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).Count();j++) {%>
-                    flagMap[<%=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).ElementAt(i).Id%>][<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(j).Id%>]=0;
-                     <%} %>
-                 <%} %>
-                 initFlagMap=1;
-           }
-            var me = $(this).attr('Id');
-            var meArr=(me.split("_"));
-            var student=meArr[0];
-            var topic = meArr[1];
-            
-            if(flagMap[student][topic]==0)
-            {  
-                flags.push(me);
-                flagMap[student][topic]=1;
-             };
-            
-            
-            if (this.firstChild.nodeType == 3) {
-                var tmp = ($("input[id^=changeInput]").val());
-                
-                var max = $("#hiden_" + topic).val();
-                if (parseInt(tmp) > parseInt(max)) {
-                    alert("Неверно задан номер варианта! Максимально возможное значение :" + max);
-                }
-                else if (parseInt(tmp) <= 0)
-                { alert("Неверно задан номер варианта! Номер варианта не может быть меньше или равно 0"); }
-                else {
-                    $("input[id^=changeInput]").replaceWith(tmp);
-                    var newElem = $("<input type='text' size='2'/>").attr("id", "changeInput_" + me).val($(this).text());
 
-                    $(this).empty().append(newElem);
-                    $("input[id^=changeInput]").focus();
-                };
 
-            };
+
+       /* $("#setRandomVariant").click(function() {
+
+            $.post("/Statement/RandomVariants", { topicId: $("#SelectTopic").val(), groupId: $("#param1").val() },
+        function(str) {
+            alert(str);
+            var mas = str.split("]");
+            for(var i=0;i<mas.length;i++)
+            
+        }, "json");
+
+        });
+*/
+
+        $("input[id^='changeInput_']").blur(function() {
+            var tmp = this.val();
+            this.replaceWith(tmp);
+
         });
 
-        $("input[id^='changeInput_']").blur(function(){
-           var tmp=this.val();
-           this.replaceWith(tmp);
-                
-        });
-        
         $("td.unactive").click(function() {
             var me = $(this).attr('Id');
             var topic = (me.split("_"))[1];
-            if (confirm("По данной теме нет сгенерированных вариантов! Перейти на страницу создания тестовых вариантов?")) {
-                var path = "/Testing/Index/" + topic;
-                location.replace(path);
+            /*if (confirm("По данной теме нет сгенерированных вариантов! Перейти на страницу создания тестовых вариантов?")) {
+            var path = "/Testing/Index/" + topic;
+            location.replace(path);
             };
+            */
+            alert("По данной теме нет сгенерированных вариантов!");
+
         })
 
         $("#SetVariants").click(function() {
@@ -179,14 +153,17 @@ td.secondAssignement {
                     var student = setVariant[0];
                     var topic = setVariant[1];
                     var numVar = setVariant[2];
-                    var Help = "/ViewTest/ViewTest/" + '<%=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
-                    var tmp = $('<a href=' + Help + '>' + numVar + '</a>');
-                    var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
+                    if (setVariant[3] != -1) {
+                        var Help = "/ViewTest/ViewTest/" + '<%=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
+                        var tmp = $('<a href=' + Help + '>' + numVar + '</a>');
+                        var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
+                        flags = new Array();
+                    }
                 }
                 alert(dataTemp[0]);
 
             }, "json");
-            flags = new Array();
+
         });
 
         var colFlag = 0;
@@ -200,7 +177,7 @@ td.secondAssignement {
                 HideCol(colFlag, 5, hiddens);
                 colFlag += 5;
                 var showCount = 5;
-                if (hiddens.length - colFlag - 1 < 5) showCount = hiddens.length - colFlag;
+                if (hiddens.length - colFlag < 5) showCount = hiddens.length - colFlag;
                 ShowCol(colFlag, showCount, hiddens);
 
             }
@@ -209,19 +186,20 @@ td.secondAssignement {
         $("#Button2").click(function() {
             if (colFlag - 5 >= 0) {
                 var hideCount = 5;
-                if (hiddens.length - colFlag - 1 < 5) hideCount = hiddens.length - colFlag - 1;
+                if (hiddens.length - colFlag < 5) hideCount = hiddens.length - colFlag;
                 HideCol(colFlag, hideCount, hiddens)
                 colFlag -= 5;
                 ShowCol(colFlag, 5, hiddens);
             }
         });
 
-         $("#Button4").click(function() {
+        $("#Button4").click(function() {
 
             if (currentRow - 10 <= countRow) {
 
                 $("#mainStatementTable tr").hide();
                 var tmp = currentRow - 10;
+                //var tmp=currentRow;
                 $("#mainStatementTable tr:gt(" + tmp + ")").show();
                 $("#mainStatementTable tr:lt(" + tmp + ")").hide();
                 $('#mainStatementTable tr:gt(' + currentRow + ')').hide();
@@ -250,11 +228,54 @@ td.secondAssignement {
         })
 
 
+        $("td.changeble").click(function() {
+
+            var me = $(this).attr('Id');
+            var meArr = (me.split("_"));
+            var student = meArr[0];
+            var topic = meArr[1];
+            var existFlag = 0;
+
+            for (var i = 0; i < flagMap.length; i++) {
+                if (parseInt(student) * 100 + parseInt(topic) == flagMap[i]) {
+                    existFlag = 1;
+                    break;
+                };
+            };
+
+
+            if (existFlag == 0) {
+                flags.push(me);
+                flagMap.push(parseInt(student) * 100 + parseInt(topic));
+            };
+
+
+            if (this.firstChild.nodeType == 3) {
+                var tmp = ($("input[id^=changeInput]").val());
+
+                var max = $("#hiden_" + topic).val();
+                if (parseInt(tmp) > parseInt(max)) {
+                    alert("Неверно задан номер варианта! Максимально возможное значение :" + max);
+                }
+                else if (parseInt(tmp) <= 0)
+                { alert("Неверно задан номер варианта! Номер варианта не может быть меньше или равно 0"); }
+                else {
+                    $("input[id^=changeInput]").replaceWith(tmp);
+                    var newElem = $("<input type='text' size='2'/>").attr("id", "changeInput_" + me).val($(this).text());
+
+                    $(this).empty().append(newElem);
+                    $("input[id^=changeInput]").focus();
+                };
+
+            };
+        });
+
 
 
 
     });
 
+    
     //---------------------------------------
     function ParseTdId(str) {
         var arr = str.split("_");
@@ -330,7 +351,7 @@ td.secondAssignement {
     </table>
     <br/>  
     
-<div style="width:20px; height:450px; background:f7f7f7; float:left">
+<div style="width:20px; height:450px; background:f7f7f7; float:left;">
 <table>
 <tr  style="height:50px">
 </tr>
@@ -345,7 +366,8 @@ td.secondAssignement {
 </table>
    </div> 
 <div>
-<table id="mainStatementTable" border="1"  style=" width:90%;" >
+<table id="mainStatementTable" border="1" >
+ <!--style=" width:90%;" >-->
 <thead >
         <tr id='head1' align="center" style="background-color: Silver; color: Black; font-weight: bold;" >
 			<th rowspan="2" style="width:30px">№</th>
@@ -371,7 +393,7 @@ td.secondAssignement {
 			<td id="ball_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">Балл</td>
                 <%}%>
         </tr>
- <tbody style="height:240px; overflow:auto; text-align: center"> 
+ <tbody style="height:240px; text-align: center"> 
             <%int studentCount = 1;
             foreach (VmkLearningKit.Models.Repository.User studentItem in (IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"])
             {%>
@@ -468,6 +490,16 @@ td.secondAssignement {
  <%=Html.ActionLink("К списку дисциплин","Professor","Cabinet",new{alias=ViewData["ProfessorId"]},new{@class=""}) %>
  <p></p>
  </div>        
+ <!---
+  <select id="SelectTopic" >
+ <%//int tCount=0;
+     //foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])%>
+ <%//{  %>
+    <option value=<%//=topicItem.Id%> <%//if(((List<long>)ViewData["CountVariants"])[tCount++]==0){%>disabled <%//}%>><%//=topicItem.Title%>
+    </option>
+ <%//}; %>
+    </select>
+ -->
  
  <%Html.EndForm();%>
 

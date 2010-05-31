@@ -63,9 +63,19 @@
                if (null != ViewData["SpecialityDisciplineTopics"] && null != ViewData["LecturePlans"])
                {
     %>
-    <h2 style="margin-top: 5px; margin-bottom: 10px;">
-            <%= Html.Encode(specialityDiscipline.Title) %>
-    </h2>
+    <table width='99%'>
+        <tr>
+            <td>
+                <h2 style="margin-top: 5px; margin-bottom: 10px;">
+                <%= Html.Encode(specialityDiscipline.Title) %>
+                </h2>
+            </td>
+            <td style="text-align:right">
+                <%=Html.ActionLink("К ведомости", "Statement", "Statement", new { alias = ((Professor)ViewData["Professor"]).User.NickName, additional = ((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Alias}, new { @class = "" })%>
+            </td>
+        </tr>
+    </table>
+   
     <% if (null != ViewData["LecturePlanSavingHasErrors"] && ((Boolean)ViewData["LecturePlanSavingHasErrors"]))
        { %>
         <div style="text-align: center; color:Red; font-size: 16px; margin: 10px">
@@ -79,6 +89,7 @@
             </div>
      <%} %>
     <% Html.BeginForm("Professor", "Cabinet", FormMethod.Post, new { @name = "LectionPlanForm", @id="LectionPlanForm" } ); %>
+     
     <table width="100%" border="1">
         <tr class="table_header">
             <th style="padding: 7px; width: 30px">
@@ -150,10 +161,7 @@
     </table>
     <input type="submit" style="width: 100px; height: 30px; margin-top: 15px; float: right" name="SaveLecturePlans" id="SaveLecturePlans" value="Сохранить" />
     <input type="hidden" value="<%= lectionPlanIds %>" name="LectionPlanIds" id="LectionPlanIds" />
-    
-    <!----------------------------->
-    <%=Html.ActionLink("К ведомости", "Statement", "Statement", new { alias = ((Professor)ViewData["Professor"]).User.NickName, additional = ((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Alias}, new { @class = "" })%>
-    <!----------------------------->
+       
     <% Html.EndForm(); %>
     
     <%
