@@ -46,6 +46,7 @@ namespace VmkLearningKit.Controllers
             IEnumerable<User> students = repositoryManager.GetUserRepository.GetByGroupId(_group.Id);
             IEnumerable<SpecialityDisciplineTopic> topics = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(_discipline.Id).OrderBy(c => c.Id);
             List<long> varCount = new List<long>();
+            int countItteratation;
             if (topics != null)
             {
                 foreach (SpecialityDisciplineTopic topicItem in topics)
@@ -60,7 +61,8 @@ namespace VmkLearningKit.Controllers
                             {
                                 allAssignedStudentTestVariant.OrderByDescending(o => o.AssignedDate);
                                 AssignedTestVariant tmp;
-                                for (int i = 0; i <= 2; i++)
+                                countItteratation = (allAssignedStudentTestVariant.Count() >= 3) ? 3 : allAssignedStudentTestVariant.Count() ;
+                                for (int i = 0; i < countItteratation; i++)
                                 {
                                     try
                                     {
@@ -125,9 +127,9 @@ namespace VmkLearningKit.Controllers
                         Data = "Задайте дату прохождения тестов "
 
                     };
-                int y = Convert.ToInt16(form["date"].Split('.')[2]);
+                /*int y = Convert.ToInt16(form["date"].Split('.')[2]);
                 int m = Convert.ToInt16(form["date"].Split('.')[1]);
-                int d = Convert.ToInt16(form["date"].Split('.')[0]);
+                int d = Convert.ToInt16(form["date"].Split('.')[0]);*/
                 int fl = 1;
                 long idAddedNewAssignedTestVariant;
                 List<string> errors = new List<string >();
@@ -145,7 +147,7 @@ namespace VmkLearningKit.Controllers
                             if (gtv != null)
                             {
                                 GeneratedTestVariant tmp = gtv.ElementAt((int)(variantNumsId - 1));
-                                idAddedNewAssignedTestVariant = repositoryManager.GetAssignedTestVariantRepository.Add(tmp.Id, studentsId, DateTime.Now, professor.UserId);
+                                idAddedNewAssignedTestVariant = repositoryManager.GetAssignedTestVariantRepository.Add(tmp.Id, studentsId,Convert.ToDateTime(form["date"]), professor.UserId);
                                 if (idAddedNewAssignedTestVariant == -1)
                                 {
                                     fl = 0;
@@ -193,7 +195,47 @@ namespace VmkLearningKit.Controllers
             return RedirectToAction("Statement");
         }
         //-------------------------------------------------------------
+      /*  [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult RandomVariants(long topicId, string groupId)
+        {
+            if (Request.IsAjaxRequest())
+            {
+                IEnumerable<User> students = repositoryManager.GetUserRepository.GetByGroupId(repositoryManager.GetGroupRepository.GetByAlias(groupId).Id);
+                string str = "";
+                IEnumerable<AssignedTestVariant> tmpAssVar;
+                Random rnd = new Random();
+                long tmp, minValue, maxValue;
+                if (repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicId) != null)
+                {
+                    minValue = repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicId).OrderBy(o => o.Id).First().Id;
+                    maxValue = repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicId).OrderBy(o => o.Id).Last().Id;
+                    foreach (User studentItem in students)
+                    {
+                        tmpAssVar = repositoryManager.GetAssignedTestVariantRepository.GetAllStudentTopicTests(topicId, studentItem.Id);
+                        if (tmpAssVar.Count() < 3)
+                        {
+                            tmp = rnd.Next((int)minValue, (int)maxValue);
+                            if (repositoryManager.GetGeneratedTestVariantRepository.GetCountCurrentTopicTestVariants(topicId) > tmpAssVar.Count())
+                                for (int i = 0; i < tmpAssVar.Count(); i++)
+                                {
+                                    if (tmp == tmpAssVar.ElementAt(i).GeneratedTestVariantId) tmp = rnd.Next((int)minValue, (int)maxValue);
+                                }
+                            str += studentItem.Id.ToString() + "_" + topicId.ToString() + "_" + repositoryManager.GetGeneratedTestVariantRepository.GetLocalNumGeneratedTestVariant(tmp).ToString() + "]";
+                        }
+                    }
+                    return new JsonResult
+                    {
+                        ContentType = "text/html",
+                        Data = str
 
+                    };
+                };
+                 
+            };
+            return RedirectToAction("Statement");
+
+        }
+       */
     }
 
 }

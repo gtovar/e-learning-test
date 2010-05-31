@@ -65,14 +65,21 @@ namespace VmkLearningKit.Models.Repository
         {
             GeneratedTestVariant gt = DataContext.GeneratedTestVariants.Single(v => v.Id == idGeneratedTestVariant);
             IEnumerable<GeneratedTestVariant> gtv = DataContext.GeneratedTestVariants.Where(g => g.GeneratedTestId == gt.GeneratedTestId).OrderBy(o => o.Id);
-            Array tmp = gtv.ToArray<GeneratedTestVariant>();
+            long firstIdGtv = gtv.First().Id;
+            long lastIdGtv=gtv.Last().Id;
+            if (idGeneratedTestVariant <= lastIdGtv && idGeneratedTestVariant >= firstIdGtv)
+            {
+                return idGeneratedTestVariant - firstIdGtv + 1;
+            }
+            else { return -1; }
+            /*Array tmp = gtv.ToArray<GeneratedTestVariant>();
 
             for (int i = 0; i < gtv.ToArray<GeneratedTestVariant>().Length; i++)
             {
                 if ((gtv.ToArray<GeneratedTestVariant>()[i]).Id == idGeneratedTestVariant) return i;
             }
             return -1;
-
+            */
         }
 
         public long GetCountCurrentTopicTestVariants(long topicId)
