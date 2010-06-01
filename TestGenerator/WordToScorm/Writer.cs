@@ -188,11 +188,11 @@ namespace WordToScorm
             sw.WriteLine("</html>");
         }
 
-        void WriteQuestion_IMSPage(string text, int QuestionNum)
+        void WriteQuestion_IMSPage(string Text, int QuestionNum)
         {
             sw.WriteLine("<tr style=\"VERTICAL-ALIGN: baseline\">");
             sw.WriteLine("<td class=\"QNum\"><nobr>" + QuestionNum + ".</nobr></td>");
-            sw.WriteLine("<td class=\"QText\" style=\"WIDTH: 100%\" colspan=\"3\">" + text + "</td>");
+            sw.WriteLine("<td class=\"QText\" style=\"WIDTH: 100%\" colspan=\"3\">" + Text + "</td>");
             sw.WriteLine("<td class=\"QPts\" style=\"TEXT-ALIGN: right\">");
             sw.WriteLine("<font face=\"Arial,Helvetica,sans-serif\" size=\"2\"><nobr><b>MaxScore</b></nobr></font></td>");
             sw.WriteLine("</tr>");
