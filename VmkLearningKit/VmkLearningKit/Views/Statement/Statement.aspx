@@ -52,10 +52,9 @@ td.changeble {
 }
 td.newAssignement
 {
-    background-color:#F5f9ff;
-border-color:silver;
-border-width:3px;
- text-align:center;   
+    background-color:#Fef0f0;
+    border-width:2px;
+    text-align:center;   
 }
 
 td.unactive,
@@ -87,11 +86,13 @@ td.secondAssignement {
         var flagExistInputChange = 0
         var flagMap = [];
 
-
+        $("#clear").click(function() {
+            $("td.changeble").empty().append(" ");
+        })
 
         $("#setRandomVariant").click(function() {
-        if ($("#SelectTopic").val()!=-1){
-            $.post("/Statement/RandomVariants", { topicId: $("#SelectTopic").val(), groupId: $("#param1").val() },
+            if ($("#SelectTopic").val() != -1) {
+                $.post("/Statement/RandomVariants", { topicId: $("#SelectTopic").val(), groupId: $("#param1").val() },
         function(str) {
             flags = [];
             var mas = str.split("]");
@@ -104,9 +105,9 @@ td.secondAssignement {
                 flags.push(td[0].id);
             }
             alert("для назначения тестов нажмите:Назначить тесты");
-            
+
         }, "json");
-             }
+            }
         });
 
 
@@ -369,7 +370,7 @@ td.secondAssignement {
     </table>
     <br/>  
     
-<div style="width:20px; height:450px; background:f7f7f7; float:left;">
+<div style="width:20px; height:200px; background:f7f7f7; float:left;">
 <table>
 <tr  style="height:50px">
 </tr>
@@ -464,9 +465,9 @@ td.secondAssignement {
      </table>
  </div> 
  <div>
- <table width=90%>
+ <table >
     <tr>
-    <td  style="width:850px"></td>
+    <td  style="width:1115px"></td>
         <td   style=" text-align:right">
         <img id="Button2" alt="" src="/Content/Images/left.png" height=20px width=20px  />
         </td>
@@ -480,9 +481,7 @@ td.secondAssignement {
  </table> 
  </div> 
        
-    <br />
      
-    
    <div>
    <select id="SelectTopic"  style=" width:300px">
    <option disabled selected="selected" value=-1>выберите тему...
@@ -495,7 +494,8 @@ td.secondAssignement {
  <%}; %>
     </select>
     <br/>
-   <input id="setRandomVariant" type="button" value="Расставить варианты автоматически"  style="width:300px"/>
+   <input id="setRandomVariant" type="button" value="Расставить варианты автоматически"  style="width:230px;"/>
+   <input id="clear" type="button" value="Очистить"  style="width:70px;"/>
    </div>
     
    <div style="float:left;">

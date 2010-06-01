@@ -205,7 +205,7 @@ namespace VmkLearningKit.Controllers
                 if (repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicId) != null)
                 {
                     minValue = repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicId).OrderBy(o => o.Id).First().Id;
-                    maxValue = repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicId).OrderBy(o => o.Id).Last().Id;
+                    maxValue = repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicId).OrderBy(o => o.Id).Last().Id+1;
                     foreach (User studentItem in students)
                     {
                         tmpAssVar = repositoryManager.GetAssignedTestVariantRepository.GetAllStudentTopicTests(topicId, studentItem.Id);
