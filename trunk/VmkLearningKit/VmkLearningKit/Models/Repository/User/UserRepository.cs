@@ -137,7 +137,7 @@ namespace VmkLearningKit.Models.Repository
             }
             catch (Exception ex)
             {
-                Utility.WriteToLog("!!!!в базе данных нет студентов принадлежащих группе с id " + id + "!!!!", ex);
+                Utility.WriteToLog("!!!!There aren't students corresponded such groupId " + id + "!!!!", ex);
 
                 return null;
             }

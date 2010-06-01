@@ -18,27 +18,6 @@ namespace VmkLearningKit.Models.Repository
             DataContext = new VmkLearningKitDataContext(connectionString);
         }
 
-        /*
-        public void RestoreDB()
-        {
-            string sql = @"USE master
-                              RESTORE DATABASE VLK_DB
-	                          FROM  DISK = N'C:\User Files\Education\MLG\svn\VmkLearningKit\VmkLearningKit\DbBackups\VLKDb.bak'
-	                          WITH  FILE = 1,
-	                          MOVE N'VLK_DB' TO N'C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\Data\VLK_DB.mdf',
-	                          MOVE N'VLK_DB_Log' TO N'C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\Data\VLK_DB.ldf',
-	                          NOUNLOAD,  STATS = 10
-                              USE VLK_DB";
-            try
-            {
-                DataContext.ExecuteCommand(sql);
-            }
-            catch (Exception ex)
-            {
-                Utility.WriteToLog("RepositoryManager.RestoreDB: failed", ex);   
-            }
-        }
-        */
         public static RepositoryManager GetRepositoryManager
         {
             get

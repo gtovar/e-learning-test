@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Common.Logging;
+using System.Web;
 
 using Microsoft.Office.Interop;
 using Microsoft.Office.Interop.Word;
@@ -453,11 +454,11 @@ namespace WordToScorm
                     string st = wordApplication.Selection.Words.First.Text;
                     if (!st.Equals("\r"))
                     {
-                        questionStr += st.Trim('\n', '\r');
+                        questionStr += HttpUtility.HtmlEncode(st.Trim('\n', '\r'));
                     }
                     else
                     {
-                        questionStr += "</br> ";
+                        questionStr += "<br /> ";
                     }
                 }
 
@@ -503,11 +504,11 @@ namespace WordToScorm
                     string st = wordApplication.Selection.Words.First.Text;
                     if (!st.Equals("\r"))
                     {
-                        questionStr += st.Trim('\n', '\r');
+                        questionStr += HttpUtility.HtmlEncode(st.Trim('\n', '\r'));
                     }
                     else
                     {
-                        questionStr += "</br> ";
+                        questionStr += "<br /> ";
                     }
                 }
 
@@ -602,11 +603,11 @@ namespace WordToScorm
                     string st = wordApplication.Selection.Words.First.Text;
                     if (!st.Equals("\r"))
                     {
-                        answerStr += st.Trim('\n', '\r');
+                        answerStr += HttpUtility.HtmlEncode(st.Trim('\n', '\r'));
                     }
                     else
                     {
-                        answerStr += "</br> ";
+                        answerStr += "<br /> ";
                     }
                 }
 
@@ -679,13 +680,13 @@ namespace WordToScorm
                     string st = wordApplication.Selection.Words.First.Text;
                     if (!st.Equals("\r") && st.IndexOf("#") != 0)
                     {
-                        answerStr += st;
+                        answerStr += HttpUtility.HtmlEncode(st);
                     }
                     else
                     {
                         if (st.Equals("\r"))
                         {
-                            answerStr += "</br> ";
+                            answerStr += "<br /> ";
                         }
                     }
                 }
