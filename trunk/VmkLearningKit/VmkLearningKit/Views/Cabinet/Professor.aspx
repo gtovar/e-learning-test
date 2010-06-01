@@ -63,15 +63,17 @@
                if (null != ViewData["SpecialityDisciplineTopics"] && null != ViewData["LecturePlans"])
                {
     %>
-    <table width='99%'>
+    <table width='100%'>
         <tr>
             <td>
                 <h2 style="margin-top: 5px; margin-bottom: 10px;">
                 <%= Html.Encode(specialityDiscipline.Title) %>
                 </h2>
             </td>
-            <td style="text-align:right">
+            <td style="text-align:center; width:150px">
+               <p style="margin-top: 5px; margin-bottom: 10px; font-size:medium">
                 <%=Html.ActionLink("К ведомости", "Statement", "Statement", new { alias = ((Professor)ViewData["Professor"]).User.NickName, additional = ((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Alias}, new { @class = "" })%>
+                </p>
             </td>
         </tr>
     </table>
