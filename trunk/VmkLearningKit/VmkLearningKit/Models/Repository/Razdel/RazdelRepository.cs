@@ -5,6 +5,9 @@ using System.Web;
 
 namespace VmkLearningKit.Models.Repository
 {
+    /// <summary>
+    /// Реализует набор методов, определенных в интерфейсах «IRepository<Razdel>» и «IRazdelRepository»
+    /// </summary>
     class RazdelRepository : Repository<Razdel>, IRazdelRepository
     {
         public RazdelRepository(VmkLearningKitDataContext dataContext) :
@@ -41,10 +44,10 @@ namespace VmkLearningKit.Models.Repository
         {
             //получаем раздел
             Razdel r = DataContext.Razdels.SingleOrDefault(t => t.Id == razdelId);
-            
+
             // получаем тему
             SpecialityDisciplineTopic sdt = DataContext.SpecialityDisciplineTopics.SingleOrDefault(t => t.Id == r.SpecialityDisciplineTopicId);
-        
+
             //получаем список разделов темы
             IEnumerable<Razdel> razdels = DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == sdt.Id);
 
@@ -84,7 +87,7 @@ namespace VmkLearningKit.Models.Repository
 
             return (IEnumerable<Razdel>)razdelsList;
         }
-        
+
         public string GetSpecialityDisciplineTitle(long id)
         {
             Razdel razdel = GetById(id);
@@ -166,9 +169,9 @@ namespace VmkLearningKit.Models.Repository
         {
             Razdel updatedObj = GetById(updatedObjId);
 
-            updatedObj.SpecialityDisciplineTopicId        = newObjTopicId;
-            updatedObj.Title                              = newObjTitle;
-            updatedObj.QuestionsCount                     = newObjQuestionsCount;
+            updatedObj.SpecialityDisciplineTopicId = newObjTopicId;
+            updatedObj.Title = newObjTitle;
+            updatedObj.QuestionsCount = newObjQuestionsCount;
 
             DataContext.SubmitChanges();
         }
@@ -178,7 +181,7 @@ namespace VmkLearningKit.Models.Repository
             Razdel updatedObj = GetById(updatedObjId);
 
             updatedObj.Title = newObjTitle;
-            
+
             DataContext.SubmitChanges();
         }
 

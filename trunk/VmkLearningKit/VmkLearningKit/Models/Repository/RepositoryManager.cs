@@ -7,10 +7,19 @@ using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Models.Repository 
 {
+    /// <summary>
+    /// Единый класс для доступа к классам-оберткам для каждого логического блока данных 
+    /// </summary>
     public class RepositoryManager : RepositoryData
     {
+        /// <summary>
+        /// Статическое поле, содержащее строку подключения к базе данных
+        /// </summary>
         private static string connectionString = ConfigurationManager.ConnectionStrings[Constants.CONNECTION_STRING_NAME].ConnectionString;
         
+        /// <summary>
+        /// Статическое поле для для хранения объекта класса «RepositoryManager»
+        /// </summary>
         private static RepositoryManager repositoryManager = null;
 
         private RepositoryManager()
@@ -31,6 +40,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «UserRepository»
+        /// </summary>
         private IUserRepository userRepository;
 
         public IUserRepository GetUserRepository
@@ -46,6 +58,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «ProfessorRepository»
+        /// </summary>
         private IProfessorRepository professorRepository;
 
         public IProfessorRepository GetProfessorRepository
@@ -61,6 +76,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «StudentRepository»
+        /// </summary>
         private IStudentRepository studentRepository;
 
         public IStudentRepository GetStudentRepository
@@ -76,6 +94,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «SpecialityRepository»
+        /// </summary>
         private ISpecialityRepository specialityRepository;
 
         public ISpecialityRepository GetSpecialityRepository
@@ -91,6 +112,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «SpecializationRepository»
+        /// </summary>
         private ISpecializationRepository specializationRepository;
 
         public ISpecializationRepository GetSpecializationRepository
@@ -106,6 +130,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «SpecialityDisciplineRepository»
+        /// </summary>
         private ISpecialityDisciplineRepository specialityDisciplineRepository;
 
         public ISpecialityDisciplineRepository GetSpecialityDisciplineRepository
@@ -121,6 +148,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «SpecialityDisciplineTermRepository»
+        /// </summary>
         private ISpecialityDisciplineTermRepository specialityDisciplineTermRepository;
 
         public ISpecialityDisciplineTermRepository GetSpecialityDisciplineTermRepository
@@ -136,6 +166,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «SpecialityDisciplineTopicRepository»
+        /// </summary>
         private ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository;
 
         public ISpecialityDisciplineTopicRepository GetSpecialityDisciplineTopicRepository
@@ -151,6 +184,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «DepartmentRepository»
+        /// </summary>
         private IDepartmentRepository departmentRepository;
 
         public IDepartmentRepository GetDepartmentRepository
@@ -166,6 +202,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «ChairRepository»
+        /// </summary>
         private IChairRepository chairRepository;
 
         public IChairRepository GetChairRepository
@@ -181,6 +220,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «EducationPlanRepository»
+        /// </summary>
         private IEducationPlanRepository educationPlanRepository;
 
         public IEducationPlanRepository GetEducationPlanRepository
@@ -196,6 +238,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «LecturePlanRepository»
+        /// </summary>
         private ILecturePlanRepository lecturePlanRepository;
 
         public ILecturePlanRepository GetLecturePlanRepository
@@ -211,6 +256,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «PracticePlanRepository»
+        /// </summary>
         private IPracticePlanRepository practicePlanRepository;
 
         public IPracticePlanRepository GetPracticePlanRepository
@@ -226,6 +274,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «AnswerRepository»
+        /// </summary>
         private IAnswerRepository answerRepository;
 
         public IAnswerRepository GetAnswerRepository
@@ -241,6 +292,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «RazdelRepository»
+        /// </summary>
         private IRazdelRepository razdelRepository;
 
         public IRazdelRepository GetRazdelRepository
@@ -256,6 +310,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «QuestionRepository»
+        /// </summary>
         private IQuestionRepository questionRepository;
 
         public IQuestionRepository GetQuestionRepository
@@ -271,6 +328,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «GroupRepository»
+        /// </summary>
         private IGroupRepository groupRepository;
 
         public IGroupRepository GetGroupRepository
@@ -286,6 +346,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «LectureTimetableRepository»
+        /// </summary>
         private ILectureTimetableRepository lectureTimetableRepository;
 
         public ILectureTimetableRepository GetLectureTimetableRepository
@@ -301,6 +364,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «GeneratedQuestionRepository»
+        /// </summary>
         private IGeneratedQuestionRepository generatedQuestionRepository;
 
         public IGeneratedQuestionRepository GetGeneratedQuestionRepository
@@ -315,6 +381,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «GeneratedTestVariantRepository»
+        /// </summary>
         private IGeneratedTestVariantRepository generatedTestVariantRepository;
 
         public IGeneratedTestVariantRepository GetGeneratedTestVariantRepository
@@ -330,6 +399,9 @@ namespace VmkLearningKit.Models.Repository
 
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «GeneratedTestRepository»
+        /// </summary>
         private IGeneratedTestRepository generatedTestRepository;
 
         public IGeneratedTestRepository GetGeneratedTestRepository
@@ -344,6 +416,9 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        /// <summary>
+        /// Поле для хранения объекта класса «AssignedTestVariantRepository»
+        /// </summary>
         private IAssignedTestVariantRepository assignedTestVariantRepository;
 
         public IAssignedTestVariantRepository GetAssignedTestVariantRepository

@@ -5,10 +5,16 @@ using System.Web;
 
 namespace VmkLearningKit.Models.Repository
 {
+    /// <summary>
+    /// Базовый класс для работы с классами сущностей
+    /// </summary>
     public class RepositoryData
     {
         #region Private Fields
 
+        /// <summary>
+        /// Объект класса «VmkLearningKitDataContext»
+        /// </summary>
         private VmkLearningKitDataContext dataContext;
 
         #endregion
@@ -41,7 +47,9 @@ namespace VmkLearningKit.Models.Repository
             DataContext = new VmkLearningKitDataContext();
         }
 
-
+        /// <summary>
+        /// Отправляет изменения, которые были выполнены по отношению к извлеченным объектам базы данных
+        /// </summary>
         public void SubmitChanges()
         {
             DataContext.SubmitChanges();
