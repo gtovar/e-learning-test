@@ -8,13 +8,18 @@ using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Controllers
 {
+    /// <summary>
+    /// Определяет набор действий для работы с разделами 
+    /// для пользователей с ролями «Professor», «Metodist», «Admin»
+    /// </summary>
     [HandleError]
     [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
     [OutputCache(Location = System.Web.UI.OutputCacheLocation.None)]
     public class TestingController : AbstractController
     {
         /// <summary>
-        /// Действие, отображающее список разделов по теме
+        /// Действие, отображающее список разделов по теме с идентификатором alias, 
+        /// при выполнении GET-запроса по адресу /Testing/Index/alias
         /// </summary>
         /// <param name="alias">Идентификатор темы</param>
         [AcceptVerbs(HttpVerbs.Get)]
@@ -52,7 +57,8 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Действие для редактирования раздела 
+        /// Действие, отображающее форму для редактирования названия раздела с идентификатором alias, 
+        /// при выполнении GET-запроса по адресу /Testing/EditRazdel/alias
         /// </summary>
         /// <param name="alias">Идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Get)]
@@ -72,10 +78,11 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Действие для обработки изменений о разделе
+        /// Действие, выполняющее обработку изменений, сделанных на странице редактирования названия раздела, 
+        /// при выполнении POST-запроса по адресу /Testing/EditRazdel/alias
         /// </summary>
         /// <param name="alias">Идентификатор раздела</param>
-        /// <param name="form">Полученная форма</param>
+        /// <param name="form">Форма, отправленная на сервер</param>
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditRazdel(long alias, FormCollection form)
@@ -98,7 +105,10 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Действие для удаления раздела
+        /// Действие, выполняющее удаление раздела с идентификатором alias, 
+        /// при выполнении POST-запроса по адресу /Testing/DeleteRazdel/alias. 
+        /// Если удаляемый раздел содержит тестовые вопросы – соответствующие записи в таблицах 
+        /// «Question» и «Answer» будут удалены
         /// </summary>
         /// <param name="alias">Идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Post)]
@@ -119,10 +129,11 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Действие для добавления нового раздела
+        /// Действие, выполняющее добавление раздела по теме с идентификатором alias, 
+        /// при выполнении POST-запроса по адресу /Testing/AddRazdel/alias
         /// </summary>
         /// <param name="alias">Идентификатор темы</param>
-        /// <param name="form">Полученная форма</param>
+        /// <param name="form">Форма, отправленная на сервер</param>
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AddRazdel(long alias, FormCollection form)
