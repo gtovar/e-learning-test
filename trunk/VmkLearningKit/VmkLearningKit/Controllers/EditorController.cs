@@ -395,7 +395,7 @@ namespace VmkLearningKit.Controllers
                                 default: return RedirectToAction("List", new { alias = alias });
                             }
 
-                            long questionId = repositoryManager.GetQuestionRepository.Add(alias, VLKConstants.TITLE_DEFAULT + " " + (i+1).ToString(), type, HttpUtility.HtmlDecode(testQuestion.Question.Text), VLKConstants.QUESTION_CAN_NOT_COMMENTED);
+                            long questionId = repositoryManager.GetQuestionRepository.Add(alias, VLKConstants.TITLE_DEFAULT, type, HttpUtility.HtmlDecode(testQuestion.Question.Text), VLKConstants.QUESTION_CAN_NOT_COMMENTED);
 
                             for (int j = 0; j < testQuestion.Answers.Count; j++)
                             {

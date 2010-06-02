@@ -514,7 +514,7 @@
         <div class="UploadContainer">
             <% using (Html.BeginForm("Upload", "Editor", new { alias = razdelId }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadWordForm", name = "UploadWordForm" }))
                { %>
-                    <p align="center">Выберите word-документ в формате <b>.doc</b> и нажмите <b>добавить</b></p>
+                    <p align="center">Выберите Word-документ в формате <b>.doc</b> и нажмите <b>добавить</b></p>
                     <p align="center">
                         <input type="file" id="FileUpload" name="FileUpload" value="Обзор" class="Button" /> 
                     </p>
