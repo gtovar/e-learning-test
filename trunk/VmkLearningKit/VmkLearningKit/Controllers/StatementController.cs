@@ -59,10 +59,10 @@ namespace VmkLearningKit.Controllers
                             IEnumerable<AssignedTestVariant> allAssignedStudentTestVariant = repositoryManager.GetAssignedTestVariantRepository.GetAllStudentTopicTests(topicItem.Id, studentItem.Id);
                             if (allAssignedStudentTestVariant != null && allAssignedStudentTestVariant.Count() != 0)
                             {
-                                allAssignedStudentTestVariant.OrderByDescending(o => o.AssignedDate);
+                                //allAssignedStudentTestVariant.OrderByDescending(o=>o.AssignedDate);
                                 AssignedTestVariant tmp;
                                 countItteratation = (allAssignedStudentTestVariant.Count() >= 3) ? 3 : allAssignedStudentTestVariant.Count() ;
-                                for (int i = 0; i < countItteratation; i++)
+                                for (int i = countItteratation-1; i >= 0; i--)
                                 {
                                     try
                                     {
