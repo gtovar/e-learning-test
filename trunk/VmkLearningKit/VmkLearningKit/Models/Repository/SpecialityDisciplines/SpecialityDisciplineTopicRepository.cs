@@ -66,15 +66,6 @@ namespace VmkLearningKit.Models.Repository
             return 0;
         }
 
-        public IEnumerable<SpecialityDisciplineTopic> GetAllNeighbourTopics(long id)
-        {
-            var result = (from c in DataContext.SpecialityDisciplineTopics
-                          where c.SpecialityDisciplineId == GetById(id).SpecialityDisciplineId
-                          select c);
-
-            return (IEnumerable<SpecialityDisciplineTopic>)result;
-        }
-
         public SpecialityDisciplineTopic GetByTitle(string title)
         {
             SpecialityDisciplineTopic obj = null;

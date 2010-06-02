@@ -10,16 +10,20 @@ using System.IO;
 
 namespace VmkLearningKit.Controllers
 {
+    /// <summary>
+    /// Определяет набор действий для пользователей с ролями «Professor», «Metodist», «Admin» для 
+    /// редактора тестовых вопросов
+    /// </summary>
     [HandleError]
     [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
     [OutputCache(Location = System.Web.UI.OutputCacheLocation.None)]
     public class EditorController : AbstractController
     {
         /// <summary>
-        /// Action, отображающий полный список вопросов по разделу с идентификатором id
-        /// domain/Editor/List/alias
+        /// Действие, отображающее список тестовых вопросов в разделе с идентификатором alias, 
+        /// при выполнении GET-запроса по адресу /Editor/List/alias
         /// </summary>
-        /// <param name="alias">идентификатор раздела</param>
+        /// <param name="alias">Идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult List(long alias)
         {
@@ -47,10 +51,11 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, отображающий подробную информацию (с возможностью редактирования) для вопроса 
-        /// с идентификатором alias
+        /// Действие, отображающее форму для редактирования тестового вопроса с идентификатором alias, 
+        /// на странице списка тестовых вопросов по разделу (List), которому принадлежит тестовый вопрос, 
+        /// при выполнении GET-запроса по адресу /Editor/Edit/alias
         /// </summary>
-        /// <param name="alias">идентификатор вопроса</param>
+        /// <param name="alias">Идентификатор вопроса</param>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Edit(long alias)
         {
@@ -106,10 +111,11 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий изменение вопроса с идентификатором alias
+        /// Действие, выполняющее обработку изменений, сделанных на странице редактирования тестового вопроса 
+        /// с идентификатором alias, при выполнении POST-запроса по адресу /Editor/Edit/alias
         /// </summary>
-        /// <param name="alias">идентификатор вопроса</param>
-        /// <param name="form">форма, отправленная на сервер</param>
+        /// <param name="alias">Идентификатор вопроса</param>
+        /// <param name="form">Форма, отправленная на сервер</param>
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(long alias, FormCollection form)
@@ -165,9 +171,10 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий удаление вопроса с идентификатором alias
+        /// Действие, выполняющее удаление тестового вопроса с идентификатором alias, 
+        /// при выполнении POST-запроса по адресу /Editor/Delete/alias
         /// </summary>
-        /// <param name="alias">идентификатор вопроса</param>
+        /// <param name="alias">Идентификатор вопроса</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Delete(long alias)
         {
@@ -186,9 +193,10 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, отображающий главную форму для создания вопроса (в разделе с идентификатором alias)
+        /// Действие, отображающее форму для выбора типа создаваемого тестового вопроса в разделе с 
+        /// идентификатором alias, при выполнении GET-запроса по адресу /Editor/Create/alias
         /// </summary>
-        /// <param name="alias">идентификатор раздела</param>
+        /// <param name="alias">Идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Create(long alias)
         {
@@ -244,7 +252,8 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, загружающий форму для создания простого вопроса
+        /// Действие, отображающее форму для создания тестового вопроса типа «простой вопрос», 
+        /// при выполнении POST-запроса по адресу /Editor/CreateSimple
         /// </summary>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateSimple()
@@ -260,7 +269,8 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, загружающий форму для создания дистрибутивного вопроса
+        /// Действие, отображающее форму для создания тестового вопроса типа «дистрибутивный вопрос», 
+        /// при выполнении POST-запроса по адресу /Editor/CreateDistributive
         /// </summary>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateDistributive()
@@ -276,7 +286,8 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, загружающий форму для создания альтернативного вопроса
+        /// Действие, отображающее форму для создания тестового вопроса типа «альтернативный вопрос», 
+        /// при выполнении POST-запроса по адресу /Editor/CreateAlternative
         /// </summary>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateAlternative()
@@ -292,7 +303,8 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, загружающий форму для создания вопроса типа "формула"
+        /// Действие, отображающее форму для создания тестового вопроса типа «вопрос-формула», 
+        /// при выполнении POST-запроса по адресу /Editor/CreateFormula
         /// </summary>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult CreateFormula()
@@ -308,10 +320,11 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий создание вопроса (в разделе с идентификатором alias)
+        /// Действие, выполняющее обработку нового тестового вопроса в разделе с идентификатором alias, 
+        /// при выполнении POST-запроса по адресу /Editor/Create/alias
         /// </summary>
-        /// <param name="alias">идентификатор раздела</param>
-        /// <param name="form">форма, отправленная на сервер</param>
+        /// <param name="alias">Идентификатор раздела</param>
+        /// <param name="form">Форма, отправленная на сервер</param>
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(long alias, FormCollection form)
@@ -353,11 +366,11 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий загрузку и разбор word-документов 
-        /// (подготвленный преподавателем список тестовых вопросов)
+        /// Действие, выполняющее загрузку на сервер выбранного пользователем файла (Word-документа), 
+        /// содержащего список тестовых вопросов по разделу с идентификатором alias, 
+        /// а также распознавание и обработку тестовых вопросов
         /// </summary>
-        /// <param name="alias">идентификатор раздела</param>
-        /// <returns></returns>
+        /// <param name="alias">Идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Upload(long alias)
         {
@@ -416,9 +429,10 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий удаление ответа с идентификатором alias
+        /// Действие, выполняющее удаление ответа с идентификатором alias, 
+        /// при выполнении POST-запроса по адресу /Editor/AnswerDelete/alias
         /// </summary>
-        /// <param name="alias">идентификатор ответа</param>
+        /// <param name="alias">Идентификатор ответа</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult AnswerDelete(long alias)
         {
@@ -437,9 +451,10 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий загрузку изображений на сервер
+        /// Действие, выполняющее загрузку на сервер выбранного пользователем изображения, 
+        /// при выполнении POST-запроса по адресу /Editor/ImageUpload
         /// </summary>
-        /// <returns>ссылка на загруженное изображение или ошибка</returns>
+        /// <returns>Ссылка на загруженное изображение или ошибка</returns>
         [AcceptVerbs(HttpVerbs.Post)]
         public JsonResult ImageUpload()
         {
@@ -518,10 +533,12 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, отображающий список вопросов с атрибутом IsDeleted == 1 (удаленные вопросы)
-        /// с возможностью их восстановления
+        /// Действие, отображающее список удаленных тестовых вопросов 
+        /// (значение поля «IsDeleted» записи в таблице «Question» равно 1) 
+        /// в разделе с идентификатором alias, 
+        /// при выполнении GET-запроса по адресу /Editor/Restore/alias
         /// </summary>
-        /// <param name="alias">идентификатор раздела</param>
+        /// <param name="alias">Идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Restore(long alias)
         {
@@ -549,9 +566,12 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий восстановление вопроса с идентификатором alias
+        /// Действие, выполняющее восстановление 
+        /// (изменение значения поля «IsDeleted» записи в таблице «Question» на 0) 
+        /// тестового вопроса с идентификатором alias, 
+        /// при выполнении POST-запроса по адресу /Editor/RestoreQuestion/alias
         /// </summary>
-        /// <param name="alias">идентификатор вопроса</param>
+        /// <param name="alias">Идентификатор вопроса</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public void RestoreQuestion(long alias)
         {
@@ -565,9 +585,10 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий отображение вопроса с идентификатором alias
+        /// Действие, отображающее форму для редактирования тестового вопроса с идентификатором alias, 
+        /// при выполнении GET-запроса по адресу /Editor/Question/alias
         /// </summary>
-        /// <param name="alias">идентификатор вопроса</param>
+        /// <param name="alias">Идентификатор вопроса</param>
         public ActionResult Question(long alias)
         {
             try
@@ -598,11 +619,13 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, отображающий форму для распределения вопросов 
-        /// (из раздела с идентификатором additional) по группам
+        /// Действие, отображающее форму распределения тестовых вопросов в разделе с идентификатором 
+        /// additional по группам типа alias 
+        /// («Double» - группы «вопросов-дублеров», «Exclusion» - группы «вопросов-исключений»), 
+        /// при выполнении GET-запроса по адресу /Editor/Grouping/alias/additional
         /// </summary>
-        /// <param name="alias">тип группы (Double или Exclusion)</param>
-        /// <param name="additional">идентификатор раздела</param>
+        /// <param name="alias">Тип группы (Double или Exclusion)</param>
+        /// <param name="additional">Идентификатор раздела</param>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Grouping(string alias, long additional)
         {
@@ -658,11 +681,12 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий добавление вопроса с идентификатором alias в группу вопросов-дублеров
-        /// с номером additional
+        /// Действие, выполняющее добавление тестового вопроса с идентификатором alias в группу 
+        /// «вопросов-дублеров» с номером additional, 
+        /// при выполнении POST-запроса по адресу /Editor/AddToDoubleGroup/alias/additional
         /// </summary>
-        /// <param name="alias">идентификатор вопроса</param>
-        /// <param name="additional">номер группы</param>
+        /// <param name="alias">Идентификатор вопроса</param>
+        /// <param name="additional">Номер группы</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public void AddToDoubleGroup(long alias, int additional)
         {
@@ -677,11 +701,12 @@ namespace VmkLearningKit.Controllers
         }
 
         /// <summary>
-        /// Action, выполняющий добавление вопроса с идентификатором alias в группу вопросов-дублеров
-        /// с номером additional
+        /// Действие, выполняющее добавление тестового вопроса с идентификатором alias в группу 
+        /// «вопросов-исключений» с номером additional, 
+        /// при выполнении POST-запроса по адресу /Editor/AddToExclusionGroup/alias/additional
         /// </summary>
-        /// <param name="alias">идентификатор вопроса</param>
-        /// <param name="additional">номер группы</param>
+        /// <param name="alias">Идентификатор вопроса</param>
+        /// <param name="additional">Номер группы</param>
         [AcceptVerbs(HttpVerbs.Post)]
         public void AddToExclusionGroup(long alias, int additional)
         {
