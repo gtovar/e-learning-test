@@ -143,7 +143,7 @@
                                             if (question.DoubleGroup == VLKConstants.FAKE_VALUE)
                                             {
                                             %>
-                                            <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
+                                            <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(question.Title, "Question", new { alias = question.Id }) %></li>
                                             <%
                                             }
                                         } 
@@ -183,13 +183,13 @@
                                                     <ul class="Grouping" id="Group<%= questionGroupIndex.ToString() %>">
                                                         Группа вопросов-дублеров <%= localGroupsCount.ToString() %>
                                                         <br />
-                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
+                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(question.Title, "Question", new { alias = question.Id }) %></li>
                                                     <%
                                                 }
                                                 else if (question.DoubleGroup == questionGroupIndex)
                                                 {
                                                     %>
-                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
+                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(question.Title, "Question", new { alias = question.Id }) %></li>
                                                     <%
                                                 }
                                             }
@@ -224,7 +224,7 @@
                                             if (question.ExclusionGroup == VLKConstants.FAKE_VALUE)
                                             {
                                             %>
-                                            <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
+                                            <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(question.Title, "Question", new { alias = question.Id }) %></li>
                                             <%
                                             }
                                         } 
@@ -264,13 +264,13 @@
                                                     <ul class="Grouping" id="Group<%= questionGroupIndex.ToString() %>">
                                                         Группа вопросов-исключений <%= localGroupsCount.ToString() %>
                                                         <br />
-                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
+                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(question.Title, "Question", new { alias = question.Id }) %></li>
                                                     <%
                                                 }
                                                 else if (question.ExclusionGroup == questionGroupIndex)
                                                 {
                                                     %>
-                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></li>
+                                                        <li id="<%= question.Id.ToString() %>" class="QuestionInGroup"><%= Html.ActionLink(question.Title, "Question", new { alias = question.Id }) %></li>
                                                     <%
                                                 }
                                             }
