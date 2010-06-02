@@ -61,7 +61,8 @@ namespace VmkLearningKit.Models.Repository
                     foreach (AssignedTestVariant it in tmp)
                         atv.Add(it);
             }
-            return (IEnumerable<AssignedTestVariant>)atv.OrderByDescending(o=>o.AssignedDate);
+            return (IEnumerable<AssignedTestVariant>)atv;
+            
         }
 
 
