@@ -413,7 +413,7 @@
             <div class="Question">
                 <div class="QuestionHeader">
                     <div class="QuestionNumber"><%= Html.Encode(questionNumber) %></div>
-                    <div class="QuestionTitle"><%= Html.ActionLink(Html.Encode(question.Title), "Question", new { alias = question.Id }) %></div>
+                    <div class="QuestionTitle"><%= Html.ActionLink(question.Title, "Question", new { alias = question.Id }) %></div>
                     <div class="QuestionType">
                     <%
                         switch (question.Type)
