@@ -102,7 +102,7 @@ td.secondAssignement {
                 tmp = mas[i].split("_");
                 td = $("td[id^=" + tmp[0] + "_" + tmp[1] + "_" + "].changeble");
                 td.empty().append(tmp[2]);
-                flags.push(td[0].id);
+                flags.push($("td[id^=" + tmp[0] + "_" + tmp[1] + "_" + "].changeble").attr('id'));
             }
             alert("для назначения тестов нажмите:Назначить тесты");
 
