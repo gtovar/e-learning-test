@@ -9,7 +9,7 @@ using System.IO;
 
 namespace VmkLearningKit.Controllers
 {
-    public class TestsController : Controller
+    public class TestsController : AbstractController
     {
         /// <summary>
         /// Action, отображающий все сгенерированные тесты по каждой теме

@@ -287,15 +287,15 @@ namespace VmkLearningKit.Models.Repository
                 ImageDir.Create();
 
                 // записываем файлы тестового варианта
-                Builder imspage = new Builder("Imspage.htm", Dir + "\\P1000", gtv, s);
-                imspage.WriteImsPage();
+                /*Builder imspage = new Builder("Imspage.htm", Dir + "\\P1000", gtv, s);
+                imspage.WriteImsPage();*/
 
                 Builder page = new Builder("page.htm", Dir + "\\P1000", gtv, s);
                 page.WritePage();
 
                 // записываем файл манифеста во временный каталог
-                Manifest manifest = new Manifest();
-                manifest.Write(Dir + "\\imsmanifest.xml");
+                /*Manifest manifest = new Manifest();
+                manifest.Write(Dir + "\\imsmanifest.xml");*/
 
                 // записываем файл индекса во временный каталог
                 Index index1 = new Index();

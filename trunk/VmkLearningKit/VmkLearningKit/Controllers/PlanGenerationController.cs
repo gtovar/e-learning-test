@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace VmkLearningKit.Controllers
 {
-    public class PlanGenerationController : Controller
+    public class PlanGenerationController : AbstractController
     {
         /// <summary>
         /// Action, отображающий план генерации тестовых вариантов по каждой теме
@@ -112,7 +112,8 @@ namespace VmkLearningKit.Controllers
                 foreach (Razdel r in razdels)
                 {
                     string name = form.GetKey(count);
-                    razdelRepository.UpdateById(r.Id, Convert.ToInt32(form.Get(count)));
+                    if (Convert.ToInt32(form.Get(count)) >= 0)
+                        razdelRepository.UpdateById(r.Id, Convert.ToInt32(form.Get(count)));
                     count++;
                 }
 
