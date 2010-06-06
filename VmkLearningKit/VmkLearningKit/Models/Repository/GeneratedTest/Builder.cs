@@ -163,7 +163,7 @@ namespace VmkLearningKit.Models.Repository
             sw.WriteLine("<td class=\"QNum\"><nobr>" + QuestionNum + ".</nobr></td>");
             sw.WriteLine("<td class=\"QText\" style=\"WIDTH: 100%\" colspan=\"3\">" + text + "</td>");
             sw.WriteLine("<td class=\"QPts\" style=\"TEXT-ALIGN: right\">");
-            sw.WriteLine("<img src=\"http://localhost:12121/mslamrk,id=" + QuestionNum + ",type=5,maxpts=" + MaxScore + "\"></td>");
+            sw.WriteLine("<img src=\"http://localhost:5061/mslamrk,id=" + QuestionNum + ",type=5,maxpts=" + MaxScore + "\"></td>");
             sw.WriteLine("</tr>");
         }
 
@@ -220,12 +220,12 @@ namespace VmkLearningKit.Models.Repository
             {
                 case 0:
                     {
-                        sw.WriteLine("<td><img src=\"http://localhost:12121/mslamrk,cols=20,id=" + (qid + 1) + ",type=1,akey=" + text + ",maxpts=" + score + "\"></td>");
+                        sw.WriteLine("<td><img src=\"http://localhost:5061/mslamrk,cols=20,id=" + (qid + 1) + ",type=1,akey=" + text + ",maxpts=" + score + "\"></td>");
                         break;                      
                     }
                 case 1:
                     {
-                        sw.WriteLine("<td><img src=\"http://localhost:12121/mslamrk,id=" + (qid + 1) + ",type=3,maxpts=" + score + "\"></td>");
+                        sw.WriteLine("<td><img src=\"http://localhost:5061/mslamrk,id=" + (qid + 1) + ",type=3,maxpts=" + score + "\"></td>");
                         sw.WriteLine("<td class=\"ANum\"><nobr>" + /*(aid + 1) +*/".</nobr></td>");
                         sw.WriteLine("<td style=\"WIDTH: 100%\">" + text + "</td>");
                         
@@ -233,7 +233,7 @@ namespace VmkLearningKit.Models.Repository
                     }
                 case 2:
                     {
-                        sw.WriteLine("<td><img src=\"http://localhost:12121/mslamrk,id=" + (qid + 1) + ",type=4,maxpts=" + score + "\"></td>");
+                        sw.WriteLine("<td><img src=\"http://localhost:5061/mslamrk,id=" + (qid + 1) + ",type=4,maxpts=" + score + "\"></td>");
                         sw.WriteLine("<td class=\"ANum\"><nobr>" + /*(aid + 1) +*/".</nobr></td>");
                         sw.WriteLine("<td style=\"WIDTH: 100%\">" + text + "</td>");
                         break;
@@ -241,7 +241,7 @@ namespace VmkLearningKit.Models.Repository
 
                 case 3:
                     {
-                        sw.WriteLine("<td><img src=\"http://localhost:12121/mslamrk,cols=20,id=" + (qid + 1) + ",type=1,akey=" + text + ",maxpts=" + score + "\"></td>");
+                        sw.WriteLine("<td><img src=\"http://localhost:5061/mslamrk,cols=20,id=" + (qid + 1) + ",type=1,akey=" + text + ",maxpts=" + score + "\"></td>");
                         break;
                     }
             }

@@ -10,24 +10,19 @@
 	<script type="text/javascript">
 
 	    $().ready(function() {
-	        $(document).find("input[id^='in']").each(function(index) {
-	            var count = $(this).parent().attr("id")
-	            //alert(count);
-	            $(this).rules("add",
-                                   {
-                                       required: true,
-                                       number: true,
-                                       range: [0, count],
-                                       messages: {
-                                           required: "Количество вопросов в варианте из раздела не может быть пустым",
-                                           number: " Количество вопросов в варианте из раздела должно быть числом ",
-                                           range: " Количество вопросов в варианте из раздела  не должно превышать общего  числа  вопросов раздела"
-                                       }
-                                   }
-	                                );
 
-
-	        }); //*/
+	    $("#in1").rules("add",
+												         {
+												             required: true,
+												             range: [0, 100],
+												             messages: {
+												             required: "****",
+												             range: "*****"
+												                 
+												             }
+												         }
+														);
+	        
 	    });
 </script>
 <% using (Html.BeginForm("Edit", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post))
@@ -104,9 +99,9 @@
                 <%= r.Title%>
             </td>
             <td class="Generator">
-                <%= temp[s]%>
+                <%= temp[s++]%>
             </td>
-            <td class="Generator" id="<%= temp[s++]%>">
+            <td class="Generator">
             <% if (Convert.ToString(r.QuestionsCount).IndexOf("-") == -1)
                { %>
                <input type="text" value="<%= r.QuestionsCount %>" size="1" name = "in<%= index %>" id = "in<%= index %>" class ="Generator"/>

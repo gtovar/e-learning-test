@@ -25,7 +25,7 @@
             * Идентификтор варианта (в БД) заложен в полученный аттрибут.
             *
             */
-            var url = "/Editor/Edit/" + id;
+            var url = "/Editor/Question/" + id;
             //alert(url);
             window.location = url;
         });
