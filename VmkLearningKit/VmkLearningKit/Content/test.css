@@ -52,6 +52,7 @@
 #formula_palette{
 	width:350px;
 	margin:5px;
+	min-height:65px;
 }
 
 .formula_edit{
@@ -78,7 +79,7 @@
 #formula_editor{
 	background-color: #dddddd;
 	width:725px;
-	min-height:375px;
+	min-height:345px;
 	padding:25px 5px;
 	display:none;
 }
@@ -104,7 +105,7 @@ input.formula_input{
 .btn_pallete, .btn_big_palette{
 	cursor:pointer;
 	width:51px;
-	height:61px;
+	height:57px;
 }
 
 .math{
