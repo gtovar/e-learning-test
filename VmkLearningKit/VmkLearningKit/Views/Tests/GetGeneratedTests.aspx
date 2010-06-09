@@ -5,50 +5,50 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    $(document).ready(function() {
-        /*
-        * Обработка события "Получение подробной информации о тесте"
-        *
-        */
-        $("img[class=TestView]").click(function() {
-
-            // Получаем атрибут id родителя элемента
-            var id = $(this).parent().attr("id");
+        $(document).ready(function() {
             /*
-            * Формируем url страницы для получения подробной информации о тесте.
-            * Идентификтор теста (в БД) заложен в полученный аттрибут.
+            * Обработка события "Получение подробной информации о тесте"
             *
             */
-            var url = "/Tests/GetTest/" + id;
-            //alert(url);
-            window.location = url;
-        });
-
-        /*
-        * Обработка события "Удаление теста"
-        *
-        */
-        $("img[class=TestDelete]").click(function() {
-            if (confirm("Вы уверены, что хотите удалить тест?")) {
+            $("img[class=TestView]").click(function() {
 
                 // Получаем атрибут id родителя элемента
                 var id = $(this).parent().attr("id");
                 /*
-                * Формируем url страницы для удаления теста.
-                * Идентификтор вопроса (в БД) заложен в полученный аттрибут.
+                * Формируем url страницы для получения подробной информации о тесте.
+                * Идентификтор теста (в БД) заложен в полученный аттрибут.
                 *
                 */
-                var url = "/Tests/DeleteTest/" + id;
+                var url = "/Tests/GetTest/" + id;
                 //alert(url);
                 window.location = url;
-            }
+            });
+
+            /*
+            * Обработка события "Удаление теста"
+            *
+            */
+            $("img[class=TestDelete]").click(function() {
+                if (confirm("Вы уверены, что хотите удалить тест?")) {
+
+                    // Получаем атрибут id родителя элемента
+                    var id = $(this).parent().attr("id");
+                    /*
+                    * Формируем url страницы для удаления теста.
+                    * Идентификтор вопроса (в БД) заложен в полученный аттрибут.
+                    *
+                    */
+                    var url = "/Tests/DeleteTest/" + id;
+                    //alert(url);
+                    window.location = url;
+                }
+            });
         });
-    });
-</script>
+    </script>
 
     <div align="center">
         <h2>
@@ -76,30 +76,29 @@
                 { 
                    
             %>
-            
             <div class="GeneratedTest">
-            <tr align="center">
-                <td class="Generator">
-                    <%= k++%>
-                </td>
-                <td class="Generator">
-                    <%=  gt.VariantsCount %>
-                </td>
-                <td class="Generator">
-                    <%= gt.GeneratedDate%>
-                </td>
-                <td class="Generator">
-                    <%= gt.QuestionsCount%>
-                </td>
-                <td class="Generator" id="<%= Html.Encode(gt.Id.ToString())%>">
-                 <img src="/Content/Images/rarrow.png" class="TestView" alt="Подробнее" width="20" height="20" />  
-                </td>
-                <td class="Generator" id="<%= Html.Encode(gt.Id.ToString())%>" >
-                <img src="/Content/Images/ko.png" class="TestDelete" alt="Удалить" width="20" height="20" />
-                </td>
+                <tr align="center">
+                    <td class="Generator">
+                        <%= k++%>
+                    </td>
+                    <td class="Generator">
+                        <%=  gt.VariantsCount %>
+                    </td>
+                    <td class="Generator">
+                        <%= gt.GeneratedDate%>
+                    </td>
+                    <td class="Generator">
+                        <%= gt.QuestionsCount%>
+                    </td>
+                    <td class="Generator" id="<%= Html.Encode(gt.Id.ToString())%>">
+                        <img src="/Content/Images/rarrow.png" class="TestView" alt="Подробнее" width="20"
+                            height="20" />
+                    </td>
+                    <td class="Generator" id="<%= Html.Encode(gt.Id.ToString())%>">
+                        <img src="/Content/Images/ko.png" class="TestDelete" alt="Удалить" width="20" height="20" />
+                    </td>
                 </tr>
-              </div>
-            
+            </div>
             <% }
             %>
         </table>

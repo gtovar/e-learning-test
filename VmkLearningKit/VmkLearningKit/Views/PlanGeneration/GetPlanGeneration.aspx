@@ -1,32 +1,35 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>  
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Генератор
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
-	<script type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
-	<script type="text/javascript">
+    <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
 
-	    $().ready(function() {
+    <script type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
 
-	    $("#in1").rules("add",
+    <script type="text/javascript">
+
+        $().ready(function() {
+
+            $("#in1").rules("add",
 												         {
 												             required: true,
 												             range: [0, 100],
 												             messages: {
-												             required: "****",
-												             range: "*****"
-												                 
+												                 required: "****",
+												                 range: "*****"
+
 												             }
 												         }
 														);
-	        
-	    });
-</script>
-<% using (Html.BeginForm("Edit", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post))
-   { %>
+
+        });
+    </script>
+
+    <% using (Html.BeginForm("Edit", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post))
+       { %>
     <div align="center">
         <h2>
             План генерации</h2>
@@ -84,11 +87,11 @@
             </td>
         </tr>
         <%
-    int k = 1, s = 0, index = 0;
-    ArrayList temp = (ArrayList)ViewData["QuestionCountByRazdels"];
+            int k = 1, s = 0, index = 0;
+            ArrayList temp = (ArrayList)ViewData["QuestionCountByRazdels"];
 
-    foreach (Razdel r in (IEnumerable<Razdel>)ViewData["AllRazdelsBySpecialityDisciplineTopic"])
-    { 
+            foreach (Razdel r in (IEnumerable<Razdel>)ViewData["AllRazdelsBySpecialityDisciplineTopic"])
+            { 
                    
         %>
         <tr align="center">
@@ -102,18 +105,20 @@
                 <%= temp[s++]%>
             </td>
             <td class="Generator">
-            <% if (Convert.ToString(r.QuestionsCount).IndexOf("-") == -1)
-               { %>
-               <input type="text" value="<%= r.QuestionsCount %>" size="1" name = "in<%= index %>" id = "in<%= index %>" class ="Generator"/>
-               <% }
-               else
-               {%>
-               <input type="text" value="<%= 0 %>" size="1" name = "in<%= index %>" id = "in<%= index %>" class ="Generator"/>
-               <%} %>
+                <% if (Convert.ToString(r.QuestionsCount).IndexOf("-") == -1)
+                   { %>
+                <input type="text" value="<%= r.QuestionsCount %>" size="1" name="in<%= index %>"
+                    id="in<%= index %>" class="Generator" />
+                <% }
+                   else
+                   {%>
+                <input type="text" value="<%= 0 %>" size="1" name="in<%= index %>" id="in<%= index %>"
+                    class="Generator" />
+                <%} %>
             </td>
         </tr>
         <% 
-    index++;
+            index++;
     }
         %>
         <tr align="center">
@@ -129,8 +134,9 @@
         </tr>
     </table>
     <br />
-    <div align="right"><input type="image" name="submit" src="/Content/Images/ok.png" alt="сохранить" width="40" height="30" value="Сохранить"></div>
-    
+    <div align="right">
+        <input type="image" name="submit" src="/Content/Images/ok.png" alt="сохранить" width="40"
+            height="30" value="Сохранить"></div>
     <div align="left">
         <table>
             <tr align="center">
@@ -138,7 +144,8 @@
                     <b>Количество тестовых вариантов для генерации</b>
                 </td>
                 <td class="Generator">
-                    <input type="text" value="<% = Convert.ToInt64(ViewData["VariantCount"]) %>" size="1" name = "variantCount" class ="Generator" />
+                    <input type="text" value="<% = Convert.ToInt64(ViewData["VariantCount"]) %>" size="1"
+                        name="variantCount" class="Generator" />
                 </td>
             </tr>
         </table>
@@ -150,6 +157,6 @@
         <%= Html.ActionLink("Посмотреть сгенерированные тесты", "GetGeneratedTests", "Tests", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>
     </div>
     <%
-    }
+        }
     %>
 </asp:Content>

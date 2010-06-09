@@ -5,34 +5,34 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    $(document).ready(function() {
-        /*
-        * Обработка события "Получение списка вопросов варианта"
-        *
-        */
-        $("img[class=VariantQuestions]").click(function() {
-
-            // Получаем атрибут id родителя элемента
-            var id = $(this).parent().attr("id");
+        $(document).ready(function() {
             /*
-            * Формируем url страницы для получение списка вопросов варианта.
-            * Идентификтор варианта (в БД) заложен в полученный аттрибут.
+            * Обработка события "Получение списка вопросов варианта"
             *
             */
-            var url = "/Tests/GetTestVariant/" + id;
-            //alert(url);
-            window.location = url;
-        });
+            $("img[class=VariantQuestions]").click(function() {
 
-        /*
-        * Обработка события "Просмотр варианта при проигрывании его в плеере"
-        *
-        */
-        $("img[class=VariantShow]").click(function() {
+                // Получаем атрибут id родителя элемента
+                var id = $(this).parent().attr("id");
+                /*
+                * Формируем url страницы для получение списка вопросов варианта.
+                * Идентификтор варианта (в БД) заложен в полученный аттрибут.
+                *
+                */
+                var url = "/Tests/GetTestVariant/" + id;
+                //alert(url);
+                window.location = url;
+            });
+
+            /*
+            * Обработка события "Просмотр варианта при проигрывании его в плеере"
+            *
+            */
+            $("img[class=VariantShow]").click(function() {
 
                 // Получаем атрибут id родителя элемента
                 var id = $(this).parent().attr("id");
@@ -44,9 +44,10 @@
                 var url = "/Tests/Show/" + id;
                 //alert(url);
                 window.location = url;
+            });
         });
-    });
-</script>
+    </script>
+
     <div align="center" />
     <h2>
         Распределение вопросов по вариантам</h2>
@@ -133,10 +134,12 @@
             <% }
             %>
             <td class="Generator" id="<%= Html.Encode(gtv.Id.ToString())%>">
-                <img src="/Content/Images/list.png" class="VariantQuestions" alt="К вопросам" width="20" height="20" />
+                <img src="/Content/Images/list.png" class="VariantQuestions" alt="К вопросам" width="20"
+                    height="20" />
             </td>
             <td class="Generator" id="<%= Html.Encode(gtv.Id.ToString())%>">
-                <img src="/Content/Images/search.png" class="VariantShow" alt="Смотреть" width="20" height="20" />
+                <img src="/Content/Images/search.png" class="VariantShow" alt="Смотреть" width="20"
+                    height="20" />
             </td>
         </tr>
         <%} %>

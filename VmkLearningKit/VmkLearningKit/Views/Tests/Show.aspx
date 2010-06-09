@@ -59,62 +59,69 @@
                                {
                                    case 0:
                                        {%>
-                                       <tr>
-                                       <td></td>
-                <td>
-                    <input type="text" name="Q<%= index %>_<%= l %>" size="20" value="" />
-                </td>
-            <%break;
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <input type="text" name="Q<%= index %>_<%= l %>" size="20" value="" />
+                            </td>
+                            <%break;
                                        }
                                    case 1:
                                        {%>
-                                       <tr>
-                                       <td></td>
-            <td>
-                <input type="radio" name="Q<%= index %>" value="<%= l+1 %>" />
-            </td>
-            <td class="ANum">
-                <nobr><!--<%= l + 1 %>.--></nobr>
-            </td>
-            <td class="AText" width="100%">
-                <%= an.Text %>
-            </td>
-            <%break;
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <input type="radio" name="Q<%= index %>" value="<%= l+1 %>" />
+                            </td>
+                            <td class="ANum">
+                                <nobr><!--<%= l + 1 %>.--></nobr>
+                            </td>
+                            <td class="AText" width="100%">
+                                <%= an.Text %>
+                            </td>
+                            <%break;
                                        }
                                    case 2:
                                        {%>
-                                       <tr>
-                                       <td></td>
-            <td>
-                <input type="checkbox" name="Q<%= index %>" value="<%= l+1 %>" />
-            </td>
-            <td class="ANum">
-                <nobr><!--<%= l + 1 %>.--></nobr>
-            </td>
-            <td class="AText" width="100%">
-                <%= an.Text %>
-            </td>
-            <%break;
-                                           }
-                                       case 3:
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <input type="checkbox" name="Q<%= index %>" value="<%= l+1 %>" />
+                            </td>
+                            <td class="ANum">
+                                <nobr><!--<%= l + 1 %>.--></nobr>
+                            </td>
+                            <td class="AText" width="100%">
+                                <%= an.Text %>
+                            </td>
+                            <%break;
+                                       }
+                                   case 3:
                                        {%>
-                                       <tr>
-                                       <td></td>
-                <td>
-                    <input type="text" name="Q<%= index %>_<%= l %>" size="20" value="" id="Q<%= index %>_<%= l %>" />
-                </td>
-            <%break;
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <input type="text" name="Q<%= index %>_<%= l %>" size="20" value="" id="Q<%= index %>_<%= l %>" />
+                            </td>
+                            <%break;
                                        }
                                }%>
-            <td>
+                            <td>
+                            </td>
+                        </tr>
+                        <% l++;
+                           }%>
+                    </table>
+                    <% index++;
+                       }%>
+                </span>
             </td>
         </tr>
-        <% l++;
-                           }%>
     </table>
-    <% index++;
-                       }%>
-    </span></td> </tr> </table>
     <div align="center">
         <%= Html.ActionLink("Назад", "GetTest", new { alias = Convert.ToInt64(ViewData["TestId"]) })%></div>
 </asp:Content>
