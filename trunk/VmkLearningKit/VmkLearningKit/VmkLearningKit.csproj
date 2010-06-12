@@ -136,12 +136,10 @@
     <Compile Include="Models\Repository\GeneratedTestVariant\GeneratedTestVariantRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTestVariant\IGeneratedTestVariantRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Builder.cs" />
-    <Compile Include="Models\Repository\GeneratedTest\PageView.cs" />
     <Compile Include="Models\Repository\GeneratedTest\GeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\IGeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Index.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Manifest.cs" />
-    <Compile Include="Models\Repository\GeneratedTest\QuestionView.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Theme.cs" />
     <Compile Include="Models\Repository\Group\GroupRepository.cs" />
     <Compile Include="Models\Repository\Group\IGroupRepository.cs" />
@@ -379,10 +377,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram2.cd" />
-    <None Include="ClassDiagram3.cd" />
-    <None Include="ClassDiagram4.cd" />
-    <None Include="ClassDiagram6.cd" />
     <None Include="Models\Repository\VmkLearningKit.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>VmkLearningKit.designer.cs</LastGenOutput>
