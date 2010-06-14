@@ -196,7 +196,7 @@ namespace VmkLearningKit.Models.Repository
                                 foreach (Question q in li)
                                 {
                                     if ((q.DoubleGroup == group) && (q.Id != question.Id)
-                                        && (ExclusionList.IndexOf(q.ExclusionGroup) == -1) && BlackList.IndexOf(q.Id) == -1)
+                                        && (ExclusionList.IndexOf(q.ExclusionGroup) == -1) /*&& BlackList.IndexOf(q.Id) == -1*/)
                                     {
                                         // создаем вопрос-дублер для варианта
 
@@ -229,7 +229,7 @@ namespace VmkLearningKit.Models.Repository
                             }
 
                             // группа-исключений вопроса уникальна, а группа-дублеров не имеет качественного значения
-                            else if ((ExclusionList.IndexOf(question.ExclusionGroup) == -1) && question.DoubleGroup == -1)
+                            else if ((ExclusionList.IndexOf(question.ExclusionGroup) == -1) && (question.DoubleGroup == -1) && (BlackList.IndexOf(question.Id) == -1))
                             {
 
                                 // создаем вопрос для варианта

@@ -818,5 +818,10 @@ table td .Generator3
 	color: Blue;
 	border: solid 1px #e8eef4;
 }
+.TestDelete, .TestView, .VariantQuestions, .VariantShow, .QuestionEdit
+{
+	cursor: pointer;
+}
+
 /*
 ----------------------------------------------------------*/

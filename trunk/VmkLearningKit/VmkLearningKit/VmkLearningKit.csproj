@@ -139,7 +139,6 @@
     <Compile Include="Models\Repository\GeneratedTest\GeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\IGeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Index.cs" />
-    <Compile Include="Models\Repository\GeneratedTest\Manifest.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Theme.cs" />
     <Compile Include="Models\Repository\Group\GroupRepository.cs" />
     <Compile Include="Models\Repository\Group\IGroupRepository.cs" />
@@ -184,19 +183,19 @@
     <Content Include="Views\Shared\GeneralMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Images\c.png" />
-    <Content Include="Content\Images\d.png" />
-    <Content Include="Content\Images\g1.png" />
-    <Content Include="Content\Images\g2.png" />
-    <Content Include="Content\Images\h2.png" />
     <Content Include="Content\Images\add.png" />
     <Content Include="Content\Images\apply.png" />
+    <Content Include="Content\Images\c.png" />
     <Content Include="Content\Images\cancel.png" />
+    <Content Include="Content\Images\d.png" />
     <Content Include="Content\Images\delete.png" />
     <Content Include="Content\Images\down.png" />
     <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\eunn-small.gif" />
+    <Content Include="Content\Images\g1.png" />
+    <Content Include="Content\Images\g2.png" />
     <Content Include="Content\Images\h1.png" />
+    <Content Include="Content\Images\h2.png" />
     <Content Include="Content\Images\index2_close.gif" />
     <Content Include="Content\Images\index2_cn1.gif" />
     <Content Include="Content\Images\index2_cn2.gif" />
