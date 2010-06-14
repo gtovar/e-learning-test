@@ -7,27 +7,6 @@
 
     <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
 
-    <script type="text/javascript" src="/Scripts/jquery.validate.min.js"></script>
-
-    <script type="text/javascript">
-
-        $().ready(function() {
-
-            $("#in1").rules("add",
-												         {
-												             required: true,
-												             range: [0, 100],
-												             messages: {
-												                 required: "****",
-												                 range: "*****"
-
-												             }
-												         }
-														);
-
-        });
-    </script>
-
     <% using (Html.BeginForm("Edit", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post))
        { %>
     <div align="center">

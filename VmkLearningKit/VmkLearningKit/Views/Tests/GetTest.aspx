@@ -134,11 +134,11 @@
             <% }
             %>
             <td class="Generator" id="<%= Html.Encode(gtv.Id.ToString())%>">
-                <img src="/Content/Images/list.png" class="VariantQuestions" alt="К вопросам" width="20"
+                <img src="/Content/Images/list.png" class="VariantQuestions" alt="К вопросам" title="К вопросам" width="20"
                     height="20" />
             </td>
             <td class="Generator" id="<%= Html.Encode(gtv.Id.ToString())%>">
-                <img src="/Content/Images/search.png" class="VariantShow" alt="Смотреть" width="20"
+                <img src="/Content/Images/search.png" class="VariantShow" alt="Смотреть" title="Смотреть" width="20"
                     height="20" />
             </td>
         </tr>

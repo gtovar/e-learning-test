@@ -91,11 +91,11 @@
                         <%= gt.QuestionsCount%>
                     </td>
                     <td class="Generator" id="<%= Html.Encode(gt.Id.ToString())%>">
-                        <img src="/Content/Images/rarrow.png" class="TestView" alt="Подробнее" width="20"
+                        <img src="/Content/Images/rarrow.png" class="TestView" alt="Подробнее" title="Подробнее" width="20"
                             height="20" />
                     </td>
                     <td class="Generator" id="<%= Html.Encode(gt.Id.ToString())%>">
-                        <img src="/Content/Images/ko.png" class="TestDelete" alt="Удалить" width="20" height="20" />
+                        <img src="/Content/Images/ko.png" class="TestDelete" alt="Удалить" title="Удалить" width="20" height="20" />
                     </td>
                 </tr>
             </div>

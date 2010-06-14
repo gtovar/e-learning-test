@@ -52,25 +52,25 @@
                 <b>Название</b>
             </td>
             <td class="Generator">
-                <img src="/Content/Images/d.png" alt="Количество баллов" width="35" height="35" />
+                <img src="/Content/Images/d.png" alt="Количество баллов" title="Количество баллов" width="35" height="35" />
             </td>
             <td class="Generator">
-                <img src="/Content/Images/h1.png" alt="Правильных ответов" width="35" height="35" />
+                <img src="/Content/Images/h1.png" alt="Правильных ответов" title="Правильных ответов" width="35" height="35" />
             </td>
             <td class="Generator">
-                <img src="/Content/Images/h2.png" alt="Неправильных ответов" width="35" height="35" />
+                <img src="/Content/Images/h2.png" alt="Неправильных ответов" title="Неправильных ответов" width="35" height="35" />
             </td>
             <td class="Generator">
-                <img src="/Content/Images/g1.png" alt="Группа-дублеров" width="35" height="35" />
+                <img src="/Content/Images/g1.png" alt="Группа-дублеров" title="Группа-дублеров" width="35" height="35" />
             </td>
             <td class="Generator">
-                <img src="/Content/Images/g2.png" alt="Группа-иключений" width="35" height="35" />
+                <img src="/Content/Images/g2.png" alt="Группа-иключений" title="Группа-иключений" width="35" height="35" />
             </td>
             <td class="Generator">
-                <img src="/Content/Images/s2.png" alt="Состояние" width="35" height="35" />
+                <img src="/Content/Images/s2.png" alt="Состояние" title="Состояние" width="35" height="35" />
             </td>
             <td class="Generator">
-                <img src="/Content/Images/c.png" alt="Возможность комментария" width="35" height="35" />
+                <img src="/Content/Images/c.png" alt="Возможность комментария" title="Возможность комментария" width="35" height="35" />
             </td>
         </tr>
         <% 
@@ -186,7 +186,7 @@
                 <% } %>
             </td>
             <td class="Generator" id="<%= Html.Encode(q.Id.ToString())%>">
-                <img src="/Content/Images/pencil.png" class="QuestionEdit" alt="К вопросам" width="20"
+                <img src="/Content/Images/pencil.png" class="QuestionEdit" alt="К вопросам" title="К вопросам" width="20"
                     height="20" />
             </td>
         </tr>
