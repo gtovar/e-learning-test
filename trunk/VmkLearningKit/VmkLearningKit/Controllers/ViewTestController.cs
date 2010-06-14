@@ -32,7 +32,6 @@ namespace VmkLearningKit.Controllers
             string filePath = atv.Path;
             FileInfo fileP = new FileInfo(filePath);
             if (!fileP.Exists) Utility.RedirectToErrorPage("Данного теста нет на сервере");
-
             long idStudent = atv.StudentId;
             int lastIndex = filePath.IndexOf("student_");
             string destP = filePath.Substring(0, lastIndex);
@@ -47,35 +46,42 @@ namespace VmkLearningKit.Controllers
             {
                 string qq = item.Attributes.ToString();
                 if (qq == "Directory")
-                {
-                    // for(int i=0;i<item.G)
-                    DirectoryInfo dir = new DirectoryInfo(item.FullName);
-                    FileInfo[] fis = dir.GetFiles();
-                    foreach (FileInfo f in fis)
                     {
-                        f.Delete();
+                        // for(int i=0;i<item.G)
+                        DirectoryInfo dir = new DirectoryInfo(item.FullName);
+                        FileInfo[] fis = dir.GetFiles();
+                        foreach (FileInfo f in fis)
+                        {
+                            f.Delete();
+                        }
                     }
-                }
-                else
-                {
-                    item.Delete();
-                }
-            }
-            FastZip fz = new FastZip();
-            fz.ExtractZip(filePath, destPath, null);
-
-            ViewData["testPath"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/P1000/page.htm";
-            ViewData[Constants.PAGE_TITLE] = "Просмотр тестового варианта";
-            ViewData["discipline"] = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(alias).Title;
-            User student = repositoryManager.GetUserRepository.GetById(idStudent);
-            ViewData["student"] = student.SecondName.ToString() + " " + student.FirstName.ToString() + " " + student.Patronymic.ToString();
-            GeneratedTest gt = atv.GeneratedTestVariant.GeneratedTest;
-            ViewData["topic"] = gt.SpecialityDisciplineTopic.Title;
-            ViewData["group"] = student.Student.Group.Title;
-            ViewData["generationInfo"] = gt.GeneratedDate;
-            ViewData["test"] = atv;
-            ViewData["themes"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/Shared/Themes.css";
-            return View();
+                    else
+                    {
+                        item.Delete();
+                    }
+             }
+             FastZip fz = new FastZip();
+             try
+             {
+                 fz.ExtractZip(filePath, destPath, null);
+             }
+             catch (Exception ex)
+             {
+                 Utility.RedirectToErrorPage("Данный тест не сохранен");
+             }
+             ViewData["testPath"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/P1000/page.htm";
+             ViewData[Constants.PAGE_TITLE] = "Просмотр тестового варианта";
+             ViewData["discipline"] = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(alias).Title;
+             User student = repositoryManager.GetUserRepository.GetById(idStudent);
+             ViewData["student"] = student.SecondName.ToString() + " " + student.FirstName.ToString() + " " + student.Patronymic.ToString();
+             GeneratedTest gt = atv.GeneratedTestVariant.GeneratedTest;
+             ViewData["topic"] = gt.SpecialityDisciplineTopic.Title;
+             ViewData["group"] = student.Student.Group.Title;
+             ViewData["generationInfo"] = gt.GeneratedDate;
+             ViewData["test"] = atv;
+             ViewData["themes"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/Shared/Themes.css";
+             return View();
+            
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
