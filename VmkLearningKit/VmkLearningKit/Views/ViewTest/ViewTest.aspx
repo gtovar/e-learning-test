@@ -18,7 +18,7 @@
         var mark = parseInt($("#Mark").val());
             
             var id = '<%=((AssignedTestVariant)ViewData["test"]).Id %>';
-            alert(id);
+          
            
             var data={ "alias": id.toString(), "mark": mark };
             $.post("/ViewTest/SetMark", data , function(str) { alert(str); }, "json");
