@@ -635,7 +635,6 @@ namespace VmkLearningKit.Controllers
 
                 ViewData[Constants.PAGE_TITLE] = "Редактор тестовых вопросов";
 
-                ViewData["QuestionsList"]       = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelId(additional);
                 ViewData["RazdelId"]            = additional;
                 ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(additional);
                 ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(additional);
@@ -648,6 +647,7 @@ namespace VmkLearningKit.Controllers
                 {
                     case VLKConstants.QUESTION_GROUP_DOUBLE:
                         {
+                            ViewData["QuestionsList"]                   = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelIdWithFakeExclusionGroup(additional);
                             ViewData["QuestionsListSortedByGroupIndex"] = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelIdSortedByDoubleGroup(additional);
                             ViewData["MaxQuestionGroupIndex"]           = repositoryManager.GetQuestionRepository.GetMaxQuestionDoubleGroupInRazdel(additional);
                             ViewData["QuestionGroupType"]               = VLKConstants.QUESTION_GROUP_DOUBLE;
@@ -658,6 +658,7 @@ namespace VmkLearningKit.Controllers
                         }
                     case VLKConstants.QUESTION_GROUP_EXCLUSION:
                         {
+                            ViewData["QuestionsList"]                   = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelIdWithFakeDoubleGroup(additional);
                             ViewData["QuestionsListSortedByGroupIndex"] = repositoryManager.GetQuestionRepository.GetNotDeletedQuestionsByRazdelIdSortedByExclusionGroup(additional);
                             ViewData["MaxQuestionGroupIndex"]           = repositoryManager.GetQuestionRepository.GetMaxQuestionExclusionGroupInRazdel(additional);
                             ViewData["QuestionGroupType"]               = VLKConstants.QUESTION_GROUP_EXCLUSION;
