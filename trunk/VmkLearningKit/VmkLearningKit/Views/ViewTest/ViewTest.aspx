@@ -16,13 +16,13 @@
         $("#setMark").click(function() {
 
         var mark = parseInt($("#Mark").val());
-            alert("s");
+            
             var id = '<%=((AssignedTestVariant)ViewData["test"]).Id %>';
             alert(id);
-            alert("sdgsg");
+           
             var data={ "alias": id.toString(), "mark": mark };
             $.post("/ViewTest/SetMark", data , function(str) { alert(str); }, "json");
-            alert("sdgsg");
+           
         })
     });
 
@@ -53,7 +53,7 @@
   </table>
   
  <div id="first" style=" width:90%">
-        qqq
+       <!-- qqq-->
  </div>
      
      <table>    

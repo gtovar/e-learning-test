@@ -64,7 +64,7 @@ namespace VmkLearningKit.Controllers
             FastZip fz = new FastZip();
             fz.ExtractZip(filePath, destPath, null);
 
-            ViewData["testPath"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/P1000/Imspage.htm";
+            ViewData["testPath"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/P1000/page.htm";
             ViewData[Constants.PAGE_TITLE] = "Просмотр тестового варианта";
             ViewData["discipline"] = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(alias).Title;
             User student = repositoryManager.GetUserRepository.GetById(idStudent);
