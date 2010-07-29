@@ -152,10 +152,57 @@ function ClearStudentPalette() {
 
 function DisplayFormulaEditor(ev) {
     var obj = ev.target;
-    // сворачивание редактора в другом месте(если есть)
-    $("#formula_editor").css({ display: "none" });
-    QuickHideFormulaEditor();
+    // генерация кода редактора
+    if ($("#formula_editor")[0]) {
+        // сворачивание редактора в другом месте(если есть)
+        $("#formula_editor").css({ display: "none" });
+        QuickHideFormulaEditor();
+    }
+    else {
+        // непосредственно генерация html-кода редактора
+         var el = ('<div id="formula_editor" style="" >');
+             el += ('<div id="formula_teacher_palette" style="" >');
+                 el += ('Полная палитра:<br>');
+                 el += ('<button class="btn_big_palette" name="\\int_{*}^{*}{*}" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="\\sum_{*}^{*}{*}" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="\\sqrt{*}" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="\\sin_{*}^{*}{*}" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="\\cos_{*}^{*}{*}" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="{*}^{*}" onclick="AddToPalette(); return false">  </button>			');
+                 el += ('<button class="btn_big_palette" name="\\in{*}" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="\\exists{*}" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="\\forall{*}" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="\\geq{*}" onclick="AddToPalette(); return false">  </button>			');
+                 el += ('<button class="btn_big_palette" name="\\leq{*}" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="\\varepsilon" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<br />');
+                 el += ('Произвольный символ/формула в TeX:<br />');
+                 el += ('<input id="newPaletteFormula"/>');
+                el += ('<button class="" onclick="AddNewToPalette($(\'#newPaletteFormula\')[0]); return false"> Ввести </button>');
+                el += ('<br />');
+                el += ('<br />');
+                el += ('<button class="" onclick="ClearStudentPalette(); return false"> Очистить палитру студента </button>');
+            el += ('</div>');
+            el += ('Палитра:<br>');
+            el += ('<div id="formula_palette">');
+                
+            el += ('</div>');
+    		
+            el += ('Формула в LaTeX:<br>');
+            el += ('<div id="div_formula_edit" ><textarea name="formula_edit" id="formula_edit" rows="3" cols="60" onselect="StoreCaret(this)" onclick="StoreCaret(this)" onkeyup="StoreCaret(this)" ></textarea></div>');
+            el += ('<br>');
+            el += ('Предварительный просмотр:<br>');
+            el += ('<div id="formula_display"></div>');
+    		
+            el += ('<button id="editor_input" onclick=" InputAndHideFormulaEditor(this); return false ">Ввести</button>');
+            el += ('<button id="editor_exit" onclick=" HideFormulaEditor(this); return false ">Закрыть</button>');
+	    el += ('</div>');
+	    $(el).appendTo($('.content')[0]);
 
+	    document.getElementById('formula_edit').onblur = RunEdit;
+	    document.getElementById('editor_input').onclick = InputAndHideFormulaEditor;
+	    document.getElementById('editor_exit').onclick = HideFormulaEditor;
+    }
 
     // Создание доп. полей			
     if (!document.getElementById('img_formula_' + $(obj).attr('name'))) {
@@ -177,6 +224,12 @@ function DisplayFormulaEditor(ev) {
 
 }
 
+function ClearFormEdit() {
+    // очистка полей редактора
+    $("#formula_editor").find("textarea[name=formula_edit]").text("");
+    $("#formula_editor").find("div#formula_display").text("");
+    ClearStudentPalette();
+}
 
 // Закрывает редактор формул с сохранением результатов
 function InputAndHideFormulaEditor(obj) {
@@ -215,10 +268,8 @@ function InputAndHideFormulaEditor(obj) {
     
     // отрисовка формулы под ответом
     DisplayAnsverFormula();
-    
-    // очистка полей редактора
-    $("#formula_editor").find("textarea[name=formula_edit]").text("");
-    $("#formula_editor").find("div#formula_display").text("");
+
+    ClearFormEdit();
     // сворачивание редактора
     $("#formula_editor").prev().animate({ height: "20px" }, 400);
     $("#formula_editor").hide("slow");
@@ -228,20 +279,18 @@ function InputAndHideFormulaEditor(obj) {
 }
 
 function HideFormulaEditor() {
-    $("#formula_editor").find("textarea[name=formula_edit]").text("");
-    $("#formula_editor").find("div#formula_display").text("");
+    ClearFormEdit();
     $("#formula_editor").prev().animate({ height: "20px" }, 400);
     $("#formula_editor").hide("slow");
-
+    ClearStudentPalette();
    // window.setTimeout('$("#formula_editor").insertAfter($(".content")[0])', 400);
     return false;
 }
 function QuickHideFormulaEditor() {
-    $("#formula_editor").find("textarea[name=formula_edit]").text("");
-    $("#formula_editor").find("div#formula_display").text("");
+    ClearFormEdit();
     $("#formula_editor").css({ display: "none" });
     $("#formula_editor").prev().css({ height: "20px" });
-
+    ClearStudentPalette();
     //$("#formula_editor").insertAfter($(".content")[0]);
 }
 
@@ -268,10 +317,13 @@ function InsertTextFormul() {
 
 $(document).ready(function() {
     $(".formula_input").bind("click", DisplayFormulaEditor);
-    document.getElementById('formula_edit').onblur = RunEdit;
-    document.getElementById('editor_input').onclick = InputAndHideFormulaEditor;
-    document.getElementById('editor_exit').onclick = HideFormulaEditor;
-    //GeneratePallete(this);
+    if ($("#formula_editor")[0]) {
+        
+        document.getElementById('formula_edit').onblur = RunEdit;
+        document.getElementById('editor_input').onclick = InputAndHideFormulaEditor;
+        document.getElementById('editor_exit').onclick = HideFormulaEditor;
+        //GeneratePallete(this);
+    }
 });
 
 function RunEdit() {
