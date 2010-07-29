@@ -192,6 +192,7 @@
     <Content Include="Content\Images\down.png" />
     <Content Include="Content\Images\edit.png" />
     <Content Include="Content\Images\eunn-small.gif" />
+    <Content Include="Content\Images\formulaEdit_back.gif" />
     <Content Include="Content\Images\g1.png" />
     <Content Include="Content\Images\g2.png" />
     <Content Include="Content\Images\h1.png" />

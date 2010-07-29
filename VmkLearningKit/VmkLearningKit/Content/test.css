@@ -77,18 +77,19 @@
 }
 
 #formula_editor{
-	background-color: #dddddd;
+	background: #dddddd url(../../Content/Images/formulaEdit_back.gif) top left repeat-y;
 	width:725px;
 	min-height:345px;
 	padding:25px 5px;
 	display:none;
+	border: solid 1px #aaaaaa;
 }
 
 #formula_teacher_palette{
 	float:right;
 	background-color: #dddddd;
 	width:200px;
-	padding-left:10px;
+	padding-left:9px;
 	
 }
 
