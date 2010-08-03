@@ -74,13 +74,14 @@ namespace VmkLearningKit.Models.Repository
 
         public GeneratedTest Add(long specialityDisciplineTopicId, int variantCount, int questionCount)
         {
-            IEnumerable<Razdel> razdels = (IEnumerable<Razdel>)DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == specialityDisciplineTopicId); // список разделов
+            IEnumerable<Razdel> razdels = (IEnumerable<Razdel>)DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == specialityDisciplineTopicId); // список всех разделов темы
 
             List<Question> questions = new List<Question>(); // список всех вопросов темы
-            List<int> counter = new List<int>(); // счетчик вопросов
+            List<int> counter = new List<int>(); // счетчик для всех вопросов темы
 
-            IEnumerable<Question> Questions = (IEnumerable<Question>)DataContext.Questions; // общий список вопросов
+            IEnumerable<Question> Questions = (IEnumerable<Question>)DataContext.Questions; // общий список всех вопросов
 
+            // поиск и добавление всех вопросов темы
             foreach (Razdel r in razdels)
             {
                 long k = r.Id;
@@ -91,11 +92,13 @@ namespace VmkLearningKit.Models.Repository
                 }
             }
 
+            // установка начальных значений счетчиков
             foreach (Question q in questions)
             {
                 counter.Add(0);
             }
 
+            //создаем объект сгенерированного тестового варианта
             GeneratedTest gt = new GeneratedTest();
             gt.SpecialityDisciplineTopicId = specialityDisciplineTopicId;
             gt.VariantsCount = variantCount;
@@ -104,30 +107,28 @@ namespace VmkLearningKit.Models.Repository
             DataContext.GeneratedTests.InsertOnSubmit(gt);
             DataContext.SubmitChanges();
 
-            //создаем каталог для хранения scorm-пакетов теста
-            string testDir = @"VmkLearningKit\Uploads\Pacages" + "\\" + gt.Id;
-
+            //создаем каталог для хранения ims-пакетов теста
+            string testDir = @"VmkLearningKit\Uploads\Packages" + "\\" + gt.Id;
             DirectoryInfo TestDir = new DirectoryInfo(testDir);
             if (TestDir.Exists)
                 TestDir.Delete(true);
             TestDir.Create();
 
-            int s = 1;
-
+            // добавление в сгенерированный тест вариантов с вопросами
             for (int i = 0; i < gt.VariantsCount; i++)
             {
+                //создаем объект сгенерированного тестового варианта
                 GeneratedTestVariant gtv = new GeneratedTestVariant();
                 gtv.GeneratedTestId = gt.Id;
                 DataContext.GeneratedTestVariants.InsertOnSubmit(gtv);
                 DataContext.SubmitChanges();
 
-                ArrayList ExclusionList = new ArrayList(); // список групп-исключений
-                ArrayList BlackList = new ArrayList(); // "черный" список
-                ArrayList DoubleList = new ArrayList(); // список групп-дублеров
+                ArrayList BlackList = new ArrayList(); // "черный" список тестовонго варианта
 
+                //добавление вопросов в вариант по разделам
                 foreach (Razdel raz in razdels)
                 {
-                    long count = raz.QuestionsCount;
+                    long count = raz.QuestionsCount; // число вопросов в варианте из раздела
 
                     // список вопросов раздела
                     IEnumerable<Question> li = DataContext.Questions.Where(t => t.RazdelId == raz.Id);
@@ -139,7 +140,7 @@ namespace VmkLearningKit.Models.Repository
                         kol++;
                     }
 
-                    while ((count != 0) && (kol > 0))
+                    while ((count > 0) && (kol > 0))
                     {
                         bool k = true;
 
@@ -150,6 +151,7 @@ namespace VmkLearningKit.Models.Repository
                             int n_min = -1;
                             foreach (Question q in li)
                             {
+                                // проверка на наличие в "черном" списке
                                 if (BlackList.IndexOf(q.Id) == -1)
                                 {
                                     int index = questions.IndexOf(q); // индекс вопроса в общем списке вопросов
@@ -160,111 +162,81 @@ namespace VmkLearningKit.Models.Repository
                                     }
                                 }
                             }
-
+                            // подходящий для добавления вопрос
                             Question question = questions[n_min];
 
-                            // группа-исключений вопроса уникальна, а группа-дублеров имеет качественное значение
-                            if ((ExclusionList.IndexOf(question.ExclusionGroup) == -1) && (question.DoubleGroup != -1))
+                            // добавляем вопрос в вариант
+                            GeneratedQuestion gq = new GeneratedQuestion();
+                            gq.GeneratedTestVariantId = gtv.Id;
+                            gq.QuestionId = question.Id;
+                            DataContext.GeneratedQuestions.InsertOnSubmit(gq);
+                            DataContext.SubmitChanges();
+                            
+                            // увеличиваем счетчик вопроса
+                            counter[n_min]++;
+                             
+                            //уменьшаем счетчик нужных вопросов раздела
+                            count--;
+
+                            //добавляем вопрос в "черный" список
+                            BlackList.Add(question.Id);
+                            
+                            //уменьшаем счетчик вопросов раздела
+                            kol--;
+
+                            //добавляем в черный список все вопросы с такой же группой-исключений 
+                            if (question.ExclusionGroup != -1)
                             {
-                                // создаем вопрос для варианта
-
-                                GeneratedQuestion gq = new GeneratedQuestion();
-                                gq.GeneratedTestVariantId = gtv.Id;
-                                gq.QuestionId = question.Id;
-
-                                // увеличиваем счетчик
-                                counter[n_min]++;
-
-                                //добавляем вопрос в базу
-                                DataContext.GeneratedQuestions.InsertOnSubmit(gq);
-                                DataContext.SubmitChanges();
-
-                                count--;
-
-                                // добавляем группу исключений вопроса в список групп-исключений варианта
-                                if (question.ExclusionGroup != -1)
-                                    ExclusionList.Add(question.ExclusionGroup);
-
-                                //добавляем вопрос в "черный" список
-                                BlackList.Add(question.Id);
-                                kol--;
-
-                                // теперь находим и добавляем в вариант вопрос с такой же группой дублеров
-                                
-                                long group = question.DoubleGroup; //группа-дублеров вопроса
-
                                 foreach (Question q in li)
                                 {
-                                    if ((q.DoubleGroup == group) && (q.Id != question.Id)
-                                        && (ExclusionList.IndexOf(q.ExclusionGroup) == -1) /*&& BlackList.IndexOf(q.Id) == -1*/)
+                                    if (BlackList.IndexOf(q.Id) == -1)
                                     {
-                                        // создаем вопрос-дублер для варианта
+                                        if (q.ExclusionGroup == question.ExclusionGroup) BlackList.Add(q.Id);
+                                    }
+                                }   
+                            }
 
-                                        GeneratedQuestion gq2 = new GeneratedQuestion();
-                                        gq2.GeneratedTestVariantId = gtv.Id;
-                                        gq2.QuestionId = q.Id;
+                            //добавляем в черный список все вопросы с такой же группой-дублеров
+                            //один такой дублер добавляем в вариант
 
-                                        // увеличиваем счетчик
-                                        counter[questions.IndexOf(q)]++;
-
-                                        //добавляем вопрос в базу
-                                        DataContext.GeneratedQuestions.InsertOnSubmit(gq2);
-                                        DataContext.SubmitChanges();
-
-                                        count--;
-
-                                        // добавляем группу исключений вопроса в список групп-исключений варианта
-                                        if (q.ExclusionGroup != -1)
-                                            ExclusionList.Add(q.ExclusionGroup);
-
-                                        //добавляем вопрос в "черный" список
-                                        BlackList.Add(q.Id);
-                                        kol--;
-                                        break;
+                            long d_question = -1; //id вопроса-дублера
+                            if (question.DoubleGroup != -1)
+                            {
+                                foreach (Question q in li)
+                                {
+                                    if (BlackList.IndexOf(q.Id) == -1)
+                                    {
+                                        if (q.DoubleGroup == question.DoubleGroup) { BlackList.Add(q.Id); d_question = q.Id; }
                                     }
                                 }
-
-                                //переход к поиску нового вопроса
-                                k = false;
                             }
 
-                            // группа-исключений вопроса уникальна, а группа-дублеров не имеет качественного значения
-                            else if ((ExclusionList.IndexOf(question.ExclusionGroup) == -1) && (question.DoubleGroup == -1) && (BlackList.IndexOf(question.Id) == -1))
+                            // добавление дублера
+                            if (d_question != -1)
                             {
-
-                                // создаем вопрос для варианта
-
-                                GeneratedQuestion gq = new GeneratedQuestion();
-                                gq.GeneratedTestVariantId = gtv.Id;
-                                gq.QuestionId = question.Id;
-
-                                // увеличиваем счетчик
-                                counter[n_min]++;
-
-                                //добавляем вопрос в базу
-                                DataContext.GeneratedQuestions.InsertOnSubmit(gq);
+                                // добавляем вопрос в вариант
+                                GeneratedQuestion d_gq = new GeneratedQuestion();
+                                d_gq.GeneratedTestVariantId = gtv.Id;
+                                d_gq.QuestionId = d_question;
+                                DataContext.GeneratedQuestions.InsertOnSubmit(d_gq);
                                 DataContext.SubmitChanges();
 
+                                // увеличиваем счетчик вопроса
+                                Question qu = (Question)DataContext.Questions.SingleOrDefault(t => t.Id == d_question);
+                                counter[questions.IndexOf(qu)]++;
+
+                                //уменьшаем счетчик нужных вопросов раздела
                                 count--;
 
-                                // добавляем группу исключений вопроса в список групп-исключений варианта
-                                if (question.ExclusionGroup != -1)
-                                    ExclusionList.Add(question.ExclusionGroup);
-
                                 //добавляем вопрос в "черный" список
-                                BlackList.Add(question.Id);
-                                kol--;
+                                BlackList.Add(d_question);
 
-                                //переход к поиску нового вопроса
-                                k = false;
-                            }
-
-                            else
-                            {
-                                //добавляем вопрос в "черный" список
-                                BlackList.Add(question.Id);
+                                //уменьшаем счетчик вопросов раздела
                                 kol--;
                             }
+
+                            //переход к поиску нового вопроса
+                            k = false;                                                                            
                         }
                     }
                 }
@@ -272,8 +244,7 @@ namespace VmkLearningKit.Models.Repository
                 // создаем scorm-пакет варианта
 
                 //создаем каталог для хранения scorm-пакета варианта
-                string Dir = testDir + "\\" + s;
-                s++;
+                string Dir = testDir + "\\" + (i+1);
 
                 DirectoryInfo ScormDir = new DirectoryInfo(Dir);
                 ScormDir.Create();
@@ -290,12 +261,8 @@ namespace VmkLearningKit.Models.Repository
                 /*Builder imspage = new Builder("Imspage.htm", Dir + "\\P1000", gtv, s);
                 imspage.WriteImsPage();*/
 
-                Builder page = new Builder("page.htm", Dir + "\\P1000", gtv, s);
+                Builder page = new Builder("page.htm", Dir + "\\P1000", gtv, i+1);
                 page.WritePage();
-
-                // записываем файл манифеста во временный каталог
-                /*Manifest manifest = new Manifest();
-                manifest.Write(Dir + "\\imsmanifest.xml");*/
 
                 // записываем файл индекса во временный каталог
                 Index index1 = new Index();
