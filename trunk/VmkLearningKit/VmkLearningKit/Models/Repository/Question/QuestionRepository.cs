@@ -103,7 +103,16 @@ namespace VmkLearningKit.Models.Repository
             Razdel r = DataContext.Razdels.SingleOrDefault(t => t.Id == q.RazdelId);
 
             //получаем список вопросов по разделу
-            IEnumerable<Question> questions = DataContext.Questions.Where(t => t.RazdelId == r.Id);
+            IEnumerable<Question> _questions = DataContext.Questions.Where(t => t.RazdelId == r.Id);
+
+            //получаем список неудаленных вопросов по разделу
+            List<Question> questions = new List<Question>();
+
+            foreach (Question _q in _questions)
+            {
+                if (_q.IsDeleted == 0)
+                    questions.Add(_q);
+            }
 
             int localId = 0;
             int numerator = 1;

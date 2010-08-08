@@ -137,7 +137,7 @@ namespace VmkLearningKit.Models.Repository
             int count = 0;
             foreach (Question q in DataContext.Questions)
             {
-                if (q.RazdelId == razdelId)
+                if ((q.RazdelId == razdelId) && (q.IsDeleted == 0))
                     count++;
             }
             return count;

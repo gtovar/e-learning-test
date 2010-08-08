@@ -74,7 +74,8 @@ namespace VmkLearningKit.Models.Repository
 
         public GeneratedTest Add(long specialityDisciplineTopicId, int variantCount, int questionCount)
         {
-            IEnumerable<Razdel> razdels = (IEnumerable<Razdel>)DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == specialityDisciplineTopicId); // список всех разделов темы
+            // список всех разделов темы
+            IEnumerable<Razdel> razdels = (IEnumerable<Razdel>)DataContext.Razdels.Where(t => t.SpecialityDisciplineTopicId == specialityDisciplineTopicId);
 
             List<Question> questions = new List<Question>(); // список всех вопросов темы
             List<int> counter = new List<int>(); // счетчик для всех вопросов темы
@@ -88,7 +89,7 @@ namespace VmkLearningKit.Models.Repository
 
                 foreach (Question q in Questions)
                 {
-                    if (q.RazdelId == k) questions.Add(q);
+                    if ((q.RazdelId == k) && (q.IsDeleted == 0)) questions.Add(q);
                 }
             }
 
@@ -131,13 +132,19 @@ namespace VmkLearningKit.Models.Repository
                     long count = raz.QuestionsCount; // число вопросов в варианте из раздела
 
                     // список вопросов раздела
-                    IEnumerable<Question> li = DataContext.Questions.Where(t => t.RazdelId == raz.Id);
+                    IEnumerable<Question> _li = DataContext.Questions.Where(t => t.RazdelId == raz.Id);
+                    
+                    // список неудаленных вопросов раздела
+                    List<Question> li = new List<Question>();
 
                     int kol = 0; // количество вопросов раздела
-
-                    foreach (Question q in li)
+                    foreach (Question q in _li)
                     {
-                        kol++;
+                        if (q.IsDeleted == 0)
+                        {
+                            li.Add(q);
+                            kol++;
+                        }
                     }
 
                     while ((count > 0) && (kol > 0))

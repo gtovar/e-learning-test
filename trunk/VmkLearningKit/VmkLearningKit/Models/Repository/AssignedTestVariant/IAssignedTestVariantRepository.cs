@@ -9,6 +9,7 @@ namespace VmkLearningKit.Models.Repository
     {
         IEnumerable<AssignedTestVariant> GetAll(long studentId);
         IEnumerable<AssignedTestVariant> GetUserTests(long idStudent);
+        IEnumerable<AssignedTestVariant> GetAllByGeneratedTestVariantId(long generatedTestVariantId);
         AssignedTestVariant GetLastStudentTopicTest(long idTopic, long idStudent);
         long Add(long idGeneratedTestVariant, long idStudent, DateTime date, long professorId);
         IEnumerable<AssignedTestVariant> GetAllStudentTopicTests(long idTopic, long idStudent);
