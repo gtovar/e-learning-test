@@ -26,6 +26,11 @@ namespace VmkLearningKit.Models.Repository
                 ((int)(t.AssignedDate.Date - DateTime.Now.Date).TotalDays) < how_long_show_test);
         }
 
+        public IEnumerable<AssignedTestVariant> GetAllByGeneratedTestVariantId(long generatedTestVariantId)
+        {
+            return DataContext.AssignedTestVariants.Where(t => t.GeneratedTestVariantId == generatedTestVariantId);
+        }
+
         public IEnumerable<AssignedTestVariant> GetUserTests(long idStudent)
         {
             try

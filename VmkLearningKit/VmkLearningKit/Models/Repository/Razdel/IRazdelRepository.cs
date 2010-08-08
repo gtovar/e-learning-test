@@ -28,7 +28,7 @@ namespace VmkLearningKit.Models.Repository
         int GetQuestionCountByRazdelId(long razdelId);
 
         /// <summary>
-        /// ???
+        /// Получение локального идентификатора вопроса раздела с заданным идентификатором
         /// </summary>
         /// <param name="razdelId">Идентификатор раздела</param>
         int GetRazdelLocalIdByRazdelId(long razdelId);

@@ -101,7 +101,9 @@ namespace VmkLearningKit.Controllers
                 repositoryManager.GetGeneratedQuestionRepository;
             ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository =
                 repositoryManager.GetSpecialityDisciplineTopicRepository;
-
+            IAssignedTestVariantRepository assignedTestVariantRepository =
+                repositoryManager.GetAssignedTestVariantRepository;
+                 
             IEnumerable<GeneratedTestVariant> variants = 
                 generatedTestVariantRepository.GetAllGeneratedTestVariantsByGeneratedTestId(id);
 
@@ -109,15 +111,27 @@ namespace VmkLearningKit.Controllers
             {
                 IEnumerable<GeneratedQuestion> questions = 
                     generatedQuestionRepository.GetAllGeneratedQuestionsByGeneratedTestVariantId(var.Id);
+                // удаляем все вопросы варианта
                 foreach (GeneratedQuestion ques in questions)
                 {
                     generatedQuestionRepository.DeleteById(ques.Id);
                 }
+
+                IEnumerable<AssignedTestVariant> assiggnedVariants =
+                    assignedTestVariantRepository.GetAllByGeneratedTestVariantId(var.Id);
+                // удаляем все назначенные тесты варианта
+                foreach (AssignedTestVariant atv in assiggnedVariants)
+                {
+                    assignedTestVariantRepository.Delete(atv);
+                }
+
+                // удаляем вариант
                 generatedTestVariantRepository.DeleteById(var.Id);
             }
 
             long topicId = specialityDisciplineTopicRepository.GetTopicIdByGeneratedTestId(id);
 
+            // удаляем тест
             generatedTestRepository.DeleteById(id);
 
             return RedirectToAction("GetGeneratedTests", "Tests", new { alias = topicId });
