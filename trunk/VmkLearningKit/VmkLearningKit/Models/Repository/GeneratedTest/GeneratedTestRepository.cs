@@ -110,7 +110,7 @@ namespace VmkLearningKit.Models.Repository
 
             //создаем каталог для хранения ims-пакетов теста
             string currentPath = Directory.GetCurrentDirectory();
-            string testDir = currentPath + @"\VmkLearningKit\Uploads\Packages" + "\\" + gt.Id;
+            string testDir = HttpContext.Current.Server.MapPath("/Uploads/Packages") + "\\" + gt.Id;
             DirectoryInfo TestDir = new DirectoryInfo(testDir);
             if (TestDir.Exists)
                 TestDir.Delete(true);
