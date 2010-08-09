@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VmkLearningKit", "VmkLearningKit\VmkLearningKit.csproj", "{A3E5C03C-C991-401A-B7BD-9B482FFA9E90}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QWord", "QWord\QWord.csproj", "{D6158C11-5461-48DB-A3FC-1F4306DF17E7}"
