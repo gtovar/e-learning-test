@@ -59,8 +59,8 @@
                    foreach (AssignedTestVariant assignedTestVariant in assignedTestVariants)
                    {
                        // выводим только новые тесты
-                       if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_NEW &&
-                           assignedTestVariant.AssignedDate.Date.Equals(DateTime.Now.Date))
+                       if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_NEW /*&&
+                           assignedTestVariant.AssignedDate.Date.Equals(DateTime.Now.Date)*/)
                        {
                 %>
                 <tr class="table_row">
@@ -82,16 +82,18 @@
                         <%= Html.Encode(disciplineTitle)%>
                     </td>
                     <td class="table_td">
-                        <% string testVariantTitle = String.Empty;
+                        <% 
+                           string testVariantTitle = String.Empty;
+                           string testVariantLink = String.Empty;
+                           
                            if (null != assignedTestVariant && !assignedTestVariant.Path.Trim().Equals(String.Empty))
                            {
                                testVariantTitle = "Вариант_" + Path.GetFileNameWithoutExtension(assignedTestVariant.Path);
+                               testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Execute.aspx?key=" + assignedTestVariant.StudentKey;
                            }
+                           
                         %>
-                        <% if (!testVariantTitle.Trim().Equals(String.Empty))
-                           { %>
-                        <%= Html.ActionLink(testVariantTitle, "")%>
-                        <% } %>
+                        <a href="<%= testVariantLink %>"><%= testVariantTitle %></a>
                     </td>
                 </tr>
                 <% index++;
