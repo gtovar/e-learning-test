@@ -113,7 +113,7 @@ namespace VmkLearningKit.Models.Repository
                 Path = "",
                 Score = 0,
                 Mark = 0,
-                StudentKey = Hash.ComputeHash(idStudent.ToString()),
+                StudentKey = Hash.ComputeHash(idStudent.ToString() + DateTime.Now.ToString() + DateTime.Now.Millisecond.ToString()),
                 ProfessorKey = Hash.ComputeHash(professorId.ToString()),
                 // идентификатор пакета в базе данных плеера
                 // данный идентификатор кладется плеером
@@ -125,7 +125,7 @@ namespace VmkLearningKit.Models.Repository
                 long gt = DataContext.GeneratedTestVariants.Single(gtv => gtv.Id == idGeneratedTestVariant).GeneratedTestId;
                 long firstId = DataContext.GeneratedTestVariants.Where(gtv => gtv.GeneratedTestId == gt).OrderBy(o => o.Id).First().Id;
                 string serverPath = HttpContext.Current.Server.MapPath("/Uploads");
-                string sourcePath = serverPath + "/Pacages/" +  gt.ToString() + "/" + (idGeneratedTestVariant - firstId + 1).ToString() + ".zip";
+                string sourcePath = serverPath + "/Packages/" +  gt.ToString() + "/" + (idGeneratedTestVariant - firstId + 1).ToString() + ".zip";
                 FileInfo source = new FileInfo(sourcePath);
                 if (!source.Exists)
                 {

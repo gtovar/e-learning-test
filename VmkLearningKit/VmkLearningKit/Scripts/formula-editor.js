@@ -11,7 +11,8 @@ function DisplayMath(element, math) {
    MathJax.Extension.tex2jax.PreProcess(element);
    //MathJax.Hub.Process(element);
 
-}
+
+}
 
 // отрисовывает формулу под ответом после закрытия редактора
 function DisplayAnsverFormula() {
@@ -163,18 +164,18 @@ function DisplayFormulaEditor(ev) {
          var el = ('<div id="formula_editor" style="" >');
              el += ('<div id="formula_teacher_palette" style="" >');
                  el += ('Полная палитра:<br>');
-                 el += ('<button class="btn_big_palette" name="\\int_{*}^{*}{*}" onclick="AddToPalette(); return false">  </button>');
-                 el += ('<button class="btn_big_palette" name="\\sum_{*}^{*}{*}" onclick="AddToPalette(); return false">  </button>');
-                 el += ('<button class="btn_big_palette" name="\\sqrt{*}" onclick="AddToPalette(); return false">  </button>');
-                 el += ('<button class="btn_big_palette" name="\\sin_{*}^{*}{*}" onclick="AddToPalette(); return false">  </button>');
-                 el += ('<button class="btn_big_palette" name="\\cos_{*}^{*}{*}" onclick="AddToPalette(); return false">  </button>');
-                 el += ('<button class="btn_big_palette" name="{*}^{*}" onclick="AddToPalette(); return false">  </button>			');
-                 el += ('<button class="btn_big_palette" name="\\in{*}" onclick="AddToPalette(); return false">  </button>');
-                 el += ('<button class="btn_big_palette" name="\\exists{*}" onclick="AddToPalette(); return false">  </button>');
-                 el += ('<button class="btn_big_palette" name="\\forall{*}" onclick="AddToPalette(); return false">  </button>');
-                 el += ('<button class="btn_big_palette" name="\\geq{*}" onclick="AddToPalette(); return false">  </button>			');
-                 el += ('<button class="btn_big_palette" name="\\leq{*}" onclick="AddToPalette(); return false">  </button>');
-                 el += ('<button class="btn_big_palette" name="\\varepsilon" onclick="AddToPalette(); return false">  </button>');
+                 el += ('<button class="btn_big_palette" name="\\int_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
+                 el += ('<button class="btn_big_palette" name="\\sum_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
+                 el += ('<button class="btn_big_palette" name="\\sqrt{*}" onclick="AddToPalette(); return false"></button>');
+                 el += ('<button class="btn_big_palette" name="\\sin_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
+                 el += ('<button class="btn_big_palette" name="\\cos_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
+                 el += ('<button class="btn_big_palette" name="{*}^{*}" onclick="AddToPalette(); return false"></button>');
+                 el += ('<button class="btn_big_palette" name="\\in{*}" onclick="AddToPalette(); return false"> </button>');
+                 el += ('<button class="btn_big_palette" name="\\exists{*}" onclick="AddToPalette(); return false"> </button>');
+                 el += ('<button class="btn_big_palette" name="\\forall{*}" onclick="AddToPalette(); return false"> </button>');
+                 el += ('<button class="btn_big_palette" name="\\geq{*}" onclick="AddToPalette(); return false"> </button>');
+                 el += ('<button class="btn_big_palette" name="\\leq{*}" onclick="AddToPalette(); return false"> </button>');
+                 el += ('<button class="btn_big_palette" name="\\varepsilon" onclick="AddToPalette(); return false"> </button>');
                  el += ('<br />');
                  el += ('Произвольный символ/формула в TeX:<br />');
                  el += ('<input id="newPaletteFormula"/>');
