@@ -142,7 +142,8 @@ namespace Microsoft.LearningComponents {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;script language=&quot;javascript&quot;&gt;
+        ///   Looks up a localized string similar to &lt;script language=&quot;javascript&quot;  src=&quot;Include/FramesetMgr.js&quot;&gt;&lt;/script&gt;
+        ///   &lt;script language=&quot;javascript&quot;&gt;
         ///var ECS_ViewType=2;
         ///
         /// //=============================================================================

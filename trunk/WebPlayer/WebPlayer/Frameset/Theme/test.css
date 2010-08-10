@@ -1,0 +1,72 @@
+
+	* html {
+	background: fixed url('about:blank');
+	}
+
+#formula_input{
+	width:450px;
+}
+
+#formula_palette{
+	width:350px;
+	margin:5px;
+	min-height:65px;
+}
+
+.formula_edit{
+	width:500px;
+	height:75px;
+	
+	margin:5px;
+}
+
+
+
+#div_formula_edit
+{
+	width:500px;
+}
+
+#formula_display
+{
+	width:500px;
+	min-height:50px;
+	margin: 10px;
+}
+
+#formula_editor{
+	background: #eee;
+	width:500px;
+	min-height:345px;
+	padding:25px 5px;
+	display:none;
+	border: solid 1px #aaaaaa;
+}
+
+#formula_teacher_palette{
+	float:right;
+	background-color: #dddddd;
+	width:200px;
+	padding-left:9px;
+	
+}
+
+.MathJax_Display {
+	margin: 0 !important;
+	
+	text-align:left !important;
+}
+
+input.formula_input{
+	width:510px;
+}
+
+.btn_pallete, .btn_big_palette{
+	cursor:pointer;
+	width:51px;
+	height:57px;
+}
+
+.math{
+	margin:10px;
+}

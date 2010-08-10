@@ -151,7 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Migrated rules for LearningComponents.ruleset" />
-    <None Include="Resources\HeadExecuteViewScript" />
+    <None Include="Resources\HeadExecuteViewScript">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HeadGradingViewScript" />
