@@ -38,8 +38,7 @@ namespace Microsoft.LearningComponents.Frameset
                 }
                 else
                 {
-                    try
-                    {
+                    
                         PackageItemIdentifier packageId;
 
                         LearningStoreJob job = LStore.CreateJob();
@@ -96,11 +95,8 @@ namespace Microsoft.LearningComponents.Frameset
                         Application["TrainingId"] = trainingInfo.TrainingId;
 
                         TestUrl = "./Frameset/Frameset.aspx?View=0&AttemptId=" + attemptId.GetKey();
-                    }
-                    catch
-                    {
-                        RegisterError("Произошла ошибка", "Произошла серьёзная ошибка, обратитесь к администратору", false);
-                    }
+                    
+                 
 
                 }
             }

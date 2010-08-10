@@ -10,7 +10,7 @@
             the content rendered from the package. */ %>
 
     <link rel="stylesheet" type="text/css" href="<%= FramesetPath %>Theme/Styles.css"/>
-    <script src="<%= FramesetPath %>Include/FramesetMgr.js"></script>
+   
 
     <script>
 
