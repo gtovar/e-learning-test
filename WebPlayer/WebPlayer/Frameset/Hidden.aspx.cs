@@ -94,6 +94,7 @@ namespace Microsoft.LearningComponents.Frameset
                         case AttemptStatus.Completed:
                             ITrainings trainings = new Trainings();
                             trainings.SetScore(Convert.ToInt64(Application["TrainingId"]), (int)slsSession.TotalPoints);
+                            trainings.SetState(Convert.ToInt64(Application["TrainingId"]), 3);
                             messageTitle = FramesetResources.HID_SessionCompletedTitle;
                             message = FramesetResources.FRM_ExecuteViewCompletedSessionMsg;
                             break;
