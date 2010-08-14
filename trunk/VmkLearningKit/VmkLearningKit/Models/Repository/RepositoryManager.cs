@@ -425,6 +425,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.AssignedTestVariants.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.AssignedTestVariants);
+
                 if (assignedTestVariantRepository == null)
                 {
                     assignedTestVariantRepository = new AssignedTestVariantRepository(DataContext);

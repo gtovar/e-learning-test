@@ -28,11 +28,13 @@ namespace VmkLearningKit
         public const string QUESTION_GROUP_EXCLUSION    = "Exclusion";
 
         // состояние тестового варианта, когда он только был назначен и еще не выполнялся
-        public const int    TEST_VARIANT_STATE_NEW      = 1;
+        public const int    TEST_VARIANT_STATE_NEW          = 1;
+        // состояние тестового варианта, когда он находится в процессе выполнения
+        public const int    TEST_VARIANT_STATE_IN_PROGRESS  = 2;
         // состояние тестового варианта, когда он был выполнен студентом
-        public const int    TEST_VARIANT_STATE_DONE     = 2;
+        public const int    TEST_VARIANT_STATE_DONE         = 3;
         // состояние тестового варианта, когда он был проверен преподавателем
-        public const int    TEST_VARIANT_STATE_CHECKED  = 3;
+        public const int    TEST_VARIANT_STATE_CHECKED      = 4;
         // как долго отображать выполненные тесты студентом (втечение 14 дней по-умолчанию)
         public const int    HOW_LONG_SHOW_DONE_TEST     = 14;
         // как долго отображать проверенные тесты студента (втечение 14 дней по-умолчанию)
