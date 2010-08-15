@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<groups>
+	<group specialityAbbreviation="олх" number="8101" />
+	<group specialityAbbreviation="олх" number="8102" />
+	<group specialityAbbreviation="олх" number="8103" />
+	<group specialityAbbreviation="олх" number="8104" />
+	<group specialityAbbreviation="олх" number="8105" />
+	<group specialityAbbreviation="ох" number="8108" />
+	<group specialityAbbreviation="ох" number="8109ю" />
+	<group specialityAbbreviation="хр" number="8112" />
+	<group specialityAbbreviation="хр" number="8113" />
+	<group specialityAbbreviation="олх" number="8201" />
+	<group specialityAbbreviation="олх" number="8202" />
+	<group specialityAbbreviation="олх" number="8203" />
+	<group specialityAbbreviation="олх" number="8204" />
+	<group specialityAbbreviation="олх" number="ю8205" />
+	<group specialityAbbreviation="ох" number="8208" />
+	<group specialityAbbreviation="ох" number="ю8209" />
+	<group specialityAbbreviation="ох" number="ю8210" />
+	<group specialityAbbreviation="хр" number="8212" />
+	<group specialityAbbreviation="хр" number="8213" />
+	<group specialityAbbreviation="хр" number="ю8216" />
+	<group specialityAbbreviation="олх" number="8301" />
+	<group specialityAbbreviation="олх" number="8302" />
+	<group specialityAbbreviation="олх" number="8303" />
+	<group specialityAbbreviation="олх" number="ю8304" />
+	<group specialityAbbreviation="ох" number="8305" />
+	<group specialityAbbreviation="ох" number="8306ю" />
+	<group specialityAbbreviation="ох" number="8307ю" />
+	<group specialityAbbreviation="хр" number="8309" />
+	<group specialityAbbreviation="хр" number="8310" />
+	
+</groups>
