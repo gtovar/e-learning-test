@@ -1,4 +1,6 @@
-﻿
+﻿////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////// глюк при вставке вместо выделенного учаска текста и последующей вставки в "новый" код ////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function DisplayMath(element, math) {
     if (typeof (element) == 'string')
         element = document.getElementById(element);
@@ -126,11 +128,18 @@ function DisplayFormulaEditor(ev) {
     }
 
     // Собственно редактор
+    ClearFormEdit();
     $("#formula_editor").insertAfter(obj);
     $("#formula_editor").find("textarea[name=formula_edit]").text($(obj).attr('value'));
-    $(obj).animate({ height: "0px" }, 400);
+    $(obj).hide();
     $("#formula_editor").show("slow");
+    
 
+    // установка фокуса на поле ввода и смещение каретки в конец текста в IE
+    var el = $("#formula_edit")[0];
+    el.focus();
+    if (document.selection && document.selection.createRange)
+        el.caretPos = document.selection.createRange().duplicate().collapse(false);
 
     // Генерация палитры
     GeneratePallete(obj);
@@ -143,7 +152,8 @@ function ClearFormEdit() {
     $("#formula_editor").find("textarea[name=formula_edit]").text("");
     $("#formula_editor").find("div#formula_display").text("");
     // очистка палитры
-    $('#formula_palette').text("");
+    $('#formula_palette')[0].innerHTML = "";
+   // alert("qwerty");
 }
 
 // Закрывает редактор формул с сохранением результатов
@@ -156,9 +166,10 @@ function InputAndHideFormulaEditor(obj) {
                
     // отрисовка формулы под ответом
     DisplayAnsverFormula();
-
-    ClearFormEdit();
+   // $('#formula_palette')[0].innerHTML = "";
+   // ClearFormEdit();
     // сворачивание редактора
+    $("#formula_editor").prev().show("slow");
     $("#formula_editor").prev().animate({ height: "20px" }, 400);
     $("#formula_editor").hide("slow");
     //window.setTimeout('$("#formula_editor").insertAfter($(".content")[0])',400);
@@ -167,14 +178,16 @@ function InputAndHideFormulaEditor(obj) {
 }
 
 function HideFormulaEditor() {
-    ClearFormEdit();
-    $("#formula_editor").prev().animate({ height: "20px" }, 400);
+   // ClearFormEdit();
+   // $("#formula_editor").prev().animate({ height: "20px" }, 400);
+    $("#formula_editor").prev().show("slow");
     $("#formula_editor").hide("slow");
     return false;
 }
 function QuickHideFormulaEditor() {
-    ClearFormEdit();
+   // ClearFormEdit();
     $("#formula_editor").css({ display: "none" });
+    $("#formula_editor").prev().show("fast");
     $("#formula_editor").prev().css({ height: "20px" });
 }
 
@@ -188,8 +201,12 @@ function StoreCaret(element) {
 function InsertTextFormul() {
     var text = this.name;
     var element = $("#formula_edit")[0];
-    if (element && element.caretPos)
+    if (element && element.caretPos) {
         element.caretPos.text = text;
+       // var element = $("#formula_edit")[0];
+       // element.focus();
+       // element.caretPos = document.selection.createRange().duplicate().collapse(false);
+    }
     else if (element && element.selectionStart + 1 && element.selectionEnd + 1)
         element.value = element.value.substring(0, element.selectionStart) + text + element.value.substring(element.selectionEnd, element.value.length);
     else if (element)

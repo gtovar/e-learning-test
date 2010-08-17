@@ -212,11 +212,18 @@ function DisplayFormulaEditor(ev) {
     }
 
     // Собственно редктор
+    ClearFormEdit();
     $("#formula_editor").insertAfter(obj);
     $("#formula_editor").find("textarea[name=formula_edit]").text($(obj).attr('value'));
-    $(obj).animate({ height: "0px" }, 400);
+    $(obj).hide();
     $("#formula_editor").show("slow");
 
+
+    // установка фокуса на поле ввода и смещение каретки в конец текста
+    var el = $("#formula_edit")[0];
+    el.focus();
+    if (document.selection && document.selection.createRange)
+        el.caretPos = document.selection.createRange().collapse(false);
 
     // Генерация палитры
     GenerateBigPalette(obj);
