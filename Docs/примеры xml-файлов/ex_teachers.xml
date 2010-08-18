@@ -1,21 +1,21 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="windows-1251"?>
 <teachers>
-	<teacher chair="МОЭВМ" lastName="Стронгин" firstName="Роман" patronymic="Григорьевич" degree="д.ф.-м.н." position="проф." rank="проф." />
-	<teacher chair="МОЭВМ" lastName="Гергель" firstName="Виктор" patronymic="Павлович" degree="д.т.н." position="проф." rank="проф." />
-	<teacher chair="МОЭВМ" lastName="Кетков" firstName="Юлий" patronymic="Лазаревич" degree="д.т.н." position="проф." rank="проф." />
-	<teacher chair="МОЭВМ" lastName="Сергеев" firstName="Ярослав" patronymic="Дмитриевич" degree="д.ф.-м.н." position="проф." rank="проф." />
-	<teacher chair="МОЭВМ" lastName="Швецов" firstName="Владимир" patronymic="Иванович" degree="д.т.н." position="проф." rank="проф." />
-	<teacher chair="МОЭВМ" lastName="Турлапов" firstName="Вадим" patronymic="Евгеньевич" degree="д.т.н." position="проф." rank="проф." />
-	<teacher chair="МОЭВМ" lastName="Баркалов " firstName="Александр" patronymic="Валентинович" degree="к.ф.-м.н." position="доц." rank="доц." />
-	<teacher chair="МОЭВМ" lastName="Гришагин" firstName="Владимир" patronymic="Александрович" degree="к.ф.-м.н." position="доц." rank="доц." />
-	<teacher chair="МОЭВМ" lastName="Карпенко" firstName="Сергей" patronymic="Николаевич" degree="к.т.н." position="доц." rank="доц." />
-	<teacher chair="МОЭВМ" lastName="Мееров" firstName="Иосиф" patronymic="Борисович" degree="к.т.н." position="доц." rank="доц." />
-	<teacher chair="МОЭВМ" lastName="Юнаковский" firstName="Алексей " patronymic="Дмитриевич" degree=" " position="доц." rank="доц." />
-	<teacher chair="МОЭВМ" lastName="Боголепов" firstName="Денис" patronymic="Константинович" degree=" " position="acc." rank=" " />
-	<teacher chair="МОЭВМ" lastName="Лабутин" firstName="Дмитрий" patronymic="Юрьевич" degree=" " position="acc." rank=" " />
-	<teacher chair="МОЭВМ" lastName="Свистунов" firstName="Алексей" patronymic="Николаевич" degree=" " position="acc." rank=" " />
-	<teacher chair="МОЭВМ" lastName="Сиднев" firstName="Алексей" patronymic="Александрович" degree=" " position="acc." rank=" " />
-	<teacher chair="МОЭВМ" lastName="Сысоев" firstName="Александр" patronymic="Владимирович" degree=" " position="acc." rank=" " />
-	<teacher chair="МОЭВМ" lastName="Шестакова" firstName="Наталья" patronymic="Валерьевна" degree=" " position="acc." rank=" " />
-	<teacher chair="МОЭВМ" lastName="Баркалов" firstName="Константин" patronymic="Александрович" degree=" " position="ст.преп." rank=" " />
-</teachers >
+	<teacher chairAbbreviation="МОЭВМ" lastName="Стронгин" firstName="Роман" patronymic="Григорьевич" degree="д.ф.-м.н." position="проф." rank="проф." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Гергель" firstName="Виктор" patronymic="Павлович" degree="д.т.н." position="проф." rank="проф." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Кетков" firstName="Юлий" patronymic="Лазаревич" degree="д.т.н." position="проф." rank="проф." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Сергеев" firstName="Ярослав" patronymic="Дмитриевич" degree="д.ф.-м.н." position="проф." rank="проф." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Швецов" firstName="Владимир" patronymic="Иванович" degree="д.т.н." position="проф." rank="проф." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Турлапов" firstName="Вадим" patronymic="Евгеньевич" degree="д.т.н." position="проф." rank="проф." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Баркалов " firstName="Александр" patronymic="Валентинович" degree="к.ф.-м.н." position="доц." rank="доц." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Гришагин" firstName="Владимир" patronymic="Александрович" degree="к.ф.-м.н." position="доц." rank="доц." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Карпенко" firstName="Сергей" patronymic="Николаевич" degree="к.т.н." position="доц." rank="доц." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Мееров" firstName="Иосиф" patronymic="Борисович" degree="к.т.н." position="доц." rank="доц." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Юнаковский" firstName="Алексей " patronymic="Дмитриевич" degree=" " position="доц." rank="доц." />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Боголепов" firstName="Денис" patronymic="Константинович" degree=" " position="acc." rank=" " />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Лабутин" firstName="Дмитрий" patronymic="Юрьевич" degree=" " position="acc." rank=" " />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Свистунов" firstName="Алексей" patronymic="Николаевич" degree=" " position="acc." rank=" " />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Сиднев" firstName="Алексей" patronymic="Александрович" degree=" " position="acc." rank=" " />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Сысоев" firstName="Александр" patronymic="Владимирович" degree=" " position="acc." rank=" " />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Шестакова" firstName="Наталья" patronymic="Валерьевна" degree=" " position="acc." rank=" " />
+	<teacher chairAbbreviation="МОЭВМ" lastName="Баркалов" firstName="Константин" patronymic="Александрович" degree=" " position="ст.преп." rank=" " />
+</teachers>
