@@ -752,5 +752,185 @@ namespace VmkLearningKit {
                 return ResourceManager.GetString("VMK_DEPARTMENT_ALIAS", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to abbreviation.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_ABBREVIATION {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_ABBREVIATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to chairAbbreviation.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_CHAIR_ABBREVIATION {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_CHAIR_ABBREVIATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to degree.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_DEGREE {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_DEGREE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to firstName.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_FIRSTNAME {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_FIRSTNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to groupNumber.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_GROUP_NUMBER {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_GROUP_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lastName.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_LASTNAME {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_LASTNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to number.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_NUMBER {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to patronymic.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_PATRONYMIC {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_PATRONYMIC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to position.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_POSITION {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_POSITION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rank.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_RANK {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_RANK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to specialityAbbreviation.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_SPECIALITY_ABBREVIATION {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_SPECIALITY_ABBREVIATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to specializationAbbreviation.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to title.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_TITLE {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Такой кафедры не существует.
+        /// </summary>
+        internal static string XML_DATA_ERROR_NOT_EXIST_CHAIR {
+            get {
+                return ResourceManager.GetString("XML_DATA_ERROR_NOT_EXIST_CHAIR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Такой специальности не существует.
+        /// </summary>
+        internal static string XML_DATA_ERROR_NOT_EXIST_SPECIALITY {
+            get {
+                return ResourceManager.GetString("XML_DATA_ERROR_NOT_EXIST_SPECIALITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to chair.
+        /// </summary>
+        internal static string XML_ELEMENT_CHAIR {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_CHAIR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to group.
+        /// </summary>
+        internal static string XML_ELEMENT_GROUP {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_GROUP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to student.
+        /// </summary>
+        internal static string XML_ELEMENT_STUDENT {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_STUDENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to teacher.
+        /// </summary>
+        internal static string XML_ELEMENT_TEACHER {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_TEACHER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /Core/XmlConverter/XmlSchemas/.
+        /// </summary>
+        internal static string XML_SCHEMA_BASE_URL {
+            get {
+                return ResourceManager.GetString("XML_SCHEMA_BASE_URL", resourceCulture);
+            }
+        }
     }
 }

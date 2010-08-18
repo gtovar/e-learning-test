@@ -26,6 +26,7 @@ namespace VmkLearningKit
         public const string TITLE_DEFAULT               = "Вопрос из Word-документа";
         public const string QUESTION_GROUP_DOUBLE       = "Double";
         public const string QUESTION_GROUP_EXCLUSION    = "Exclusion";
+        public const string FIELD_EMPTY                 = "Отсутствует";
 
         // состояние тестового варианта, когда он только был назначен и еще не выполнялся
         public const int    TEST_VARIANT_STATE_NEW          = 1;
@@ -48,5 +49,9 @@ namespace VmkLearningKit
         // данный идентификатор обновляется плеером после добавления теста в его БД
         public const int    PACKAGE_DEFAULT_ID          = 0;
 
+        public const long   VMK_DEPARTMENT_ID           = 1;
+
+        public const string XML_UPLOAD_ALIAS_CHAIRS     = "Chairs";
+        public const string XML_UPLOAD_ALIAS_TEACHERS   = "Teachers";
     }
 }

@@ -348,4 +348,64 @@
   <data name="VMK_DEPARTMENT_ALIAS" xml:space="preserve">
     <value>VMK</value>
   </data>
+  <data name="XML_ATTRIBUTE_ABBREVIATION" xml:space="preserve">
+    <value>abbreviation</value>
+  </data>
+  <data name="XML_ATTRIBUTE_CHAIR_ABBREVIATION" xml:space="preserve">
+    <value>chairAbbreviation</value>
+  </data>
+  <data name="XML_ATTRIBUTE_DEGREE" xml:space="preserve">
+    <value>degree</value>
+  </data>
+  <data name="XML_ATTRIBUTE_FIRSTNAME" xml:space="preserve">
+    <value>firstName</value>
+  </data>
+  <data name="XML_ATTRIBUTE_GROUP_NUMBER" xml:space="preserve">
+    <value>groupNumber</value>
+  </data>
+  <data name="XML_ATTRIBUTE_LASTNAME" xml:space="preserve">
+    <value>lastName</value>
+  </data>
+  <data name="XML_ATTRIBUTE_NUMBER" xml:space="preserve">
+    <value>number</value>
+  </data>
+  <data name="XML_ATTRIBUTE_PATRONYMIC" xml:space="preserve">
+    <value>patronymic</value>
+  </data>
+  <data name="XML_ATTRIBUTE_POSITION" xml:space="preserve">
+    <value>position</value>
+  </data>
+  <data name="XML_ATTRIBUTE_RANK" xml:space="preserve">
+    <value>rank</value>
+  </data>
+  <data name="XML_ATTRIBUTE_SPECIALITY_ABBREVIATION" xml:space="preserve">
+    <value>specialityAbbreviation</value>
+  </data>
+  <data name="XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION" xml:space="preserve">
+    <value>specializationAbbreviation</value>
+  </data>
+  <data name="XML_ATTRIBUTE_TITLE" xml:space="preserve">
+    <value>title</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_CHAIR" xml:space="preserve">
+    <value>Такой кафедры не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_SPECIALITY" xml:space="preserve">
+    <value>Такой специальности не существует</value>
+  </data>
+  <data name="XML_ELEMENT_CHAIR" xml:space="preserve">
+    <value>chair</value>
+  </data>
+  <data name="XML_ELEMENT_GROUP" xml:space="preserve">
+    <value>group</value>
+  </data>
+  <data name="XML_ELEMENT_STUDENT" xml:space="preserve">
+    <value>student</value>
+  </data>
+  <data name="XML_ELEMENT_TEACHER" xml:space="preserve">
+    <value>teacher</value>
+  </data>
+  <data name="XML_SCHEMA_BASE_URL" xml:space="preserve">
+    <value>/Core/XmlConverter/XmlSchemas/</value>
+  </data>
 </root>
