@@ -770,6 +770,16 @@ table td .Editor
 	border-top: solid 1px #c4c4c4;
 	display: none;
 }
+
+.UploadVisibleContainer
+{
+	padding: 2px 2px 2px 2px;
+	position: relative;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	border-bottom: solid 1px #c4c4c4;
+	border-top: solid 1px #c4c4c4;
+}
 /*
 ----------------------------------------------------------*/
 .Button
@@ -778,6 +788,16 @@ table td .Editor
 	font: bold;
 	font-size: small;
 	border: solid 2px #c4c4c4;
+}
+/*
+----------------------------------------------------------*/
+.XmlFileUpload
+{
+	cursor: pointer;
+	font: bold;
+	font-size: small;
+	border: solid 0px #c4c4c4;
+	width: inherit;
 }
 /*
 ----------------------------------------------------------*/
