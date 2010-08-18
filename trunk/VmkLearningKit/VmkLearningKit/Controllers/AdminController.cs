@@ -8,6 +8,7 @@ using System.IO;
 using VmkLearningKit.Core;
 using VmkLearningKit.Models.Repository;
 using VmkLearningKit.Core.ExcelToDB;
+using VmkLearningKit.Core.XmlConverter;
 
 namespace VmkLearningKit.Controllers
 {
@@ -636,6 +637,88 @@ namespace VmkLearningKit.Controllers
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
             return View(Constants.ADMIN_GROUP_VIEWS + "Groups.aspx");
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult XmlParse()
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult XmlParse(string alias, FormCollection form)
+        {
+            try
+            {
+                foreach (string inputTagName in Request.Files)
+                {
+                    HttpPostedFileBase file     = Request.Files[inputTagName];
+
+                    if (file.ContentLength > 0 && file.FileName.EndsWith(".xml"))
+                    {
+                        switch (alias)
+                        {
+                            case VLKConstants.XML_UPLOAD_ALIAS_CHAIRS:
+                                {
+                                    string xmlPath      = HttpContext.Server.MapPath("/Uploads/Xml/Chairs");
+                                    string xmlSchema    = HttpContext.Server.MapPath("/Core/XmlConverter/XmlSchemas/XMLSchemaChairs.xsd");
+                                    
+                                    DirectoryInfo targetDir = new DirectoryInfo(xmlPath);                                 
+                                    long xmlIndex           = targetDir.GetFiles("*.xml").Length;
+                                    string xmlName          = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    file.SaveAs(xmlName);
+
+                                    XmlChairsParser xmlChairsParser = new XmlChairsParser(xmlSchema);
+                                    if (xmlChairsParser.ValidateXml(xmlName) & xmlChairsParser.ValidateData(xmlName))
+                                    {
+                                        xmlChairsParser.ParseXml(xmlName);
+                                    }
+                                    else
+                                    {
+                                        ViewData["XmlParseStructureErrors"] = xmlChairsParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
+                                        ViewData["XmlParseDataErrors"]      = xmlChairsParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
+                                    }
+                                    
+                                    break;
+                                }
+                            case VLKConstants.XML_UPLOAD_ALIAS_TEACHERS:
+                                {
+                                    string xmlPath      = HttpContext.Server.MapPath("/Uploads/Xml/Teachers");
+                                    string xmlSchema    = HttpContext.Server.MapPath("/Core/XmlConverter/XmlSchemas/XMLSchemaTeachers.xsd");
+                                    
+                                    DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
+                                    long xmlIndex           = targetDir.GetFiles("*.xml").Length;
+                                    string xmlName          = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    file.SaveAs(xmlName);
+
+                                    XmlTeachersParser xmlTeachersParser = new XmlTeachersParser(xmlSchema);
+                                    if (xmlTeachersParser.ValidateXml(xmlName) & xmlTeachersParser.ValidateData(xmlName))
+                                    {
+                                        xmlTeachersParser.ParseXml(xmlName);
+                                    }
+                                    else
+                                    {
+                                        ViewData["XmlParseStructureErrors"] = xmlTeachersParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
+                                        ViewData["XmlParseDataErrors"]      = xmlTeachersParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
+                                    }
+                                    break;
+                                }
+                            default:
+                                {
+                                    return RedirectToAction("Error", "Home");
+                                }
+                        }
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+
+            return View();
         }
 
     }
