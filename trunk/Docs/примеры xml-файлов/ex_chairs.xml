@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="windows-1251" ?>
 <chairs>
 	<chair abbreviation="ТУДМ" title="Кафедра теории управления и динамики машин" />
 	<chair abbreviation="ЧиФА" title="Кафедра численного и функционального анализа" />
