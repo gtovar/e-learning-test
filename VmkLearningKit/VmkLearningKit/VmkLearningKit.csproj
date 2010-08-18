@@ -120,6 +120,11 @@
     <Compile Include="Core\ExcelToDB\DepartmentStructure.cs" />
     <Compile Include="Core\ExcelToDB\ExcelParser.cs" />
     <Compile Include="Core\Utility.cs" />
+    <Compile Include="Core\XmlConverter\XmlAbstractParser.cs" />
+    <Compile Include="Core\XmlConverter\XmlChairsParser.cs" />
+    <Compile Include="Core\XmlConverter\XmlGroupsParser.cs" />
+    <Compile Include="Core\XmlConverter\XmlStudentsParser.cs" />
+    <Compile Include="Core\XmlConverter\XmlTeachersParser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -381,6 +386,30 @@
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Core\XmlConverter\XmlSchemas\XMLSchemaChairs.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Core\XmlConverter\XmlSchemas\XMLSchemaDisciplineProgram.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Core\XmlConverter\XmlSchemas\XMLSchemaEducationPlan.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Core\XmlConverter\XmlSchemas\XMLSchemaGroups.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Core\XmlConverter\XmlSchemas\XMLSchemaShedule.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Core\XmlConverter\XmlSchemas\XMLSchemaSpecialities.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Core\XmlConverter\XmlSchemas\XMLSchemaStudents.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Core\XmlConverter\XmlSchemas\XMLSchemaTeachers.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Models\Repository\VmkLearningKit.dbml.layout">
       <DependentUpon>VmkLearningKit.dbml</DependentUpon>
     </None>
