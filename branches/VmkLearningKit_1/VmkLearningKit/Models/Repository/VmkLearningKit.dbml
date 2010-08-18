@@ -1,6 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="VLK_DB" Class="VmkLearningKitDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=VLK_DB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="VLK_DBConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="VLK_DB_1" Class="VmkLearningKitDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=VLK_DB_1;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="VLK_DBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Answers" Member="Answers">
     <Type Name="Answer">
       <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -8,6 +7,21 @@
       <Column Name="Text" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Score" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Association Name="Question_Answer" Member="Question" ThisKey="QuestionId" OtherKey="Id" Type="Question" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Login" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="NickName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="SecondName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Patronymic" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Role" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="User_Professor" Member="Professor" ThisKey="Id" OtherKey="UserId" Type="Professor" Cardinality="One" />
+      <Association Name="User_Student" Member="Student" ThisKey="Id" OtherKey="UserId" Type="Student" Cardinality="One" />
     </Type>
   </Table>
   <Table Name="dbo.AssignedTestVariants" Member="AssignedTestVariants">
@@ -20,8 +34,8 @@
       <Column Name="Score" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Mark" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Path" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="StudentKey" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="ProfessorKey" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="StudentKey" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProfessorKey" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="PackageId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Association Name="GeneratedTestVariant_AssignedTestVariant" Member="GeneratedTestVariant" ThisKey="GeneratedTestVariantId" OtherKey="Id" Type="GeneratedTestVariant" IsForeignKey="true" />
       <Association Name="Student_AssignedTestVariant" Member="Student" ThisKey="StudentId" OtherKey="UserId" Type="Student" IsForeignKey="true" />
@@ -38,6 +52,7 @@
       <Association Name="Chair_Professor" Member="Professors" ThisKey="Id" OtherKey="ChairId" Type="Professor" />
       <Association Name="Chair_SpecialityDiscipline" Member="SpecialityDisciplines" ThisKey="Id" OtherKey="ChairId" Type="SpecialityDiscipline" />
       <Association Name="Chair_Specialization" Member="Specializations" ThisKey="Id" OtherKey="ChairId" Type="Specialization" />
+      <Association Name="Chair_Student" Member="Students" ThisKey="Id" OtherKey="ChairId" Type="Student" />
       <Association Name="Department_Chair" Member="Department" ThisKey="DepartmentId" OtherKey="Id" Type="Department" IsForeignKey="true" />
     </Type>
   </Table>
@@ -108,10 +123,20 @@
       <Column Name="DepartmentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Alias" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Group_GroupsLectureTimetable" Member="GroupsLectureTimetables" ThisKey="Id" OtherKey="GroupId" Type="GroupsLectureTimetable" />
       <Association Name="Group_PracticeAndLabTimetable" Member="PracticeAndLabTimetables" ThisKey="Id" OtherKey="GroupId" Type="PracticeAndLabTimetable" />
       <Association Name="Group_PracticePlan" Member="PracticePlans" ThisKey="Id" OtherKey="GroupId" Type="PracticePlan" />
       <Association Name="Group_Student" Member="Students" ThisKey="Id" OtherKey="GroupId" Type="Student" />
       <Association Name="Department_Group" Member="Department" ThisKey="DepartmentId" OtherKey="Id" Type="Department" IsForeignKey="true" />
+      <Association Name="Speciality_Group" Member="Speciality" ThisKey="SpecialityId" OtherKey="Id" Type="Speciality" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GroupsLectureTimetables" Member="GroupsLectureTimetables">
+    <Type Name="GroupsLectureTimetable">
+      <Column Name="GroupId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LectureTimetableId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Group_GroupsLectureTimetable" Member="Group" ThisKey="GroupId" OtherKey="Id" Type="Group" IsForeignKey="true" />
+      <Association Name="LectureTimetable_GroupsLectureTimetable" Member="LectureTimetable" ThisKey="LectureTimetableId" OtherKey="Id" Type="LectureTimetable" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LecturePlans" Member="LecturePlans">
@@ -134,6 +159,7 @@
       <Column Name="Building" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="Room" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="Week" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Association Name="LectureTimetable_GroupsLectureTimetable" Member="GroupsLectureTimetables" ThisKey="Id" OtherKey="LectureTimetableId" Type="GroupsLectureTimetable" />
       <Association Name="Professor_LectureTimetable" Member="Professor" ThisKey="ProfessorId" OtherKey="UserId" Type="Professor" IsForeignKey="true" />
       <Association Name="SpecialityDiscipline_LectureTimetable" Member="SpecialityDiscipline" ThisKey="SpecialityDisciplineId" OtherKey="Id" Type="SpecialityDiscipline" IsForeignKey="true" />
     </Type>
@@ -149,6 +175,7 @@
       <Column Name="Time" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Building" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="Room" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Week" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
       <Association Name="Group_PracticeAndLabTimetable" Member="Group" ThisKey="GroupId" OtherKey="Id" Type="Group" IsForeignKey="true" />
       <Association Name="Professor_PracticeAndLabTimetable" Member="Professor" ThisKey="ProfessorId" OtherKey="UserId" Type="Professor" IsForeignKey="true" />
       <Association Name="SpecialityDiscipline_PracticeAndLabTimetable" Member="SpecialityDiscipline" ThisKey="SpecialityDisciplineId" OtherKey="Id" Type="SpecialityDiscipline" IsForeignKey="true" />
@@ -174,9 +201,10 @@
       <Column Name="Degree" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Position" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="About" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Rank" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Association Name="Professor_LectureTimetable" Member="LectureTimetables" ThisKey="UserId" OtherKey="ProfessorId" Type="LectureTimetable" />
       <Association Name="Professor_PracticeAndLabTimetable" Member="PracticeAndLabTimetables" ThisKey="UserId" OtherKey="ProfessorId" Type="PracticeAndLabTimetable" />
-      <Association Name="Professor_SpecialityDiscipline" Member="SpecialityDisciplines" ThisKey="UserId" OtherKey="ProfessorId" Type="SpecialityDiscipline" />
+      <Association Name="Professor_SpecialityDisciplinesProfessor" Member="SpecialityDisciplinesProfessors" ThisKey="UserId" OtherKey="ProfessorId" Type="SpecialityDisciplinesProfessor" />
       <Association Name="Chair_Professor" Member="Chair" ThisKey="ChairId" OtherKey="Id" Type="Chair" IsForeignKey="true" />
       <Association Name="User_Professor" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
     </Type>
@@ -218,9 +246,33 @@
       <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Alias" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Abbreviation" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Association Name="Speciality_Group" Member="Groups" ThisKey="Id" OtherKey="SpecialityId" Type="Group" />
       <Association Name="Speciality_SpecialityDiscipline" Member="SpecialityDisciplines" ThisKey="Id" OtherKey="SpecialityId" Type="SpecialityDiscipline" />
       <Association Name="Speciality_Specialization" Member="Specializations" ThisKey="Id" OtherKey="SpecialityId" Type="Specialization" />
       <Association Name="Department_Speciality" Member="Department" ThisKey="DepartmentId" OtherKey="Id" Type="Department" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SpecialityDisciplineProgram" Member="SpecialityDisciplinePrograms">
+    <Type Name="SpecialityDisciplineProgram">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SpecialityDisciplineId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ApplicationDomain" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Purposes" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Requirements" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Volume" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Content" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Razdels" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="RazdelsContent" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Topics" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="LabPractice" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Maintenance" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Literature" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Questions" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="MarkCriterias" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Reporting" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Additional" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="SpecialityDiscipline_SpecialityDisciplineProgram" Member="SpecialityDiscipline" ThisKey="SpecialityDisciplineId" OtherKey="Id" Type="SpecialityDiscipline" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SpecialityDisciplines" Member="SpecialityDisciplines">
@@ -229,21 +281,31 @@
       <Column Name="SpecialityId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="EducationPlanId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="ChairId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="ProfessorId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Alias" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Category" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryLevel1" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryLevel2" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
       <Column Name="Abbreviation" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Association Name="SpecialityDiscipline_LecturePlan" Member="LecturePlans" ThisKey="Id" OtherKey="SpecialityDisciplineId" Type="LecturePlan" />
       <Association Name="SpecialityDiscipline_LectureTimetable" Member="LectureTimetables" ThisKey="Id" OtherKey="SpecialityDisciplineId" Type="LectureTimetable" />
       <Association Name="SpecialityDiscipline_PracticeAndLabTimetable" Member="PracticeAndLabTimetables" ThisKey="Id" OtherKey="SpecialityDisciplineId" Type="PracticeAndLabTimetable" />
       <Association Name="SpecialityDiscipline_PracticePlan" Member="PracticePlans" ThisKey="Id" OtherKey="SpecialityDisciplineId" Type="PracticePlan" />
+      <Association Name="SpecialityDiscipline_SpecialityDisciplineProgram" Member="SpecialityDisciplinePrograms" ThisKey="Id" OtherKey="SpecialityDisciplineId" Type="SpecialityDisciplineProgram" />
+      <Association Name="SpecialityDiscipline_SpecialityDisciplinesProfessor" Member="SpecialityDisciplinesProfessors" ThisKey="Id" OtherKey="SpecialityDisciplineId" Type="SpecialityDisciplinesProfessor" />
       <Association Name="SpecialityDiscipline_SpecialityDisciplineTerm" Member="SpecialityDisciplineTerms" ThisKey="Id" OtherKey="SpecialityDisciplineId" Type="SpecialityDisciplineTerm" />
       <Association Name="SpecialityDiscipline_SpecialityDisciplineTopic" Member="SpecialityDisciplineTopics" ThisKey="Id" OtherKey="SpecialityDisciplineId" Type="SpecialityDisciplineTopic" />
       <Association Name="Chair_SpecialityDiscipline" Member="Chair" ThisKey="ChairId" OtherKey="Id" Type="Chair" IsForeignKey="true" />
       <Association Name="Speciality_SpecialityDiscipline" Member="Speciality" ThisKey="SpecialityId" OtherKey="Id" Type="Speciality" IsForeignKey="true" />
       <Association Name="EducationPlan_SpecialityDiscipline" Member="EducationPlan" ThisKey="EducationPlanId" OtherKey="Id" Type="EducationPlan" IsForeignKey="true" />
-      <Association Name="Professor_SpecialityDiscipline" Member="Professor" ThisKey="ProfessorId" OtherKey="UserId" Type="Professor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SpecialityDisciplinesProfessors" Member="SpecialityDisciplinesProfessors">
+    <Type Name="SpecialityDisciplinesProfessor">
+      <Column Name="SpecialityDisciplineId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProfessorId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Professor_SpecialityDisciplinesProfessor" Member="Professor" ThisKey="ProfessorId" OtherKey="UserId" Type="Professor" IsForeignKey="true" />
+      <Association Name="SpecialityDiscipline_SpecialityDisciplinesProfessor" Member="SpecialityDiscipline" ThisKey="SpecialityDisciplineId" OtherKey="Id" Type="SpecialityDiscipline" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SpecialityDisciplineTerms" Member="SpecialityDisciplineTerms">
@@ -254,6 +316,7 @@
       <Column Name="LectureVolume" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="PracticeVolume" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="LabVolume" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="WeeksVolume" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="Reporting" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Association Name="SpecialityDiscipline_SpecialityDisciplineTerm" Member="SpecialityDiscipline" ThisKey="SpecialityDisciplineId" OtherKey="Id" Type="SpecialityDiscipline" IsForeignKey="true" />
     </Type>
@@ -278,7 +341,10 @@
       <Column Name="EducationPlanId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Alias" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Abbreviation" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
       <Association Name="Specialization_PracticeAndLabTimetable" Member="PracticeAndLabTimetables" ThisKey="Id" OtherKey="SpecializationId" Type="PracticeAndLabTimetable" />
+      <Association Name="Specialization_Student" Member="Students" ThisKey="Id" OtherKey="SpecializationId" Type="Student" />
       <Association Name="Chair_Specialization" Member="Chair" ThisKey="ChairId" OtherKey="Id" Type="Chair" IsForeignKey="true" />
       <Association Name="EducationPlan_Specialization" Member="EducationPlan" ThisKey="EducationPlanId" OtherKey="Id" Type="EducationPlan" IsForeignKey="true" />
       <Association Name="Speciality_Specialization" Member="Speciality" ThisKey="SpecialityId" OtherKey="Id" Type="Speciality" IsForeignKey="true" />
@@ -288,25 +354,14 @@
     <Type Name="Student">
       <Column Name="UserId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="GroupId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ChairId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SpecializationId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Association Name="Student_AssignedTestVariant" Member="AssignedTestVariants" ThisKey="UserId" OtherKey="StudentId" Type="AssignedTestVariant" />
       <Association Name="Student_Comment" Member="Comments" ThisKey="UserId" OtherKey="StudentId" Type="Comment" />
+      <Association Name="Chair_Student" Member="Chair" ThisKey="ChairId" OtherKey="Id" Type="Chair" IsForeignKey="true" />
       <Association Name="Group_Student" Member="Group" ThisKey="GroupId" OtherKey="Id" Type="Group" IsForeignKey="true" />
+      <Association Name="Specialization_Student" Member="Specialization" ThisKey="SpecializationId" OtherKey="Id" Type="Specialization" IsForeignKey="true" />
       <Association Name="User_Student" Member="User" ThisKey="UserId" OtherKey="Id" Type="User" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Login" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="NickName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="SecondName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Patronymic" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Role" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="User_Professor" Member="Professor" ThisKey="Id" OtherKey="UserId" Type="Professor" Cardinality="One" />
-      <Association Name="User_Student" Member="Student" ThisKey="Id" OtherKey="UserId" Type="Student" Cardinality="One" />
     </Type>
   </Table>
 </Database>
