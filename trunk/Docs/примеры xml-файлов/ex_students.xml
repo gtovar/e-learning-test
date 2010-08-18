@@ -1,57 +1,57 @@
 <?xml version="1.0" ?>
 <students>
-	<student groupNumber="8101" lastName="Абрамов" firstName="Дмитрий" patronymic="Андреевич" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Аношина" firstName="Елена" patronymic="Дмитриевна" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Белов" firstName="Сергей" patronymic="Юрьевич" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Брагина" firstName="Екатерина" patronymic="Олеговна" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Брежнева" firstName="Светлана" patronymic="Эдуардовна" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Вологин" firstName="Максим" patronymic="Павлович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Гладышев" firstName="Дмитрий" patronymic="Александрович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Жарков" firstName="Евгений" patronymic="Викторович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Калякин" firstName="Роман" patronymic="Михайлович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Кашина" firstName="Евгения" patronymic="Александровна" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Киселев" firstName="Сергей" patronymic="Александрович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Котов" firstName="Александр" patronymic="Михайлович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Кузнецова" firstName="Кира" patronymic="Романовна" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Лапшин" firstName="Артём" patronymic="Викторович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Лыкина" firstName="Ольга" patronymic="Александровна" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Малинкин" firstName="Илья" patronymic="Константинович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Нагорнов" firstName="Роман" patronymic="Сергеевич" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Николаев" firstName="Никита" patronymic="Владиславович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Ноздрин" firstName="Сергей " patronymic="Александрович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Пируян" firstName="Олег" patronymic="Игоревич" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Поляков" firstName="Даниил" patronymic="Сергеевич" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Спицын" firstName="Сергей" patronymic="Александрович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Сяинова" firstName="Диана" patronymic="Тагировна" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Шалаева" firstName="Татьяна" patronymic="Борисовна" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Шалаева" firstName="Ольга" patronymic="Борисовна" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Шишкин" firstName="Александр" patronymic="Михайлович" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8101" lastName="Ятнов" firstName="Егор" patronymic="Сергеевич" specializationAbbreviation="ПМИ" chairShortName=" "/>
-	<student groupNumber="8309" lastName="Авдеев " firstName="Алексей" patronymic="Дмитриевич" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>
-	<student groupNumber="8309" lastName="Вигриянов" firstName="Павел" patronymic="Федорович" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>
-	<student groupNumber="8309" lastName="Грачев" firstName="Андрей" patronymic="Викторович" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>	
-	<student groupNumber="8309" lastName="Добролюбова" firstName="Ольга" patronymic="Владимировна" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>
-	<student groupNumber="8309" lastName="Исаев" firstName="Вадим" patronymic="Дмитриевич" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>
-	<student groupNumber="8309" lastName="Колпакова" firstName="Марина" patronymic="Валентиновна" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>
-	<student groupNumber="8309" lastName="Короткова" firstName="Наталья" patronymic="Олеговна" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>	
-	<student groupNumber="8309" lastName="Кочеткова" firstName="Елена" patronymic="Алексеевна" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>
-	<student groupNumber="8309" lastName="Красичков" firstName="Евгений" patronymic="Сергеевич" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>	
-	<student groupNumber="8309" lastName="Кукаева" firstName=" Светлана" patronymic="Александровна" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>
-	<student groupNumber="8309" lastName="Курицын" firstName="Михаил" patronymic="Владимирович" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>
-	<student groupNumber="8309" lastName="Люлькова" firstName="Елена" patronymic="Евгеньевна" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>
-	<student groupNumber="8309" lastName="Матвеичев" firstName="Дмитрий" patronymic="Сергеевич" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>	
-	<student groupNumber="8309" lastName="Морозова" firstName="Мария" patronymic="Владимировна" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>
-	<student groupNumber="8309" lastName="Неумоина" firstName="Татьяна" patronymic="Александровна" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>	
-	<student groupNumber="8309" lastName="Носов" firstName="Сергей" patronymic="Николаевич" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>
-	<student groupNumber="8309" lastName="Панина" firstName="Екатерина" patronymic="Александровна" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>	
-	<student groupNumber="8309" lastName="Пушкова" firstName="Ольга" patronymic="Евгеньевна" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>
-	<student groupNumber="8309" lastName="Смирнов" firstName="Филипп" patronymic="Георгиевич" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>	
-	<student groupNumber="8309" lastName="Соломин" firstName="Сергей" patronymic="Николаевич" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>
-	<student groupNumber="8309" lastName="Удалова" firstName="Татьяна" patronymic="Игоревна" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>	
-	<student groupNumber="8309" lastName="Хазимов" firstName="Ян" patronymic="Тагирович" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>
-	<student groupNumber="8309" lastName="Шагин" firstName="Дмитрий" patronymic="Николаевич" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>
-	<student groupNumber="8309" lastName="Шарова" firstName="Алла" patronymic="Константиновна" specializationAbbreviation="ИТ" chairShortName="МЛиВА"/>
-	<student groupNumber="8309" lastName="Шеллунц" firstName="Артур" patronymic="Шагенович" specializationAbbreviation="ИТ" chairShortName="МОЭВМ"/>
+	<student groupNumber="8101" lastName="Абрамов" firstName="Дмитрий" patronymic="Андреевич" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Аношина" firstName="Елена" patronymic="Дмитриевна" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Белов" firstName="Сергей" patronymic="Юрьевич" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Брагина" firstName="Екатерина" patronymic="Олеговна" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Брежнева" firstName="Светлана" patronymic="Эдуардовна" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Вологин" firstName="Максим" patronymic="Павлович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Гладышев" firstName="Дмитрий" patronymic="Александрович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Жарков" firstName="Евгений" patronymic="Викторович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Калякин" firstName="Роман" patronymic="Михайлович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Кашина" firstName="Евгения" patronymic="Александровна" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Киселев" firstName="Сергей" patronymic="Александрович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Котов" firstName="Александр" patronymic="Михайлович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Кузнецова" firstName="Кира" patronymic="Романовна" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Лапшин" firstName="Артём" patronymic="Викторович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Лыкина" firstName="Ольга" patronymic="Александровна" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Малинкин" firstName="Илья" patronymic="Константинович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Нагорнов" firstName="Роман" patronymic="Сергеевич" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Николаев" firstName="Никита" patronymic="Владиславович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Ноздрин" firstName="Сергей " patronymic="Александрович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Пируян" firstName="Олег" patronymic="Игоревич" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Поляков" firstName="Даниил" patronymic="Сергеевич" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Спицын" firstName="Сергей" patronymic="Александрович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Сяинова" firstName="Диана" patronymic="Тагировна" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Шалаева" firstName="Татьяна" patronymic="Борисовна" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Шалаева" firstName="Ольга" patronymic="Борисовна" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Шишкин" firstName="Александр" patronymic="Михайлович" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8101" lastName="Ятнов" firstName="Егор" patronymic="Сергеевич" specializationAbbreviation=" " chairShortName=" "/>
+	<student groupNumber="8309" lastName="Авдеев " firstName="Алексей" patronymic="Дмитриевич" specializationAbbreviation=" " chairShortName="МОЭВМ"/>
+	<student groupNumber="8309" lastName="Вигриянов" firstName="Павел" patronymic="Федорович" specializationAbbreviation=" " chairShortName="МЛиВА"/>
+	<student groupNumber="8309" lastName="Грачев" firstName="Андрей" patronymic="Викторович" specializationAbbreviation=" " chairShortName="МОЭВМ"/>	
+	<student groupNumber="8309" lastName="Добролюбова" firstName="Ольга" patronymic="Владимировна" specializationAbbreviation=" " chairShortName="МЛиВА"/>
+	<student groupNumber="8309" lastName="Исаев" firstName="Вадим" patronymic="Дмитриевич" specializationAbbreviation=" " chairShortName="МЛиВА"/>
+	<student groupNumber="8309" lastName="Колпакова" firstName="Марина" patronymic="Валентиновна" specializationAbbreviation=" " chairShortName="МОЭВМ"/>
+	<student groupNumber="8309" lastName="Короткова" firstName="Наталья" patronymic="Олеговна" specializationAbbreviation=" " chairShortName="МОЭВМ"/>	
+	<student groupNumber="8309" lastName="Кочеткова" firstName="Елена" patronymic="Алексеевна" specializationAbbreviation=" " chairShortName="МЛиВА"/>
+	<student groupNumber="8309" lastName="Красичков" firstName="Евгений" patronymic="Сергеевич" specializationAbbreviation=" " chairShortName="МЛиВА"/>	
+	<student groupNumber="8309" lastName="Кукаева" firstName=" Светлана" patronymic="Александровна" specializationAbbreviation=" " chairShortName="МОЭВМ"/>
+	<student groupNumber="8309" lastName="Курицын" firstName="Михаил" patronymic="Владимирович" specializationAbbreviation=" " chairShortName="МЛиВА"/>
+	<student groupNumber="8309" lastName="Люлькова" firstName="Елена" patronymic="Евгеньевна" specializationAbbreviation=" " chairShortName="МОЭВМ"/>
+	<student groupNumber="8309" lastName="Матвеичев" firstName="Дмитрий" patronymic="Сергеевич" specializationAbbreviation=" " chairShortName="МОЭВМ"/>	
+	<student groupNumber="8309" lastName="Морозова" firstName="Мария" patronymic="Владимировна" specializationAbbreviation=" " chairShortName="МОЭВМ"/>
+	<student groupNumber="8309" lastName="Неумоина" firstName="Татьяна" patronymic="Александровна" specializationAbbreviation=" " chairShortName="МЛиВА"/>	
+	<student groupNumber="8309" lastName="Носов" firstName="Сергей" patronymic="Николаевич" specializationAbbreviation=" " chairShortName="МЛиВА"/>
+	<student groupNumber="8309" lastName="Панина" firstName="Екатерина" patronymic="Александровна" specializationAbbreviation=" " chairShortName="МОЭВМ"/>	
+	<student groupNumber="8309" lastName="Пушкова" firstName="Ольга" patronymic="Евгеньевна" specializationAbbreviation=" " chairShortName="МОЭВМ"/>
+	<student groupNumber="8309" lastName="Смирнов" firstName="Филипп" patronymic="Георгиевич" specializationAbbreviation=" " chairShortName="МОЭВМ"/>	
+	<student groupNumber="8309" lastName="Соломин" firstName="Сергей" patronymic="Николаевич" specializationAbbreviation=" " chairShortName="МОЭВМ"/>
+	<student groupNumber="8309" lastName="Удалова" firstName="Татьяна" patronymic="Игоревна" specializationAbbreviation=" " chairShortName="МОЭВМ"/>	
+	<student groupNumber="8309" lastName="Хазимов" firstName="Ян" patronymic="Тагирович" specializationAbbreviation=" " chairShortName="МОЭВМ"/>
+	<student groupNumber="8309" lastName="Шагин" firstName="Дмитрий" patronymic="Николаевич" specializationAbbreviation=" " chairShortName="МЛиВА"/>
+	<student groupNumber="8309" lastName="Шарова" firstName="Алла" patronymic="Константиновна" specializationAbbreviation=" " chairShortName="МЛиВА"/>
+	<student groupNumber="8309" lastName="Шеллунц" firstName="Артур" patronymic="Шагенович" specializationAbbreviation=" " chairShortName="МОЭВМ"/>
 
 	
 	
