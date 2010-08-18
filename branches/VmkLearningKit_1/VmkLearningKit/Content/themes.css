@@ -1,0 +1,24 @@
+﻿/* The main text regions of the template are defined by these styles */
+table.bodytable	{ border-collapse: collapse; color: black; font-size: x-small; font-family: Arial, Helvetica, sans-serif; background-color: white }
+td.banner	{ color: black; font-weight: bold; font-size: medium; padding: 8px }
+td.bodycell	{ color: black; font-size: x-small; font-family: Arial, Helvetica, sans-serif; padding: 8px }
+/* Styles specific to Class Server question tables */
+/* QTable	The overall table containing the question and rubric	 	*/
+/* QNum		The cell containing the question number				*/
+/* QPts		The cell containing the number of points the question is worth	*/
+/* AText	Cells containing answers or answer blanks			*/
+/* RTable	The overall table containing a rubric				*/
+/* RTitle	Used for the title row of the rubric and for major headings	*/
+/* RHeader	Used for performance objectives or minor headings		*/
+/* RText	General text cells in a rubric					*/
+/* RPts		The checkboxes and point values for the rubric elements		*/
+table.QTable	{ width: 99%; border-collapse: collapse; color: black; font-size: x-small; font-family: Arial, Helvetica, sans-serif; margin-top: 15px; margin-bottom: 15px }
+td.QNum		{ font-weight: bold }
+td.QText	{ }
+td.QPts		{ font-weight: bold; color: gray }
+td.AText	{ }
+table.RTable	{ color: black; font-size: x-small; font-family: Arial, Helvetica, sans-serif; border: 1px solid black; border-collapse: collapse; background-color: #F1F1F1 }
+td.RTitle	{ background-color: black; color: #F1F1F1; font-weight: bold }
+td.RHeader	{ font-weight: bold }
+td.RText	{ }
+td.RPts		{ width: 0% }
