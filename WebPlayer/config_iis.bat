@@ -1,1 +1,0 @@
-%SystemRoot%\system32\inetsrv\appcmd migrate config "WEB_PLAYER/"
