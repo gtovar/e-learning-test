@@ -38,7 +38,9 @@ namespace VmkLearningKit.Controllers
                 ViewData["DisciplineTitle"]   = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
                 ViewData["TopicTitle"]        = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
                 ViewData["RazdelTitle"]       = repositoryManager.GetRazdelRepository.GetTitle(alias);
-                ViewData["ProfessorNickName"] = ((User)Session[Constants.SESSION_USER]).NickName;
+                ViewData["ProfessorNickName"] =  ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.NickName;
+                  
+                   
                 ViewData["DisciplineAlias"]   = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
                 ViewData["TopicId"]           = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
 
@@ -209,7 +211,7 @@ namespace VmkLearningKit.Controllers
                 ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
                 ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
                 ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(alias);
-                ViewData["ProfessorNickName"]   = ((User)Session[Constants.SESSION_USER]).NickName;
+                ViewData["ProfessorNickName"] = ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.NickName;
                 ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
                 ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
                 ViewData["RazdelId"]            = alias;
@@ -553,7 +555,7 @@ namespace VmkLearningKit.Controllers
                 ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(alias);
                 ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(alias);
                 ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(alias);
-                ViewData["ProfessorNickName"]   = ((User)Session[Constants.SESSION_USER]).NickName;
+                ViewData["ProfessorNickName"] = ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.NickName;
                 ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(alias);
                 ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(alias).SpecialityDisciplineTopicId;
 
@@ -606,7 +608,7 @@ namespace VmkLearningKit.Controllers
                 ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(razdelId);
                 ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(razdelId);
                 ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(razdelId);
-                ViewData["ProfessorNickName"]   = ((User)Session[Constants.SESSION_USER]).NickName;
+                ViewData["ProfessorNickName"] = ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.NickName;
                 ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(razdelId);
                 ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(razdelId).SpecialityDisciplineTopicId;
 
@@ -639,7 +641,7 @@ namespace VmkLearningKit.Controllers
                 ViewData["DisciplineTitle"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTitle(additional);
                 ViewData["TopicTitle"]          = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineTopicTitle(additional);
                 ViewData["RazdelTitle"]         = repositoryManager.GetRazdelRepository.GetTitle(additional);
-                ViewData["ProfessorNickName"]   = ((User)Session[Constants.SESSION_USER]).NickName;
+                ViewData["ProfessorNickName"] = ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.NickName;
                 ViewData["DisciplineAlias"]     = repositoryManager.GetRazdelRepository.GetSpecialityDisciplineAlias(additional);
                 ViewData["TopicId"]             = repositoryManager.GetRazdelRepository.GetById(additional).SpecialityDisciplineTopicId;
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using VmkLearningKit.Models.Repository;
 using VmkLearningKit.Core;
 
+
 namespace VmkLearningKit.Controllers
 {
     /// <summary>
@@ -45,9 +46,8 @@ namespace VmkLearningKit.Controllers
                 ViewData["DisciplineAlias"]   = 
                     repositoryManager.GetSpecialityDisciplineTopicRepository.GetSpecialityDisciplineAliasByTopicId(alias);
 
-                ViewData["ProfessorNickName"] =
-                    ((User)Session[Constants.SESSION_USER]).NickName;
-                
+                ViewData["ProfessorNickName"] = ((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.NickName;
+              
                 return View();
             }
             catch (Exception exc)
