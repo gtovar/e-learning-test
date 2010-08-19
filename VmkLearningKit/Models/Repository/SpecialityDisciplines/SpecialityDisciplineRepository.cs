@@ -28,7 +28,7 @@ namespace VmkLearningKit.Models.Repository
         {
             try
             {
-                return DataContext.SpecialityDisciplines.Where(s => s.Speciality.Alias == specialityAlias).OrderBy(s => s.Category);
+                return DataContext.SpecialityDisciplines.Where(s => s.Speciality.Alias == specialityAlias).OrderBy(s => s.CategoryLevel2);
             }
             catch (Exception ex)
             {
@@ -54,7 +54,22 @@ namespace VmkLearningKit.Models.Repository
         {
             try
             {
-                return DataContext.SpecialityDisciplines.Where(s => s.Professor.User.NickName == professorNickName);
+                List<SpecialityDiscipline> resultList = new List<SpecialityDiscipline>();
+                
+                long professorId = DataContext.Users.SingleOrDefault<User>(s => s.NickName == professorNickName).Id;
+
+                IEnumerable<SpecialityDisciplinesProfessor> specialityDisciplinesProfessors = 
+                    DataContext.SpecialityDisciplinesProfessors.Where<SpecialityDisciplinesProfessor>(s => s.ProfessorId == professorId);
+
+                if (null != specialityDisciplinesProfessors)
+                {
+                    foreach (SpecialityDisciplinesProfessor specialityDisciplinesProfessor in specialityDisciplinesProfessors)
+                    {
+                        resultList.Add(specialityDisciplinesProfessor.SpecialityDiscipline);
+                    }
+                }
+
+                return resultList.AsEnumerable<SpecialityDiscipline>();
             }
             catch (Exception ex)
             {
@@ -65,11 +80,23 @@ namespace VmkLearningKit.Models.Repository
 
         public IEnumerable<SpecialityDiscipline> GetAll(string specialityAlias, string educationPlanAlias, string chairAlias, string professorNickName)
         {
-            return DataContext.SpecialityDisciplines.Where(s => s.Speciality.Alias == specialityAlias &&
-                                                                s.EducationPlan.Alias == educationPlanAlias &&
-                                                                s.Chair.Alias == chairAlias &&
-                                                                s.Professor.User.NickName == professorNickName
-                                                           );
+            List<SpecialityDiscipline> resultList = new List<SpecialityDiscipline>();
+            
+            IEnumerable<SpecialityDiscipline> temp = DataContext.SpecialityDisciplines.Where(s => s.Speciality.Alias == specialityAlias &&
+                                                                                               s.EducationPlan.Alias == educationPlanAlias &&
+                                                                                               s.Chair.Alias == chairAlias);
+            if (null != temp)
+            {
+                foreach (SpecialityDiscipline specialityDiscipline in temp)
+                {
+                    if (null != DataContext.SpecialityDisciplinesProfessors.SingleOrDefault<SpecialityDisciplinesProfessor>(s => (s.Professor.User.NickName == professorNickName && s.SpecialityDisciplineId == specialityDiscipline.Id)))
+                    {
+                        resultList.Add(specialityDiscipline);
+                    }
+                }
+            }
+
+            return resultList.AsEnumerable<SpecialityDiscipline>();
         }
 
         public long GetMaxId()

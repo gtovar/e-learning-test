@@ -67,18 +67,6 @@ namespace VmkLearningKit.Models.Repository
             return localId;
         }
 
-        public string GetProfessorNickNameByRazdelId(long id)
-        {
-            Razdel razdel = GetById(id);
-
-            if (razdel != null)
-            {
-                return razdel.SpecialityDisciplineTopic.SpecialityDiscipline.Professor.User.NickName;
-            }
-
-            return null;
-        }
-
         public IEnumerable<Razdel> GetAllBySpecialityDisciplineTopicId(long topicId)
         {
             var razdelsList = (from c in DataContext.Razdels

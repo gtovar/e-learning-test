@@ -57,7 +57,7 @@ namespace VmkLearningKit.Controllers
                         SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
                         ViewData["SpecialityDiscipline"] = specialityDiscipline;
                         ViewData["Detailed"] = true;
-                        ViewData["Professor"] = specialityDiscipline.Professor;
+                        ViewData["Professor"] = repositoryManager.GetProfessorRepository.GetByNickName(additional.Trim());
                     }
                 }
                 else
@@ -938,7 +938,6 @@ namespace VmkLearningKit.Controllers
                         // значит первое зан€тие будет через неделю
                         return 2;
                     }
-                    break;
                 case "Ќижн€€":
                     if (Utility.IsDayOnUpWeek(date))
                     {
@@ -954,10 +953,8 @@ namespace VmkLearningKit.Controllers
                         // значит первое зан€тие будет на этой неделе
                         return 2;
                     }
-                    break;
                 case " ажда€":
                     return 1;
-                    break;
             }
             return 1;
         }
@@ -977,7 +974,8 @@ namespace VmkLearningKit.Controllers
                     foreach (LectureTimetable timetable in lectureTimetables)
                     {
                         if (timetable.SpecialityDisciplineId == specialityDiscipline.Id &&
-                            specialityDiscipline.ProfessorId == timetable.ProfessorId &&
+                            // FUCK FIX
+                            (null != specialityDiscipline.SpecialityDisciplinesProfessors.Where<SpecialityDisciplinesProfessor>(t => t.ProfessorId == timetable.ProfessorId)) &&
                             !lectureDays.Contains(timetable.Day))
                         {
                             lectureDays.Add(timetable.Day);

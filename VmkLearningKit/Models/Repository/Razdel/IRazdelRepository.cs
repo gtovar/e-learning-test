@@ -58,12 +58,6 @@ namespace VmkLearningKit.Models.Repository
         string GetSpecialityDisciplineTopicTitle(long id);
 
         /// <summary>
-        /// Получение псевдонима преподавателя по идентификатору раздела
-        /// </summary>
-        /// <param name="id">Идентификатор раздела</param>
-        string GetProfessorNickNameByRazdelId(long id);
-
-        /// <summary>
         /// Получение коллекции всех объектов класса «Razdel» в теме с заданным идентификатором
         /// </summary>
         /// <param name="topicId">Идентификатор темы</param>

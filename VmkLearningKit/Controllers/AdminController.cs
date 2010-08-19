@@ -7,7 +7,6 @@ using System.Web.Mvc.Ajax;
 using System.IO;
 using VmkLearningKit.Core;
 using VmkLearningKit.Models.Repository;
-using VmkLearningKit.Core.ExcelToDB;
 using VmkLearningKit.Core.XmlConverter;
 
 namespace VmkLearningKit.Controllers
@@ -50,63 +49,18 @@ namespace VmkLearningKit.Controllers
                     {
                         if (null != form["DepartmentStructure"])
                         {
-                            DepartmentStructure departmentStructure = new DepartmentStructure();
-                            List<DepartmentStructureObj> departmentStructureList = departmentStructure.FromFile(filePath);
-                            foreach (DepartmentStructureObj obj in departmentStructureList)
-                            {
-                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "DepartmentStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
-                                DB.Backup(dbBackupFilePath);
-                                obj.Commit();
-                            }
-                            isFileLoadOk = true;
                         }
                         if (null != form["SpecialityDisciplineStructure"])
                         {
-                            SpecialityDisciplineStructure specialityDisciplineStructure = new SpecialityDisciplineStructure();
-                            List<SpecialityDisciplineStructureObj> specialityDisciplineStructureList = specialityDisciplineStructure.FromFile(filePath);
-                            foreach (SpecialityDisciplineStructureObj obj in specialityDisciplineStructureList)
-                            {
-                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "SpecialityDisciplineStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
-                                DB.Backup(dbBackupFilePath);
-                                obj.Commit();
-                            }
-                            isFileLoadOk = true;
                         }
                         if (null != form["SpecialityDisciplineTopicStructure"])
                         {
-                            SpecialityDisciplineTopicStructure specialityDisciplineTopicStructure = new SpecialityDisciplineTopicStructure();
-                            List<SpecialityDisciplineTopicStructureObj> specialityDisciplineTopicStructureList = specialityDisciplineTopicStructure.FromFile(filePath);
-                            foreach (SpecialityDisciplineTopicStructureObj obj in specialityDisciplineTopicStructureList)
-                            {
-                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "SpecialityDisciplineTopicStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
-                                DB.Backup(dbBackupFilePath);
-                                obj.Commit();
-                            }
-                            isFileLoadOk = true;
                         }
                         if (null != form["GroupStructure"])
                         {
-                            GroupStructure groupStructure = new GroupStructure();
-                            List<GroupStructureObj> groupStructureList = groupStructure.FromFile(filePath);
-                            foreach (GroupStructureObj obj in groupStructureList)
-                            {
-                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "GroupStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
-                                DB.Backup(dbBackupFilePath);
-                                obj.Commit();
-                            }
-                            isFileLoadOk = true;
                         }
                         if (null != form["LectureTimetableStructure"])
                         {
-                            LectureTimetableStructure lectureTimetableStructure = new LectureTimetableStructure();
-                            List<LectureTimetableStructureObj> lectureTimetableStructureList = lectureTimetableStructure.FromFile(filePath);
-                            foreach (LectureTimetableStructureObj obj in lectureTimetableStructureList)
-                            {
-                                string dbBackupFilePath = Server.MapPath(Constants.DB_BACKUP_PATH) + Constants.DB_BACKUP_NAME + "LectureTimetableStructure_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + ".bak";
-                                DB.Backup(dbBackupFilePath);
-                                obj.Commit();
-                            }
-                            isFileLoadOk = true;
                         }
                     }
                 }
@@ -132,7 +86,6 @@ namespace VmkLearningKit.Controllers
                     {
                         case "Add":
                             return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Add.aspx");
-                            break;
                         case "Edit":
                             if (null != additional && !additional.Trim().Equals(String.Empty))
                             {
