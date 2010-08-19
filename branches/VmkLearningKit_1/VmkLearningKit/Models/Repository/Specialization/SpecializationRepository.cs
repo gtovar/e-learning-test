@@ -161,5 +161,54 @@ namespace VmkLearningKit.Models.Repository
 
             DataContext.SubmitChanges();
         }
+
+        public Specialization GetByAbbreviation(string abbreviation)
+        {
+            Specialization obj = null;
+            try
+            {
+                if (null != abbreviation && !abbreviation.Trim().Equals(String.Empty))
+                {
+                    obj = DataContext.Specializations.SingleOrDefault(s => s.Abbreviation.Trim().ToLower() == abbreviation.Trim().ToLower());
+                }
+            }
+            catch (Exception ex)
+            {
+                // FIXME: add some handler
+            }
+
+            return obj;
+        }
+
+        public IEnumerable<Specialization> Add(IEnumerable<Specialization> specializations)
+        {
+            try
+            {
+                List<Specialization> addedSpecializations = new List<Specialization>();
+
+                if (null != specializations)
+                {
+                    foreach (Specialization specialization in specializations)
+                    {
+                        if (null == GetByAbbreviation(specialization.Abbreviation))
+                        {
+                            DataContext.Specializations.InsertOnSubmit(specialization);
+
+                            addedSpecializations.Add(specialization);
+                        }
+                    }
+
+                    DataContext.SubmitChanges();
+
+                    return addedSpecializations.AsEnumerable<Specialization>();
+                }
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR", exc);
+            }
+
+            return null;
+        }
     }
 }

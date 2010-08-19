@@ -56,10 +56,7 @@ namespace VmkLearningKit.Core.XmlConverter
                 }
             }
 
-            foreach (Chair chair in chairsList)
-            {
-                repositoryManager.GetChairRepository.Add(chair);
-            }
+            repositoryManager.GetChairRepository.Add(chairsList.AsEnumerable<Chair>());
         }
     }
 }

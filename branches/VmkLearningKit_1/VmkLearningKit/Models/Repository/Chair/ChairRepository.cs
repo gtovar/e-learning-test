@@ -207,5 +207,36 @@ namespace VmkLearningKit.Models.Repository
 
             DataContext.SubmitChanges();
         }
+
+        public IEnumerable<Chair> Add(IEnumerable<Chair> chairs)
+        {
+            try
+            {
+                List<Chair> addedChairs = new List<Chair>();
+
+                if (null != chairs)
+                {
+                    foreach (Chair chair in chairs)
+                    {
+                        if (null == GetByAlias(chair.Alias))
+                        {
+                            DataContext.Chairs.InsertOnSubmit(chair);
+
+                            addedChairs.Add(chair);
+                        }
+                    }
+                    
+                    DataContext.SubmitChanges();
+
+                    return addedChairs.AsEnumerable<Chair>();
+                }
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR", exc);
+            }
+
+            return null;
+        }
     }
 }

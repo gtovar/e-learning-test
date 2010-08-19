@@ -304,7 +304,7 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Не указана.
+        ///   Looks up a localized string similar to Отсутствует.
         /// </summary>
         internal static string DEFAULT_CHAIR_NAME {
             get {
@@ -772,11 +772,29 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to code.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_CODE {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to degree.
         /// </summary>
         internal static string XML_ATTRIBUTE_DEGREE {
             get {
                 return ResourceManager.GetString("XML_ATTRIBUTE_DEGREE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to educationPlan.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_EDUCATION_PLAN {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_EDUCATION_PLAN", resourceCulture);
             }
         }
         
@@ -880,11 +898,38 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Такого образовательного плана не существует.
+        /// </summary>
+        internal static string XML_DATA_ERROR_NOT_EXIST_EDUCATION_PLAN {
+            get {
+                return ResourceManager.GetString("XML_DATA_ERROR_NOT_EXIST_EDUCATION_PLAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Такой группы не существует.
+        /// </summary>
+        internal static string XML_DATA_ERROR_NOT_EXIST_GROUP {
+            get {
+                return ResourceManager.GetString("XML_DATA_ERROR_NOT_EXIST_GROUP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Такой специальности не существует.
         /// </summary>
         internal static string XML_DATA_ERROR_NOT_EXIST_SPECIALITY {
             get {
                 return ResourceManager.GetString("XML_DATA_ERROR_NOT_EXIST_SPECIALITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Такой специализации не существует.
+        /// </summary>
+        internal static string XML_DATA_ERROR_NOT_EXIST_SPECIALIZATION {
+            get {
+                return ResourceManager.GetString("XML_DATA_ERROR_NOT_EXIST_SPECIALIZATION", resourceCulture);
             }
         }
         
@@ -903,6 +948,24 @@ namespace VmkLearningKit {
         internal static string XML_ELEMENT_GROUP {
             get {
                 return ResourceManager.GetString("XML_ELEMENT_GROUP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to speciality.
+        /// </summary>
+        internal static string XML_ELEMENT_SPECIALITY {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_SPECIALITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to specialization.
+        /// </summary>
+        internal static string XML_ELEMENT_SPECIALIZATION {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_SPECIALIZATION", resourceCulture);
             }
         }
         

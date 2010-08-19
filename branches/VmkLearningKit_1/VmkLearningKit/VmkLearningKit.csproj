@@ -112,11 +112,13 @@
     <Compile Include="Core\AuthorizeFilter.cs" />
     <Compile Include="Core\AuthenticatedConstraint.cs" />
     <Compile Include="Core\DB.cs" />
+    <Compile Include="Core\PasswordGenerator.cs" />
     <Compile Include="Core\Transliteration.cs" />
     <Compile Include="Core\Utility.cs" />
     <Compile Include="Core\XmlConverter\XmlAbstractParser.cs" />
     <Compile Include="Core\XmlConverter\XmlChairsParser.cs" />
     <Compile Include="Core\XmlConverter\XmlGroupsParser.cs" />
+    <Compile Include="Core\XmlConverter\XmlSpecialitiesParser.cs" />
     <Compile Include="Core\XmlConverter\XmlStudentsParser.cs" />
     <Compile Include="Core\XmlConverter\XmlTeachersParser.cs" />
     <Compile Include="Global.asax.cs">

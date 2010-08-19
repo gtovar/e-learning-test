@@ -32,7 +32,6 @@ namespace VmkLearningKit.Core.XmlConverter
                     {
                         XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_CHAIR, xmlReader.LineNumber, xmlReader.LinePosition));
                     }
-
                 }
             }
 
@@ -59,7 +58,7 @@ namespace VmkLearningKit.Core.XmlConverter
                    teacherPosition,
                    teacherRank;
 
-            List<User> usersList            = new List<User>();
+            List<User>      usersList       = new List<User>();
             List<Professor> professorsList  = new List<Professor>();
             
             while (xmlReader.Read())
@@ -75,35 +74,36 @@ namespace VmkLearningKit.Core.XmlConverter
                     teacherPosition     = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_POSITION);
                     teacherRank         = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_RANK);
                     
-                    string teacherFirstNameShort    = Transliteration.Front(teacherFirstName.Substring(0, 1), TransliterationType.ISO);
-                    string teacherLastNameShort     = Transliteration.Front(teacherLastName.Substring(0, 1), TransliterationType.ISO);
-                    string teacherPatronymicShort   = Transliteration.Front(teacherPatronymic.Substring(0, 1), TransliterationType.ISO);
-                    string teacherLastNameFull      = Transliteration.Front(teacherLastName, TransliterationType.ISO);
+                    string teacherFirstNameShort    = Transliteration.Front(teacherFirstName.Substring(0, 1), TransliterationType.ISO).ToLower();
+                    string teacherLastNameShort     = Transliteration.Front(teacherLastName.Substring(0, 1), TransliterationType.ISO).ToLower();
+                    string teacherPatronymicShort   = Transliteration.Front(teacherPatronymic.Substring(0, 1), TransliterationType.ISO).ToLower();
+                    string teacherLastNameFull      = Transliteration.Front(teacherLastName, TransliterationType.ISO).ToLower();
+                    string password                 = PasswordGenetrator.Generate(VLKConstants.PASSWORD_DEFAULT_LENGTH);
 
                     User user = new User();
                     user.FirstName  = teacherFirstName;
                     user.SecondName = teacherLastName;
                     user.Patronymic = teacherPatronymic;
                     user.Role       = Constants.PROFESSOR_ROLE;
-                    user.NickName   = teacherLastNameShort.ToUpper() + 
-                                      Transliteration.Front(teacherLastName.Substring(1), TransliterationType.ISO).ToLower() +
+                    user.NickName   = teacherLastNameFull.Substring(0, 1).ToUpper() + 
+                                      teacherLastNameFull.Substring(1).ToLower() +
                                       teacherFirstNameShort.ToUpper() + 
                                       teacherPatronymicShort.ToUpper();
-                    // FIXME
                     user.Email      = teacherLastNameFull.ToLower() + "." +
                                       teacherFirstNameShort.ToLower() + "." + 
                                       teacherPatronymicShort.ToLower() + Constants.DEFAULT_EMAIL_DOMEN;
+
                     user.Login      = teacherLastNameFull.ToLower() + "." + 
                                       teacherFirstNameShort.ToLower() + "." +
                                       teacherPatronymicShort.ToLower();
-                    // FIXME
-                    user.Password   = Hash.ComputeHash("123");
-                                      
+                    
+                    user.Password   = Hash.ComputeHash(password);
+
                     Professor professor = new Professor();
                     professor.ChairId   = repositoryManager.GetChairRepository.GetByAbbreviation(teacherChair).Id;
                     professor.Degree    = teacherDegree;
                     professor.Position  = teacherPosition;
-                    //professor.Rank      = teacherRank;
+                    professor.Rank      = teacherRank;
                     professor.UserId    = user.Id;
 
                     usersList.Add(user);
@@ -111,15 +111,10 @@ namespace VmkLearningKit.Core.XmlConverter
                 }
             }
 
-            foreach (User user in usersList)
-            {
-                repositoryManager.GetUserRepository.Add(user);
-            }
+            repositoryManager.GetUserRepository.Add(usersList.AsEnumerable<User>());
+            repositoryManager.GetProfessorRepository.Add(professorsList.AsEnumerable<Professor>());
 
-            foreach (Professor professor in professorsList)
-            {
-                repositoryManager.GetProfessorRepository.Add(professor);
-            }
+            // Здесь делаем рассылку паролей по email
         }
     }
 }

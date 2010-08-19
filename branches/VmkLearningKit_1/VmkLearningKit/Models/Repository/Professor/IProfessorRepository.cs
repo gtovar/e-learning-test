@@ -13,5 +13,6 @@ namespace VmkLearningKit.Models.Repository
         long GetMaxId();
         Professor Add(Professor obj);
         Professor Update(Professor obj);
+        IEnumerable<Professor> Add(IEnumerable<Professor> professors);
     }
 }

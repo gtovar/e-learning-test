@@ -156,5 +156,36 @@ namespace VmkLearningKit.Models.Repository
 
             DataContext.SubmitChanges();
         }
+
+        public IEnumerable<User> Add(IEnumerable<User> users)
+        {
+            try
+            {
+                List<User> addedUsers = new List<User>();
+
+                if (null != users)
+                {
+                    foreach (User user in users)
+                    {
+                        if (null == GetByLogin(user.Login))
+                        {
+                            DataContext.Users.InsertOnSubmit(user);
+
+                            addedUsers.Add(user);
+                        }
+                    }
+
+                    DataContext.SubmitChanges();
+
+                    return addedUsers.AsEnumerable<User>();
+                }
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR", exc);
+            }
+
+            return null;
+        }
     }
 }

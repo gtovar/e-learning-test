@@ -12,5 +12,6 @@ namespace VmkLearningKit.Models.Repository
         Chair GetByAbbreviation(string abbreviation);
         Chair Add(Chair obj);
         long GetMaxId();
+        IEnumerable<Chair> Add(IEnumerable<Chair> chairs);
     }
 }
