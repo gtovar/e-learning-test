@@ -2,9 +2,9 @@
 <specialities>
 	<speciality educationPlan="Магистратура" code="010400.68" abbreviation="ИТ" title="Информационные технологии">
 		<specializaitons>
-			<specialization code="511921" abbreviation="ИПО" title="Инженерия программного обеспечения" chair="МОЭВМ">
-			<specialization code="511908" abbreviation="КГ" title="Компьютерная графика" chair="МОЭВМ">
-			<specialization code=" " abbreviation="КН" title="Компьютерные науки" chair="МЛиВА">
+			<specialization code="511921" abbreviation="ИПО" title="Инженерия программного обеспечения" chairAbbreviation="МОЭВМ">
+			<specialization code="511908" abbreviation="КГ" title="Компьютерная графика" chairAbbreviation="МОЭВМ">
+			<specialization code=" " abbreviation="КН" title="Компьютерные науки" chairAbbreviation="МЛиВА">
 		</specializaitons>
 	</speciality>
 	<speciality educationPlan="Магистратура" code="010400" abbreviation="ПМИ" title="Прикладная математика и информатика">
