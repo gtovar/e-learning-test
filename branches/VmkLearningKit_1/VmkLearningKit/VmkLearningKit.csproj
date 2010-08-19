@@ -112,13 +112,7 @@
     <Compile Include="Core\AuthorizeFilter.cs" />
     <Compile Include="Core\AuthenticatedConstraint.cs" />
     <Compile Include="Core\DB.cs" />
-    <Compile Include="Core\ExcelToDB\GroupStructure.cs" />
-    <Compile Include="Core\ExcelToDB\LectureTimetableStructure.cs" />
-    <Compile Include="Core\ExcelToDB\SpecialityDisciplineStructure.cs" />
-    <Compile Include="Core\ExcelToDB\SpecialityDisciplineTopicStructure.cs" />
     <Compile Include="Core\Transliteration.cs" />
-    <Compile Include="Core\ExcelToDB\DepartmentStructure.cs" />
-    <Compile Include="Core\ExcelToDB\ExcelParser.cs" />
     <Compile Include="Core\Utility.cs" />
     <Compile Include="Core\XmlConverter\XmlAbstractParser.cs" />
     <Compile Include="Core\XmlConverter\XmlChairsParser.cs" />

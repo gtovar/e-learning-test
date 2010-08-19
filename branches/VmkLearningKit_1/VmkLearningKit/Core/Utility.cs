@@ -112,10 +112,10 @@ namespace VmkLearningKit.Core
             SpecialityDiscipline copy = new SpecialityDiscipline();
             copy.Id = obj.Id;
             copy.SpecialityId = obj.SpecialityId;
-            copy.ProfessorId = obj.ProfessorId;
             copy.ChairId = obj.ChairId;
             copy.EducationPlanId = obj.EducationPlanId;
-            copy.Category = obj.Category;
+            copy.CategoryLevel1 = obj.CategoryLevel1;
+            copy.CategoryLevel2 = obj.CategoryLevel2;
             copy.Alias = obj.Alias;
             copy.Title = obj.Title;
             copy.Abbreviation = obj.Abbreviation;
@@ -219,25 +219,18 @@ namespace VmkLearningKit.Core
             {
                 case "Понедельник":
                     return DayOfWeek.Monday;
-                    break;
                 case "Вторник":
                     return DayOfWeek.Tuesday;
-                    break;
                 case "Среда":
                     return DayOfWeek.Wednesday;
-                    break;
                 case "Четверг":
                     return DayOfWeek.Thursday;
-                    break;
                 case "Пятница":
                     return DayOfWeek.Friday;
-                    break;
                 case "Суббота":
                     return DayOfWeek.Saturday;
-                    break;
                 case "Воскресенье":
                     return DayOfWeek.Sunday;
-                    break;
             }
             // if this return is evoked therefore we have an error with day field in LectureTimetable
             // this return mustn't be evoked

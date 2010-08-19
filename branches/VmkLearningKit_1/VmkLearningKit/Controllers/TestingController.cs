@@ -44,9 +44,9 @@ namespace VmkLearningKit.Controllers
 
                 ViewData["DisciplineAlias"]   = 
                     repositoryManager.GetSpecialityDisciplineTopicRepository.GetSpecialityDisciplineAliasByTopicId(alias);
-                
-                ViewData["ProfessorNickName"] = 
-                    repositoryManager.GetSpecialityDisciplineTopicRepository.GetProfessorNickNameByTopicId(alias);
+
+                ViewData["ProfessorNickName"] =
+                    ((User)Session[Constants.SESSION_USER]).NickName;
                 
                 return View();
             }

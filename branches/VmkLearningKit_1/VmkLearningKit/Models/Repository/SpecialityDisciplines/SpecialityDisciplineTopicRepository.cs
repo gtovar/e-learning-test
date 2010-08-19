@@ -118,18 +118,6 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
-        public string GetProfessorNickNameByTopicId(long id)
-        {
-            try
-            {
-                return GetById(id).SpecialityDiscipline.Professor.User.NickName;
-            }
-            catch (Exception ex)
-            {
-            }
-            return null;
-        }
-
         public string GetTitle(long id)
         {
             try

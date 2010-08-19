@@ -43,12 +43,6 @@ namespace VmkLearningKit.Models.Repository
         string GetSpecialityDisciplineAliasByTopicId(long id);
 
         /// <summary>
-        /// Получение псевдонима профессора по идентификатору темы
-        /// </summary>
-        /// <param name="id">Идентификатор темы</param>
-        string GetProfessorNickNameByTopicId(long id);
-
-        /// <summary>
         /// Получение названия дисциплины по идентификатору темы
         /// </summary>
         /// <param name="id">Идентификатор темы</param>
