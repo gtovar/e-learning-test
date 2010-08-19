@@ -133,9 +133,7 @@ namespace VmkLearningKit.Models.Repository
                     return -1;
                 }
            
-                DataContext.AssignedTestVariants.InsertOnSubmit(newAtv);
-                DataContext.SubmitChanges();
-                
+                      
                 string destPath = serverPath + "/AssignedTests" + "/student_" + idStudent.ToString() + "/" + newAtv.Id.ToString();
                 DirectoryInfo dir = new DirectoryInfo(destPath);
                 if (!dir.Exists)
@@ -144,14 +142,15 @@ namespace VmkLearningKit.Models.Repository
                 string copyPath = destPath + "/" + (idGeneratedTestVariant - firstId + 1).ToString() + ".zip";
                 test.CopyTo(copyPath, true);
                 newAtv.Path = copyPath;
-
+                DataContext.AssignedTestVariants.InsertOnSubmit(newAtv);
+                DataContext.SubmitChanges();
             }
             catch (Exception ex)
             {
                 Utility.WriteToLog("ошибка при встакве в бд " + ex.ToString());
                 return -1;
             }
-
+            
             return newAtv.Id;
 
 
