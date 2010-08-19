@@ -74,10 +74,7 @@ namespace VmkLearningKit.Core.XmlConverter
                 }
             }
 
-            foreach (Group group in groupsList)
-            {
-                repositoryManager.GetGroupRepository.Add(group);
-            }
+            repositoryManager.GetGroupRepository.Add(groupsList.AsEnumerable<Group>());
         }
     }
 }

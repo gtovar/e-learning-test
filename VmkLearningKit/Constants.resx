@@ -199,7 +199,7 @@
     <value>DbLogFilePath</value>
   </data>
   <data name="DEFAULT_CHAIR_NAME" xml:space="preserve">
-    <value>Не указана</value>
+    <value>Отсутствует</value>
   </data>
   <data name="DEFAULT_EMAIL_DOMEN" xml:space="preserve">
     <value>@unn.ru</value>
@@ -354,8 +354,14 @@
   <data name="XML_ATTRIBUTE_CHAIR_ABBREVIATION" xml:space="preserve">
     <value>chairAbbreviation</value>
   </data>
+  <data name="XML_ATTRIBUTE_CODE" xml:space="preserve">
+    <value>code</value>
+  </data>
   <data name="XML_ATTRIBUTE_DEGREE" xml:space="preserve">
     <value>degree</value>
+  </data>
+  <data name="XML_ATTRIBUTE_EDUCATION_PLAN" xml:space="preserve">
+    <value>educationPlan</value>
   </data>
   <data name="XML_ATTRIBUTE_FIRSTNAME" xml:space="preserve">
     <value>firstName</value>
@@ -390,14 +396,29 @@
   <data name="XML_DATA_ERROR_NOT_EXIST_CHAIR" xml:space="preserve">
     <value>Такой кафедры не существует</value>
   </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_EDUCATION_PLAN" xml:space="preserve">
+    <value>Такого образовательного плана не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_GROUP" xml:space="preserve">
+    <value>Такой группы не существует</value>
+  </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_SPECIALITY" xml:space="preserve">
     <value>Такой специальности не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_SPECIALIZATION" xml:space="preserve">
+    <value>Такой специализации не существует</value>
   </data>
   <data name="XML_ELEMENT_CHAIR" xml:space="preserve">
     <value>chair</value>
   </data>
   <data name="XML_ELEMENT_GROUP" xml:space="preserve">
     <value>group</value>
+  </data>
+  <data name="XML_ELEMENT_SPECIALITY" xml:space="preserve">
+    <value>speciality</value>
+  </data>
+  <data name="XML_ELEMENT_SPECIALIZATION" xml:space="preserve">
+    <value>specialization</value>
   </data>
   <data name="XML_ELEMENT_STUDENT" xml:space="preserve">
     <value>student</value>

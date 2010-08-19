@@ -205,5 +205,36 @@ namespace VmkLearningKit.Models.Repository
 
             DataContext.SubmitChanges();
         }
+
+        public IEnumerable<Speciality> Add(IEnumerable<Speciality> specialities)
+        {
+            try
+            {
+                List<Speciality> addedSpecialities = new List<Speciality>();
+
+                if (null != specialities)
+                {
+                    foreach (Speciality speciality in specialities)
+                    {
+                        if (null == GetByAbbreviation(speciality.Abbreviation))
+                        {
+                            DataContext.Specialities.InsertOnSubmit(speciality);
+
+                            addedSpecialities.Add(speciality);
+                        }
+                    }
+
+                    DataContext.SubmitChanges();
+
+                    return addedSpecialities.AsEnumerable<Speciality>();
+                }
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR", exc);
+            }
+
+            return null;
+        }
     }
 }

@@ -53,5 +53,8 @@ namespace VmkLearningKit
 
         public const string XML_UPLOAD_ALIAS_CHAIRS     = "Chairs";
         public const string XML_UPLOAD_ALIAS_TEACHERS   = "Teachers";
+
+
+        public const int PASSWORD_DEFAULT_LENGTH        = 7;
     }
 }

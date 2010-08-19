@@ -191,5 +191,36 @@ namespace VmkLearningKit.Models.Repository
                 Utility.WriteToLog("!!!!IMPORTANT Can't delete by id Professor's entry from database !!!!", ex);
             }
         }
+
+        public IEnumerable<Professor> Add(IEnumerable<Professor> professors)
+        {
+            try
+            {
+                List<Professor> addedProfessors = new List<Professor>();
+
+                if (null != professors)
+                {
+                    foreach (Professor professor in professors)
+                    {
+                        if (null == GetByNickName(professor.User.NickName))
+                        {
+                            DataContext.Professors.InsertOnSubmit(professor);
+
+                            addedProfessors.Add(professor);
+                        }
+                    }
+
+                    DataContext.SubmitChanges();
+
+                    return addedProfessors.AsEnumerable<Professor>();
+                }
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR", exc);
+            }
+
+            return null;
+        }
     }
 }

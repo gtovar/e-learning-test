@@ -13,5 +13,7 @@ namespace VmkLearningKit.Models.Repository
         long GetMaxId();
         Specialization GetByTitle(string title);
         Specialization Add(Specialization obj);
+        Specialization GetByAbbreviation(string abbreviation);
+        IEnumerable<Specialization> Add(IEnumerable<Specialization> specializations);
     }
 }

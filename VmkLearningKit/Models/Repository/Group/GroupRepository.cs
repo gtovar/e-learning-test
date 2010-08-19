@@ -156,5 +156,36 @@ namespace VmkLearningKit.Models.Repository
 
             DataContext.SubmitChanges();
         }
+
+        public IEnumerable<Group> Add(IEnumerable<Group> groups)
+        {
+            try
+            {
+                List<Group> addedGroups = new List<Group>();
+
+                if (null != groups)
+                {
+                    foreach (Group group in groups)
+                    {
+                        if (null == GetByAlias(group.Alias))
+                        {
+                            DataContext.Groups.InsertOnSubmit(group);
+
+                            addedGroups.Add(group);
+                        }
+                    }
+
+                    DataContext.SubmitChanges();
+
+                    return addedGroups.AsEnumerable<Group>();
+                }
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR", exc);
+            }
+
+            return null;
+        }
     }
 }

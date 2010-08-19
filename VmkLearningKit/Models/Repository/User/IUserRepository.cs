@@ -11,6 +11,7 @@ namespace VmkLearningKit.Models.Repository
         long GetMaxId();
         bool ChangePassword(long id, string password);
         User Add(User obj);
+        IEnumerable<User> Add(IEnumerable<User> users);
         User Update(User obj);
         bool IsNickNameExists(long id, string nickName);
         IEnumerable<User> GetByGroupId(long id);
