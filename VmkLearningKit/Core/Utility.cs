@@ -308,6 +308,43 @@ namespace VmkLearningKit.Core
             return professorFullName;
         }
 
+        public static string GetProfessorFullName(LecturePlan lecturePlan, string day, string time)
+        {
+            string timeWithZero = String.Empty;
+            // 8:00, 9:00
+            if (time.Length < 5)
+            {
+                timeWithZero = "0" + time;
+            }
+            bool isDayOnUpWeek = Utility.IsDayOnUpWeek(lecturePlan.Date.Value);
+            string professorFullName = String.Empty;
+            Professor professor;
+            if (null != lecturePlan && null != lecturePlan.SpecialityDiscipline &&
+                null != lecturePlan.SpecialityDiscipline.LectureTimetables)
+            {
+                foreach (LectureTimetable timetable in lecturePlan.SpecialityDiscipline.LectureTimetables)
+                {
+                    if (timetable.Day.Trim().Equals(day.Trim()) &&
+                       (timetable.Time.Trim().Equals(time.Trim()) || timetable.Time.Trim().Equals(timeWithZero.Trim())) &&
+                       ((timetable.Week.Trim().Equals(Constants.UP_WEEK) && isDayOnUpWeek) ||
+                        (timetable.Week.Trim().Equals(Constants.DOWN_WEEK) && !isDayOnUpWeek) ||
+                        (timetable.Week.Trim().Equals(Constants.EVERY_WEEK))
+                        ))
+                    {
+                        professor = timetable.Professor;
+                        GetProfessorFullName(professor);
+                        break;
+                    }
+                }
+            }
+
+            return professorFullName;
+        }
+
+
+
+
+
         public static LecturePlan FindLecturePlan(IEnumerable<LecturePlan> lecturePlans, string day, string time)
         {
             DayOfWeek dayOfWeek = GetDayOfWeekFromString(day);

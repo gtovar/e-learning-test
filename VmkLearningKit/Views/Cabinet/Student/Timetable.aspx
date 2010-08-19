@@ -119,10 +119,13 @@
                 <%
                     string professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline) 
+                        /*&& 
+                        null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                       // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan,day,time);
+                        
                     }
                 %>
                 <%= professorFullName%>
@@ -174,10 +177,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -229,10 +235,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -284,10 +293,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -339,10 +351,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -394,10 +409,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -449,10 +467,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -504,10 +525,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -577,10 +601,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -632,10 +659,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -687,10 +717,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                          null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -742,10 +775,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -797,10 +833,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -852,10 +891,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -907,10 +949,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -962,10 +1007,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1035,10 +1083,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1090,10 +1141,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1145,10 +1199,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1200,10 +1257,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1255,10 +1315,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1310,10 +1373,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1365,10 +1431,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1420,10 +1489,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1493,10 +1565,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1548,10 +1623,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1603,10 +1681,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1658,10 +1739,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1713,10 +1797,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1768,10 +1855,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1823,10 +1913,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1878,10 +1971,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -1951,10 +2047,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2006,10 +2105,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2061,10 +2163,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2116,10 +2221,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2171,10 +2279,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2226,10 +2337,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2281,10 +2395,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2336,10 +2453,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2409,10 +2529,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2464,10 +2587,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2519,10 +2645,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2574,10 +2703,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2629,10 +2761,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2684,10 +2819,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                          null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2739,10 +2877,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                         null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
@@ -2794,10 +2935,13 @@
                 <%
                     professorFullName = String.Empty;
                     if (null != foundLecturePlan &&
-                        null != foundLecturePlan.SpecialityDiscipline &&
-                        null != foundLecturePlan.SpecialityDiscipline.Professor)
+                        null != foundLecturePlan.SpecialityDiscipline)
+                    /*&& 
+                    null != foundLecturePlan.SpecialityDiscipline.Professor)*/
                     {
-                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        // professorFullName = Utility.GetProfessorFullName(foundLecturePlan.SpecialityDiscipline.Professor);
+                        professorFullName = Utility.GetProfessorFullName(foundLecturePlan, day, time);
+
                     }
                 %>
                 <%= professorFullName%>
