@@ -114,8 +114,7 @@ namespace VmkLearningKit.Core
             copy.SpecialityId = obj.SpecialityId;
             copy.ChairId = obj.ChairId;
             copy.EducationPlanId = obj.EducationPlanId;
-            copy.CategoryLevel1 = obj.CategoryLevel1;
-            copy.CategoryLevel2 = obj.CategoryLevel2;
+            copy.Category = obj.Category;
             copy.Alias = obj.Alias;
             copy.Title = obj.Title;
             copy.Abbreviation = obj.Abbreviation;
