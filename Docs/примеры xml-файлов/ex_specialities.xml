@@ -1,27 +1,10 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="windows-1251"?>
 <specialities>
 	<speciality educationPlan="Магистратура" code="010400.68" abbreviation="ИТ" title="Информационные технологии">
-		<specializaitons>
-			<specialization code="511921" abbreviation="ИПО" title="Инженерия программного обеспечения" chairAbbreviation="МОЭВМ">
-			<specialization code="511908" abbreviation="КГ" title="Компьютерная графика" chairAbbreviation="МОЭВМ">
-			<specialization code=" " abbreviation="КН" title="Компьютерные науки" chairAbbreviation="МЛиВА">
-		</specializaitons>
+		<specializations>
+			<specialization code="511921" abbreviation="ИПО" title="Инженерия программного обеспечения" chairAbbreviation="МОЭВМ" />
+			<specialization code="511908" abbreviation="КГ" title="Компьютерная графика" chairAbbreviation="МОЭВМ" />
+			<specialization code=" " abbreviation="КН" title="Компьютерные науки" chairAbbreviation="МЛиВА" />
+		</specializations>
 	</speciality>
-	<speciality educationPlan="Магистратура" code="010400" abbreviation="ПМИ" title="Прикладная математика и информатика">
-	</speciality>
-	<speciality educationPlan="Магистратура" code="080800" abbreviation="ПИ" title="Прикладная информатика">
-	</speciality>
-		
-	<speciality educationPlan="Бакалавриат" code="010500" abbreviation="ПМИ" title="Прикладная математика и информатика">
-	</speciality>
-	<speciality educationPlan="Бакалавриат" code="010400.62" abbreviation="ИТ" title="Информационные технологии">
-	</speciality>
-	<speciality educationPlan="Бакалавриат" code="080800" abbreviation="ПИ" title="Прикладная информатика">
-	</speciality>
-	
-	<speciality educationPlan="Специалитет" code="010501" abbreviation="ПМИ" title="Прикладная математика и информатика">
-	</speciality>
-	<speciality educationPlan="Специалитет" code="080801" abbreviation="ПИ" title="Прикладная информатика">
-	</speciality>
-	
 </specialities>
