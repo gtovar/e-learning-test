@@ -109,7 +109,6 @@ namespace VmkLearningKit.Models.Repository
             DataContext.SubmitChanges();
 
             //создаем каталог для хранения ims-пакетов теста
-            string currentPath = Directory.GetCurrentDirectory();
             string testDir = HttpContext.Current.Server.MapPath("/Uploads/Packages") + "\\" + gt.Id;
             DirectoryInfo TestDir = new DirectoryInfo(testDir);
             if (TestDir.Exists)
@@ -269,8 +268,8 @@ namespace VmkLearningKit.Models.Repository
                 /*Builder imspage = new Builder("Imspage.htm", Dir + "\\P1000", gtv, s);
                 imspage.WriteImsPage();*/
 
-                Builder page = new Builder("page.htm", Dir + "\\P1000", gtv, i+1);
-                page.WritePage();
+                VariantView page = new VariantView("page.htm", Dir + "\\P1000", gtv, i+1);
+                page.generateHtmlView();
 
                 // записываем файл индекса во временный каталог
                 Index index1 = new Index();

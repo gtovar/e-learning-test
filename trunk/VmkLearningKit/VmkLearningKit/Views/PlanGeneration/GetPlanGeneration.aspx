@@ -86,12 +86,12 @@
             <td class="Generator">
                 <% if (Convert.ToString(r.QuestionsCount).IndexOf("-") == -1)
                    { %>
-                <input type="text" value="<%= r.QuestionsCount %>" size="1" name="in<%= index %>"
-                    id="in<%= index %>" class="Generator" />
+                <input type="text" value="<%= r.QuestionsCount %>" size="1" 
+                     class="Generator" />
                 <% }
                    else
                    {%>
-                <input type="text" value="<%= 0 %>" size="1" name="in<%= index %>" id="in<%= index %>"
+                <input type="text" value="<%= 0 %>" size="1" 
                     class="Generator" />
                 <%} %>
             </td>
