@@ -67,7 +67,7 @@ namespace VmkLearningKit.Models.Repository
         
         public IEnumerable<EducationPlan> GetAll()
         {
-            return DataContext.EducationPlans.OrderBy(ed => ed.Id);
+            return DataContext.EducationPlans.Where<EducationPlan>(t => t.Title != VLKConstants.FIELD_EMPTY).OrderBy(ed => ed.Id);
         }
 
         public EducationPlan Add(EducationPlan obj)

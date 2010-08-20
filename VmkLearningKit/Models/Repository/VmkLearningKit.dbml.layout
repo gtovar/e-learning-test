@@ -2,481 +2,481 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 22.5, 36.875" name="VmkLearningKit">
   <DataContextMoniker Name="/VmkLearningKitDataContext" />
   <nestedChildShapes>
-    <classShape Id="3bc81957-45c4-4413-b20e-0f894cb00088" absoluteBounds="20.25, 19, 2, 1.5785953776041666">
+    <classShape Id="95e3eb38-0e36-407f-a657-ed97b1d2ae24" absoluteBounds="20.25, 19, 2, 1.5785953776041666">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Answer" />
       <nestedChildShapes>
-        <elementListCompartment Id="2a616871-10ab-4dea-8962-d6fb50b9c8b6" absoluteBounds="20.265, 19.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1b36a66d-787b-4bde-b6d1-03b2b1f3af6f" absoluteBounds="20.265, 19.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8bdf2f0f-2d3e-4d8c-81ee-62c567c74346" absoluteBounds="3.5, 18.375, 2, 2.5401025390625023">
-      <DataClassMoniker Name="/VmkLearningKitDataContext/User" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3233e33a-1808-428e-adc6-8f8c1efe15a3" absoluteBounds="3.515, 18.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="50b21e13-c912-4d57-ab22-3ae2c3cfd782" absoluteBounds="20.25, 24.5, 2, 2.9247054036458309">
+    <classShape Id="4ccedcbd-1783-402f-9d46-4ecdc7ff5e7d" absoluteBounds="20.25, 24.5, 2, 2.9247054036458309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/AssignedTestVariant" />
       <nestedChildShapes>
-        <elementListCompartment Id="27c5034d-57c0-4d6e-b9d4-1af397167131" absoluteBounds="20.265, 24.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="0728d4f1-36ce-430d-a216-0a17caf84484" absoluteBounds="20.265, 24.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0811e755-79a2-41ca-ae6d-ea64789ec003" absoluteBounds="3.5, 22.625, 2, 1.9631982421875023">
+    <classShape Id="4863c8db-6a81-4bfc-8ee2-3daa601cc4e7" absoluteBounds="3.5, 22.625, 2, 1.9631982421875023">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Chair" />
       <nestedChildShapes>
-        <elementListCompartment Id="8fc2ef50-0ea7-48db-99cb-616191101c28" absoluteBounds="3.515, 23.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b98efaad-f9d0-4ac7-95b7-3cf1c302943e" absoluteBounds="3.515, 23.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b656eb11-3b0e-42b9-8b91-91fb6a39d3b7" absoluteBounds="20.25, 16, 2, 1.5785953776041666">
+    <classShape Id="ffbd5886-5de7-4331-b5a4-1d1c9ae0e051" absoluteBounds="20.25, 16, 2, 1.5785953776041666">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Comment" />
       <nestedChildShapes>
-        <elementListCompartment Id="d512164e-8a9e-478e-87ca-472720aa1aa7" absoluteBounds="20.265, 16.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e011fbb6-eeba-4ac5-bbc2-6919c7938409" absoluteBounds="20.265, 16.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c4f921a7-8651-493c-9f54-02d11adcba66" absoluteBounds="0.75, 21.625, 2, 1.7708968098958309">
+    <classShape Id="22805aa5-97c0-4471-8cb9-9cb1dfb1d0dc" absoluteBounds="0.75, 21.625, 2, 1.7708968098958309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Department" />
       <nestedChildShapes>
-        <elementListCompartment Id="e52f44c8-3c5c-496a-a508-df8db07edd77" absoluteBounds="0.765, 22.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a9ee61ac-6d54-4001-9834-692bceba83d6" absoluteBounds="0.765, 22.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="94914b8a-76b9-4cd0-8049-3112f19df34a" absoluteBounds="6.5, 18.25, 2, 1.3862939453125023">
+    <classShape Id="d17b0904-b76e-4535-94da-f18e16a28357" absoluteBounds="6.5, 18.25, 2, 1.3862939453125023">
       <DataClassMoniker Name="/VmkLearningKitDataContext/EducationPlan" />
       <nestedChildShapes>
-        <elementListCompartment Id="2fa519ee-9dea-48de-b917-20078f69af7e" absoluteBounds="6.515, 18.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="72264a90-67d7-414e-a97a-4c8bf72a7195" absoluteBounds="6.515, 18.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="69c40122-a8f6-40f2-b6e6-8eff804e9a3e" absoluteBounds="20.25, 22.25, 2, 1.3862939453125023">
+    <classShape Id="0feb9a3e-f7b5-440e-b6ae-a832b7ad5f09" absoluteBounds="20.25, 22.25, 2, 1.3862939453125023">
       <DataClassMoniker Name="/VmkLearningKitDataContext/GeneratedQuestion" />
       <nestedChildShapes>
-        <elementListCompartment Id="b769b452-70ab-4283-bb32-45c846ec3f14" absoluteBounds="20.265, 22.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1117dbc9-89f9-4da9-852a-698cf436c7fd" absoluteBounds="20.265, 22.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c39b0de5-562e-4605-9748-89e9bc5bdcd3" absoluteBounds="14.75, 22.125, 2, 1.7708968098958309">
+    <classShape Id="78e035df-cc0b-4d7c-8b06-79e127a2e86d" absoluteBounds="14.75, 22.125, 2, 1.7708968098958309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/GeneratedTest" />
       <nestedChildShapes>
-        <elementListCompartment Id="17c46fc0-cb10-4b2a-884a-6965fc103999" absoluteBounds="14.765, 22.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="73f4c515-04b1-4884-82d3-ea7279542cdf" absoluteBounds="14.765, 22.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="788c3567-0802-466e-895f-9bbc7164c1af" absoluteBounds="17.5, 22.375, 2, 1.1939925130208309">
+    <classShape Id="141cca83-49f0-403e-9e19-482dbeabb562" absoluteBounds="17.5, 22.375, 2, 1.1939925130208309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/GeneratedTestVariant" />
       <nestedChildShapes>
-        <elementListCompartment Id="0ac0b0b0-542e-4d85-976a-807a2ffa6d61" absoluteBounds="17.515, 22.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ade5cfb2-0ffb-42bd-ad7e-05bf65e36ea3" absoluteBounds="17.515, 22.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c0f2b761-43c0-44e2-802e-73626efa96a3" absoluteBounds="6.25, 23.625, 2, 1.7708968098958309">
+    <classShape Id="29936cb0-e76f-430e-ae37-548efee5c772" absoluteBounds="6.25, 23.625, 2, 1.7708968098958309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Group" />
       <nestedChildShapes>
-        <elementListCompartment Id="d716a2c2-9708-4ceb-8126-af4caa8d596b" absoluteBounds="6.265, 24.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3424d9f1-6660-4790-81d5-893fa7767daf" absoluteBounds="6.265, 24.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="50c4358b-d270-4aa8-897b-4a80df32da60" absoluteBounds="14.75, 29, 2, 1.1939925130208309">
+    <classShape Id="5fd943d4-60ce-4968-83bc-90a8e939aec1" absoluteBounds="14.75, 29, 2, 1.1939925130208309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/GroupsLectureTimetable" />
       <nestedChildShapes>
-        <elementListCompartment Id="e27234c7-1d48-41ea-9baa-3adde2ea29e6" absoluteBounds="14.765, 29.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="97afdf9b-4815-4718-a520-85a25515c80c" absoluteBounds="14.765, 29.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d10ca522-e2e1-4e53-a084-f5b3007a45bf" absoluteBounds="14.75, 16.5, 2, 1.5785953776041666">
+    <classShape Id="7f4fd3f3-022e-4650-b38c-042ed3186676" absoluteBounds="14.75, 16.5, 2, 1.5785953776041666">
       <DataClassMoniker Name="/VmkLearningKitDataContext/LecturePlan" />
       <nestedChildShapes>
-        <elementListCompartment Id="51113af9-c3ea-4af7-910c-acbb72b1610f" absoluteBounds="14.765, 16.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6c937a16-b2af-432f-a443-41c003259bd9" absoluteBounds="14.765, 16.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="50681458-277a-4325-a3a0-ff2e5ae0adb4" absoluteBounds="12, 25.375, 2, 2.3478011067708309">
+    <classShape Id="5e140687-f9a5-47fe-aa73-189bf3e701fe" absoluteBounds="12, 25.25, 2, 2.3478011067708309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/LectureTimetable" />
       <nestedChildShapes>
-        <elementListCompartment Id="eae70629-f21b-4190-a9fc-717200f9fa9f" absoluteBounds="12.015, 25.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b885fdc1-dfbd-4a63-8eb9-c260db5a7007" absoluteBounds="12.015, 25.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="dc768118-07cf-4051-aac6-2fd14f439af5" absoluteBounds="15, 25.5, 2, 2.7324039713541666">
+    <classShape Id="aa6ef5bb-a5db-48b2-8faf-975c069324ac" absoluteBounds="15, 25.5, 2, 2.7324039713541666">
       <DataClassMoniker Name="/VmkLearningKitDataContext/PracticeAndLabTimetable" />
       <nestedChildShapes>
-        <elementListCompartment Id="d406cfa9-272e-4734-b9cf-7959f8daa366" absoluteBounds="15.015, 25.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9df67ce8-9d7e-4d75-a0c8-21cc3dbf2e58" absoluteBounds="15.015, 25.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d77d00e4-fae6-42ad-ba06-e1ad529fc008" absoluteBounds="17.75, 28.5, 2, 1.7708968098958309">
+    <classShape Id="bcaa0dd8-38ff-45da-b9ab-ee64d70ccc96" absoluteBounds="17.75, 28.375, 2, 1.7708968098958309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/PracticePlan" />
       <nestedChildShapes>
-        <elementListCompartment Id="5be2c386-3dba-4480-ba3a-29bc837a42f6" absoluteBounds="17.765, 28.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8e030efd-1522-4870-822d-6d2fd2785394" absoluteBounds="17.765, 28.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8897a4ea-5a57-4a22-8ac5-d201b6d41d46" absoluteBounds="6.25, 20.625, 2, 1.9631982421875023">
+    <classShape Id="f9acdf65-c8b8-4d3b-8c1f-9add484b8de0" absoluteBounds="6.25, 20.625, 2, 1.9631982421875023">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Professor" />
       <nestedChildShapes>
-        <elementListCompartment Id="685e6b1c-8a69-4913-8b48-42a1aac17024" absoluteBounds="6.265, 21.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="bfa19468-bd16-480c-9d1d-6d7efff153a0" absoluteBounds="6.265, 21.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5618ca09-91c7-44b2-b375-4f0cfb61d4c9" absoluteBounds="17.5, 18.25, 2, 3.1170068359375023">
+    <classShape Id="671cdba8-8c72-47dc-93c7-3b713a899bf0" absoluteBounds="17.5, 18.25, 2, 3.1170068359375023">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Question" />
       <nestedChildShapes>
-        <elementListCompartment Id="ea5c64d9-c4ae-41a0-86e7-b1ae5379a099" absoluteBounds="17.515, 18.71, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9f12c2ac-d9d8-4912-a7fc-3acbfd996162" absoluteBounds="17.515, 18.71, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2a46850a-6739-4bb8-837e-676589df86ad" absoluteBounds="14.75, 19, 2, 1.5785953776041666">
+    <classShape Id="693293fc-ba3b-4bae-b75d-33839df1e77b" absoluteBounds="14.75, 19, 2, 1.5785953776041666">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Razdel" />
       <nestedChildShapes>
-        <elementListCompartment Id="1f4df022-1e2d-4790-9f48-35c9738cc296" absoluteBounds="14.765, 19.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="071e98ef-dfcd-4c55-8ff3-ea815a9236b7" absoluteBounds="14.765, 19.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="cff2fcb0-7fb6-40d8-8731-22957adb586e" absoluteBounds="3.5, 25.375, 2, 1.9631982421875023">
+    <classShape Id="d56f2c8a-c151-4567-9655-b0cca75b9e25" absoluteBounds="3.5, 25.375, 2, 1.9631982421875023">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Speciality" />
       <nestedChildShapes>
-        <elementListCompartment Id="30bab0d2-2aae-48f7-931b-0bbcea6a7aaa" absoluteBounds="3.515, 25.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b9d6e2e0-0774-41c0-9f2c-88471a2c7830" absoluteBounds="3.515, 25.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="18fe6fb2-d3ce-4e97-8ab4-beaed3c887fe" absoluteBounds="12, 32.5, 2, 4.0785139973958309">
+    <classShape Id="49dcd9bb-cdcf-4e25-965d-d91672523f4f" absoluteBounds="12, 32.5, 2, 4.0785139973958309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/SpecialityDisciplineProgram" />
       <nestedChildShapes>
-        <elementListCompartment Id="7574f49e-84a4-48aa-96f0-c3cd6e16312e" absoluteBounds="12.015, 32.96, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d355db7c-5cbc-4a1b-8ac8-6a285fe5a92d" absoluteBounds="12.015, 32.96, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" absoluteBounds="9.25, 23.625, 2, 2.7324039713541666">
+    <classShape Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" absoluteBounds="9.25, 23.75, 2, 2.5401025390625023">
       <DataClassMoniker Name="/VmkLearningKitDataContext/SpecialityDiscipline" />
       <nestedChildShapes>
-        <elementListCompartment Id="2e8202fa-5bb8-4618-8fd2-713fec85ec78" absoluteBounds="9.265, 24.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="632f2101-6a44-4d76-b17a-a95e4984821e" absoluteBounds="9.265, 24.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8492120d-b692-4396-a87c-31473020b5fa" absoluteBounds="12, 22.875, 2, 1.1939925130208309">
+    <classShape Id="ef2d0b79-8411-4c23-8d4d-d771fe045456" absoluteBounds="12, 22.875, 2, 1.1939925130208309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/SpecialityDisciplinesProfessor" />
       <nestedChildShapes>
-        <elementListCompartment Id="e6ab5c4e-c48f-446d-8b79-a7b00b207fae" absoluteBounds="12.015, 23.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="be81023a-b88f-41f9-b340-b8f9fbeee6d9" absoluteBounds="12.015, 23.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e3c2938e-a82d-41fc-abc3-1b36a2c6e714" absoluteBounds="12, 29.5, 2, 2.3478011067708309">
+    <classShape Id="8c590ea1-7891-4f70-b300-6013e6a63763" absoluteBounds="12, 29.5, 2, 2.3478011067708309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/SpecialityDisciplineTerm" />
       <nestedChildShapes>
-        <elementListCompartment Id="e82c9b97-cacb-49d6-b3c9-937349408907" absoluteBounds="12.015, 29.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9332ad05-95eb-42a4-9c4e-5f3faa484d5c" absoluteBounds="12.015, 29.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="524fc199-fe0d-44ab-91d5-f6c0b661961c" absoluteBounds="12, 20.375, 2, 1.3862939453125023">
+    <classShape Id="d9737aa3-c4c0-4846-9e7e-363bb9f18c26" absoluteBounds="12, 20.375, 2, 1.3862939453125023">
       <DataClassMoniker Name="/VmkLearningKitDataContext/SpecialityDisciplineTopic" />
       <nestedChildShapes>
-        <elementListCompartment Id="6bd9386a-d825-4eb6-b44f-65a73530516f" absoluteBounds="12.015, 20.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5c035e13-6460-4f81-a0d4-2028454d91ac" absoluteBounds="12.015, 20.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2670f520-24a0-4913-bb5e-d31e49634b58" absoluteBounds="6.25, 26.875, 2, 2.3478011067708309">
+    <classShape Id="bbb4fd97-cf95-4e5a-a2e8-8b8c94c11afd" absoluteBounds="6.25, 26.875, 2, 2.3478011067708309">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Specialization" />
       <nestedChildShapes>
-        <elementListCompartment Id="fda0f576-4679-4d42-b3e5-168132929a53" absoluteBounds="6.265, 27.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b5cc7291-bd80-4ad2-bc10-f731edddc469" absoluteBounds="6.265, 27.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="a79fb78a-6407-436e-9041-62209d95b5f8" absoluteBounds="9, 27.125, 2, 1.5785953776041666">
+    <classShape Id="2abf965b-08a5-4ac1-b094-d4b3c1ea9189" absoluteBounds="9, 27.125, 2, 1.5785953776041666">
       <DataClassMoniker Name="/VmkLearningKitDataContext/Student" />
       <nestedChildShapes>
-        <elementListCompartment Id="52071583-ac3e-4d18-bcbd-e2ec9732bf85" absoluteBounds="9.015, 27.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7b8da394-df47-4886-bb7f-cba2b3b7a3ba" absoluteBounds="9.015, 27.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="338b5c01-bd4e-4734-8591-d00539d4c45b" absoluteBounds="3.5, 18.375, 2, 2.5401025390625023">
+      <DataClassMoniker Name="/VmkLearningKitDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da8b1628-0b6a-419b-b889-416609eff420" absoluteBounds="3.515, 18.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(2.75 : 23.0104484049479); (3.5 : 23.0104484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Department/Department_Chair" />
       <nodes>
-        <classShapeMoniker Id="c4f921a7-8651-493c-9f54-02d11adcba66" />
-        <classShapeMoniker Id="0811e755-79a2-41ca-ae6d-ea64789ec003" />
+        <classShapeMoniker Id="22805aa5-97c0-4471-8cb9-9cb1dfb1d0dc" />
+        <classShapeMoniker Id="4863c8db-6a81-4bfc-8ee2-3daa601cc4e7" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(18.5 : 23.5689925130208); (18.5 : 25.9623527018229); (19.5729166666667 : 25.9623527018229 : JumpStart); (19.7395833333333 : 25.9623527018229 : JumpEnd); (20.25 : 25.9623527018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/GeneratedTestVariant/GeneratedTestVariant_AssignedTestVariant" />
       <nodes>
-        <classShapeMoniker Id="788c3567-0802-466e-895f-9bbc7164c1af" />
-        <classShapeMoniker Id="50b21e13-c912-4d57-ab22-3ae2c3cfd782" />
+        <classShapeMoniker Id="141cca83-49f0-403e-9e19-482dbeabb562" />
+        <classShapeMoniker Id="4ccedcbd-1783-402f-9d46-4ecdc7ff5e7d" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(19.5 : 22.9719962565104); (19.5729166666667 : 22.9719962565104 : JumpStart); (19.7395833333333 : 22.9719962565104 : JumpEnd); (20.25 : 22.9719962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/GeneratedTestVariant/GeneratedTestVariant_GeneratedQuestion" />
       <nodes>
-        <classShapeMoniker Id="788c3567-0802-466e-895f-9bbc7164c1af" />
-        <classShapeMoniker Id="69c40122-a8f6-40f2-b6e6-8eff804e9a3e" />
+        <classShapeMoniker Id="141cca83-49f0-403e-9e19-482dbeabb562" />
+        <classShapeMoniker Id="0feb9a3e-f7b5-440e-b6ae-a832b7ad5f09" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(16.75 : 22.9719962565104); (16.8229166666667 : 22.9719962565104 : JumpStart); (16.9895833333333 : 22.9719962565104 : JumpEnd); (17.5 : 22.9719962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/GeneratedTest/GeneratedTest_GeneratedTestVariant" />
       <nodes>
-        <classShapeMoniker Id="c39b0de5-562e-4605-9748-89e9bc5bdcd3" />
-        <classShapeMoniker Id="788c3567-0802-466e-895f-9bbc7164c1af" />
+        <classShapeMoniker Id="78e035df-cc0b-4d7c-8b06-79e127a2e86d" />
+        <classShapeMoniker Id="141cca83-49f0-403e-9e19-482dbeabb562" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(1.75 : 23.3958968098958); (1.75 : 24.9815991210938); (2.19791916666667 : 24.9815991210938 : JumpStart); (2.36458583333333 : 24.9815991210938 : JumpEnd); (5.87198479782652 : 24.9815991210938 : JumpStart); (6.03865146449319 : 24.9815991210938 : JumpEnd); (6.25 : 24.9815991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Department/Department_Group" />
       <nodes>
-        <classShapeMoniker Id="c4f921a7-8651-493c-9f54-02d11adcba66" />
-        <classShapeMoniker Id="c0f2b761-43c0-44e2-802e-73626efa96a3" />
+        <classShapeMoniker Id="22805aa5-97c0-4471-8cb9-9cb1dfb1d0dc" />
+        <classShapeMoniker Id="29936cb0-e76f-430e-ae37-548efee5c772" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.25 : 25.3958968098958); (7.25 : 26.625); (7.69791866666667 : 26.625 : JumpStart); (7.86458533333333 : 26.625 : JumpEnd); (8.41666666666667 : 26.625 : JumpStart); (8.70833333333333 : 26.625 : JumpEnd); (8.97916416666667 : 26.625 : JumpStart); (9.20833583333333 : 26.625 : JumpEnd); (11.0416641666667 : 26.625 : JumpStart); (11.2708358333333 : 26.625 : JumpEnd); (11.75 : 26.625); (11.75 : 29.25); (14.375 : 29.25); (14.375 : 29.5969962565104); (14.75 : 29.5969962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.25 : 25.3958968098958); (7.25 : 26.625); (7.69791866666667 : 26.625 : JumpStart); (7.86458533333333 : 26.625 : JumpEnd); (8.41666666666667 : 26.625 : JumpStart); (8.58333333333333 : 26.625 : JumpEnd); (8.94791541666667 : 26.625 : JumpStart); (9.20833583333333 : 26.625 : JumpEnd); (11.0416641666667 : 26.625 : JumpStart); (11.2708358333333 : 26.625 : JumpEnd); (11.75 : 26.625); (11.75 : 29.25); (14.375 : 29.25); (14.375 : 29.5969962565104); (14.75 : 29.5969962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Group/Group_GroupsLectureTimetable" />
       <nodes>
-        <classShapeMoniker Id="c0f2b761-43c0-44e2-802e-73626efa96a3" />
-        <classShapeMoniker Id="50c4358b-d270-4aa8-897b-4a80df32da60" />
+        <classShapeMoniker Id="29936cb0-e76f-430e-ae37-548efee5c772" />
+        <classShapeMoniker Id="5fd943d4-60ce-4968-83bc-90a8e939aec1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14 : 25.40625); (14.84375 : 25.40625); (14.84375 : 29)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(14 : 25.34375); (14.84375 : 25.34375); (14.84375 : 29)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/LectureTimetable/LectureTimetable_GroupsLectureTimetable" />
       <nodes>
-        <classShapeMoniker Id="50681458-277a-4325-a3a0-ff2e5ae0adb4" />
-        <classShapeMoniker Id="50c4358b-d270-4aa8-897b-4a80df32da60" />
+        <classShapeMoniker Id="5e140687-f9a5-47fe-aa73-189bf3e701fe" />
+        <classShapeMoniker Id="5fd943d4-60ce-4968-83bc-90a8e939aec1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.781252 : 25.3958968098958); (7.781252 : 26.75); (8.29166666666667 : 26.75 : JumpStart); (8.45833333333333 : 26.75 : JumpEnd); (8.54166666666667 : 26.75 : JumpStart); (8.70833333333333 : 26.75 : JumpEnd); (8.97916416666667 : 26.75 : JumpStart); (9.20833583333333 : 26.75 : JumpEnd); (11.0416641666667 : 26.75 : JumpStart); (11.2708358333333 : 26.75 : JumpEnd); (11.5 : 26.75); (11.5 : 27.9728011067708); (11.6666666666667 : 27.9728011067708 : JumpStart); (11.9583333333333 : 27.9728011067708 : JumpEnd); (14.375 : 27.9728011067708); (14.375 : 26.8662019856771); (14.7604166666667 : 26.8662019856771 : JumpStart); (14.9270833333333 : 26.8662019856771 : JumpEnd); (15 : 26.8662019856771)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.781252 : 25.3958968098958); (7.781252 : 26.75); (8.29166666666667 : 26.75 : JumpStart); (8.45833333333333 : 26.75 : JumpEnd); (8.94791541666667 : 26.75 : JumpStart); (9.20833583333333 : 26.75 : JumpEnd); (11.0416641666667 : 26.75 : JumpStart); (11.2708358333333 : 26.75 : JumpEnd); (11.5 : 26.75); (11.5 : 27.8478011067708); (11.6666666666667 : 27.8478011067708 : JumpStart); (11.9583333333333 : 27.8478011067708 : JumpEnd); (14.375 : 27.8478011067708); (14.375 : 26.8662019856771); (14.7604166666667 : 26.8662019856771 : JumpStart); (14.9270833333333 : 26.8662019856771 : JumpEnd); (15 : 26.8662019856771)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Group/Group_PracticeAndLabTimetable" />
       <nodes>
-        <classShapeMoniker Id="c0f2b761-43c0-44e2-802e-73626efa96a3" />
-        <classShapeMoniker Id="dc768118-07cf-4051-aac6-2fd14f439af5" />
+        <classShapeMoniker Id="29936cb0-e76f-430e-ae37-548efee5c772" />
+        <classShapeMoniker Id="aa6ef5bb-a5db-48b2-8faf-975c069324ac" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 24.5104484049479); (8.32291666666667 : 24.5104484049479 : JumpStart); (8.48958333333333 : 24.5104484049479 : JumpEnd); (9 : 24.5104484049479); (9 : 26.4824039713542); (9.01041666666667 : 26.4824039713542 : JumpStart); (9.20833583333333 : 26.4824039713542 : JumpEnd); (11.0416641666667 : 26.4824039713542 : JumpStart); (11.2708358333333 : 26.4824039713542 : JumpEnd); (11.875 : 26.4824039713542); (11.875 : 28.4824039713542); (14.7604166666667 : 28.4824039713542 : JumpStart); (14.9270833333333 : 28.4824039713542 : JumpEnd); (16.8229166666667 : 28.4824039713542 : JumpStart); (16.9895833333333 : 28.4824039713542 : JumpEnd); (17.5 : 28.4824039713542); (17.5 : 28.25); (18.75 : 28.25); (18.75 : 28.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 24.5104484049479); (8.32291666666667 : 24.5104484049479 : JumpStart); (8.48958333333333 : 24.5104484049479 : JumpEnd); (9 : 24.5104484049479); (9 : 26.4151025390625); (9.01041666666667 : 26.4151025390625 : JumpStart); (9.20833583333333 : 26.4151025390625 : JumpEnd); (11.0416641666667 : 26.4151025390625 : JumpStart); (11.2708358333333 : 26.4151025390625 : JumpEnd); (11.875 : 26.4151025390625); (11.875 : 28.4824039713542); (14.4166666666667 : 28.4824039713542 : JumpStart); (14.5833333333333 : 28.4824039713542 : JumpEnd); (14.7604166666667 : 28.4824039713542 : JumpStart); (14.9270833333333 : 28.4824039713542 : JumpEnd); (16.8229166666667 : 28.4824039713542 : JumpStart); (16.9895833333333 : 28.4824039713542 : JumpEnd); (17.1666666666667 : 28.4824039713542 : JumpStart); (17.3333333333333 : 28.4824039713542 : JumpEnd); (17.5 : 28.4824039713542); (17.5 : 28.125); (18.75 : 28.125); (18.75 : 28.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Group/Group_PracticePlan" />
       <nodes>
-        <classShapeMoniker Id="c0f2b761-43c0-44e2-802e-73626efa96a3" />
-        <classShapeMoniker Id="d77d00e4-fae6-42ad-ba06-e1ad529fc008" />
+        <classShapeMoniker Id="29936cb0-e76f-430e-ae37-548efee5c772" />
+        <classShapeMoniker Id="bcaa0dd8-38ff-45da-b9ab-ee64d70ccc96" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.2182867976262 : 22.5881982421875); (8.34732443490112 : 22.7172358794624 : JumpStart); (8.46517556509888 : 22.8350870096602 : JumpEnd); (8.5932867976262 : 22.9631982421875); (8.79166666666667 : 22.9631982421875 : JumpStart); (9.20833583333333 : 22.9631982421875 : JumpEnd); (10.1666666666667 : 22.9631982421875 : JumpStart); (10.3333333333333 : 22.9631982421875 : JumpEnd); (10.6979191666667 : 22.9631982421875 : JumpStart); (10.8645858333333 : 22.9631982421875 : JumpEnd); (11.625 : 22.9631982421875); (11.625 : 25); (12 : 25.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.2182867976262 : 22.5881982421875); (8.34732443490112 : 22.7172358794624 : JumpStart); (8.46517556509888 : 22.8350870096602 : JumpEnd); (8.5932867976262 : 22.9631982421875); (8.79166666666667 : 22.9631982421875 : JumpStart); (9.17708333333333 : 22.9631982421875 : JumpEnd); (10.1666666666667 : 22.9631982421875 : JumpStart); (10.3333333333333 : 22.9631982421875 : JumpEnd); (10.9635454166667 : 22.9631982421875 : JumpStart); (11.1302120833333 : 22.9631982421875 : JumpEnd); (11.625 : 22.9631982421875); (11.625 : 24.875); (12 : 25.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Professor/Professor_LectureTimetable" />
       <nodes>
-        <classShapeMoniker Id="8897a4ea-5a57-4a22-8ac5-d201b6d41d46" />
-        <classShapeMoniker Id="50681458-277a-4325-a3a0-ff2e5ae0adb4" />
+        <classShapeMoniker Id="f9acdf65-c8b8-4d3b-8c1f-9add484b8de0" />
+        <classShapeMoniker Id="5e140687-f9a5-47fe-aa73-189bf3e701fe" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 21.9431469726563); (8.32291666666667 : 21.9431469726563 : JumpStart); (8.48958333333333 : 21.9431469726563 : JumpEnd); (8.85416666666667 : 21.9431469726563 : JumpStart); (9.20833583333333 : 21.9431469726563 : JumpEnd); (10.1666666666667 : 21.9431469726563 : JumpStart); (10.3333333333333 : 21.9431469726563 : JumpEnd); (10.6979191666667 : 21.9431469726563 : JumpStart); (10.8645858333333 : 21.9431469726563 : JumpEnd); (14.0985196940104 : 21.9431469726563 : JumpStart); (14.2651863606771 : 21.9431469726563 : JumpEnd); (14.2916666666667 : 21.9431469726563 : JumpStart); (14.4583333333333 : 21.9431469726563 : JumpEnd); (14.4848136393229 : 21.9431469726563 : JumpStart); (14.6514803059896 : 21.9431469726563 : JumpEnd); (16.90625 : 21.9431469726563); (16.90625 : 25.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 21.9431469726563); (8.32291666666667 : 21.9431469726563 : JumpStart); (8.48958333333333 : 21.9431469726563 : JumpEnd); (8.85416666666667 : 21.9431469726563 : JumpStart); (9.17708333333333 : 21.9431469726563 : JumpEnd); (10.1666666666667 : 21.9431469726563 : JumpStart); (10.3333333333333 : 21.9431469726563 : JumpEnd); (10.9635454166667 : 21.9431469726563 : JumpStart); (11.1302120833333 : 21.9431469726563 : JumpEnd); (14.0985196940104 : 21.9431469726563 : JumpStart); (14.2651863606771 : 21.9431469726563 : JumpEnd); (14.2916666666667 : 21.9431469726563 : JumpStart); (14.4583333333333 : 21.9431469726563 : JumpEnd); (14.4848136393229 : 21.9431469726563 : JumpStart); (14.6514803059896 : 21.9431469726563 : JumpEnd); (16.90625 : 21.9431469726563); (16.90625 : 25.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Professor/Professor_PracticeAndLabTimetable" />
       <nodes>
-        <classShapeMoniker Id="8897a4ea-5a57-4a22-8ac5-d201b6d41d46" />
-        <classShapeMoniker Id="dc768118-07cf-4051-aac6-2fd14f439af5" />
+        <classShapeMoniker Id="f9acdf65-c8b8-4d3b-8c1f-9add484b8de0" />
+        <classShapeMoniker Id="aa6ef5bb-a5db-48b2-8faf-975c069324ac" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 22.626509152494); (5.875 : 22.251509152494); (5.875 : 22.9647073946815); (6.25150915249399 : 22.5881982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Chair/Chair_Professor" />
       <nodes>
-        <classShapeMoniker Id="0811e755-79a2-41ca-ae6d-ea64789ec003" />
-        <classShapeMoniker Id="8897a4ea-5a57-4a22-8ac5-d201b6d41d46" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 20.1618964726563); (6.34375 : 20.1618964726563); (6.34375 : 20.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/VmkLearningKitDataContext/User/User_Professor" />
-      <nodes>
-        <classShapeMoniker Id="8bdf2f0f-2d3e-4d8c-81ee-62c567c74346" />
-        <classShapeMoniker Id="8897a4ea-5a57-4a22-8ac5-d201b6d41d46" />
+        <classShapeMoniker Id="4863c8db-6a81-4bfc-8ee2-3daa601cc4e7" />
+        <classShapeMoniker Id="f9acdf65-c8b8-4d3b-8c1f-9add484b8de0" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(19.5 : 19.7892976888021); (20.25 : 19.7892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Question/Question_Answer" />
       <nodes>
-        <classShapeMoniker Id="5618ca09-91c7-44b2-b375-4f0cfb61d4c9" />
-        <classShapeMoniker Id="3bc81957-45c4-4413-b20e-0f894cb00088" />
+        <classShapeMoniker Id="671cdba8-8c72-47dc-93c7-3b713a899bf0" />
+        <classShapeMoniker Id="95e3eb38-0e36-407f-a657-ed97b1d2ae24" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(18.5 : 18.25); (18.5 : 16.7892976888021); (20.25 : 16.7892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Question/Question_Comment" />
       <nodes>
-        <classShapeMoniker Id="5618ca09-91c7-44b2-b375-4f0cfb61d4c9" />
-        <classShapeMoniker Id="b656eb11-3b0e-42b9-8b91-91fb6a39d3b7" />
+        <classShapeMoniker Id="671cdba8-8c72-47dc-93c7-3b713a899bf0" />
+        <classShapeMoniker Id="ffbd5886-5de7-4331-b5a4-1d1c9ae0e051" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(19.5 : 21.3670068359375); (19.875 : 21.7420068359375); (19.875 : 22.5797461282552); (20.25 : 22.5797461282552)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Question/Question_GeneratedQuestion" />
       <nodes>
-        <classShapeMoniker Id="5618ca09-91c7-44b2-b375-4f0cfb61d4c9" />
-        <classShapeMoniker Id="69c40122-a8f6-40f2-b6e6-8eff804e9a3e" />
+        <classShapeMoniker Id="671cdba8-8c72-47dc-93c7-3b713a899bf0" />
+        <classShapeMoniker Id="0feb9a3e-f7b5-440e-b6ae-a832b7ad5f09" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(16.75 : 19.7892976888021); (17.5 : 19.7892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Razdel/Razdel_Question" />
       <nodes>
-        <classShapeMoniker Id="2a46850a-6739-4bb8-837e-676589df86ad" />
-        <classShapeMoniker Id="5618ca09-91c7-44b2-b375-4f0cfb61d4c9" />
+        <classShapeMoniker Id="693293fc-ba3b-4bae-b75d-33839df1e77b" />
+        <classShapeMoniker Id="671cdba8-8c72-47dc-93c7-3b713a899bf0" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 25.376509152494); (5.875 : 25.001509152494); (5.875 : 25.7722580382111); (6.00357443490112 : 25.64368360331 : JumpStart); (6.12142556509888 : 25.5258324731123 : JumpEnd); (6.2513612283153 : 25.3958968098958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Speciality/Speciality_Group" />
       <nodes>
-        <classShapeMoniker Id="cff2fcb0-7fb6-40d8-8731-22957adb586e" />
-        <classShapeMoniker Id="c0f2b761-43c0-44e2-802e-73626efa96a3" />
+        <classShapeMoniker Id="d56f2c8a-c151-4567-9655-b0cca75b9e25" />
+        <classShapeMoniker Id="29936cb0-e76f-430e-ae37-548efee5c772" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.2812525 : 23.3958968098958); (2.2812525 : 26.3565991210938); (3.5 : 26.3565991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Department/Department_Speciality" />
       <nodes>
-        <classShapeMoniker Id="c4f921a7-8651-493c-9f54-02d11adcba66" />
-        <classShapeMoniker Id="cff2fcb0-7fb6-40d8-8731-22957adb586e" />
+        <classShapeMoniker Id="22805aa5-97c0-4471-8cb9-9cb1dfb1d0dc" />
+        <classShapeMoniker Id="d56f2c8a-c151-4567-9655-b0cca75b9e25" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10.25 : 23.625); (10.25 : 17.2892976888021); (14.75 : 17.2892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10.25 : 23.75); (10.25 : 17.2892976888021); (14.75 : 17.2892976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDiscipline/SpecialityDiscipline_LecturePlan" />
       <nodes>
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
-        <classShapeMoniker Id="d10ca522-e2e1-4e53-a084-f5b3007a45bf" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
+        <classShapeMoniker Id="7f4fd3f3-022e-4650-b38c-042ed3186676" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.25 : 25.8974544856771); (12 : 25.8974544856771)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.25 : 25.8013037695313); (12 : 25.8013037695313)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDiscipline/SpecialityDiscipline_LectureTimetable" />
       <nodes>
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
-        <classShapeMoniker Id="50681458-277a-4325-a3a0-ff2e5ae0adb4" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
+        <classShapeMoniker Id="5e140687-f9a5-47fe-aa73-189bf3e701fe" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.25 : 24.7219962565104); (11.5416666666667 : 24.7219962565104 : JumpStart); (11.7083333333333 : 24.7219962565104 : JumpEnd); (16.8749975 : 24.7219962565104); (16.8749975 : 25.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.25 : 24.6594962565104); (11.5416666666667 : 24.6594962565104 : JumpStart); (11.7083333333333 : 24.6594962565104 : JumpEnd); (16.8749975 : 24.6594962565104); (16.8749975 : 25.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDiscipline/SpecialityDiscipline_PracticeAndLabTimetable" />
       <nodes>
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
-        <classShapeMoniker Id="dc768118-07cf-4051-aac6-2fd14f439af5" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
+        <classShapeMoniker Id="aa6ef5bb-a5db-48b2-8faf-975c069324ac" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.15625 : 26.3574039713542); (11.15625 : 28.8517976888021); (11.6666666666667 : 28.8517976888021 : JumpStart); (11.8333333333333 : 28.8517976888021 : JumpEnd); (14.7604166666667 : 28.8517976888021 : JumpStart); (14.9270833333333 : 28.8517976888021 : JumpEnd); (17.75 : 28.8517976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.15625 : 26.2901025390625); (11.15625 : 28.8517976888021); (11.6666666666667 : 28.8517976888021 : JumpStart); (11.8333333333333 : 28.8517976888021 : JumpEnd); (14.7604166666667 : 28.8517976888021 : JumpStart); (14.9270833333333 : 28.8517976888021 : JumpEnd); (17.75 : 28.8517976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDiscipline/SpecialityDiscipline_PracticePlan" />
       <nodes>
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
-        <classShapeMoniker Id="d77d00e4-fae6-42ad-ba06-e1ad529fc008" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
+        <classShapeMoniker Id="bcaa0dd8-38ff-45da-b9ab-ee64d70ccc96" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.1875025 : 26.3574039713542); (11.1875025 : 34.5392569986979); (12 : 34.5392569986979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.1875025 : 26.2901025390625); (11.1875025 : 34.5392569986979); (12 : 34.5392569986979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDiscipline/SpecialityDiscipline_SpecialityDisciplineProgram" />
       <nodes>
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
-        <classShapeMoniker Id="18fe6fb2-d3ce-4e97-8ab4-beaed3c887fe" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
+        <classShapeMoniker Id="49dcd9bb-cdcf-4e25-965d-d91672523f4f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 23.2628466210938); (8.32291666666667 : 23.2628466210938 : JumpStart); (8.48958333333333 : 23.2628466210938 : JumpEnd); (8.85416666666667 : 23.2628466210938 : JumpStart); (9.20833583333333 : 23.2628466210938 : JumpEnd); (9.7187475 : 23.2628466210938); (9.7187475 : 23.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 23.2628491210938); (8.32291666666667 : 23.2628491210938 : JumpStart); (8.48958333333333 : 23.2628491210938 : JumpEnd); (8.85416666666667 : 23.2628491210938 : JumpStart); (9.17708333333333 : 23.2628491210938 : JumpEnd); (9.7187475 : 23.2628491210938); (9.7187475 : 23.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Chair/Chair_SpecialityDiscipline" />
       <nodes>
-        <classShapeMoniker Id="0811e755-79a2-41ca-ae6d-ea64789ec003" />
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
+        <classShapeMoniker Id="4863c8db-6a81-4bfc-8ee2-3daa601cc4e7" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 25.907900390625); (5.97916666666667 : 25.907900390625 : JumpStart); (6.14583333333333 : 25.907900390625 : JumpEnd); (7.16666666666667 : 25.907900390625 : JumpStart); (7.33333333333333 : 25.907900390625 : JumpEnd); (7.69791866666667 : 25.907900390625 : JumpStart); (7.86458533333333 : 25.907900390625 : JumpEnd); (8.54166666666667 : 25.907900390625 : JumpStart); (8.70833333333333 : 25.907900390625 : JumpEnd); (8.85416666666667 : 25.907900390625 : JumpStart); (9.20833583333333 : 25.907900390625 : JumpEnd); (9.25 : 25.907900390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 25.8742496744792); (5.97916666666667 : 25.8742496744792 : JumpStart); (6.14583333333333 : 25.8742496744792 : JumpEnd); (7.16666666666667 : 25.8742496744792 : JumpStart); (7.33333333333333 : 25.8742496744792 : JumpEnd); (7.69791866666667 : 25.8742496744792 : JumpStart); (7.86458533333333 : 25.8742496744792 : JumpEnd); (8.85416666666667 : 25.8742496744792 : JumpStart); (9.20833583333333 : 25.8742496744792 : JumpEnd); (9.25 : 25.8742496744792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Speciality/Speciality_SpecialityDiscipline" />
       <nodes>
-        <classShapeMoniker Id="cff2fcb0-7fb6-40d8-8731-22957adb586e" />
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
+        <classShapeMoniker Id="d56f2c8a-c151-4567-9655-b0cca75b9e25" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.40625 : 19.6362939453125); (8.40625 : 25.6518961002604); (8.42266595703125 : 25.6518961002604 : JumpStart); (8.58933262369792 : 25.6518961002604 : JumpEnd); (8.85416666666667 : 25.6518961002604 : JumpStart); (9.20833583333333 : 25.6518961002604 : JumpEnd); (9.25 : 25.6518961002604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.40625 : 19.6362939453125); (8.40625 : 25.6350707421875); (8.85416666666667 : 25.6350707421875 : JumpStart); (9.20833583333333 : 25.6350707421875 : JumpEnd); (9.25 : 25.6350707421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/EducationPlan/EducationPlan_SpecialityDiscipline" />
       <nodes>
-        <classShapeMoniker Id="94914b8a-76b9-4cd0-8049-3112f19df34a" />
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
+        <classShapeMoniker Id="d17b0904-b76e-4535-94da-f18e16a28357" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 22.5549738873197); (8.34732443490112 : 22.6522983222208 : JumpStart); (8.46517556509888 : 22.7701494524186 : JumpEnd); (8.875 : 23.1799738873197); (8.875 : 22.5); (9.01041666666667 : 22.5 : JumpStart); (9.20833583333333 : 22.5 : JumpEnd); (10.1666666666667 : 22.5 : JumpStart); (10.3333333333333 : 22.5 : JumpEnd); (10.6979191666667 : 22.5 : JumpStart); (10.8645858333333 : 22.5 : JumpEnd); (11.625 : 22.5); (12 : 22.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.25 : 22.5549738873197); (8.34732443490112 : 22.6522983222208 : JumpStart); (8.46517556509888 : 22.7701494524186 : JumpEnd); (8.875 : 23.1799738873197); (8.875 : 22.5); (8.94791541666667 : 22.5 : JumpStart); (9.17708333333333 : 22.5 : JumpEnd); (10.1666666666667 : 22.5 : JumpStart); (10.3333333333333 : 22.5 : JumpEnd); (10.9635454166667 : 22.5 : JumpStart); (11.1302120833333 : 22.5 : JumpEnd); (11.625 : 22.5); (12 : 22.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Professor/Professor_SpecialityDisciplinesProfessor" />
       <nodes>
-        <classShapeMoniker Id="8897a4ea-5a57-4a22-8ac5-d201b6d41d46" />
-        <classShapeMoniker Id="8492120d-b692-4396-a87c-31473020b5fa" />
+        <classShapeMoniker Id="f9acdf65-c8b8-4d3b-8c1f-9add484b8de0" />
+        <classShapeMoniker Id="ef2d0b79-8411-4c23-8d4d-d771fe045456" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.25 : 23.8469962565104); (11.5416666666667 : 23.8469962565104 : JumpStart); (11.7083333333333 : 23.8469962565104 : JumpEnd); (12 : 23.8469962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10.7812525 : 23.75); (10.7812525 : 23.1130236816406); (10.9635454166667 : 23.1130236816406 : JumpStart); (11.1302120833333 : 23.1130236816406 : JumpEnd); (11.5416666666667 : 23.1130236816406 : JumpStart); (11.7083333333333 : 23.1130236816406 : JumpEnd); (12 : 23.1130236816406)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDiscipline/SpecialityDiscipline_SpecialityDisciplinesProfessor" />
       <nodes>
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
-        <classShapeMoniker Id="8492120d-b692-4396-a87c-31473020b5fa" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
+        <classShapeMoniker Id="ef2d0b79-8411-4c23-8d4d-d771fe045456" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.1249975 : 26.3574039713542); (11.1249975 : 30.6739005533854); (12 : 30.6739005533854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.1249975 : 26.2901025390625); (11.1249975 : 30.6739005533854); (12 : 30.6739005533854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDiscipline/SpecialityDiscipline_SpecialityDisciplineTerm" />
       <nodes>
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
-        <classShapeMoniker Id="e3c2938e-a82d-41fc-abc3-1b36a2c6e714" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
+        <classShapeMoniker Id="8c590ea1-7891-4f70-b300-6013e6a63763" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(14 : 21.7612939453125); (14.375 : 22.1362939453125); (14.375 : 21.75); (14.75 : 22.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDisciplineTopic/SpecialityDisciplineTopic_GeneratedTest" />
       <nodes>
-        <classShapeMoniker Id="524fc199-fe0d-44ab-91d5-f6c0b661961c" />
-        <classShapeMoniker Id="c39b0de5-562e-4605-9748-89e9bc5bdcd3" />
+        <classShapeMoniker Id="d9737aa3-c4c0-4846-9e7e-363bb9f18c26" />
+        <classShapeMoniker Id="78e035df-cc0b-4d7c-8b06-79e127a2e86d" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(13 : 20.375); (13 : 17.7151990332031); (14.75 : 17.7151990332031)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDisciplineTopic/SpecialityDisciplineTopic_LecturePlan" />
       <nodes>
-        <classShapeMoniker Id="524fc199-fe0d-44ab-91d5-f6c0b661961c" />
-        <classShapeMoniker Id="d10ca522-e2e1-4e53-a084-f5b3007a45bf" />
+        <classShapeMoniker Id="d9737aa3-c4c0-4846-9e7e-363bb9f18c26" />
+        <classShapeMoniker Id="7f4fd3f3-022e-4650-b38c-042ed3186676" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(14 : 21.564147890625); (19.65625 : 21.564147890625); (19.65625 : 28.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(14 : 21.564147890625); (19.65625 : 21.564147890625); (19.65625 : 28.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDisciplineTopic/SpecialityDisciplineTopic_PracticePlan" />
       <nodes>
-        <classShapeMoniker Id="524fc199-fe0d-44ab-91d5-f6c0b661961c" />
-        <classShapeMoniker Id="d77d00e4-fae6-42ad-ba06-e1ad529fc008" />
+        <classShapeMoniker Id="d9737aa3-c4c0-4846-9e7e-363bb9f18c26" />
+        <classShapeMoniker Id="bcaa0dd8-38ff-45da-b9ab-ee64d70ccc96" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(14 : 21.0401196341146); (15.75 : 21.0401196341146); (15.75 : 20.5785953776042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDisciplineTopic/SpecialityDisciplineTopic_Razdel" />
       <nodes>
-        <classShapeMoniker Id="524fc199-fe0d-44ab-91d5-f6c0b661961c" />
-        <classShapeMoniker Id="2a46850a-6739-4bb8-837e-676589df86ad" />
+        <classShapeMoniker Id="d9737aa3-c4c0-4846-9e7e-363bb9f18c26" />
+        <classShapeMoniker Id="693293fc-ba3b-4bae-b75d-33839df1e77b" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10.7812525 : 23.625); (10.7812525 : 21.0681469726563); (12 : 21.0681469726563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11.04687875 : 23.75); (11.04687875 : 21.0681469726563); (12 : 21.0681469726563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/SpecialityDiscipline/SpecialityDiscipline_SpecialityDisciplineTopic" />
       <nodes>
-        <classShapeMoniker Id="3fcc074f-549f-4d68-bfee-41c40bd0654b" />
-        <classShapeMoniker Id="524fc199-fe0d-44ab-91d5-f6c0b661961c" />
+        <classShapeMoniker Id="d221cfd7-959d-4330-9e4b-dc5ea4ffc8c6" />
+        <classShapeMoniker Id="d9737aa3-c4c0-4846-9e7e-363bb9f18c26" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(8.25 : 28.8089465332031); (11.0416641666667 : 28.8089465332031 : JumpStart); (11.2708358333333 : 28.8089465332031 : JumpEnd); (11.6666666666667 : 28.8089465332031 : JumpStart); (11.8333333333333 : 28.8089465332031 : JumpEnd); (14.7604166666667 : 28.8089465332031 : JumpStart); (14.9270833333333 : 28.8089465332031 : JumpEnd); (16.90625 : 28.8089465332031); (16.90625 : 28.2324039713542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Specialization/Specialization_PracticeAndLabTimetable" />
       <nodes>
-        <classShapeMoniker Id="2670f520-24a0-4913-bb5e-d31e49634b58" />
-        <classShapeMoniker Id="dc768118-07cf-4051-aac6-2fd14f439af5" />
+        <classShapeMoniker Id="bbb4fd97-cf95-4e5a-a2e8-8b8c94c11afd" />
+        <classShapeMoniker Id="aa6ef5bb-a5db-48b2-8faf-975c069324ac" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 24.5262809899339); (6.0625 : 25.0887809899339); (6.0625 : 28.0489005533854); (6.25 : 28.0489005533854)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Chair/Chair_Specialization" />
       <nodes>
-        <classShapeMoniker Id="0811e755-79a2-41ca-ae6d-ea64789ec003" />
-        <classShapeMoniker Id="2670f520-24a0-4913-bb5e-d31e49634b58" />
+        <classShapeMoniker Id="4863c8db-6a81-4bfc-8ee2-3daa601cc4e7" />
+        <classShapeMoniker Id="bbb4fd97-cf95-4e5a-a2e8-8b8c94c11afd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.5 : 19.5744429077524); (8.9375 : 20.0119429077524); (8.9375 : 26.25); (8.875 : 26.25); (8.68392556509888 : 26.4410744349011 : JumpStart); (8.56607443490112 : 26.5589255650989 : JumpEnd); (8.25 : 26.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.5 : 19.5744429077524); (8.9375 : 20.0119429077524); (8.9375 : 26.25); (8.875 : 26.25); (8.25 : 26.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/VmkLearningKitDataContext/EducationPlan/EducationPlan_Specialization" />
       <nodes>
-        <classShapeMoniker Id="94914b8a-76b9-4cd0-8049-3112f19df34a" />
-        <classShapeMoniker Id="2670f520-24a0-4913-bb5e-d31e49634b58" />
+        <classShapeMoniker Id="d17b0904-b76e-4535-94da-f18e16a28357" />
+        <classShapeMoniker Id="bbb4fd97-cf95-4e5a-a2e8-8b8c94c11afd" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 27.1065991210938); (5.97916666666667 : 27.1065991210938 : JumpStart); (6.14583333333333 : 27.1065991210938 : JumpEnd); (6.25 : 27.1065991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Speciality/Speciality_Specialization" />
       <nodes>
-        <classShapeMoniker Id="cff2fcb0-7fb6-40d8-8731-22957adb586e" />
-        <classShapeMoniker Id="2670f520-24a0-4913-bb5e-d31e49634b58" />
+        <classShapeMoniker Id="d56f2c8a-c151-4567-9655-b0cca75b9e25" />
+        <classShapeMoniker Id="bbb4fd97-cf95-4e5a-a2e8-8b8c94c11afd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11 : 28.3662019856771); (11.0416641666667 : 28.3662019856771 : JumpStart); (11.2708358333333 : 28.3662019856771 : JumpEnd); (11.6666666666667 : 28.3662019856771 : JumpStart); (11.9583333333333 : 28.3662019856771 : JumpEnd); (14.7604166666667 : 28.3662019856771 : JumpStart); (14.9270833333333 : 28.3662019856771 : JumpEnd); (16.8229166666667 : 28.3662019856771 : JumpStart); (16.9895833333333 : 28.3662019856771 : JumpEnd); (18.6666666666667 : 28.3662019856771 : JumpStart); (18.8333333333333 : 28.3662019856771 : JumpEnd); (19.5729166666667 : 28.3662019856771 : JumpStart); (19.7395833333333 : 28.3662019856771 : JumpEnd); (21.25 : 28.3662019856771); (21.25 : 27.4247054036458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(11 : 28.1651025390625); (11.0416641666667 : 28.1651025390625 : JumpStart); (11.2708358333333 : 28.1651025390625 : JumpEnd); (11.6666666666667 : 28.1651025390625 : JumpStart); (11.9583333333333 : 28.1651025390625 : JumpEnd); (14.5 : 28.1651025390625); (14.5 : 28.6074039713542); (14.7604166666667 : 28.6074039713542 : JumpStart); (14.9270833333333 : 28.6074039713542 : JumpEnd); (16.8229166666667 : 28.6074039713542 : JumpStart); (16.9895833333333 : 28.6074039713542 : JumpEnd); (17.25 : 28.6074039713542); (17.25 : 27.875); (19.5729166666667 : 27.875 : JumpStart); (19.7395833333333 : 27.875 : JumpEnd); (21.25 : 27.875); (21.25 : 27.4247054036458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Student/Student_AssignedTestVariant" />
       <nodes>
-        <classShapeMoniker Id="a79fb78a-6407-436e-9041-62209d95b5f8" />
-        <classShapeMoniker Id="50b21e13-c912-4d57-ab22-3ae2c3cfd782" />
+        <classShapeMoniker Id="2abf965b-08a5-4ac1-b094-d4b3c1ea9189" />
+        <classShapeMoniker Id="4ccedcbd-1783-402f-9d46-4ecdc7ff5e7d" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(9.09375 : 27.125); (9.09375 : 16.21875); (20.25 : 16.21875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Student/Student_Comment" />
       <nodes>
-        <classShapeMoniker Id="a79fb78a-6407-436e-9041-62209d95b5f8" />
-        <classShapeMoniker Id="b656eb11-3b0e-42b9-8b91-91fb6a39d3b7" />
+        <classShapeMoniker Id="2abf965b-08a5-4ac1-b094-d4b3c1ea9189" />
+        <classShapeMoniker Id="ffbd5886-5de7-4331-b5a4-1d1c9ae0e051" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 22.8261061973407); (5.79166666666667 : 22.8261061973407 : JumpStart); (6.09693453067408 : 22.8261061973407 : JumpEnd); (8.32291666666667 : 22.8261061973407 : JumpStart); (8.60446564335437 : 22.8261061973407 : JumpEnd); (8.79166666666667 : 22.8261061973407 : JumpStart); (9.02083333333333 : 22.8261061973407 : JumpEnd); (9.0624975 : 22.8261061973407); (9.0624975 : 27.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Chair/Chair_Student" />
       <nodes>
-        <classShapeMoniker Id="0811e755-79a2-41ca-ae6d-ea64789ec003" />
-        <classShapeMoniker Id="a79fb78a-6407-436e-9041-62209d95b5f8" />
+        <classShapeMoniker Id="4863c8db-6a81-4bfc-8ee2-3daa601cc4e7" />
+        <classShapeMoniker Id="2abf965b-08a5-4ac1-b094-d4b3c1ea9189" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 25.3958968098958); (8.34732443490112 : 25.493221244797 : JumpStart); (8.46517556509888 : 25.6110723749947 : JumpEnd); (8.625 : 25.7708968098958); (8.625 : 27.9142976888021); (9 : 27.9142976888021)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 23.65625); (8.32291666666667 : 23.65625 : JumpStart); (8.48958333333333 : 23.65625 : JumpEnd); (8.85416666666667 : 23.65625 : JumpStart); (9.11458208333333 : 23.65625 : JumpEnd); (9.1250025 : 23.65625); (9.1250025 : 27.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Group/Group_Student" />
       <nodes>
-        <classShapeMoniker Id="c0f2b761-43c0-44e2-802e-73626efa96a3" />
-        <classShapeMoniker Id="a79fb78a-6407-436e-9041-62209d95b5f8" />
+        <classShapeMoniker Id="29936cb0-e76f-430e-ae37-548efee5c772" />
+        <classShapeMoniker Id="2abf965b-08a5-4ac1-b094-d4b3c1ea9189" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 27.457148844401); (8.54166666666667 : 27.457148844401 : JumpStart); (8.70833333333333 : 27.457148844401 : JumpEnd); (9 : 27.457148844401)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 27.9142976888021); (9 : 27.9142976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/Specialization/Specialization_Student" />
       <nodes>
-        <classShapeMoniker Id="2670f520-24a0-4913-bb5e-d31e49634b58" />
-        <classShapeMoniker Id="a79fb78a-6407-436e-9041-62209d95b5f8" />
+        <classShapeMoniker Id="bbb4fd97-cf95-4e5a-a2e8-8b8c94c11afd" />
+        <classShapeMoniker Id="2abf965b-08a5-4ac1-b094-d4b3c1ea9189" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 19.8990927089844); (8.32291666666667 : 19.8990927089844 : JumpStart); (8.48958333333333 : 19.8990927089844 : JumpEnd); (8.74131646789864 : 19.8990927089844 : JumpStart); (8.9079831345653 : 19.8990927089844 : JumpEnd); (9.1250025 : 19.8990927089844); (9.1250025 : 27.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 20.1618964726563); (6.34375 : 20.1618964726563); (6.34375 : 20.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VmkLearningKitDataContext/User/User_Professor" />
+      <nodes>
+        <classShapeMoniker Id="338b5c01-bd4e-4734-8591-d00539d4c45b" />
+        <classShapeMoniker Id="f9acdf65-c8b8-4d3b-8c1f-9add484b8de0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 19.8990927089844); (8.32291666666667 : 19.8990927089844 : JumpStart); (8.48958333333333 : 19.8990927089844 : JumpEnd); (8.74131646789864 : 19.8990927089844 : JumpStart); (8.9079831345653 : 19.8990927089844 : JumpEnd); (9.03124875 : 19.8990927089844); (9.03124875 : 27.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/VmkLearningKitDataContext/User/User_Student" />
       <nodes>
-        <classShapeMoniker Id="8bdf2f0f-2d3e-4d8c-81ee-62c567c74346" />
-        <classShapeMoniker Id="a79fb78a-6407-436e-9041-62209d95b5f8" />
+        <classShapeMoniker Id="338b5c01-bd4e-4734-8591-d00539d4c45b" />
+        <classShapeMoniker Id="2abf965b-08a5-4ac1-b094-d4b3c1ea9189" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

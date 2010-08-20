@@ -59,10 +59,12 @@
         <% 
             int index = 1;
             List<string> prevCategories = new List<string>();
-            foreach (SpecialityDiscipline specialityDiscipline in (IEnumerable<SpecialityDiscipline>)ViewData["SpecialityDisciplines"])
+            if (null != (IEnumerable<SpecialityDiscipline>)ViewData["SpecialityDisciplines"])
             {
-                if (educationPlan.Id == specialityDiscipline.EducationPlanId)
+                foreach (SpecialityDiscipline specialityDiscipline in (IEnumerable<SpecialityDiscipline>)ViewData["SpecialityDisciplines"])
                 {
+                    if (educationPlan.Id == specialityDiscipline.EducationPlanId)
+                    {
         %>
         <%     string[] categories = specialityDiscipline.Category.Split(':');
                string lastContainedCategory = String.Empty;
@@ -94,68 +96,68 @@
             <td style="padding: 7px;">
             </td>
             <%
-                switch (category)
-                {
-                    // Список дисциплин направления
-                    case "ДН":
+switch (category)
+{
+    // Список дисциплин направления
+    case "ДН":
             %>
             <td align="left" colspan="8" style="padding: 7px; font-size: 14px; font-weight: bolder;">
                 Дисциплины направления
             </td>
             <%
-                break;
-                    // Список дисциплин федерального направления
-                    case "ФК":
+break;
+    // Список дисциплин федерального направления
+    case "ФК":
             %>
             <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Федеральный компонент
             </td>
             <%
-                break;
-                // Список дисциплин регионального направления
-                case "РК":
+break;
+    // Список дисциплин регионального направления
+    case "РК":
             %>
             <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Региональный компонент
             </td>
             <%
-                break;
-                // Список дисциплин вузовского направления
-                case "ВК":
+break;
+    // Список дисциплин вузовского направления
+    case "ВК":
             %>
             <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вузовский компонент
             </td>
             <%
-                break;
-                // Список дисциплин по выбору
-                case "ДПВ":
+break;
+    // Список дисциплин по выбору
+    case "ДПВ":
             %>
             <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Дисциплины по выбору
             </td>
             <%
-                break;
-                // Список дисциплин специализации
-                case "ДС":
+break;
+    // Список дисциплин специализации
+    case "ДС":
             %>
             <td align="left" colspan="8" style="padding: 7px; font-size: 14px; font-weight: bolder;">
                 Дисциплины специализации
             </td>
             <%
-                break;
-                // Список специальных дисциплин
-                case "СПД":
+break;
+    // Список специальных дисциплин
+    case "СПД":
             %>
             <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Специальные дисциплины
             </td>
             <%
-                break;
-                // Список дисциплин специализации по выбору
-                /*
-                case "ДСПВ":
-                */
+break;
+    // Список дисциплин специализации по выбору
+    /*
+    case "ДСПВ":
+    */
             %>
             <!--
                         <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
@@ -165,123 +167,142 @@
                         </td>
                         -->
             <%
-                /*
+/*
                        break;
                 */
-                default:
-                try
-                {
-                    long specializationId = Convert.ToInt64(category);
-                    Specialization specialization = RepositoryManager.GetRepositoryManager.GetSpecializationRepository.GetById(specializationId);
-                    if (null != specialization)
-                    {
+default:
+try
+{
+    long specializationId = Convert.ToInt64(category);
+    Specialization specialization = RepositoryManager.GetRepositoryManager.GetSpecializationRepository.GetById(specializationId);
+    if (null != specialization)
+    {
             %>
             <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <%= Html.Encode(specialization.Title)%>
             </td>
             <%
-                }
-            }
-            catch (Exception ex)
-            {
-                Utility.RedirectToErrorPage("Specialities.aspx: catch exception", ex);
-            }
-            break;
+}
+}
+catch (Exception ex)
+{
+    Utility.RedirectToErrorPage("Specialities.aspx: catch exception", ex);
+}
+break;
                
             %>
         </tr>
         <%
-            }
-                       }
+}
+                   }
                }
         %>
         <tr class="table_row">
             <td style="padding: 7px;">
-                <%= index %>
+                <%= index%>
             </td>
             <td style="padding: 7px;">
-                <%= Html.Encode(specialityDiscipline.Title) %>
+                <%= Html.Encode(specialityDiscipline.Title)%>
             </td>
             <% 
-                string lectureVolume = String.Empty;
-                string practiceVolume = String.Empty;
-                string labVolume = String.Empty;
-                string term = String.Empty;
-                string reporting = String.Empty;
-                foreach (SpecialityDisciplineTerm specialityDisciplineTerm in (IEnumerable<SpecialityDisciplineTerm>)specialityDiscipline.SpecialityDisciplineTerms)
-                {
-                    if (0 != specialityDisciplineTerm.LectureVolume)
-                    {
-                        lectureVolume += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.LectureVolume + "<br />";
-                    }
-                    if (0 != specialityDisciplineTerm.PracticeVolume)
-                    {
-                        practiceVolume += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.PracticeVolume + "<br />";
-                    }
-                    if (0 != specialityDisciplineTerm.LabVolume)
-                    {
-                        labVolume += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.LabVolume + "<br />";
-                    }
-                    if (!specialityDisciplineTerm.Reporting.Equals(String.Empty))
-                    {
-                        reporting += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.Reporting + "<br />";
-                    }
-                    term += specialityDisciplineTerm.Term + ", ";
-                }
-                if (lectureVolume.Trim().Equals(String.Empty))
-                {
-                    lectureVolume = "0";
-                }
-                if (practiceVolume.Trim().Equals(String.Empty))
-                {
-                    practiceVolume = "0";
-                }
-                if (labVolume.Trim().Equals(String.Empty))
-                {
-                    labVolume = "0";
-                }
-                if (reporting.Trim().Equals(String.Empty))
-                {
-                    reporting = "Нет";
-                }
+string lectureVolume = String.Empty;
+string practiceVolume = String.Empty;
+string labVolume = String.Empty;
+string term = String.Empty;
+string reporting = String.Empty;
+
+IEnumerable<SpecialityDisciplineTerm> specialityDisciplineTerms = (IEnumerable<SpecialityDisciplineTerm>)specialityDiscipline.SpecialityDisciplineTerms;
+if (null != specialityDisciplineTerms)
+{
+    foreach (SpecialityDisciplineTerm specialityDisciplineTerm in specialityDisciplineTerms)
+    {
+        if (0 != specialityDisciplineTerm.LectureVolume)
+        {
+            lectureVolume += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.LectureVolume + "<br />";
+        }
+        if (0 != specialityDisciplineTerm.PracticeVolume)
+        {
+            practiceVolume += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.PracticeVolume + "<br />";
+        }
+        if (0 != specialityDisciplineTerm.LabVolume)
+        {
+            labVolume += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.LabVolume + "<br />";
+        }
+        if (!specialityDisciplineTerm.Reporting.Equals(String.Empty))
+        {
+            reporting += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.Reporting + "<br />";
+        }
+        term += specialityDisciplineTerm.Term + ", ";
+    }
+}
+if (lectureVolume.Trim().Equals(String.Empty))
+{
+    lectureVolume = "0";
+}
+if (practiceVolume.Trim().Equals(String.Empty))
+{
+    practiceVolume = "0";
+}
+if (labVolume.Trim().Equals(String.Empty))
+{
+    labVolume = "0";
+}
+if (reporting.Trim().Equals(String.Empty))
+{
+    reporting = "Нет";
+}
             %>
             <td style="padding: 7px; width: 75px">
                 <%= lectureVolume.Trim(',', ' ', '<', '>', 'b', 'r', '/')%>
             </td>
             <td style="padding: 7px; width: 75px">
-                <%= practiceVolume.Trim(',', ' ', '<', '>', 'b', 'r', '/') %>
+                <%= practiceVolume.Trim(',', ' ', '<', '>', 'b', 'r', '/')%>
             </td>
             <td style="padding: 7px; width: 75px">
                 <%= labVolume.Trim(',', ' ', '<', '>', 'b', 'r', '/')%>
             </td>
             <td style="padding: 7px; width: 75px">
-                <%= term.Trim(',', ' ') %>
+                <%= term.Trim(',', ' ')%>
             </td>
             <td style="padding: 7px; width: 125px">
-                <%= reporting.Trim(',', ' ', '<', '>', 'b', 'r', '/') %>
+                <%= reporting.Trim(',', ' ', '<', '>', 'b', 'r', '/')%>
             </td>
             <td style="padding: 7px;">
-                <%= Html.Encode(specialityDiscipline.Chair.Title) %>
+                <%= Html.Encode(specialityDiscipline.Chair.Title)%>
             </td>
             <td style="padding: 7px;">
                 <%
-                    if (!specialityDiscipline.Professor.User.FirstName.Trim().Equals(String.Empty) &&
-                       !specialityDiscipline.Professor.User.Patronymic.Trim().Equals(String.Empty))
+                    IEnumerable<Professor> professors = RepositoryManager.GetRepositoryManager.GetProfessorRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
+                    if (null != professors)
                     {
+                        foreach (Professor professor in professors)
+                        {
+                            if (!professor.User.FirstName.Trim().Equals(String.Empty) &&
+                               !professor.User.Patronymic.Trim().Equals(String.Empty))
+                            {
                 %>
-                <%= Html.Encode(specialityDiscipline.Professor.User.SecondName + " " +
-                                                      specialityDiscipline.Professor.User.FirstName[0].ToString().ToUpper() + "." + specialityDiscipline.Professor.User.Patronymic[0].ToString().ToUpper() + ".")%>
+                <%= Html.Encode(professor.User.SecondName + " " +
+                                                      professor.User.FirstName[0].ToString().ToUpper() + "." + professor.User.Patronymic[0].ToString().ToUpper() + ".")%>
                 <% }
-                    else
-                    { %>
-                <%= Html.Encode(specialityDiscipline.Professor.User.SecondName)%>
-                <% } %>
+                            else
+                            { %>
+                <%= Html.Encode(professor.User.SecondName)%>
+                <% }
+                            if (professors.Count<Professor>() > 1)
+                            {
+                                %>
+                                <br />
+                                <%
+                            }
+                        }
+                    }%>
             </td>
         </tr>
         <% index++;
-                } %>
-        <% } %>
+                    } %>
+        <% }
+            } %>
     </table>
     <br />
     <% } %>
@@ -326,9 +347,10 @@
                 <%= Html.ActionLink("План подготовки", "Specialities", "Home", new { alias = Html.Encode(speciality.Alias) ,additional = Html.Encode(educationPlan.Alias) }, new { @class = ""} )%>
             </td>
         </tr>
-        <% 
-            foreach (Specialization specialization in (IEnumerable<Specialization>)speciality.Specializations)
+        <%  if (null != speciality.Specializations)
             {
+                foreach (Specialization specialization in (IEnumerable<Specialization>)speciality.Specializations)
+                {
         %>
         <% if (educationPlan.Id == specialization.EducationPlanId)
            { %>
@@ -342,7 +364,8 @@
             </td>
         </tr>
         <% } %>
-        <% } %>
+        <% }
+           } %>
         <% } %>
         <% } %>
         <% } %>

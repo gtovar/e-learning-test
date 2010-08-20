@@ -58,8 +58,8 @@ namespace VmkLearningKit.Core.XmlConverter
                    teacherPosition,
                    teacherRank;
 
-            List<User>      usersList       = new List<User>();
-            List<Professor> professorsList  = new List<Professor>();
+            //List<User>      usersList       = new List<User>();
+            //List<Professor> professorsList  = new List<Professor>();
             
             while (xmlReader.Read())
             {
@@ -99,20 +99,26 @@ namespace VmkLearningKit.Core.XmlConverter
                     
                     user.Password   = Hash.ComputeHash(password);
 
+                    repositoryManager.GetUserRepository.Add(user);
+
+                    long userId = repositoryManager.GetUserRepository.GetByLogin(user.Login).Id;
+
                     Professor professor = new Professor();
                     professor.ChairId   = repositoryManager.GetChairRepository.GetByAbbreviation(teacherChair).Id;
                     professor.Degree    = teacherDegree;
                     professor.Position  = teacherPosition;
                     professor.Rank      = teacherRank;
-                    professor.UserId    = user.Id;
+                    professor.UserId    = userId;
 
-                    usersList.Add(user);
-                    professorsList.Add(professor);
+                    repositoryManager.GetProfessorRepository.Add(professor);
+
+                    //usersList.Add(user);
+                    //professorsList.Add(professor);
                 }
             }
 
-            repositoryManager.GetUserRepository.Add(usersList.AsEnumerable<User>());
-            repositoryManager.GetProfessorRepository.Add(professorsList.AsEnumerable<Professor>());
+            //repositoryManager.GetUserRepository.Add(usersList.AsEnumerable<User>());
+            //repositoryManager.GetProfessorRepository.Add(professorsList.AsEnumerable<Professor>());
 
             // Здесь делаем рассылку паролей по email
         }

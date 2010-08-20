@@ -222,5 +222,20 @@ namespace VmkLearningKit.Models.Repository
 
             return null;
         }
+
+        public IEnumerable<Professor> GetBySpecialityDisciplineId(long specialityDisciplineId)
+        {
+            IEnumerable<SpecialityDisciplinesProfessor> specialityDisciplinesProfessors = 
+                DataContext.SpecialityDisciplinesProfessors.Where(t => t.SpecialityDisciplineId == specialityDisciplineId);
+
+            List<Professor> result = new List<Professor>();
+
+            foreach (SpecialityDisciplinesProfessor specialityDisciplinesProfessor in specialityDisciplinesProfessors)
+            {
+                result.Add(DataContext.Professors.SingleOrDefault<Professor>(t => t.UserId == specialityDisciplinesProfessor.ProfessorId));
+            }
+
+            return result.AsEnumerable<Professor>();
+        }
     }
 }

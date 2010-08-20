@@ -6,7 +6,7 @@
         <xs:element name="speciality" maxOccurs="unbounded">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="specializaitons">
+              <xs:element name="specializations">
                 <xs:complexType>
                   <xs:sequence>
                     <xs:element name="specialization" maxOccurs="unbounded">

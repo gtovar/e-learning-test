@@ -28,7 +28,7 @@ namespace VmkLearningKit.Models.Repository
         {
             try
             {
-                return DataContext.SpecialityDisciplines.Where(s => s.Speciality.Alias == specialityAlias).OrderBy(s => s.CategoryLevel2);
+                return DataContext.SpecialityDisciplines.Where(s => s.Speciality.Alias == specialityAlias).OrderBy(s => s.Category);
             }
             catch (Exception ex)
             {

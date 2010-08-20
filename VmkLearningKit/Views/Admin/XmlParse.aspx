@@ -23,6 +23,24 @@
                 "modal": true,
                 "onComplete": function () { document.forms["UploadTeachersForm"].submit(); }
             });
+
+            $("#UploadAndParse_Students").fancybox({
+                "titleShow": false,
+                "modal": true,
+                "onComplete": function () { document.forms["UploadStudentsForm"].submit(); }
+            });
+
+            $("#UploadAndParse_Groups").fancybox({
+                "titleShow": false,
+                "modal": true,
+                "onComplete": function () { document.forms["UploadGroupsForm"].submit(); }
+            });
+
+            $("#UploadAndParse_Specialities").fancybox({
+                "titleShow": false,
+                "modal": true,
+                "onComplete": function () { document.forms["UploadSpecialitiesForm"].submit(); }
+            });
         });    
 
     </script>
@@ -33,45 +51,55 @@
             
         IEnumerable<VmkLearningKit.Core.XmlConverter.LogRecord> logDataErrors = 
             (IEnumerable<VmkLearningKit.Core.XmlConverter.LogRecord>)ViewData["XmlParseDataErrors"];
-    %>
-        
-    <div class="XmlParseStructureErrors">
-        <p>Ошибки в структуре</p>
-        <ul>
-        <%           
-            if (logStructureErrors != null)
+          
+        if (logStructureErrors != null)
+        {
+            %>
+            <div class="XmlParseStructureErrors">
+                <p>Ошибки в структуре</p>
+                <ul>  
+            <%    
                 foreach (VmkLearningKit.Core.XmlConverter.LogRecord logRecord in logStructureErrors)
                 {
-                    %>
-                    <li>
-                        Строка: <%= Html.Encode(logRecord.LineNumber) %>
-                        Позиция: <%= Html.Encode(logRecord.LinePosition) %>
-                        Ошибка: <%= Html.Encode(logRecord.Message) %>
-                    </li>    
-                    <% 
+                %>
+                <li>
+                    Строка: <%= Html.Encode(logRecord.LineNumber)%>
+                    Позиция: <%= Html.Encode(logRecord.LinePosition)%>
+                    Ошибка: <%= Html.Encode(logRecord.Message)%>
+                </li>    
+                <% 
                 }
-        %>
-        </ul>
-    </div>
-    <div class="XmlParseDataErrors">
-        <p>Ошибки в данных</p>
-        <ul>
-        <%           
-            if (logDataErrors != null)
+            %>
+                </ul>
+            </div>    
+            <%
+        }
+        
+        if (logDataErrors != null)
+        {
+            %>
+            <div class="XmlParseDataErrors">
+                <p>Ошибки в данных</p>
+                <ul>  
+            <%    
                 foreach (VmkLearningKit.Core.XmlConverter.LogRecord logRecord in logDataErrors)
                 {
-                    %>
-                    <li>
-                        Строка: <%= Html.Encode(logRecord.LineNumber) %>
-                        Позиция: <%= Html.Encode(logRecord.LinePosition) %>
-                        Ошибка: <%= Html.Encode(logRecord.Message) %>
-                    </li>    
-                    <% 
+                %>
+                <li>
+                    Строка: <%= Html.Encode(logRecord.LineNumber)%>
+                    Позиция: <%= Html.Encode(logRecord.LinePosition)%>
+                    Ошибка: <%= Html.Encode(logRecord.Message)%>
+                </li>    
+                <% 
                 }
-        %>
-        </ul>
-    </div>
+            %>
+                </ul>
+            </div>    
+            <%
+        }
+    %>        
     <div class="UploadVisibleContainer">
+        <p>Загрузка кафедр</p>
         <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_CHAIRS }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadChairsForm", name = "UploadChairsForm" }))
            { %>
                <p align="center">
@@ -83,6 +111,7 @@
         <% } %>
     </div>
     <div class="UploadVisibleContainer">
+        <p>Загрузка преподавателей</p>
         <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_TEACHERS }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadTeachersForm", name = "UploadTeachersForm" }))
            { %>
                <p align="center">
@@ -90,6 +119,42 @@
                </p>
                <p align="center">    
                    <a href="#UploadAndParseContainer" id="UploadAndParse_Teachers">Добавить</a>
+               </p>
+        <% } %>
+    </div>
+    <div class="UploadVisibleContainer">
+        <p>Загрузка групп</p>
+        <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_GROUPS }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadGroupsForm", name = "UploadGroupsForm" }))
+           { %>
+               <p align="center">
+                   <input type="file" id="FileUpload_Groups" name="FileUpload_Groups" value="Обзор" class="XmlFileUpload" /> 
+               </p>
+               <p align="center">    
+                   <a href="#UploadAndParseContainer" id="UploadAndParse_Groups">Добавить</a>
+               </p>
+        <% } %>
+    </div>
+    <div class="UploadVisibleContainer">
+        <p>Загрузка студентов</p>
+        <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_STUDENTS }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadStudentsForm", name = "UploadStudentsForm" }))
+           { %>
+               <p align="center">
+                   <input type="file" id="FileUpload_Students" name="FileUpload_Students" value="Обзор" class="XmlFileUpload" /> 
+               </p>
+               <p align="center">    
+                   <a href="#UploadAndParseContainer" id="UploadAndParse_Students">Добавить</a>
+               </p>
+        <% } %>
+    </div>
+    <div class="UploadVisibleContainer">
+        <p>Загрузка специальностей</p>
+        <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_SPECIALITIES }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadSpecialitiesForm", name = "UploadSpecialitiesForm" }))
+           { %>
+               <p align="center">
+                   <input type="file" id="FileUpload_Specialities" name="FileUpload_Specialities" value="Обзор" class="XmlFileUpload" /> 
+               </p>
+               <p align="center">    
+                   <a href="#UploadAndParseContainer" id="UploadAndParse_Specialities">Добавить</a>
                </p>
         <% } %>
     </div>

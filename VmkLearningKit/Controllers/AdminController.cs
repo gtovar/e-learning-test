@@ -658,6 +658,72 @@ namespace VmkLearningKit.Controllers
                                     }
                                     break;
                                 }
+                            case VLKConstants.XML_UPLOAD_ALIAS_STUDENTS:
+                                {
+                                    string xmlPath      = HttpContext.Server.MapPath("/Uploads/Xml/Students");
+                                    string xmlSchema    = HttpContext.Server.MapPath("/Core/XmlConverter/XmlSchemas/XMLSchemaStudents.xsd");
+
+                                    DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
+                                    long xmlIndex = targetDir.GetFiles("*.xml").Length;
+                                    string xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    file.SaveAs(xmlName);
+
+                                    XmlStudentsParser xmlStudentsParser = new XmlStudentsParser(xmlSchema);
+                                    if (xmlStudentsParser.ValidateXml(xmlName) & xmlStudentsParser.ValidateData(xmlName))
+                                    {
+                                        xmlStudentsParser.ParseXml(xmlName);
+                                    }
+                                    else
+                                    {
+                                        ViewData["XmlParseStructureErrors"] = xmlStudentsParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
+                                        ViewData["XmlParseDataErrors"] = xmlStudentsParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
+                                    }
+                                    break;
+                                }
+                            case VLKConstants.XML_UPLOAD_ALIAS_GROUPS:
+                                {
+                                    string xmlPath = HttpContext.Server.MapPath("/Uploads/Xml/Groups");
+                                    string xmlSchema = HttpContext.Server.MapPath("/Core/XmlConverter/XmlSchemas/XMLSchemaGroups.xsd");
+
+                                    DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
+                                    long xmlIndex = targetDir.GetFiles("*.xml").Length;
+                                    string xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    file.SaveAs(xmlName);
+
+                                    XmlGroupsParser xmlGroupsParser = new XmlGroupsParser(xmlSchema);
+                                    if (xmlGroupsParser.ValidateXml(xmlName) & xmlGroupsParser.ValidateData(xmlName))
+                                    {
+                                        xmlGroupsParser.ParseXml(xmlName);
+                                    }
+                                    else
+                                    {
+                                        ViewData["XmlParseStructureErrors"] = xmlGroupsParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
+                                        ViewData["XmlParseDataErrors"] = xmlGroupsParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
+                                    }
+                                    break;
+                                }
+                            case VLKConstants.XML_UPLOAD_ALIAS_SPECIALITIES:
+                                {
+                                    string xmlPath = HttpContext.Server.MapPath("/Uploads/Xml/Specialities");
+                                    string xmlSchema = HttpContext.Server.MapPath("/Core/XmlConverter/XmlSchemas/XMLSchemaSpecialities.xsd");
+
+                                    DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
+                                    long xmlIndex = targetDir.GetFiles("*.xml").Length;
+                                    string xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    file.SaveAs(xmlName);
+
+                                    XmlSpecialitiesParser xmlSpecialitiesParser = new XmlSpecialitiesParser(xmlSchema);
+                                    if (xmlSpecialitiesParser.ValidateXml(xmlName) & xmlSpecialitiesParser.ValidateData(xmlName))
+                                    {
+                                        xmlSpecialitiesParser.ParseXml(xmlName);
+                                    }
+                                    else
+                                    {
+                                        ViewData["XmlParseStructureErrors"] = xmlSpecialitiesParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
+                                        ViewData["XmlParseDataErrors"] = xmlSpecialitiesParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
+                                    }
+                                    break;
+                                }
                             default:
                                 {
                                     return RedirectToAction("Error", "Home");
@@ -671,7 +737,7 @@ namespace VmkLearningKit.Controllers
                 return RedirectToAction("Error", "Home");
             }
 
-            return View();
+            return View("XmlParse");
         }
 
     }

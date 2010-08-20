@@ -63,7 +63,10 @@
             </th>
         </tr>
         <% int index = 1;
-           foreach (SpecialityDiscipline specialityDiscipline in (IEnumerable<SpecialityDiscipline>)(((Professor)ViewData["Professor"]).SpecialityDisciplines))
+           IEnumerable<SpecialityDiscipline> specialityDisciplines = RepositoryManager.GetRepositoryManager.GetSpecialityDisciplineRepository.GetAllByProfessor(((Professor)ViewData["Professor"]).User.NickName);
+           if (null != specialityDisciplines)
+           {
+           foreach (SpecialityDiscipline specialityDiscipline in specialityDisciplines)
            {                    
         %>
         <tr class="table_row">
@@ -84,7 +87,8 @@
             </td>
         </tr>
         <% index++;
-           } %>
+           } 
+       }%>
     </table>
     <% }
        else if (null != ViewData["SpecialityDiscipline"])
@@ -101,8 +105,12 @@
             </th>
         </tr>
         <% int index = 1;
-           foreach (SpecialityDisciplineTopic specialityDisciplineTopic in (IEnumerable<SpecialityDisciplineTopic>)(((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).SpecialityDisciplineTopics))
-           {                    
+
+           IEnumerable<SpecialityDisciplineTopic> specialityDisciplineTopics = (IEnumerable<SpecialityDisciplineTopic>)(((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).SpecialityDisciplineTopics);
+           if (null != specialityDisciplineTopics)
+           {
+               foreach (SpecialityDisciplineTopic specialityDisciplineTopic in specialityDisciplineTopics)
+               {                    
         %>
         <tr class="table_row">
             <td style="padding: 7px">
@@ -113,7 +121,8 @@
             </td>
         </tr>
         <% index++;
-           } %>
+               }
+           }%>
     </table>
     <% }
        }
