@@ -420,6 +420,9 @@
   <data name="XML_ELEMENT_SPECIALIZATION" xml:space="preserve">
     <value>specialization</value>
   </data>
+  <data name="XML_ELEMENT_SPECIALIZATIONS" xml:space="preserve">
+    <value>specializations</value>
+  </data>
   <data name="XML_ELEMENT_STUDENT" xml:space="preserve">
     <value>student</value>
   </data>

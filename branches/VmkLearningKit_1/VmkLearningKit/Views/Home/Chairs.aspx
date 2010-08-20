@@ -42,12 +42,14 @@
         </tr>
         <% 
             int i = 1;
-            foreach (Professor professor in (IEnumerable<Professor>)((Chair)ViewData["Chair"]).Professors)
-            {                    
+            if (null != ((Chair)ViewData["Chair"]).Professors)
+            {
+                foreach (Professor professor in (IEnumerable<Professor>)((Chair)ViewData["Chair"]).Professors)
+                {                    
         %>
         <tr class="table_row">
             <td style="padding: 7px;">
-                <%= i %>
+                <%= i%>
             </td>
             <td style="padding: 7px;">
             <% string fio = String.Empty;
@@ -66,25 +68,31 @@
             </td>
             <td style="padding: 7px;">
                 <%
-                    int index = 0;
-                    foreach (SpecialityDiscipline specialityDiscipline in (IEnumerable<SpecialityDiscipline>)professor.SpecialityDisciplines)
-                    {                    
-                %>
-                <%= Html.Encode(specialityDiscipline.Title) %><br />
-                <% if (index < (((IEnumerable<SpecialityDiscipline>)professor.SpecialityDisciplines).Count()) - 1)
+int index = 0;
+
+                    IEnumerable<SpecialityDiscipline> specialityDisciplines = RepositoryManager.GetRepositoryManager.GetSpecialityDisciplineRepository.GetAllByProfessor(professor.User.NickName);
+                    if (null != specialityDisciplines)
+                    {
+                        foreach (SpecialityDiscipline specialityDiscipline in specialityDisciplines)
+                        {
+    %>
+                <%= Html.Encode(specialityDiscipline.Title)%><br />
+                <% if (index < (specialityDisciplines.Count()) - 1)
                    { %>
                 <hr style="margin: 5px;" />
                 <% } index++; %>
-                <% } %>
+                <% }
+                    }%>
             </td>
             <td style="padding: 7px;">
-                <%= Html.Encode(professor.Degree) %>
+                <%= Html.Encode(professor.Degree)%>
             </td>
             <td style="padding: 7px;">
-                <%= Html.Encode(professor.Position) %>
+                <%= Html.Encode(professor.Position)%>
             </td>
         </tr>
         <% i++;
+                }
             } %>
     </table>
     <%

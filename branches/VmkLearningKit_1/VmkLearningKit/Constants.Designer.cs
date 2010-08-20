@@ -970,6 +970,15 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to specializations.
+        /// </summary>
+        internal static string XML_ELEMENT_SPECIALIZATIONS {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_SPECIALIZATIONS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to student.
         /// </summary>
         internal static string XML_ELEMENT_STUDENT {

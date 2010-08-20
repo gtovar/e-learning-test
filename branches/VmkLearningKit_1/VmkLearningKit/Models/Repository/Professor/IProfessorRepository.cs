@@ -14,5 +14,6 @@ namespace VmkLearningKit.Models.Repository
         Professor Add(Professor obj);
         Professor Update(Professor obj);
         IEnumerable<Professor> Add(IEnumerable<Professor> professors);
+        IEnumerable<Professor> GetBySpecialityDisciplineId(long specialityDisciplineId);
     }
 }

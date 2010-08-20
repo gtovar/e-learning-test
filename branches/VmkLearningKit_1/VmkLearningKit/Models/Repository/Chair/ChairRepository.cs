@@ -20,7 +20,7 @@ namespace VmkLearningKit.Models.Repository
 
         public IEnumerable<Chair> GetAll(string departmentAlias)
         {
-            return DataContext.Chairs.Where(ch => ch.Department.Alias == departmentAlias);
+            return DataContext.Chairs.Where(ch => (ch.Department.Alias == departmentAlias && ch.Title != VLKConstants.FIELD_EMPTY));
         }
 
         public long GetMaxId()

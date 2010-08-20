@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VLKConstants.cs" />
+    <Content Include="Views\Admin\XmlParse.aspx" />
     <Content Include="Views\Shared\GeneralMenu.ascx" />
   </ItemGroup>
   <ItemGroup>

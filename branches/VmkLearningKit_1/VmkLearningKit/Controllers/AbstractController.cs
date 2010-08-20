@@ -33,7 +33,7 @@ namespace VmkLearningKit.Controllers
             {
                 Utility.RedirectToErrorPage("AbstractController.GeneralMenu: catch exception", ex);
             }
-             
+
             ViewData["Chairs"] = chairs;
             ViewData["Specialities"] = specialities;
             ViewData["EducationPlans"] = educationPlans;

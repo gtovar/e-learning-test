@@ -32,6 +32,11 @@ namespace VmkLearningKit.Core.XmlConverter
                     studentSpecializationAbbreviation = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION);
                     studentGroupNumber                = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_GROUP_NUMBER);
 
+                    if (studentSpecializationAbbreviation == VLKConstants.FIELD_EMPTY)
+                    {
+                        studentSpecializationAbbreviation += studentChairAbbreveation;
+                    }
+
                     if (null == repositoryManager.GetChairRepository.GetByAbbreviation(studentChairAbbreveation))
                     {
                         XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_CHAIR, xmlReader.LineNumber, xmlReader.LinePosition));
@@ -69,8 +74,8 @@ namespace VmkLearningKit.Core.XmlConverter
                    studentFirstName,
                    studentPatronymic;
 
-            List<User>      usersList       = new List<User>();
-            List<Student>   studentsList    = new List<Student>();
+            //List<User>      usersList       = new List<User>();
+            //List<Student>   studentsList    = new List<Student>();
 
             while (xmlReader.Read())
             {
@@ -79,6 +84,12 @@ namespace VmkLearningKit.Core.XmlConverter
                 {
                     studentChairAbbreveation            = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_CHAIR_ABBREVIATION);
                     studentSpecializationAbbreviation   = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION);
+
+                    if (studentSpecializationAbbreviation == VLKConstants.FIELD_EMPTY)
+                    {
+                        studentSpecializationAbbreviation += studentChairAbbreveation;
+                    }
+
                     studentGroupNumber                  = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_GROUP_NUMBER);
                     studentLastName                     = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_LASTNAME);
                     studentFirstName                    = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_FIRSTNAME);
@@ -94,7 +105,7 @@ namespace VmkLearningKit.Core.XmlConverter
                     user.FirstName  = studentFirstName;
                     user.SecondName = studentLastName;
                     user.Patronymic = studentPatronymic;
-                    user.Role       = Constants.PROFESSOR_ROLE;
+                    user.Role       = Constants.STUDENT_ROLE;
                     user.NickName   = studentLastNameFull.Substring(0, 1).ToUpper() +
                                       studentLastNameFull.Substring(1).ToLower() +
                                       studentFirstNameShort.ToUpper() +
@@ -109,19 +120,25 @@ namespace VmkLearningKit.Core.XmlConverter
 
                     user.Password   = Hash.ComputeHash(password);
 
+                    repositoryManager.GetUserRepository.Add(user);
+
+                    long userId = repositoryManager.GetUserRepository.GetByLogin(user.Login).Id;
+
                     Student student = new Student();
                     student.ChairId             = repositoryManager.GetChairRepository.GetByAbbreviation(studentChairAbbreveation).Id;
-                    student.UserId              = user.Id;
+                    student.UserId              = userId;
                     student.GroupId             = repositoryManager.GetGroupRepository.GetByTitle(studentGroupNumber).Id;
                     student.SpecializationId    = repositoryManager.GetSpecializationRepository.GetByAbbreviation(studentSpecializationAbbreviation).Id;
 
-                    usersList.Add(user);
-                    studentsList.Add(student);
+                    repositoryManager.GetStudentRepository.Add(student);
+
+                    //usersList.Add(user);
+                    //studentsList.Add(student);
                 }
             }
 
-            repositoryManager.GetUserRepository.Add(usersList.AsEnumerable<User>());
-            repositoryManager.GetStudentRepository.Add(studentsList.AsEnumerable<Student>());
+            //repositoryManager.GetUserRepository.Add(usersList.AsEnumerable<User>());
+            //repositoryManager.GetStudentRepository.Add(studentsList.AsEnumerable<Student>());
 
             // Здесь делаем рассылку паролей по email
         }
