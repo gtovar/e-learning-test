@@ -133,6 +133,7 @@ namespace VmkLearningKit.Models.Repository
                           from u in DataContext.Users
                           where st.GroupId == id && u.Id == st.UserId
                           select u;
+                if (res.Count() == 0) return null;
                 return res;
             }
             catch (Exception ex)

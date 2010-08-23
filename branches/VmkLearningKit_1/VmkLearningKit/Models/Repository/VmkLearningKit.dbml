@@ -108,20 +108,12 @@
       <Column Name="DepartmentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="Alias" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="Group_GroupsLectureTimetable" Member="GroupsLectureTimetables" ThisKey="Id" OtherKey="GroupId" Type="GroupsLectureTimetable" />
       <Association Name="Group_PracticeAndLabTimetable" Member="PracticeAndLabTimetables" ThisKey="Id" OtherKey="GroupId" Type="PracticeAndLabTimetable" />
       <Association Name="Group_PracticePlan" Member="PracticePlans" ThisKey="Id" OtherKey="GroupId" Type="PracticePlan" />
       <Association Name="Group_Student" Member="Students" ThisKey="Id" OtherKey="GroupId" Type="Student" />
+      <Association Name="Group_GroupsLectureTimetables" Member="GroupsLectureTimetables" ThisKey="Id" OtherKey="GroupId" Type="GroupsLectureTimetables" />
       <Association Name="Department_Group" Member="Department" ThisKey="DepartmentId" OtherKey="Id" Type="Department" IsForeignKey="true" />
       <Association Name="Speciality_Group" Member="Speciality" ThisKey="SpecialityId" OtherKey="Id" Type="Speciality" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.GroupsLectureTimetables" Member="GroupsLectureTimetables">
-    <Type Name="GroupsLectureTimetable">
-      <Column Name="GroupId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="LectureTimetableId" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Group_GroupsLectureTimetable" Member="Group" ThisKey="GroupId" OtherKey="Id" Type="Group" IsForeignKey="true" />
-      <Association Name="LectureTimetable_GroupsLectureTimetable" Member="LectureTimetable" ThisKey="LectureTimetableId" OtherKey="Id" Type="LectureTimetable" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LecturePlans" Member="LecturePlans">
@@ -144,7 +136,7 @@
       <Column Name="Building" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="Room" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="Week" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
-      <Association Name="LectureTimetable_GroupsLectureTimetable" Member="GroupsLectureTimetables" ThisKey="Id" OtherKey="LectureTimetableId" Type="GroupsLectureTimetable" />
+      <Association Name="LectureTimetable_GroupsLectureTimetables" Member="GroupsLectureTimetables" ThisKey="Id" OtherKey="LectureTimetableId" Type="GroupsLectureTimetables" />
       <Association Name="Professor_LectureTimetable" Member="Professor" ThisKey="ProfessorId" OtherKey="UserId" Type="Professor" IsForeignKey="true" />
       <Association Name="SpecialityDiscipline_LectureTimetable" Member="SpecialityDiscipline" ThisKey="SpecialityDisciplineId" OtherKey="Id" Type="SpecialityDiscipline" IsForeignKey="true" />
     </Type>
@@ -361,6 +353,15 @@
       <Column Name="Role" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Association Name="User_Professor" Member="Professor" ThisKey="Id" OtherKey="UserId" Type="Professor" Cardinality="One" />
       <Association Name="User_Student" Member="Student" ThisKey="Id" OtherKey="UserId" Type="Student" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GroupsLectureTimetables" Member="GroupsLectureTimetables">
+    <Type Name="GroupsLectureTimetables">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GroupId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="LectureTimetableId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Association Name="Group_GroupsLectureTimetables" Member="Group" ThisKey="GroupId" OtherKey="Id" Type="Group" IsForeignKey="true" />
+      <Association Name="LectureTimetable_GroupsLectureTimetables" Member="LectureTimetable" ThisKey="LectureTimetableId" OtherKey="Id" Type="LectureTimetable" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

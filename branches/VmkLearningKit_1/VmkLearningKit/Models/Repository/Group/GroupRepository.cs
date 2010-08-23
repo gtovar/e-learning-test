@@ -87,12 +87,28 @@ namespace VmkLearningKit.Models.Repository
         {
             try
             {
-                var res = from sp in DataContext.Specialities
-                          from gr in DataContext.Groups
-                          where sp.Id == (DataContext.SpecialityDisciplines.SingleOrDefault(d => d.Id == disciplineId)).SpecialityId &&
-                                gr.SpecialityId == sp.Id
-                          select gr;
-                return res;
+                IEnumerable<LectureTimetable> lts = DataContext.LectureTimetables.Where
+                    (lt => (lt.ProfessorId == professorId && lt.SpecialityDisciplineId == disciplineId)) ;
+                if(0!=lts.Count())
+                {
+                    List<GroupsLectureTimetables> glts = new List<GroupsLectureTimetables>();
+                    foreach (LectureTimetable itemTimetable in lts)
+                    {
+                        foreach (GroupsLectureTimetables itemGlt in DataContext.GroupsLectureTimetables.Where(grlts => grlts.LectureTimetableId == itemTimetable.Id))
+                        glts.Add(itemGlt);
+                    }
+                    if (null != glts)
+                    {
+                        List<Group> groups = new List<Group>();
+                        foreach (GroupsLectureTimetables itemGroupsLecture in glts)
+                        {
+                            groups.Add(DataContext.Groups.Single(gr => gr.Id == itemGroupsLecture.GroupId));
+                        }
+                        return groups.Distinct();
+                    }
+                    else return null;
+                }
+                else return null; 
             }
             catch (Exception ex)
             {
