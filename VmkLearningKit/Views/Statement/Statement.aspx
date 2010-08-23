@@ -90,9 +90,10 @@ td.secondAssignement {
             $("td.changeble").empty().append(" ");
         })
 
-        $("#setRandomVariant").click(function() {
+        $("#setRandomVariant").click(function () {
+        
             if ($("#SelectTopic").val() != -1) {
-                $.post("/Statement/RandomVariants", { topicId: $("#SelectTopic").val(), groupId: $("#param1").val() },
+                $.post("/Statement/RandomVariants", { topicId: $("#SelectTopic").val(), groupId: $("#Select1").val() },
         function(str) {
             flags = [];
             var mas = str.split("]");
