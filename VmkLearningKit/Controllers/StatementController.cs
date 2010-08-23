@@ -20,76 +20,90 @@ namespace VmkLearningKit.Controllers
             return View();
         }
 
+        
 
         public ActionResult Statement(string additional, string alias, string param1)
         {
             SpecialityDiscipline _discipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
             Professor _professor = repositoryManager.GetProfessorRepository.GetByNickName(alias);
             IEnumerable<Group> _groups = repositoryManager.GetGroupRepository.GetAllByDisciplineProfessor(_discipline.Id, _professor.User.Id);
-            if (param1 == null)
-                param1 = _groups.ElementAt(1).Alias;
-
-            Group _group = repositoryManager.GetGroupRepository.GetByAlias(param1);
-            Department _department = repositoryManager.GetGroupRepository.GetById(_group.Id).Department;
-
-
+            ViewData["groups"] = _groups;
             ViewData[Constants.PAGE_TITLE] = "¬едомость тестировани€";
             ViewData["ProfessorName"] = _professor.User.SecondName.ToString() + " " +
                 _professor.User.FirstName.ToString() + " " + _professor.User.Patronymic.ToString();
-            ViewData["TitleGroup"] = _group.Title;
-            ViewData["IdGroup"] = _group.Alias;
-            ViewData["Discipline"] = _discipline.Title;
+            ViewData["Discipline"] = _discipline.Title; 
+            Department _department = _professor.Chair.Department;
+              
             ViewData["Department"] = _department.Title;
-            ViewData["groups"] = repositoryManager.GetGroupRepository.GetAllByDisciplineProfessor(_discipline.Id, _professor.User.Id);
             ViewData["DisciplineId"] = _discipline.Alias;
             ViewData["ProfessorId"] = _professor.User.NickName;
-            IEnumerable<User> students = repositoryManager.GetUserRepository.GetByGroupId(_group.Id);
-            IEnumerable<SpecialityDisciplineTopic> topics = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(_discipline.Id).OrderBy(c => c.Id);
-            List<long> varCount = new List<long>();
-            int countItteratation;
-            if (topics != null)
+            if (_groups != null)
             {
-                foreach (SpecialityDisciplineTopic topicItem in topics)
-                {
-                    List<AssignedTestVariant> topicAssignedVariants = new List<AssignedTestVariant>();
-                    if (students != null && repositoryManager.GetGeneratedTestRepository.GetAllGeneratedTestsByTopicId(topicItem.Id).Count() != 0)
-                    {
-                        foreach (User studentItem in students)
-                        {
-                            IEnumerable<AssignedTestVariant> allAssignedStudentTestVariant = repositoryManager.GetAssignedTestVariantRepository.GetAllStudentTopicTests(topicItem.Id, studentItem.Id).OrderByDescending(o => o.AssignedDate);
-                            if (allAssignedStudentTestVariant != null && allAssignedStudentTestVariant.Count() != 0)
-                            {
-                                AssignedTestVariant tmp;
-                                countItteratation = (allAssignedStudentTestVariant.Count() >= 3) ? 3 : allAssignedStudentTestVariant.Count() ;
-                                for (int i = countItteratation-1; i >= 0; i--)
-                                {
-                                    try
-                                    {
-                                        tmp = allAssignedStudentTestVariant.ElementAt(i);
-                                    }
-                                    catch (Exception ex) { tmp = null; }
-                                    if (tmp != null)
-                                        topicAssignedVariants.Add(tmp);
-                                }
-                            }
-                        }
 
-                    }
-                    else Utility.RedirectToErrorPage("в базе данных нет студентов данной группы");
-                    ViewData["allAssVariantsByTopic_" + topicItem.Id.ToString()] = topicAssignedVariants;
-                    varCount.Add(repositoryManager.GetGeneratedTestVariantRepository.GetCountCurrentTopicTestVariants(topicItem.Id));
-                    if (repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicItem.Id) != null)
-                        foreach (GeneratedTestVariant item in repositoryManager.GetGeneratedTestVariantRepository.GetAllGeneratedTestVariantsByTopicId(topicItem.Id))
+                if (param1 == null)
+                    param1 = _groups.ElementAt(1).Alias;
+
+                Group _group = repositoryManager.GetGroupRepository.GetByAlias(param1);
+
+
+                ViewData["TitleGroup"] = _group.Title;
+                ViewData["IdGroup"] = _group.Alias;
+
+                IEnumerable<User> students = repositoryManager.GetUserRepository.GetByGroupId(_group.Id); 
+                ViewData["Students"] = students;
+                if (null != students)
+                {
+                   
+
+                    IEnumerable<SpecialityDisciplineTopic> topics = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(_discipline.Id).OrderBy(c => c.Id);
+                    List<long> varCount = new List<long>();
+                    int countItteratation;
+                    if (topics != null)
+                    {
+                        foreach (SpecialityDisciplineTopic topicItem in topics)
                         {
-                            ViewData[topicItem.Id.ToString() + "_" + item.Id.ToString()] = repositoryManager.GetGeneratedTestVariantRepository.GetLocalNumGeneratedTestVariant(item.Id);
+                            List<AssignedTestVariant> topicAssignedVariants = new List<AssignedTestVariant>();
+                            if (students != null && repositoryManager.GetGeneratedTestRepository.GetAllGeneratedTestsByTopicId(topicItem.Id).Count() != 0)
+                            {
+                                foreach (User studentItem in students)
+                                {
+                                    IEnumerable<AssignedTestVariant> allAssignedStudentTestVariant = repositoryManager.GetAssignedTestVariantRepository.GetAllStudentTopicTests(topicItem.Id, studentItem.Id).OrderByDescending(o => o.AssignedDate);
+                                    if (allAssignedStudentTestVariant != null && allAssignedStudentTestVariant.Count() != 0)
+                                    {
+                                        AssignedTestVariant tmp;
+                                        countItteratation = (allAssignedStudentTestVariant.Count() >= 3) ? 3 : allAssignedStudentTestVariant.Count();
+                                        for (int i = countItteratation - 1; i >= 0; i--)
+                                        {
+                                            try
+                                            {
+                                                tmp = allAssignedStudentTestVariant.ElementAt(i);
+                                            }
+                                            catch (Exception ex) { tmp = null; }
+                                            if (tmp != null)
+                                                topicAssignedVariants.Add(tmp);
+                                        }
+                                    }
+                                }
+
+                            }
+                            else Utility.RedirectToErrorPage("в базе данных нет студентов данной группы");
+                            ViewData["allAssVariantsByTopic_" + topicItem.Id.ToString()] = topicAssignedVariants;
+                            varCount.Add(repositoryManager.GetGeneratedTestVariantRepository.GetCountCurrentTopicTestVariants(topicItem.Id));
+                            if (repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicItem.Id) != null)
+                                foreach (GeneratedTestVariant item in repositoryManager.GetGeneratedTestVariantRepository.GetAllGeneratedTestVariantsByTopicId(topicItem.Id))
+                                {
+                                    ViewData[topicItem.Id.ToString() + "_" + item.Id.ToString()] = repositoryManager.GetGeneratedTestVariantRepository.GetLocalNumGeneratedTestVariant(item.Id);
+                                }
                         }
+                    }
+                    else Utility.RedirectToErrorPage("в базе данных нет тем поданной дисциплине");
+                    ViewData["CountVariants"] = varCount;
+                    ViewData["Topics"] = topics;
                 }
             }
-            else Utility.RedirectToErrorPage("в базе данных нет тем поданной дисциплине");
-            ViewData["CountVariants"] = varCount;
-            ViewData["Students"] = students;
-            ViewData["Topics"] = topics;
-            return View();
+                return View();
+            
+                        
         }
         //---------------------------------------------------------------------------
         [AcceptVerbs(HttpVerbs.Post)]

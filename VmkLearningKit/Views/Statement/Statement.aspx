@@ -355,6 +355,23 @@ td.secondAssignement {
         <tr>
            <td >Преподаватель: &nbsp;&nbsp;</td>
            <td> <b><%=ViewData["ProfessorName"]%></b> </td>
+
+ 
+ <%//если в базе данных нет групп, обучающихся у преполавателя по данной дисциплине
+      if (null == ViewData["groups"])
+   {%>
+       </tr>
+    </table>
+    <p>
+    <div><b>Нет групп обучающихся по данной дисциплине</b>
+    </div>
+    </p>
+    <%;} %>
+    
+
+    <%//если нет в базе данных студентов в группы
+      if (null != ViewData["groups"] && null == ViewData["students"])
+      {%>
            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
            <td style="padding: 3px;">Группа: &nbsp;&nbsp;</td>
            <td><select id="param1" name="param1" onchange='SubmitPage("GroupFilter")' >
@@ -370,6 +387,53 @@ td.secondAssignement {
     </table>
     <br/>  
     
+    
+    <p>
+    <div><b>В базе данных нет информации о студентах данной группы</b>
+    </div>
+    </p>
+    <%}  %>
+    <%   //если нет тем по данной дисциплине 
+    else if (null != ViewData["groups"] && null == ViewData["topics"])
+         {%>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+           <td style="padding: 3px;">Группа: &nbsp;&nbsp;</td>
+           <td><select id="Select2" name="param1" onchange='SubmitPage("GroupFilter")' >
+                <%foreach (VmkLearningKit.Models.Repository.Group grItem in (IEnumerable<VmkLearningKit.Models.Repository.Group>)ViewData["groups"])
+                  {%>
+                  <option value='<%=grItem.Alias%>' <%if(grItem.Alias==ViewData["IdGroup"]){%> selected=selected<%} %> >
+                  <%=grItem.Title%>
+                  </option>
+                  <%} %>
+           </select>
+           </td>
+        </tr>
+    </table>
+    <br/>     
+    <p>
+    <div><b>Нет тем по данной дисциплине</b>
+    </div>
+    </p>
+            <%}%>
+
+
+<%//в случае если есть все данные
+      if(null!=ViewData["groups"] && null != ViewData["students"] && null != ViewData["topics"]) {%>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+           <td style="padding: 3px;">Группа: &nbsp;&nbsp;</td>
+           <td><select id="Select1" name="param1" onchange='SubmitPage("GroupFilter")' >
+                <%foreach (VmkLearningKit.Models.Repository.Group grItem in (IEnumerable<VmkLearningKit.Models.Repository.Group>)ViewData["groups"])
+                  {%>
+                  <option value='<%=grItem.Alias%>' <%if(grItem.Alias==ViewData["IdGroup"]){%> selected=selected<%} %> >
+                  <%=grItem.Title%>
+                  </option>
+                  <%} %>
+           </select>
+           </td>
+        </tr>
+    </table>
+    <br/>  
+
 <div style="width:20px; height:200px; background:f7f7f7; float:left;">
 <table>
 <tr  style="height:50px">
@@ -395,58 +459,60 @@ td.secondAssignement {
                 foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
                 {%>
             <input type="hidden" id="hiden_<%=topicItem.Id %>"  value=<%=((List<long>)ViewData["CountVariants"])[topicCount]%>  />
-			<th id="<%=topicItem.Id %>" name="<%=topicItem.Title %>" colspan="6" style="font-size:x-small; width:180px"> <%=topicItem.Title %> (
+			<th id="<%=topicItem.Id %>" name="<%=topicItem.Title %>" colspan="6" style="font-size:x-small; width:180px"> <%=topicItem.Title%> (
                     <%=((List<long>)ViewData["CountVariants"])[topicCount]%>)
 			</th>
                 <% topicCount++;
-                 } %>
+                } %>
         </tr>
         
         
         
         <tr id="head2" align="center"  style="background-color: Silver; color: Black; font-size:xx-small;">
-            <% for (int i=0;i<topicCount;i++)
-                 for(int j=0;j<3;j++)
-                {%>
+            <% for (int i = 0; i < topicCount; i++)
+                   for (int j = 0; j < 3; j++)
+                   {%>
 			<td id="var_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">Вар </td>    
 			<td id="ball_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">Балл</td>
                 <%}%>
         </tr>
  <tbody style=" text-align: center"> 
             <%int studentCount = 1;
-            foreach (VmkLearningKit.Models.Repository.User studentItem in (IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"])
-            {%>
+              foreach (VmkLearningKit.Models.Repository.User studentItem in (IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"])
+              {%>
         <tr id="student_<%=studentItem.Id%>"  style=" height:20px;">
 			<td  style=" background-color:#ffffff;"><%=Html.Encode(studentCount)%></td>
 			<td style=" background-color:#ffffff; text-align:justify"><%=Html.Encode(GetStudentName(studentItem.Id))%></td>
                 <%int topicCounter2 = 0; %>			
               <%  foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
-                {%> 
+                  {%> 
                    <% 
-                      IEnumerable<AssignedTestVariant> asTestVar = GetAssVar(topicItem.Id, studentItem.Id);
-                      int i = 0;
-                     foreach (AssignedTestVariant atvItem in asTestVar)
-                     {
-                         if (atvItem != null)
-                         {
-                             i++;%>
+    IEnumerable<AssignedTestVariant> asTestVar = GetAssVar(topicItem.Id, studentItem.Id);
+    int i = 0;
+    foreach (AssignedTestVariant atvItem in asTestVar)
+    {
+        if (atvItem != null)
+        {
+            i++;%>
                         <%if (atvItem.State == VLKConstants.TEST_VARIANT_STATE_DONE || atvItem.State == VLKConstants.TEST_VARIANT_STATE_CHECKED)
                           {%>
 			<td id="fake_<%=topicItem.Id%>_<%=i%>_var"><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
 			</td>  
 			<td id="fake_<%=topicItem.Id%>_<%=i%>_score"><%=Html.ActionLink(Html.Encode(atvItem.Score), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
 			</td>
-                      <%;}
-                             else  { %>
+                      <%;
+                          }
+                          else
+                          { %>
                                             
-			                <td style=" width:60px;" id="fake_<%=topicItem.Id%>_<%=i%>_var" colspan=2><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new  { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+			                <td style=" width:60px;" id="fake_<%=topicItem.Id%>_<%=i%>_var" colspan=2><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
 			                </td>  
                              <%} %>
                         <%}%>
                          
                    <%}
-                     for (int j=i+1; j <= 3; j++)
-                     {%>
+    for (int j = i + 1; j <= 3; j++)
+    {%>
 			<td id="<%=studentItem.Id%>_<%=topicItem.Id%>_<%=j%>" colspan="2"  
 			<%if( ((List<long>)ViewData["CountVariants"])[topicCounter2]!=0 ){%>
 			<%if(j==i+1) {%> class="changeble"<%;}else{%>class="secondAssignement"<% } %>
@@ -455,12 +521,12 @@ td.secondAssignement {
 			</td>
                
                    <%} %>
-                <% topicCounter2++ ;%>
+                <% topicCounter2++;%>
                <%} %>
         </tr>
           
-             <% studentCount++; 
-            } %>
+             <% studentCount++;
+              } %>
   </tbody>  
      </table>
  </div> 
@@ -486,8 +552,8 @@ td.secondAssignement {
    <select id="SelectTopic"  style=" width:300px">
    <option disabled selected="selected" value=-1>выберите тему...
    </option>
- <%int tCount=0;
-     foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])%>
+ <%int tCount = 0;
+   foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])%>
  <%{  %>
     <option value=<%=topicItem.Id%> <%if(((List<long>)ViewData["CountVariants"])[tCount++]==0){%>disabled <%}%>><%=topicItem.Title%>
     </option>
@@ -512,16 +578,20 @@ td.secondAssignement {
         </tr>
    </table>
    </div>
-     
-   <%} %> 
-    <div style="float:right">
-    
- <%=Html.ActionLink("К списку дисциплин","Professor","Cabinet",new{alias=ViewData["ProfessorId"]},new{@class=""}) %>
- <p></p>
- </div>        
  
-   
- <%Html.EndForm();%>
+   <%}; %>
 
+
+ 
+    <p> 
+    <div style="float:right">
+  
+ <%=Html.ActionLink("К списку дисциплин", "Professor", "Cabinet", new { alias = ViewData["ProfessorId"] }, new { @class = "" })%>
+ 
+ </div>        
+ </p>
+   <%;} %>
+ <%Html.EndForm();%>
+ 
 </asp:Content>
 
