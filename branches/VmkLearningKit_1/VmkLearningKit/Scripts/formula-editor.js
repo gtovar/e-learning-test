@@ -8,23 +8,45 @@ function DisplayMath(element, math) {
 
     element.innerHTML = html;
 
-   MathJax.Extension.tex2jax.PreProcess(element);
-   //MathJax.Hub.Process(element);
+    MathJax.Extension.tex2jax.PreProcess(element);
+    //MathJax.Hub.Process(element);
 
 
 }
 
+
+function htmlspecialchars(html) {
+    // Сначала необходимо заменить &
+    //html = html.replace(/&/g, "&amp;");
+    // А затем всё остальное в любой последовательности
+    html = html.replace(/</g, "&lt;");
+    html = html.replace(/>/g, "&gt;");
+    html = html.replace(/"/g, "&quot;");
+    // Возвращаем полученное значение
+    return html;
+}
+
+function htmlspecialcharsdecode(html) {
+    html = html.replace(/&amp;/g, "&");
+    // А затем всё остальное в любой последовательности
+    html = html.replace(/&lt;/g, "<");
+    html = html.replace(/&gt;/g, ">");
+    html = html.replace(/&quot;/g, '"');
+    // Возвращаем полученное значение
+    return html;
+}
+
 // отрисовывает формулу под ответом после закрытия редактора
-function DisplayAnsverFormula() {
-    var form_input_name = $("#formula_editor").prev().attr('name');
+function DisplayAnsverFormula(form_input_name) {
+    //var form_input_name = $("#formula_editor").prev().attr('name');
     var eqnmathjs = document.getElementById('img_formula_' + form_input_name);
     var formula;
-    if (window.ActiveXObject) { formula = document.getElementById('formula_' + form_input_name).innerHTML; }
-    else { formula = document.getElementById('formula_' + form_input_name).textContent; }
+    if (window.ActiveXObject) { formula = htmlspecialcharsdecode(document.getElementById('formula_' + form_input_name).innerHTML); }
+    else { formula = htmlspecialcharsdecode(document.getElementById('formula_' + form_input_name).textContent); }
 
     DisplayMath(eqnmathjs, formula);
-	//MathJax.Hub.Typeset(eqnmathjs);
-	MathJax.Hub.Process(eqnmathjs);
+    //MathJax.Hub.Typeset(eqnmathjs);
+    MathJax.Hub.Process(eqnmathjs);
 }
 
 
@@ -37,39 +59,39 @@ function GeneratePallete(obj) {
     // парсим текст вопроса
     var form_input_name = $("#formula_editor").prev().attr('name');
     var note = $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea iframe").contents().find('body').html();
-   
+
     note = /Палитра для ответа: \[.*\]/.exec(note);
     if (note) {
         note = note[0].replace(/Палитра для ответа: \[/, "");
         note = note.replace(/\]/, "");
         note = note.replace(/^\s/, "");
         note = note.replace(/\s$/, "");
-    
-    
+
+
         var paletteMas = note.split(" ; ");
         //alert(paletteMas);
         // добавляем кнопки
         for (var key in paletteMas) {
             // Создание доп. полей
             var text = paletteMas[key];
-            
+
             if (!($('.btn_pallete[name=' + text + ']')[0])) {
                 var el = $('<button class="btn_pallete" name="' + text + '" onclick="InsertTextFormul(); return false">  </button>');
                 $(el).appendTo($('#formula_palette')[0]);
                 $(el)[0].onclick = InsertTextFormul;
                 //var el = $('.btn_pallete[name=' + text + ']')[0];
                 DisplayMath($(el)[0], text);
-                
+
             }
         }
         //MathJax.Hub.Process($("#formula_editor")[0]);
-        }
-    
+    }
+
 
 
 
     // отрисовка формул на кнопках
-    $('.btn_pallete').each(function() {
+    $('.btn_pallete').each(function () {
         // вставка формулы в textarea
         this.onclick = InsertTextFormul;
         //$(this).bind("click", InsertTextFormul);
@@ -78,8 +100,8 @@ function GeneratePallete(obj) {
         DisplayMath(this, formula);
 
     });
-	//MathJax.Hub.Typeset($("#formula_editor")[0]);
-	MathJax.Hub.Process($("#formula_editor")[0]);
+    //MathJax.Hub.Typeset($("#formula_editor")[0]);
+    MathJax.Hub.Process($("#formula_editor")[0]);
     //// попробовать доработать!!!! ///////
     //	var i = $('.btn_pallete').length;
     //	var qqq=$('.btn_pallete');
@@ -106,7 +128,7 @@ function GenerateBigPalette(obj) {
 
 
     // отрисовка формул на кнопках
-    $('.btn_big_palette').each(function() {
+    $('.btn_big_palette').each(function () {
         // вставка формулы в textarea
         this.onclick = AddToPalette;
         var formula = this.name;
@@ -118,7 +140,7 @@ function GenerateBigPalette(obj) {
 
 
 // добавление функций в палитру студента
-function AddToPalette(){
+function AddToPalette() {
     var text = this.name;
     // Создание доп. полей
     if (!($('.btn_pallete[name=' + text + ']')[0])) {
@@ -148,7 +170,7 @@ function AddNewToPalette(obj) {
 
 // Очистка палитры студента
 function ClearStudentPalette() {
-    $('#formula_palette')[0].innerHTML="";
+    $('#formula_palette')[0].innerHTML = "";
 }
 
 function DisplayFormulaEditor(ev) {
@@ -161,48 +183,48 @@ function DisplayFormulaEditor(ev) {
     }
     else {
         // непосредственно генерация html-кода редактора
-         var el = ('<div id="formula_editor" style="" >');
-             el += ('<div id="formula_teacher_palette" style="" >');
-                 el += ('Полная палитра:<br>');
-                 el += ('<button class="btn_big_palette" name="\\int_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
-                 el += ('<button class="btn_big_palette" name="\\sum_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
-                 el += ('<button class="btn_big_palette" name="\\sqrt{*}" onclick="AddToPalette(); return false"></button>');
-                 el += ('<button class="btn_big_palette" name="\\sin_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
-                 el += ('<button class="btn_big_palette" name="\\cos_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
-                 el += ('<button class="btn_big_palette" name="{*}^{*}" onclick="AddToPalette(); return false"></button>');
-                 el += ('<button class="btn_big_palette" name="\\in{*}" onclick="AddToPalette(); return false"> </button>');
-                 el += ('<button class="btn_big_palette" name="\\exists{*}" onclick="AddToPalette(); return false"> </button>');
-                 el += ('<button class="btn_big_palette" name="\\forall{*}" onclick="AddToPalette(); return false"> </button>');
-                 el += ('<button class="btn_big_palette" name="\\geq{*}" onclick="AddToPalette(); return false"> </button>');
-                 el += ('<button class="btn_big_palette" name="\\leq{*}" onclick="AddToPalette(); return false"> </button>');
-                 el += ('<button class="btn_big_palette" name="\\varepsilon" onclick="AddToPalette(); return false"> </button>');
-                 el += ('<br />');
-                 el += ('Произвольный символ/формула в TeX:<br />');
-                 el += ('<input id="newPaletteFormula"/>');
-                el += ('<button class="" onclick="AddNewToPalette($(\'#newPaletteFormula\')[0]); return false"> Ввести </button>');
-                el += ('<br />');
-                el += ('<br />');
-                el += ('<button class="" onclick="ClearStudentPalette(); return false"> Очистить палитру студента </button>');
-            el += ('</div>');
-            el += ('Палитра:<br>');
-            el += ('<div id="formula_palette">');
-                
-            el += ('</div>');
-    		
-            el += ('Формула в LaTeX:<br>');
-            el += ('<div id="div_formula_edit" ><textarea name="formula_edit" id="formula_edit" rows="3" cols="60" onselect="StoreCaret(this)" onclick="StoreCaret(this)" onkeyup="StoreCaret(this)" ></textarea></div>');
-            el += ('<br>');
-            el += ('Предварительный просмотр:<br>');
-            el += ('<div id="formula_display"></div>');
-    		
-            el += ('<button id="editor_input" onclick=" InputAndHideFormulaEditor(this); return false ">Ввести</button>');
-            el += ('<button id="editor_exit" onclick=" HideFormulaEditor(this); return false ">Закрыть</button>');
-	    el += ('</div>');
-	    $(el).appendTo($('.content')[0]);
+        var el = ('<div id="formula_editor" style="" >');
+        el += ('<div id="formula_teacher_palette" style="" >');
+        el += ('Полная палитра:<br>');
+        el += ('<button class="btn_big_palette" name="\\int_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
+        el += ('<button class="btn_big_palette" name="\\sum_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
+        el += ('<button class="btn_big_palette" name="\\sqrt{*}" onclick="AddToPalette(); return false"></button>');
+        el += ('<button class="btn_big_palette" name="\\sin_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
+        el += ('<button class="btn_big_palette" name="\\cos_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
+        el += ('<button class="btn_big_palette" name="{*}^{*}" onclick="AddToPalette(); return false"></button>');
+        el += ('<button class="btn_big_palette" name="\\in{*}" onclick="AddToPalette(); return false"> </button>');
+        el += ('<button class="btn_big_palette" name="\\exists{*}" onclick="AddToPalette(); return false"> </button>');
+        el += ('<button class="btn_big_palette" name="\\forall{*}" onclick="AddToPalette(); return false"> </button>');
+        el += ('<button class="btn_big_palette" name="\\geq{*}" onclick="AddToPalette(); return false"> </button>');
+        el += ('<button class="btn_big_palette" name="\\leq{*}" onclick="AddToPalette(); return false"> </button>');
+        el += ('<button class="btn_big_palette" name="\\varepsilon" onclick="AddToPalette(); return false"> </button>');
+        el += ('<br />');
+        el += ('Произвольный символ/формула в TeX:<br />');
+        el += ('<input id="newPaletteFormula"/>');
+        el += ('<button class="" onclick="AddNewToPalette($(\'#newPaletteFormula\')[0]); return false"> Ввести </button>');
+        el += ('<br />');
+        el += ('<br />');
+        el += ('<button class="" onclick="ClearStudentPalette(); return false"> Очистить палитру студента </button>');
+        el += ('</div>');
+        el += ('Палитра:<br>');
+        el += ('<div id="formula_palette">');
 
-	    document.getElementById('formula_edit').onblur = RunEdit;
-	    document.getElementById('editor_input').onclick = InputAndHideFormulaEditor;
-	    document.getElementById('editor_exit').onclick = HideFormulaEditor;
+        el += ('</div>');
+
+        el += ('Формула в LaTeX:<br>');
+        el += ('<div id="div_formula_edit" ><textarea name="formula_edit" id="formula_edit" rows="3" cols="60" onselect="StoreCaret(this)" onclick="StoreCaret(this)" onkeyup="StoreCaret(this)" ></textarea></div>');
+        el += ('<br>');
+        el += ('Предварительный просмотр:<br>');
+        el += ('<div id="formula_display"></div>');
+
+        el += ('<button id="editor_input" onclick=" InputAndHideFormulaEditor(this); return false ">Ввести</button>');
+        el += ('<button id="editor_exit" onclick=" HideFormulaEditor(this); return false ">Закрыть</button>');
+        el += ('</div>');
+        $(el).appendTo($('.content')[0]);
+
+        document.getElementById('formula_edit').onblur = RunEdit;
+        document.getElementById('editor_input').onclick = InputAndHideFormulaEditor;
+        document.getElementById('editor_exit').onclick = HideFormulaEditor;
     }
 
     // Создание доп. полей			
@@ -211,10 +233,10 @@ function DisplayFormulaEditor(ev) {
         $('<p class="math"  id="img_formula_' + $(obj).attr('name') + '"></p>').insertAfter(obj);
     }
 
-    // Собственно редктор
+    // Собственно редактор
     ClearFormEdit();
     $("#formula_editor").insertAfter(obj);
-    $("#formula_editor").find("textarea[name=formula_edit]").text($(obj).attr('value'));
+    $("#formula_editor").find("textarea[name=formula_edit]").text(htmlspecialcharsdecode($(obj).attr('value')));
     $(obj).hide();
     $("#formula_editor").show("slow");
 
@@ -243,9 +265,9 @@ function ClearFormEdit() {
 function InputAndHideFormulaEditor(obj) {
     // заполнение поля ответа
     var form_input_name = $("#formula_editor").prev().attr('name');
-    var tmp = $('textarea[name=formula_edit]').val();
-    $('[id=formula_' + form_input_name + ']').text($('textarea[name=formula_edit]').val());
-    $('[name=' + form_input_name + ']').val($('textarea[name=formula_edit]').val());
+    var tmp = htmlspecialchars($('textarea[name=formula_edit]').val().replace(/\s+/g, ''));
+    $('[id=formula_' + form_input_name + ']').text(tmp);
+    $('[name=' + form_input_name + ']').val(tmp);
 
     // Удаление старой палитры
     var note = $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea iframe").contents().find('body').html();
@@ -257,12 +279,13 @@ function InputAndHideFormulaEditor(obj) {
         $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea iframe").contents().find('body').html(note);
         $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea textarea").html("");
         $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea textarea").val(note);
-    } 
-    
+    }
+
     //Добавление палитры в текст вопроса
     var paletteCode;
     var paletteMas;
-    paletteMas = $('#formula_palette').find('button').map(function() { return $(this).attr("name") }).get();
+    var br = "";
+    paletteMas = $('#formula_palette').find('button').map(function () { return $(this).attr("name") }).get();
     if (paletteMas.length != 0) {
         paletteCode = 'Палитра для ответа: [';
         for (var key in paletteMas) {
@@ -270,17 +293,20 @@ function InputAndHideFormulaEditor(obj) {
         }
         paletteCode = paletteCode.substring(0, paletteCode.length - 3);
         paletteCode = paletteCode + ']';
-        $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea iframe").contents().find('body').append("<br\>" + paletteCode);
+        $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea iframe").contents().find('body').append(br + paletteCode);
         $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea textarea").val(note + "<br\>" + paletteCode);
-    }   
-    
+        br = "<br\>";
+    }
+
     // отрисовка формулы под ответом
-    DisplayAnsverFormula();
+    DisplayAnsverFormula(form_input_name);
 
     ClearFormEdit();
     // сворачивание редактора
+    $("#formula_editor").prev().show("slow");
     $("#formula_editor").prev().animate({ height: "20px" }, 400);
     $("#formula_editor").hide("slow");
+    //$('#formula_editor').insertAfter($('.content')[0]);
     //window.setTimeout('$("#formula_editor").insertAfter($(".content")[0])',400);
     return false;
 
@@ -291,7 +317,8 @@ function HideFormulaEditor() {
     $("#formula_editor").prev().animate({ height: "20px" }, 400);
     $("#formula_editor").hide("slow");
     ClearStudentPalette();
-   // window.setTimeout('$("#formula_editor").insertAfter($(".content")[0])', 400);
+    //$('#formula_editor').insertAfter($('.content')[0]);
+    // window.setTimeout('$("#formula_editor").insertAfter($(".content")[0])', 400);
     return false;
 }
 function QuickHideFormulaEditor() {
@@ -299,6 +326,7 @@ function QuickHideFormulaEditor() {
     $("#formula_editor").css({ display: "none" });
     $("#formula_editor").prev().css({ height: "20px" });
     ClearStudentPalette();
+    //$('#formula_editor').insertAfter($('.content')[0]);
     //$("#formula_editor").insertAfter($(".content")[0]);
 }
 
@@ -323,10 +351,10 @@ function InsertTextFormul() {
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     $(".formula_input").bind("click", DisplayFormulaEditor);
     if ($("#formula_editor")[0]) {
-        
+
         document.getElementById('formula_edit').onblur = RunEdit;
         document.getElementById('editor_input').onclick = InputAndHideFormulaEditor;
         document.getElementById('editor_exit').onclick = HideFormulaEditor;
@@ -337,9 +365,9 @@ $(document).ready(function() {
 function RunEdit() {
     var eqnmathjs = document.getElementById('formula_display');
     var formula;
-    formula = document.getElementById('formula_edit').value;
+    formula = htmlspecialcharsdecode(document.getElementById('formula_edit').value);
 
     DisplayMath(eqnmathjs, formula);
-	//MathJax.Hub.Typeset(eqnmathjs);
-	MathJax.Hub.Process(eqnmathjs);
+    //MathJax.Hub.Typeset(eqnmathjs);
+    MathJax.Hub.Process(eqnmathjs);
 }
