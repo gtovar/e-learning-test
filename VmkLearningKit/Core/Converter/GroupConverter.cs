@@ -44,11 +44,11 @@ namespace Converter
                     writer.WriteStartElement("group");
 
                     string groupNumber = s1.Substring(0, s1.IndexOf(" "));
-                    writer.WriteAttributeString("groupNumber", groupNumber);
+                    writer.WriteAttributeString("group", groupNumber);
 
                     string speciality = s1.Replace(groupNumber, "");
                     speciality = speciality.Trim();
-                    writer.WriteAttributeString("specializationAbbreviation", speciality);              
+                    writer.WriteAttributeString("specialityAbbreviation", speciality);              
 
                     writer.WriteEndElement();
 
