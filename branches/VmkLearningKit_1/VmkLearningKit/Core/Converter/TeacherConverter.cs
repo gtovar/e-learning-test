@@ -28,6 +28,48 @@ namespace Converter
 
             Word.Tables tables = doc.Tables;
 
+            if (tables.Count == 0)
+            {
+                this.Message.Add("Документ не содержит ни одной таблицы");
+                return;
+            }
+
+            List<int> black = new List<int>();
+            for (int i = 1; i < tables.Count; i++)
+            {
+                Word.Table table = tables[i];
+
+                if (table.Columns.Count > 4)
+                {
+                    Word.Range c1 = table.Cell(1, 1).Range;
+                    string s1 = c1.Text.Replace("\r\a", "").Trim().ToLower().Replace(" ", "");
+
+                    Word.Range c2 = table.Cell(1, 2).Range;
+                    string s2 = c2.Text.Replace("\r\a", "").Trim().ToLower().Replace(" ", "");
+
+                    Word.Range c3 = table.Cell(1, 3).Range;
+                    string s3 = c3.Text.Replace("\r\a", "").Trim().ToLower().Replace(" ", "");
+
+                    Word.Range c4 = table.Cell(1, 4).Range;
+                    string s4 = c4.Text.Replace("\r\a", "").Trim().ToLower().Replace(" ", "");
+
+                    Word.Range c5 = table.Cell(1, 5).Range;
+                    string s5 = c5.Text.Replace("\r\a", "").Trim().ToLower().Replace(" ", "");
+
+                    if (s1 != "№" || s2 != "фио" || s3 != "уч.степ." || s4 != "звание" || s5 != "должн.")
+                    {
+                        this.Message.Add("Таблица №" + i + " не соответствует шаблону");
+                        black.Add(i);
+                    }
+                }
+                else
+                {
+                    this.Message.Add("Таблица №" + i + " не соответствует шаблону");
+                    black.Add(i);
+                }
+
+            }
+
             int chairCount = 0;
             List<string> chairStr = new List<string>();
 
@@ -35,6 +77,8 @@ namespace Converter
 
             writer.WriteStartDocument();
             writer.WriteStartElement("teachers");
+            int seachIndex = 0;
+            bool flag;
 
             for (int i = 0; i < text.Count - 4; i++)
             {
@@ -61,7 +105,8 @@ namespace Converter
                 if (s1 == "№" && s2 == "фио" && s3 == "уч.степ." && s4 == "звание" && s5 == "должн.")
                 {
                     chairCount++;
-                    for (int j = i - 1; j >= 0 ; j--)
+                    flag = false;
+                    for (int j = i - 1; j >= seachIndex; j--)
                     {
                         string str = text[j].ToLower();
                         if (str.IndexOf("кафедра") != -1)
@@ -70,80 +115,96 @@ namespace Converter
                             chair = chair.Trim();
                             chairStr.Add(chair);
                             text.RemoveAt(j);
+                            flag = true;
                             break;
                         }
                     }
+                    seachIndex = i + 5;
+                    if (!flag) chairStr.Add("Отсутствует");
                 }
             }
 
-            if (chairCount != tables.Count)
-            {
-                //ошибка в документе
-            }
 
-            for (int i = 1; i < tables.Count; i++)
+            for (int i = 1; i <= tables.Count; i++)
             {
-                Word.Table table = tables[i];
-                
-                for (int j = 1; j < table.Rows.Count; j++)
+                if (black.IndexOf(i) == -1)
                 {
-                    writer.WriteStartElement("teacher");
-                    writer.WriteAttributeString("chairAbbreviation", chairStr[i - 1]);
+                    Word.Table table = tables[i];
 
-                    for (int k = 1; k < table.Columns.Count; k++)
+                    for (int j = 1; j < table.Rows.Count; j++)
                     {
-                        Word.Range cell = table.Cell(j + 1, k + 1).Range;
-                        switch (k)
+                        writer.WriteStartElement("teacher");
+                        if (chairStr[i - 1] != "Отсутствует")
                         {
-                            case 1:
-                                string str1 = cell.Text.Replace("\r\a","");
-                                if (str1 != "")
-                                {
-                                    string lastName = str1.Substring(0, str1.IndexOf(" "));
-                                    writer.WriteAttributeString("lastName", lastName);
-                                    str1 = str1.Replace(lastName, "");
-                                    str1 = str1.Trim();
-                                    string firstName = str1.Substring(0, str1.IndexOf(" "));
-                                    writer.WriteAttributeString("firstName", firstName);
-                                    str1 = str1.Replace(firstName, "");
-                                    str1 = str1.Trim();
-                                    writer.WriteAttributeString("patronymic", str1);
-                                }
-                                break;
-                            case 2:
-                                string str2 = cell.Text.Replace("\r\a", "");
-                                str2 = str2.Trim();
-                                if (str2 != "")
-                                {
-                                    writer.WriteAttributeString("degree", str2);
-                                }
-                                break;
-                            case 3:
-                                string str3 = cell.Text.Replace("\r\a", "");
-                                str3 = str3.Trim();
-                                if (str3 != "")
-                                {
-                                    writer.WriteAttributeString("rank", str3);
-                                }
-                                break;
-                            case 4:
-                                string str4 = cell.Text.Replace("\r\a", "");
-                                str4 = str4.Trim();
-                                if (str4 != "")
-                                {
-                                    writer.WriteAttributeString("position", str4);
-                                }
-                                break;
+                            writer.WriteAttributeString("chairAbbreviation", chairStr[i - 1]);
                         }
-                    }
 
-                    writer.WriteEndElement();
+                        for (int k = 1; k < table.Columns.Count; k++)
+                        {
+                            Word.Range cell = table.Cell(j + 1, k + 1).Range;
+                            switch (k)
+                            {
+                                case 1:
+                                    string str1 = cell.Text.Replace("\r\a", "");
+                                    if (str1 != "")
+                                    {
+                                        string lastName = str1.Substring(0, str1.IndexOf(" "));
+                                        if (lastName != "")
+                                        {
+                                            writer.WriteAttributeString("lastName", lastName);
+                                        }
+                                        str1 = str1.Replace(lastName, "");
+                                        str1 = str1.Trim();
+                                        string firstName = str1.Substring(0, str1.IndexOf(" "));
+                                        if (firstName != "")
+                                        {
+                                            writer.WriteAttributeString("firstName", firstName);
+                                        }
+                                        str1 = str1.Replace(firstName, "");
+                                        str1 = str1.Trim();
+                                        if (str1 != "")
+                                        {
+                                            writer.WriteAttributeString("patronymic", str1);
+                                        }
+                                    }
+                                    break;
+                                case 2:
+                                    string str2 = cell.Text.Replace("\r\a", "");
+                                    str2 = str2.Trim();
+                                    if (str2 != "")
+                                    {
+                                        writer.WriteAttributeString("degree", str2);
+                                    }
+                                    break;
+                                case 3:
+                                    string str3 = cell.Text.Replace("\r\a", "");
+                                    str3 = str3.Trim();
+                                    if (str3 != "")
+                                    {
+                                        writer.WriteAttributeString("rank", str3);
+                                    }
+                                    break;
+                                case 4:
+                                    string str4 = cell.Text.Replace("\r\a", "");
+                                    str4 = str4.Trim();
+                                    if (str4 != "")
+                                    {
+                                        writer.WriteAttributeString("position", str4);
+                                    }
+                                    break;
+                            }
+                        }
+
+                        writer.WriteEndElement();
+                    }
                 }
             }
 
             writer.WriteEndElement();
             writer.WriteEndDocument();
             writer.Close();
+
+            this.Message.Add("Конвертирование выполнено");
 
             CloseDocFile(program);
         }
