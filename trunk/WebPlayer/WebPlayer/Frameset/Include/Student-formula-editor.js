@@ -14,16 +14,38 @@ function DisplayMath(element, math) {
    //MathJax.Hub.Process(element);
 
 
+
+}
+
+function htmlspecialchars(html) {
+    // Сначала необходимо заменить &
+    //html = html.replace(/&/g, "&amp;");
+    // А затем всё остальное в любой последовательности
+    html = html.replace(/</g, "&lt;");
+    html = html.replace(/>/g, "&gt;");
+    html = html.replace(/"/g, "&quot;");
+    // Возвращаем полученное значение
+    return html;
+}
+
+function htmlspecialcharsdecode(html) {
+    html = html.replace(/&amp;/g, "&");
+    // А затем всё остальное в любой последовательности
+    html = html.replace(/&lt;/g, "<");
+    html = html.replace(/&gt;/g, ">");
+    html = html.replace(/&quot;/g, '"');
+    // Возвращаем полученное значение
+    return html;
 }
 
 // отрисовывает формулу под ответом после закрытия редактора
-function DisplayAnsverFormula() {
-    var form_input_name = $("#formula_editor").prev().attr('name');
+function DisplayAnsverFormula(form_input_name) {
+    //var form_input_name = $("#formula_editor").prev().attr('name');
     var eqnmathjs = document.getElementById('img_formula_' + form_input_name);
     var formula;
-    if (window.ActiveXObject) { formula = document.getElementById('formula_' + form_input_name).innerHTML; }
-    else { formula = document.getElementById('formula_' + form_input_name).textContent; }
-
+    if (window.ActiveXObject) { formula = htmlspecialcharsdecode(document.getElementById('formula_' + form_input_name).innerHTML); }
+    else { formula = htmlspecialcharsdecode(document.getElementById('formula_' + form_input_name).textContent); }
+   
     DisplayMath(eqnmathjs, formula);
 	//MathJax.Hub.Typeset(eqnmathjs);
 	MathJax.Hub.Process(eqnmathjs);
@@ -38,9 +60,11 @@ function GeneratePallete(obj) {
     // создание кнопок
     // парсим текст вопроса
     var form_input_name = $("#formula_editor").prev().attr('name');
-    var note = $('[name=' + form_input_name + ']').parent().parent().prev().find(".QText").html();
-   
-    note = /Палитра для ответа: \[.*\]/.exec(note);
+    var text = $('[name=' + form_input_name + ']').parent().parent().prev().find(".QText").html();
+    note = /Палитра для ответа: \[.*\]/.exec(text);
+   // if ((/display: none/.test(text))) {
+        $('[name=' + form_input_name + ']').parent().parent().prev().find(".QText").html(text.split(note).join('<span style="display:none;">' + note + '</span>')); 
+  //  }
     if (note) {
         note = note[0].replace(/Палитра для ответа: \[/, "");
         note = note.replace(/\]/, "");
@@ -130,14 +154,14 @@ function DisplayFormulaEditor(ev) {
     // Собственно редактор
     ClearFormEdit();
     $("#formula_editor").insertAfter(obj);
-    $("#formula_editor").find("textarea[name=formula_edit]").text($(obj).attr('value'));
+    $("#formula_editor").find("textarea[name=formula_edit]").text(htmlspecialcharsdecode($(obj).attr('value')));
     $(obj).hide();
     $("#formula_editor").show("slow");
     
 
     // установка фокуса на поле ввода и смещение каретки в конец текста в IE
     var el = $("#formula_edit")[0];
-    el.focus();
+    //el.focus();
     if (document.selection && document.selection.createRange)
         el.caretPos = document.selection.createRange().duplicate().collapse(false);
 
@@ -160,18 +184,19 @@ function ClearFormEdit() {
 function InputAndHideFormulaEditor(obj) {
     // заполнение поля ответа
     var form_input_name = $("#formula_editor").prev().attr('name');
-    var tmp = $('textarea[name=formula_edit]').val().replace(/\s+/g, '');
+    var tmp = htmlspecialchars($('textarea[name=formula_edit]').val().replace(/\s+/g, ''));
     $('[id=formula_' + form_input_name + ']').text(tmp);
     $('[name=' + form_input_name + ']').val(tmp);
                
     // отрисовка формулы под ответом
-    DisplayAnsverFormula();
+    DisplayAnsverFormula(form_input_name);
    // $('#formula_palette')[0].innerHTML = "";
    // ClearFormEdit();
     // сворачивание редактора
     $("#formula_editor").prev().show("slow");
     $("#formula_editor").prev().animate({ height: "20px" }, 400);
     $("#formula_editor").hide("slow");
+    $('#formula_editor').insertAfter($('form[name="frmPage"]')[0]);
     //window.setTimeout('$("#formula_editor").insertAfter($(".content")[0])',400);
     return false;
 
@@ -182,6 +207,7 @@ function HideFormulaEditor() {
    // $("#formula_editor").prev().animate({ height: "20px" }, 400);
     $("#formula_editor").prev().show("slow");
     $("#formula_editor").hide("slow");
+    $('#formula_editor').insertAfter($('form[name="frmPage"]')[0]);
     return false;
 }
 function QuickHideFormulaEditor() {
@@ -189,6 +215,7 @@ function QuickHideFormulaEditor() {
     $("#formula_editor").css({ display: "none" });
     $("#formula_editor").prev().show("fast");
     $("#formula_editor").prev().css({ height: "20px" });
+    $('#formula_editor').insertAfter($('form[name="frmPage"]')[0]);
 }
 
 // Вставка текста из палитры 
@@ -201,12 +228,8 @@ function StoreCaret(element) {
 function InsertTextFormul() {
     var text = this.name;
     var element = $("#formula_edit")[0];
-    if (element && element.caretPos) {
+    if (element && element.caretPos) 
         element.caretPos.text = text;
-       // var element = $("#formula_edit")[0];
-       // element.focus();
-       // element.caretPos = document.selection.createRange().duplicate().collapse(false);
-    }
     else if (element && element.selectionStart + 1 && element.selectionEnd + 1)
         element.value = element.value.substring(0, element.selectionStart) + text + element.value.substring(element.selectionEnd, element.value.length);
     else if (element)
@@ -220,7 +243,7 @@ function InsertTextFormul() {
 function RunEdit() { 
     var eqnmathjs = document.getElementById('formula_display');
     var formula;
-    formula = document.getElementById('formula_edit').value;
+    formula = htmlspecialcharsdecode(document.getElementById('formula_edit').value);
 
     DisplayMath(eqnmathjs, formula);
 	//MathJax.Hub.Typeset(eqnmathjs);
@@ -234,6 +257,9 @@ $(document).ready(function () {
     for (var key in arr) {
         $(arr[key]).find("input").addClass("formula_input");
     }
+    //////////////////
+   // $('form[name="frmPage"]').html(text.split(note).join('<span style="display:none;">' + note + '</span>')); 
+
     //////////////////
 
     $(".formula_input").bind("click", DisplayFormulaEditor);
