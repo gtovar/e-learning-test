@@ -184,7 +184,7 @@ namespace Converter
                                             s4 = s4.Trim();
                                             if (s4 != "")
                                             {
-                                                writer.WriteAttributeString("chair", s4);
+                                                writer.WriteAttributeString("chairAbbreviation", s4);
                                             }
                                             break;
                                     }

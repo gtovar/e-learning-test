@@ -88,7 +88,7 @@ namespace Converter
                 for (int j = 1; j < table.Rows.Count; j++)
                 {
                     writer.WriteStartElement("teacher");
-                    writer.WriteAttributeString("chair", chairStr[i - 1]);
+                    writer.WriteAttributeString("chairAbbreviation", chairStr[i - 1]);
 
                     for (int k = 1; k < table.Columns.Count; k++)
                     {
