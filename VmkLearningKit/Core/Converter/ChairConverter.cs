@@ -19,11 +19,33 @@ namespace Converter
             Word.Tables tables = doc.Tables;
             if (tables.Count == 0)
             {
-                // в документе нет таблиц
+                this.Message.Add("Документ не содержит ни одной таблицы");
                 return;
             }
 
             Word.Table table = tables[1];
+
+            if (table.Columns.Count > 1)
+            {
+
+                Word.Range c1 = table.Cell(1, 1).Range;
+                string s1 = c1.Text.Replace("\r\a", "").Trim().ToLower().Replace(" ", "");
+
+                Word.Range c2 = table.Cell(1, 2).Range;
+                string s2 = c2.Text.Replace("\r\a", "").Trim().ToLower().Replace(" ", "");
+
+                if (s1 != "названиекафедры" || s2 != "сокращенноеназвание")
+                {
+                    this.Message.Add("Таблица не соответствует шаблону");
+                    return;
+                }
+            }
+
+            else if (table.Columns.Count < 2)
+            {
+                this.Message.Add("Таблица не соответствует шаблону");
+                return;
+            }
 
             XmlTextWriter writer = new XmlTextWriter(xmlPath, System.Text.Encoding.UTF8);
 
@@ -39,7 +61,7 @@ namespace Converter
                     switch (j)
                     {
                         case 0:
-                            string str1 = cell.Text.Replace("\r\a","");
+                            string str1 = cell.Text.Replace("\r\a", "");
                             str1 = str1.Trim();
                             if (str1 != "")
                             {
@@ -47,7 +69,7 @@ namespace Converter
                             }
                             break;
                         case 1:
-                            string str2 = cell.Text.Replace("\r\a","");
+                            string str2 = cell.Text.Replace("\r\a", "");
                             str2 = str2.Trim();
                             if (str2 != "")
                             {
@@ -62,6 +84,8 @@ namespace Converter
             writer.WriteEndElement();
             writer.WriteEndDocument();
             writer.Close();
+
+            this.Message.Add("Конвертирование выполнено");
 
             CloseDocFile(program);
         }

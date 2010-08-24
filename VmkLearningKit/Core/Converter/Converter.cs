@@ -10,6 +10,12 @@ namespace Converter
 {
     abstract class Converter
     {
+        public List<string> Message{ get; set;}
+
+        public Converter()
+        {
+            Message = new List<string>();
+        }
         protected Word.Application OpenDocFile(string path)
         {
             Object filename = path;
