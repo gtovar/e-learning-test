@@ -160,9 +160,9 @@ function ClearFormEdit() {
 function InputAndHideFormulaEditor(obj) {
     // заполнение поля ответа
     var form_input_name = $("#formula_editor").prev().attr('name');
-    var tmp = $('textarea[name=formula_edit]').val();
-    $('[id=formula_' + form_input_name + ']').text($('textarea[name=formula_edit]').val());
-    $('[name=' + form_input_name + ']').val($('textarea[name=formula_edit]').val());
+    var tmp = $('textarea[name=formula_edit]').val().replace(/\s+/g, '');
+    $('[id=formula_' + form_input_name + ']').text(tmp);
+    $('[name=' + form_input_name + ']').val(tmp);
                
     // отрисовка формулы под ответом
     DisplayAnsverFormula();
