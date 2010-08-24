@@ -81,6 +81,7 @@ td.secondAssignement {
         //alert(countRow);
         $("#mainStatementTable tr").hide();
         $("#mainStatementTable tr:lt(12)").show();
+        $('#mainStatementTable tr:last').show();
         var currentRow = 21;
         var flags = new Array();
         var flagExistInputChange = 0
@@ -223,7 +224,8 @@ td.secondAssignement {
                 $("#mainStatementTable tr:gt(" + tmp + ")").show();
                 $("#mainStatementTable tr:lt(" + tmp + ")").hide();
                 $('#mainStatementTable tr:gt(' + currentRow + ')').hide();
-                $('#mainStatementTable tr:lt(2)').show();
+                $('#mainStatementTable tr:lt(3)').show();
+                $('#mainStatementTable tr:last').show();
                 currentRow += 10;
             };
 
@@ -241,7 +243,8 @@ td.secondAssignement {
                 $("#mainStatementTable tr:lt(" + tmp2 + ")").hide();
                 $("#mainStatementTable tr:gt(" + tmp2 + ")").show();
                 $("#mainStatementTable tr:gt(" + tmp + ")").hide();
-                $('#mainStatementTable tr:lt(2)').show();
+                $('#mainStatementTable tr:lt(3)').show();
+                $('#mainStatementTable tr:last').show();
 
 
             };
@@ -435,32 +438,18 @@ td.secondAssignement {
     </table>
     <br/>  
 
-<div style="width:20px; height:200px; background:f7f7f7; float:left;">
-<table>
-<tr  style="height:50px">
-</tr>
-    <tr>
-        <td ><img id="Button3" alt="" src="/Content/Images/up.png" height=20px width=20px  />
-        </td>
-    </tr>
-
-    <tr>
-        <td><img id="Button4" alt="" src="/Content/Images/down.png" height=20px width=20px  /></td>
-    </tr>
-</table>
-   </div> 
-<div>
-<table id="mainStatementTable" border="1" >
+<table id="mainStatementTable"  border="1px" style="border-color: White; padding: 0px 1px 0px 0px; border-width: 1px 0px 0px 1px;">
  <!--style=" width:90%;" >-->
 <thead >
-        <tr id='head1' align="center" style="background-color: Silver; color: Black; font-weight: bold;" >
-			<th rowspan="2" style="width:30px">π</th>
-			<th rowspan="2" style=" width:150px;">‘»Œ</th>
+        <tr id='head1' align="center" style=" color: Black; font-weight: bold; " >
+			<th rowspan="2" style="width:30px; background-color:White; border-width:0px;"> </th>
+            <th rowspan="2" style="width:30px; background-color: Silver;border-width:1px;">π</th>
+			<th rowspan="2" style=" width:150px; background-color: Silver;border-width:1px;">‘»Œ</th>
               <%int topicCount = 0;
                 foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
                 {%>
             <input type="hidden" id="hiden_<%=topicItem.Id %>"  value=<%=((List<long>)ViewData["CountVariants"])[topicCount]%>  />
-			<th id="<%=topicItem.Id %>" name="<%=topicItem.Title %>" colspan="6" style="font-size:x-small; width:180px"> <%=topicItem.Title%> (
+			<th id="<%=topicItem.Id %>" name="<%=topicItem.Title %>" colspan="6" style="font-size:x-small; width:180px;background-color: Silver;"> <%=topicItem.Title%> (
                     <%=((List<long>)ViewData["CountVariants"])[topicCount]%>)
 			</th>
                 <% topicCount++;
@@ -477,12 +466,26 @@ td.secondAssignement {
 			<td id="ball_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">¡‡ÎÎ</td>
                 <%}%>
         </tr>
+        
+
  <tbody style=" text-align: center"> 
+           <tr >
+            <td rowspan="<%=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).Count()+1%>" style=" border-width:0px; vertical-align:top;">
+            <img id="Button3" alt="" src="/Content/Images/up.png" height=20px width=20px  />
+            <br />
+            <img id="Button4" alt="" src="/Content/Images/down.png" height=20px width=20px  />
+            </td>
+        </tr>
             <%int studentCount = 1;
               foreach (VmkLearningKit.Models.Repository.User studentItem in (IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"])
               {%>
         <tr id="student_<%=studentItem.Id%>"  style=" height:20px;">
-			<td  style=" background-color:#ffffff;"><%=Html.Encode(studentCount)%></td>
+			<!---
+            <%//if(studentCount==1){ %> <td rowspan="<%//=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).Count()%>" >
+            1111</td><%//} %>
+            -->
+            
+            <td  style=" background-color:#ffffff;"><%=Html.Encode(studentCount)%></td>
 			<td style=" background-color:#ffffff; text-align:justify"><%=Html.Encode(GetStudentName(studentItem.Id))%></td>
                 <%int topicCounter2 = 0; %>			
               <%  foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
@@ -528,25 +531,16 @@ td.secondAssignement {
           
              <% studentCount++;
               } %>
+
+         <tr> 
+            <td colspan="<%= ((IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"]).Count()*3+2 %>" style=" border-width:0px;padding-top: 5px; text-align:right;">
+            <img id="Button2" alt="" src="/Content/Images/left.png" height=20px width=20px  />&nbsp;<img id="Button1" alt="" src="/Content/Images/right.png" height=20px width=20px  />
+            </td>
+         </tr>
   </tbody>  
      </table>
  </div> 
- <div>
- <table >
-    <tr>
-    <td  style="width:1115px"></td>
-        <td   style=" text-align:right">
-        <img id="Button2" alt="" src="/Content/Images/left.png" height=20px width=20px  />
-        </td>
-        <td style=" width:10px">    </td>
-        <td >
-        <img id="Button1" alt="" src="/Content/Images/right.png" height=20px width=20px  />
-        </td>
-        <td>
-        </td>
-    </tr>
- </table> 
- </div> 
+ 
        
      
    <div>
