@@ -592,6 +592,33 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to экзамен.
+        /// </summary>
+        internal static string REPORTING_TYPE_EXAM {
+            get {
+                return ResourceManager.GetString("REPORTING_TYPE_EXAM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to курсовая работа.
+        /// </summary>
+        internal static string REPORTING_TYPE_SCIENTIFIC_WORK {
+            get {
+                return ResourceManager.GetString("REPORTING_TYPE_SCIENTIFIC_WORK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to зачет.
+        /// </summary>
+        internal static string REPORTING_TYPE_ZACHOT {
+            get {
+                return ResourceManager.GetString("REPORTING_TYPE_ZACHOT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>
         internal static string SESSION_USER {
@@ -781,6 +808,15 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to count.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_COUNT {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_COUNT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to degree.
         /// </summary>
         internal static string XML_ATTRIBUTE_DEGREE {
@@ -817,11 +853,38 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to labs.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_LABS {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_LABS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to lastName.
         /// </summary>
         internal static string XML_ATTRIBUTE_LASTNAME {
             get {
                 return ResourceManager.GetString("XML_ATTRIBUTE_LASTNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lections.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_LECTIONS {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_LECTIONS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to name.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_NAME {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_NAME", resourceCulture);
             }
         }
         
@@ -853,11 +916,29 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to practices.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_PRACTICES {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_PRACTICES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to rank.
         /// </summary>
         internal static string XML_ATTRIBUTE_RANK {
             get {
                 return ResourceManager.GetString("XML_ATTRIBUTE_RANK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to reportings.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_REPORTINGS {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_REPORTINGS", resourceCulture);
             }
         }
         
@@ -880,11 +961,29 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to teacher.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_TEACHER {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_TEACHER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to title.
         /// </summary>
         internal static string XML_ATTRIBUTE_TITLE {
             get {
                 return ResourceManager.GetString("XML_ATTRIBUTE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to weeks.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_WEEKS {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_WEEKS", resourceCulture);
             }
         }
         
@@ -916,6 +1015,24 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Такого преподавателя не существует.
+        /// </summary>
+        internal static string XML_DATA_ERROR_NOT_EXIST_PROFESSOR {
+            get {
+                return ResourceManager.GetString("XML_DATA_ERROR_NOT_EXIST_PROFESSOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неизвестный тип отчетности.
+        /// </summary>
+        internal static string XML_DATA_ERROR_NOT_EXIST_REPORTING {
+            get {
+                return ResourceManager.GetString("XML_DATA_ERROR_NOT_EXIST_REPORTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Такой специальности не существует.
         /// </summary>
         internal static string XML_DATA_ERROR_NOT_EXIST_SPECIALITY {
@@ -934,6 +1051,24 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to category1.
+        /// </summary>
+        internal static string XML_ELEMENT_CATEGORY_1 {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_CATEGORY_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to category2.
+        /// </summary>
+        internal static string XML_ELEMENT_CATEGORY_2 {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_CATEGORY_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to chair.
         /// </summary>
         internal static string XML_ELEMENT_CHAIR {
@@ -943,11 +1078,38 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to discipline.
+        /// </summary>
+        internal static string XML_ELEMENT_DISCIPLINE {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_DISCIPLINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to educationPlan.
+        /// </summary>
+        internal static string XML_ELEMENT_EDUCATION_PLAN {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_EDUCATION_PLAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to group.
         /// </summary>
         internal static string XML_ELEMENT_GROUP {
             get {
                 return ResourceManager.GetString("XML_ELEMENT_GROUP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to reporting.
+        /// </summary>
+        internal static string XML_ELEMENT_REPORTING {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_REPORTING", resourceCulture);
             }
         }
         
@@ -993,6 +1155,33 @@ namespace VmkLearningKit {
         internal static string XML_ELEMENT_TEACHER {
             get {
                 return ResourceManager.GetString("XML_ELEMENT_TEACHER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to teachers.
+        /// </summary>
+        internal static string XML_ELEMENT_TEACHERS {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_TEACHERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to term.
+        /// </summary>
+        internal static string XML_ELEMENT_TERM {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_TERM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to terms.
+        /// </summary>
+        internal static string XML_ELEMENT_TERMS {
+            get {
+                return ResourceManager.GetString("XML_ELEMENT_TERMS", resourceCulture);
             }
         }
         

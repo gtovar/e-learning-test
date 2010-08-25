@@ -19,6 +19,8 @@ namespace VmkLearningKit.Core.XmlConverter
         {
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
+            xmlReader.WhitespaceHandling = WhitespaceHandling.None;
+
             string educationPlanTitle,
                    specializationChairAbbreviation;
 

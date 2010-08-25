@@ -113,7 +113,7 @@ namespace VmkLearningKit.Models.Repository
                 Path = "",
                 Score = 0,
                 Mark = 0,
-                StudentKey = Hash.ComputeHash(idStudent.ToString() + DateTime.Now.ToString() + DateTime.Now.Millisecond.ToString()),
+                StudentKey = PasswordGenetrator.Generate(40),
                 ProfessorKey = Hash.ComputeHash(professorId.ToString()),
                 // идентификатор пакета в базе данных плеера
                 // данный идентификатор кладется плеером

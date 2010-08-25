@@ -1,91 +1,71 @@
-<?xml version="1.0" encoding="windows-1251"?>
+﻿<?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="categories">
+  <xs:element name="educationPlan">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="category">
+        <xs:element name="speciality">
+          <xs:complexType>
+            <xs:attribute name="code" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="terms">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="category">
+              <xs:element maxOccurs="unbounded" name="term">
+                <xs:complexType>
+                  <xs:attribute name="number" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="weeks" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="categories">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="category1">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="disciplines">
+                    <xs:element maxOccurs="unbounded" name="category2">
                       <xs:complexType>
                         <xs:sequence>
-                          <xs:element name="discipline">
+                          <xs:element name="disciplines">
                             <xs:complexType>
                               <xs:sequence>
-                                <xs:element name="teachers">
+                                <xs:element maxOccurs="unbounded" name="discipline">
                                   <xs:complexType>
                                     <xs:sequence>
-                                      <xs:element name="teacher">
-                                        <xs:complexType>
-                                          <xs:attribute name="name" type="xs:string" use="required" />
-                                        </xs:complexType>
-                                      </xs:element>
-                                    </xs:sequence>
-                                  </xs:complexType>
-                                </xs:element>
-                                <xs:element name="lections">
-                                  <xs:complexType>
-                                    <xs:sequence>
-                                      <xs:element name="lection">
-                                        <xs:complexType>
-                                          <xs:attribute name="term" type="xs:string" use="required" />
-                                          <xs:attribute name="count" type="xs:string" use="required" />
-                                        </xs:complexType>
-                                      </xs:element>
-                                    </xs:sequence>
-                                  </xs:complexType>
-                                </xs:element>
-                                <xs:element name="practices">
-                                  <xs:complexType>
-                                    <xs:sequence>
-                                      <xs:element name="practice">
-                                        <xs:complexType>
-                                          <xs:attribute name="term" type="xs:string" use="required" />
-                                          <xs:attribute name="count" type="xs:string" use="required" />
-                                        </xs:complexType>
-                                      </xs:element>
-                                    </xs:sequence>
-                                  </xs:complexType>
-                                </xs:element>
-                                <xs:element name="labs">
-                                  <xs:complexType>
-                                    <xs:sequence>
-                                      <xs:element name="lab">
-                                        <xs:complexType>
-                                          <xs:attribute name="term" type="xs:string" use="required" />
-                                          <xs:attribute name="count" type="xs:string" use="required" />
-                                        </xs:complexType>
-                                      </xs:element>
-                                    </xs:sequence>
-                                  </xs:complexType>
-                                </xs:element>
-                                <xs:element name="reportings">
-                                  <xs:complexType>
-                                    <xs:sequence>
-                                      <xs:element name="term">
+                                      <xs:element name="teachers">
                                         <xs:complexType>
                                           <xs:sequence>
-                                            <xs:element name="reporting">
+                                            <xs:element name="teacher" maxOccurs="unbounded">
                                               <xs:complexType>
-                                                <xs:attribute name="title" type="xs:string" use="required" />
+                                                <xs:attribute name="name" type="xs:string" use="required" />
                                               </xs:complexType>
                                             </xs:element>
                                           </xs:sequence>
-                                          <xs:attribute name="number" type="xs:string" use="required" />
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element maxOccurs="unbounded" name="term">
+                                        <xs:complexType>
+                                          <xs:attribute name="number" type="xs:unsignedByte" use="required" />
+                                          <xs:attribute name="lections" type="xs:unsignedByte" use="required" />
+                                          <xs:attribute name="practices" type="xs:unsignedByte" use="required" />
+                                          <xs:attribute name="labs" type="xs:unsignedByte" use="required" />
+                                          <xs:attribute name="reportings" type="xs:string" use="required" />
                                         </xs:complexType>
                                       </xs:element>
                                     </xs:sequence>
+                                    <xs:attribute name="abbreviation" type="xs:string" use="required" />
+                                    <xs:attribute name="code" type="xs:string" use="required" />
+                                    <xs:attribute name="title" type="xs:string" use="required" />
                                   </xs:complexType>
                                 </xs:element>
                               </xs:sequence>
-                              <xs:attribute name="abbreviation" type="xs:string" use="required" />
-                              <xs:attribute name="title" type="xs:string" use="required" />
                             </xs:complexType>
                           </xs:element>
                         </xs:sequence>
+                        <xs:attribute name="title" type="xs:string" use="required" />
                       </xs:complexType>
                     </xs:element>
                   </xs:sequence>
@@ -93,10 +73,10 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="title" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>
+      <xs:attribute name="title" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
 </xs:schema>

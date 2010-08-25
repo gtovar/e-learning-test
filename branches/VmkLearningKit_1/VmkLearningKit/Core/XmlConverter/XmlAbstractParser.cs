@@ -106,24 +106,33 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public bool ValidateXml(string xmlUrl)
         {
-            XmlStructureWarningLog.Clear();
-            XmlStructureErrorLog.Clear();
-            
-            XmlTextReader       xmlReader           = new XmlTextReader(xmlUrl);
-            XmlValidatingReader xmlValidatingReader = new XmlValidatingReader(xmlReader);
-            
-            xmlValidatingReader.Schemas.Add("", SchemaUrl);
-            xmlValidatingReader.ValidationType = ValidationType.Schema;
-            xmlValidatingReader.ValidationEventHandler += new ValidationEventHandler(SchemaValidationEventHandler);
-
-            while (xmlValidatingReader.Read());
-
-            if (0 == XmlStructureErrorLog.Count)
+            try
             {
-                return true;
+                XmlStructureWarningLog.Clear();
+                XmlStructureErrorLog.Clear();
+
+                XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
+                XmlValidatingReader xmlValidatingReader = new XmlValidatingReader(xmlReader);
+
+                xmlValidatingReader.Schemas.Add("", SchemaUrl);
+                xmlValidatingReader.ValidationType = ValidationType.Schema;
+                xmlValidatingReader.ValidationEventHandler += new ValidationEventHandler(SchemaValidationEventHandler);
+
+                while (xmlValidatingReader.Read()) ;
+
+                if (0 == XmlStructureErrorLog.Count)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (XmlException exc)
             {
+                XmlStructureErrorLog.Add(new LogRecord(exc.Message + Environment.NewLine + Environment.NewLine + "Дальнейший разбор документа невозможен", exc.LineNumber, exc.LinePosition));
+
                 return false;
             }
         }

@@ -770,16 +770,6 @@ table td .Editor
 	border-top: solid 1px #c4c4c4;
 	display: none;
 }
-
-.UploadVisibleContainer
-{
-	padding: 2px 2px 2px 2px;
-	position: relative;
-	border-left: solid 1px #c4c4c4;
-	border-right: solid 1px #c4c4c4;
-	border-bottom: solid 1px #c4c4c4;
-	border-top: solid 1px #c4c4c4;
-}
 /*
 ----------------------------------------------------------*/
 .Button
@@ -794,10 +784,6 @@ table td .Editor
 .XmlFileUpload
 {
 	cursor: pointer;
-	font: bold;
-	font-size: small;
-	border: solid 0px #c4c4c4;
-	width: inherit;
 }
 /*
 ----------------------------------------------------------*/
@@ -845,3 +831,54 @@ table td .Generator3
 
 /*
 ----------------------------------------------------------*/
+
+/* XmlParse */
+.uploaders {
+	width:inherit;
+	border-bottom: solid 1px #c4c4c4;
+}
+.uploaders h3 {
+	background: #e9e7e7 url(Images/arrow-square.gif) no-repeat right -51px;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	cursor: pointer;
+}
+.uploaders h3:hover {
+	background-color: #e3e2e2;
+}
+.uploaders h3.active {
+	background-position: right 5px;
+}
+.uploaders .UploadVisibleContainer {
+	background: #f7f7f7;
+	margin: 0;
+	padding: 10px 15px 20px;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	display: none;
+}
+
+.XmlParseErrors 
+{
+    width:inherit;
+	border-bottom: solid 1px #c4c4c4;
+}
+.XmlParseErrors h3 {
+	background: #ff6347;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	cursor: pointer;
+}
+.XmlParseErrors .ErrorsContainer {
+	background: #f7f7f7;
+	margin: 0;
+	padding: 10px 15px 20px;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+}

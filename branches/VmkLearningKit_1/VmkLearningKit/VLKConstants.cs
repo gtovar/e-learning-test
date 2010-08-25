@@ -56,6 +56,7 @@ namespace VmkLearningKit
         public const string XML_UPLOAD_ALIAS_SPECIALITIES   = "Specialities";
         public const string XML_UPLOAD_ALIAS_GROUPS         = "Groups";
         public const string XML_UPLOAD_ALIAS_STUDENTS       = "Students";
+        public const string XML_UPLOAD_ALIAS_EDUCATION_PLAN = "EducationPlan";
 
         public const int PASSWORD_DEFAULT_LENGTH        = 7;
     }

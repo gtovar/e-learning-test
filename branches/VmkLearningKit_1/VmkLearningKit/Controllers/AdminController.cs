@@ -724,6 +724,28 @@ namespace VmkLearningKit.Controllers
                                     }
                                     break;
                                 }
+                            case VLKConstants.XML_UPLOAD_ALIAS_EDUCATION_PLAN:
+                                {
+                                    string xmlPath = HttpContext.Server.MapPath("/Uploads/Xml/EducationPlans");
+                                    string xmlSchema = HttpContext.Server.MapPath("/Core/XmlConverter/XmlSchemas/XMLSchemaEducationPlan.xsd");
+
+                                    DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
+                                    long xmlIndex = targetDir.GetFiles("*.xml").Length;
+                                    string xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    file.SaveAs(xmlName);
+
+                                    XmlEducationPlanParser xmlEducationPlanParser = new XmlEducationPlanParser(xmlSchema);
+                                    if (xmlEducationPlanParser.ValidateXml(xmlName) & xmlEducationPlanParser.ValidateData(xmlName))
+                                    {
+                                        xmlEducationPlanParser.ParseXml(xmlName);
+                                    }
+                                    else
+                                    {
+                                        ViewData["XmlParseStructureErrors"] = xmlEducationPlanParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
+                                        ViewData["XmlParseDataErrors"] = xmlEducationPlanParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
+                                    }
+                                    break;
+                                }
                             default:
                                 {
                                     return RedirectToAction("Error", "Home");

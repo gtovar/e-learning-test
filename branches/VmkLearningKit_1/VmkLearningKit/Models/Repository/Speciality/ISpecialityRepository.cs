@@ -15,5 +15,6 @@ namespace VmkLearningKit.Models.Repository
         Speciality GetByAbbreviation(string abbreviation);
         Speciality Add(Speciality obj);
         IEnumerable<Speciality> Add(IEnumerable<Speciality> specialities);
+        Speciality GetByCode(string code);
     }
 }
