@@ -22,55 +22,6 @@ namespace VmkLearningKit.Controllers
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(FormCollection form)
-        {
-            GeneralMenu();
-            ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
-
-            List<string> filePathes = new List<string>();
-            foreach (string file in Request.Files)
-            {
-                var postedFile = Request.Files[file];
-                if (null != postedFile && !postedFile.FileName.Trim().Equals(String.Empty))
-                {
-                    string filePath = Server.MapPath(Constants.EXCEL_FILE_UPLOAD_PATH) + Path.GetFileNameWithoutExtension(postedFile.FileName) + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss_ffff") + Path.GetExtension(postedFile.FileName);
-                    postedFile.SaveAs(filePath);
-
-                    filePathes.Add(filePath);
-                }
-            }
-            bool isFileLoadOk = false;
-            if (filePathes.Count > 0)
-            {
-                foreach (string filePath in filePathes)
-                {
-                    if (null != filePath && !filePath.Trim().Equals(String.Empty))
-                    {
-                        if (null != form["DepartmentStructure"])
-                        {
-                        }
-                        if (null != form["SpecialityDisciplineStructure"])
-                        {
-                        }
-                        if (null != form["SpecialityDisciplineTopicStructure"])
-                        {
-                        }
-                        if (null != form["GroupStructure"])
-                        {
-                        }
-                        if (null != form["LectureTimetableStructure"])
-                        {
-                        }
-                    }
-                }
-            }
-
-            ViewData["IsFileLoadOk"] = isFileLoadOk;
-
-            return View();
-        }
-
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Departments(string alias, string additional)
         {
@@ -592,14 +543,6 @@ namespace VmkLearningKit.Controllers
             return View(Constants.ADMIN_GROUP_VIEWS + "Groups.aspx");
         }
 
-        [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult XmlParse()
-        {
-            GeneralMenu();
-            ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
-            return View();
-        }
-
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult XmlParse(string alias, FormCollection form)
         {
@@ -759,7 +702,7 @@ namespace VmkLearningKit.Controllers
                 return RedirectToAction("Error", "Home");
             }
 
-            return View("XmlParse");
+            return RedirectToAction("Admin", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session[Constants.SESSION_USER]).DbUser.NickName });
         }
 
     }
