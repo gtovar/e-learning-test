@@ -72,8 +72,7 @@ namespace VmkLearningKit.Controllers
             }
             else if (user.IsAdmin)
             {
-                //url = Constants.CABINET_URL + "Admin/" + user.DbUser.NickName;
-                url = "/Admin/XmlParse";
+                url = Constants.CABINET_URL + "Admin/" + user.DbUser.NickName;
             }
             return Redirect(url);
         }

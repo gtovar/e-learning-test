@@ -117,6 +117,7 @@
     <Compile Include="Core\Utility.cs" />
     <Compile Include="Core\XmlConverter\XmlAbstractParser.cs" />
     <Compile Include="Core\XmlConverter\XmlChairsParser.cs" />
+    <Compile Include="Core\XmlConverter\XmlEducationPlanParser.cs" />
     <Compile Include="Core\XmlConverter\XmlGroupsParser.cs" />
     <Compile Include="Core\XmlConverter\XmlSpecialitiesParser.cs" />
     <Compile Include="Core\XmlConverter\XmlStudentsParser.cs" />
@@ -160,6 +161,8 @@
     <Compile Include="Models\Repository\Question\IQuestionRepository.cs" />
     <Compile Include="Models\Repository\Razdel\IRazdelRepository.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplinesProfessor\ISpecialityDisciplinesProfessorRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplinesProfessor\SpecialityRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineTermRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineTopicRepository.cs" />
@@ -604,7 +607,6 @@
     <Content Include="Scripts\MathJax\test\index-images.html" />
     <Content Include="Scripts\MathJax\test\index.html" />
     <Content Include="Scripts\MathJax\test\sample.html" />
-    <Content Include="Views\Admin\XmlParse.aspx" />
     <Content Include="Views\Shared\GeneralMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
