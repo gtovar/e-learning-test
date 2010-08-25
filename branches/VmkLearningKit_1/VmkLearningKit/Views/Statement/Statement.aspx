@@ -438,7 +438,7 @@ td.secondAssignement {
     </table>
     <br/>  
 
-<table id="mainStatementTable"  border="1px" style="border-color: White; padding: 0px 1px 0px 0px; border-width: 1px 0px 0px 1px;">
+<table id="mainStatementTable"  border="1px" style="border-color:  Black; padding: 0px 0px 0px 0px; border-width: 0px 0px 0px 0px;">
  <!--style=" width:90%;" >-->
 <thead >
         <tr id='head1' align="center" style=" color: Black; font-weight: bold; " >
@@ -539,6 +539,7 @@ td.secondAssignement {
          </tr>
   </tbody>  
      </table>
+  
  </div> 
  
        
