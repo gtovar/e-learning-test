@@ -41,7 +41,7 @@
 	<student groupNumber="8309" lastName="Соломин" firstName="Сергей" patronymic="Николаевич" specializationAbbreviation="Отсутствует" chairAbbreviation="МОЭВМ"/>
 	<student groupNumber="8309" lastName="Удалова" firstName="Татьяна" patronymic="Игоревна" specializationAbbreviation="Отсутствует" chairAbbreviation="МОЭВМ"/>
 	<student groupNumber="8309" lastName="Хазимов" firstName="Ян" patronymic="Тагирович" specializationAbbreviation="Отсутствует" chairAbbreviation="МОЭВМ"/>
-
+	<student groupNumber="8309" lastName="Хазимова" firstName="Яна" patronymic="Тагировна" specializationAbbreviation="Отсутствует" chairAbbreviation="МЛЭВМ"/>
 	
 	
 </students>

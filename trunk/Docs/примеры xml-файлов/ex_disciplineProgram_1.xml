@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<educationPlan title="Магистратура">
+  <speciality code="010400.68" />
+  <!-- <Программа> -->
+  <terms>
+	  <term number="1" weeks = "18" />
+	  <term number="2" weeks = "16" />
+	  <term number="3" weeks = "18" />
+	  <term number="4" weeks = "16" />
+	  <term number="5" weeks = "18" />
+	  <term number="6" weeks = "16" />
+	  <term number="7" weeks = "18" />
+	  <term number="8" weeks = "15" />
+  </terms>
+  <categories>
+<category1 title="ОБЩЕПРОФЕССМОНАЛЬНЫЕ ДИСЦИПЛИНЫ">
+		  <category2 title="Федеральный компонент">
+			  <disciplines>
+				  <discipline abbreviation="ПИ" code="324а" title="Программная инженерия">
+					  <teachers>
+						  <teacher name="Карпенко.С.Н."/>
+					  </teachers>
+					  <term number="5" lections="2" practices="0" labs="0" reportings="Зачет"/>
+					  <term number="7" lections="2" practices="0" labs="0" reportings="Зачет"/>
+				  </discipline>
+				
+				  <discipline abbreviation="ЯП" code="986п6" title="Языки программирования">
+					  <teachers>
+						  <teacher name="Гергель.В.П."/>
+					  </teachers>
+					  <term number="3" lections="3" practices="0" labs="3" reportings="Экзамен"/>
+				  </discipline>
+			  </disciplines>	
+		  </category2>
+	  </category1>
+		<category1 title="СПЕЦИАЛЬНЫЕ ДИСЦИПЛИНЫ">	
+		  <category2 title="дисциплины специализации по кафедре МОЭВМ">
+			  <disciplines>
+				  <discipline abbreviation="ОИ" code="5654е" title="Обработка изображений">
+					  <teachers>
+						  <teacher name="Турлапов В.Е."/>
+					  </teachers>
+					  <term number="5" lections="1" practices="1" labs="0" reportings="Зачет"/>
+				  </discipline>
+				
+				  <discipline abbreviation="ТСИилиОРО" code="ое532а" title="Технологии сети Интернет  или  Объектная распределенная обработка">
+					  <teachers>
+						  <teacher name="Сысоев А.В."/>
+					  </teachers>
+					  <term number="5" lections="1" practices="1" labs="0" reportings="Зачет"/>
+				  </discipline>
+				
+				  <discipline abbreviation="ОС UNIX" code="ht4" title="Операционная система UNIX">
+					  <teachers>
+						  <teacher name="Лабутин Д.Ю."/>
+					  </teachers>
+					  <term number="7" lections="1" practices="1" labs="0" reportings="Экзамен"/>
+				  </discipline>
+				
+			  </disciplines>
+		  </category2>
+	  </category1>
+	
+  </categories>
+</educationPlan>
