@@ -434,5 +434,24 @@ namespace VmkLearningKit.Models.Repository
                 return assignedTestVariantRepository;
             }
         }
+
+        /// <summary>
+        /// Ïîëå äëÿ õğàíåíèÿ îáúåêòà êëàññà «SpecialityDisciplinesProfessorRepository»
+        /// </summary>
+        private ISpecialityDisciplinesProfessorRepository specialityDisciplinesProfessorRepository;
+
+        public ISpecialityDisciplinesProfessorRepository GetSpecialityDisciplinesProfessorRepository
+        {
+            get
+            {
+                DataContext.SpecialityDisciplinesProfessors.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.SpecialityDisciplinesProfessors);
+
+                if (assignedTestVariantRepository == null)
+                {
+                    specialityDisciplinesProfessorRepository = new SpecialityDisciplinesProfessorRepository(DataContext);
+                }
+                return specialityDisciplinesProfessorRepository;
+            }
+        }
     }
 }

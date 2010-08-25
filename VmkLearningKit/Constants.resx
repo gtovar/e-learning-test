@@ -294,6 +294,15 @@
   <data name="REGULAR_EXPRESSION_VALUE_WITH_POINT" xml:space="preserve">
     <value>([1-9]\d*\.\d+)|([1-9]\d*)|([0])|([0]\.d+)</value>
   </data>
+  <data name="REPORTING_TYPE_EXAM" xml:space="preserve">
+    <value>экзамен</value>
+  </data>
+  <data name="REPORTING_TYPE_SCIENTIFIC_WORK" xml:space="preserve">
+    <value>курсовая работа</value>
+  </data>
+  <data name="REPORTING_TYPE_ZACHOT" xml:space="preserve">
+    <value>зачет</value>
+  </data>
   <data name="SESSION_USER" xml:space="preserve">
     <value>User</value>
   </data>
@@ -357,6 +366,9 @@
   <data name="XML_ATTRIBUTE_CODE" xml:space="preserve">
     <value>code</value>
   </data>
+  <data name="XML_ATTRIBUTE_COUNT" xml:space="preserve">
+    <value>count</value>
+  </data>
   <data name="XML_ATTRIBUTE_DEGREE" xml:space="preserve">
     <value>degree</value>
   </data>
@@ -369,8 +381,17 @@
   <data name="XML_ATTRIBUTE_GROUP_NUMBER" xml:space="preserve">
     <value>groupNumber</value>
   </data>
+  <data name="XML_ATTRIBUTE_LABS" xml:space="preserve">
+    <value>labs</value>
+  </data>
   <data name="XML_ATTRIBUTE_LASTNAME" xml:space="preserve">
     <value>lastName</value>
+  </data>
+  <data name="XML_ATTRIBUTE_LECTIONS" xml:space="preserve">
+    <value>lections</value>
+  </data>
+  <data name="XML_ATTRIBUTE_NAME" xml:space="preserve">
+    <value>name</value>
   </data>
   <data name="XML_ATTRIBUTE_NUMBER" xml:space="preserve">
     <value>number</value>
@@ -381,8 +402,14 @@
   <data name="XML_ATTRIBUTE_POSITION" xml:space="preserve">
     <value>position</value>
   </data>
+  <data name="XML_ATTRIBUTE_PRACTICES" xml:space="preserve">
+    <value>practices</value>
+  </data>
   <data name="XML_ATTRIBUTE_RANK" xml:space="preserve">
     <value>rank</value>
+  </data>
+  <data name="XML_ATTRIBUTE_REPORTINGS" xml:space="preserve">
+    <value>reportings</value>
   </data>
   <data name="XML_ATTRIBUTE_SPECIALITY_ABBREVIATION" xml:space="preserve">
     <value>specialityAbbreviation</value>
@@ -390,8 +417,14 @@
   <data name="XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION" xml:space="preserve">
     <value>specializationAbbreviation</value>
   </data>
+  <data name="XML_ATTRIBUTE_TEACHER" xml:space="preserve">
+    <value>teacher</value>
+  </data>
   <data name="XML_ATTRIBUTE_TITLE" xml:space="preserve">
     <value>title</value>
+  </data>
+  <data name="XML_ATTRIBUTE_WEEKS" xml:space="preserve">
+    <value>weeks</value>
   </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_CHAIR" xml:space="preserve">
     <value>Такой кафедры не существует</value>
@@ -402,17 +435,38 @@
   <data name="XML_DATA_ERROR_NOT_EXIST_GROUP" xml:space="preserve">
     <value>Такой группы не существует</value>
   </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_PROFESSOR" xml:space="preserve">
+    <value>Такого преподавателя не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_REPORTING" xml:space="preserve">
+    <value>Неизвестный тип отчетности</value>
+  </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_SPECIALITY" xml:space="preserve">
     <value>Такой специальности не существует</value>
   </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_SPECIALIZATION" xml:space="preserve">
     <value>Такой специализации не существует</value>
   </data>
+  <data name="XML_ELEMENT_CATEGORY_1" xml:space="preserve">
+    <value>category1</value>
+  </data>
+  <data name="XML_ELEMENT_CATEGORY_2" xml:space="preserve">
+    <value>category2</value>
+  </data>
   <data name="XML_ELEMENT_CHAIR" xml:space="preserve">
     <value>chair</value>
   </data>
+  <data name="XML_ELEMENT_DISCIPLINE" xml:space="preserve">
+    <value>discipline</value>
+  </data>
+  <data name="XML_ELEMENT_EDUCATION_PLAN" xml:space="preserve">
+    <value>educationPlan</value>
+  </data>
   <data name="XML_ELEMENT_GROUP" xml:space="preserve">
     <value>group</value>
+  </data>
+  <data name="XML_ELEMENT_REPORTING" xml:space="preserve">
+    <value>reporting</value>
   </data>
   <data name="XML_ELEMENT_SPECIALITY" xml:space="preserve">
     <value>speciality</value>
@@ -428,6 +482,15 @@
   </data>
   <data name="XML_ELEMENT_TEACHER" xml:space="preserve">
     <value>teacher</value>
+  </data>
+  <data name="XML_ELEMENT_TEACHERS" xml:space="preserve">
+    <value>teachers</value>
+  </data>
+  <data name="XML_ELEMENT_TERM" xml:space="preserve">
+    <value>term</value>
+  </data>
+  <data name="XML_ELEMENT_TERMS" xml:space="preserve">
+    <value>terms</value>
   </data>
   <data name="XML_SCHEMA_BASE_URL" xml:space="preserve">
     <value>/Core/XmlConverter/XmlSchemas/</value>

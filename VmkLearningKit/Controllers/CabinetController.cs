@@ -83,7 +83,7 @@ namespace VmkLearningKit.Controllers
                             List<SpecialityDiscipline> specialityDisciplines = new List<SpecialityDiscipline>();
                             foreach (SpecialityDiscipline specialityDiscipline in allSpecialityDisciplines)
                             {
-                                if (IsDisciplineContainsCurrentTerms(specialityDiscipline))
+                                //if (IsDisciplineContainsCurrentTerms(specialityDiscipline))
                                 {
                                     specialityDisciplines.Add(specialityDiscipline);
                                 }

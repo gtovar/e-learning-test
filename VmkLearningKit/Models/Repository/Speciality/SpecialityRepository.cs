@@ -236,5 +236,10 @@ namespace VmkLearningKit.Models.Repository
 
             return null;
         }
+
+        public Speciality GetByCode(string code)
+        {
+            return DataContext.Specialities.SingleOrDefault<Speciality>(t => t.Code == code);
+        }
     }
 }
