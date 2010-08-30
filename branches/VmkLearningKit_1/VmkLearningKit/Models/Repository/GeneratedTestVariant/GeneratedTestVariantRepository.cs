@@ -108,7 +108,23 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
-       
+        public double GetMaxGeneratedTestVariantScore(long id)
+        {
+            IEnumerable<GeneratedQuestion> testQuestions = DataContext.GeneratedQuestions.Where(gq => gq.GeneratedTestVariantId == id);
+            double result=0;
+            foreach (GeneratedQuestion genQ in testQuestions )
+            {
+                IEnumerable<Answer> allQuestionAnswers = DataContext.Answers.Where(Answer => Answer.QuestionId == genQ.Question.Id);
+                foreach (Answer answ in allQuestionAnswers)
+                {
+                    if (answ.Score >= 0) result += answ.Score;
+                }
+            }
+            return result;
+        }
+
+
+
         #endregion
 
         #region Set
