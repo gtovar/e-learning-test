@@ -65,6 +65,7 @@ namespace VmkLearningKit.Controllers
                             List<AssignedTestVariant> topicAssignedVariants = new List<AssignedTestVariant>();
                             if (students != null && repositoryManager.GetGeneratedTestRepository.GetAllGeneratedTestsByTopicId(topicItem.Id).Count() != 0)
                             {
+                                List<GeneratedTestVariant> usingGeneratedTestVariant = new List<GeneratedTestVariant>();
                                 foreach (User studentItem in students)
                                 {
                                     IEnumerable<AssignedTestVariant> allAssignedStudentTestVariant = repositoryManager.GetAssignedTestVariantRepository.GetAllStudentTopicTests(topicItem.Id, studentItem.Id).OrderByDescending(o => o.AssignedDate);
@@ -80,11 +81,17 @@ namespace VmkLearningKit.Controllers
                                             }
                                             catch (Exception ex) { tmp = null; }
                                             if (tmp != null)
+                                            {
                                                 topicAssignedVariants.Add(tmp);
+                                                usingGeneratedTestVariant.Add(tmp.GeneratedTestVariant);
+                                            }
                                         }
                                     }
                                 }
-
+                                foreach (GeneratedTestVariant usingGTV in ((IEnumerable<GeneratedTestVariant>)usingGeneratedTestVariant).Distinct())
+                                {
+                                    ViewData["maxScoreVariant_"+usingGTV.Id.ToString()]=repositoryManager.GetGeneratedTestVariantRepository.GetMaxGeneratedTestVariantScore(usingGTV.Id).ToString();
+                                }
                             }
                             else Utility.RedirectToErrorPage("в базе данных нет студентов данной группы");
                             ViewData["allAssVariantsByTopic_" + topicItem.Id.ToString()] = topicAssignedVariants;
@@ -92,7 +99,7 @@ namespace VmkLearningKit.Controllers
                             if (repositoryManager.GetGeneratedTestVariantRepository.GetCurrentVariantsTestByTopicId(topicItem.Id) != null)
                                 foreach (GeneratedTestVariant item in repositoryManager.GetGeneratedTestVariantRepository.GetAllGeneratedTestVariantsByTopicId(topicItem.Id))
                                 {
-                                    ViewData[topicItem.Id.ToString() + "_" + item.Id.ToString()] = repositoryManager.GetGeneratedTestVariantRepository.GetLocalNumGeneratedTestVariant(item.Id);
+                                    ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + item.Id.ToString()] = repositoryManager.GetGeneratedTestVariantRepository.GetLocalNumGeneratedTestVariant(item.Id);
                                 }
                         }
                     }
