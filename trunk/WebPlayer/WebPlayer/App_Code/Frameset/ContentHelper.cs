@@ -173,9 +173,17 @@ namespace Microsoft.LearningComponents.Frameset
             {
                 // Get information about which activity to review, then make that the current activity.
 
-                long activityId = -1;   // make compiler happy
-                if (!TryGetActivityInfo(true, out activityId))
-                    return;
+                //long activityId = -1;   // make compiler happy
+                //if (!TryGetActivityInfo(true, out activityId))
+                //    return;
+
+                string activityId = "ITEM1000";
+
+                long pageId;
+                if (IsPrimaryResourceOfLrmActivity(GetResourcePath(), out pageId))
+                {
+                    activityId = "ITEM" + FramesetUtil.GetStringInvariant(pageId);
+                }
 
                 // Move to the requested activity. Under normal conditions, this should always succeed, since the frameset should be 
                 // giving this page a valid activity id.
@@ -186,9 +194,17 @@ namespace Microsoft.LearningComponents.Frameset
             {
                 // Get information about which activity to edit, then make that the current activity.
 
-                long activityId = -1;   // make compiler happy
-                if (!TryGetActivityInfo(true, out activityId))
-                    return;
+                //long activityId = -1;   // make compiler happy
+                //if (!TryGetActivityInfo(true, out activityId))
+                //    return;
+
+                string activityId = "ITEM1000";
+
+                long pageId;
+                if (IsPrimaryResourceOfLrmActivity(GetResourcePath(), out pageId))
+                {
+                    activityId = "ITEM" + FramesetUtil.GetStringInvariant(pageId);
+                }
 
                 // Move to the requested activity. Under normal conditions, this should always succeed, since the frameset should be 
                 // giving this page a valid activity id.

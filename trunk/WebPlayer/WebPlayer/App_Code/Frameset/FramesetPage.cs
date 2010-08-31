@@ -106,13 +106,37 @@ namespace Microsoft.LearningComponents.Frameset
 
                 case SessionView.Review:
                     // BWP does not provide review view
-                    RegisterError(ResHelper.GetMessage(FramesetResources.FRM_ViewNotSupportedTitle),
-                                         ResHelper.GetMessage(FramesetResources.FRM_ReviewViewNotSupportedMsg), false);
+                    //RegisterError(ResHelper.GetMessage(FramesetResources.FRM_ViewNotSupportedTitle),
+                    //                     ResHelper.GetMessage(FramesetResources.FRM_ReviewViewNotSupportedMsg), false);
+                    {
+                        StoredLearningSession slsSession = session as StoredLearningSession;
+                        if (slsSession != null)
+                        {
+                            if (slsSession.AttemptStatus != AttemptStatus.Completed)
+                            {
+                                RegisterError(ResHelper.GetMessage(FramesetResources.FRM_ReviewNotAvailableTitle),
+                                         ResHelper.GetMessage(FramesetResources.FRM_ReviewNotAvailableMsgHtml), false);
+                                return false;
+                            }
+                        }
+                    }
                     break;
 
                 case SessionView.RandomAccess:
-                    RegisterError(ResHelper.GetMessage(FramesetResources.FRM_ViewNotSupportedTitle),
-                                        ResHelper.GetMessage(FramesetResources.FRM_RAViewNotSupportedMsg), false);
+                    //RegisterError(ResHelper.GetMessage(FramesetResources.FRM_ViewNotSupportedTitle),
+                    //                    ResHelper.GetMessage(FramesetResources.FRM_RAViewNotSupportedMsg), false);
+                    {
+                        StoredLearningSession slsSession = session as StoredLearningSession;
+                        if (slsSession != null)
+                        {
+                            if (slsSession.AttemptStatus != AttemptStatus.Completed)
+                            {
+                                RegisterError(ResHelper.GetMessage(FramesetResources.FRM_RandomAccessNotAvailableTitle),
+                                         ResHelper.GetMessage(FramesetResources.FRM_RandomAccessNotAvailableMsgHtml), false);
+                                return false;
+                            }
+                        }
+                    }
                     break;
             }
             return true;

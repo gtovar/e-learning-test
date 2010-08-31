@@ -6,10 +6,18 @@ using System.Web;
 public class TrainingInfo
 {
     public Int64 TrainingId { get; set; }
-    public string StudentKey { get; set; }
-    public string LectorKey { get; set; }
     public string PackagePath { get; set; }
     public Int64 PackageId { get; set; }
+    public bool IsStudent { get; set; }
+    public bool IsLector { get; set; }
+
+    public TrainingInfo()
+    {
+        TrainingId  = 0;
+        PackageId   = 0;
+        IsStudent   = false;
+        IsLector    = false;
+    }
 }
 
 public interface ITrainings

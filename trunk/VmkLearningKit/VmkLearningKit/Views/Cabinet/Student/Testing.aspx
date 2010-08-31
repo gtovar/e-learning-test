@@ -124,7 +124,7 @@
                            if (null != assignedTestVariant && !assignedTestVariant.Path.Trim().Equals(String.Empty))
                            {
                                testVariantTitle = "Вариант_" + Path.GetFileNameWithoutExtension(assignedTestVariant.Path);
-                               testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Execute.aspx?key=" + assignedTestVariant.StudentKey;
+                               testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?key=" + assignedTestVariant.StudentKey;
                            }
                            
                         %>
@@ -205,7 +205,7 @@
                            if (null != assignedTestVariant && !assignedTestVariant.Path.Trim().Equals(String.Empty))
                            {
                                testVariantTitle = "Вариант_" + Path.GetFileNameWithoutExtension(assignedTestVariant.Path);
-                               testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Execute.aspx?key=" + assignedTestVariant.StudentKey;
+                               testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?key=" + assignedTestVariant.StudentKey;
                            }
                            
                         %>
@@ -259,8 +259,7 @@
                     foreach (var assignedTestVariant in assignedTestVariants)
                     {
                         // выводим только выполненые тесты
-                        if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_DONE &&
-                            ((int)(DateTime.Now.Date - assignedTestVariant.AssignedDate.Date).TotalDays) < VLKConstants.HOW_LONG_SHOW_DONE_TEST)
+                        if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_DONE)
                         {
                 %>
                 <tr class="table_row">
@@ -284,16 +283,18 @@
                     <td class="table_td">
                         <%
                             string testVariantTitle = String.Empty;
+                            string testVariantLink = String.Empty;
                             if (null != assignedTestVariant && !assignedTestVariant.Path.Trim().Equals(String.Empty))
                             {
                                 testVariantTitle = "Вариант_" + Path.GetFileNameWithoutExtension(assignedTestVariant.Path);
+                                testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=review&key=" + assignedTestVariant.StudentKey;
                             }
                         %>
                         <%
                             if (!testVariantTitle.Trim().Equals(String.Empty))
                             { 
                         %>
-                        <%= Html.Encode(testVariantTitle)%>
+                        <a href="<%= testVariantLink %>"><%= Html.Encode(testVariantTitle) %></a>
                         <% 
                             } 
                         %>
@@ -351,9 +352,7 @@
                     foreach (var assignedTestVariant in assignedTestVariants)
                     {
                         // выводим только проверенные тесты
-                        if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_CHECKED &&
-                            ((int)(DateTime.Now.Date - assignedTestVariant.AssignedDate.Date).TotalDays) < VLKConstants.HOW_LONG_SHOW_CHECKED_TEST)
-
+                        if (assignedTestVariant.State == VLKConstants.TEST_VARIANT_STATE_CHECKED)
                         {
                 %>
                 <tr class="table_row">

@@ -62,13 +62,31 @@ public class Trainings : ITrainings
 
         if (training == null)
         {
+            trainingInfo.IsStudent = false;
+
+            training = trainingsTable.SingleOrDefault(t => t.LectorKey == Key);
+
+            if (training == null)
+            {
+                trainingInfo.IsLector = false;
+            }
+            else
+            {
+                trainingInfo.IsLector = true;
+            }
+        }
+        else
+        {
+            trainingInfo.IsStudent = true;
+        }
+
+        if (!trainingInfo.IsLector && !trainingInfo.IsStudent)
+        {
             return null;
         }
 
         trainingInfo.TrainingId = training.TrainingId;
         trainingInfo.PackageId = training.PackageId;
-        trainingInfo.LectorKey = training.LectorKey;
-        trainingInfo.StudentKey = training.StudentKey;
         trainingInfo.PackagePath = training.PackagePath;
 
         return trainingInfo;

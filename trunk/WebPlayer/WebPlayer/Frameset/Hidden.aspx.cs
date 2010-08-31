@@ -105,6 +105,33 @@ namespace Microsoft.LearningComponents.Frameset
                     }
                 }
             }
+            else if (session.View == SessionView.RandomAccess)
+            {
+                StoredLearningSession slsSession = session as StoredLearningSession;
+                if (slsSession != null)
+                {
+                    // The rollup and/or sequencing process may have changed the state of the attempt. If so, there are some cases
+                    // that cannot continue so show an error message. 
+                    switch (slsSession.AttemptStatus)
+                    {
+                        case AttemptStatus.Abandoned:
+                            messageTitle = FramesetResources.HID_SessionAbandonedTitle;
+                            message = FramesetResources.FRM_ExecuteViewAbandonedSessionMsg;
+                            break;
+                        case AttemptStatus.Completed:
+                            ITrainings trainings = new Trainings();
+                            trainings.SetScore(Convert.ToInt64(Application["TrainingId"]), (int)slsSession.TotalPoints);
+                            trainings.SetState(Convert.ToInt64(Application["TrainingId"]), 3);
+                            messageTitle = FramesetResources.HID_SessionCompletedTitle;
+                            message = FramesetResources.FRM_ExecuteViewCompletedSessionMsg;
+                            break;
+                        case AttemptStatus.Suspended:
+                            messageTitle = FramesetResources.HID_SessionSuspendedTitle;
+                            message = FramesetResources.FRM_ExecuteViewSuspendedSessionMsg;
+                            break;
+                    }
+                }
+            }
         }
 
         /// <summary>

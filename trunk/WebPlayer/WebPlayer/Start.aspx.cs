@@ -21,7 +21,8 @@ namespace Microsoft.LearningComponents.Frameset
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string Key = Page.Request["Key"];
+            string Key = Page.Request["key"];
+            string Mode = Page.Request["mode"];
 
             if (Key == null || Key == "")
             {
@@ -36,16 +37,23 @@ namespace Microsoft.LearningComponents.Frameset
                 {
                     RegisterError("Тест не найден", "Возможно задан не верный ключ", false);
                 }
+                else if (trainingInfo.PackageId == 0 && (Mode == "review" || Mode == "grading"))
+                {
+                    RegisterError("Просмотр недоступен", "Тест ещё не был выполнен", false);
+                }
+                else if (!trainingInfo.IsLector && Mode == "grading")
+                {
+                    RegisterError("Нет доступа", "Необходимы права преподавателя", false);
+                }
                 else
                 {
                     try
                     {
                         PackageItemIdentifier packageId;
+                        LearningStoreJob job;
+                        ReadOnlyCollection<object> results;
 
-                        LearningStoreJob job = LStore.CreateJob();
-                        RequestCurrentUserInfo(job);
-                        ReadOnlyCollection<object> results = job.Execute();
-                        LStoreUserInfo currentUser = GetCurrentUserInfoResults((DataTable)results[0]);
+                        LStoreUserInfo currentUser = GetCurrentUserInfo();
 
                         if (trainingInfo.PackageId == 0)
                         {
@@ -95,12 +103,25 @@ namespace Microsoft.LearningComponents.Frameset
 
                         Application["TrainingId"] = trainingInfo.TrainingId;
 
-                        TestUrl = "./Frameset/Frameset.aspx?View=0&AttemptId=" + attemptId.GetKey();
+                        switch (Mode)
+                        {
+                            case "execute":
+                                TestUrl = "./Frameset/Frameset.aspx?View=0&AttemptId=" + attemptId.GetKey();
+                                break;
+                            case "grading":
+                                TestUrl = "./Frameset/Frameset.aspx?View=1&AttemptId=" + attemptId.GetKey();
+                                break;
+                            case "review":
+                                TestUrl = "./Frameset/Frameset.aspx?View=2&AttemptId=" + attemptId.GetKey();
+                                break;
+                            default:
+                                TestUrl = "./Frameset/Frameset.aspx?View=0&AttemptId=" + attemptId.GetKey();
+                                break;
+                        }
                     }
                     catch
                     {
                         RegisterError("Произошла ошибка", "Произошла серьёзная ошибка, обратитесь к администратору", false);
-
                     }
                 }
             }
