@@ -149,7 +149,6 @@
     <Compile Include="Models\Repository\GeneratedQuestion\IGeneratedQuestionRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTestVariant\GeneratedTestVariantRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTestVariant\IGeneratedTestVariantRepository.cs" />
-    <Compile Include="Models\Repository\GeneratedTest\Builder.cs" />
     <Compile Include="Models\Repository\GeneratedTest\GeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\IGeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Index.cs" />

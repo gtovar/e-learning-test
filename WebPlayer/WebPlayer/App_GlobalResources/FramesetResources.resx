@@ -372,4 +372,16 @@
   <data name="TOC_SubmitAttempt" xml:space="preserve">
     <value>Сдать тест</value>
   </data>
+  <data name="FRM_ReviewNotAvailableMsgHtml" xml:space="preserve">
+    <value>Возможно тест ещё небыл выполнен или возникла неустранимая проблема.</value>
+  </data>
+  <data name="FRM_ReviewNotAvailableTitle" xml:space="preserve">
+    <value>Режим просмотра теста недоступен</value>
+  </data>
+  <data name="FRM_RandomAccessNotAvailableMsgHtml" xml:space="preserve">
+    <value>Возможно тест ещё небыл выполнен или возникла неустранимая проблема.</value>
+  </data>
+  <data name="FRM_RandomAccessNotAvailableTitle" xml:space="preserve">
+    <value>Режим оценки теста недоступен</value>
+  </data>
 </root>

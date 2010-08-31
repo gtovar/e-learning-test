@@ -206,7 +206,12 @@ namespace Microsoft.LearningComponents.Frameset
         {
             if (m_view == SessionView.Review)
             {
-                return m_contentPath.Substring(m_contentPathParts[1].Length + m_contentPathParts[2].Length + m_contentPathParts[3].Length + 4);
+                //return m_contentPath.Substring(m_contentPathParts[1].Length + m_contentPathParts[2].Length + m_contentPathParts[3].Length + 4);
+                return m_contentPath.Substring(m_contentPathParts[1].Length + m_contentPathParts[2].Length + 3);
+            }
+            else if (m_view == SessionView.RandomAccess)
+            {
+                return m_contentPath.Substring(m_contentPathParts[1].Length + m_contentPathParts[2].Length + 3);
             }
             else if (m_view == SessionView.Execute)
             {

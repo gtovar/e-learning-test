@@ -225,6 +225,20 @@ namespace Microsoft.LearningComponents.Frameset
             }
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods")]    // parameter is validated
+        protected static void MoveToActivity(LearningSession session, string activityId)
+        {
+            FramesetUtil.ValidateNonNullParameter("session", session);
+            session.MoveToActivity(activityId);
+
+            // If this is random access view, make sure to move to an activity that has a resource.
+            if ((session.View == SessionView.RandomAccess)
+                        && (session.CurrentActivityResourceType == ResourceType.None))
+            {
+                MoveToNextActivity(session);
+            }
+        }
+
         /// <summary>
         /// Uses the current session to determine the Url to the content frame. The current activity's 
         /// resource may be relative or absolute.
