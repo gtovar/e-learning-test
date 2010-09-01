@@ -65,7 +65,7 @@ td.secondAssignement {
 
 </style>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
 
 
 
@@ -84,18 +84,20 @@ td.secondAssignement {
         $('#mainStatementTable tr:last').show();
         var currentRow = 21;
         var flags = new Array();
-        var flagExistInputChange = 0
-        var flagMap = [];
+        var flagExistInputChange = 0;
+        
 
-        $("#clear").click(function() {
+        $("#clear").click(function () {
             $("td.changeble").empty().append(" ");
+            flags = [];
+           
         })
 
         $("#setRandomVariant").click(function () {
-        
+
             if ($("#SelectTopic").val() != -1) {
                 $.post("/Statement/RandomVariants", { topicId: $("#SelectTopic").val(), groupId: $("#Select1").val() },
-        function(str) {
+        function (str) {
             flags = [];
             var mas = str.split("]");
             var tmp;
@@ -105,7 +107,9 @@ td.secondAssignement {
                 td = $("td[id^=" + tmp[0] + "_" + tmp[1] + "_" + "].changeble");
                 td.empty().append(tmp[2]);
                 flags.push($("td[id^=" + tmp[0] + "_" + tmp[1] + "_" + "].changeble").attr('id'));
+
             }
+            flagExistInputChange = 0;
             alert("для назначения тестов нажмите:Назначить тесты");
 
         }, "json");
@@ -115,7 +119,7 @@ td.secondAssignement {
 
 
 
-        $("td.unactive").click(function() {
+        $("td.unactive").click(function () {
             var me = $(this).attr('Id');
             var topic = (me.split("_"))[1];
             /*if (confirm("По данной теме нет сгенерированных вариантов! Перейти на страницу создания тестовых вариантов?")) {
@@ -127,7 +131,9 @@ td.secondAssignement {
 
         })
 
-        $("#SetVariants").click(function() {
+
+
+        $("#SetVariants").click(function () {
             if (flagExistInputChange == 1) {
                 var InputChange = $("input[id^=changeInput]");
                 var tmp = (InputChange.val());
@@ -165,7 +171,7 @@ td.secondAssignement {
                 "variantNums": strVariants,
                 "date": $("#datepicker").val()
             };
-            $.post("/Statement/SetVariants", data, function(str) {
+            $.post("/Statement/SetVariants", data, function (str) {
                 var dataTemp = str.split("[");
                 for (var i = 1; i < dataTemp.length; i++) {
                     var setVariant = dataTemp[i].split("_");
@@ -184,7 +190,7 @@ td.secondAssignement {
                 alert(dataTemp[0]);
 
             }, "json");
-
+           
         });
 
         var colFlag = 0;
@@ -192,7 +198,7 @@ td.secondAssignement {
         HideCol(5, hiddens.length - 5, hiddens);
 
 
-        $("#Button1").click(function() {
+        $("#Button1").click(function () {
             if (colFlag + 5 < hiddens.length) {
 
                 HideCol(colFlag, 5, hiddens);
@@ -204,7 +210,7 @@ td.secondAssignement {
             }
         });
 
-        $("#Button2").click(function() {
+        $("#Button2").click(function () {
             if (colFlag - 5 >= 0) {
                 var hideCount = 5;
                 if (hiddens.length - colFlag < 5) hideCount = hiddens.length - colFlag;
@@ -214,7 +220,7 @@ td.secondAssignement {
             }
         });
 
-        $("#Button4").click(function() {
+        $("#Button4").click(function () {
 
             if (currentRow - 10 <= countRow) {
 
@@ -232,7 +238,7 @@ td.secondAssignement {
 
         });
 
-        $("#Button3").click(function() {
+        $("#Button3").click(function () {
 
             if (currentRow > 21) {
 
@@ -251,7 +257,7 @@ td.secondAssignement {
         })
 
 
-        $("td.changeble").click(function() {
+        $("td.changeble").click(function () {
             flagExistInputChange = 1;
             var me = $(this).attr('Id');
             var meArr = (me.split("_"));
@@ -259,8 +265,8 @@ td.secondAssignement {
             var topic = meArr[1];
             var existFlag = 0;
 
-            for (var i = 0; i < flagMap.length; i++) {
-                if ((flagMap[i].split("_")[0] == student) && (flagMap[i].split("_")[1] == topic)) {
+            for (var i = 0; i < flags.length; i++) {
+                if ((flags[i].split("_")[0] == student) && (flags[i].split("_")[1] == topic)) {
                     existFlag = 1;
                     break;
                 };
@@ -269,7 +275,7 @@ td.secondAssignement {
 
             if (existFlag == 0) {
                 flags.push(me);
-                flagMap.push(student + "_" + topic);
+               
             };
 
 
@@ -292,9 +298,6 @@ td.secondAssignement {
 
             };
         });
-
-
-
 
     });
 
@@ -480,10 +483,7 @@ td.secondAssignement {
               foreach (VmkLearningKit.Models.Repository.User studentItem in (IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"])
               {%>
         <tr id="student_<%=studentItem.Id%>"  style=" height:20px;">
-			<!---
-            <%//if(studentCount==1){ %> <td rowspan="<%//=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).Count()%>" >
-            1111</td><%//} %>
-            -->
+			
             
             <td  style=" background-color:#ffffff;"><%=Html.Encode(studentCount)%></td>
 			<td style=" background-color:#ffffff; text-align:justify"><%=Html.Encode(GetStudentName(studentItem.Id))%></td>

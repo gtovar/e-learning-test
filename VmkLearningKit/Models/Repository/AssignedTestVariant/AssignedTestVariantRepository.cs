@@ -114,7 +114,7 @@ namespace VmkLearningKit.Models.Repository
                 Score = 0,
                 Mark = 0,
                 StudentKey = PasswordGenetrator.Generate(40),
-                ProfessorKey = Hash.ComputeHash(professorId.ToString()),
+                ProfessorKey = PasswordGenetrator.Generate(40),
                 // идентификатор пакета в базе данных плеера
                 // данный идентификатор кладется плеером
                 PackageId = VLKConstants.PACKAGE_DEFAULT_ID
@@ -134,14 +134,15 @@ namespace VmkLearningKit.Models.Repository
                 }
            
                       
-                string destPath = serverPath + "/AssignedTests" + "/student_" + idStudent.ToString() + "/" + newAtv.Id.ToString();
+              /*  string destPath = serverPath + "/AssignedTests" + "/student_" + idStudent.ToString() + "/" + newAtv.Id.ToString();
                 DirectoryInfo dir = new DirectoryInfo(destPath);
                 if (!dir.Exists)
                     dir.Create();
                 FileInfo test = new FileInfo(sourcePath);
                 string copyPath = destPath + "/" + (idGeneratedTestVariant - firstId + 1).ToString() + ".zip";
                 test.CopyTo(copyPath, true);
-                newAtv.Path = copyPath;
+               */
+                newAtv.Path = sourcePath;
                 DataContext.AssignedTestVariants.InsertOnSubmit(newAtv);
                 DataContext.SubmitChanges();
             }
