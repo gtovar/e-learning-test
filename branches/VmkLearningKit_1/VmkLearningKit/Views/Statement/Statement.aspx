@@ -44,6 +44,8 @@
 <link type="text/css" href="/Scripts/Plugins/DatePicker/jquery-ui-1.7.3.custom.css" rel="stylesheet" />	
 <script type="text/javascript" src="/Scripts/Plugins/DatePicker/jquery-ui-1.7.3.custom.min.js"></script>
 <script type="text/javascript" src="/Scripts/Plugins/DatePicker/ui.datepicker-ru.js"></script>
+    <script src="/Scripts/Plugins/DatePicker/jquery.clockpick.1.2.7.js" type="text/javascript"></script>
+    <link href="/Scripts/Plugins/DatePicker/jquery.clockpick.1.2.7[1].css" rel="stylesheet" type="text/css" />
 <style>
 
 td.changeble {
@@ -65,9 +67,8 @@ td.secondAssignement {
 
 </style>
 <script type="text/javascript">
+   
     $(document).ready(function () {
-
-
 
         $.datepicker.setDefaults($.extend
         ($.datepicker.regional["ru"])
@@ -76,7 +77,29 @@ td.secondAssignement {
             inline: true,
             minDate: "0"
         });
+        $("#startTime").clockpick({
+        starthour : 8,
+        endhour : 20,
+        showminutes : true,
+        minutedivisions: 6,
+        military:true
+    });
 
+    $.datepicker.setDefaults($.extend
+        ($.datepicker.regional["ru"])
+        );
+    $('#datepicker2').datepicker({
+        inline: true,
+        minDate: "0"
+    });
+    $("#endTime").clockpick({
+        starthour: 8,
+        endhour: 20,
+        showminutes: true,
+        minutedivisions: 6,
+        military: true
+    });
+      
         var countRow = $("#mainStatementTable tr").length;
         //alert(countRow);
         $("#mainStatementTable tr").hide();
@@ -169,7 +192,8 @@ td.secondAssignement {
             var data = { "students": strStudents,
                 "topics": strTopics,
                 "variantNums": strVariants,
-                "date": $("#datepicker").val()
+                "startDate": $("#datepicker").val().toString() + " " + $("#startTime").val().toString(),
+                "endDate": $("#datepicker2").val().toString() + " " + $("#endTime").val().toString()
             };
             $.post("/Statement/SetVariants", data, function (str) {
                 var dataTemp = str.split("[");
@@ -564,10 +588,16 @@ td.secondAssignement {
    <div style="float:left;">
    <table>
         <tr style="height:40px">
-            <td>Дата прохождения:
+            <td>Время начала:
             </td>
-            <td><input id="datepicker" type="text" style="width:100px">
+            <td><input id="datepicker" type="text" style="width:80px"/></td>
+            <td><input id="startTime" type="text" value=""  style="  width:40px;"/></td>
+        </tr>
+        <tr style="height:40px">
+            <td>Время окончания:
             </td>
+            <td><input id="datepicker2" type="text" style="width:80px"/></td>
+            <td><input id="endTime" type="text" value=""  style="  width:40px;"/></td>
         </tr>
         <tr> <td></td>
         </tr>

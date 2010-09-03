@@ -9,6 +9,7 @@ using System.IO;
 using VmkLearningKit.Models.Repository;
 using VmkLearningKit.Core;
 using System.Collections;
+using System.Configuration;
 
 
 namespace VmkLearningKit.Controllers
@@ -29,47 +30,12 @@ namespace VmkLearningKit.Controllers
         {
 
             AssignedTestVariant atv = repositoryManager.GetAssignedTestVariantRepository.GetById(Convert.ToInt64(additional));
-            string filePath = atv.Path;
-            FileInfo fileP = new FileInfo(filePath);
-            if (!fileP.Exists) Utility.RedirectToErrorPage("Данного теста нет на сервере");
+         
             long idStudent = atv.StudentId;
-            int lastIndex = filePath.IndexOf("student_");
-            string destP = filePath.Substring(0, lastIndex);
-            string destPath = destP + "/Temp";
 
-            DirectoryInfo folderTemp = new DirectoryInfo(destPath);
-            if (!folderTemp.Exists)
-                folderTemp.Create();
-            //ArrayList inFolder=new ArrayList ();
-            FileSystemInfo[] inFolder = folderTemp.GetFileSystemInfos();
-            foreach (FileSystemInfo item in inFolder)
-            {
-                string qq = item.Attributes.ToString();
-                if (qq == "Directory")
-                    {
-                        // for(int i=0;i<item.G)
-                        DirectoryInfo dir = new DirectoryInfo(item.FullName);
-                        FileInfo[] fis = dir.GetFiles();
-                        foreach (FileInfo f in fis)
-                        {
-                            f.Delete();
-                        }
-                    }
-                    else
-                    {
-                        item.Delete();
-                    }
-             }
-             FastZip fz = new FastZip();
-             try
-             {
-                 fz.ExtractZip(filePath, destPath, null);
-             }
-             catch (Exception ex)
-             {
-                 Utility.RedirectToErrorPage("Данный тест не сохранен");
-             }
-             ViewData["testPath"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/P1000/page.htm";
+            ViewData["testPath"] = //ConfigurationManager.AppSettings["webPlayerUrl"].ToString() 
+                 "http://localhost:1061/WebPlayer/Start.aspx?mode=grading&key=" + atv.ProfessorKey.ToString();
+                  //+ Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/P1000/page.htm";
              ViewData[Constants.PAGE_TITLE] = "Просмотр тестового варианта";
              ViewData["discipline"] = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(alias).Title;
              User student = repositoryManager.GetUserRepository.GetById(idStudent);
@@ -79,8 +45,8 @@ namespace VmkLearningKit.Controllers
              ViewData["group"] = student.Student.Group.Title;
              ViewData["generationInfo"] = gt.GeneratedDate;
              ViewData["test"] = atv;
-             ViewData["themes"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/Shared/Themes.css";
-             return View();
+          //   ViewData["themes"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/Shared/Themes.css";
+             return View("ViewTest2");
             
         }
 
