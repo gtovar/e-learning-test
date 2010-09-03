@@ -33,8 +33,7 @@ namespace VmkLearningKit.Controllers
          
             long idStudent = atv.StudentId;
 
-            ViewData["testPath"] = //ConfigurationManager.AppSettings["webPlayerUrl"].ToString() 
-                 "http://localhost:1061/WebPlayer/Start.aspx?mode=grading&key=" + atv.ProfessorKey.ToString();
+            ViewData["testPath"] = ConfigurationManager.AppSettings["webPlayerUrl"].ToString()+"/Start.aspx?mode=grading&key=" + atv.ProfessorKey.ToString();
                   //+ Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/P1000/page.htm";
              ViewData[Constants.PAGE_TITLE] = "Просмотр тестового варианта";
              ViewData["discipline"] = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(alias).Title;
