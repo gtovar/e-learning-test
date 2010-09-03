@@ -117,8 +117,10 @@
     <Compile Include="Core\Utility.cs" />
     <Compile Include="Core\XmlConverter\XmlAbstractParser.cs" />
     <Compile Include="Core\XmlConverter\XmlChairsParser.cs" />
+    <Compile Include="Core\XmlConverter\XmlDisciplineProgramParser.cs" />
     <Compile Include="Core\XmlConverter\XmlEducationPlanParser.cs" />
     <Compile Include="Core\XmlConverter\XmlGroupsParser.cs" />
+    <Compile Include="Core\XmlConverter\XmlSheduleParser.cs" />
     <Compile Include="Core\XmlConverter\XmlSpecialitiesParser.cs" />
     <Compile Include="Core\XmlConverter\XmlStudentsParser.cs" />
     <Compile Include="Core\XmlConverter\XmlTeachersParser.cs" />
@@ -151,22 +153,28 @@
     <Compile Include="Models\Repository\GeneratedTest\IGeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Index.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Theme.cs" />
+    <Compile Include="Models\Repository\GroupsLectureTimetable\IGroupsLectureTimetableRepository.cs" />
+    <Compile Include="Models\Repository\GroupsLectureTimetable\GroupsLectureTimetableRepository.cs" />
     <Compile Include="Models\Repository\Group\GroupRepository.cs" />
     <Compile Include="Models\Repository\Group\IGroupRepository.cs" />
     <Compile Include="Models\Repository\LecturePlan\ILecturePlanRepository.cs" />
     <Compile Include="Models\Repository\LectureTimetable\ILectureTimetableRepository.cs" />
     <Compile Include="Models\Repository\LectureTimetable\LectureTimetableRepository.cs" />
+    <Compile Include="Models\Repository\PracticeAndLabTimetable\IPracticeAndLabTimetableRepository.cs" />
+    <Compile Include="Models\Repository\PracticeAndLabTimetable\PracticeAndLabTimetableRepository.cs" />
     <Compile Include="Models\Repository\PracticePlan\IPracticePlanRepository.cs" />
     <Compile Include="Models\Repository\Professor\IProfessorRepository.cs" />
     <Compile Include="Models\Repository\Question\IQuestionRepository.cs" />
     <Compile Include="Models\Repository\Razdel\IRazdelRepository.cs" />
     <Compile Include="Models\Repository\IRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplinesProfessor\ISpecialityDisciplinesProfessorRepository.cs" />
-    <Compile Include="Models\Repository\SpecialityDisciplinesProfessor\SpecialityRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplinesProfessor\SpecialityDisciplinesProfessorRepository.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineProgramRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineTermRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplines\ISpecialityDisciplineTopicRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplineCategory.cs" />
+    <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplineProgramRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplineTermRepository.cs" />
     <Compile Include="Models\Repository\SpecialityDisciplines\SpecialityDisciplineTopicRepository.cs" />
     <Compile Include="Models\Repository\Speciality\ISpecialityRepository.cs" />
@@ -607,6 +615,7 @@
     <Content Include="Scripts\MathJax\test\index-images.html" />
     <Content Include="Scripts\MathJax\test\index.html" />
     <Content Include="Scripts\MathJax\test\sample.html" />
+    <Content Include="Views\Admin\XmlParse.aspx" />
     <Content Include="Views\Shared\GeneralMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
