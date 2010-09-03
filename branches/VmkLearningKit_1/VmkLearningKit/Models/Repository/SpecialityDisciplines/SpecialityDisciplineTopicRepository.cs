@@ -189,10 +189,14 @@ namespace VmkLearningKit.Models.Repository
                null == objWithTheSameTitle)
             {
             */
-            if (null != objWithTheSameTitle)
+            if (null == objWithTheSameTitle)
             {
-                obj.Title = obj.Title;
+                DataContext.SpecialityDisciplineTopics.InsertOnSubmit(obj);
+                DataContext.SubmitChanges();
+                return obj;
             }
+
+            return objWithTheSameTitle;
 
             /*
             if (null != objWithTheSameAlias && null == objWithTheSameTitle)
@@ -209,9 +213,6 @@ namespace VmkLearningKit.Models.Repository
                 }
             }
             */
-            DataContext.SpecialityDisciplineTopics.InsertOnSubmit(obj);
-            DataContext.SubmitChanges();
-            return obj;
             /*
             }
             return objWithTheSameTitle;

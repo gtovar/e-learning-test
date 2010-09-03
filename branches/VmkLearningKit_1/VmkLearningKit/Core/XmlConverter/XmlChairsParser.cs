@@ -26,9 +26,10 @@ namespace VmkLearningKit.Core.XmlConverter
 
             // Извлекаемые данные
             string chairTitle, 
-                   chairAbbreveation;
+                   chairAbbreveation,
+                   chairSite;
 
-            List<Chair> chairsList = new List<Chair>();
+            //List<Chair> chairsList = new List<Chair>();
 
             Chair fakeChair         = new Chair();
             fakeChair.Title         = VLKConstants.FIELD_EMPTY;
@@ -36,7 +37,8 @@ namespace VmkLearningKit.Core.XmlConverter
             fakeChair.DepartmentId  = VLKConstants.VMK_DEPARTMENT_ID;
             fakeChair.Alias         = Transliteration.Front(VLKConstants.FIELD_EMPTY, TransliterationType.ISO);
 
-            chairsList.Add(fakeChair);
+            //chairsList.Add(fakeChair);
+            repositoryManager.GetChairRepository.Add(fakeChair);
 
             while (xmlReader.Read())
             {
@@ -45,6 +47,7 @@ namespace VmkLearningKit.Core.XmlConverter
                 {
                     chairTitle          = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_TITLE);
                     chairAbbreveation   = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_ABBREVIATION);
+                    chairSite           = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_SITE);
 
                     Chair chair         = new Chair();
                     chair.Title         = chairTitle;
@@ -52,11 +55,18 @@ namespace VmkLearningKit.Core.XmlConverter
                     chair.DepartmentId  = VLKConstants.VMK_DEPARTMENT_ID;
                     chair.Alias         = Transliteration.Front(chairAbbreveation, TransliterationType.ISO);
 
-                    chairsList.Add(chair);
+                    if (chairSite != null &&
+                        !chairSite.Equals(String.Empty))
+                    {
+                        chair.Description = HttpUtility.HtmlDecode("<a href=\"" + chairSite + "\">Сайт кафедры</a>");
+                    }
+
+                    //chairsList.Add(chair);
+                    repositoryManager.GetChairRepository.Add(chair);
                 }
             }
 
-            repositoryManager.GetChairRepository.Add(chairsList.AsEnumerable<Chair>());
+            //repositoryManager.GetChairRepository.Add(chairsList.AsEnumerable<Chair>());
         }
     }
 }

@@ -162,6 +162,21 @@ namespace VmkLearningKit.Models.Repository
             return obj;
         }
 
+        public SpecialityDiscipline GetByAbbreviation(string abbreviation)
+        {
+            SpecialityDiscipline obj = null;
+            try
+            {
+                obj = DataContext.SpecialityDisciplines.SingleOrDefault(ed => ed.Abbreviation == abbreviation);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT SpecialityDiscipline Table in Database contains more then one entry with the same abbreviation: " + abbreviation + "!!!!", ex);
+            }
+
+            return obj;
+        }
+
         public SpecialityDiscipline GetByTitle(string title)
         {
             SpecialityDiscipline obj = null;

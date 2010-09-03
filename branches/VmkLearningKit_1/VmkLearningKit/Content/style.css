@@ -205,7 +205,7 @@ a:hover
 .table_row
 {
 	color: Black;
-	text-align: center;
+	text-align: left;
 }
 
 .table_th
@@ -838,10 +838,10 @@ table td .Generator3
 	border-bottom: solid 1px #c4c4c4;
 }
 .uploaders h3 {
-	background: #e9e7e7 url(Images/arrow-square.gif) no-repeat right -51px;
+	background: #E2EFFF url(Images/arrow-square.gif) no-repeat right -51px;
 	padding: 7px 15px;
 	margin: 0;
-	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
 	border: solid 1px #c4c4c4;
 	border-bottom: none;
 	cursor: pointer;
@@ -870,7 +870,7 @@ table td .Generator3
 	background: #ff6347;
 	padding: 7px 15px;
 	margin: 0;
-	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
 	border: solid 1px #c4c4c4;
 	border-bottom: none;
 	cursor: pointer;
@@ -881,4 +881,43 @@ table td .Generator3
 	padding: 10px 15px 20px;
 	border-left: solid 1px #c4c4c4;
 	border-right: solid 1px #c4c4c4;
+}
+.XmlParseOk
+{
+    width:inherit;
+	border-bottom: solid 1px #c4c4c4;
+}
+.XmlParseOk h3 {
+	background: #90EE90;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	cursor: pointer;
+}
+.SuperLink
+{
+    width:inherit;
+	border-bottom: solid 1px #c4c4c4;
+}
+.SuperLink h3
+{
+    background: #e3e2e2;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+}
+.SuperLink h4{
+	background: #E2EFFF;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+}
+.SuperLink h4:hover {
+	background-color: #e3e2e2;
 }

@@ -56,7 +56,8 @@ namespace VmkLearningKit.Core.XmlConverter
                    teacherPatronymic,
                    teacherDegree,
                    teacherPosition,
-                   teacherRank;
+                   teacherRank,
+                   teacherSite;
 
             //List<User>      usersList       = new List<User>();
             //List<Professor> professorsList  = new List<Professor>();
@@ -73,7 +74,8 @@ namespace VmkLearningKit.Core.XmlConverter
                     teacherDegree       = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_DEGREE);
                     teacherPosition     = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_POSITION);
                     teacherRank         = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_RANK);
-                    
+                    teacherSite         = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_SITE);
+
                     string teacherFirstNameShort    = Transliteration.Front(teacherFirstName.Substring(0, 1), TransliterationType.ISO).ToLower();
                     string teacherLastNameShort     = Transliteration.Front(teacherLastName.Substring(0, 1), TransliterationType.ISO).ToLower();
                     string teacherPatronymicShort   = Transliteration.Front(teacherPatronymic.Substring(0, 1), TransliterationType.ISO).ToLower();
@@ -109,7 +111,11 @@ namespace VmkLearningKit.Core.XmlConverter
                     professor.Position  = teacherPosition;
                     professor.Rank      = teacherRank;
                     professor.UserId    = userId;
-
+                    if (teacherSite != null &&
+                        !teacherSite.Equals(String.Empty))
+                    {
+                        professor.About = HttpUtility.HtmlDecode("<a href=\"" + teacherSite + "\">Сайт преподавателя</a>");
+                    }
                     repositoryManager.GetProfessorRepository.Add(professor);
 
                     //usersList.Add(user);

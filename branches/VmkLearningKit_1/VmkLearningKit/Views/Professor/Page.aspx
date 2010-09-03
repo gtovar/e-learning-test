@@ -43,7 +43,7 @@
     <% if (null == ViewData["Action"] || ViewData["Action"].ToString().Trim().Equals("About"))
        {%>
     <div class="description">
-        <%= Html.Encode(((Professor)ViewData["Professor"]).About)%>
+        <%= ((Professor)ViewData["Professor"]).About%>
     </div>
     <% }
        else if (ViewData["Action"].ToString().Trim().Equals("Disciplines"))

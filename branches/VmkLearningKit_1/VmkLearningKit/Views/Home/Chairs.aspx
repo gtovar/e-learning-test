@@ -15,7 +15,7 @@
     <% if (null == ViewData["Action"] || ViewData["Action"].ToString().Trim().Equals(String.Empty) || ViewData["Action"].ToString().Equals("About"))
        { %>
     <div class="description">
-        <%= Html.Encode(((Chair)ViewData["Chair"]).Description) %>
+        <%= ((Chair)ViewData["Chair"]).Description %>
     </div>
     <% }
        else if (null != ViewData["Action"] || ViewData["Action"].ToString().Trim().Equals("Professors"))

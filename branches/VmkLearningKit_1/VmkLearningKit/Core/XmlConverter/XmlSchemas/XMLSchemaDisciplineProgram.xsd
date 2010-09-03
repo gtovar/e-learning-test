@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="disciplineProgram">
     <xs:complexType>
@@ -64,8 +64,9 @@
               <xs:element name="topics">
                 <xs:complexType>
                   <xs:sequence>
-                    <xs:element name="topic">
+                    <xs:element maxOccurs="unbounded" name="topic">
                       <xs:complexType>
+                        <xs:attribute name="level" type="xs:unsignedByte" use="required" />
                         <xs:attribute name="title" type="xs:string" use="required" />
                       </xs:complexType>
                     </xs:element>

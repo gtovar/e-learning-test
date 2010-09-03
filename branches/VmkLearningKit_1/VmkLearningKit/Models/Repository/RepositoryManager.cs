@@ -446,11 +446,68 @@ namespace VmkLearningKit.Models.Repository
             {
                 DataContext.SpecialityDisciplinesProfessors.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.SpecialityDisciplinesProfessors);
 
-                if (assignedTestVariantRepository == null)
+                if (specialityDisciplinesProfessorRepository == null)
                 {
                     specialityDisciplinesProfessorRepository = new SpecialityDisciplinesProfessorRepository(DataContext);
                 }
                 return specialityDisciplinesProfessorRepository;
+            }
+        }
+
+        /// <summary>
+        /// Ïîëå äëÿ õðàíåíèÿ îáúåêòà êëàññà «PracticeAndLabTimetableRepository»
+        /// </summary>
+        private IPracticeAndLabTimetableRepository practiceAndLabTimetableRepository;
+
+        public IPracticeAndLabTimetableRepository GetPracticeAndLabTimetableRepository
+        {
+            get
+            {
+                DataContext.PracticeAndLabTimetables.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.PracticeAndLabTimetables);
+
+                if (practiceAndLabTimetableRepository == null)
+                {
+                    practiceAndLabTimetableRepository = new PracticeAndLabTimetableRepository(DataContext);
+                }
+                return practiceAndLabTimetableRepository;
+            }
+        }
+
+        /// <summary>
+        /// Ïîëå äëÿ õðàíåíèÿ îáúåêòà êëàññà «GroupsLectureTimetableRepository»
+        /// </summary>
+        private IGroupsLectureTimetableRepository groupsLectureTimetableRepository;
+
+        public IGroupsLectureTimetableRepository GetGroupsLectureTimetableRepository
+        {
+            get
+            {
+                DataContext.GroupsLectureTimetables.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.GroupsLectureTimetables);
+
+                if (groupsLectureTimetableRepository == null)
+                {
+                    groupsLectureTimetableRepository = new GroupsLectureTimetableRepository(DataContext);
+                }
+                return groupsLectureTimetableRepository;
+            }
+        }
+
+        /// <summary>
+        /// Ïîëå äëÿ õðàíåíèÿ îáúåêòà êëàññà «SpecialityDisciplineProgramRepository»
+        /// </summary>
+        private ISpecialityDisciplineProgramRepository specialityDisciplineProgramRepository;
+
+        public ISpecialityDisciplineProgramRepository GetSpecialityDisciplineProgramRepository
+        {
+            get
+            {
+                DataContext.SpecialityDisciplinePrograms.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.SpecialityDisciplinePrograms);
+
+                if (specialityDisciplineProgramRepository == null)
+                {
+                    specialityDisciplineProgramRepository = new SpecialityDisciplineProgramRepository(DataContext);
+                }
+                return specialityDisciplineProgramRepository;
             }
         }
     }

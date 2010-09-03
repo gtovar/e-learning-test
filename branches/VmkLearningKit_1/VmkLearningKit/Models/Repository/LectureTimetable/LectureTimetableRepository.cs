@@ -90,5 +90,15 @@ namespace VmkLearningKit.Models.Repository
                 Utility.WriteToLog("!!!!IMPORTANT Can't delete lectureTimetable by id: " + id, ex);
             }
         }
+
+        public LectureTimetable Get(long specialityDisciplineId, string dayOfWeek, string time)
+        {
+            return DataContext.LectureTimetables.SingleOrDefault(t => (t.SpecialityDisciplineId == specialityDisciplineId && t.Day == dayOfWeek && t.Time == time));
+        }
+
+        public LectureTimetable Get(long specialityDisciplineId, long professorId)
+        {
+            return DataContext.LectureTimetables.SingleOrDefault(t => (t.SpecialityDisciplineId == specialityDisciplineId && t.ProfessorId == professorId));
+        }
     }
 }
