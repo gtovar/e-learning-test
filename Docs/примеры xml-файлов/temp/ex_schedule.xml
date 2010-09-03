@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<specialities>
+	<speciality abbreviation="ИТ">
+    <disciplines>
+      <discipline abbreviation="ПИ">
+				<lections teacher="Карпенко С.Н.">
+					<groups>
+						<group number="8409" />
+						<group number="8410" />
+						<group number="8411" />
+					</groups>
+					<lection  dayOfWeek="Суббота" time="13:00" room="324" building="2" week="Каждая" />
+				</lections>
+				<practices>
+					<practice teacher="Карпенко С.Н." dayOfWeek="Среда" time="18:00" room="502" building="6" week="Верхняя" groupNumber="8409"/>
+					<practice teacher="Карпенко С.Н." dayOfWeek="Среда" time="18:00" room="514" building="6" week="Нижняя" groupNumber="8410" part="МЛИВА"/>
+					<practice teacher="Карпенко С.Н." dayOfWeek="Суббота" time="14:40" room="514" building="6" week="Каждая" groupNumber="8410" part="МОЭВМ"/>	
+				</practices>
+			</discipline>
+			
+		</disciplines>
+	</speciality>	
+</specialities>
