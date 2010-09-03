@@ -41,6 +41,12 @@ namespace VmkLearningKit.Models.Repository
         SpecialityDiscipline GetByAlias(string alias);
 
         /// <summary>
+        /// Получение объекта класса «SpecialityDiscipline» по абревиатуре дисциплины
+        /// </summary>
+        /// <param name="alias">Псевдоним дисциплины</param>
+        SpecialityDiscipline GetByAbbreviation(string abbreviation);
+
+        /// <summary>
         /// Получение объекта класса «SpecialityDiscipline» по названию дисциплины
         /// </summary>
         /// <param name="title">Название дисциплины</param>

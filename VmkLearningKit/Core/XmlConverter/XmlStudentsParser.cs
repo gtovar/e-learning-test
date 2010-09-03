@@ -18,6 +18,8 @@ namespace VmkLearningKit.Core.XmlConverter
         public override bool ValidateData(string xmlUrl)
         {
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
+
+            xmlReader.WhitespaceHandling = WhitespaceHandling.None;
             
             string studentChairAbbreveation,
                    studentSpecializationAbbreviation,
@@ -32,9 +34,20 @@ namespace VmkLearningKit.Core.XmlConverter
                     studentSpecializationAbbreviation = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION);
                     studentGroupNumber                = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_GROUP_NUMBER);
 
+                    string specialityAbbreviation = String.Empty;
+
+                    if (null == repositoryManager.GetGroupRepository.GetByTitle(studentGroupNumber))
+                    {
+                        XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_GROUP, xmlReader.LineNumber, xmlReader.LinePosition));
+                    }
+                    else
+                    {
+                        specialityAbbreviation = repositoryManager.GetGroupRepository.GetByTitle(studentGroupNumber).Speciality.Abbreviation;
+                    }
+                    
                     if (studentSpecializationAbbreviation == VLKConstants.FIELD_EMPTY)
                     {
-                        studentSpecializationAbbreviation += studentChairAbbreveation;
+                        studentSpecializationAbbreviation += (studentChairAbbreveation + specialityAbbreviation);
                     }
 
                     if (null == repositoryManager.GetChairRepository.GetByAbbreviation(studentChairAbbreveation))
@@ -45,10 +58,7 @@ namespace VmkLearningKit.Core.XmlConverter
                     {
                         XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_SPECIALIZATION, xmlReader.LineNumber, xmlReader.LinePosition));
                     }
-                    if (null == repositoryManager.GetGroupRepository.GetByTitle(studentGroupNumber))
-                    {
-                        XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_GROUP, xmlReader.LineNumber, xmlReader.LinePosition));
-                    }
+                    
                 }
             }
             
@@ -84,13 +94,15 @@ namespace VmkLearningKit.Core.XmlConverter
                 {
                     studentChairAbbreveation            = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_CHAIR_ABBREVIATION);
                     studentSpecializationAbbreviation   = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION);
+                    studentGroupNumber                  = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_GROUP_NUMBER);
+
+                    string specialityAbbreviation       = repositoryManager.GetGroupRepository.GetByTitle(studentGroupNumber).Speciality.Abbreviation;
 
                     if (studentSpecializationAbbreviation == VLKConstants.FIELD_EMPTY)
                     {
-                        studentSpecializationAbbreviation += studentChairAbbreveation;
+                        studentSpecializationAbbreviation += (studentChairAbbreveation + specialityAbbreviation);
                     }
 
-                    studentGroupNumber                  = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_GROUP_NUMBER);
                     studentLastName                     = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_LASTNAME);
                     studentFirstName                    = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_FIRSTNAME);
                     studentPatronymic                   = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_PATRONYMIC);

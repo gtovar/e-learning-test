@@ -55,7 +55,7 @@ namespace VmkLearningKit.Core.XmlConverter
                     }
                     else
                     {
-                        XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_PROFESSOR, xmlReader.LineNumber, xmlReader.LinePosition));
+                        XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_VALID_FORMAT, xmlReader.LineNumber, xmlReader.LinePosition));
                     }
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&

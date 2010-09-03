@@ -91,16 +91,16 @@ namespace VmkLearningKit.Models.Repository
                     (lt => (lt.ProfessorId == professorId && lt.SpecialityDisciplineId == disciplineId)) ;
                 if(0!=lts.Count())
                 {
-                    List<GroupsLectureTimetables> glts = new List<GroupsLectureTimetables>();
+                    List<GroupsLectureTimetable> glts = new List<GroupsLectureTimetable>();
                     foreach (LectureTimetable itemTimetable in lts)
                     {
-                        foreach (GroupsLectureTimetables itemGlt in DataContext.GroupsLectureTimetables.Where(grlts => grlts.LectureTimetableId == itemTimetable.Id))
+                        foreach (GroupsLectureTimetable itemGlt in DataContext.GroupsLectureTimetables.Where(grlts => grlts.LectureTimetableId == itemTimetable.Id))
                         glts.Add(itemGlt);
                     }
                     if (null != glts)
                     {
                         List<Group> groups = new List<Group>();
-                        foreach (GroupsLectureTimetables itemGroupsLecture in glts)
+                        foreach (GroupsLectureTimetable itemGroupsLecture in glts)
                         {
                             groups.Add(DataContext.Groups.Single(gr => gr.Id == itemGroupsLecture.GroupId));
                         }

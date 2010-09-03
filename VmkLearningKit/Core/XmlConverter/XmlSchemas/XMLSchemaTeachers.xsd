@@ -12,6 +12,7 @@
             <xs:attribute name="degree" type="xs:string" use="required" />
             <xs:attribute name="position" type="xs:string" use="required" />
             <xs:attribute name="rank" type="xs:string" use="required" />
+            <xs:attribute name="site" type="xs:string" use="optional" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>

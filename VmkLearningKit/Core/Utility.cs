@@ -504,5 +504,81 @@ namespace VmkLearningKit.Core
 
             return foundTimetables;
         }
+
+        public static byte GetNumberByDayOfWeek(DayOfWeek dayOfWeek)
+        {
+            switch (dayOfWeek)
+            {
+                case DayOfWeek.Monday:      return 1;
+                case DayOfWeek.Tuesday:     return 2;
+                case DayOfWeek.Wednesday:   return 3;
+                case DayOfWeek.Thursday:    return 4;
+                case DayOfWeek.Friday:      return 5;
+                case DayOfWeek.Saturday:    return 6;
+                case DayOfWeek.Sunday:      return 7;
+            }
+
+            return 0;
+        }
+
+        public static List<DateTime> GetLectionDateTimesInCurrentTerm(string dayOfWeek, string week)
+        {
+            // Suppose that first week is Up
+            DateTime firstTermDate = GetFirstTermDate(),
+                     lastTermDate  = GetLastTermDate(),
+                     firstLectionDate,
+                     result;
+
+            byte numberOfDayOfWeekFirstTermDay = GetNumberByDayOfWeek(firstTermDate.DayOfWeek),
+                 numberOfDayOfWeek             = GetNumberByDayOfWeek(GetDayOfWeekFromString(dayOfWeek)),
+                 daysByWeekType                = 0;
+
+            int number = 1;
+
+            if (numberOfDayOfWeekFirstTermDay < numberOfDayOfWeek)
+            {
+                firstLectionDate = firstTermDate.AddDays(Convert.ToDouble(numberOfDayOfWeek - numberOfDayOfWeekFirstTermDay));
+
+                if (week == VLKConstants.UP_WEEK) firstLectionDate = firstLectionDate.AddDays(7.0);
+            }
+            else
+            {
+                firstLectionDate = firstTermDate.AddDays(Convert.ToDouble(numberOfDayOfWeek - numberOfDayOfWeekFirstTermDay + 7));
+
+                if (week == VLKConstants.DOWN_WEEK) firstLectionDate = firstLectionDate.AddDays(7.0);
+            }
+
+            switch (week)
+            {
+                case VLKConstants.UP_WEEK:
+                case VLKConstants.DOWN_WEEK:
+                    {
+                        daysByWeekType = 14;
+
+                        break;
+                    }
+                default:
+                    {
+                        daysByWeekType = 7;
+
+                        break;
+                    }
+            }
+
+            result = firstLectionDate;
+            
+            List<DateTime> resultList = new List<DateTime>();
+
+            while (result <= lastTermDate)
+            {
+                resultList.Add(result);
+
+                result = firstLectionDate.AddDays((double)(number * daysByWeekType));
+
+                ++number;
+            }
+            
+            return resultList;
+        }
     }
 }

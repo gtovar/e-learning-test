@@ -543,6 +543,14 @@ namespace VmkLearningKit.Controllers
             return View(Constants.ADMIN_GROUP_VIEWS + "Groups.aspx");
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult XmlParse()
+        {
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = "«агрузка образовательных документов";
+            return View();
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult XmlParse(string alias, FormCollection form)
         {
@@ -554,6 +562,10 @@ namespace VmkLearningKit.Controllers
 
                     if (file.ContentLength > 0 && file.FileName.EndsWith(".xml"))
                     {
+                        XmlAbstractParser abstractParser;
+
+                        string xmlName = String.Empty;
+
                         switch (alias)
                         {
                             case VLKConstants.XML_UPLOAD_ALIAS_CHAIRS:
@@ -563,19 +575,10 @@ namespace VmkLearningKit.Controllers
                                     
                                     DirectoryInfo targetDir = new DirectoryInfo(xmlPath);                                 
                                     long xmlIndex           = targetDir.GetFiles("*.xml").Length;
-                                    string xmlName          = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    xmlName          = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
                                     file.SaveAs(xmlName);
 
-                                    XmlChairsParser xmlChairsParser = new XmlChairsParser(xmlSchema);
-                                    if (xmlChairsParser.ValidateXml(xmlName) & xmlChairsParser.ValidateData(xmlName))
-                                    {
-                                        xmlChairsParser.ParseXml(xmlName);
-                                    }
-                                    else
-                                    {
-                                        ViewData["XmlParseStructureErrors"] = xmlChairsParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
-                                        ViewData["XmlParseDataErrors"]      = xmlChairsParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
-                                    }
+                                    abstractParser = new XmlChairsParser(xmlSchema);
                                     
                                     break;
                                 }
@@ -586,19 +589,11 @@ namespace VmkLearningKit.Controllers
                                     
                                     DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
                                     long xmlIndex           = targetDir.GetFiles("*.xml").Length;
-                                    string xmlName          = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    xmlName          = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
                                     file.SaveAs(xmlName);
 
-                                    XmlTeachersParser xmlTeachersParser = new XmlTeachersParser(xmlSchema);
-                                    if (xmlTeachersParser.ValidateXml(xmlName) & xmlTeachersParser.ValidateData(xmlName))
-                                    {
-                                        xmlTeachersParser.ParseXml(xmlName);
-                                    }
-                                    else
-                                    {
-                                        ViewData["XmlParseStructureErrors"] = xmlTeachersParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
-                                        ViewData["XmlParseDataErrors"]      = xmlTeachersParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
-                                    }
+                                    abstractParser = new XmlTeachersParser(xmlSchema);
+                                    
                                     break;
                                 }
                             case VLKConstants.XML_UPLOAD_ALIAS_STUDENTS:
@@ -608,19 +603,11 @@ namespace VmkLearningKit.Controllers
 
                                     DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
                                     long xmlIndex = targetDir.GetFiles("*.xml").Length;
-                                    string xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
                                     file.SaveAs(xmlName);
 
-                                    XmlStudentsParser xmlStudentsParser = new XmlStudentsParser(xmlSchema);
-                                    if (xmlStudentsParser.ValidateXml(xmlName) & xmlStudentsParser.ValidateData(xmlName))
-                                    {
-                                        xmlStudentsParser.ParseXml(xmlName);
-                                    }
-                                    else
-                                    {
-                                        ViewData["XmlParseStructureErrors"] = xmlStudentsParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
-                                        ViewData["XmlParseDataErrors"] = xmlStudentsParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
-                                    }
+                                    abstractParser = new XmlStudentsParser(xmlSchema);
+                                    
                                     break;
                                 }
                             case VLKConstants.XML_UPLOAD_ALIAS_GROUPS:
@@ -630,19 +617,11 @@ namespace VmkLearningKit.Controllers
 
                                     DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
                                     long xmlIndex = targetDir.GetFiles("*.xml").Length;
-                                    string xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
                                     file.SaveAs(xmlName);
 
-                                    XmlGroupsParser xmlGroupsParser = new XmlGroupsParser(xmlSchema);
-                                    if (xmlGroupsParser.ValidateXml(xmlName) & xmlGroupsParser.ValidateData(xmlName))
-                                    {
-                                        xmlGroupsParser.ParseXml(xmlName);
-                                    }
-                                    else
-                                    {
-                                        ViewData["XmlParseStructureErrors"] = xmlGroupsParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
-                                        ViewData["XmlParseDataErrors"] = xmlGroupsParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
-                                    }
+                                    abstractParser = new XmlGroupsParser(xmlSchema);
+                                    
                                     break;
                                 }
                             case VLKConstants.XML_UPLOAD_ALIAS_SPECIALITIES:
@@ -652,19 +631,11 @@ namespace VmkLearningKit.Controllers
 
                                     DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
                                     long xmlIndex = targetDir.GetFiles("*.xml").Length;
-                                    string xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
                                     file.SaveAs(xmlName);
 
-                                    XmlSpecialitiesParser xmlSpecialitiesParser = new XmlSpecialitiesParser(xmlSchema);
-                                    if (xmlSpecialitiesParser.ValidateXml(xmlName) & xmlSpecialitiesParser.ValidateData(xmlName))
-                                    {
-                                        xmlSpecialitiesParser.ParseXml(xmlName);
-                                    }
-                                    else
-                                    {
-                                        ViewData["XmlParseStructureErrors"] = xmlSpecialitiesParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
-                                        ViewData["XmlParseDataErrors"] = xmlSpecialitiesParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
-                                    }
+                                    abstractParser = new XmlSpecialitiesParser(xmlSchema);
+                                    
                                     break;
                                 }
                             case VLKConstants.XML_UPLOAD_ALIAS_EDUCATION_PLAN:
@@ -674,25 +645,56 @@ namespace VmkLearningKit.Controllers
 
                                     DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
                                     long xmlIndex = targetDir.GetFiles("*.xml").Length;
-                                    string xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
                                     file.SaveAs(xmlName);
 
-                                    XmlEducationPlanParser xmlEducationPlanParser = new XmlEducationPlanParser(xmlSchema);
-                                    if (xmlEducationPlanParser.ValidateXml(xmlName) & xmlEducationPlanParser.ValidateData(xmlName))
-                                    {
-                                        xmlEducationPlanParser.ParseXml(xmlName);
-                                    }
-                                    else
-                                    {
-                                        ViewData["XmlParseStructureErrors"] = xmlEducationPlanParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
-                                        ViewData["XmlParseDataErrors"] = xmlEducationPlanParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
-                                    }
+                                    abstractParser = new XmlEducationPlanParser(xmlSchema);
+                                    
+                                    break;
+                                }
+                            case VLKConstants.XML_UPLOAD_ALIAS_SHEDULE:
+                                {
+                                    string xmlPath      = HttpContext.Server.MapPath("/Uploads/Xml/Shedules");
+                                    string xmlSchema    = HttpContext.Server.MapPath("/Core/XmlConverter/XmlSchemas/XMLSchemaShedule.xsd");
+
+                                    DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
+                                    long xmlIndex   = targetDir.GetFiles("*.xml").Length;
+                                    xmlName  = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    file.SaveAs(xmlName);
+
+                                    abstractParser = new XmlSheduleParser(xmlSchema);
+                                    
+                                    break;
+                                }
+                            case VLKConstants.XML_UPLOAD_ALIAS_DISCIPLINE_PROGRAM:
+                                {
+                                    string xmlPath      = HttpContext.Server.MapPath("/Uploads/Xml/DisciplinePrograms");
+                                    string xmlSchema    = HttpContext.Server.MapPath("/Core/XmlConverter/XmlSchemas/XMLSchemaDisciplineProgram.xsd");
+
+                                    DirectoryInfo targetDir = new DirectoryInfo(xmlPath);
+                                    long xmlIndex = targetDir.GetFiles("*.xml").Length;
+                                    xmlName = xmlPath + "\\" + xmlIndex.ToString() + ".xml";
+                                    file.SaveAs(xmlName);
+
+                                    abstractParser = new XmlDisciplineProgramParser(xmlSchema);
+                                    
                                     break;
                                 }
                             default:
                                 {
                                     return RedirectToAction("Error", "Home");
                                 }
+                        }
+
+                        if (abstractParser.ValidateXml(xmlName) & abstractParser.ValidateData(xmlName))
+                        {
+                            abstractParser.ParseXml(xmlName);
+                            ViewData["XmlParseOK"] = true;
+                        }
+                        else
+                        {
+                            ViewData["XmlParseStructureErrors"] = abstractParser.XmlStructureErrorLog.AsEnumerable<LogRecord>();
+                            ViewData["XmlParseDataErrors"]      = abstractParser.XmlDataErrorLog.AsEnumerable<LogRecord>();
                         }
                     }
                 }
@@ -702,7 +704,10 @@ namespace VmkLearningKit.Controllers
                 return RedirectToAction("Error", "Home");
             }
 
-            return RedirectToAction("Admin", "Cabinet", new { alias = ((VmkLearningKit.Models.Domain.User)Session[Constants.SESSION_USER]).DbUser.NickName });
+            GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = "«агрузка образовательных документов";
+            
+            return View("XmlParse");
         }
 
     }

@@ -4,8 +4,7 @@
     eВМК – электронный ВМК / Линый кабинет / Настройки аккаунта
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        Настройки аккаунта</h2>
+    <h3>Настройки аккаунта</h3>
     <% 
         if (null != Session["user"])
         {

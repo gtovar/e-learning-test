@@ -18,7 +18,7 @@
        {
            fio = Html.Encode(professor.User.SecondName);
        } %>
-<%= Html.ActionLink(fio, "Page", "Professor", new { alias = Html.Encode(professor.User.NickName) }, new { @class = "menu_lev2" })%>
+<%= Html.ActionLink(fio, "Page", "Professor", new { alias = Html.Encode(professor.User.NickName), additional = "About" }, new { @class = "menu_lev2" })%>
 <br />
 <% }
    }

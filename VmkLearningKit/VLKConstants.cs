@@ -51,12 +51,14 @@ namespace VmkLearningKit
 
         public const long   VMK_DEPARTMENT_ID           = 1;
 
-        public const string XML_UPLOAD_ALIAS_CHAIRS         = "Chairs";
-        public const string XML_UPLOAD_ALIAS_TEACHERS       = "Teachers";
-        public const string XML_UPLOAD_ALIAS_SPECIALITIES   = "Specialities";
-        public const string XML_UPLOAD_ALIAS_GROUPS         = "Groups";
-        public const string XML_UPLOAD_ALIAS_STUDENTS       = "Students";
-        public const string XML_UPLOAD_ALIAS_EDUCATION_PLAN = "EducationPlan";
+        public const string XML_UPLOAD_ALIAS_CHAIRS             = "Chairs";
+        public const string XML_UPLOAD_ALIAS_TEACHERS           = "Teachers";
+        public const string XML_UPLOAD_ALIAS_SPECIALITIES       = "Specialities";
+        public const string XML_UPLOAD_ALIAS_GROUPS             = "Groups";
+        public const string XML_UPLOAD_ALIAS_STUDENTS           = "Students";
+        public const string XML_UPLOAD_ALIAS_EDUCATION_PLAN     = "EducationPlan";
+        public const string XML_UPLOAD_ALIAS_SHEDULE            = "Shedule";
+        public const string XML_UPLOAD_ALIAS_DISCIPLINE_PROGRAM = "DisciplineProgram";
 
         public const int PASSWORD_DEFAULT_LENGTH        = 7;
     }

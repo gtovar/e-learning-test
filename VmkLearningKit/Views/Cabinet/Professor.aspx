@@ -114,6 +114,7 @@
             </th>
         </tr>
         <% 
+            IEnumerable<SelectListItem> lectureDates = (IEnumerable<SelectListItem>)ViewData["LectureDatesList"];
             string time = String.Empty;
             string room = String.Empty;
             string building = String.Empty;
@@ -143,8 +144,8 @@
                 <div style="color: Red; font-size: 13px; text-align: left"><%= ViewData["LectionPlan" + plan.Id + "Error"] %></div>
                 <input type="text" style="width:100%; height:20px; font-size: 15px" name="LectionPlanId_<%= plan.Id %>" id="LectionPlanId_<%= plan.Id %>" value="<%= null != ViewData["LecturePlanSavingHasErrors"] && ((Boolean)ViewData["LecturePlanSavingHasErrors"]) ? Html.Encode(ViewData["LectionPlanId_" + plan.Id]) : Html.Encode(plan.SpecialityDisciplineTopic.Title)%>" />
             </td>
-            <td style="padding: 7px; width:60px">
-                <%= plan.Date.HasValue ? plan.Date.Value.ToShortDateString() : String.Empty %>
+            <td style="padding: 7px; width:60px;">
+                <% if (lectureDates != null) {%><%= Html.DropDownList("la", lectureDates)%><% } %>
             </td>
             <td style="padding: 7px; width:60px">
                 <%= time %>

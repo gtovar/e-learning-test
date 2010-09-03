@@ -186,6 +186,27 @@
   <data name="DATABASE_NAME" xml:space="preserve">
     <value>DatabaseName</value>
   </data>
+  <data name="DAY_FRIDAY" xml:space="preserve">
+    <value>Пятница</value>
+  </data>
+  <data name="DAY_MONDAY" xml:space="preserve">
+    <value>Понедельник</value>
+  </data>
+  <data name="DAY_SATURDAY" xml:space="preserve">
+    <value>Суббота</value>
+  </data>
+  <data name="DAY_SUNDAY" xml:space="preserve">
+    <value>Воскресенье</value>
+  </data>
+  <data name="DAY_THURSDAY" xml:space="preserve">
+    <value>Четверг</value>
+  </data>
+  <data name="DAY_TUESDAY" xml:space="preserve">
+    <value>Вторник</value>
+  </data>
+  <data name="DAY_WEDNESDAY" xml:space="preserve">
+    <value>Среда</value>
+  </data>
   <data name="DB_BACKUP_NAME" xml:space="preserve">
     <value>DbBackup_</value>
   </data>
@@ -263,6 +284,12 @@
   </data>
   <data name="PERSON_CABINET" xml:space="preserve">
     <value>Личный кабинет</value>
+  </data>
+  <data name="PRACTICE_TYPE_LAB" xml:space="preserve">
+    <value>Лабораторная работа / Терминал-класс</value>
+  </data>
+  <data name="PRACTICE_TYPE_PRACTICE" xml:space="preserve">
+    <value>Практика</value>
   </data>
   <data name="PROFESSORS_ACTION_NAME" xml:space="preserve">
     <value>Professors</value>
@@ -360,6 +387,9 @@
   <data name="XML_ATTRIBUTE_ABBREVIATION" xml:space="preserve">
     <value>abbreviation</value>
   </data>
+  <data name="XML_ATTRIBUTE_BUILDING" xml:space="preserve">
+    <value>building</value>
+  </data>
   <data name="XML_ATTRIBUTE_CHAIR_ABBREVIATION" xml:space="preserve">
     <value>chairAbbreviation</value>
   </data>
@@ -368,6 +398,9 @@
   </data>
   <data name="XML_ATTRIBUTE_COUNT" xml:space="preserve">
     <value>count</value>
+  </data>
+  <data name="XML_ATTRIBUTE_DAY_OF_WEEK" xml:space="preserve">
+    <value>dayOfWeek</value>
   </data>
   <data name="XML_ATTRIBUTE_DEGREE" xml:space="preserve">
     <value>degree</value>
@@ -390,11 +423,17 @@
   <data name="XML_ATTRIBUTE_LECTIONS" xml:space="preserve">
     <value>lections</value>
   </data>
+  <data name="XML_ATTRIBUTE_LEVEL" xml:space="preserve">
+    <value>level</value>
+  </data>
   <data name="XML_ATTRIBUTE_NAME" xml:space="preserve">
     <value>name</value>
   </data>
   <data name="XML_ATTRIBUTE_NUMBER" xml:space="preserve">
     <value>number</value>
+  </data>
+  <data name="XML_ATTRIBUTE_PART" xml:space="preserve">
+    <value>part</value>
   </data>
   <data name="XML_ATTRIBUTE_PATRONYMIC" xml:space="preserve">
     <value>patronymic</value>
@@ -411,6 +450,12 @@
   <data name="XML_ATTRIBUTE_REPORTINGS" xml:space="preserve">
     <value>reportings</value>
   </data>
+  <data name="XML_ATTRIBUTE_ROOM" xml:space="preserve">
+    <value>room</value>
+  </data>
+  <data name="XML_ATTRIBUTE_SITE" xml:space="preserve">
+    <value>site</value>
+  </data>
   <data name="XML_ATTRIBUTE_SPECIALITY_ABBREVIATION" xml:space="preserve">
     <value>specialityAbbreviation</value>
   </data>
@@ -420,14 +465,26 @@
   <data name="XML_ATTRIBUTE_TEACHER" xml:space="preserve">
     <value>teacher</value>
   </data>
+  <data name="XML_ATTRIBUTE_TIME" xml:space="preserve">
+    <value>time</value>
+  </data>
   <data name="XML_ATTRIBUTE_TITLE" xml:space="preserve">
     <value>title</value>
+  </data>
+  <data name="XML_ATTRIBUTE_WEEK" xml:space="preserve">
+    <value>week</value>
   </data>
   <data name="XML_ATTRIBUTE_WEEKS" xml:space="preserve">
     <value>weeks</value>
   </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_CHAIR" xml:space="preserve">
     <value>Такой кафедры не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_DAY_OF_WEEK" xml:space="preserve">
+    <value>Такого дня недели не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_DISCIPLINE" xml:space="preserve">
+    <value>Такой дисциплины не существует</value>
   </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_EDUCATION_PLAN" xml:space="preserve">
     <value>Такого образовательного плана не существует</value>
@@ -438,6 +495,9 @@
   <data name="XML_DATA_ERROR_NOT_EXIST_PROFESSOR" xml:space="preserve">
     <value>Такого преподавателя не существует</value>
   </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_PROFESSOR_OF_DISCIPLINE" xml:space="preserve">
+    <value>Такая дисциплина не читается данным преподавателем</value>
+  </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_REPORTING" xml:space="preserve">
     <value>Неизвестный тип отчетности</value>
   </data>
@@ -446,6 +506,18 @@
   </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_SPECIALIZATION" xml:space="preserve">
     <value>Такой специализации не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_WEEK" xml:space="preserve">
+    <value>Такой недели не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_VALID_FORMAT" xml:space="preserve">
+    <value>Данные имеют неправильный формат</value>
+  </data>
+  <data name="XML_ELEMENT_ADDITIONAL" xml:space="preserve">
+    <value>additional</value>
+  </data>
+  <data name="XML_ELEMENT_APPLICATION_DOMAIN" xml:space="preserve">
+    <value>applicationDomain</value>
   </data>
   <data name="XML_ELEMENT_CATEGORY_1" xml:space="preserve">
     <value>category1</value>
@@ -459,14 +531,56 @@
   <data name="XML_ELEMENT_DISCIPLINE" xml:space="preserve">
     <value>discipline</value>
   </data>
+  <data name="XML_ELEMENT_DISCIPLINE_PROGRAM" xml:space="preserve">
+    <value>disciplineProgram</value>
+  </data>
+  <data name="XML_ELEMENT_DISCIPLINE_RAZDELS" xml:space="preserve">
+    <value>disciplineRazdels</value>
+  </data>
+  <data name="XML_ELEMENT_DISCIPLINE_RAZDELS_CONTENT" xml:space="preserve">
+    <value>disciplineRazdelsContent</value>
+  </data>
+  <data name="XML_ELEMENT_DISCIPLINE_VOLUME" xml:space="preserve">
+    <value>disciplineVolume</value>
+  </data>
   <data name="XML_ELEMENT_EDUCATION_PLAN" xml:space="preserve">
     <value>educationPlan</value>
   </data>
   <data name="XML_ELEMENT_GROUP" xml:space="preserve">
     <value>group</value>
   </data>
+  <data name="XML_ELEMENT_LAB" xml:space="preserve">
+    <value>lab</value>
+  </data>
+  <data name="XML_ELEMENT_LAB_PRACTICE" xml:space="preserve">
+    <value>labPractice</value>
+  </data>
+  <data name="XML_ELEMENT_LECTION" xml:space="preserve">
+    <value>lection</value>
+  </data>
+  <data name="XML_ELEMENT_LECTIONS" xml:space="preserve">
+    <value>lections</value>
+  </data>
+  <data name="XML_ELEMENT_LITERATURE" xml:space="preserve">
+    <value>literature</value>
+  </data>
+  <data name="XML_ELEMENT_MARK_CRITERIAS" xml:space="preserve">
+    <value>markCriterias</value>
+  </data>
+  <data name="XML_ELEMENT_PRACTICE" xml:space="preserve">
+    <value>practice</value>
+  </data>
+  <data name="XML_ELEMENT_PURPOSES" xml:space="preserve">
+    <value>purposes</value>
+  </data>
+  <data name="XML_ELEMENT_QUESTIONS" xml:space="preserve">
+    <value>questions</value>
+  </data>
   <data name="XML_ELEMENT_REPORTING" xml:space="preserve">
     <value>reporting</value>
+  </data>
+  <data name="XML_ELEMENT_REQUIREMENTS" xml:space="preserve">
+    <value>requirements</value>
   </data>
   <data name="XML_ELEMENT_SPECIALITY" xml:space="preserve">
     <value>speciality</value>
@@ -491,6 +605,12 @@
   </data>
   <data name="XML_ELEMENT_TERMS" xml:space="preserve">
     <value>terms</value>
+  </data>
+  <data name="XML_ELEMENT_TITLE" xml:space="preserve">
+    <value>title</value>
+  </data>
+  <data name="XML_ELEMENT_TOPIC" xml:space="preserve">
+    <value>topic</value>
   </data>
   <data name="XML_SCHEMA_BASE_URL" xml:space="preserve">
     <value>/Core/XmlConverter/XmlSchemas/</value>

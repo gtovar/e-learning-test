@@ -57,7 +57,7 @@ namespace VmkLearningKit.Controllers
                         SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
                         ViewData["SpecialityDiscipline"] = specialityDiscipline;
                         ViewData["Detailed"] = true;
-                        ViewData["Professor"] = repositoryManager.GetProfessorRepository.GetByNickName(additional.Trim());
+                        ViewData["Professor"] = repositoryManager.GetProfessorRepository.GetByNickName(((VmkLearningKit.Models.Domain.User)(Session[Constants.SESSION_USER])).DbUser.NickName);
                     }
                 }
                 else
@@ -73,6 +73,21 @@ namespace VmkLearningKit.Controllers
                         ViewData["SpecialityDisciplineTopics"] = specialityDiscipline.SpecialityDisciplineTopics;
                         ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
 
+                        LectureTimetable lectionTimetable = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
+
+                        List<DateTime> lectionDatesList = Utility.GetLectionDateTimesInCurrentTerm(lectionTimetable.Day, lectionTimetable.Week);
+
+                        List<SelectListItem> listItems = new List<SelectListItem>();
+
+                        foreach (DateTime lectionDate in lectionDatesList)
+                        {
+                            SelectListItem item = new SelectListItem();
+                            item.Value = item.Text = lectionDate.ToShortDateString();
+
+                            listItems.Add(item);
+                        }
+
+                        ViewData["LectureDatesList"] = listItems.AsEnumerable();
                     }
                     // отображение списка дисциплин
                     else
@@ -893,7 +908,7 @@ namespace VmkLearningKit.Controllers
             bool containsCurrentTerm = false;
             foreach (SpecialityDisciplineTerm specialityDisciplineTerm in specialityDiscipline.SpecialityDisciplineTerms)
             {
-                if (terms.Contains(specialityDisciplineTerm.Term))
+                if (terms != null && terms.Contains(specialityDisciplineTerm.Term))
                 {
                     containsCurrentTerm = true;
                     break;
