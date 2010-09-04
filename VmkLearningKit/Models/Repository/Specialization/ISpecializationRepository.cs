@@ -8,6 +8,7 @@ namespace VmkLearningKit.Models.Repository
     public interface ISpecializationRepository : IRepository<Specialization>
     {
         IEnumerable<Specialization> GetAll(string specialityAlias, string educationPlanAlias, string chairAlias);
+        IEnumerable<Specialization> GetAllBySpecialityIdAndEducationPlanTitle(long specialityId, string educationPlanTitle);
         //bool IsEntryWithAliasExisted(string alias);
         Specialization GetByAlias(string alias);
         long GetMaxId();

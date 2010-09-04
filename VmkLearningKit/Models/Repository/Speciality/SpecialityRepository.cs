@@ -36,6 +36,11 @@ namespace VmkLearningKit.Models.Repository
         }
         */
 
+        public IEnumerable<Speciality> GetAllByEducationPlanTitle(string title)
+        {
+            return DataContext.Specialities.Where(t => t.EducationPlan.Title == title);
+        }
+
         public long GetMaxId()
         {
             try
