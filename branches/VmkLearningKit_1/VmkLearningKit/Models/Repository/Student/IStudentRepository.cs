@@ -9,6 +9,7 @@ namespace VmkLearningKit.Models.Repository
     {
         Student GetByNickName(string NickName);
         IEnumerable<Student> GetAll(string groupAlias);
+        IEnumerable<Student> GetAll();
         long GetMaxId();
         Student Add(Student obj);
         IEnumerable<Student> Add(IEnumerable<Student> students);

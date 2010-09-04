@@ -52,6 +52,11 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+        public IEnumerable<Student> GetAll()
+        {
+            return DataContext.Students;
+        }
+
         public Student Add(Student obj)
         {
             try

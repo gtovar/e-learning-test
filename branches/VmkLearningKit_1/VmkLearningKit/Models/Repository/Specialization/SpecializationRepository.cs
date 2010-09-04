@@ -35,6 +35,11 @@ namespace VmkLearningKit.Models.Repository
             return false;
         }
         */
+
+        public IEnumerable<Specialization> GetAllBySpecialityIdAndEducationPlanTitle(long specialityId, string educationPlanTitle)
+        {
+            return DataContext.Specializations.Where(t => t.EducationPlan.Title == educationPlanTitle && t.SpecialityId == specialityId);
+        }
         public Specialization GetByAlias(string alias)
         {
             Specialization obj = null;
