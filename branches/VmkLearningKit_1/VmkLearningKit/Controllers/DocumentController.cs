@@ -134,7 +134,7 @@ namespace VmkLearningKit.Controllers
              Word.WdDefaultTableBehavior.wdWord9TableBehavior;
             Object autoFitBehavior =
              Word.WdAutoFitBehavior.wdAutoFitContent;
-            Word.Table table = document.Tables.Add(range,chairs.Count, 2,
+            Word.Table table = document.Tables.Add(range,chairs.Count + 1, 2,
               ref defaultTableBehavior, ref autoFitBehavior);
 
             Word.Range c1 = table.Cell(1, 1).Range;
@@ -161,7 +161,7 @@ namespace VmkLearningKit.Controllers
                 }
             }
 
-            SaveWordDocument(@"C:\Users\orlov.leonid\Desktop\Новая папка", document, program);
+            SaveWordDocument(@"C:\Users\orlov.leonid\Desktop\Новая папка\Список кафедр.doc", document, program);
 
             return RedirectToAction("Index");
         }
@@ -204,7 +204,7 @@ namespace VmkLearningKit.Controllers
                      Word.WdDefaultTableBehavior.wdWord9TableBehavior;
                     Object autoFitBehavior =
                      Word.WdAutoFitBehavior.wdAutoFitContent;
-                    Word.Table table = document.Tables.Add(range, teachers.Count, 5,
+                    Word.Table table = document.Tables.Add(range, teachers.Count + 1, 5,
                       ref defaultTableBehavior, ref autoFitBehavior);
 
                     Word.Range c1 = table.Cell(1, 1).Range;
@@ -232,6 +232,7 @@ namespace VmkLearningKit.Controllers
                         for (int j = 0; j < 5; j++)
                         {
                             Word.Range cell = table.Cell(i + 1, j + 1).Range;
+
                             if (j == 0)
                             {
                                 cell.Text = i.ToString();
@@ -294,6 +295,9 @@ namespace VmkLearningKit.Controllers
 
             document.Paragraphs.Add();
             Word.Range r3 = document.Paragraphs[document.Paragraphs.Count].Range;
+            r3.Font.Bold = 0;
+            r3.Font.Name = "Times New Roman";
+            r3.Font.Size = 12;
             r3.Text = "";
 
             IEnumerable<Speciality> _specialities = default(IEnumerable<Speciality>);
@@ -317,6 +321,7 @@ namespace VmkLearningKit.Controllers
                         name = "Магистратура";
                         break;                
                 }
+
                 specialities = new List<Speciality>();
 
                 foreach (Speciality s in _specialities)
@@ -327,18 +332,16 @@ namespace VmkLearningKit.Controllers
                 if (specialities.Count > 0)
                 {
                     document.Paragraphs.Add();
-                    Word.Range r = document.Paragraphs[document.Paragraphs.Count].Range;
-
-                    r.Text = name;
+                    Word.Range ran = document.Paragraphs[document.Paragraphs.Count].Range;
+                    ran.Text = name;
                     
-
                     Word.Range range = document.Paragraphs.Add().Range;
 
                     Object defaultTableBehavior =
                              Word.WdDefaultTableBehavior.wdWord9TableBehavior;
                     Object autoFitBehavior =
                      Word.WdAutoFitBehavior.wdAutoFitContent;
-                    Word.Table table = document.Tables.Add(range, specialities.Count, 3,
+                    Word.Table table = document.Tables.Add(range, specialities.Count + 1, 3,
                       ref defaultTableBehavior, ref autoFitBehavior);
 
                     Word.Range c1 = table.Cell(1, 1).Range;
@@ -390,6 +393,9 @@ namespace VmkLearningKit.Controllers
 
             document.Paragraphs.Add();
             Word.Range r6 = document.Paragraphs[document.Paragraphs.Count].Range;
+            r6.Font.Bold = 0;
+            r6.Font.Name = "Times New Roman";
+            r6.Font.Size = 12;
             r6.Text = "";
 
             IEnumerable<Specialization> _specialization = default(IEnumerable<Specialization>);
@@ -424,13 +430,12 @@ namespace VmkLearningKit.Controllers
                         specialization.Add(sp);
                     }
 
+                    Word.Range ra;
                     if (specialization.Count > 0)
                     {
                         document.Paragraphs.Add();
-                        Word.Range r = document.Paragraphs[document.Paragraphs.Count].Range;
-
-                        r.Text = name + " " + s.Abbreviation;
-
+                        ra  = document.Paragraphs[document.Paragraphs.Count].Range; 
+                        ra.Text = name + " " + s.Abbreviation;
 
                         Word.Range range = document.Paragraphs.Add().Range;
 
@@ -438,7 +443,7 @@ namespace VmkLearningKit.Controllers
                                  Word.WdDefaultTableBehavior.wdWord9TableBehavior;
                         Object autoFitBehavior =
                          Word.WdAutoFitBehavior.wdAutoFitContent;
-                        Word.Table table = document.Tables.Add(range, specialization.Count, 4,
+                        Word.Table table = document.Tables.Add(range, specialization.Count + 1, 4,
                           ref defaultTableBehavior, ref autoFitBehavior);
 
                         Word.Range c1 = table.Cell(1, 1).Range;
@@ -453,28 +458,33 @@ namespace VmkLearningKit.Controllers
                         c3.Font.Bold = 1;
                         c3.Text = "Сокращенное\n название";
 
-                        Word.Range c4 = table.Cell(1, 3).Range;
+                        Word.Range c4 = table.Cell(1, 4).Range;
                         c4.Font.Bold = 1;
                         c4.Text = "Кафедры";
 
-                        for (int g = 1; i <= specialization.Count; i++)
+                        for (int g = 1; g <= specialization.Count; g++)
                         {
-                            for (int j = 0; j < 3; j++)
+                            for (int j = 0; j < 4; j++)
                             {
-                                Word.Range cell = table.Cell(i + 1, j + 1).Range;
+                                Word.Range cell = table.Cell(g + 1, j + 1).Range;
                                 if (j == 0)
                                 {
-                                    cell.Text = specialization[i - 1].Code;
+                                    cell.Text = specialization[g - 1].Code;
                                 }
 
                                 else if (j == 1)
                                 {
-                                    cell.Text = specialization[i - 1].Title;
+                                    cell.Text = specialization[g - 1].Title;
                                 }
 
                                 else if (j == 2)
                                 {
-                                    cell.Text = specialization[i - 1].Abbreviation;
+                                    cell.Text = specialization[g - 1].Abbreviation;
+                                }
+
+                                else if (j == 3)
+                                {
+                                    cell.Text = specialization[g - 1].Chair.Abbreviation;
                                 }
                             }
                         }
@@ -502,7 +512,7 @@ namespace VmkLearningKit.Controllers
 
             IEnumerable<Student> students = studentRepository.GetAll();
 
-            int i = 0;
+            int i = 0, j = 0 , k = 0;
             Excel.Range cell;
 
             cell = sheet.get_Range("A1");
@@ -525,13 +535,13 @@ namespace VmkLearningKit.Controllers
                 cell = sheet.get_Range("A" + i + 2);
                 cell.Value = s.Group.Title + " " + s.Specialization.Abbreviation;
 
-                cell = sheet.get_Range("C" + i + 2);
+                cell = sheet.get_Range("C" + j + 2);
                 cell.Value = s.User.SecondName + " " + s.User.FirstName + " " + s.User.Patronymic;
 
-                cell = sheet.get_Range("E" + i + 2);
+                cell = sheet.get_Range("E" + k + 2);
                 cell.Value = s.Chair.Abbreviation;
 
-                i++;
+                i++; j++; k++;
             }
 
             SaveExcelDocument(@"C:\Users\orlov.leonid\Desktop\Новая папка\Список студентов.xls", program, book);
