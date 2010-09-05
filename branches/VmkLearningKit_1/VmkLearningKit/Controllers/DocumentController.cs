@@ -28,7 +28,7 @@ namespace VmkLearningKit.Controllers
             document.Content.Font.Size = 12;
             document.Content.Font.Name = "Times New Roman";
 
-            program = prog; 
+            program = prog;
 
             return document;
         }
@@ -45,22 +45,22 @@ namespace VmkLearningKit.Controllers
 
         private void SaveExcelDocument(string path, Excel.Application program, Excel.Workbook book)
         {
-            
+
             program.DefaultSaveFormat = Excel.XlFileFormat.xlExcel7;
             program.DisplayAlerts = false;
             book.Saved = true;
 
-            Object Filename            = path;                                      //Имя сохраняемого файла
-            Object FileFormat          = Excel.XlFileFormat.xlExcel7;               //Формат сохраняемого файла
-            Object Password            = Type.Missing;                              //Пароль доступа к файлу до 15 символов
-            Object WriteResPassword    = Type.Missing;                              //Пароль на доступ на запись
+            Object Filename = path;                                      //Имя сохраняемого файла
+            Object FileFormat = Excel.XlFileFormat.xlExcel7;               //Формат сохраняемого файла
+            Object Password = Type.Missing;                              //Пароль доступа к файлу до 15 символов
+            Object WriteResPassword = Type.Missing;                              //Пароль на доступ на запись
             Object ReadOnlyRecommended = Type.Missing;                              //При true режим только для чтения 
-            Object CreateBackup        = Type.Missing;                              //Создать резервную копию файла при true           
-            Object ConflictResolution  = Type.Missing;                              //Способ разрешения конфликтов
-            Object AddToMru            = Type.Missing;                              //При true сохраненный документ добавляется в список ранее открытых файлов                             
-            Object TextCodePage        = Type.Missing;                              //Кодовая страница
-            Object TextVisualLayout    = Type.Missing;                              //Направление размещения текста
-            Object Local               = Type.Missing;                              //Идентификатор ExcelApplication
+            Object CreateBackup = Type.Missing;                              //Создать резервную копию файла при true           
+            Object ConflictResolution = Type.Missing;                              //Способ разрешения конфликтов
+            Object AddToMru = Type.Missing;                              //При true сохраненный документ добавляется в список ранее открытых файлов                             
+            Object TextCodePage = Type.Missing;                              //Кодовая страница
+            Object TextVisualLayout = Type.Missing;                              //Направление размещения текста
+            Object Local = Type.Missing;                              //Идентификатор ExcelApplication
 
             Excel.XlSaveAsAccessMode AccessMode = Excel.XlSaveAsAccessMode.xlNoChange;       //Режим доступа к рабочей книге
 
@@ -112,343 +112,257 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult GetChairDocument()
         {
-            GeneralMenu();
-            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
-            IChairRepository  chairRepositiry   = repositoryManager.GetChairRepository;
-
-            IEnumerable<Chair> _chairs = chairRepositiry.GetAll("VMK");
-            List<Chair> chairs = new List<Chair>();
-
-            foreach (Chair c in _chairs)
+            try
             {
-                chairs.Add(c);
-            }
+                GeneralMenu();
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+                IChairRepository chairRepositiry = repositoryManager.GetChairRepository;
 
-            Word.Application program;
-            Word.Document document = CreateWordDocument(out program);
+                IEnumerable<Chair> _chairs = chairRepositiry.GetAll("VMK");
+                List<Chair> chairs = new List<Chair>();
 
-            Object oMissing = System.Reflection.Missing.Value;
-
-            document.Paragraphs.Add(ref oMissing);
-            document.Paragraphs[document.Paragraphs.Count].Range.Text = "Список кафедр";
-
-            document.Paragraphs.Add(ref oMissing);
-            Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
-
-            Object defaultTableBehavior =
-             Word.WdDefaultTableBehavior.wdWord9TableBehavior;
-            Object autoFitBehavior =
-             Word.WdAutoFitBehavior.wdAutoFitContent;
-            Word.Table table = document.Tables.Add(range,chairs.Count + 1, 2,
-              ref defaultTableBehavior, ref autoFitBehavior);
-
-            Word.Range c1 = table.Cell(1, 1).Range;
-            c1.Font.Bold = 1;
-            c1.Text = "Название кафедры";
-
-            Word.Range c2 = table.Cell(1, 2).Range;
-            c2.Font.Bold = 1;
-            c2.Text = "Сокращенное\n название";
-
-            for (int i = 1; i <= chairs.Count; i++)
-            {
-                for (int j = 0; j < 2; j++)
+                foreach (Chair c in _chairs)
                 {
-                    Word.Range cell = table.Cell(i + 1, j + 1).Range;
-                    if (j == 0)
+                    chairs.Add(c);
+                }
+
+                Word.Application program;
+                Word.Document document = CreateWordDocument(out program);
+
+                Object oMissing = System.Reflection.Missing.Value;
+
+                document.Paragraphs.Add(ref oMissing);
+                document.Paragraphs[document.Paragraphs.Count].Range.Text = "Список кафедр";
+
+                document.Paragraphs.Add(ref oMissing);
+                Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
+
+                Object defaultTableBehavior =
+                 Word.WdDefaultTableBehavior.wdWord9TableBehavior;
+                Object autoFitBehavior =
+                 Word.WdAutoFitBehavior.wdAutoFitContent;
+                Word.Table table = document.Tables.Add(range, chairs.Count + 1, 2,
+                  ref defaultTableBehavior, ref autoFitBehavior);
+
+                Word.Range c1 = table.Cell(1, 1).Range;
+                c1.Font.Bold = 1;
+                c1.Text = "Название кафедры";
+
+                Word.Range c2 = table.Cell(1, 2).Range;
+                c2.Font.Bold = 1;
+                c2.Text = "Сокращенное\n название";
+
+                for (int i = 1; i <= chairs.Count; i++)
+                {
+                    for (int j = 0; j < 2; j++)
                     {
-                        cell.Text = chairs[i - 1].Title;
-                    }
-                    else if (j == 1)
-                    {
-                        cell.Text = chairs[i - 1].Abbreviation;
+                        Word.Range cell = table.Cell(i + 1, j + 1).Range;
+                        if (j == 0)
+                        {
+                            cell.Text = chairs[i - 1].Title;
+                        }
+                        else if (j == 1)
+                        {
+                            cell.Text = chairs[i - 1].Abbreviation;
+                        }
                     }
                 }
+
+                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
+                DirectoryInfo directory = new DirectoryInfo(path);
+                directory.Create();
+                SaveWordDocument(path + "\\Список кафедр.doc", document, program);
+
+                return RedirectToAction("Index");
             }
-
-            string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
-            DirectoryInfo directory = new DirectoryInfo(path);
-            directory.Create();
-            SaveWordDocument(path + "\\Список кафедр.doc", document, program);
-
-            return RedirectToAction("Index");
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         public ActionResult GetTeacherDocument()
         {
-            GeneralMenu();
-            RepositoryManager    repositoryManager   = RepositoryManager.GetRepositoryManager;
-            IChairRepository     chairRepositiry     = repositoryManager.GetChairRepository;
-            IProfessorRepository professorRepository = repositoryManager.GetProfessorRepository;
-            
-
-            IEnumerable<Chair> chairs = chairRepositiry.GetAll("VMK");
-
-            Word.Application program;
-            Word.Document document = CreateWordDocument(out program);
-
-            Object oMissing = System.Reflection.Missing.Value;
-
-            Word.Paragraph p = document.Paragraphs.Add(ref oMissing);
-            p.Range.Text = "Список преподавателей";
-
-            foreach (Chair c in chairs)
+            try
             {
-                IEnumerable<Professor> _teachers = professorRepository.GetAll(c.Alias);
-                List<Professor> teachers = new List<Professor>();
-                foreach (Professor professor in _teachers)
+                GeneralMenu();
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+                IChairRepository chairRepositiry = repositoryManager.GetChairRepository;
+                IProfessorRepository professorRepository = repositoryManager.GetProfessorRepository;
+
+
+                IEnumerable<Chair> chairs = chairRepositiry.GetAll("VMK");
+
+                Word.Application program;
+                Word.Document document = CreateWordDocument(out program);
+
+                Object oMissing = System.Reflection.Missing.Value;
+
+                Word.Paragraph p = document.Paragraphs.Add(ref oMissing);
+                p.Range.Text = "Список преподавателей";
+
+                foreach (Chair c in chairs)
                 {
-                    teachers.Add(professor);
-                }
-
-                if (teachers.Count > 0)
-                {                 
-                    document.Paragraphs.Add(ref oMissing);
-                    document.Paragraphs[document.Paragraphs.Count].Range.Text = "Кафедра " + c.Abbreviation;
-
-                    document.Paragraphs.Add(ref oMissing);
-                    Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
-
-                    Object defaultTableBehavior =
-                     Word.WdDefaultTableBehavior.wdWord9TableBehavior;
-                    Object autoFitBehavior =
-                     Word.WdAutoFitBehavior.wdAutoFitContent;
-                    Word.Table table = document.Tables.Add(range, teachers.Count + 1, 5,
-                      ref defaultTableBehavior, ref autoFitBehavior);
-
-                    Word.Range c1 = table.Cell(1, 1).Range;
-                    c1.Font.Bold = 1;
-                    c1.Text = "№";
-
-                    Word.Range c2 = table.Cell(1, 2).Range;
-                    c2.Font.Bold = 1;
-                    c2.Text = "ФИО";
-
-                    Word.Range c3 = table.Cell(1, 3).Range;
-                    c3.Font.Bold = 1;
-                    c3.Text = "Уч.степ.";
-
-                    Word.Range c4 = table.Cell(1, 4).Range;
-                    c4.Font.Bold = 1;
-                    c4.Text = "Звание";
-
-                    Word.Range c5 = table.Cell(1, 5).Range;
-                    c5.Font.Bold = 1;
-                    c5.Text = "Должность";
-
-                    for (int i = 1; i <= teachers.Count; i++)
+                    IEnumerable<Professor> _teachers = professorRepository.GetAll(c.Alias);
+                    List<Professor> teachers = new List<Professor>();
+                    foreach (Professor professor in _teachers)
                     {
-                        for (int j = 0; j < 5; j++)
+                        teachers.Add(professor);
+                    }
+
+                    if (teachers.Count > 0)
+                    {
+                        document.Paragraphs.Add(ref oMissing);
+                        document.Paragraphs[document.Paragraphs.Count].Range.Text = "Кафедра " + c.Abbreviation;
+
+                        document.Paragraphs.Add(ref oMissing);
+                        Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
+
+                        Object defaultTableBehavior =
+                         Word.WdDefaultTableBehavior.wdWord9TableBehavior;
+                        Object autoFitBehavior =
+                         Word.WdAutoFitBehavior.wdAutoFitContent;
+                        Word.Table table = document.Tables.Add(range, teachers.Count + 1, 5,
+                          ref defaultTableBehavior, ref autoFitBehavior);
+
+                        Word.Range c1 = table.Cell(1, 1).Range;
+                        c1.Font.Bold = 1;
+                        c1.Text = "№";
+
+                        Word.Range c2 = table.Cell(1, 2).Range;
+                        c2.Font.Bold = 1;
+                        c2.Text = "ФИО";
+
+                        Word.Range c3 = table.Cell(1, 3).Range;
+                        c3.Font.Bold = 1;
+                        c3.Text = "Уч.степ.";
+
+                        Word.Range c4 = table.Cell(1, 4).Range;
+                        c4.Font.Bold = 1;
+                        c4.Text = "Звание";
+
+                        Word.Range c5 = table.Cell(1, 5).Range;
+                        c5.Font.Bold = 1;
+                        c5.Text = "Должность";
+
+                        for (int i = 1; i <= teachers.Count; i++)
                         {
-                            Word.Range cell = table.Cell(i + 1, j + 1).Range;
-
-                            if (j == 0)
+                            for (int j = 0; j < 5; j++)
                             {
-                                cell.Text = i.ToString();
-                            }
+                                Word.Range cell = table.Cell(i + 1, j + 1).Range;
 
-                            else if (j == 1)
-                            {
-                                cell.Text = teachers[i - 1].User.SecondName + " " + teachers[i - 1].User.FirstName + " " + teachers[i - 1].User.Patronymic;
-                            }
+                                if (j == 0)
+                                {
+                                    cell.Text = i.ToString();
+                                }
 
-                            else if (j == 2)
-                            {
-                                cell.Text = teachers[i - 1].Degree;
-                            }
+                                else if (j == 1)
+                                {
+                                    cell.Text = teachers[i - 1].User.SecondName + " " + teachers[i - 1].User.FirstName + " " + teachers[i - 1].User.Patronymic;
+                                }
 
-                            else if (j == 3)
-                            {
-                                cell.Text = teachers[i - 1].Rank;
-                            }
+                                else if (j == 2)
+                                {
+                                    cell.Text = teachers[i - 1].Degree;
+                                }
 
-                            else if (j == 4)
-                            {
-                                cell.Text = teachers[i - 1].Position;
+                                else if (j == 3)
+                                {
+                                    cell.Text = teachers[i - 1].Rank;
+                                }
+
+                                else if (j == 4)
+                                {
+                                    cell.Text = teachers[i - 1].Position;
+                                }
                             }
                         }
                     }
+
                 }
 
+                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
+                DirectoryInfo directory = new DirectoryInfo(path);
+                directory.Create();
+                SaveWordDocument(path + "\\Список преподавателей.doc", document, program);
+
+                return RedirectToAction("Index");
             }
-
-            string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
-            DirectoryInfo directory = new DirectoryInfo(path);
-            directory.Create();
-            SaveWordDocument(path + "\\Список преподавателей.doc", document, program);
-
-            return RedirectToAction("Index");
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         public ActionResult GetSpecialityDocument()
         {
-            GeneralMenu();
-            RepositoryManager         repositoryManager        = RepositoryManager.GetRepositoryManager;
-            ISpecialityRepository     specialityRepository     = repositoryManager.GetSpecialityRepository;
-            ISpecializationRepository specializationRepository = repositoryManager.GetSpecializationRepository;
-
-            Word.Application program;
-            Word.Document document = CreateWordDocument(out program);
-
-            Object oMissing = System.Reflection.Missing.Value;
-
-            Word.Paragraph p = document.Paragraphs.Add(ref oMissing);
-            p.Range.Text = "Список специальностей";
-
-            document.Paragraphs.Add();
-            Word.Range r1 = document.Paragraphs[document.Paragraphs.Count].Range;
-            r1.Text = "";
-
-            document.Paragraphs.Add();
-            Word.Range r2 = document.Paragraphs[document.Paragraphs.Count].Range;
-            r2.Font.Bold = 1;
-            r2.Font.Name = "Arial";
-            r2.Font.Size = 16;
-            r2.Text = "Специальности и направления";
-
-            document.Paragraphs.Add();
-            Word.Range r3 = document.Paragraphs[document.Paragraphs.Count].Range;
-            r3.Font.Bold = 0;
-            r3.Font.Name = "Times New Roman";
-            r3.Font.Size = 12;
-            r3.Text = "";
-
-            IEnumerable<Speciality> _specialities = default(IEnumerable<Speciality>);
-            List<Speciality> specialities;
-            string name = default(string);
-
-            for (int k = 0; k < 3; k++)
+            try
             {
-                switch(k)
+                GeneralMenu();
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+                ISpecialityRepository specialityRepository = repositoryManager.GetSpecialityRepository;
+                ISpecializationRepository specializationRepository = repositoryManager.GetSpecializationRepository;
+
+                Word.Application program;
+                Word.Document document = CreateWordDocument(out program);
+
+                Object oMissing = System.Reflection.Missing.Value;
+
+                Word.Paragraph p = document.Paragraphs.Add(ref oMissing);
+                p.Range.Text = "Список специальностей";
+
+                document.Paragraphs.Add();
+                Word.Range r1 = document.Paragraphs[document.Paragraphs.Count].Range;
+                r1.Text = "";
+
+                document.Paragraphs.Add();
+                Word.Range r2 = document.Paragraphs[document.Paragraphs.Count].Range;
+                r2.Font.Bold = 1;
+                r2.Font.Name = "Arial";
+                r2.Font.Size = 16;
+                r2.Text = "Специальности и направления";
+
+                document.Paragraphs.Add();
+                Word.Range r3 = document.Paragraphs[document.Paragraphs.Count].Range;
+                r3.Font.Bold = 0;
+                r3.Font.Name = "Times New Roman";
+                r3.Font.Size = 12;
+                r3.Text = "";
+
+                IEnumerable<Speciality> _specialities = default(IEnumerable<Speciality>);
+                List<Speciality> specialities;
+                string name = default(string);
+
+                for (int k = 0; k < 3; k++)
                 {
-                    case 0:
-                        _specialities = specialityRepository.GetAllByEducationPlanTitle("Специалитет");
-                        name = "Специалитет";
-                        break;
-                    case 1:
-                        _specialities = specialityRepository.GetAllByEducationPlanTitle("Бакалавриат");
-                        name = "Бакалавриат";
-                        break;
-                    case 2:
-                        _specialities = specialityRepository.GetAllByEducationPlanTitle("Магистратура");
-                        name = "Магистратура";
-                        break;                
-                }
-
-                specialities = new List<Speciality>();
-
-                foreach (Speciality s in _specialities)
-                {
-                    specialities.Add(s);
-                }
-
-                if (specialities.Count > 0)
-                {
-                    document.Paragraphs.Add();
-                    Word.Range ran = document.Paragraphs[document.Paragraphs.Count].Range;
-                    ran.Text = name;
-                    
-                    document.Paragraphs.Add();
-                    Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
-
-                    Object defaultTableBehavior =
-                             Word.WdDefaultTableBehavior.wdWord9TableBehavior;
-                    Object autoFitBehavior =
-                     Word.WdAutoFitBehavior.wdAutoFitContent;
-                    Word.Table table = document.Tables.Add(range, specialities.Count + 1, 3,
-                      ref defaultTableBehavior, ref autoFitBehavior);
-
-                    Word.Range c1 = table.Cell(1, 1).Range;
-                    c1.Font.Bold = 1;
-                    c1.Text = "Код";
-
-                    Word.Range c2 = table.Cell(1, 2).Range;
-                    c2.Font.Bold = 1;
-                    c2.Text = "Название";
-
-                    Word.Range c3 = table.Cell(1, 3).Range;
-                    c3.Font.Bold = 1;
-                    c3.Text = "Сокращенное\n название";
-
-                    for (int i = 1; i <= specialities.Count; i++)
+                    switch (k)
                     {
-                        for (int j = 0; j < 3; j++)
-                        {
-                            Word.Range cell = table.Cell(i + 1, j + 1).Range;
-                            if (j == 0)
-                            {
-                                cell.Text = specialities[i - 1].Code;
-                            }
-
-                            else if (j == 1)
-                            {
-                                cell.Text = specialities[i - 1].Title;
-                            }
-
-                            else if (j == 2)
-                            {
-                                cell.Text = specialities[i - 1].Abbreviation;
-                            }
-                        }
+                        case 0:
+                            _specialities = specialityRepository.GetAllByEducationPlanTitle("Специалитет");
+                            name = "Специалитет";
+                            break;
+                        case 1:
+                            _specialities = specialityRepository.GetAllByEducationPlanTitle("Бакалавриат");
+                            name = "Бакалавриат";
+                            break;
+                        case 2:
+                            _specialities = specialityRepository.GetAllByEducationPlanTitle("Магистратура");
+                            name = "Магистратура";
+                            break;
                     }
-                }
-            }
 
-            document.Paragraphs.Add();
-            Word.Range r4 = document.Paragraphs[document.Paragraphs.Count].Range;
-            r4.Text = "";
+                    specialities = new List<Speciality>();
 
-            document.Paragraphs.Add();
-            Word.Range r5 = document.Paragraphs[document.Paragraphs.Count].Range;
-            r5.Font.Bold = 1;
-            r5.Font.Name = "Arial";
-            r5.Font.Size = 16;
-            r5.Text = "Специализации";
-
-            document.Paragraphs.Add();
-            Word.Range r6 = document.Paragraphs[document.Paragraphs.Count].Range;
-            r6.Font.Bold = 0;
-            r6.Font.Name = "Times New Roman";
-            r6.Font.Size = 12;
-            r6.Text = "";
-
-            IEnumerable<Specialization> _specialization = default(IEnumerable<Specialization>);
-            List<Specialization> specialization;
-
-            for (int i = 0; i < 3; i++)
-            {
-                switch (i)
-                {
-                    case 0:
-                        _specialities = specialityRepository.GetAllByEducationPlanTitle("Специалитет");
-                        name = "Специалитет";
-                        break;
-                    case 1:
-                        _specialities = specialityRepository.GetAllByEducationPlanTitle("Бакалавриат");
-                        name = "Бакалавриат";
-                        break;
-                    case 2:
-                        _specialities = specialityRepository.GetAllByEducationPlanTitle("Магистратура");
-                        name = "Магистратура";
-                        break;
-                }
-
-                foreach (Speciality s in _specialities)
-                {
-                    _specialization = specializationRepository.GetAllBySpecialityIdAndEducationPlanTitle(s.Id, name);
-
-                    specialization = new List<Specialization>();
-
-                    foreach (Specialization sp in _specialization)
+                    foreach (Speciality s in _specialities)
                     {
-                        specialization.Add(sp);
+                        specialities.Add(s);
                     }
-                
-                    if (specialization.Count > 0)
+
+                    if (specialities.Count > 0)
                     {
                         document.Paragraphs.Add();
-                        Word.Range ra = document.Paragraphs[document.Paragraphs.Count].Range; 
-                        ra.Text = name + " " + s.Abbreviation;
+                        Word.Range ran = document.Paragraphs[document.Paragraphs.Count].Range;
+                        ran.Text = name;
 
                         document.Paragraphs.Add();
                         Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -457,7 +371,7 @@ namespace VmkLearningKit.Controllers
                                  Word.WdDefaultTableBehavior.wdWord9TableBehavior;
                         Object autoFitBehavior =
                          Word.WdAutoFitBehavior.wdAutoFitContent;
-                        Word.Table table = document.Tables.Add(range, specialization.Count + 1, 4,
+                        Word.Table table = document.Tables.Add(range, specialities.Count + 1, 3,
                           ref defaultTableBehavior, ref autoFitBehavior);
 
                         Word.Range c1 = table.Cell(1, 1).Range;
@@ -472,109 +386,389 @@ namespace VmkLearningKit.Controllers
                         c3.Font.Bold = 1;
                         c3.Text = "Сокращенное\n название";
 
-                        Word.Range c4 = table.Cell(1, 4).Range;
-                        c4.Font.Bold = 1;
-                        c4.Text = "Кафедры";
-
-                        for (int g = 1; g <= specialization.Count; g++)
+                        for (int i = 1; i <= specialities.Count; i++)
                         {
-                            for (int j = 0; j < 4; j++)
+                            for (int j = 0; j < 3; j++)
                             {
-                                Word.Range cell = table.Cell(g + 1, j + 1).Range;
+                                Word.Range cell = table.Cell(i + 1, j + 1).Range;
                                 if (j == 0)
                                 {
-                                    cell.Text = specialization[g - 1].Code;
+                                    cell.Text = specialities[i - 1].Code;
                                 }
 
                                 else if (j == 1)
                                 {
-                                    cell.Text = specialization[g - 1].Title;
+                                    cell.Text = specialities[i - 1].Title;
                                 }
 
                                 else if (j == 2)
                                 {
-                                    cell.Text = specialization[g - 1].Abbreviation;
-                                }
-
-                                else if (j == 3)
-                                {
-                                    cell.Text = specialization[g - 1].Chair.Abbreviation;
+                                    cell.Text = specialities[i - 1].Abbreviation;
                                 }
                             }
                         }
                     }
                 }
 
+                document.Paragraphs.Add();
+                Word.Range r4 = document.Paragraphs[document.Paragraphs.Count].Range;
+                r4.Text = "";
+
+                document.Paragraphs.Add();
+                Word.Range r5 = document.Paragraphs[document.Paragraphs.Count].Range;
+                r5.Font.Bold = 1;
+                r5.Font.Name = "Arial";
+                r5.Font.Size = 16;
+                r5.Text = "Специализации";
+
+                document.Paragraphs.Add();
+                Word.Range r6 = document.Paragraphs[document.Paragraphs.Count].Range;
+                r6.Font.Bold = 0;
+                r6.Font.Name = "Times New Roman";
+                r6.Font.Size = 12;
+                r6.Text = "";
+
+                IEnumerable<Specialization> _specialization = default(IEnumerable<Specialization>);
+                List<Specialization> specialization;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            _specialities = specialityRepository.GetAllByEducationPlanTitle("Специалитет");
+                            name = "Специалитет";
+                            break;
+                        case 1:
+                            _specialities = specialityRepository.GetAllByEducationPlanTitle("Бакалавриат");
+                            name = "Бакалавриат";
+                            break;
+                        case 2:
+                            _specialities = specialityRepository.GetAllByEducationPlanTitle("Магистратура");
+                            name = "Магистратура";
+                            break;
+                    }
+
+                    foreach (Speciality s in _specialities)
+                    {
+                        _specialization = specializationRepository.GetAllBySpecialityIdAndEducationPlanTitle(s.Id, name);
+
+                        specialization = new List<Specialization>();
+
+                        foreach (Specialization sp in _specialization)
+                        {
+                            specialization.Add(sp);
+                        }
+
+                        if (specialization.Count > 0)
+                        {
+                            document.Paragraphs.Add();
+                            Word.Range ra = document.Paragraphs[document.Paragraphs.Count].Range;
+                            ra.Text = name + " " + s.Abbreviation;
+
+                            document.Paragraphs.Add();
+                            Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
+
+                            Object defaultTableBehavior =
+                                     Word.WdDefaultTableBehavior.wdWord9TableBehavior;
+                            Object autoFitBehavior =
+                             Word.WdAutoFitBehavior.wdAutoFitContent;
+                            Word.Table table = document.Tables.Add(range, specialization.Count + 1, 4,
+                              ref defaultTableBehavior, ref autoFitBehavior);
+
+                            Word.Range c1 = table.Cell(1, 1).Range;
+                            c1.Font.Bold = 1;
+                            c1.Text = "Код";
+
+                            Word.Range c2 = table.Cell(1, 2).Range;
+                            c2.Font.Bold = 1;
+                            c2.Text = "Название";
+
+                            Word.Range c3 = table.Cell(1, 3).Range;
+                            c3.Font.Bold = 1;
+                            c3.Text = "Сокращенное\n название";
+
+                            Word.Range c4 = table.Cell(1, 4).Range;
+                            c4.Font.Bold = 1;
+                            c4.Text = "Кафедры";
+
+                            for (int g = 1; g <= specialization.Count; g++)
+                            {
+                                for (int j = 0; j < 4; j++)
+                                {
+                                    Word.Range cell = table.Cell(g + 1, j + 1).Range;
+                                    if (j == 0)
+                                    {
+                                        cell.Text = specialization[g - 1].Code;
+                                    }
+
+                                    else if (j == 1)
+                                    {
+                                        cell.Text = specialization[g - 1].Title;
+                                    }
+
+                                    else if (j == 2)
+                                    {
+                                        cell.Text = specialization[g - 1].Abbreviation;
+                                    }
+
+                                    else if (j == 3)
+                                    {
+                                        cell.Text = specialization[g - 1].Chair.Abbreviation;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
+                DirectoryInfo directory = new DirectoryInfo(path);
+                directory.Create();
+                SaveWordDocument(path + "\\Список специальностей.doc", document, program);
+
+                return RedirectToAction("Index");
             }
-
-            string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
-            DirectoryInfo directory = new DirectoryInfo(path);
-            directory.Create();
-            SaveWordDocument(path + "\\Список специальностей.doc", document, program);
-
-            return RedirectToAction("Index");
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         public ActionResult GetStudentDocument()
         {
-            GeneralMenu();
-            RepositoryManager repositorymanager = RepositoryManager.GetRepositoryManager;
-
-            IStudentRepository studentRepository = repositorymanager.GetStudentRepository;
-
-            Excel.Workbook book;
-            Excel.Application program = CreateExcelDocument(out book);
-
-            Excel.Sheets sheets = book.Worksheets;
-            Excel.Worksheet sheet = (Excel.Worksheet)sheets.get_Item(1);
-
-            IEnumerable<Student> students = studentRepository.GetAll();
-
-            int i = 0;
-            Excel.Range cell;
-
-            cell = sheet.get_Range("A1");
-            cell.Font.Italic = 1;
-            cell.Font.Bold = 1;
-            cell.Value = "Группа";
-
-            cell = sheet.get_Range("C1");
-            cell.Font.Italic = 1;
-            cell.Font.Bold = 1;
-            cell.Value = "ФИО";
-
-            cell = sheet.get_Range("E1");
-            cell.Font.Italic = 1;
-            cell.Font.Bold = 1;
-            cell.Value = "Каф";
-
-            foreach (Student s in students)
+            try
             {
-                cell = sheet.get_Range("A" + (i + 2));
-                cell.Value = s.Group.Title + " " + s.Specialization.Abbreviation;
+                GeneralMenu();
+                RepositoryManager repositorymanager = RepositoryManager.GetRepositoryManager;
 
-                cell = sheet.get_Range("C" + (i + 2));
-                cell.Value = s.User.SecondName + " " + s.User.FirstName + " " + s.User.Patronymic;
+                IStudentRepository studentRepository = repositorymanager.GetStudentRepository;
 
-                cell = sheet.get_Range("E" + (i + 2));
-                cell.Value = s.Chair.Abbreviation;
+                Excel.Workbook book;
+                Excel.Application program = CreateExcelDocument(out book);
 
-                i++; 
+                Excel.Sheets sheets = book.Worksheets;
+                Excel.Worksheet sheet = (Excel.Worksheet)sheets.get_Item(1);
+
+                IEnumerable<Student> students = studentRepository.GetAll();
+
+                int i = 0;
+                Excel.Range cell;
+
+                cell = sheet.get_Range("A1");
+                cell.Font.Italic = 1;
+                cell.Font.Bold = 1;
+                cell.Value = "Группа";
+
+                cell = sheet.get_Range("C1");
+                cell.Font.Italic = 1;
+                cell.Font.Bold = 1;
+                cell.Value = "ФИО";
+
+                cell = sheet.get_Range("E1");
+                cell.Font.Italic = 1;
+                cell.Font.Bold = 1;
+                cell.Value = "Каф";
+
+                foreach (Student s in students)
+                {
+                    cell = sheet.get_Range("A" + (i + 2));
+                    cell.Value = s.Group.Title + " " + s.Specialization.Abbreviation;
+
+                    cell = sheet.get_Range("C" + (i + 2));
+                    cell.Value = s.User.SecondName + " " + s.User.FirstName + " " + s.User.Patronymic;
+
+                    cell = sheet.get_Range("E" + (i + 2));
+                    cell.Value = s.Chair.Abbreviation;
+
+                    i++;
+                }
+
+                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
+                DirectoryInfo directory = new DirectoryInfo(path);
+                directory.Create();
+                SaveExcelDocument(path + "\\Список студентов.doc", program, book);
+
+                return RedirectToAction("Index");
             }
-
-            string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
-            DirectoryInfo directory = new DirectoryInfo(path);
-            directory.Create();
-            SaveExcelDocument(path + "\\Список студентов.doc", program, book);
-
-            return RedirectToAction("Index");
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         public ActionResult GetDisciplineProgramDocument()
         {
-            GeneralMenu();
-            return RedirectToAction("Index");
-        }
+            try
+            {
+                GeneralMenu();
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+                ISpecialityDisciplineProgramRepository specialityDisciplineProgramRepository
+                    = repositoryManager.GetSpecialityDisciplineProgramRepository;
 
+                SpecialityDisciplineProgram disciplineProgram = specialityDisciplineProgramRepository.GetById(1);
+
+                Word.Application program;
+                Word.Document document = CreateWordDocument(out program);
+
+                document.Content.Font.Size = 14;
+
+                Object oMissing = System.Reflection.Missing.Value;
+                Word.Range range;
+                Word.Range cell;
+                bool flag;
+
+                string applicationDomain = disciplineProgram.ApplicationDomain;
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "1. Область применения";
+
+                flag = true;
+                while (flag)
+                {
+                    int index = applicationDomain.IndexOf("<p>");
+                    if (index != -1)
+                    {
+                        document.Paragraphs.Add();
+                        range = document.Paragraphs[document.Paragraphs.Count].Range;
+                        range.Text = applicationDomain.Substring(index + 3, applicationDomain.IndexOf("</p>") - index - 4);
+                        string p = applicationDomain.Substring(index, applicationDomain.IndexOf("</p>") + 4);
+                        applicationDomain = applicationDomain.Replace(p, "");
+                    }
+                    else
+                        flag = false;
+                }
+
+                string purposes = disciplineProgram.Purposes;
+
+                document.Paragraphs.Add();
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "2. Цели и задачи дисциплины";
+
+                flag = true;
+                while (flag)
+                {
+                    int index = purposes.IndexOf("<p>");
+                    if (index != -1)
+                    {
+                        document.Paragraphs.Add();
+                        range = document.Paragraphs[document.Paragraphs.Count].Range;
+                        range.Text = purposes.Substring(index + 3, purposes.IndexOf("</p>") - index - 4);
+                        string p = purposes.Substring(index, purposes.IndexOf("</p>") + 4);
+                        purposes = purposes.Replace(p, "");
+                    }
+                    else
+                        flag = false;
+                }
+
+                string requirements = disciplineProgram.Requirements;
+
+                document.Paragraphs.Add();
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "3. Требования к уровню освоения содержания дисциплины";
+
+                flag = true;
+                while (flag)
+                {
+                    int index = requirements.IndexOf("<p>");
+                    if (index != -1)
+                    {
+                        document.Paragraphs.Add();
+                        range = document.Paragraphs[document.Paragraphs.Count].Range;
+                        range.Text = requirements.Substring(index + 3, requirements.IndexOf("</p>") - index - 4);
+                        string p = requirements.Substring(index, requirements.IndexOf("</p>") + 4);
+                        requirements = requirements.Replace(p, "");
+                    }
+                    else
+                        flag = false;
+                }
+
+                string volume = disciplineProgram.Volume;
+
+                document.Paragraphs.Add();
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "4. Объем дисциплины и виды учебной работы";
+
+                List<string> cells = specialityDisciplineProgramRepository.GetVolume(disciplineProgram.SpecialityDisciplineId);
+
+                document.Paragraphs.Add(ref oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+
+                Object defaultTableBehavior =
+                 Word.WdDefaultTableBehavior.wdWord9TableBehavior;
+                Object autoFitBehavior =
+                 Word.WdAutoFitBehavior.wdAutoFitContent;
+                Word.Table table = document.Tables.Add(range, cells.Count / 3 + 1, 3,
+                  ref defaultTableBehavior, ref autoFitBehavior);
+
+                cell = table.Cell(1, 1).Range;
+                cell.Text = "Виды учебной работы";
+
+                cell = table.Cell(1, 2).Range;
+                cell.Text = "Всего\n часов";
+
+                cell = table.Cell(1, 3).Range;
+                cell.Text = "Семестры";
+
+                int l = 0;
+                for (int i = 1; i <= cells.Count / 3; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        cell = table.Cell(i + 1, j + 1).Range;
+                        cell.Text = cells[l];
+                        l++;
+                    }
+                }
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 12;
+                range.Font.Italic = 1;
+                range.Text = "(в первой графе таблицы указываются виды аудиторных работ и самостоятельных занятий студентов. Во второй графе указывается общая трудоемкость дисциплины в часах в соответствии с ГОС ВПО, объем аудиторных и объем самостоятельных занятий - в соответствии с примерным учебным планом. В третьей графе указываются номера семестров, в которых предусматривается каждый вид учебной работы и вид итогового контроля по дисциплине)";
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "Выше обозначенная таблица составляется отдельно для каждой из форм обучения, предусмотренных учебным планом.";
+
+                document.Paragraphs.Add();
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
+                range.Font.Italic = 0;
+                range.Text = "5. Содержание дисциплины";
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "5. Разделы дисциплины и виды занятий";
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 12;
+                range.Font.Italic = 1;
+                range.Text = "(допускается название п.4.1. «Тематический план»)";
+
+
+                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
+                DirectoryInfo directory = new DirectoryInfo(path);
+                directory.Create();
+                SaveWordDocument(path + "\\Программа дисциплины.doc", document, program);
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
+        }
     }
 }

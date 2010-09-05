@@ -21,48 +21,55 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult GetPlanGeneration(long alias)
         {
-            GeneralMenu();
-
-            long topicId = alias;
-            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
-
-            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
-
-            IRazdelRepository razdelRepository                                       = 
-                repositoryManager.GetRazdelRepository;
-            ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository =
-                repositoryManager.GetSpecialityDisciplineTopicRepository;
-            ISpecialityDisciplineRepository           specialityDisciplineRepository =
-                repositoryManager.GetSpecialityDisciplineRepository;
-
-            ViewData["SpecialityDiscipline"]                                  = 
-                specialityDisciplineRepository.GetdBySpecialityDisciplineTopicId(topicId);
-            ViewData["SpecialityDisciplineTopic"]                             = 
-                specialityDisciplineTopicRepository.GetById(topicId);
-            ViewData["AllRazdelsBySpecialityDisciplineTopic"]                 = 
-                razdelRepository.GetAllRazdelsBySpecialityDisciplineTopicId(topicId);
-            ViewData["QuestionCountBySpecialityDisciplineTopic"]              = 
-                specialityDisciplineTopicRepository.GetQuestionCountBySpecialityDisciplineTopicId(topicId);
-            ViewData["QuestionCountInTestVariantBySpecialityDisciplineTopic"] = 
-                specialityDisciplineTopicRepository.GetQuestionCountInTestVariantBySpecialityDisciplineTopicId(topicId);
-            ViewData["VariantCount"]                                          = 
-                specialityDisciplineTopicRepository.GetVariantCount();
-            ViewData["RazdelCountBySpecialityDisciplineTopic"]                = 
-                specialityDisciplineTopicRepository.GetRazdelCountBySpecialityDisciplineTopicId(topicId);
-            ViewData["TopicId"]                                               = 
-                topicId;
-
-            ArrayList QuestionCountByRazdels = new ArrayList();
-
-            foreach (Razdel r in (IEnumerable<Razdel>)ViewData["AllRazdelsBySpecialityDisciplineTopic"])
+            try
             {
-                QuestionCountByRazdels.Add(razdelRepository.GetQuestionCountByRazdelId(r.Id));
+                GeneralMenu();
+
+                long topicId = alias;
+                ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+
+                IRazdelRepository razdelRepository =
+                    repositoryManager.GetRazdelRepository;
+                ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository =
+                    repositoryManager.GetSpecialityDisciplineTopicRepository;
+                ISpecialityDisciplineRepository specialityDisciplineRepository =
+                    repositoryManager.GetSpecialityDisciplineRepository;
+
+                ViewData["SpecialityDiscipline"] =
+                    specialityDisciplineRepository.GetdBySpecialityDisciplineTopicId(topicId);
+                ViewData["SpecialityDisciplineTopic"] =
+                    specialityDisciplineTopicRepository.GetById(topicId);
+                ViewData["AllRazdelsBySpecialityDisciplineTopic"] =
+                    razdelRepository.GetAllRazdelsBySpecialityDisciplineTopicId(topicId);
+                ViewData["QuestionCountBySpecialityDisciplineTopic"] =
+                    specialityDisciplineTopicRepository.GetQuestionCountBySpecialityDisciplineTopicId(topicId);
+                ViewData["QuestionCountInTestVariantBySpecialityDisciplineTopic"] =
+                    specialityDisciplineTopicRepository.GetQuestionCountInTestVariantBySpecialityDisciplineTopicId(topicId);
+                ViewData["VariantCount"] =
+                    specialityDisciplineTopicRepository.GetVariantCount();
+                ViewData["RazdelCountBySpecialityDisciplineTopic"] =
+                    specialityDisciplineTopicRepository.GetRazdelCountBySpecialityDisciplineTopicId(topicId);
+                ViewData["TopicId"] =
+                    topicId;
+
+                ArrayList QuestionCountByRazdels = new ArrayList();
+
+                foreach (Razdel r in (IEnumerable<Razdel>)ViewData["AllRazdelsBySpecialityDisciplineTopic"])
+                {
+                    QuestionCountByRazdels.Add(razdelRepository.GetQuestionCountByRazdelId(r.Id));
+                }
+
+                ViewData["QuestionCountByRazdels"] = QuestionCountByRazdels;
+
+
+                return View();
             }
-
-            ViewData["QuestionCountByRazdels"] = QuestionCountByRazdels;
-
-
-            return View();
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         /// <summary>
@@ -74,9 +81,16 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult AddTest(long topicId, int variantCount, int questionCount)
         {
-            repositoryManager.GetGeneratedTestRepository.Add(topicId, variantCount, questionCount);
+            try
+            {
+                repositoryManager.GetGeneratedTestRepository.Add(topicId, variantCount, questionCount);
 
-            return Redirect("/Tests/GetGeneratedTests/"+ topicId.ToString());
+                return Redirect("/Tests/GetGeneratedTests/" + topicId.ToString());
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         /// <summary>
@@ -87,7 +101,14 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Edit(long topicId)
         {
-            return RedirectToAction("GetPlanGeneration", "PlanGeneration", new { alias = topicId });
+            try
+            {
+                return RedirectToAction("GetPlanGeneration", "PlanGeneration", new { alias = topicId });
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         /// <summary>
@@ -125,7 +146,7 @@ namespace VmkLearningKit.Controllers
                 return RedirectToAction("GetPlanGeneration", "PlanGeneration", new { alias = topicId });
             }
 
-            catch (Exception exc)
+            catch
             {
                 return RedirectToAction("Error", "Home");
             }
