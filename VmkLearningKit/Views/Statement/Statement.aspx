@@ -570,7 +570,7 @@ function Set3Rule() {
     
     
     <p>
-    <div><b>В базе данных нет информации о студентах данной группы</b>
+    <div><b><h2>В базе данных нет информации о студентах данной группы</h2></b>
     </div>
     </p>
     <%}  %>
@@ -592,7 +592,7 @@ function Set3Rule() {
     </table>
     <br/>     
     <p>
-    <div><b>Нет тем по данной дисциплине</b>
+    <div><b><h2>Нет тем по данной дисциплине</h2></b>
     </div>
     </p>
             <%}%>
@@ -674,7 +674,12 @@ function Set3Rule() {
                                     i++;%>
                                     <%if (atvItem.State == VLKConstants.TEST_VARIANT_STATE_DONE || atvItem.State == VLKConstants.TEST_VARIANT_STATE_CHECKED)
                                     {%>
-			                            <td id="fake_<%=topicItem.Id%>_<%=i%>_var"><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()] ), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+			     <!---вывод номера варианта-->
+                                        <td id="fake_<%=topicItem.Id%>_<%=i%>_var">
+                                        <a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
+                                        <%=Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()]) %>
+                                        </a>
+                                        <%//=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()] ), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
 			                            </td>  
 
                                         <%if (atvItem.Mark!=0)
@@ -687,6 +692,7 @@ function Set3Rule() {
                                                 }
                                                 else
                                                 { %>
+                 <!--вывод количества полученных баллов-->
                                                     <td id="fake_<%=topicItem.Id%>_<%=i%>_score"><a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
                                                     <%=Html.Encode(atvItem.Score) %> </a>
                                                     <%//=Html.ActionLink(Html.Encode(atvItem.Score), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
