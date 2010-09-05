@@ -15,6 +15,7 @@
         <h4 class="SuperLink"><%= Html.ActionLink("Управление специализациями", "Specializations", "Admin")%></h4>
         <h4 class="SuperLink"><%= Html.ActionLink("Управление дисциплинами", "SpecialityDisciplines", "Admin")%></h4>
         <h4 class="SuperLink"><%= Html.ActionLink("Загрузка образовательных документов", "XmlParse", "Admin")%></h4>
+        <h4 class="SuperLink"><%= Html.ActionLink("Генерация образовательных документов", "Index", "Document")%></h4>
     </div>
 </asp:Content>
 

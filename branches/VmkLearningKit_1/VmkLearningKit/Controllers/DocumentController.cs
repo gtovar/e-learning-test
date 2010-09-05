@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using VmkLearningKit.Models.Repository;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
+using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Controllers
 {
+    [AuthorizeFilter(Roles = "Admin")]
     public class DocumentController : Controller
     {
         private Word.Document CreateWordDocument(out Word.Application program)
@@ -335,7 +337,8 @@ namespace VmkLearningKit.Controllers
                     Word.Range ran = document.Paragraphs[document.Paragraphs.Count].Range;
                     ran.Text = name;
                     
-                    Word.Range range = document.Paragraphs.Add().Range;
+                    document.Paragraphs.Add();
+                    Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
 
                     Object defaultTableBehavior =
                              Word.WdDefaultTableBehavior.wdWord9TableBehavior;
@@ -429,15 +432,15 @@ namespace VmkLearningKit.Controllers
                     {
                         specialization.Add(sp);
                     }
-
-                    Word.Range ra;
+                
                     if (specialization.Count > 0)
                     {
                         document.Paragraphs.Add();
-                        ra  = document.Paragraphs[document.Paragraphs.Count].Range; 
+                        Word.Range ra = document.Paragraphs[document.Paragraphs.Count].Range; 
                         ra.Text = name + " " + s.Abbreviation;
 
-                        Word.Range range = document.Paragraphs.Add().Range;
+                        document.Paragraphs.Add();
+                        Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
 
                         Object defaultTableBehavior =
                                  Word.WdDefaultTableBehavior.wdWord9TableBehavior;
@@ -512,7 +515,7 @@ namespace VmkLearningKit.Controllers
 
             IEnumerable<Student> students = studentRepository.GetAll();
 
-            int i = 0, j = 0 , k = 0;
+            int i = 0;
             Excel.Range cell;
 
             cell = sheet.get_Range("A1");
@@ -532,19 +535,25 @@ namespace VmkLearningKit.Controllers
 
             foreach (Student s in students)
             {
-                cell = sheet.get_Range("A" + i + 2);
+                cell = sheet.get_Range("A" + (i + 2));
                 cell.Value = s.Group.Title + " " + s.Specialization.Abbreviation;
 
-                cell = sheet.get_Range("C" + j + 2);
+                cell = sheet.get_Range("C" + (i + 2));
                 cell.Value = s.User.SecondName + " " + s.User.FirstName + " " + s.User.Patronymic;
 
-                cell = sheet.get_Range("E" + k + 2);
+                cell = sheet.get_Range("E" + (i + 2));
                 cell.Value = s.Chair.Abbreviation;
 
-                i++; j++; k++;
+                i++; 
             }
 
             SaveExcelDocument(@"C:\Users\orlov.leonid\Desktop\Новая папка\Список студентов.xls", program, book);
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult GetProgramDisciplineDocument()
+        {
 
             return RedirectToAction("Index");
         }

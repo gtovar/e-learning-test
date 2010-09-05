@@ -5,9 +5,13 @@ using System.Web;
 using System.Web.Mvc;
 using VmkLearningKit.Models.Repository;
 using System.Collections;
+using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Controllers
 {
+    [HandleError]
+    [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
+    [OutputCache(Location = System.Web.UI.OutputCacheLocation.None)]
     public class PlanGenerationController : AbstractController
     {
         /// <summary>
@@ -18,6 +22,8 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult GetPlanGeneration(long alias)
         {
+            GeneralMenu();
+
             long topicId = alias;
             ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
 

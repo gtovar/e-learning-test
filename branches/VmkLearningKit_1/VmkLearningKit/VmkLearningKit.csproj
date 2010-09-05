@@ -45,7 +45,7 @@
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Word, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -152,10 +152,10 @@
     <Compile Include="Models\Repository\GeneratedQuestion\IGeneratedQuestionRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTestVariant\GeneratedTestVariantRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTestVariant\IGeneratedTestVariantRepository.cs" />
-    <Compile Include="Models\Repository\GeneratedTest\Builder.cs" />
     <Compile Include="Models\Repository\GeneratedTest\GeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\IGeneratedTestRepository.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Index.cs" />
+    <Compile Include="Models\Repository\GeneratedTest\Page.cs" />
     <Compile Include="Models\Repository\GeneratedTest\Theme.cs" />
     <Compile Include="Models\Repository\GroupsLectureTimetable\IGroupsLectureTimetableRepository.cs" />
     <Compile Include="Models\Repository\GroupsLectureTimetable\GroupsLectureTimetableRepository.cs" />
@@ -912,7 +912,6 @@
     <Folder Include="Uploads\AssignedTests\" />
     <Folder Include="Uploads\Excel\" />
     <Folder Include="Uploads\Images\" />
-    <Folder Include="Uploads\Pacages\" />
     <Folder Include="Uploads\Word\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
