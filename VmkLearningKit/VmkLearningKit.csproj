@@ -910,6 +910,7 @@
     <Folder Include="Scripts\MathJax\config\browsers\" />
     <Folder Include="Scripts\MathJax\jax\output\HTML-CSS\fonts\TeX\Math\Regular\" />
     <Folder Include="Uploads\AssignedTests\" />
+    <Folder Include="Uploads\Downloads\" />
     <Folder Include="Uploads\Excel\" />
     <Folder Include="Uploads\Images\" />
     <Folder Include="Uploads\Word\" />

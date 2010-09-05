@@ -7,6 +7,7 @@ using VmkLearningKit.Models.Repository;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
 using VmkLearningKit.Core;
+using System.IO;
 
 namespace VmkLearningKit.Controllers
 {
@@ -163,7 +164,10 @@ namespace VmkLearningKit.Controllers
                 }
             }
 
-            SaveWordDocument(@"C:\Users\orlov.leonid\Desktop\Новая папка\Список кафедр.doc", document, program);
+            string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
+            DirectoryInfo directory = new DirectoryInfo(path);
+            directory.Create();
+            SaveWordDocument(path + "\\Список кафедр.doc", document, program);
 
             return RedirectToAction("Index");
         }
@@ -265,7 +269,10 @@ namespace VmkLearningKit.Controllers
 
             }
 
-            SaveWordDocument(@"C:\Users\orlov.leonid\Desktop\Новая папка\Список преподавателей.doc", document, program);
+            string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
+            DirectoryInfo directory = new DirectoryInfo(path);
+            directory.Create();
+            SaveWordDocument(path + "\\Список преподавателей.doc", document, program);
 
             return RedirectToAction("Index");
         }
@@ -496,7 +503,10 @@ namespace VmkLearningKit.Controllers
 
             }
 
-            SaveWordDocument(@"C:\Users\orlov.leonid\Desktop\Новая папка\Список специальностей.doc", document, program);
+            string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
+            DirectoryInfo directory = new DirectoryInfo(path);
+            directory.Create();
+            SaveWordDocument(path + "\\Список специальностей.doc", document, program);
 
             return RedirectToAction("Index");
         }
@@ -547,7 +557,10 @@ namespace VmkLearningKit.Controllers
                 i++; 
             }
 
-            SaveExcelDocument(@"C:\Users\orlov.leonid\Desktop\Новая папка\Список студентов.xls", program, book);
+            string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
+            DirectoryInfo directory = new DirectoryInfo(path);
+            directory.Create();
+            SaveExcelDocument(path + "\\Список студентов.doc", program, book);
 
             return RedirectToAction("Index");
         }
