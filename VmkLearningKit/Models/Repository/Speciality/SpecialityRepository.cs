@@ -36,9 +36,25 @@ namespace VmkLearningKit.Models.Repository
         }
         */
 
-        public IEnumerable<Speciality> GetAllByEducationPlanTitle(string title)
+        public List<Speciality> GetAllByEducationPlanTitle(string title)
         {
-            return DataContext.Specialities.Where(t => t.EducationPlan.Title == title);
+            List<Speciality> specialities = new List<Speciality>();
+            IEnumerable<Specialization> specializations;
+
+            foreach (Speciality s in DataContext.Specialities)
+            {
+                specializations = DataContext.Specializations.Where(t => t.SpecialityId == s.Id);
+                foreach (Specialization sp in specializations)
+                {
+                    if (sp.EducationPlan.Id != 4 && sp.EducationPlan.Title == title)
+                    {
+                        specialities.Add(s);
+                        break;
+                    }
+                }
+            }
+
+            return specialities;
         }
 
         public long GetMaxId()

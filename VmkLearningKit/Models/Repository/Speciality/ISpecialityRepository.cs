@@ -8,7 +8,7 @@ namespace VmkLearningKit.Models.Repository
     public interface ISpecialityRepository : IRepository<Speciality>
     {
         IEnumerable<Speciality> GetAll(string departmentAlias);
-        IEnumerable<Speciality> GetAllByEducationPlanTitle(string title);
+        List<Speciality> GetAllByEducationPlanTitle(string title);
         //bool IsEntryWithAliasExisted(string alias);
         Speciality GetByAlias(string alias);
         long GetMaxId();
