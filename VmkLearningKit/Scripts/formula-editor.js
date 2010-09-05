@@ -281,10 +281,15 @@ function InputAndHideFormulaEditor(obj) {
         $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea textarea").val(note);
     }
 
+
     //Добавление палитры в текст вопроса
     var paletteCode;
     var paletteMas;
     var br = "";
+    if (note.search(/<br\/>$|<br>$/i) == -1) {
+        br = "<br\>";
+    }
+
     paletteMas = $('#formula_palette').find('button').map(function () { return $(this).attr("name") }).get();
     if (paletteMas.length != 0) {
         paletteCode = 'Палитра для ответа: [';
@@ -294,8 +299,8 @@ function InputAndHideFormulaEditor(obj) {
         paletteCode = paletteCode.substring(0, paletteCode.length - 3);
         paletteCode = paletteCode + ']';
         $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea iframe").contents().find('body').append(br + paletteCode);
-        $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea textarea").val(note + "<br\>" + paletteCode);
-        br = "<br\>";
+        $('[name=' + form_input_name + ']').parent().parent().parent().find(".jHtmlArea textarea").val(note + br + paletteCode);
+        
     }
 
     // отрисовка формулы под ответом

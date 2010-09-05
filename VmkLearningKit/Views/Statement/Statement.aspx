@@ -65,10 +65,51 @@ td.secondAssignement {
  text-align:center;
 }
 
+.mark 
+{
+	color :red !important;
+}
+.appointment
+{
+    background-color:#eeeeee;	
+    float:left;
+    padding:5px;
+    margin:3px;
+    height:195px;
+}
+
+.marking
+{
+	background-color:#f3f3f3;
+	float:left;
+	padding:5px;
+	margin:3px;
+	height:195px;
+}
+
+.markingRules
+{
+	margin:5px;
+}
+
+.markingRules td
+{
+	padding:3px;
+}
+.markingRules thead td
+{
+	color:Red;
+	text-align:center;
+}
 </style>
 <script type="text/javascript">
-   
+
     $(document).ready(function () {
+
+
+        $('#5MarkRule').change(function () { Set4Rule(); }).change();
+        $('#4MarkRule').change(function () { Set3Rule(); }).change();
+
 
         $.datepicker.setDefaults($.extend
         ($.datepicker.regional["ru"])
@@ -367,6 +408,114 @@ td.secondAssignement {
             $(str).show();
         };
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    ///////// Выставление оценок /////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
+
+    (function($){
+	  // очищаем select
+	  $.fn.clearSelect = function() {
+	    return this.each(function(){
+	      if(this.tagName=='SELECT') {
+	        this.options.length = 0;
+	        $(this).attr('disabled','disabled');
+	      }
+	    });
+	  }
+	  // заполняем select
+	  $.fn.fillSelect = function(dataArray) {
+	    var oldVal = $(this).find("option:selected").val();
+	    
+	    return this.clearSelect().each(function(){
+	      if(this.tagName=='SELECT') {
+            var currentSelect = this;
+	        $.each(dataArray,function(index,data){
+              if(oldVal!=data.value){
+	            var option = new Option(data.text,data.value);
+              } else {
+                    var option = new Option(data.text,data.value,true, true);
+              }
+	          if($.support.cssFloat) {
+	            currentSelect.add(option,null);
+	          } else {
+	            currentSelect.add(option);
+	          }
+	        });
+	      }
+	    });
+	  }
+	})(jQuery);
+
+
+// выбор четверки 
+function Set4Rule(){
+    var Value5 =parseInt( $('#5MarkRule').val());
+    var tmpSelect = $('#4MarkRule');
+    if (Value5.length == 0) {
+	    tmpSelect.attr('disabled','disabled');
+	    tmpSelect.clearSelect();
+	    Set3Rule(); // adjustModel(); 
+	} else {
+	    var data = [{ "text": "100%", "value": "100" },
+             { "text": "90%", "value": "90" },
+             { "text": "80%", "value": "80" },
+             { "text": "70%", "value": "70" },
+             { "text": "60%", "value": "60" },
+             { "text": "50%", "value": "50" },
+             { "text": "40%", "value": "40" },
+             { "text": "30%", "value": "30" },
+             { "text": "20%", "value": "20" },
+             { "text": "10%", "value": "10" },
+             { "text": "0%", "value": "0"}];
+        var newData= new Array();
+        $.each(data, function (i, val) {
+            if (parseInt(val.value) <= Value5) {
+                newData.push(val);
+            }
+        });
+        tmpSelect.fillSelect(newData).attr('disabled','');
+        Set3Rule(); //adjustModel();
+	    
+	}
+};
+
+function Set3Rule() {
+    var Value4 = parseInt($('#4MarkRule').val());
+    var tmpSelect = $('#3MarkRule');
+    if (Value4.length == 0) {
+        tmpSelect.attr('disabled', 'disabled');
+        tmpSelect.clearSelect();
+       // Set3Rule(); // adjustModel(); 
+    } else {
+        var data = [{ "text": "100%", "value": "100" },
+             { "text": "90%", "value": "90" },
+             { "text": "80%", "value": "80" },
+             { "text": "70%", "value": "70" },
+             { "text": "60%", "value": "60" },
+             { "text": "50%", "value": "50" },
+             { "text": "40%", "value": "40" },
+             { "text": "30%", "value": "30" },
+             { "text": "20%", "value": "20" },
+             { "text": "10%", "value": "10" },
+             { "text": "0%", "value": "0"}];
+        var newData = new Array();
+        $.each(data, function (i, val) {
+            if (parseInt(val.value) <= Value4) {
+                newData.push(val);
+            }
+        });
+        tmpSelect.fillSelect(newData).attr('disabled', '');
+       // Set3Rule(); //adjustModel();
+
+    }
+
+};
+
+
+
+
+
 </script>
 
 
@@ -493,68 +642,79 @@ td.secondAssignement {
 			<td id="ball_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">Балл</td>
                 <%}%>
         </tr>
-        
+ </thead >       
 
  <tbody style=" text-align: center"> 
            <tr >
-            <td rowspan="<%=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).Count()+1%>" style=" border-width:0px; vertical-align:top;">
-            <img id="Button3" alt="" src="/Content/Images/up.png" height=20px width=20px  />
-            <br />
-            <img id="Button4" alt="" src="/Content/Images/down.png" height=20px width=20px  />
-            </td>
-        </tr>
+                <td rowspan="<%=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).Count()+1%>" style=" border-width:0px; vertical-align:top;">
+                    <img id="Button3" alt="" src="/Content/Images/up.png" height=20px width=20px  />
+                    <br />
+                    <img id="Button4" alt="" src="/Content/Images/down.png" height=20px width=20px  />
+                </td>
+            </tr>
             <%int studentCount = 1;
               foreach (VmkLearningKit.Models.Repository.User studentItem in (IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"])
               {%>
-        <tr id="student_<%=studentItem.Id%>"  style=" height:20px;">
+                    <tr id="student_<%=studentItem.Id%>"  style=" height:20px;">
 			
             
-            <td  style=" background-color:#ffffff;"><%=Html.Encode(studentCount)%></td>
-			<td style=" background-color:#ffffff; text-align:justify"><%=Html.Encode(GetStudentName(studentItem.Id))%></td>
-                <%int topicCounter2 = 0; %>			
-              <%  foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
-                  {%> 
-                   <% 
-    IEnumerable<AssignedTestVariant> asTestVar = GetAssVar(topicItem.Id, studentItem.Id);
-    int i = 0;
-    foreach (AssignedTestVariant atvItem in asTestVar)
-    {
-        if (atvItem != null)
-        {
-            i++;%>
-                        <%if (atvItem.State == VLKConstants.TEST_VARIANT_STATE_DONE || atvItem.State == VLKConstants.TEST_VARIANT_STATE_CHECKED)
-                          {%>
-			<td id="fake_<%=topicItem.Id%>_<%=i%>_var"><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()] ), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
-			</td>  
-			<td id="fake_<%=topicItem.Id%>_<%=i%>_score"><%=Html.ActionLink(Html.Encode(atvItem.Score), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
-            <br /><h5> (<%=ViewData["maxScoreVariant_"+atvItem.GeneratedTestVariantId.ToString()]%>)</h5>
-			</td>
-                      <%;
-                          }
-                          else
-                          { %>
+                    <td  style=" background-color:#ffffff;"><%=Html.Encode(studentCount)%></td>
+			        <td style=" background-color:#ffffff; text-align:justify"><%=Html.Encode(GetStudentName(studentItem.Id))%></td>
+                    <%int topicCounter2 = 0; %>			
+                     <%foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
+                      {%> 
+                       <% 
+                            IEnumerable<AssignedTestVariant> asTestVar = GetAssVar(topicItem.Id, studentItem.Id);
+                            int i = 0;
+                            foreach (AssignedTestVariant atvItem in asTestVar)
+                            {
+                                if (atvItem != null)
+                                {
+                                    i++;%>
+                                    <%if (atvItem.State == VLKConstants.TEST_VARIANT_STATE_DONE || atvItem.State == VLKConstants.TEST_VARIANT_STATE_CHECKED)
+                                    {%>
+			                            <td id="fake_<%=topicItem.Id%>_<%=i%>_var"><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()] ), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+			                            </td>  
+
+                                        <%if (atvItem.Mark!=0)
+                                                {%>
+			                                        <td id="Td1"><%=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "mark" })%>
+                                                        <br /><h6>(оценка)</h6>
+                                                    </td>
+                                            <%;
+                                                }
+                                                else
+                                                { %>
+                                                    <td id="fake_<%=topicItem.Id%>_<%=i%>_score"><%=Html.ActionLink(Html.Encode(atvItem.Score), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+                                                    <br /><h5> (<%=ViewData["maxScoreVariant_"+atvItem.GeneratedTestVariantId.ToString()]%>)</h5>
+			                                        </td>
+                                                <%} %>
+                                        <%;
+                                    }
+                                    else
+                                    { %>
                                             
-			                <td style=" width:60px;" id="fake_<%=topicItem.Id%>_<%=i%>_var" colspan=2><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
-			                </td>  
-                             <%} %>
-                        <%}%>
+			                            <td style=" width:60px;" id="fake_<%=topicItem.Id%>_<%=i%>_var" colspan=2><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+			                            </td>  
+                                    <%} %>
+                                <%}%>
                          
-                   <%}
-    for (int j = i + 1; j <= 3; j++)
-    {%>
-			<td id="<%=studentItem.Id%>_<%=topicItem.Id%>_<%=j%>" colspan="2"  
-			<%if( ((List<long>)ViewData["CountVariants"])[topicCounter2]!=0 ){%>
-			<%if(j==i+1) {%> class="changeble"<%;}else{%>class="secondAssignement"<% } %>
-			<%;}%> 
-			<% else {%>class="unactive" <%;}%>  > &nbsp;
-			</td>
+                            <%}
+                            for (int j = i + 1; j <= 3; j++)
+                            {%>
+			                        <td id="<%=studentItem.Id%>_<%=topicItem.Id%>_<%=j%>" colspan="2"  
+			                        <%if( ((List<long>)ViewData["CountVariants"])[topicCounter2]!=0 ){%>
+			                        <%if(j==i+1) {%> class="changeble"<%;}else{%>class="secondAssignement"<% } %>
+			                        <%;}%> 
+			                        <% else {%>class="unactive" <%;}%>  > &nbsp;
+			                        </td>
                
-                   <%} %>
-                <% topicCounter2++;%>
-               <%} %>
-        </tr>
+                            <%} %>
+                            <% topicCounter2++;%>
+                    <%} %>
+                    </tr>
           
-             <% studentCount++;
+                    <% studentCount++;
               } %>
 
          <tr> 
@@ -568,44 +728,125 @@ td.secondAssignement {
  </div> 
  
        
-     
-   <div>
-   <select id="SelectTopic"  style=" width:300px">
-   <option disabled selected="selected" value=-1>выберите тему...
-   </option>
- <%int tCount = 0;
-   foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])%>
- <%{  %>
-    <option value=<%=topicItem.Id%> <%if(((List<long>)ViewData["CountVariants"])[tCount++]==0){%>disabled <%}%>><%=topicItem.Title%>
-    </option>
- <%}; %>
-    </select>
-    <br/>
-   <input id="setRandomVariant" type="button" value="Расставить варианты автоматически"  style="width:230px;"/>
-   <input id="clear" type="button" value="Очистить"  style="width:70px;"/>
-   </div>
+   <div class="appointment"  >
+       <h3>Назначение тестов</h3>
+       <div>
+           <select id="SelectTopic"  style=" width:300px; margin:3px;">
+           <option disabled selected="selected" value="-1">выберите тему...
+           </option>
+         <%int tCount = 0;
+           foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])%>
+         <%{  %>
+            <option value="<%=topicItem.Id%>" <%if(((List<long>)ViewData["CountVariants"])[tCount++]==0){%>disabled <%}%>><%=topicItem.Title%>
+            </option>
+         <%}; %>
+            </select>
+            <br/>
+           <input id="setRandomVariant" type="button" value="Расставить варианты автоматически"  style="width:230px;"/>
+           <input id="clear" type="button" value="Очистить"  style="width:70px;"/>
+           <h6> *Вы так же можете назначить варианты вручную определенным студентам</h6>
+       </div>
     
-   <div style="float:left;">
-   <table>
-        <tr style="height:40px">
-            <td>Время начала:
-            </td>
-            <td><input id="datepicker" type="text" style="width:80px"/></td>
-            <td><input id="startTime" type="text" value=""  style="  width:40px;"/></td>
-        </tr>
-        <tr style="height:40px">
-            <td>Время окончания:
-            </td>
-            <td><input id="datepicker2" type="text" style="width:80px"/></td>
-            <td><input id="endTime" type="text" value=""  style="  width:40px;"/></td>
-        </tr>
-        <tr> <td></td>
-        </tr>
-        <tr><td><input id="SetVariants" type="button" value="Назначить тесты"   style="height:25px;"/></td>
-        </tr>
-   </table>
-   </div>
- 
+       <div style="float:left;">
+       <table>
+            <tr style="height:40px">
+                <td>Время начала:
+                </td>
+                <td><input id="datepicker" type="text" style="width:80px"/></td>
+                <td><input id="startTime" type="text" value=""  style="  width:40px;"/></td>
+            </tr>
+            <tr style="height:40px">
+                <td>Время окончания:
+                </td>
+                <td><input id="datepicker2" type="text" style="width:80px"/></td>
+                <td><input id="endTime" type="text" value=""  style="  width:40px;"/></td>
+            </tr>
+            <tr> <td></td>
+            </tr>
+            <tr><td><input id="SetVariants" type="button" value="Назначить тесты"   style="height:25px;"/></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+    <div class="marking">
+        <h3>Выставление оценок</h3>
+        <select id="SelectMarkTopic"  style=" width:300px; margin:3px;">
+           <option disabled selected="selected" value="-1">выберите тему...
+           </option>
+         <% tCount = 0;
+           foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
+           {  %>
+            <option value="<%=topicItem.Id%>" <%if(((List<long>)ViewData["CountVariants"])[tCount++]==0){%> disabled <%}%>><%=topicItem.Title%>
+            </option>
+         <%}; %>
+            </select>
+            <br/>
+            <div class="markingRules">
+                <h5>Критерии оценок:</h5>
+                <table border="1px">
+                    <thead>
+                        <tr>
+                            <td> "5" </td>
+                            <td> "4" </td>
+                            <td> "3" </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select id="5MarkRule" class="markRule">
+                                    <option value="100">100% </option>
+                                    <option selected="selected" value="90">90% </option>
+                                    <option value="80">80% </option>
+                                    <option value="70">70% </option>
+                                    <option value="60">60% </option>
+                                    <option value="50">50% </option>
+                                    <option value="40">40% </option>
+                                    <option value="30">30% </option>
+                                    <option value="20">20% </option>
+                                    <option value="10">10% </option>
+                                    <option value="0">0% </option>
+                                </select>
+                            </td>
+                            <td>
+                            <select id="4MarkRule" class="markRule">
+                                    <option value="100">100% </option>
+                                    <option value="90">90% </option>
+                                    <option value="80">80% </option>
+                                    <option value="70">70% </option>
+                                    <option selected="selected" value="60">60% </option>
+                                    <option value="50">50% </option>
+                                    <option value="40">40% </option>
+                                    <option value="30">30% </option>
+                                    <option value="20">20% </option>
+                                    <option value="10">10% </option>
+                                    <option value="0">0% </option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="3MarkRule" class="markRule">
+                                    <option value="100">100% </option>
+                                    <option value="90">90% </option>
+                                    <option value="80">80% </option>
+                                    <option value="70">70% </option>
+                                    <option value="60">60% </option>
+                                    <option value="50">50% </option>
+                                    <option value="40">40% </option>
+                                    <option selected="selected" value="30">30% </option>
+                                    <option value="20">20% </option>
+                                    <option value="10">10% </option>
+                                    <option value="0">0% </option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           <input id="SetMarks" type="button" value="Расставить оценки автоматически"  style="width:230px;"/>
+           <input id="SaveMarks" type="button" value="Сохранить оценки"  style="width:70px;"/>
+           <h6> *Вы можете выставить оценки студентам вручную кликнув<br /> на соответствующем поле</h6>
+    </div>
+
    <%}; %>
 
 
