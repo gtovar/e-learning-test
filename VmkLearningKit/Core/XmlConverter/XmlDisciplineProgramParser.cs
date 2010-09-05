@@ -136,7 +136,7 @@ namespace VmkLearningKit.Core.XmlConverter
                                 SpecialityDisciplineTopic topic = new SpecialityDisciplineTopic();
 
                                 topic.SpecialityDisciplineId    = disciplineId;
-                                topic.Title                     = topicLevel1Title + " ::: " + topicLevel2Title;
+                                topic.Title                     = topicLevel1Title + ":::" + topicLevel2Title;
 
                                 repositoryManager.GetSpecialityDisciplineTopicRepository.Add(topic);
 

@@ -18,6 +18,18 @@ namespace VmkLearningKit.Models.Repository
             return DataContext.LecturePlans.SingleOrDefault(t => t.Id == id);
         }
 
+        public void DeleteByTopicIdAndDate(long topicId, DateTime date)
+        {
+            LecturePlan plan = GetBySpecialityDisciplineTopicId(topicId).SingleOrDefault(t => t.Date.Value == date);
+
+            Delete(plan);
+        }
+
+        public LecturePlan GetByTopicIdAndDate(long topicId, DateTime date)
+        {
+            return GetBySpecialityDisciplineTopicId(topicId).SingleOrDefault(t => t.Date.Value == date);
+        }
+
         public LecturePlan SetDateTime(long id, DateTime dateTime)
         {
             try
@@ -65,12 +77,8 @@ namespace VmkLearningKit.Models.Repository
 
         public LecturePlan Add(LecturePlan obj)
         {
-            IEnumerable<LecturePlan> lecturePlans = GetBySpecialityDisciplineTopicId(obj.SpecialityDisciplineTopicId);
-            if (null == lecturePlans || lecturePlans.Count() == 0)
-            {
-                DataContext.LecturePlans.InsertOnSubmit(obj);
-                DataContext.SubmitChanges();
-            }
+            DataContext.LecturePlans.InsertOnSubmit(obj);
+            DataContext.SubmitChanges();
             return obj;
         }
 

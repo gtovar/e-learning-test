@@ -12,7 +12,6 @@ namespace VmkLearningKit.Controllers
 {
     [HandleError]
     [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
-    [OutputCache(Location = System.Web.UI.OutputCacheLocation.None)]
     public class TestsController : AbstractController
     {
         /// <summary>

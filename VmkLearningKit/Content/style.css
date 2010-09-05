@@ -921,3 +921,8 @@ table td .Generator3
 .SuperLink h4:hover {
 	background-color: #e3e2e2;
 }
+
+.DeleteLecturePlan
+{
+    cursor: pointer;
+}

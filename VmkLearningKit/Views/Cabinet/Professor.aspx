@@ -114,10 +114,11 @@
             </th>
         </tr>
         <% 
-            IEnumerable<SelectListItem> lectureDates = (IEnumerable<SelectListItem>)ViewData["LectureDatesList"];
             string time = String.Empty;
             string room = String.Empty;
             string building = String.Empty;
+            IEnumerable<SelectListItem> lectureDates = (IEnumerable<SelectListItem>)ViewData["LectureDatesList"];
+            Dictionary<long, string> existedDates = (Dictionary<long, string>)ViewData["ExistedDates"];
             foreach (LectureTimetable timetable in specialityDiscipline.LectureTimetables)
             {
                 if (timetable.SpecialityDisciplineId == specialityDiscipline.Id &&
@@ -144,8 +145,9 @@
                 <div style="color: Red; font-size: 13px; text-align: left"><%= ViewData["LectionPlan" + plan.Id + "Error"] %></div>
                 <input type="text" style="width:100%; height:20px; font-size: 15px" name="LectionPlanId_<%= plan.Id %>" id="LectionPlanId_<%= plan.Id %>" value="<%= null != ViewData["LecturePlanSavingHasErrors"] && ((Boolean)ViewData["LecturePlanSavingHasErrors"]) ? Html.Encode(ViewData["LectionPlanId_" + plan.Id]) : Html.Encode(plan.SpecialityDisciplineTopic.Title)%>" />
             </td>
-            <td style="padding: 7px; width:60px;">
-                <% if (lectureDates != null) {%><%= Html.DropDownList("la", lectureDates)%><% } %>
+            <td id="LectureDateTD<%=plan.SpecialityDisciplineTopicId.ToString() %>" style="padding: 7px; width:60px;">
+                <%= Html.DropDownList("LectureDate" + plan.SpecialityDisciplineTopicId.ToString(), lectureDates, new { id = "LectureDate" + plan.SpecialityDisciplineTopicId.ToString(), @class = "LectureDate"}) %>
+                <%= existedDates[plan.SpecialityDisciplineTopicId] %>
             </td>
             <td style="padding: 7px; width:60px">
                 <%= time %>
@@ -153,7 +155,7 @@
             <td style="padding: 7px; width:60px">
                 <%= room %>&nbsp;(<%= building%>)
             </td>
-            <td style="padding: 7px; width:80px">
+            <td style="padding: 7px; width:100px">
                 <%= Html.ActionLink("Тестирование", "Index", "Testing", new { alias = plan.SpecialityDisciplineTopic.Id }, new { @class = "" })%>
             </td>
         </tr>
@@ -222,14 +224,69 @@
         <% index++;
            } %>
     </table>
-    
     <%
         }
            }
+       %>
+          
+       <%
        }
        catch (Exception ex)
        {
            Utility.RedirectToErrorPage("Cabinet.Professor: catch exception", ex);
-       } %>
-       
+       } %>       
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
+    <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript">
+        function replaceAll(txt, replace, with_this) {
+            return txt.replace(new RegExp(replace, 'g'), with_this);
+        }
+
+        $(document).ready(function () {
+
+            $(".LectureDate").change(function () {
+                if ($(this).attr("value") != "Дата...") {
+                    var topicId = $(this).attr("name").substr(11);
+                    var urlPost = "/Cabinet/SetLectureDate/" + topicId + "/" + $(this).attr("value");
+
+                    $.post(urlPost,
+                           {},
+                           function (response) {
+                               if (response == "1") {
+                                   var td = "#LectureDateTD" + topicId;
+                                   var ld = "#LectureDate" + topicId;
+                                   $(td).append("<div class=\"DeleteLecturePlanDiv\">" + $(ld).attr("value") + " <img class=\"DeleteLecturePlan\" title=\"Удалить\" src=\"/Content/Images/delete.png\" width=\"10\" height=\"10\" id=\"Cabinet_DeleteLecturePlan_" + topicId + "_" + $(ld).attr("value") + "\"/></div>");
+
+                                   $(".DeleteLecturePlan").click(function () {
+                                       var urlPost1 = "/" + replaceAll($(this).attr("id"), "_", "/");
+                                       var divParent = $(this).parent("div[class=DeleteLecturePlanDiv]");
+                                       $.post(urlPost1,
+                                              {},
+                                              function (response) {
+                                                  if (response == "1") {
+                                                      $(divParent).hide("slow").remove();
+                                                  };
+                                              });
+                                   });
+                               };
+                           });
+                }
+            });
+
+            $(".DeleteLecturePlan").click(function () {
+                var urlPost = "/" + replaceAll($(this).attr("id"), "_", "/");
+                var divParent = $(this).parent("div[class=DeleteLecturePlanDiv]");
+                $.post(urlPost,
+                       {},
+                       function (response) {
+                           if (response == "1") {
+                               $(divParent).hide("slow").remove();
+                           };
+                       });
+            });
+
+        });
+    </script>
 </asp:Content>
