@@ -12,7 +12,7 @@ using System.IO;
 namespace VmkLearningKit.Controllers
 {
     [AuthorizeFilter(Roles = "Admin")]
-    public class DocumentController : Controller
+    public class DocumentController : AbstractController
     {
         private Word.Document CreateWordDocument(out Word.Application program)
         {
@@ -106,11 +106,13 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult Index()
         {
+            GeneralMenu();
             return View();
         }
 
         public ActionResult GetChairDocument()
         {
+            GeneralMenu();
             RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
             IChairRepository  chairRepositiry   = repositoryManager.GetChairRepository;
 
@@ -174,6 +176,7 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult GetTeacherDocument()
         {
+            GeneralMenu();
             RepositoryManager    repositoryManager   = RepositoryManager.GetRepositoryManager;
             IChairRepository     chairRepositiry     = repositoryManager.GetChairRepository;
             IProfessorRepository professorRepository = repositoryManager.GetProfessorRepository;
@@ -279,6 +282,7 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult GetSpecialityDocument()
         {
+            GeneralMenu();
             RepositoryManager         repositoryManager        = RepositoryManager.GetRepositoryManager;
             ISpecialityRepository     specialityRepository     = repositoryManager.GetSpecialityRepository;
             ISpecializationRepository specializationRepository = repositoryManager.GetSpecializationRepository;
@@ -513,6 +517,7 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult GetStudentDocument()
         {
+            GeneralMenu();
             RepositoryManager repositorymanager = RepositoryManager.GetRepositoryManager;
 
             IStudentRepository studentRepository = repositorymanager.GetStudentRepository;
@@ -567,7 +572,7 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult GetDisciplineProgramDocument()
         {
-
+            GeneralMenu();
             return RedirectToAction("Index");
         }
 
