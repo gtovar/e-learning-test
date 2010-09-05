@@ -6,9 +6,13 @@ using System.Web.Mvc;
 using VmkLearningKit.Models.Repository;
 using System.Collections;
 using System.IO;
+using VmkLearningKit.Core;
 
 namespace VmkLearningKit.Controllers
 {
+    [HandleError]
+    [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
+    [OutputCache(Location = System.Web.UI.OutputCacheLocation.None)]
     public class TestsController : AbstractController
     {
         /// <summary>
@@ -19,6 +23,8 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult GetGeneratedTests(long alias)
         {
+            GeneralMenu();
+
             long topicId = alias;
 
             ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
@@ -43,6 +49,8 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult GetTest(long alias)
         {
+            GeneralMenu();
+
             long id = alias;
 
             ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
@@ -144,6 +152,8 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult GetTestVariant(long alias)
         {
+            GeneralMenu();
+
             long id = alias;
 
             ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
@@ -174,6 +184,8 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult Show(long alias)
         {
+            GeneralMenu();
+
             long id = alias;
 
             ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";

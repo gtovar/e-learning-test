@@ -109,7 +109,6 @@ namespace VmkLearningKit.Models.Repository
             DataContext.SubmitChanges();
 
             //создаем каталог для хранения ims-пакетов теста
-            string currentPath = Directory.GetCurrentDirectory();
             string testDir = HttpContext.Current.Server.MapPath("/Uploads/Packages") + "\\" + gt.Id;
             DirectoryInfo TestDir = new DirectoryInfo(testDir);
             if (TestDir.Exists)
@@ -134,7 +133,7 @@ namespace VmkLearningKit.Models.Repository
 
                     // список вопросов раздела
                     IEnumerable<Question> _li = DataContext.Questions.Where(t => t.RazdelId == raz.Id);
-                    
+
                     // список неудаленных вопросов раздела
                     List<Question> li = new List<Question>();
 
@@ -179,16 +178,16 @@ namespace VmkLearningKit.Models.Repository
                             gq.QuestionId = question.Id;
                             DataContext.GeneratedQuestions.InsertOnSubmit(gq);
                             DataContext.SubmitChanges();
-                            
+
                             // увеличиваем счетчик вопроса
                             counter[n_min]++;
-                             
+
                             //уменьшаем счетчик нужных вопросов раздела
                             count--;
 
                             //добавляем вопрос в "черный" список
                             BlackList.Add(question.Id);
-                            
+
                             //уменьшаем счетчик вопросов раздела
                             kol--;
 
@@ -201,7 +200,7 @@ namespace VmkLearningKit.Models.Repository
                                     {
                                         if (q.ExclusionGroup == question.ExclusionGroup) BlackList.Add(q.Id);
                                     }
-                                }   
+                                }
                             }
 
                             //добавляем в черный список все вопросы с такой же группой-дублеров
@@ -244,7 +243,7 @@ namespace VmkLearningKit.Models.Repository
                             }
 
                             //переход к поиску нового вопроса
-                            k = false;                                                                            
+                            k = false;
                         }
                     }
                 }
@@ -252,7 +251,7 @@ namespace VmkLearningKit.Models.Repository
                 // создаем scorm-пакет варианта
 
                 //создаем каталог для хранения scorm-пакета варианта
-                string Dir = testDir + "\\" + (i+1);
+                string Dir = testDir + "\\" + (i + 1);
 
                 DirectoryInfo ScormDir = new DirectoryInfo(Dir);
                 ScormDir.Create();
@@ -269,8 +268,8 @@ namespace VmkLearningKit.Models.Repository
                 /*Builder imspage = new Builder("Imspage.htm", Dir + "\\P1000", gtv, s);
                 imspage.WriteImsPage();*/
 
-                Builder page = new Builder("page.htm", Dir + "\\P1000", gtv, i+1);
-                page.WritePage();
+                VariantView page = new VariantView("page.htm", Dir + "\\P1000", gtv, i + 1);
+                page.generateHtmlView();
 
                 // записываем файл индекса во временный каталог
                 Index index1 = new Index();
