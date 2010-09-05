@@ -205,7 +205,7 @@
                            if (null != assignedTestVariant && !assignedTestVariant.Path.Trim().Equals(String.Empty))
                            {
                                testVariantTitle = "Вариант_" + Path.GetFileNameWithoutExtension(assignedTestVariant.Path);
-                               testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Execute.aspx?key=" + assignedTestVariant.StudentKey;
+                               testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?key=" + assignedTestVariant.StudentKey;
                            }
                            
                         %>

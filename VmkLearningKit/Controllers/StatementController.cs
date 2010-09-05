@@ -24,6 +24,7 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult Statement(string additional, string alias, string param1)
         {
+            GeneralMenu();
             SpecialityDiscipline _discipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
             Professor _professor = repositoryManager.GetProfessorRepository.GetByNickName(alias);
             IEnumerable<Group> _groups = repositoryManager.GetGroupRepository.GetAllByDisciplineProfessor(_discipline.Id, _professor.User.Id);
@@ -41,7 +42,7 @@ namespace VmkLearningKit.Controllers
             {
 
                 if (param1 == null)
-                    param1 = _groups.ElementAt(1).Alias;
+                    param1 = _groups.ElementAt(0).Alias;
 
                 Group _group = repositoryManager.GetGroupRepository.GetByAlias(param1);
 
@@ -52,8 +53,7 @@ namespace VmkLearningKit.Controllers
                 IEnumerable<User> students = repositoryManager.GetUserRepository.GetByGroupId(_group.Id); 
                 ViewData["Students"] = students;
                 if (null != students)
-                {
-                   
+                {         
 
                     IEnumerable<SpecialityDisciplineTopic> topics = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(_discipline.Id).OrderBy(c => c.Id);
                     List<long> varCount = new List<long>();
@@ -116,6 +116,7 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult SetVariants(FormCollection form)
         {
+            GeneralMenu();
             if (Request.IsAjaxRequest())
             {
                 // получаем объект текущего зарегестрированного пользователя
@@ -144,7 +145,23 @@ namespace VmkLearningKit.Controllers
                     return new JsonResult
                     {
                         ContentType = "text/html",
-                        Data = "Задайте дату прохождения тестов "
+                        Data = "Задайте дату начала теста "
+
+                    };
+                if (form["endDate"]=="")
+                    return new JsonResult
+                    {
+                        ContentType = "text/html",
+                        Data = "Задайте дату окончания теста "
+
+                    };
+                DateTime t1=Convert.ToDateTime(form["endDate"]);
+                DateTime t2=Convert.ToDateTime(form["date"]);
+                if (t1<=t2) 
+                    return new JsonResult
+                    {
+                        ContentType = "text/html",
+                        Data = "Задан неверный диапазон дат и времени"
 
                     };
                 int fl = 1;

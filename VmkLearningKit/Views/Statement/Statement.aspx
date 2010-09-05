@@ -41,11 +41,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
-<link type="text/css" href="/Scripts/Plugins/DatePicker/jquery-ui-1.7.3.custom.css" rel="stylesheet" />	
-<script type="text/javascript" src="/Scripts/Plugins/DatePicker/jquery-ui-1.7.3.custom.min.js"></script>
-<script type="text/javascript" src="/Scripts/Plugins/DatePicker/ui.datepicker-ru.js"></script>
-    <script src="/Scripts/Plugins/DatePicker/jquery.clockpick.1.2.7.js" type="text/javascript"></script>
-    <link href="/Scripts/Plugins/DatePicker/jquery.clockpick.1.2.7[1].css" rel="stylesheet" type="text/css" />
+
+<script src="/Scripts/Plugins/DatePicker/jquery-1.4.2.min.js" type="text/javascript"></script>
+<link href="/Scripts/Plugins/DatePicker/jquery-ui-1.8.4.custom.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/Plugins/DatePicker/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
+<script src="/Scripts/Plugins/DatePicker/ui.datepicker-ru.js" type="text/javascript"></script>
+<script src="/Scripts/Plugins/DatePicker/jquery-ui-timepicker-addon-0.5.min.js" type="text/javascript"></script>
 <style>
 
 td.changeble {
@@ -101,6 +102,9 @@ td.secondAssignement {
 	color:Red;
 	text-align:center;
 }
+#ui-timepicker-div dl{ text-align: left; }
+#ui-timepicker-div dl dt{ height: 25px; }
+#ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
 </style>
 <script type="text/javascript">
 
@@ -114,32 +118,23 @@ td.secondAssignement {
         $.datepicker.setDefaults($.extend
         ($.datepicker.regional["ru"])
         );
-        $('#datepicker').datepicker({
+        $('#datepicker').datetimepicker({
             inline: true,
-            minDate: "0"
+            minDate: "0",
+            gotoCurrent: true,
+            showButtonPanel: false
         });
-        $("#startTime").clockpick({
-        starthour : 8,
-        endhour : 20,
-        showminutes : true,
-        minutedivisions: 6,
-        military:true
-    });
 
-    $.datepicker.setDefaults($.extend
+
+        $.datepicker.setDefaults($.extend
         ($.datepicker.regional["ru"])
         );
-    $('#datepicker2').datepicker({
-        inline: true,
-        minDate: "0"
-    });
-    $("#endTime").clockpick({
-        starthour: 8,
-        endhour: 20,
-        showminutes: true,
-        minutedivisions: 6,
-        military: true
-    });
+        $('#datepicker2').datetimepicker({
+            inline: true,
+            minDate: "0",
+            gotoCurrent: true,
+            showButtonPanel: false
+        });
       
         var countRow = $("#mainStatementTable tr").length;
         //alert(countRow);
@@ -233,8 +228,8 @@ td.secondAssignement {
             var data = { "students": strStudents,
                 "topics": strTopics,
                 "variantNums": strVariants,
-                "startDate": $("#datepicker").val().toString() + " " + $("#startTime").val().toString(),
-                "endDate": $("#datepicker2").val().toString() + " " + $("#endTime").val().toString()
+                "date": $("#datepicker").val().toString() ,
+                "endDate": $("#datepicker2").val().toString()
             };
             $.post("/Statement/SetVariants", data, function (str) {
                 var dataTemp = str.split("[");
@@ -752,14 +747,14 @@ function Set3Rule() {
             <tr style="height:40px">
                 <td>Время начала:
                 </td>
-                <td><input id="datepicker" type="text" style="width:80px"/></td>
-                <td><input id="startTime" type="text" value=""  style="  width:40px;"/></td>
+                <td><input id="datepicker" type="text" /></td>
+           
             </tr>
             <tr style="height:40px">
                 <td>Время окончания:
                 </td>
-                <td><input id="datepicker2" type="text" style="width:80px"/></td>
-                <td><input id="endTime" type="text" value=""  style="  width:40px;"/></td>
+                <td><input id="datepicker2" type="text" /></td>
+          
             </tr>
             <tr> <td></td>
             </tr>
