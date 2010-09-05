@@ -22,21 +22,28 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult GetGeneratedTests(long alias)
         {
-            GeneralMenu();
+            try
+            {
+                GeneralMenu();
 
-            long topicId = alias;
+                long topicId = alias;
 
-            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+                ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
 
-            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
 
-            IGeneratedTestRepository generatedTestRepository = repositoryManager.GetGeneratedTestRepository;
+                IGeneratedTestRepository generatedTestRepository = repositoryManager.GetGeneratedTestRepository;
 
-            ViewData["AllGeneratedTestsBySpecialityDisciplineTopic"] = 
-                generatedTestRepository.GetAllGeneratedTestsBySpecialityDisciplineTopicId((int)topicId);
-            ViewData["TopicId"] = topicId;
+                ViewData["AllGeneratedTestsBySpecialityDisciplineTopic"] =
+                    generatedTestRepository.GetAllGeneratedTestsBySpecialityDisciplineTopicId((int)topicId);
+                ViewData["TopicId"] = topicId;
 
-            return View();
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         /// <summary>
@@ -48,44 +55,51 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult GetTest(long alias)
         {
-            GeneralMenu();
-
-            long id = alias;
-
-            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
-
-            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
-
-            IGeneratedTestVariantRepository generatedTestVariantRepository           = 
-                repositoryManager.GetGeneratedTestVariantRepository;
-            IGeneratedQuestionRepository generatedQuestionRepository                 = 
-                repositoryManager.GetGeneratedQuestionRepository;
-            ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository = 
-                repositoryManager.GetSpecialityDisciplineTopicRepository;
-            IRazdelRepository razdelRepository                                       = 
-                repositoryManager.GetRazdelRepository;
-
-            ViewData["AllGeneratedTestVariantsByGeneratedTest"] = 
-                generatedTestVariantRepository.GetAllGeneratedTestVariantsByGeneratedTestId(id);
-            ViewData["TopicId"]                                 = 
-                specialityDisciplineTopicRepository.GetTopicIdByGeneratedTestId(id);
-            ViewData["AllRazdelsByTopic"]                       = 
-                razdelRepository.GetAllRazdelsBySpecialityDisciplineTopicId(Convert.ToInt64(ViewData["TopicId"]));
-
-            ArrayList list = new ArrayList();
-            
-            ArrayList localIdList = new ArrayList();
-
-            foreach (GeneratedTestVariant gtv in (IEnumerable<GeneratedTestVariant>)ViewData["AllGeneratedTestVariantsByGeneratedTest"])
+            try
             {
-                // получаем список сгенерированных вопросов
+                GeneralMenu();
 
-                list.Add(generatedQuestionRepository.GetAllGeneratedQuestionsByGeneratedTestVariantId(gtv.Id));
+                long id = alias;
+
+                ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+
+                IGeneratedTestVariantRepository generatedTestVariantRepository =
+                    repositoryManager.GetGeneratedTestVariantRepository;
+                IGeneratedQuestionRepository generatedQuestionRepository =
+                    repositoryManager.GetGeneratedQuestionRepository;
+                ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository =
+                    repositoryManager.GetSpecialityDisciplineTopicRepository;
+                IRazdelRepository razdelRepository =
+                    repositoryManager.GetRazdelRepository;
+
+                ViewData["AllGeneratedTestVariantsByGeneratedTest"] =
+                    generatedTestVariantRepository.GetAllGeneratedTestVariantsByGeneratedTestId(id);
+                ViewData["TopicId"] =
+                    specialityDisciplineTopicRepository.GetTopicIdByGeneratedTestId(id);
+                ViewData["AllRazdelsByTopic"] =
+                    razdelRepository.GetAllRazdelsBySpecialityDisciplineTopicId(Convert.ToInt64(ViewData["TopicId"]));
+
+                ArrayList list = new ArrayList();
+
+                ArrayList localIdList = new ArrayList();
+
+                foreach (GeneratedTestVariant gtv in (IEnumerable<GeneratedTestVariant>)ViewData["AllGeneratedTestVariantsByGeneratedTest"])
+                {
+                    // получаем список сгенерированных вопросов
+
+                    list.Add(generatedQuestionRepository.GetAllGeneratedQuestionsByGeneratedTestVariantId(gtv.Id));
+                }
+
+                ViewData["AllGeneratedQuestionsByGeneratedTestVariant"] = list;
+
+                return View();
             }
-
-            ViewData["AllGeneratedQuestionsByGeneratedTestVariant"] = list;
-
-            return View();
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         /// <summary>
@@ -96,52 +110,59 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult DeleteTest(long alias)
         {
-            long id = alias;
-
-            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
-
-            IGeneratedTestRepository generatedTestRepository                         = 
-                repositoryManager.GetGeneratedTestRepository;
-            IGeneratedTestVariantRepository generatedTestVariantRepository           = 
-                repositoryManager.GetGeneratedTestVariantRepository;
-            IGeneratedQuestionRepository generatedQuestionRepository                 = 
-                repositoryManager.GetGeneratedQuestionRepository;
-            ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository =
-                repositoryManager.GetSpecialityDisciplineTopicRepository;
-            IAssignedTestVariantRepository assignedTestVariantRepository =
-                repositoryManager.GetAssignedTestVariantRepository;
-                 
-            IEnumerable<GeneratedTestVariant> variants = 
-                generatedTestVariantRepository.GetAllGeneratedTestVariantsByGeneratedTestId(id);
-
-            foreach (GeneratedTestVariant var in variants)
+            try
             {
-                IEnumerable<GeneratedQuestion> questions = 
-                    generatedQuestionRepository.GetAllGeneratedQuestionsByGeneratedTestVariantId(var.Id);
-                // удаляем все вопросы варианта
-                foreach (GeneratedQuestion ques in questions)
+                long id = alias;
+
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+
+                IGeneratedTestRepository generatedTestRepository =
+                    repositoryManager.GetGeneratedTestRepository;
+                IGeneratedTestVariantRepository generatedTestVariantRepository =
+                    repositoryManager.GetGeneratedTestVariantRepository;
+                IGeneratedQuestionRepository generatedQuestionRepository =
+                    repositoryManager.GetGeneratedQuestionRepository;
+                ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository =
+                    repositoryManager.GetSpecialityDisciplineTopicRepository;
+                IAssignedTestVariantRepository assignedTestVariantRepository =
+                    repositoryManager.GetAssignedTestVariantRepository;
+
+                IEnumerable<GeneratedTestVariant> variants =
+                    generatedTestVariantRepository.GetAllGeneratedTestVariantsByGeneratedTestId(id);
+
+                foreach (GeneratedTestVariant var in variants)
                 {
-                    generatedQuestionRepository.DeleteById(ques.Id);
+                    IEnumerable<GeneratedQuestion> questions =
+                        generatedQuestionRepository.GetAllGeneratedQuestionsByGeneratedTestVariantId(var.Id);
+                    // удаляем все вопросы варианта
+                    foreach (GeneratedQuestion ques in questions)
+                    {
+                        generatedQuestionRepository.DeleteById(ques.Id);
+                    }
+
+                    IEnumerable<AssignedTestVariant> assiggnedVariants =
+                        assignedTestVariantRepository.GetAllByGeneratedTestVariantId(var.Id);
+                    // удаляем все назначенные тесты варианта
+                    foreach (AssignedTestVariant atv in assiggnedVariants)
+                    {
+                        assignedTestVariantRepository.Delete(atv);
+                    }
+
+                    // удаляем вариант
+                    generatedTestVariantRepository.DeleteById(var.Id);
                 }
 
-                IEnumerable<AssignedTestVariant> assiggnedVariants =
-                    assignedTestVariantRepository.GetAllByGeneratedTestVariantId(var.Id);
-                // удаляем все назначенные тесты варианта
-                foreach (AssignedTestVariant atv in assiggnedVariants)
-                {
-                    assignedTestVariantRepository.Delete(atv);
-                }
+                long topicId = specialityDisciplineTopicRepository.GetTopicIdByGeneratedTestId(id);
 
-                // удаляем вариант
-                generatedTestVariantRepository.DeleteById(var.Id);
+                // удаляем тест
+                generatedTestRepository.DeleteById(id);
+
+                return RedirectToAction("GetGeneratedTests", "Tests", new { alias = topicId });
             }
-
-            long topicId = specialityDisciplineTopicRepository.GetTopicIdByGeneratedTestId(id);
-
-            // удаляем тест
-            generatedTestRepository.DeleteById(id);
-
-            return RedirectToAction("GetGeneratedTests", "Tests", new { alias = topicId });
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         /// <summary>
@@ -151,29 +172,36 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult GetTestVariant(long alias)
         {
-            GeneralMenu();
-
-            long id = alias;
-
-            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
-
-            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
-
-            IGeneratedQuestionRepository generatedQuestionRepository = repositoryManager.GetGeneratedQuestionRepository;
-            IQuestionRepository questionRepository = repositoryManager.GetQuestionRepository;
-
-            ViewData["AllGeneratedQuestionsByGeneratedTestVariant"] = generatedQuestionRepository.GetAllGeneratedQuestionsByGeneratedTestVariantId(id);
-
-            ArrayList al = new ArrayList();
-
-            foreach (GeneratedQuestion gq in (IEnumerable<GeneratedQuestion>)ViewData["AllGeneratedQuestionsByGeneratedTestVariant"])
+            try
             {
-                al.Add(questionRepository.GetQuestionsById(gq.QuestionId));
+                GeneralMenu();
+
+                long id = alias;
+
+                ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+
+                IGeneratedQuestionRepository generatedQuestionRepository = repositoryManager.GetGeneratedQuestionRepository;
+                IQuestionRepository questionRepository = repositoryManager.GetQuestionRepository;
+
+                ViewData["AllGeneratedQuestionsByGeneratedTestVariant"] = generatedQuestionRepository.GetAllGeneratedQuestionsByGeneratedTestVariantId(id);
+
+                ArrayList al = new ArrayList();
+
+                foreach (GeneratedQuestion gq in (IEnumerable<GeneratedQuestion>)ViewData["AllGeneratedQuestionsByGeneratedTestVariant"])
+                {
+                    al.Add(questionRepository.GetQuestionsById(gq.QuestionId));
+                }
+
+                ViewData["AllQuestionByGeneratedTestVariant"] = al;
+
+                return View();
             }
-
-            ViewData["AllQuestionByGeneratedTestVariant"] = al;
-
-            return View();
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         /// <summary>
@@ -183,22 +211,29 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult Show(long alias)
         {
-            GeneralMenu();
+            try
+            {
+                GeneralMenu();
 
-            long id = alias;
+                long id = alias;
 
-            ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
+                ViewData[Constants.PAGE_TITLE] = "Генератор тестовых вариантов";
 
-            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+                RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
 
-            IGeneratedTestRepository generatedTestRepository               = repositoryManager.GetGeneratedTestRepository;
-            IGeneratedTestVariantRepository generatedTestVariantRepository = repositoryManager.GetGeneratedTestVariantRepository;
+                IGeneratedTestRepository generatedTestRepository = repositoryManager.GetGeneratedTestRepository;
+                IGeneratedTestVariantRepository generatedTestVariantRepository = repositoryManager.GetGeneratedTestVariantRepository;
 
-            ViewData["Id"] = id;
-            ViewData["TestNumber"] = generatedTestVariantRepository.GetLocalNumGeneratedTestVariant(id);
-           
-            ViewData["TestId"] = generatedTestRepository.GetGeneratedTestIdByGeneratedTestVariantId(id);
-            return View();
+                ViewData["Id"] = id;
+                ViewData["TestNumber"] = generatedTestVariantRepository.GetLocalNumGeneratedTestVariant(id);
+
+                ViewData["TestId"] = generatedTestRepository.GetGeneratedTestIdByGeneratedTestVariantId(id);
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
     }
