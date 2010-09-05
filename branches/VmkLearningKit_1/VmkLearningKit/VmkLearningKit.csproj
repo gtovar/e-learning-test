@@ -620,6 +620,12 @@
     <Content Include="Scripts\MathJax\test\index-images.html" />
     <Content Include="Scripts\MathJax\test\index.html" />
     <Content Include="Scripts\MathJax\test\sample.html" />
+    <Content Include="Scripts\Plugins\DatePicker\jquery-1.4.2.min.js" />
+    <Content Include="Scripts\Plugins\DatePicker\jquery-ui-1.8.4.custom.css" />
+    <Content Include="Scripts\Plugins\DatePicker\jquery-ui-1.8.4.custom.min.js" />
+    <Content Include="Scripts\Plugins\DatePicker\jquery-ui-timepicker-addon-0.5.min.js" />
+    <Content Include="Scripts\Plugins\DatePicker\jquery.clockpick.1.2.7.js" />
+    <Content Include="Scripts\Plugins\DatePicker\jquery.clockpick.1.2.7[1].css" />
     <Content Include="Views\Admin\XmlParse.aspx" />
     <Content Include="Views\Shared\GeneralMenu.ascx" />
   </ItemGroup>

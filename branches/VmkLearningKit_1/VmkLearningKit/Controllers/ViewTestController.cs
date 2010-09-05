@@ -28,7 +28,7 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult ViewTest(string alias, string additional)
         {
-
+            GeneralMenu();
             AssignedTestVariant atv = repositoryManager.GetAssignedTestVariantRepository.GetById(Convert.ToInt64(additional));
          
             long idStudent = atv.StudentId;
