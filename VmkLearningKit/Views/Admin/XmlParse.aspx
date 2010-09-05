@@ -138,7 +138,7 @@
     %>
     </div> 
     <div class="uploaders">
-        <h3>Загрузка кафедр</h3>
+        <h3><a href="#">Загрузка кафедр</a></h3>
         <div class="UploadVisibleContainer">
             <p>Пожалуйста, выберите XML-документ, содержащий список кафедр, и нажмите "Добавить". С шаблоном соответствующего документа можно ознакомиться <%= Html.ActionLink("здесь", "Templates", "Admin", new { alias = "Xml", additional = "Chairs" }, new { id = "chairsLink" }) %>.</p>
             <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_CHAIRS }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadChairsForm", name = "UploadChairsForm" }))
@@ -151,7 +151,7 @@
                    </p>
             <% } %>
         </div>
-        <h3>Загрузка преподавателей</h3>
+        <h3><a href="#">Загрузка преподавателей</a></h3>
         <div class="UploadVisibleContainer">
             <p>Пожалуйста, выберите XML-документ, содержащий список преподавателей, и нажмите "Добавить". С шаблоном соответствующего документа можно ознакомиться <%= Html.ActionLink("здесь", "Templates", "Admin", new { alias = "Xml", additional = "Teachers" }, new { id = "teachersLink" }) %>.</p>
             <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_TEACHERS }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadTeachersForm", name = "UploadTeachersForm" }))
@@ -164,7 +164,7 @@
                    </p>
             <% } %>
         </div>
-        <h3>Загрузка специальностей</h3>
+        <h3><a href="#">Загрузка специальностей</a></h3>
         <div class="UploadVisibleContainer">
             <p>Пожалуйста, выберите XML-документ, содержащий список специальностей, и нажмите "Добавить". С шаблоном соответствующего документа можно ознакомиться <%= Html.ActionLink("здесь", "Templates", "Admin", new { alias = "Xml", additional = "Specialities" }, new { id = "specialitiesLink" })%>.</p>
             <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_SPECIALITIES }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadSpecialitiesForm", name = "UploadSpecialitiesForm" }))
@@ -177,7 +177,7 @@
                    </p>
             <% } %>
         </div>
-        <h3>Загрузка групп</h3>
+        <h3><a href="#">Загрузка групп</a></h3>
         <div class="UploadVisibleContainer">
             <p>Пожалуйста, выберите XML-документ, содержащий список групп, и нажмите "Добавить". С шаблоном соответствующего документа можно ознакомиться <%= Html.ActionLink("здесь", "Templates", "Admin", new { alias = "Xml", additional = "Groups" }, new { id = "groupsLink" }) %>.</p>
             <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_GROUPS }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadGroupsForm", name = "UploadGroupsForm" }))
@@ -190,7 +190,7 @@
                    </p>
             <% } %>
         </div>
-        <h3>Загрузка студентов</h3>
+        <h3><a href="#">Загрузка студентов</a></h3>
         <div class="UploadVisibleContainer">
             <p>Пожалуйста, выберите XML-документ, содержащий список студентов, и нажмите "Добавить". С шаблоном соответствующего документа можно ознакомиться <%= Html.ActionLink("здесь", "Templates", "Admin", new { alias = "Xml", additional = "Students" }, new { id = "studentsLink" })%>.</p>
             <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_STUDENTS }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadStudentsForm", name = "UploadStudentsForm" }))
@@ -203,7 +203,7 @@
                    </p>
             <% } %>
         </div>
-        <h3>Загрузка образовательного плана</h3>
+        <h3><a href="#">Загрузка образовательного плана</a></h3>
         <div class="UploadVisibleContainer">
             <p>Пожалуйста, выберите XML-документ, содержащий образовательный план, и нажмите "Добавить". С шаблоном соответствующего документа можно ознакомиться <%= Html.ActionLink("здесь", "Templates", "Admin", new { alias = "Xml", additional = "EducationPlan" }, new { id = "educationPlanLink" })%>.</p>
             <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_EDUCATION_PLAN }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadEducationPlanForm", name = "UploadEducationPlanForm" }))
@@ -216,7 +216,7 @@
                    </p>
             <% } %>
         </div>
-        <h3>Загрузка расписания</h3>
+        <h3><a href="#">Загрузка расписания</a></h3>
         <div class="UploadVisibleContainer">
             <p>Пожалуйста, выберите XML-документ, содержащий расписание, и нажмите "Добавить". С шаблоном соответствующего документа можно ознакомиться <%= Html.ActionLink("здесь", "Templates", "Admin", new { alias = "Xml", additional = "Shedule" }, new { id = "sheduleLink" }) %>.</p>
             <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_SHEDULE }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadSheduleForm", name = "UploadSheduleForm" }))
@@ -229,7 +229,7 @@
                    </p>
             <% } %>
         </div>
-        <h3>Загрузка программы дисциплины</h3>
+        <h3><a href="#">Загрузка программы дисциплины</a></h3>
         <div class="UploadVisibleContainer">
             <p>Пожалуйста, выберите XML-документ, содержащий программу дисциплины, и нажмите "Добавить". С шаблоном соответствующего документа можно ознакомиться <%= Html.ActionLink("здесь", "Templates", "Admin", new { alias = "Xml", additional = "DisciplineProgram" }, new { id = "disciplineProgramLink" })%>.</p>
             <% using (Html.BeginForm("XmlParse", "Admin", new { alias = VLKConstants.XML_UPLOAD_ALIAS_DISCIPLINE_PROGRAM }, FormMethod.Post, new { enctype = "multipart/form-data", id = "UploadDisciplineProgramForm", name = "UploadDisciplineProgramForm" }))
@@ -242,7 +242,9 @@
                    </p>
             <% } %>
         </div>
-    </div>        
+    </div>
+    <br />
+    <p align="center"><%= Html.ActionLink("Вернуться в личный кабинет", "Admin", "Cabinet", new { alias = Convert.ToString(ViewData["Nickname"]) }, new { @class = "" } )%></p>        
     <div style="display:none;">
 		<div id="UploadAndParseContainer">
 			<p align="center">

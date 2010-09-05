@@ -548,6 +548,7 @@ namespace VmkLearningKit.Controllers
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = "«агрузка образовательных документов";
+            ViewData["Nickname"] = ((VmkLearningKit.Models.Domain.User)Session[Constants.SESSION_USER]).DbUser.NickName;
             return View();
         }
 
