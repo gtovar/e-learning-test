@@ -110,7 +110,7 @@ namespace VmkLearningKit.Models.Repository
                 StudentId = idStudent,
                 GeneratedTestVariantId = idGeneratedTestVariant,
                 AssignedDate = (DateTime)date,
-                //  FinishDate = (DateTime)endDate,
+                // AssignedDateEnd = (DateTime)endDate,
                 State = VLKConstants.TEST_VARIANT_STATE_NEW,
                 Path = "",
                 Score = 0,

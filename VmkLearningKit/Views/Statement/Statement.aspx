@@ -41,7 +41,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
-
 <script src="/Scripts/Plugins/DatePicker/jquery-1.4.2.min.js" type="text/javascript"></script>
 <link href="/Scripts/Plugins/DatePicker/jquery-ui-1.8.4.custom.css" rel="stylesheet" type="text/css" />
 <script src="/Scripts/Plugins/DatePicker/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
@@ -114,7 +113,6 @@ td.secondAssignement {
         $('#5MarkRule').change(function () { Set4Rule(); }).change();
         $('#4MarkRule').change(function () { Set3Rule(); }).change();
 
-
         $.datepicker.setDefaults($.extend
         ($.datepicker.regional["ru"])
         );
@@ -122,7 +120,10 @@ td.secondAssignement {
             inline: true,
             minDate: "0",
             gotoCurrent: true,
-            showButtonPanel: false
+            showButtonPanel: true,
+            hour: 8,
+            minute: 0
+          
         });
 
 
@@ -133,9 +134,12 @@ td.secondAssignement {
             inline: true,
             minDate: "0",
             gotoCurrent: true,
-            showButtonPanel: false
+            showButtonPanel: true,
+            hour: 8,
+            minute: 0
+
         });
-      
+
         var countRow = $("#mainStatementTable tr").length;
         //alert(countRow);
         $("#mainStatementTable tr").hide();
@@ -144,12 +148,12 @@ td.secondAssignement {
         var currentRow = 21;
         var flags = new Array();
         var flagExistInputChange = 0;
-        
+
 
         $("#clear").click(function () {
             $("td.changeble").empty().append(" ");
             flags = [];
-           
+
         })
 
         $("#setRandomVariant").click(function () {
@@ -228,7 +232,7 @@ td.secondAssignement {
             var data = { "students": strStudents,
                 "topics": strTopics,
                 "variantNums": strVariants,
-                "date": $("#datepicker").val().toString() ,
+                "date": $("#datepicker").val().toString(),
                 "endDate": $("#datepicker2").val().toString()
             };
             $.post("/Statement/SetVariants", data, function (str) {
@@ -239,8 +243,10 @@ td.secondAssignement {
                     var topic = setVariant[1];
                     var numVar = setVariant[2];
                     if (setVariant[3] != -1) {
-                        var Help = "/ViewTest/ViewTest/" + '<%=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
-                        var tmp = $('<a href=' + Help + '>' + numVar + '</a>');
+                        var Help = '<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() %>' + "/Start.aspx?mode=grading&key=" + setVariant[3];
+                        alert(Help);
+                       // "/ViewTest/ViewTest/" + '<%//=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
+                        var tmp = $('<a href=' + Help + 'target="_blank" >' + numVar + '</a>');
                         var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
                         t.attr('class', 'newAssignement');
                         flags = new Array();
@@ -250,7 +256,7 @@ td.secondAssignement {
                 alert(dataTemp[0]);
 
             }, "json");
-           
+
         });
 
         var colFlag = 0;
@@ -335,7 +341,7 @@ td.secondAssignement {
 
             if (existFlag == 0) {
                 flags.push(me);
-               
+
             };
 
 
@@ -673,15 +679,19 @@ function Set3Rule() {
 
                                         <%if (atvItem.Mark!=0)
                                                 {%>
-			                                        <td id="Td1"><%=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "mark" })%>
+			                                        <td id="Td1"><a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank"></a>
+                                                    <%//=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "mark" })%>
                                                         <br /><h6>(оценка)</h6>
                                                     </td>
                                             <%;
                                                 }
                                                 else
                                                 { %>
-                                                    <td id="fake_<%=topicItem.Id%>_<%=i%>_score"><%=Html.ActionLink(Html.Encode(atvItem.Score), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+                                                    <td id="fake_<%=topicItem.Id%>_<%=i%>_score"><a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
+                                                    <%=Html.Encode(atvItem.Score) %> </a>
+                                                    <%//=Html.ActionLink(Html.Encode(atvItem.Score), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
                                                     <br /><h5> (<%=ViewData["maxScoreVariant_"+atvItem.GeneratedTestVariantId.ToString()]%>)</h5>
+                                                   
 			                                        </td>
                                                 <%} %>
                                         <%;
@@ -689,7 +699,10 @@ function Set3Rule() {
                                     else
                                     { %>
                                             
-			                            <td style=" width:60px;" id="fake_<%=topicItem.Id%>_<%=i%>_var" colspan=2><%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+			                            <td style=" width:60px;" id="fake_<%=topicItem.Id%>_<%=i%>_var" colspan=2>
+                                        <a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
+                                                    <%=Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_"+ atvItem.GeneratedTestVariantId.ToString()]) %> </a>
+                                        <%//=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
 			                            </td>  
                                     <%} %>
                                 <%}%>
@@ -853,6 +866,7 @@ function Set3Rule() {
  
  </div>        
  </p>
+  
    <%;} %>
  <%Html.EndForm();%>
  
