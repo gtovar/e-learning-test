@@ -613,7 +613,7 @@ namespace VmkLearningKit.Controllers
                 {
                     short[] officialTerms = GetTermsByDate(DateTime.Now);
                     if (null != terms && terms.Contains(specialityDisciplineTerm.Term) &&
-                        officialTerms.Contains(specialityDisciplineTerm.Term))
+                        null != officialTerms && officialTerms.Contains(specialityDisciplineTerm.Term))
                     {
                         hasSpecialityDiscipline = true;
                     }
