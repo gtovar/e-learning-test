@@ -282,13 +282,13 @@ namespace VmkLearningKit.Models.Repository
                 ThemeDir.Create();
                 Theme theme = new Theme();
                 theme.Write(Dir + "\\Shared\\themes.css");
-
+                
                 // упаковываем временный каталог в zip архив
                 FastZip fz = new FastZip();
                 fz.CreateEmptyDirectories = true;
                 fz.CreateZip(Dir + ".zip", Dir, true, "");
                 fz = null;
-                ScormDir.Delete(true);
+                //ScormDir.Delete(true);
             }
 
             return gt;

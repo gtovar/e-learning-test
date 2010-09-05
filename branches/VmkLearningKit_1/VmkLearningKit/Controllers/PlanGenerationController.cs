@@ -11,7 +11,6 @@ namespace VmkLearningKit.Controllers
 {
     [HandleError]
     [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
-    [OutputCache(Location = System.Web.UI.OutputCacheLocation.None)]
     public class PlanGenerationController : AbstractController
     {
         /// <summary>
@@ -75,13 +74,9 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult AddTest(long topicId, int variantCount, int questionCount)
         {
-            RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
+            repositoryManager.GetGeneratedTestRepository.Add(topicId, variantCount, questionCount);
 
-            IGeneratedTestRepository generatedTestRepository = repositoryManager.GetGeneratedTestRepository;
-
-            generatedTestRepository.Add(topicId, variantCount, questionCount);
-
-            return RedirectToAction("GetGeneratedTests", "Tests", new { alias = topicId });
+            return Redirect("/Tests/GetGeneratedTests/"+ topicId.ToString());
         }
 
         /// <summary>

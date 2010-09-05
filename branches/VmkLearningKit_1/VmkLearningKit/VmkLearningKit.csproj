@@ -115,6 +115,7 @@
     <Compile Include="Controllers\ViewTestController.cs" />
     <Compile Include="Core\AuthorizeFilter.cs" />
     <Compile Include="Core\AuthenticatedConstraint.cs" />
+    <Compile Include="Core\Comparers.cs" />
     <Compile Include="Core\DB.cs" />
     <Compile Include="Core\PasswordGenerator.cs" />
     <Compile Include="Core\Transliteration.cs" />
@@ -946,7 +947,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1973</DevelopmentServerPort>
+          <DevelopmentServerPort>54327</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/VmkLearningKit</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

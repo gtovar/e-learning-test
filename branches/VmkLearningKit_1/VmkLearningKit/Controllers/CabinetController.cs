@@ -36,6 +36,118 @@ namespace VmkLearningKit.Controllers
             return View();
         }
 
+        [AuthorizeFilter(Roles = "Professor")]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult SetLectureDate(string alias, string additional)
+        {
+            try
+            {
+                long topicId         = Convert.ToInt64(alias);
+                DateTime lectionDate = Convert.ToDateTime(additional);
+
+                IEnumerable<LecturePlan> lecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineTopicId(topicId);
+
+                foreach (LecturePlan plan in lecturePlans)
+                {
+                    if (!plan.Date.HasValue)
+                    {
+                        repositoryManager.GetLecturePlanRepository.SetDateTime(plan.Id, lectionDate);
+
+                        return new JsonResult
+                        {
+                            ContentType = "text/html",
+                            Data = 1
+                        };
+                    }
+                    else
+                    {
+                        if (plan.Date.Value == lectionDate)
+                            return new JsonResult
+                            {
+                                ContentType = "text/html",
+                                Data = 0
+                            };
+                    }
+                }
+
+                LecturePlan newPlan = new LecturePlan();
+                newPlan.Date = lectionDate;
+                newPlan.SpecialityDisciplineTopicId = topicId;
+                newPlan.SpecialityDisciplineId = repositoryManager.GetSpecialityDisciplineTopicRepository.GetById(topicId).SpecialityDisciplineId;
+
+                repositoryManager.GetLecturePlanRepository.Add(newPlan);
+
+                return new JsonResult
+                {
+                    ContentType = "text/html",
+                    Data = 1
+                };
+            }
+            catch (Exception exc)
+            {
+                return new JsonResult
+                {
+                    ContentType = "text/html",
+                    Data = 0
+                };
+            }
+        }
+
+        [AuthorizeFilter(Roles = "Professor")]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult DeleteLecturePlan(string alias, string additional)
+        {
+            try
+            {
+                long topicId         = Convert.ToInt64(alias);
+                DateTime lectionDate = Convert.ToDateTime(additional);
+
+                IEnumerable<LecturePlan> lecturePlans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineTopicId(topicId);
+
+                if (null != lecturePlans)
+                {
+                    if (lecturePlans.Count() > 1)
+                    {
+                        repositoryManager.GetLecturePlanRepository.DeleteByTopicIdAndDate(topicId, lectionDate);
+                    }
+                    else
+                    {
+                        /*LecturePlan plan = repositoryManager.GetLecturePlanRepository.GetByTopicIdAndDate(topicId, lectionDate);
+                        if (plan != null)
+                        {
+                            repositoryManager.GetLecturePlanRepository.SetDateTime(plan.Id, null);
+                        }*/
+
+                        return new JsonResult
+                        {
+                            ContentType = "text/html",
+                            Data = 0
+                        };
+                    }
+
+                    return new JsonResult
+                    {
+                        ContentType = "text/html",
+                        Data = 1
+                    };
+                }
+
+                return new JsonResult
+                {
+                    ContentType = "text/html",
+                    Data = 0
+                };
+            }
+            catch (Exception exc)
+            {
+                return new JsonResult
+                {
+                    ContentType = "text/html",
+                    Data = 0
+                };
+            }
+        }
+
         /// <summary>
         /// Action, отображающий форму кабинета преподавателя при обращении к domain.ru/Cabinet/Professor
         /// <param name="alias">NickName преподавателя</param>
@@ -68,26 +180,48 @@ namespace VmkLearningKit.Controllers
                     if (null != additional && !additional.Trim().Equals(String.Empty))
                     {
                         SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
-                        SetLecturePlanDates(specialityDiscipline);
+                        //SetLecturePlanDates(specialityDiscipline);
                         ViewData["SpecialityDiscipline"] = specialityDiscipline;
-                        ViewData["SpecialityDisciplineTopics"] = specialityDiscipline.SpecialityDisciplineTopics;
-                        ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
-
-                        LectureTimetable lectionTimetable = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
-
-                        List<DateTime> lectionDatesList = Utility.GetLectionDateTimesInCurrentTerm(lectionTimetable.Day, lectionTimetable.Week);
-
-                        List<SelectListItem> listItems = new List<SelectListItem>();
-
-                        foreach (DateTime lectionDate in lectionDatesList)
+                        if (null != specialityDiscipline)
                         {
-                            SelectListItem item = new SelectListItem();
-                            item.Value = item.Text = lectionDate.ToShortDateString();
+                            ViewData["SpecialityDisciplineTopics"] = specialityDiscipline.SpecialityDisciplineTopics;
+                            ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id).Distinct(new LecturePlanTopicIdComparer());
 
-                            listItems.Add(item);
+                            LectureTimetable lectionTimetable = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
+
+                            List<DateTime> lectionDatesList = Utility.GetLectionDateTimesInCurrentTerm(lectionTimetable.Day, lectionTimetable.Week);
+                            List<SelectListItem> list = new List<SelectListItem>();
+                            
+                            foreach(DateTime lection in lectionDatesList)
+                            {
+                                SelectListItem item = new SelectListItem();
+                                item.Text = item.Value = lection.ToShortDateString();
+                                list.Add(item);
+                            }
+                            SelectListItem defaultItem = new SelectListItem();
+                            defaultItem.Selected = true;
+                            defaultItem.Text = defaultItem.Value = "Дата...";
+                            list.Add(defaultItem);                      
+
+                            ViewData["LectureDatesList"] = list.AsEnumerable();
+
+                            Dictionary<long, string> existedDates = new Dictionary<long, string>();
+                            foreach (SpecialityDisciplineTopic topic in specialityDiscipline.SpecialityDisciplineTopics)
+                            {
+                                IEnumerable<LecturePlan> plans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineTopicId(topic.Id).Distinct();
+
+                                if (plans != null)
+                                {
+                                    string date = String.Empty;
+                                    foreach (LecturePlan plan in plans)
+                                    {
+                                        if (plan.Date.HasValue) date += ("<div class=\"DeleteLecturePlanDiv\">" + plan.Date.Value.ToShortDateString() + " <img class=\"DeleteLecturePlan\" title=\"Удалить\" src=\"/Content/Images/delete.png\" width=\"10\" height=\"10\" id=\"Cabinet_DeleteLecturePlan_" + topic.Id.ToString() + "_" + plan.Date.Value.ToShortDateString() + "\"/></div>");
+                                    }
+                                    existedDates.Add(topic.Id, date);
+                                }
+                            }
+                            ViewData["ExistedDates"] = existedDates;
                         }
-
-                        ViewData["LectureDatesList"] = listItems.AsEnumerable();
                     }
                     // отображение списка дисциплин
                     else
@@ -198,6 +332,41 @@ namespace VmkLearningKit.Controllers
                     ViewData["SpecialityDiscipline"] = specialityDiscipline;
                     ViewData["SpecialityDisciplineTopics"] = specialityDiscipline.SpecialityDisciplineTopics;
                     ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
+
+                    LectureTimetable lectionTimetable = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
+
+                    List<DateTime> lectionDatesList = Utility.GetLectionDateTimesInCurrentTerm(lectionTimetable.Day, lectionTimetable.Week);
+                    List<SelectListItem> list = new List<SelectListItem>();
+
+                    foreach (DateTime lection in lectionDatesList)
+                    {
+                        SelectListItem item = new SelectListItem();
+                        item.Text = item.Value = lection.ToShortDateString();
+                        list.Add(item);
+                    }
+                    SelectListItem defaultItem = new SelectListItem();
+                    defaultItem.Selected = true;
+                    defaultItem.Text = defaultItem.Value = "Дата...";
+                    list.Add(defaultItem);
+
+                    ViewData["LectureDatesList"] = list.AsEnumerable();
+
+                    Dictionary<long, string> existedDates = new Dictionary<long, string>();
+                    foreach (SpecialityDisciplineTopic topic in specialityDiscipline.SpecialityDisciplineTopics)
+                    {
+                        IEnumerable<LecturePlan> plans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineTopicId(topic.Id).Distinct();
+
+                        if (plans != null)
+                        {
+                            string date = String.Empty;
+                            foreach (LecturePlan plan in plans)
+                            {
+                                if (plan.Date.HasValue) date += ("<div class=\"DeleteLecturePlanDiv\">" + plan.Date.Value.ToShortDateString() + " <img class=\"DeleteLecturePlan\" title=\"Удалить\" src=\"/Content/Images/delete.png\" width=\"10\" height=\"10\" id=\"Cabinet_DeleteLecturePlan_" + topic.Id.ToString() + "_" + plan.Date.Value.ToShortDateString() + "\"/></div>");
+                            }
+                            existedDates.Add(topic.Id, date);
+                        }
+                    }
+                    ViewData["ExistedDates"] = existedDates;
 
                 }
                 // отображение списка дисциплин

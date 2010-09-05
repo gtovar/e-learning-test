@@ -11,5 +11,7 @@ namespace VmkLearningKit.Models.Repository
         IEnumerable<LecturePlan> GetBySpecialityDisciplineTopicId(long specialityDisciplineTopicId);
         IEnumerable<LecturePlan> GetBySpecialityDisciplineId(long specialityDisciplineId);
         LecturePlan Add(LecturePlan obj);
+        void DeleteByTopicIdAndDate(long topicId, DateTime date);
+        LecturePlan GetByTopicIdAndDate(long topicId, DateTime date);
     }
 }
