@@ -12,7 +12,7 @@
         <h4 class="SuperLink"><%= Html.ActionLink("Получить список специальностей", "GetSpecialityDocument")%></h4>
         <h4 class="SuperLink"><%= Html.ActionLink("Получить список групп", "GetStudentDocument")%></h4>
         <h4 class="SuperLink"><%= Html.ActionLink("Получить список студентов", "GetStudentDocument")%></h4>
-        <h4 class="SuperLink"><%= Html.ActionLink("Получить программу дисциплины", "SpecialityDisciplines", "Admin")%></h4>
+        <h4 class="SuperLink"><%= Html.ActionLink("Получить программу дисциплины", "GetDisciplineProgramDocument")%></h4>
     </div>
 </asp:Content>
 

@@ -565,7 +565,7 @@ namespace VmkLearningKit.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult GetProgramDisciplineDocument()
+        public ActionResult GetDisciplineProgramDocument()
         {
 
             return RedirectToAction("Index");
