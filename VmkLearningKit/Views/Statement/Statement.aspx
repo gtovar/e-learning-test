@@ -579,7 +579,7 @@ function setMarks() {
 };
 
 function saveMarks() {
-    alert("Почти сохранено))");
+    //alert("Почти сохранено))");
 };
 
 function closeBox() {
