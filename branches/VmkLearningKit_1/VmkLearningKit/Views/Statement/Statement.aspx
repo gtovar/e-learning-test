@@ -535,8 +535,8 @@ function setMarks() {
     } else {
         var tmpContent;
         tmpContent= "<h3>Оценки по теме<br/> \"" + $("#SelectMarkTopic option:selected").html() + "\" </h3>";
-        tmpContent += '<div style="width:360px; height:340px; border:1px groove; margin:10px; overflow:scroll;">';
-            tmpContent += '<table width="100%" border="1px"><thead><tr><th>ФИО</th><th>Оценка</th>  </tr></thead><tbody>';
+        tmpContent += '<div style="width:360px; height:310px; border:1px groove; margin:10px; overflow:scroll;">';
+            tmpContent += '<table width="100%" border="1px" id="tmpMarksTable"><thead><tr><th>ФИО</th><th>Оценка</th>  </tr></thead><tbody>';
             // Поиск всех непровереных тестов по данной теме и выставление оценок
             var tests = $("[id^='fake_" + topicItemId + "']").filter("[id$=score]");
             var name;
@@ -545,6 +545,8 @@ function setMarks() {
             var maxScore;
             var persent;
             var mark;
+            var marksStat = [ 0, 0, 0, 0 ]
+            
             tests.each(function () {
                 name = $(this).parent().find(".studentName").html();
                 studentId = $(this).parent().attr('id');
@@ -556,22 +558,27 @@ function setMarks() {
                 persent = 100 * score / maxScore;
                 if (persent >= $('#5MarkRule').val()) {
                     mark = 5;
+                    marksStat[0]++;
                 } else {
                     if (persent >= $('#4MarkRule').val()) {
                         mark = 4;
+                        marksStat[1]++;
                     } else {
                         if (persent >= $('#3MarkRule').val()) {
                             mark = 3;
+                            marksStat[2]++;
                         } else {
                             mark = 2;
+                            marksStat[3]++;
                         }
                     }
                 }
                 tmpContent += '<tr> <td>' + name + '</td><td><input name="' + studentId + '" type="text" size="6" value="' + mark + '"></td></tr>';
             });
-            
-            tmpContent+='</tbody></table> ';
-        tmpContent+='</div><br/>';
+            tmpContent += '</tbody></table> ';
+
+            tmpContent += '</div>';
+            tmpContent += 'Статистика: "2":' + marksStat[3] + '  "3":' + marksStat[2] + ' "4":' + marksStat[1] + ' "5":' + marksStat[0] + '<br/><br/>';
         tmpContent += '<input  type="button" value="Сохранить" onclick="saveMarks(); return false;"  style=""/> <input  type="button" value="Закрыть" onclick=" closeBox(); return false;"  style=""/>';
         $("#marksInfo").append(tmpContent);
         return false;
