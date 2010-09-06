@@ -124,7 +124,6 @@ td.secondAssignement {
 
 
 
-
         $.datepicker.setDefaults($.extend
         ($.datepicker.regional["ru"])
         );
@@ -535,22 +534,24 @@ function setMarks() {
     } else {
         var tmpContent;
         tmpContent= "<h3>Оценки по теме<br/> \"" + $("#SelectMarkTopic option:selected").html() + "\" </h3>";
-        tmpContent += '<div style="width:360px; height:310px; border:1px groove; margin:10px; overflow:scroll;">';
+        tmpContent += '<div style="width:360px; height:240px; border:1px groove; margin:10px; overflow:scroll;">';
             tmpContent += '<table width="100%" border="1px" id="tmpMarksTable"><thead><tr><th>ФИО</th><th>Оценка</th>  </tr></thead><tbody>';
             // Поиск всех непровереных тестов по данной теме и выставление оценок
             var tests = $("[id^='fake_" + topicItemId + "']").filter("[id$=score]");
             var name;
-            var studentId;
+            //var studentId;
+            var testId;
             var score;
             var maxScore;
             var persent;
             var mark;
             var marksStat = [ 0, 0, 0, 0 ]
-            
+
             tests.each(function () {
                 name = $(this).parent().find(".studentName").html();
-                studentId = $(this).parent().attr('id');
-                studentId = studentId.replace(/student_/, "");
+                testId = $(this).attr('class');
+                //studentId = $(this).parent().attr('id');
+                // studentId = studentId.replace(/student_/, "");
                 score = $(this).find("a").html();
                 maxScore = $(this).find("h5").html();
                 maxScore = maxScore.replace(/\(/, "");
@@ -573,12 +574,13 @@ function setMarks() {
                         }
                     }
                 }
-                tmpContent += '<tr> <td>' + name + '</td><td><input name="' + studentId + '" type="text" size="6" value="' + mark + '"></td></tr>';
+                tmpContent += '<tr> <td>' + name + '</td><td><input name="' + testId + '" class="newMark" type="text" size="6" value="' + mark + '"></td></tr>';
             });
             tmpContent += '</tbody></table> ';
 
             tmpContent += '</div>';
-            tmpContent += 'Статистика: "2":' + marksStat[3] + '  "3":' + marksStat[2] + ' "4":' + marksStat[1] + ' "5":' + marksStat[0] + '<br/><br/>';
+            var numMark = marksStat[0] + marksStat[1] + marksStat[2] + marksStat[3];
+            tmpContent += 'Статистика:<br/> "Отлично": &#09;' + marksStat[0] + '(' + Math.round(100 * marksStat[0] / numMark) + '%)<br/>"Хорошо": &#09;' + marksStat[1] + '(' + Math.round(100 * marksStat[1] / numMark) + '%)<br/>"Удовл.": &#09;' + marksStat[2] + '(' + Math.round(100 * marksStat[2] / numMark) + '%)<br/>"Плохо": &#09;' + marksStat[3] + '(' + Math.round(100 * marksStat[3] / numMark) + '%)<br/><br/>';
         tmpContent += '<input  type="button" value="Сохранить" onclick="saveMarks(); return false;"  style=""/> <input  type="button" value="Закрыть" onclick=" closeBox(); return false;"  style=""/>';
         $("#marksInfo").append(tmpContent);
         return false;
@@ -587,9 +589,24 @@ function setMarks() {
 
 function saveMarks() {
     //alert("Почти сохранено))");
+    //var tmp = $('#tmpMarksTable');
+    //alert(tmp.html());
+    var res;
+    $('#tmpMarksTable .newMark').each(function () {
+        var obj = this;
+       // var mark = this.value;
+        //var id = this.getAttribute('name');
+        var data = { "alias": this.getAttribute('name').toString(), "mark": this.value };
+        $.post("/ViewTest/SetMark", data, function (str) { $(obj).parent().html(str); }, "json");
+
+    });
+    setInterval('window.location.reload()', 2500);  
+    //$.fancybox.close();
+    
 };
 
 function closeBox() {
+    $.fancybox.close();
 
 };
 
@@ -763,7 +780,7 @@ function closeBox() {
 
                                         <%if (atvItem.Mark!=0)
                                                 {%>
-			                                        <td id="fake_<%=topicItem.Id%>_<%=i%>_mark"><%=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "mark" })%>
+			                                        <td id="fake_<%=topicItem.Id%>_<%=i%>_mark" class="<%=atvItem.Id%>"><%=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "mark" })%>
                                                         <br /><h6>(оценка)</h6>
                                                     </td>
                                             <%;
@@ -771,7 +788,7 @@ function closeBox() {
                                                 else
                                                 { %>
                  <!--вывод количества полученных баллов-->
-                                                    <td id="fake_<%=topicItem.Id%>_<%=i%>_score"><a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
+                                                    <td id="fake_<%=topicItem.Id%>_<%=i%>_score" class="<%=atvItem.Id%>"><a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
                                                     <%=Html.Encode(atvItem.Score) %> </a>
                                                     <%//=Html.ActionLink(Html.Encode(atvItem.Score), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
                                                     <br /><h5> (<%=ViewData["maxScoreVariant_"+atvItem.GeneratedTestVariantId.ToString()]%>)</h5>
