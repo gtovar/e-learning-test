@@ -587,6 +587,8 @@ function setMarks() {
     }
 };
 
+
+
 function saveMarks() {
     //alert("ѕочти сохранено))");
     //var tmp = $('#tmpMarksTable');
@@ -594,20 +596,32 @@ function saveMarks() {
     var res;
     $('#tmpMarksTable .newMark').each(function () {
         var obj = this;
-       // var mark = this.value;
+        // var mark = this.value;
         //var id = this.getAttribute('name');
-        var data = { "alias": this.getAttribute('name').toString(), "mark": this.value };
+        var data = { "alias": this.getAttribute('name'), "mark": this.value };
         $.post("/ViewTest/SetMark", data, function (str) { $(obj).parent().html(str); }, "json");
-
+        
     });
-    setInterval('window.location.reload()', 2500);  
-    //$.fancybox.close();
+    // ѕосле изменени€- перезагружаем страницу ( кроме FireFox'а- там глючит)
+    if (navigator.userAgent.toLowerCase().indexOf("gecko") == -1) {
+        setTimeout(myReload, 2000);
+    }
+    //window.location.reload();
+    //setTimeout('$.fancybox.close()', 2000);
     
 };
 
+function myReload() {
+    window.location.reload();
+}
+
+
 function closeBox() {
     $.fancybox.close();
-
+    // страница перезагружаетс€ только в FireFox
+    if (navigator.userAgent.toLowerCase().indexOf("gecko")) {
+        window.location.reload();
+    }
 };
 
 
