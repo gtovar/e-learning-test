@@ -46,6 +46,9 @@
 <script src="/Scripts/Plugins/DatePicker/jquery-ui-1.8.4.custom.min.js" type="text/javascript"></script>
 <script src="/Scripts/Plugins/DatePicker/ui.datepicker-ru.js" type="text/javascript"></script>
 <script src="/Scripts/Plugins/DatePicker/jquery-ui-timepicker-addon-0.5.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="/Scripts/Plugins/FancyBox/scripts/jquery.fancybox-1.3.1.js"></script>
+<link rel="stylesheet" type="text/css" href="/Scripts/Plugins/FancyBox/style/jquery.fancybox-1.3.1.css" media="screen" />
 <style>
 
 td.changeble {
@@ -112,6 +115,15 @@ td.secondAssignement {
 
         $('#5MarkRule').change(function () { Set4Rule(); }).change();
         $('#4MarkRule').change(function () { Set3Rule(); }).change();
+
+        $('#SetMarks').fancybox(
+        {
+            "scrolling": "no"
+        });
+
+
+
+
 
         $.datepicker.setDefaults($.extend
         ($.datepicker.regional["ru"])
@@ -480,7 +492,7 @@ function Set4Rule(){
 	    
 	}
 };
-
+// выбор тройки
 function Set3Rule() {
     var Value4 = parseInt($('#4MarkRule').val());
     var tmpSelect = $('#3MarkRule');
@@ -513,6 +525,66 @@ function Set3Rule() {
 
 };
 
+function setMarks() {
+    $("#marksInfo").html("");
+    var topicItemId = $("#SelectMarkTopic option:selected").val();
+    if (topicItemId == "-1") {
+        $("#marksInfo").append("<h3>Тема не выбрана.</h3>");
+       // $.fn.fancybox.close();
+        return false;
+    } else {
+        var tmpContent;
+        tmpContent= "<h3>Оценки по теме<br/> \"" + $("#SelectMarkTopic option:selected").html() + "\" </h3>";
+        tmpContent += '<div style="width:360px; height:340px; border:1px groove; margin:10px; overflow:scroll;">';
+            tmpContent += '<table width="100%" border="1px"><thead><tr><th>ФИО</th><th>Оценка</th>  </tr></thead><tbody>';
+            // Поиск всех непровереных тестов по данной теме и выставление оценок
+            var tests = $("[id^='fake_" + topicItemId + "']").filter("[id$=score]");
+            var name;
+            var studentId;
+            var score;
+            var maxScore;
+            var persent;
+            var mark;
+            tests.each(function () {
+                name = $(this).parent().find(".studentName").html();
+                studentId = $(this).parent().attr('id');
+                studentId = studentId.replace(/student_/, "");
+                score = $(this).find("a").html();
+                maxScore = $(this).find("h5").html();
+                maxScore = maxScore.replace(/\(/, "");
+                maxScore = maxScore.replace(/\)/, "");
+                persent = 100 * score / maxScore;
+                if (persent >= $('#5MarkRule').val()) {
+                    mark = 5;
+                } else {
+                    if (persent >= $('#4MarkRule').val()) {
+                        mark = 4;
+                    } else {
+                        if (persent >= $('#3MarkRule').val()) {
+                            mark = 3;
+                        } else {
+                            mark = 2;
+                        }
+                    }
+                }
+                tmpContent += '<tr> <td>' + name + '</td><td><input name="' + studentId + '" type="text" size="6" value="' + mark + '"></td></tr>';
+            });
+            
+            tmpContent+='</tbody></table> ';
+        tmpContent+='</div><br/>';
+        tmpContent += '<input  type="button" value="Сохранить" onclick="saveMarks(); return false;"  style=""/> <input  type="button" value="Закрыть" onclick=" closeBox(); return false;"  style=""/>';
+        $("#marksInfo").append(tmpContent);
+        return false;
+    }
+};
+
+function saveMarks() {
+    alert("Почти сохранено))");
+};
+
+function closeBox() {
+
+};
 
 
 
@@ -660,7 +732,7 @@ function Set3Rule() {
 			
             
                     <td  style=" background-color:#ffffff;"><%=Html.Encode(studentCount)%></td>
-			        <td style=" background-color:#ffffff; text-align:justify"><%=Html.Encode(GetStudentName(studentItem.Id))%></td>
+			        <td class="studentName" style=" background-color:#ffffff; text-align:justify"><%=Html.Encode(GetStudentName(studentItem.Id))%></td>
                     <%int topicCounter2 = 0; %>			
                      <%foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
                       {%> 
@@ -684,8 +756,7 @@ function Set3Rule() {
 
                                         <%if (atvItem.Mark!=0)
                                                 {%>
-			                                        <td id="Td1"><a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank"></a>
-                                                    <%//=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "mark" })%>
+			                                        <td id="fake_<%=topicItem.Id%>_<%=i%>_mark"><%=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "mark" })%>
                                                         <br /><h6>(оценка)</h6>
                                                     </td>
                                             <%;
@@ -824,41 +895,29 @@ function Set3Rule() {
                             </td>
                             <td>
                             <select id="4MarkRule" class="markRule">
-                                    <option value="100">100% </option>
-                                    <option value="90">90% </option>
-                                    <option value="80">80% </option>
-                                    <option value="70">70% </option>
+                                    
                                     <option selected="selected" value="60">60% </option>
-                                    <option value="50">50% </option>
-                                    <option value="40">40% </option>
-                                    <option value="30">30% </option>
-                                    <option value="20">20% </option>
-                                    <option value="10">10% </option>
-                                    <option value="0">0% </option>
+                                    
                                 </select>
                             </td>
                             <td>
                                 <select id="3MarkRule" class="markRule">
-                                    <option value="100">100% </option>
-                                    <option value="90">90% </option>
-                                    <option value="80">80% </option>
-                                    <option value="70">70% </option>
-                                    <option value="60">60% </option>
-                                    <option value="50">50% </option>
-                                    <option value="40">40% </option>
+                                    
                                     <option selected="selected" value="30">30% </option>
-                                    <option value="20">20% </option>
-                                    <option value="10">10% </option>
-                                    <option value="0">0% </option>
+                                    
                                 </select>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-           <input id="SetMarks" type="button" value="Расставить оценки автоматически"  style="width:230px;"/>
-           <input id="SaveMarks" type="button" value="Сохранить оценки"  style="width:70px;"/>
+           <a id="SetMarks" href="#marksInfo"><input  type="button" value="Расставить оценки автоматически" onclick="setMarks();"  style=""/></a>
            <h6> *Вы можете выставить оценки студентам вручную кликнув<br /> на соответствующем поле</h6>
+           <div style="display:none;">
+		         <div id="marksInfo" style=" height:450px; width:400px;">
+                </div>
+	       </div>
+
     </div>
 
    <%}; %>
