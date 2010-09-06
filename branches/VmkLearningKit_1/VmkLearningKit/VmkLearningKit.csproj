@@ -626,6 +626,22 @@
     <Content Include="Scripts\Plugins\DatePicker\jquery-ui-timepicker-addon-0.5.min.js" />
     <Content Include="Scripts\Plugins\DatePicker\jquery.clockpick.1.2.7.js" />
     <Content Include="Scripts\Plugins\DatePicker\jquery.clockpick.1.2.7[1].css" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_close.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_loading.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_nav_left.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_nav_right.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_shadow_e.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_shadow_n.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_shadow_ne.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_shadow_nw.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_shadow_s.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_shadow_se.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_shadow_sw.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_shadow_w.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_title_left.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_title_main.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_title_over.png" />
+    <Content Include="Scripts\Plugins\FancyBox\style\fancy_title_right.png" />
     <Content Include="Views\Admin\XmlParse.aspx" />
     <Content Include="Views\Shared\GeneralMenu.ascx" />
   </ItemGroup>
