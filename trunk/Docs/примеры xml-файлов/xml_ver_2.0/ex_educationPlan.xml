@@ -116,7 +116,7 @@
 				
 				  <discipline abbreviation="ОС UNIX" code=" " title="Операционная система UNIX">
 					  <teachers>
-						  <teacher name="Лабутин Д.Ю/"/>
+						  <teacher name="Лабутин Д.Ю."/>
 					  </teachers>
 					  <term number="7" lections="1" practices="1" labs="0" reportings="Экзамен"/>
 				  </discipline>
