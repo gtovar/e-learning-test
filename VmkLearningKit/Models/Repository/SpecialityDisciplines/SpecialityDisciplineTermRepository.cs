@@ -39,6 +39,10 @@ namespace VmkLearningKit.Models.Repository
         {
             try
             {
+                SpecialityDisciplineTerm term = DataContext.SpecialityDisciplineTerms.SingleOrDefault(t => (t.SpecialityDisciplineId == obj.Id && t.Term == obj.Term));
+
+                if (term != null) return term;
+
                 DataContext.SpecialityDisciplineTerms.InsertOnSubmit(obj);
                 DataContext.SubmitChanges();
                 return obj;
