@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<chairs>
+	<chair abbreviation="ТУДМ" title="Кафедра теории управления и динамики машин" site="http://www.unn.ru/tudm/"/>
+	<chair abbreviation="ЧиФА" title="Кафедра численного и функционального анализа" site="http://www.unn.ru/"/>
+	<chair abbreviation="МЛиВА" title="Кафедра математической логики и высшей алгебры" />
+	<chair abbreviation="ПМ" title="Кафедра прикладной математики" />
+	<chair abbreviation="МОЭВМ" title="Кафедра математического обеспечения ЭВМ" site="http://www.software.unn.ru/?dir=6"/>
+	<chair abbreviation="ИАНИ" title="Кафедра информатики и автоматизации научных исследований" site="http://iani.unn.ru/"/>
+	<chair abbreviation="ПТВ" title="Кафедра прикладной теории вероятностей" />
+	<chair abbreviation="ИИСГео" title="Кафедра интеллектуальных информационных систем и геоинформатики" />
+	<chair abbreviation="ЦПИ" title="Центр прикладной информатики" />
+</chairs>
