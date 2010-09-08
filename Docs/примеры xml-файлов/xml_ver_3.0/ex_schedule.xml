@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<specialities>
+	<speciality abbreviation="ПИ" >
+		<disciplines>
+			<discipline abbreviation="ОДМ" >
+				<lections teacher="Алексеев В.Е.">
+					<groups>
+						<group number="8101" />
+						<group number="8102" />
+						<group number="8103" />
+						<group number="8104" />
+						<group number="8105" />
+					</groups>
+					<lection dayOfWeek="Понедельник" time="8:00" room="221" building="4" week="Каждая" />
+				</lections>
+        <practices>
+          <practice teacher="Жильцова Л.П." dayOfWeek="Понедельник" time="11:20" room="307" building="2" week="Каждая" groupNumber="8103" />
+          <practice teacher="Захарова Д.В." dayOfWeek="Вторник" time="8:00" room="303" building="2" week="Каждая" groupNumber="8104" />
+          <practice teacher="Захарова Д.В." dayOfWeek="Вторник" time="9:40" room="234" building="2" week="Каждая" groupNumber="8105" />
+          <practice teacher="Захарова Д.В." dayOfWeek="Среда" time="14:40" room="512" building="6" week="Каждая" groupNumber="8101"/>
+          <practice teacher="Смирнова Т.Г." dayOfWeek="Среда" time="16:20" room="515" building="6" week="Каждая" groupNumber="8102"/>
+        </practices>
+			</discipline>
+			<discipline abbreviation="МА">
+				<lections teacher="Кротов Н.В.">
+					<groups>
+						<group number="8101" />
+						<group number="8102" />
+						<group number="8103" />
+						<group number="8105" />
+					</groups>
+					<lection  dayOfWeek="Понедельник" time="9:40" room="221" building="4" week="Каждая" />
+					<lection dayOfWeek="Вторник" time="13:00" room="338" building="2" week="Каждая" />
+				</lections>
+				<lections teacher="Шашков В.М.">
+					<groups>
+						<group number="8201" />
+						<group number="8202" />
+						<group number="8203" />
+						<group number="8204" />
+					</groups>
+					<lection  dayOfWeek="Суббота" time="13:00" room="324" building="2" week="Каждая" />
+				</lections>
+				<practices>
+					<practice teacher="Медведев Т.В." dayOfWeek="Понедельник" time="11:20" room="306" building="2" week="Каждая" groupNumber="8102" />
+					<practice teacher="Фокина В.Н." dayOfWeek="Вторник" time="8:00" room="234" building="2" week="Каждая" groupNumber="8105" />
+					<practice teacher="Эгамов А.И." dayOfWeek="Среда" time="8:00" room="324" building="2" week="Каждая" groupNumber="8103" />
+					<practice teacher="Эгамов А.И." dayOfWeek="Среда" time="9:40" room="307" building="2" week="Каждая" groupNumber="8103" />
+					<practice teacher="Фокина В.Н." dayOfWeek="Среда" time="13:00" room="310" building="2" week="Каждая" groupNumber="8105"/>
+					<practice teacher="Сизова Н.А." dayOfWeek="Среда" time="16:20" room="514" building="6" week="Каждая" groupNumber="8101"/>
+					<practice teacher="Медведев Т.В." dayOfWeek="Суббота" time="13:00" room="338" building="2" week="Каждая" groupNumber="8102" />
+					<practice teacher="Сизова Н.А." dayOfWeek="Суббота" time="16:20" room="102" building="6" week="Каждая" groupNumber="8101"/>
+					<practice teacher="Сизова Н.А." dayOfWeek="Среда" time="14:40" room="509" building="6" week="Каждая" groupNumber="8201"/>
+					<practice teacher="Медведев Т.В." dayOfWeek="Среда" time="14:40" room="514" building="6" week="Каждая" groupNumber="8202" />
+					<practice teacher="Эгамов А.И." dayOfWeek="Пятница" time="9:40" room="310" building="2" week="Каждая" groupNumber="8203" />
+				</practices>
+			</discipline>
+				
+			<discipline abbreviation="АнГ">
+				<lections teacher="Шевченко В.Н."> 
+					<groups>
+						<group number="8101" />
+						<group number="8102" />
+						<group number="8103" />
+						<group number="8104" />
+						<group number="8105" />
+					</groups>
+					<lection dayOfWeek="Четверг" time="13:00" room="314" building="2" week="Каждая" />
+				</lections>
+				<practices>
+					<practice teacher="Сидоров С.В." dayOfWeek="Вторник" time="14:40" room="502" building="6" week="Каждая" groupNumber="8102"/>
+					<practice teacher="Киселева Л.Г." dayOfWeek="Вторник" time="14:40" room="102" building="6" week="Каждая" groupNumber="8103"/>	
+					<practice teacher="Киселева Л.Г." dayOfWeek="Вторник" time="14:40" room="102" building="6" week="Верхняя" groupNumber="8103"/>	
+					<practice teacher="Шевченко В.Н." dayOfWeek="Четверг" time="18:00" room="509" building="6" week="Нижняя" groupNumber="8101"/>				
+					<practice teacher="Сидоров С.В. " dayOfWeek="Четверг" time="14:40" room="310" building="2" week="Нижняя" groupNumber="8102"/>
+					<practice teacher="Шевченко В.Н." dayOfWeek="Четверг" time="16:20" room="102" building="6" week="Каждая" groupNumber="8104"/>
+					<practice teacher="Шевченко В.Н." dayOfWeek="Четверг" time="18:00" room="509" building="6" week="Верхняя" groupNumber="8104"/>
+					<practice teacher="Шульц М.М." dayOfWeek="Четверг" time="11:20" room="324" building="2" week="Каждая" groupNumber="8105"/>
+					<practice teacher="Шульц М.М." dayOfWeek="Пятница" time="13:00" room="234" building="2" week="Верхняя" groupNumber="8105"/>
+					<practice teacher="Шевченко В.Н." dayOfWeek="Суббота" time="14:40" room="515" building="6" week="Каждая" groupNumber="8101"/>
+				</practices>
+			</discipline>
+			</disciplines>
+	</speciality>
+	
+	<speciality abbreviation="ИТ" >
+				
+		<disciplines>
+		<discipline abbreviation="ПИ">
+				<lections teacher="Карпенко С.Н.">
+					<groups>
+						<group number="8409" />
+						<group number="8410" />
+						<group number="8411" />
+					</groups>
+					<lection  dayOfWeek="Суббота" time="13:00" room="324" building="2" week="Каждая" />
+				</lections>
+				<practices>
+					<practice teacher="Карпенко С.Н." dayOfWeek="Среда" time="18:00" room="502" building="6" week="Верхняя" groupNumber="8409"/>
+					<practice teacher="Карпенко С.Н." dayOfWeek="Среда" time="18:00" room="514" building="6" week="Нижняя" groupNumber="8410" part="МЛИВА"/>
+					<practice teacher="Карпенко С.Н." dayOfWeek="Суббота" time="14:40" room="514" building="6" week="Каждая" groupNumber="8410" part="МОЭВМ"/>	
+				</practices>
+			</discipline>
+			
+			<discipline abbreviation="МЛ" >
+				<lections  teacher="Таланов В.А." >
+					<groups>
+						<group number="8409" />
+						<group number="8410" />
+						<group number="8411" />
+					</groups>
+				<lection dayOfWeek="Вторник" time="11:20" room="324" building="2" week="Каждая" />
+					</lections>
+					<practices>
+						<practice teacher="Таланов В.А." dayOfWeek="Вторник" time="13:00" room="102" building="6" week="Верхняя" groupNumber="8409"/>
+						<practice teacher="Таланов В.А." dayOfWeek="Вторник" time="13:00" room="102" building="6" week="Нижняя" groupNumber="8411"/>
+						<practice teacher="Таланов В.А." dayOfWeek="Среда" time="16:20" room="307" building="2" week="Верхняя" groupNumber="8410" part="2" />					
+					</practices>
+			</discipline>
+			
+		</disciplines>
+	</speciality>	
+</specialities>
