@@ -49,7 +49,7 @@
 
 <script type="text/javascript" src="/Scripts/Plugins/FancyBox/scripts/jquery.fancybox-1.3.1.js"></script>
 <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/FancyBox/style/jquery.fancybox-1.3.1.css" media="screen" />
-<style>
+<style type="text/css">
 
 td.changeble {
  background-color:#F5f9ff;
@@ -112,16 +112,34 @@ td.secondAssignement {
 
     $(document).ready(function () {
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         $('#5MarkRule').change(function () { Set4Rule(); }).change();
         $('#4MarkRule').change(function () { Set3Rule(); }).change();
 
         $('#SetMarks').fancybox(
         {
-            "scrolling": "no"
+            "scrolling": "no",
+            "autoScale": false
         });
 
+        $('.left_col').hover(
+	      function () {
+	          $('.additional_menu').show("fast");
+	          $("#additional_menu_fake").hide("fast");
+	      },
+	      function () {
+	          $('.additional_menu').hide("normal");
+	          $("#additional_menu_fake").show("normal");
+	      }
+	    );
+	      $(".left_col").append('<img id="additional_menu_fake" alt="Дополнительное меню" src="/Content/Images/hide_menu_icon.gif" style="display:none;" />');
+	      setTimeout('$(".additional_menu").hide("slow");$("#additional_menu_fake").show("normal");', 1000);
 
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
         $.datepicker.setDefaults($.extend
@@ -134,7 +152,7 @@ td.secondAssignement {
             showButtonPanel: true,
             hour: 8,
             minute: 0
-          
+
         });
 
 
@@ -256,7 +274,7 @@ td.secondAssignement {
                     if (setVariant[3] != -1) {
                         var Help = '<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() %>' + "/Start.aspx?mode=grading&key=" + setVariant[3];
                         alert(Help);
-                       // "/ViewTest/ViewTest/" + '<%//=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
+                        // "/ViewTest/ViewTest/" + '<%//=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
                         var tmp = $('<a href=' + Help + 'target="_blank" >' + numVar + '</a>');
                         var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
                         t.attr('class', 'newAssignement');
@@ -619,7 +637,7 @@ function myReload() {
 function closeBox() {
     $.fancybox.close();
     // страница перезагружается только в FireFox
-    if (navigator.userAgent.toLowerCase().indexOf("gecko")) {
+    if (navigator.userAgent.toLowerCase().indexOf("gecko") != -1) {
         window.location.reload();
     }
 };
@@ -650,13 +668,13 @@ function closeBox() {
  
  <%//если в базе данных нет групп, обучающихся у преполавателя по данной дисциплине
       if (null == ViewData["groups"])
-   {%>
-       </tr>
-    </table>
-    <p>
-    <div><b>Нет групп обучающихся по данной дисциплине</b>
-    </div>
-    </p>
+       {%>
+           </tr>
+        </table>
+        <p>
+        <div><b>Нет групп обучающихся по данной дисциплине</b>
+        </div>
+        </p>
     <%;} %>
     
 
@@ -680,7 +698,7 @@ function closeBox() {
     
     
     <p>
-    <div><b><h2>В базе данных нет информации о студентах данной группы</h2></b>
+    <div><h2><b>В базе данных нет информации о студентах данной группы</b></h2>
     </div>
     </p>
     <%}  %>
@@ -758,9 +776,9 @@ function closeBox() {
  <tbody style=" text-align: center"> 
            <tr >
                 <td rowspan="<%=((IEnumerable<VmkLearningKit.Models.Repository.User>)ViewData["Students"]).Count()+1%>" style=" border-width:0px; vertical-align:top;">
-                    <img id="Button3" alt="" src="/Content/Images/up.png" height=20px width=20px  />
+                    <img id="Button3" alt="" src="/Content/Images/up.png" height="20px" width="20px"  />
                     <br />
-                    <img id="Button4" alt="" src="/Content/Images/down.png" height=20px width=20px  />
+                    <img id="Button4" alt="" src="/Content/Images/down.png" height="20px" width="20px"  />
                 </td>
             </tr>
             <%int studentCount = 1;
@@ -842,13 +860,12 @@ function closeBox() {
 
          <tr> 
             <td colspan="<%= ((IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"]).Count()*3+2 %>" style=" border-width:0px;padding-top: 5px; text-align:right;">
-            <img id="Button2" alt="" src="/Content/Images/left.png" height=20px width=20px  />&nbsp;<img id="Button1" alt="" src="/Content/Images/right.png" height=20px width=20px  />
+            <img id="Button2" alt="" src="/Content/Images/left.png" height="20px" width="20px"  />&nbsp;<img id="Button1" alt="" src="/Content/Images/right.png" height="20px" width="20px"  />
             </td>
          </tr>
   </tbody>  
      </table>
   
- </div> 
  
        
    <div class="appointment"  >

@@ -23,7 +23,7 @@
     <% try
        {
            %>
-           <span class="menu_lev1">Кафедры</span>
+           <span class="menu_lev1">Кафедры</span><br />
            <%
            foreach (Chair chair in (IEnumerable<Chair>)ViewData["Chairs"])
            {
