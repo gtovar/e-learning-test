@@ -622,7 +622,7 @@ function saveMarks() {
     });
     // После изменения- перезагружаем страницу ( кроме FireFox'а- там глючит)
     if (navigator.userAgent.toLowerCase().indexOf("gecko") == -1) {
-        setTimeout(myReload, 2000);
+        setTimeout(myReload, 3000);
     }
     //window.location.reload();
     //setTimeout('$.fancybox.close()', 2000);
