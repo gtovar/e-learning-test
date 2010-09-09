@@ -186,6 +186,8 @@ namespace VmkLearningKit.Controllers
                                 {
                                     fl = 0;
                                     errors.Add("[" + studentsId.ToString() + "_" + topicsId.ToString() + "_" + variantNumsId.ToString() + "_" + idAddedNewAssignedTestVariant.ToString());
+                                    break;
+
                                 }
                                 str += "[" + studentsId.ToString() + "_" + topicsId.ToString() + "_" + variantNumsId.ToString() + "_" + repositoryManager.GetAssignedTestVariantRepository.GetById(idAddedNewAssignedTestVariant).ProfessorKey.ToString();
                             }

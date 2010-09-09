@@ -149,7 +149,7 @@ td.secondAssignement {
             inline: true,
             minDate: "0",
             gotoCurrent: true,
-            showButtonPanel: true,
+            showButtonPanel: false,
             hour: 8,
             minute: 0
 
@@ -163,7 +163,7 @@ td.secondAssignement {
             inline: true,
             minDate: "0",
             gotoCurrent: true,
-            showButtonPanel: true,
+            showButtonPanel: false,
             hour: 8,
             minute: 0
 
@@ -273,7 +273,6 @@ td.secondAssignement {
                     var numVar = setVariant[2];
                     if (setVariant[3] != -1) {
                         var Help = '<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() %>' + "/Start.aspx?mode=grading&key=" + setVariant[3];
-                        alert(Help);
                         // "/ViewTest/ViewTest/" + '<%//=ViewData["DisciplineId"] %>' + '/' + setVariant[3];
                         var tmp = $('<a href=' + Help + 'target="_blank" >' + numVar + '</a>');
                         var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
@@ -974,7 +973,7 @@ function closeBox() {
 	       </div>
 
     </div>
-
+    
    <%}; %>
 
 
