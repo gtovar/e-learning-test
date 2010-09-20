@@ -601,7 +601,7 @@ function setMarks() {
                         }
                     }
                 }
-                tmpContent += '<tr> <td>' + name + '</td><td><input name="' + testId + '" class="newMark" type="text" size="6" value="' + mark + '"></td></tr>';
+                tmpContent += '<tr> <td>' + name + '</td><td><input name="' + testId + '" class="newMark"  type="text" size="6" value="' + mark + '"></td></tr>';
             });
             tmpContent += '</tbody></table> ';
 
@@ -823,7 +823,12 @@ function closeBox() {
 
                                         <%if (atvItem.Mark!=0)
                                                 {%>
-			                                        <td id="fake_<%=topicItem.Id%>_<%=i%>_mark" class="<%=atvItem.Id%>"><%=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "mark" })%>
+
+			                                        <td id="fake_<%=topicItem.Id%>_<%=i%>_mark" class="<%=atvItem.Id%>">
+                                                    <a href="<%="/ViewTest/ViewTest/"+ ViewData["DisciplineId"].ToString()+"/"+atvItem.Id.ToString() %>" style="color:red;" class="iframe"> 
+                                                    <%=Html.Encode(atvItem.Mark)%>
+                                                    </a>
+                                                    <%//=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "iframe" })%>
                                                         <br /><h6>(оценка)</h6>
                                                     </td>
                                             <%;

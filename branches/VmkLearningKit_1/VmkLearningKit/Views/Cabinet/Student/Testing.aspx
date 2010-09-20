@@ -288,18 +288,16 @@
                             if (null != assignedTestVariant && !assignedTestVariant.Path.Trim().Equals(String.Empty))
                             {
                                 testVariantTitle = "Вариант_" + Path.GetFileNameWithoutExtension(assignedTestVariant.Path);
-                                testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=review&key=" + assignedTestVariant.StudentKey;
+                                //testVariantLink = ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=review&key=" + assignedTestVariant.StudentKey;
                             }
-                        %>
-                         <a href="<%= testVariantLink %>"><%= testVariantTitle %></a>
-                        <%/*
+                      
                             if (!testVariantTitle.Trim().Equals(String.Empty))
                             { 
-                           */
+                          
                         %>
-                        <%//= Html.Encode(testVariantTitle)%>
+                        <%= Html.Encode(testVariantTitle)%>
                         <% 
-                           // } 
+                           } 
                         %>
                     </td>
                     <td class="table_td">
