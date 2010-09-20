@@ -45,7 +45,7 @@ namespace VmkLearningKit.Controllers
              ViewData["generationInfo"] = gt.GeneratedDate;
              ViewData["test"] = atv;
           //   ViewData["themes"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/Shared/Themes.css";
-             return View("ViewTest2");
+             return View("ViewTestData");
             
         }
 
