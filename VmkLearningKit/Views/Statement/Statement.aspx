@@ -57,7 +57,7 @@ td.changeble {
 }
 td.newAssignement
 {
-    background-color:#Fef0f0;
+    background-color:#90ee90;
     border-width:2px;
     text-align:center;   
 }
@@ -113,7 +113,11 @@ td.secondAssignement {
     $(document).ready(function () {
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        $('.iframe').fancybox(
+        {
+            "scrolling": "yes",
+            "autoScale": false
+        });
 
         $('#5MarkRule').change(function () { Set4Rule(); }).change();
         $('#4MarkRule').change(function () { Set3Rule(); }).change();
@@ -803,10 +807,12 @@ function closeBox() {
                                     {%>
 			     <!---вывод номера варианта-->
                                         <td id="fake_<%=topicItem.Id%>_<%=i%>_var">
-                                        <a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
-                                        <%=Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()]) %>
+                                        <!--
+                                        <a href="<%//=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
+                                        <%//=Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()]) %>
                                         </a>
-                                        <%//=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()] ), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+                                        -->
+                                        <%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()] ), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "iframe " })%>
 			                            </td>  
 
                                         <%if (atvItem.Mark!=0)
@@ -819,9 +825,13 @@ function closeBox() {
                                                 else
                                                 { %>
                  <!--вывод количества полученных баллов-->
-                                                    <td id="fake_<%=topicItem.Id%>_<%=i%>_score" class="<%=atvItem.Id%>"><a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
-                                                    <%=Html.Encode(atvItem.Score) %> </a>
-                                                    <%//=Html.ActionLink(Html.Encode(atvItem.Score), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+                                                    <td id="fake_<%=topicItem.Id%>_<%=i%>_score" class="<%=atvItem.Id%>">
+                                                    <!--
+                                                    <a href="<%//=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
+                                                    <%//=Html.Encode(atvItem.Score) %>
+                                                    </a>
+                                                    -->
+                                                    <%=Html.ActionLink(Html.Encode(atvItem.Score), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "iframe" })%>
                                                     <br /><h5> (<%=ViewData["maxScoreVariant_"+atvItem.GeneratedTestVariantId.ToString()]%>)</h5>
                                                    
 			                                        </td>
@@ -832,9 +842,13 @@ function closeBox() {
                                     { %>
                                             
 			                            <td style=" width:60px;" id="fake_<%=topicItem.Id%>_<%=i%>_var" colspan=2>
-                                        <a href="<%=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
-                                                    <%=Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_"+ atvItem.GeneratedTestVariantId.ToString()]) %> </a>
-                                        <%//=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = " " })%>
+                                        <!--
+                                        <a href="<%//=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
+                                                    <%//=Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_"+ atvItem.GeneratedTestVariantId.ToString()]) %> 
+                                        </a>
+                                        -->
+
+                                        <%=Html.ActionLink(Html.Encode(ViewData[topicItem.Id.ToString() + "hasLocalNumber_" + atvItem.GeneratedTestVariantId.ToString()]), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "iframe " })%>
 			                            </td>  
                                     <%} %>
                                 <%}%>
@@ -986,6 +1000,7 @@ function closeBox() {
  </div>        
  </p>
   
+
    <%;} %>
  <%Html.EndForm();%>
  
