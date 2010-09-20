@@ -883,7 +883,7 @@ namespace QWord
 
                     index++;
                 }
-
+                /*
                 // закрытие документа word
                 CloseWordDocument();
 
@@ -891,6 +891,8 @@ namespace QWord
                 wordApplication = null;
                 wordDocument    = null;
                 wordParagraphs  = null;
+                 * 
+                 */
             }
             catch (Exception exc)
             {
