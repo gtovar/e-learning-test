@@ -1055,7 +1055,7 @@ namespace VmkLearningKit.Controllers
 
         private short[] GetTermsByDate(DateTime date)
         {
-            if (9 <= date.Month && date.Month < 2)
+            if (9 <= date.Month || date.Month < 2)
             {
                 return Utility.oddTerms;
             }
