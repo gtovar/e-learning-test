@@ -11,7 +11,7 @@ using System.IO;
 
 namespace VmkLearningKit.Controllers
 {
-    [AuthorizeFilter(Roles = "Admin")]
+    //[AuthorizeFilter(Roles = "Admin")]
     public class DocumentController : AbstractController
     {
         private Word.Document CreateWordDocument(out Word.Application program)
@@ -131,8 +131,8 @@ namespace VmkLearningKit.Controllers
 
                 Object oMissing = System.Reflection.Missing.Value;
 
-                document.Paragraphs.Add(ref oMissing);
-                document.Paragraphs[document.Paragraphs.Count].Range.Text = "Список кафедр";
+                Word.Paragraph p = document.Paragraphs.Add(ref oMissing);
+                p.Range.Text = "Список кафедр";
 
                 document.Paragraphs.Add(ref oMissing);
                 Word.Range range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -588,7 +588,7 @@ namespace VmkLearningKit.Controllers
                 string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
                 DirectoryInfo directory = new DirectoryInfo(path);
                 directory.Create();
-                SaveExcelDocument(path + "\\Список студентов.doc", program, book);
+                SaveExcelDocument(path + "\\Список студентов.xls", program, book);
 
                 return RedirectToAction("Index");
             }
@@ -619,27 +619,34 @@ namespace VmkLearningKit.Controllers
                 Word.Range cell;
                 bool flag;
 
+                // Область применения
+
                 string applicationDomain = disciplineProgram.ApplicationDomain;
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
                 range.Text = "1. Область применения";
 
                 flag = true;
                 while (flag)
                 {
                     int index = applicationDomain.IndexOf("<p>");
-                    if (index != -1)
+                    int index1 = applicationDomain.IndexOf("</p>");
+                    if (index < index1)
                     {
                         document.Paragraphs.Add();
                         range = document.Paragraphs[document.Paragraphs.Count].Range;
-                        range.Text = applicationDomain.Substring(index + 3, applicationDomain.IndexOf("</p>") - index - 4);
-                        string p = applicationDomain.Substring(index, applicationDomain.IndexOf("</p>") + 4);
-                        applicationDomain = applicationDomain.Replace(p, "");
+                        range.Underline = Word.WdUnderline.wdUnderlineNone;
+                        string s = applicationDomain.Substring(index + "<p>".Length, index1 - index - "<td>".Length);
+                        range.Text = s;
+                        applicationDomain = applicationDomain.Remove(index,"<td>".Length + s.Length + "</p>".Length);
                     }
                     else
                         flag = false;
                 }
+
+                // Цели и задачи курса
 
                 string purposes = disciplineProgram.Purposes;
 
@@ -647,23 +654,28 @@ namespace VmkLearningKit.Controllers
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Underline = Word.WdUnderline.wdUnderlineSingle;
                 range.Text = "2. Цели и задачи дисциплины";
 
                 flag = true;
                 while (flag)
                 {
                     int index = purposes.IndexOf("<p>");
-                    if (index != -1)
+                    int index1 = purposes.IndexOf("</p>");
+                    if (index < index1)
                     {
                         document.Paragraphs.Add();
                         range = document.Paragraphs[document.Paragraphs.Count].Range;
-                        range.Text = purposes.Substring(index + 3, purposes.IndexOf("</p>") - index - 4);
-                        string p = purposes.Substring(index, purposes.IndexOf("</p>") + 4);
-                        purposes = purposes.Replace(p, "");
+                        range.Underline = Word.WdUnderline.wdUnderlineNone;
+                        string s = purposes.Substring(index + "<p>".Length, index1 - index - "<td>".Length);
+                        range.Text = s;
+                        purposes = purposes.Remove(index, "<td>".Length + s.Length + "</p>".Length);
                     }
                     else
                         flag = false;
                 }
+
+                // Требования к уровню освоения содержания дисциплины
 
                 string requirements = disciplineProgram.Requirements;
 
@@ -671,23 +683,28 @@ namespace VmkLearningKit.Controllers
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Underline = Word.WdUnderline.wdUnderlineSingle;
                 range.Text = "3. Требования к уровню освоения содержания дисциплины";
 
                 flag = true;
                 while (flag)
                 {
                     int index = requirements.IndexOf("<p>");
-                    if (index != -1)
+                    int index1 = requirements.IndexOf("</p>");
+                    if (index < index1)
                     {
                         document.Paragraphs.Add();
                         range = document.Paragraphs[document.Paragraphs.Count].Range;
-                        range.Text = requirements.Substring(index + 3, requirements.IndexOf("</p>") - index - 4);
-                        string p = requirements.Substring(index, requirements.IndexOf("</p>") + 4);
-                        requirements = requirements.Replace(p, "");
+                        range.Underline = Word.WdUnderline.wdUnderlineNone;
+                        string s = requirements.Substring(index + "<p>".Length, index1 - index - "<td>".Length);
+                        range.Text = s;
+                        requirements = requirements.Remove(index, "<td>".Length + s.Length + "</p>".Length);
                     }
                     else
                         flag = false;
                 }
+
+                // Объем дисциплины и виды учебной работы
 
                 string volume = disciplineProgram.Volume;
 
@@ -695,12 +712,14 @@ namespace VmkLearningKit.Controllers
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Underline = Word.WdUnderline.wdUnderlineSingle;
                 range.Text = "4. Объем дисциплины и виды учебной работы";
 
-                List<string> cells = specialityDisciplineProgramRepository.GetVolume(disciplineProgram.SpecialityDisciplineId);
+                List<string> cells = specialityDisciplineProgramRepository.GetTable(disciplineProgram.SpecialityDisciplineId, 1);
 
                 document.Paragraphs.Add(ref oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Underline = Word.WdUnderline.wdUnderlineNone;
 
                 Object defaultTableBehavior =
                  Word.WdDefaultTableBehavior.wdWord9TableBehavior;
@@ -713,7 +732,7 @@ namespace VmkLearningKit.Controllers
                 cell.Text = "Виды учебной работы";
 
                 cell = table.Cell(1, 2).Range;
-                cell.Text = "Всего\n часов";
+                cell.Text = "Всего часов";
 
                 cell = table.Cell(1, 3).Range;
                 cell.Text = "Семестры";
@@ -721,7 +740,7 @@ namespace VmkLearningKit.Controllers
                 int l = 0;
                 for (int i = 1; i <= cells.Count / 3; i++)
                 {
-                    for (int j = 0; j < 2; j++)
+                    for (int j = 0; j < 3; j++)
                     {
                         cell = table.Cell(i + 1, j + 1).Range;
                         cell.Text = cells[l];
@@ -739,17 +758,24 @@ namespace VmkLearningKit.Controllers
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Text = "Выше обозначенная таблица составляется отдельно для каждой из форм обучения, предусмотренных учебным планом.";
 
+                // Содержание дисциплины
+
                 document.Paragraphs.Add();
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Size = 14;
                 range.Font.Italic = 0;
+                range.Underline = Word.WdUnderline.wdUnderlineSingle;
                 range.Text = "5. Содержание дисциплины";
+
+                // Разделы дисциплины и виды занятий
+                string razdels = disciplineProgram.Razdels;
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
-                range.Text = "5. Разделы дисциплины и виды занятий";
+                range.Underline = Word.WdUnderline.wdUnderlineNone;
+                range.Text = "5.1. Разделы дисциплины и виды занятий";
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -757,7 +783,236 @@ namespace VmkLearningKit.Controllers
                 range.Font.Italic = 1;
                 range.Text = "(допускается название п.4.1. «Тематический план»)";
 
+                cells = specialityDisciplineProgramRepository.GetTable(disciplineProgram.SpecialityDisciplineId, 2);
 
+                document.Paragraphs.Add(ref oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
+                range.Font.Italic = 0;
+
+                table = document.Tables.Add(range, cells.Count / 5 + 1, 5,
+                  ref defaultTableBehavior, ref autoFitBehavior);
+
+                cell = table.Cell(1, 1).Range;
+                cell.Text = "№п/п";
+
+                cell = table.Cell(1, 2).Range;
+                cell.Text = "Раздел дисциплины";
+
+                cell = table.Cell(1, 3).Range;
+                cell.Text = "Лекции";
+
+                cell = table.Cell(1, 4).Range;
+                cell.Text = "ПЗ (или С)";
+
+                cell = table.Cell(1, 5).Range;
+                cell.Text = "ЛР";
+
+                l = 0;
+                for (int i = 1; i <= cells.Count / 5; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        cell = table.Cell(i + 1, j + 1).Range;
+                        cell.Text = cells[l];
+                        l++;
+                    }
+                }
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 12;
+                range.Font.Italic = 1;
+                range.Text = "(в таблице название раздела указывается в соответствии с обязательным минимумом содержания, изложенным в ГОС ВПО. В графах, обозначающих предусматриваемые виды занятий проставляется знак *)";
+                // Содержание разделов дисциплины
+            //--------------------------------------
+
+
+
+            //--------------------------------------
+
+
+                // Лабораторный практикум
+
+                string labPracties = disciplineProgram.LabPractice;
+
+                document.Paragraphs.Add();
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
+                range.Font.Italic = 0;
+                range.Underline = Word.WdUnderline.wdUnderlineSingle;
+                range.Text = "6. Лабораторный практикум";
+
+                cells = specialityDisciplineProgramRepository.GetTable(disciplineProgram.SpecialityDisciplineId, 3);
+
+                document.Paragraphs.Add(ref oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Underline = Word.WdUnderline.wdUnderlineNone;
+                
+                table = document.Tables.Add(range, cells.Count / 3 + 1, 3,
+                  ref defaultTableBehavior, ref autoFitBehavior);
+
+                cell = table.Cell(1, 1).Range;
+                cell.Text = "№п/п";
+
+                cell = table.Cell(1, 2).Range;
+                cell.Text = "№ раздела дисциплины";
+
+                cell = table.Cell(1, 3).Range;
+                cell.Text = "Наименование лабораторных работ";
+
+                l = 0;
+                for (int i = 1; i <= cells.Count / 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        cell = table.Cell(i + 1, j + 1).Range;
+                        cell.Text = cells[l];
+                        l++;
+                    }
+                }
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 12;
+                range.Font.Italic = 1;
+                range.Text = "(в случае, если лабораторный практикум не предусматривается в п.5 делается запись - «не предусмотрен»)";
+
+
+                // Учебно-методическое обеспечение дисциплины
+
+                string literature = disciplineProgram.LabPractice;
+
+                document.Paragraphs.Add();
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
+                range.Font.Italic = 0;
+                range.Underline = Word.WdUnderline.wdUnderlineSingle;
+                range.Text = "7. Учебно-методическое обеспечение дисциплины";
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Underline = Word.WdUnderline.wdUnderlineNone;
+                range.Text = "7.1 Рекомендуемая литература";
+
+                List<string> first, second;
+
+                first = specialityDisciplineProgramRepository.GetLiterature(disciplineProgram.SpecialityDisciplineId, out second);
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "а) основная литература:";
+                for (int i = 0; i < first.Count; i++)
+                {
+                    document.Paragraphs.Add();
+                    range = document.Paragraphs[document.Paragraphs.Count].Range;
+                    range.Font.Size = 12;
+                    range.Text = (i+1) + ". " + first[i];
+                }
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
+                range.Text = "б) дополнительная литература:";
+                for (int i = 0; i < second.Count; i++)
+                {
+                    document.Paragraphs.Add();
+                    range = document.Paragraphs[document.Paragraphs.Count].Range;
+                    range.Font.Size = 12;
+                    range.Text = (i + 1) + ". " + second[i];
+                }
+
+                // Вопросы для контроля
+
+                string questions = disciplineProgram.Questions;
+
+                document.Paragraphs.Add();
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
+                range.Underline = Word.WdUnderline.wdUnderlineSingle;
+                range.Text = "8. Вопросы для контроля";
+
+                List<string> ques = specialityDisciplineProgramRepository.GetQuestions(disciplineProgram.SpecialityDisciplineId);
+
+                document.Paragraphs.Add();
+               
+                for (int i = 0; i < ques.Count; i++)
+                {
+                    document.Paragraphs.Add();
+                    range = document.Paragraphs[document.Paragraphs.Count].Range;
+                    range.Underline = Word.WdUnderline.wdUnderlineNone;
+                    range.Font.Size = 12;
+                    range.Text = (i + 1) + ". " + ques[i];
+                }
+
+                // Критерии оценок
+
+                string markCriterias = disciplineProgram.MarkCriterias;
+
+                document.Paragraphs.Add();
+
+                document.Paragraphs.Add();
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Underline = Word.WdUnderline.wdUnderlineSingle;
+                range.Text = "9. Критерии оценок";
+
+                List<string> table1, table2;
+                table1 = specialityDisciplineProgramRepository.GetTable2(disciplineProgram.SpecialityDisciplineId, out table2);
+
+                document.Paragraphs.Add(ref oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
+                range.Underline = Word.WdUnderline.wdUnderlineNone;
+
+                table = document.Tables.Add(range, table1.Count / 2, 2,
+                  ref defaultTableBehavior, ref autoFitBehavior);
+
+                l = 0;
+                for (int i = 0; i < table1.Count / 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        cell = table.Cell(i + 1, j + 1).Range;
+                        cell.Text = table1[l];
+                        l++;
+                    }
+                }
+
+                document.Paragraphs.Add(ref oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 12;
+                range.Text = "Примечание – таблица заполняется, если формой итогового контроля предусмотрен зачет";
+
+                document.Paragraphs.Add(ref oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
+
+                table = document.Tables.Add(range, table2.Count / 2, 2,
+                  ref defaultTableBehavior, ref autoFitBehavior);
+
+                l = 0;
+                for (int i = 0; i < table2.Count / 2; i++)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        cell = table.Cell(i + 1, j + 1).Range;
+                        cell.Text = table2[l];
+                        l++;
+                    }
+                }
+
+                document.Paragraphs.Add(ref oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 12;
+                range.Text = "Примечание – таблица заполняется, если  формой итогового контроля предусмотрен экзамен";
+
+            //-----------------------------------------------    
                 string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
                 DirectoryInfo directory = new DirectoryInfo(path);
                 directory.Create();
