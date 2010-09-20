@@ -34,7 +34,7 @@ namespace VmkLearningKit.Controllers
             long idStudent = atv.StudentId;
 
             ViewData["testPath"] = ConfigurationManager.AppSettings["webPlayerUrl"].ToString()+"/Start.aspx?mode=grading&key=" + atv.ProfessorKey.ToString();
-                  //+ Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/P1000/page.htm";
+                  
              ViewData[Constants.PAGE_TITLE] = "Просмотр тестового варианта";
              ViewData["discipline"] = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(alias).Title;
              User student = repositoryManager.GetUserRepository.GetById(idStudent);
@@ -42,9 +42,9 @@ namespace VmkLearningKit.Controllers
              GeneratedTest gt = atv.GeneratedTestVariant.GeneratedTest;
              ViewData["topic"] = gt.SpecialityDisciplineTopic.Title;
              ViewData["group"] = student.Student.Group.Title;
-             ViewData["generationInfo"] = gt.GeneratedDate;
              ViewData["test"] = atv;
-          //   ViewData["themes"] = "http://" + Request.Url.Authority.ToString() + "/Uploads/AssignedTests/Temp/Shared/Themes.css";
+             ViewData["testLocalNum"] = repositoryManager.GetGeneratedTestVariantRepository.GetLocalNumGeneratedTestVariant(atv.GeneratedTestVariantId);
+             ViewData["MaxScore"] = repositoryManager.GetGeneratedTestVariantRepository.GetMaxGeneratedTestVariantScore(atv.GeneratedTestVariantId);
              return View("ViewTestData");
             
         }
