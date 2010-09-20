@@ -206,7 +206,7 @@ td.secondAssignement {
 
             }
             flagExistInputChange = 0;
-            alert("для назначения тестов нажмите:Назначить тесты");
+            alert('Для назначения тестов нажмите "Назначить тесты"');
 
         }, "json");
             }
@@ -989,18 +989,12 @@ function closeBox() {
     </div>
     
    <%}; %>
-
-
- 
     <p> 
     <div style="float:right">
-  
- <%=Html.ActionLink("К списку дисциплин", "Professor", "Cabinet", new { alias = ViewData["ProfessorId"] }, new { @class = "" })%>
- 
- </div>        
- </p>
-  
-
+    <%=Html.ActionLink("К списку дисциплин", "Professor", "Cabinet", new { alias = ViewData["ProfessorId"] }, new { @class = "" })%>
+    </div>        
+    </p>
+    
    <%;} %>
  <%Html.EndForm();%>
  

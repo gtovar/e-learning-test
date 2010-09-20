@@ -27,27 +27,21 @@
 </head>
 <body>
     <div>
-    <table style=" width:90%">
-  <tr style=" text-align:left"> <td> <b>Дисциплина</b>
-       </td>
-       <td> <%=ViewData["discipline"] %>
-       </td>
-       <td><b>Тема</b>
-       </td>
-       <td><%=ViewData["topic"] %>
-       </td>
-  </tr>
+    <table style=" width:90%;">
+    
+    <tr style=" text-align:left;"> 
+        <td> <h3><font color="silver"><%=ViewData["discipline"] %></font></h3>
+        </td>
+    </tr>
+    <tr>    
+        <td> <h3><font color="silver"><%=ViewData["topic"] %></font></h3>
+        </td>
+    </tr>
  
-  <tr>
-    <td><b> Студент</b>
-    </td>
-    <td><%=ViewData["student"] %>
-    </td>
-    <td><b> Группa </b>
-    </td>
-    <td><%=ViewData["group"] %>
-    </td>
-  </tr>
+    <tr>
+        <td><%=ViewData["student"] %> (<%=ViewData["group"] %>)
+        </td>
+    </tr>
   </table>
   
  <div id="first" style=" width:90%">
@@ -79,11 +73,10 @@
              <%} %>'/>
         </td>
         </tr>
-        <tr>
+       </table> 
             <input id="setMark" type="button" value="Изменить оценку" />
-        </tr>
-        <%;} %>
-     </table>
+            
+      <%;} %>
     </div>
 </body>
 </html>
