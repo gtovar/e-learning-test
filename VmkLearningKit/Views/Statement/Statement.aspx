@@ -128,18 +128,24 @@ td.secondAssignement {
             "autoScale": false
         });
 
+        $(".left_col").append('<img id="additional_menu_fake" alt="Дополнительное меню" src="/Content/Images/hide_menu_icon.gif" style="display:none; cursor: pointer;" />');
+	      setTimeout('$(".additional_menu").hide("slow");$("#additional_menu_fake").show("normal");', 1000);
+	      $("#additional_menu_fake").click(function () {
+                  $('.additional_menu').show("fast");
+                  $("#additional_menu_fake").hide("fast"); 
+              });
+
+
         $('.left_col').hover(
 	      function () {
-	          $('.additional_menu').show("fast");
-	          $("#additional_menu_fake").hide("fast");
+	         // $('.additional_menu').show("fast");
+	         // $("#additional_menu_fake").hide("fast");
 	      },
 	      function () {
 	          $('.additional_menu').hide("normal");
 	          $("#additional_menu_fake").show("normal");
 	      }
 	    );
-	      $(".left_col").append('<img id="additional_menu_fake" alt="Дополнительное меню" src="/Content/Images/hide_menu_icon.gif" style="display:none;" />');
-	      setTimeout('$(".additional_menu").hide("slow");$("#additional_menu_fake").show("normal");', 1000);
 
 
 
