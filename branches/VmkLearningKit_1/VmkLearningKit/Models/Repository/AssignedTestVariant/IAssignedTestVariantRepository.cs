@@ -14,5 +14,6 @@ namespace VmkLearningKit.Models.Repository
         long Add(long idGeneratedTestVariant, long idStudent, DateTime date,/*DateTime endDate ,*/long professorId);
         IEnumerable<AssignedTestVariant> GetAllStudentTopicTests(long idTopic, long idStudent);
         bool UpdateMark(long id, int mark);
+        AssignedTestVariant GetLastDoneStudentTopicTest(long idTopic, long idStudent);
     }
 }
