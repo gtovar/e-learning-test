@@ -1,8 +1,8 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
+п»ї<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <script runat="server">
     
-//получить имя студента
+//РїРѕР»СѓС‡РёС‚СЊ РёРјСЏ СЃС‚СѓРґРµРЅС‚Р°
         string  GetStudentName(long idStudent)
     {
         string fio = "";
@@ -15,7 +15,7 @@
             return fio;
     }
     
-//получить назначенный тест 
+//РїРѕР»СѓС‡РёС‚СЊ РЅР°Р·РЅР°С‡РµРЅРЅС‹Р№ С‚РµСЃС‚ 
     
     IEnumerable<AssignedTestVariant>  GetAssVar(long topicId,long studentId)
     {
@@ -36,7 +36,7 @@
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	eВМК – электронный ВМК
+	eР’РњРљ вЂ“ СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р’РњРљ
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -128,18 +128,18 @@ td.secondAssignement {
             "autoScale": false
         });
 
-        $(".left_col").append('<img id="additional_menu_fake" alt="Дополнительное меню" src="/Content/Images/hide_menu_icon.gif" style="display:none; cursor: pointer;" />');
-	      setTimeout('$(".additional_menu").hide("slow");$("#additional_menu_fake").show("normal");', 1000);
-	      $("#additional_menu_fake").click(function () {
-                  $('.additional_menu').show("fast");
-                  $("#additional_menu_fake").hide("fast"); 
-              });
+        $(".left_col").append('<img id="additional_menu_fake" alt="Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ РјРµРЅСЋ" src="/Content/Images/hide_menu_icon.gif" style="display:none; cursor: pointer;" />');
+        setTimeout('$(".additional_menu").hide("slow");$("#additional_menu_fake").show("normal");', 1000);
+        $("#additional_menu_fake").click(function () {
+            $('.additional_menu').show("fast");
+            $("#additional_menu_fake").hide("fast");
+        });
 
 
         $('.left_col').hover(
 	      function () {
-	         // $('.additional_menu').show("fast");
-	         // $("#additional_menu_fake").hide("fast");
+	          // $('.additional_menu').show("fast");
+	          // $("#additional_menu_fake").hide("fast");
 	      },
 	      function () {
 	          $('.additional_menu').hide("normal");
@@ -212,7 +212,7 @@ td.secondAssignement {
 
             }
             flagExistInputChange = 0;
-            alert('Для назначения тестов нажмите "Назначить тесты"');
+            alert('Р”Р»СЏ РЅР°Р·РЅР°С‡РµРЅРёСЏ С‚РµСЃС‚РѕРІ РЅР°Р¶РјРёС‚Рµ "РќР°Р·РЅР°С‡РёС‚СЊ С‚РµСЃС‚С‹"');
 
         }, "json");
             }
@@ -224,12 +224,12 @@ td.secondAssignement {
         $("td.unactive").click(function () {
             var me = $(this).attr('Id');
             var topic = (me.split("_"))[1];
-            /*if (confirm("По данной теме нет сгенерированных вариантов! Перейти на страницу создания тестовых вариантов?")) {
+            /*if (confirm("РџРѕ РґР°РЅРЅРѕР№ С‚РµРјРµ РЅРµС‚ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅС‹С… РІР°СЂРёР°РЅС‚РѕРІ! РџРµСЂРµР№С‚Рё РЅР° СЃС‚СЂР°РЅРёС†Сѓ СЃРѕР·РґР°РЅРёСЏ С‚РµСЃС‚РѕРІС‹С… РІР°СЂРёР°РЅС‚РѕРІ?")) {
             var path = "/Testing/Index/" + topic;
             location.replace(path);
             };
             */
-            alert("По данной теме нет сгенерированных вариантов!");
+            alert("РџРѕ РґР°РЅРЅРѕР№ С‚РµРјРµ РЅРµС‚ СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅС‹С… РІР°СЂРёР°РЅС‚РѕРІ!");
 
         })
 
@@ -242,10 +242,10 @@ td.secondAssignement {
 
                 var max = $("#hiden_" + (InputChange.attr("Id")).split("_")[2]).val();
                 if (parseInt(tmp) > parseInt(max)) {
-                    return alert("Неверно задан номер варианта! Максимально возможное значение :" + max);
+                    return alert("РќРµРІРµСЂРЅРѕ Р·Р°РґР°РЅ РЅРѕРјРµСЂ РІР°СЂРёР°РЅС‚Р°! РњР°РєСЃРёРјР°Р»СЊРЅРѕ РІРѕР·РјРѕР¶РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ :" + max);
                 }
                 else if (parseInt(tmp) <= 0)
-                { return alert("Неверно задан номер варианта! Номер варианта не может быть меньше или равно 0"); }
+                { return alert("РќРµРІРµСЂРЅРѕ Р·Р°РґР°РЅ РЅРѕРјРµСЂ РІР°СЂРёР°РЅС‚Р°! РќРѕРјРµСЂ РІР°СЂРёР°РЅС‚Р° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ РёР»Рё СЂР°РІРЅРѕ 0"); }
                 else {
                     $("input[id^=changeInput]").replaceWith(tmp);
                 }
@@ -388,10 +388,10 @@ td.secondAssignement {
 
                 var max = $("#hiden_" + topic).val();
                 if (parseInt(tmp) > parseInt(max)) {
-                    alert("Неверно задан номер варианта! Максимально возможное значение :" + max);
+                    alert("РќРµРІРµСЂРЅРѕ Р·Р°РґР°РЅ РЅРѕРјРµСЂ РІР°СЂРёР°РЅС‚Р°! РњР°РєСЃРёРјР°Р»СЊРЅРѕ РІРѕР·РјРѕР¶РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ :" + max);
                 }
                 else if (parseInt(tmp) <= 0)
-                { alert("Неверно задан номер варианта! Номер варианта не может быть меньше или равно 0"); }
+                { alert("РќРµРІРµСЂРЅРѕ Р·Р°РґР°РЅ РЅРѕРјРµСЂ РІР°СЂРёР°РЅС‚Р°! РќРѕРјРµСЂ РІР°СЂРёР°РЅС‚Р° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅСЊС€Рµ РёР»Рё СЂР°РІРЅРѕ 0"); }
                 else {
                     $("input[id^=changeInput]").replaceWith(tmp);
                     var newElem = $("<input type='text' size='2'/>").attr("id", "changeInput_" + me).val($(this).text());
@@ -405,7 +405,7 @@ td.secondAssignement {
 
     });
 
-    
+
     //---------------------------------------
     function ParseTdId(str) {
         var arr = str.split("_");
@@ -414,13 +414,13 @@ td.secondAssignement {
         return arr;
     }
 
-      //удаление начальных и конечных пробелов строки
+    //СѓРґР°Р»РµРЅРёРµ РЅР°С‡Р°Р»СЊРЅС‹С… Рё РєРѕРЅРµС‡РЅС‹С… РїСЂРѕР±РµР»РѕРІ СЃС‚СЂРѕРєРё
     function _trim(str) {
         if (str == null) return "";
         var tmp = str.replace(/^\s*/g, "");
         return tmp.replace(/\s*$/g, "");
     }
-    //спрятать столбцы от сolRow 5 штук
+    //СЃРїСЂСЏС‚Р°С‚СЊ СЃС‚РѕР»Р±С†С‹ РѕС‚ СЃolRow 5 С€С‚СѓРє
     function HideCol(currentColRow, count, hiddens) {
         var topicItem;
         var topicId;
@@ -434,7 +434,7 @@ td.secondAssignement {
         };
     }
 
-    //показать столбцы от сolRow 5 штук
+    //РїРѕРєР°Р·Р°С‚СЊ СЃС‚РѕР»Р±С†С‹ РѕС‚ СЃolRow 5 С€С‚СѓРє
     function ShowCol(currentColRow, count, hiddens) {
         var topicItem;
         var topicId;
@@ -449,54 +449,54 @@ td.secondAssignement {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
-    ///////// Выставление оценок /////////////////////////////////////////////////////////
+    ///////// Р’С‹СЃС‚Р°РІР»РµРЅРёРµ РѕС†РµРЅРѕРє /////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////
 
-    (function($){
-	  // очищаем select
-	  $.fn.clearSelect = function() {
-	    return this.each(function(){
-	      if(this.tagName=='SELECT') {
-	        this.options.length = 0;
-	        $(this).attr('disabled','disabled');
-	      }
-	    });
-	  }
-	  // заполняем select
-	  $.fn.fillSelect = function(dataArray) {
-	    var oldVal = $(this).find("option:selected").val();
-	    
-	    return this.clearSelect().each(function(){
-	      if(this.tagName=='SELECT') {
-            var currentSelect = this;
-	        $.each(dataArray,function(index,data){
-              if(oldVal!=data.value){
-	            var option = new Option(data.text,data.value);
-              } else {
-                    var option = new Option(data.text,data.value,true, true);
-              }
-	          if($.support.cssFloat) {
-	            currentSelect.add(option,null);
-	          } else {
-	            currentSelect.add(option);
-	          }
-	        });
-	      }
-	    });
-	  }
-	})(jQuery);
+    (function ($) {
+        // РѕС‡РёС‰Р°РµРј select
+        $.fn.clearSelect = function () {
+            return this.each(function () {
+                if (this.tagName == 'SELECT') {
+                    this.options.length = 0;
+                    $(this).attr('disabled', 'disabled');
+                }
+            });
+        }
+        // Р·Р°РїРѕР»РЅСЏРµРј select
+        $.fn.fillSelect = function (dataArray) {
+            var oldVal = $(this).find("option:selected").val();
+
+            return this.clearSelect().each(function () {
+                if (this.tagName == 'SELECT') {
+                    var currentSelect = this;
+                    $.each(dataArray, function (index, data) {
+                        if (oldVal != data.value) {
+                            var option = new Option(data.text, data.value);
+                        } else {
+                            var option = new Option(data.text, data.value, true, true);
+                        }
+                        if ($.support.cssFloat) {
+                            currentSelect.add(option, null);
+                        } else {
+                            currentSelect.add(option);
+                        }
+                    });
+                }
+            });
+        }
+    })(jQuery);
 
 
-// выбор четверки 
-function Set4Rule(){
-    var Value5 =parseInt( $('#5MarkRule').val());
-    var tmpSelect = $('#4MarkRule');
-    if (Value5.length == 0) {
-	    tmpSelect.attr('disabled','disabled');
-	    tmpSelect.clearSelect();
-	    Set3Rule(); // adjustModel(); 
-	} else {
-	    var data = [{ "text": "100%", "value": "100" },
+    // РІС‹Р±РѕСЂ С‡РµС‚РІРµСЂРєРё 
+    function Set4Rule() {
+        var Value5 = parseInt($('#5MarkRule').val());
+        var tmpSelect = $('#4MarkRule');
+        if (Value5.length == 0) {
+            tmpSelect.attr('disabled', 'disabled');
+            tmpSelect.clearSelect();
+            Set3Rule(); // adjustModel(); 
+        } else {
+            var data = [{ "text": "100%", "value": "100" },
              { "text": "90%", "value": "90" },
              { "text": "80%", "value": "80" },
              { "text": "70%", "value": "70" },
@@ -507,27 +507,27 @@ function Set4Rule(){
              { "text": "20%", "value": "20" },
              { "text": "10%", "value": "10" },
              { "text": "0%", "value": "0"}];
-        var newData= new Array();
-        $.each(data, function (i, val) {
-            if (parseInt(val.value) <= Value5) {
-                newData.push(val);
-            }
-        });
-        tmpSelect.fillSelect(newData).attr('disabled','');
-        Set3Rule(); //adjustModel();
-	    
-	}
-};
-// выбор тройки
-function Set3Rule() {
-    var Value4 = parseInt($('#4MarkRule').val());
-    var tmpSelect = $('#3MarkRule');
-    if (Value4.length == 0) {
-        tmpSelect.attr('disabled', 'disabled');
-        tmpSelect.clearSelect();
-       // Set3Rule(); // adjustModel(); 
-    } else {
-        var data = [{ "text": "100%", "value": "100" },
+            var newData = new Array();
+            $.each(data, function (i, val) {
+                if (parseInt(val.value) <= Value5) {
+                    newData.push(val);
+                }
+            });
+            tmpSelect.fillSelect(newData).attr('disabled', '');
+            Set3Rule(); //adjustModel();
+
+        }
+    };
+    // РІС‹Р±РѕСЂ С‚СЂРѕР№РєРё
+    function Set3Rule() {
+        var Value4 = parseInt($('#4MarkRule').val());
+        var tmpSelect = $('#3MarkRule');
+        if (Value4.length == 0) {
+            tmpSelect.attr('disabled', 'disabled');
+            tmpSelect.clearSelect();
+            // Set3Rule(); // adjustModel(); 
+        } else {
+            var data = [{ "text": "100%", "value": "100" },
              { "text": "90%", "value": "90" },
              { "text": "80%", "value": "80" },
              { "text": "70%", "value": "70" },
@@ -538,32 +538,32 @@ function Set3Rule() {
              { "text": "20%", "value": "20" },
              { "text": "10%", "value": "10" },
              { "text": "0%", "value": "0"}];
-        var newData = new Array();
-        $.each(data, function (i, val) {
-            if (parseInt(val.value) <= Value4) {
-                newData.push(val);
-            }
-        });
-        tmpSelect.fillSelect(newData).attr('disabled', '');
-       // Set3Rule(); //adjustModel();
+            var newData = new Array();
+            $.each(data, function (i, val) {
+                if (parseInt(val.value) <= Value4) {
+                    newData.push(val);
+                }
+            });
+            tmpSelect.fillSelect(newData).attr('disabled', '');
+            // Set3Rule(); //adjustModel();
 
-    }
+        }
 
-};
+    };
 
-function setMarks() {
-    $("#marksInfo").html("");
-    var topicItemId = $("#SelectMarkTopic option:selected").val();
-    if (topicItemId == "-1") {
-        $("#marksInfo").append("<h3>Тема не выбрана.</h3>");
-       // $.fn.fancybox.close();
-        return false;
-    } else {
-        var tmpContent;
-        tmpContent= "<h3>Оценки по теме<br/> \"" + $("#SelectMarkTopic option:selected").html() + "\" </h3>";
-        tmpContent += '<div style="width:360px; height:240px; border:1px groove; margin:10px; overflow:scroll;">';
-            tmpContent += '<table width="100%" border="1px" id="tmpMarksTable"><thead><tr><th>ФИО</th><th>Оценка</th>  </tr></thead><tbody>';
-            // Поиск всех непровереных тестов по данной теме и выставление оценок
+    function setMarks() {
+        $("#marksInfo").html("");
+        var topicItemId = $("#SelectMarkTopic option:selected").val();
+        if (topicItemId == "-1") {
+            $("#marksInfo").append("<h3>РўРµРјР° РЅРµ РІС‹Р±СЂР°РЅР°.</h3>");
+            // $.fn.fancybox.close();
+            return false;
+        } else {
+            var tmpContent;
+            tmpContent = "<h3>РћС†РµРЅРєРё РїРѕ С‚РµРјРµ<br/> \"" + $("#SelectMarkTopic option:selected").html() + "\" </h3>";
+            tmpContent += '<div style="width:360px; height:240px; border:1px groove; margin:10px; overflow:scroll;">';
+            tmpContent += '<table width="100%" border="1px" id="tmpMarksTable"><thead><tr><th>Р¤РРћ</th><th>РћС†РµРЅРєР°</th>  </tr></thead><tbody>';
+            // РџРѕРёСЃРє РІСЃРµС… РЅРµРїСЂРѕРІРµСЂРµРЅС‹С… С‚РµСЃС‚РѕРІ РїРѕ РґР°РЅРЅРѕР№ С‚РµРјРµ Рё РІС‹СЃС‚Р°РІР»РµРЅРёРµ РѕС†РµРЅРѕРє
             var tests = $("[id^='fake_" + topicItemId + "']").filter("[id$=score]");
             var name;
             //var studentId;
@@ -572,7 +572,7 @@ function setMarks() {
             var maxScore;
             var persent;
             var mark;
-            var marksStat = [ 0, 0, 0, 0 ]
+            var marksStat = [0, 0, 0, 0]
 
             tests.each(function () {
                 name = $(this).parent().find(".studentName").html();
@@ -607,49 +607,49 @@ function setMarks() {
 
             tmpContent += '</div>';
             var numMark = marksStat[0] + marksStat[1] + marksStat[2] + marksStat[3];
-            tmpContent += 'Статистика:<br/> "Отлично": &#09;' + marksStat[0] + '(' + Math.round(100 * marksStat[0] / numMark) + '%)<br/>"Хорошо": &#09;' + marksStat[1] + '(' + Math.round(100 * marksStat[1] / numMark) + '%)<br/>"Удовл.": &#09;' + marksStat[2] + '(' + Math.round(100 * marksStat[2] / numMark) + '%)<br/>"Плохо": &#09;' + marksStat[3] + '(' + Math.round(100 * marksStat[3] / numMark) + '%)<br/><br/>';
-        tmpContent += '<input  type="button" value="Сохранить" onclick="saveMarks(); return false;"  style=""/> <input  type="button" value="Закрыть" onclick=" closeBox(); return false;"  style=""/>';
-        $("#marksInfo").append(tmpContent);
-        return false;
-    }
-};
+            tmpContent += 'РЎС‚Р°С‚РёСЃС‚РёРєР°:<br/> "РћС‚Р»РёС‡РЅРѕ": &#09;' + marksStat[0] + '(' + Math.round(100 * marksStat[0] / numMark) + '%)<br/>"РҐРѕСЂРѕС€Рѕ": &#09;' + marksStat[1] + '(' + Math.round(100 * marksStat[1] / numMark) + '%)<br/>"РЈРґРѕРІР».": &#09;' + marksStat[2] + '(' + Math.round(100 * marksStat[2] / numMark) + '%)<br/>"РџР»РѕС…Рѕ": &#09;' + marksStat[3] + '(' + Math.round(100 * marksStat[3] / numMark) + '%)<br/><br/>';
+            tmpContent += '<input  type="button" value="РЎРѕС…СЂР°РЅРёС‚СЊ" onclick="saveMarks(); return false;"  style=""/> <input  type="button" value="Р—Р°РєСЂС‹С‚СЊ" onclick=" closeBox(); return false;"  style=""/>';
+            $("#marksInfo").append(tmpContent);
+            return false;
+        }
+    };
 
 
 
-function saveMarks() {
-    //alert("Почти сохранено))");
-    //var tmp = $('#tmpMarksTable');
-    //alert(tmp.html());
-    var res;
-    $('#tmpMarksTable .newMark').each(function () {
-        var obj = this;
-        // var mark = this.value;
-        //var id = this.getAttribute('name');
-        var data = { "alias": this.getAttribute('name'), "mark": this.value };
-        $.post("/ViewTest/SetMark", data, function (str) { $(obj).parent().html(str); }, "json");
-        
-    });
-    // После изменения- перезагружаем страницу ( кроме FireFox'а- там глючит)
-    if (navigator.userAgent.toLowerCase().indexOf("gecko") == -1) {
-        setTimeout(myReload, 3000);
-    }
-    //window.location.reload();
-    //setTimeout('$.fancybox.close()', 2000);
-    
-};
+    function saveMarks() {
+        //alert("РџРѕС‡С‚Рё СЃРѕС…СЂР°РЅРµРЅРѕ))");
+        //var tmp = $('#tmpMarksTable');
+        //alert(tmp.html());
+        var res;
+        $('#tmpMarksTable .newMark').each(function () {
+            var obj = this;
+            // var mark = this.value;
+            //var id = this.getAttribute('name');
+            var data = { "alias": this.getAttribute('name'), "mark": this.value };
+            $.post("/ViewTest/SetMark", data, function (str) { $(obj).parent().html(str); }, "json");
 
-function myReload() {
-    window.location.reload();
-}
+        });
+        // РџРѕСЃР»Рµ РёР·РјРµРЅРµРЅРёСЏ- РїРµСЂРµР·Р°РіСЂСѓР¶Р°РµРј СЃС‚СЂР°РЅРёС†Сѓ ( РєСЂРѕРјРµ FireFox'Р°- С‚Р°Рј РіР»СЋС‡РёС‚)
+        if (navigator.userAgent.toLowerCase().indexOf("gecko") == -1) {
+            setTimeout(myReload, 3000);
+        }
+        //window.location.reload();
+        //setTimeout('$.fancybox.close()', 2000);
 
+    };
 
-function closeBox() {
-    $.fancybox.close();
-    // страница перезагружается только в FireFox
-    if (navigator.userAgent.toLowerCase().indexOf("gecko") != -1) {
+    function myReload() {
         window.location.reload();
     }
-};
+
+
+    function closeBox() {
+        $.fancybox.close();
+        // СЃС‚СЂР°РЅРёС†Р° РїРµСЂРµР·Р°РіСЂСѓР¶Р°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ РІ FireFox
+        if (navigator.userAgent.toLowerCase().indexOf("gecko") != -1) {
+            window.location.reload();
+        }
+    };
 
 
 
@@ -664,34 +664,34 @@ function closeBox() {
   
     <table  >
         <tr>
-           <td style="padding: 3px;">Дисциплина:&nbsp;&nbsp; </td>
+           <td style="padding: 3px;">Р”РёСЃС†РёРїР»РёРЅР°:&nbsp;&nbsp; </td>
            <td> <b> <%=ViewData["Discipline"]%> </b> </td>
            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-           <td> Факультет: &nbsp;&nbsp; </td>
+           <td> Р¤Р°РєСѓР»СЊС‚РµС‚: &nbsp;&nbsp; </td>
            <td><b><%=ViewData["Department"]%></b></td>
         </tr>
         <tr>
-           <td >Преподаватель: &nbsp;&nbsp;</td>
+           <td >РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ: &nbsp;&nbsp;</td>
            <td> <b><%=ViewData["ProfessorName"]%></b> </td>
 
  
- <%//если в базе данных нет групп, обучающихся у преполавателя по данной дисциплине
+ <%//РµСЃР»Рё РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С… РЅРµС‚ РіСЂСѓРїРї, РѕР±СѓС‡Р°СЋС‰РёС…СЃСЏ Сѓ РїСЂРµРїРѕР»Р°РІР°С‚РµР»СЏ РїРѕ РґР°РЅРЅРѕР№ РґРёСЃС†РёРїР»РёРЅРµ
       if (null == ViewData["groups"])
        {%>
            </tr>
         </table>
         <p>
-        <div><b>Нет групп обучающихся по данной дисциплине</b>
+        <div><b>РќРµС‚ РіСЂСѓРїРї РѕР±СѓС‡Р°СЋС‰РёС…СЃСЏ РїРѕ РґР°РЅРЅРѕР№ РґРёСЃС†РёРїР»РёРЅРµ</b>
         </div>
         </p>
     <%;} %>
     
 
-    <%//если нет в базе данных студентов в группы
+    <%//РµСЃР»Рё РЅРµС‚ РІ Р±Р°Р·Рµ РґР°РЅРЅС‹С… СЃС‚СѓРґРµРЅС‚РѕРІ РІ РіСЂСѓРїРїС‹
       if (null != ViewData["groups"] && null == ViewData["students"])
       {%>
            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-           <td style="padding: 3px;">Группа: &nbsp;&nbsp;</td>
+           <td style="padding: 3px;">Р“СЂСѓРїРїР°: &nbsp;&nbsp;</td>
            <td><select id="param1" name="param1" onchange='SubmitPage("GroupFilter")' >
                 <%foreach (VmkLearningKit.Models.Repository.Group grItem in (IEnumerable<VmkLearningKit.Models.Repository.Group>)ViewData["groups"])
                   {%>
@@ -707,15 +707,15 @@ function closeBox() {
     
     
     <p>
-    <div><h2><b>В базе данных нет информации о студентах данной группы</b></h2>
+    <div><h2><b>Р’ Р±Р°Р·Рµ РґР°РЅРЅС‹С… РЅРµС‚ РёРЅС„РѕСЂРјР°С†РёРё Рѕ СЃС‚СѓРґРµРЅС‚Р°С… РґР°РЅРЅРѕР№ РіСЂСѓРїРїС‹</b></h2>
     </div>
     </p>
     <%}  %>
-    <%   //если нет тем по данной дисциплине 
+    <%   //РµСЃР»Рё РЅРµС‚ С‚РµРј РїРѕ РґР°РЅРЅРѕР№ РґРёСЃС†РёРїР»РёРЅРµ 
     else if (null != ViewData["groups"] && null == ViewData["topics"])
          {%>
             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-           <td style="padding: 3px;">Группа: &nbsp;&nbsp;</td>
+           <td style="padding: 3px;">Р“СЂСѓРїРїР°: &nbsp;&nbsp;</td>
            <td><select id="Select2" name="param1" onchange='SubmitPage("GroupFilter")' >
                 <%foreach (VmkLearningKit.Models.Repository.Group grItem in (IEnumerable<VmkLearningKit.Models.Repository.Group>)ViewData["groups"])
                   {%>
@@ -729,16 +729,16 @@ function closeBox() {
     </table>
     <br/>     
     <p>
-    <div><b><h2>Нет тем по данной дисциплине</h2></b>
+    <div><b><h2>РќРµС‚ С‚РµРј РїРѕ РґР°РЅРЅРѕР№ РґРёСЃС†РёРїР»РёРЅРµ</h2></b>
     </div>
     </p>
             <%}%>
 
 
-<%//в случае если есть все данные
+<%//РІ СЃР»СѓС‡Р°Рµ РµСЃР»Рё РµСЃС‚СЊ РІСЃРµ РґР°РЅРЅС‹Рµ
       if(null!=ViewData["groups"] && null != ViewData["students"] && null != ViewData["topics"]) {%>
         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-           <td style="padding: 3px;">Группа: &nbsp;&nbsp;</td>
+           <td style="padding: 3px;">Р“СЂСѓРїРїР°: &nbsp;&nbsp;</td>
            <td><select id="Select1" name="param1" onchange='SubmitPage("GroupFilter")' >
                 <%foreach (VmkLearningKit.Models.Repository.Group grItem in (IEnumerable<VmkLearningKit.Models.Repository.Group>)ViewData["groups"])
                   {%>
@@ -757,13 +757,13 @@ function closeBox() {
 <thead >
         <tr id='head1' align="center" style=" color: Black; font-weight: bold; " >
 			<th rowspan="2" style="width:30px; background-color:White; border-width:0px;"> </th>
-            <th rowspan="2" style="width:30px; background-color: Silver;border-width:1px;">№</th>
-			<th rowspan="2" style=" width:150px; background-color: Silver;border-width:1px;">ФИО</th>
+            <th rowspan="2" style="width:30px; background-color: Silver;border-width:1px;">в„–</th>
+			<th rowspan="2" style=" width:150px; background-color: Silver;border-width:1px;">Р¤РРћ</th>
               <%int topicCount = 0;
                 foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
                 {%>
             <input type="hidden" id="hiden_<%=topicItem.Id %>"  value=<%=((List<long>)ViewData["CountVariants"])[topicCount]%>  />
-			<th id="<%=topicItem.Id %>" name="<%=topicItem.Title %>" colspan="6" style="font-size:x-small; width:180px;background-color: Silver;"> <%=topicItem.Title%> (
+			<th id="<%=topicItem.Id %>" name="<%=topicItem.Title %>" colspan="2" style="font-size:x-small; width:180px;background-color: Silver;"> <%=topicItem.Title%> (
                     <%=((List<long>)ViewData["CountVariants"])[topicCount]%>)
 			</th>
                 <% topicCount++;
@@ -774,11 +774,10 @@ function closeBox() {
         
         <tr id="head2" align="center"  style="background-color: Silver; color: Black; font-size:xx-small;">
             <% for (int i = 0; i < topicCount; i++)
-                   for (int j = 0; j < 3; j++)
-                   {%>
-			<td id="var_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">Вар </td>    
-			<td id="ball_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_<%=j%>" style=" width:30px">Балл</td>
-                <%}%>
+               {%>   
+			<td id="var_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_" style=" width:30px">Р’Р°СЂ </td>    
+			<td id="ball_<%=((IEnumerable<SpecialityDisciplineTopic>)ViewData["topics"]).ElementAt(i).Id%>_" style=" width:30px">Р‘Р°Р»Р»</td>
+                <%} %>
         </tr>
  </thead >       
 
@@ -811,7 +810,7 @@ function closeBox() {
                                     i++;%>
                                     <%if (atvItem.State == VLKConstants.TEST_VARIANT_STATE_DONE || atvItem.State == VLKConstants.TEST_VARIANT_STATE_CHECKED)
                                     {%>
-			     <!---вывод номера варианта-->
+			     <!---РІС‹РІРѕРґ РЅРѕРјРµСЂР° РІР°СЂРёР°РЅС‚Р°-->
                                         <td id="fake_<%=topicItem.Id%>_<%=i%>_var">
                                         <!--
                                         <a href="<%//=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
@@ -829,13 +828,13 @@ function closeBox() {
                                                     <%=Html.Encode(atvItem.Mark)%>
                                                     </a>
                                                     <%//=Html.ActionLink(Html.Encode(atvItem.Mark), "ViewTest", "ViewTest", new { alias = ViewData["DisciplineId"], additional = atvItem.Id }, new { @class = "iframe" })%>
-                                                        <br /><h6>(оценка)</h6>
+                                                        <br /><h6>(РѕС†РµРЅРєР°)</h6>
                                                     </td>
                                             <%;
                                                 }
                                                 else
                                                 { %>
-                 <!--вывод количества полученных баллов-->
+                 <!--РІС‹РІРѕРґ РєРѕР»РёС‡РµСЃС‚РІР° РїРѕР»СѓС‡РµРЅРЅС‹С… Р±Р°Р»Р»РѕРІ-->
                                                     <td id="fake_<%=topicItem.Id%>_<%=i%>_score" class="<%=atvItem.Id%>">
                                                     <!--
                                                     <a href="<%//=ConfigurationManager.AppSettings["webPlayerUrl"].ToString() + "/Start.aspx?mode=grading&key="+atvItem.ProfessorKey.ToString()%>" target="_blank">
@@ -865,7 +864,7 @@ function closeBox() {
                                 <%}%>
                          
                             <%}
-                            for (int j = i + 1; j <= 3; j++)
+                            for (int j = i + 1; j <= 1; j++)
                             {%>
 			                        <td id="<%=studentItem.Id%>_<%=topicItem.Id%>_<%=j%>" colspan="2"  
 			                        <%if( ((List<long>)ViewData["CountVariants"])[topicCounter2]!=0 ){%>
@@ -883,7 +882,7 @@ function closeBox() {
               } %>
 
          <tr> 
-            <td colspan="<%= ((IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"]).Count()*3+2 %>" style=" border-width:0px;padding-top: 5px; text-align:right;">
+            <td colspan="<%= ((IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"]).Count()+2 %>" style=" border-width:0px;padding-top: 5px; text-align:right;">
             <img id="Button2" alt="" src="/Content/Images/left.png" height="20px" width="20px"  />&nbsp;<img id="Button1" alt="" src="/Content/Images/right.png" height="20px" width="20px"  />
             </td>
          </tr>
@@ -893,10 +892,10 @@ function closeBox() {
  
        
    <div class="appointment"  >
-       <h3>Назначение тестов</h3>
+       <h3>РќР°Р·РЅР°С‡РµРЅРёРµ С‚РµСЃС‚РѕРІ</h3>
        <div>
            <select id="SelectTopic"  style=" width:300px; margin:3px;">
-           <option disabled selected="selected" value="-1">выберите тему...
+           <option disabled selected="selected" value="-1">РІС‹Р±РµСЂРёС‚Рµ С‚РµРјСѓ...
            </option>
          <%int tCount = 0;
            foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])%>
@@ -906,36 +905,36 @@ function closeBox() {
          <%}; %>
             </select>
             <br/>
-           <input id="setRandomVariant" type="button" value="Расставить варианты автоматически"  style="width:230px;"/>
-           <input id="clear" type="button" value="Очистить"  style="width:70px;"/>
-           <h6> *Вы так же можете назначить варианты вручную определенным студентам</h6>
+           <input id="setRandomVariant" type="button" value="Р Р°СЃСЃС‚Р°РІРёС‚СЊ РІР°СЂРёР°РЅС‚С‹ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё"  style="width:230px;"/>
+           <input id="clear" type="button" value="РћС‡РёСЃС‚РёС‚СЊ"  style="width:70px;"/>
+           <h6> *Р’С‹ С‚Р°Рє Р¶Рµ РјРѕР¶РµС‚Рµ РЅР°Р·РЅР°С‡РёС‚СЊ РІР°СЂРёР°РЅС‚С‹ РІСЂСѓС‡РЅСѓСЋ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј СЃС‚СѓРґРµРЅС‚Р°Рј</h6>
        </div>
     
        <div style="float:left;">
        <table>
             <tr style="height:40px">
-                <td>Время начала:
+                <td>Р’СЂРµРјСЏ РЅР°С‡Р°Р»Р°:
                 </td>
                 <td><input id="datepicker" type="text" /></td>
            
             </tr>
             <tr style="height:40px">
-                <td>Время окончания:
+                <td>Р’СЂРµРјСЏ РѕРєРѕРЅС‡Р°РЅРёСЏ:
                 </td>
                 <td><input id="datepicker2" type="text" /></td>
           
             </tr>
             <tr> <td></td>
             </tr>
-            <tr><td><input id="SetVariants" type="button" value="Назначить тесты"   style="height:25px;"/></td>
+            <tr><td><input id="SetVariants" type="button" value="РќР°Р·РЅР°С‡РёС‚СЊ С‚РµСЃС‚С‹"   style="height:25px;"/></td>
             </tr>
        </table>
        </div>
     </div>
     <div class="marking">
-        <h3>Выставление оценок</h3>
+        <h3>Р’С‹СЃС‚Р°РІР»РµРЅРёРµ РѕС†РµРЅРѕРє</h3>
         <select id="SelectMarkTopic"  style=" width:300px; margin:3px;">
-           <option disabled selected="selected" value="-1">выберите тему...
+           <option disabled selected="selected" value="-1">РІС‹Р±РµСЂРёС‚Рµ С‚РµРјСѓ...
            </option>
          <% tCount = 0;
            foreach (SpecialityDisciplineTopic topicItem in (IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"])
@@ -946,7 +945,7 @@ function closeBox() {
             </select>
             <br/>
             <div class="markingRules">
-                <h5>Критерии оценок:</h5>
+                <h5>РљСЂРёС‚РµСЂРёРё РѕС†РµРЅРѕРє:</h5>
                 <table border="1px">
                     <thead>
                         <tr>
@@ -990,8 +989,8 @@ function closeBox() {
                     </tbody>
                 </table>
             </div>
-           <a id="SetMarks" href="#marksInfo"><input  type="button" value="Расставить оценки автоматически" onclick="setMarks();"  style=""/></a>
-           <h6> *Вы можете выставить оценки студентам вручную кликнув<br /> на соответствующем поле</h6>
+           <a id="SetMarks" href="#marksInfo"><input  type="button" value="Р Р°СЃСЃС‚Р°РІРёС‚СЊ РѕС†РµРЅРєРё Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё" onclick="setMarks();"  style=""/></a>
+           <h6> *Р’С‹ РјРѕР¶РµС‚Рµ РІС‹СЃС‚Р°РІРёС‚СЊ РѕС†РµРЅРєРё СЃС‚СѓРґРµРЅС‚Р°Рј РІСЂСѓС‡РЅСѓСЋ РєР»РёРєРЅСѓРІ<br /> РЅР° СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРј РїРѕР»Рµ</h6>
            <div style="display:none;">
 		         <div id="marksInfo" style=" height:450px; width:400px;">
                 </div>
@@ -1002,9 +1001,10 @@ function closeBox() {
    <%}; %>
     <p> 
     <div style="float:right">
-    <%=Html.ActionLink("К списку дисциплин", "Professor", "Cabinet", new { alias = ViewData["ProfessorId"] }, new { @class = "" })%>
-     <br />
-    <%=Html.ActionLink("К сводной ведомости", "FinalStatement", "FinalStatement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"] }, new { @class = "" })%>
+    <%=Html.ActionLink("Рљ СЃРїРёСЃРєСѓ РґРёСЃС†РёРїР»РёРЅ", "Professor", "Cabinet", new { alias = ViewData["ProfessorId"] }, new { @class = "" })%>
+    <br />
+    <%=Html.ActionLink("Рљ РІРµРґРѕРјРѕСЃС‚Рё РїРѕРїС‹С‚РѕРє ", "Statement", "Statement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"] }, new { @class = "" })%>
+    
     </div>        
     </p>
     
@@ -1012,4 +1012,5 @@ function closeBox() {
  <%Html.EndForm();%>
  
 </asp:Content>
+
 

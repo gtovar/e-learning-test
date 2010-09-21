@@ -42,8 +42,8 @@
         </tr>
         <tr>
             <td  style="border-width: 0px; padding-top:0px; padding-left :5px; padding-right:5px; padding-bottom:5px;">
-                  <b>Вариант №:</b> <%=(ViewData["testLocalNum"]).ToString()%>    <b>   Генереция тестового варианта:</b> <%=((AssignedTestVariant)ViewData["test"]).GeneratedTestVariant.GeneratedTest.GeneratedDate.ToString()%> <br />
-                  <b>Время прохождения теста: c </b><%=((AssignedTestVariant)ViewData["test"]).AssignedDate.ToString()%> <b>по</b> <%//=((AssignedTestVariant)ViewData["test"]).AssignedDateEnd.ToString()%> 
+                  Вариант <b>№:<%=(ViewData["testLocalNum"]).ToString()%></b>      Генереция тестового варианта: <b><%=((AssignedTestVariant)ViewData["test"]).GeneratedTestVariant.GeneratedTest.GeneratedDate.ToString()%></b> <br />
+                  Время прохождения теста: c <b><%=((AssignedTestVariant)ViewData["test"]).AssignedDate.ToString()%></b> по <b> <%//=((AssignedTestVariant)ViewData["test"]).AssignedDateEnd.ToString()%></b> 
                
             </td>
         </tr>

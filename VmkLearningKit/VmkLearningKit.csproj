@@ -106,6 +106,7 @@
     <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EditorController.cs" />
+    <Compile Include="Controllers\FinalStatementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanGenerationController.cs" />
     <Compile Include="Controllers\ProfessorController.cs" />
@@ -789,6 +790,7 @@
     <Content Include="Views\Shared\Error404.aspx" />
     <Content Include="Views\Shared\GeneralNavigation.ascx" />
     <Content Include="Views\Shared\ProfessorMenu.ascx" />
+    <Content Include="Views\FinalStatement\FinalStatement.aspx" />
     <Content Include="Views\Statement\Statement.aspx" />
     <Content Include="Views\Testing\EditRazdel.ascx" />
     <Content Include="Views\Testing\Index.aspx" />

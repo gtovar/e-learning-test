@@ -85,6 +85,35 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
+        public AssignedTestVariant GetLastDoneStudentTopicTest(long idTopic, long idStudent)
+        {
+            try
+            {
+                //bool fl1=Convert.ToDateTime(doneTests.AssignedDate) < DateTime.Now;
+                IEnumerable<AssignedTestVariant> atv = GetAllStudentTopicTests(idTopic, idStudent).Where(doneTests =>( (doneTests.State == VLKConstants.TEST_VARIANT_STATE_DONE || doneTests.State == VLKConstants.TEST_VARIANT_STATE_CHECKED) && (doneTests.AssignedDate < DateTime.Now)));
+               /*     List<AssignedTestVariant > temp=new List<AssignedTestVariant> (); 
+                foreach (AssignedTestVariant item in atv)
+                { 
+                    if(item.AssignedDate<DateTime.Now && (item.State==VLKConstants.TEST_VARIANT_STATE_DONE || item.State==VLKConstants.TEST_VARIANT_STATE_CHECKED ))
+                    {
+                        temp.Add(item);
+                    }
+                }*/
+                if (atv.Count() == 0)
+                {
+                    return GetLastStudentTopicTest(idTopic, idStudent);
+                }
+                AssignedTestVariant res =atv.OrderBy(d => d.AssignedDate).Last();
+                    //((IEnumerable<AssignedTestVariant >)temp).OrderBy(d => d.AssignedDate).Last();
+                return res;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("у студента с id= " + idStudent.ToString() + "нет пройденных тестов на "+DateTime.Now.ToLongTimeString() +"число по теме" + idTopic.ToString());
+                return null;
+            }
+        }
+
         public bool UpdateMark(long id, int mark)
         {
             DataContext.AssignedTestVariants.Single(atv => atv.Id == id).Mark = mark;
