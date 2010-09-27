@@ -1,0 +1,31 @@
+﻿h4
+{
+	margin-top: 10px;
+}
+
+h5
+{
+	margin-top: 10px;
+}
+
+
+.programText
+{
+	color:#444444;
+}
+.programText table
+{
+	border: 1px groove #999999;
+	width:70%;
+}
+
+.programText td
+{
+	border: 1px groove #999999;
+	border-collapse: collapse;	
+}
+
+#editDiv
+{
+	float:right;
+}

@@ -106,6 +106,7 @@
     <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EditorController.cs" />
+    <Compile Include="Controllers\SpecialityDisciplineProgramController.cs" />
     <Compile Include="Controllers\FinalStatementController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlanGenerationController.cs" />
@@ -207,6 +208,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VLKConstants.cs" />
+    <Content Include="Content\SpecialityDisciplineProgram.css" />
     <Content Include="Scripts\MathJax\config\local\local.js" />
     <Content Include="Scripts\MathJax\config\MathJax.js" />
     <Content Include="Scripts\MathJax\config\MMLorHTML.js" />
@@ -791,6 +793,8 @@
     <Content Include="Views\Shared\GeneralNavigation.ascx" />
     <Content Include="Views\Shared\ProfessorMenu.ascx" />
     <Content Include="Views\FinalStatement\FinalStatement.aspx" />
+    <Content Include="Views\SpecialityDisciplineProgram\Edit.aspx" />
+    <Content Include="Views\SpecialityDisciplineProgram\Index.aspx" />
     <Content Include="Views\Statement\Statement.aspx" />
     <Content Include="Views\Testing\EditRazdel.ascx" />
     <Content Include="Views\Testing\Index.aspx" />
