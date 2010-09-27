@@ -224,6 +224,8 @@
         <% index++;
            } %>
     </table>
+    <br />
+      <%= Html.ActionLink("Программа дисциплины", "Index", "SpecialityDisciplineProgram", new { alias = specialityDiscipline.Alias }, new { @class = "" })%>
     <%
         }
            }
