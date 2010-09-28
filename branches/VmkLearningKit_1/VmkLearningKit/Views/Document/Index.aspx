@@ -5,6 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+<%string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear); %>
     <div class="SuperLink">
         <h3 class="SuperLink">Доступные действия</h3>
         <h4 class="SuperLink"><%= Html.ActionLink("Получиить список кафедр", "GetChairDocument")%></h4>
