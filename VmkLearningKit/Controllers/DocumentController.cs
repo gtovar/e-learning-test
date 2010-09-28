@@ -621,14 +621,116 @@ namespace VmkLearningKit.Controllers
                 Word.Range cell;
                 bool flag;
 
+                //Титульный лист
+
+            object patternstyle=Word.WdStyleType.wdStyleTypeParagraph;
+
+            /*Word.Style style = document.Styles.Add("tempStyle", ref patternstyle);
+            style.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;*/
+
+            /*Word.Style style1 = document.Styles.Add("temp1Style", ref patternstyle);
+            style.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;*/
+
+           // object oStyle = style;
+                Word.Paragraph par = document.Paragraphs.Add(oMissing);
+                par.Range.Text = "ФЕДЕРАЛЬНОЕ АГЕНТСТВО ПО ОБРАЗОВАНИЮ";              
+                par.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;                
+                range.Text = "Государственное образовательное учреждение";
+            
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;               
+                range.Text = "высшего профессионального образования";
+                
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "«Нижегородский государственный университет им. Н.И. Лобачевского»";
+
+                //document.Paragraphs.Add(oMissing);
+                document.Paragraphs.Add(oMissing);
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "Факультет ВМК";
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "Кафедра математического обеспечения ЭВМ";
+
+                document.Paragraphs.Add(oMissing);
+                document.Paragraphs.Add(oMissing);
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "УТВЕРЖДАЮ";
+                document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphRight;
+
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "Декан факультета ВМК";
+
+                //document.Paragraphs.Add();
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "__________________В.П.Гергель";
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "«       »_____________2007г.";
+
+                document.Paragraphs.Add(oMissing);
+                document.Paragraphs.Add(oMissing);
+                //document.Paragraphs.Add();
+                //document.Paragraphs.Add();
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "Учебная программа";
+                range.Font.Bold = 1;
+                document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "дисциплины ДНМ «Инженерные основы информационных технологий»";
+                range.Font.Bold = 0;
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "по направлению подготовки  010400.68 «Информационные технологии»";
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "по магистерской программе «Инженерия программного обеспечения»";
+
+                document.Paragraphs.Add(oMissing);
+                document.Paragraphs.Add(oMissing);
+                document.Paragraphs.Add(oMissing); 
+                document.Paragraphs.Add(oMissing);
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "Нижний Новгород";
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Text = "2007 г.";               
+
                 // Область применения
 
                 string applicationDomain = disciplineProgram.ApplicationDomain;
 
-                Word.Paragraph p = document.Paragraphs.Add(oMissing);
-                //range = document.Paragraphs[document.Paragraphs.Count].Range;
-                p.Range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
-                p.Range.Text = "1. Область применения";
+                //oStyle = style1;
+
+                document.Paragraphs.Add(oMissing);
+                //p.set_Style(oStyle);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
+                range.Text = "1. Область применения";
+                document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
 
                 flag = true;
                 while (flag)
@@ -684,7 +786,7 @@ namespace VmkLearningKit.Controllers
 
                 document.Paragraphs.Add();
 
-                p = document.Paragraphs.Add(oMissing);
+                Word.Paragraph p = document.Paragraphs.Add(oMissing);
                 //range = document.Paragraphs[document.Paragraphs.Count].Range;
                 p.Range.Underline = Word.WdUnderline.wdUnderlineSingle;
                 p.Range.Text = "3. Требования к уровню освоения содержания дисциплины";
