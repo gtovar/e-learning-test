@@ -9,124 +9,177 @@
     <script type="text/javascript" src="/Scripts/Plugins/JHtmlArea/scripts/jHtmlArea-0.7.0.js"></script>
     <link rel="stylesheet" type="text/css" href="/Scripts/Plugins/JHtmlArea/style/jHtmlArea.css" />
     <link rel="stylesheet" type="text/css" href="/Content/SpecialityDisciplineProgram.css" />
-    <h2>Edit</h2>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Заменяем все элементы textarea с аттрибутом class="TextEditor"
+            // на wysiwyg-редакторы (jHtmlArea)
+            $("textarea[class=TextEditor]").htmlarea({
+                toolbar: ["forecolor", "|",
+													"bold", "italic", "underline", "strikethrough", "|",
+													"subscript", "superscript", "|",
+													"increasefontsize", "decreasefontsize", "|",
+													"orderedlist", "unorderedlist", "|",
+													"indent", "outdent", "|",
+													"link", "unlink", "image", "horizontalrule", "|",
+													"cut", "copy", "paste", "|",
+													"html"
+													]
+            });
+
+            // Добавляем обработчик для загрузки изображений
+            $("a[class=image]").click(function () {
+                var associatedFrame = $(this).parents("div[class=ToolBar]").next("div").children("iframe")[0];
+                $.fancybox({
+                    "href": "#ImageUploadContainer",
+                    "titleShow": false,
+                    "modal": true,
+                    "onClosed": function () {
+                        if ($("#ImageLink").html().substring(0, 4) == "http") {
+                            associatedFrame.contentWindow.focus();
+                            associatedFrame.contentWindow.document.execCommand("insertimage", false, $("#ImageLink").html());
+                            $("#ImageLink").empty();
+                        }
+                        else {
+                            $("#ImageLink").empty();
+                        }
+                    }
+                });
+            });
+
+        });
+    
+    </script>
+
+
+    <h2>Редактирование</h2>
 
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
         
-        <fieldset>
-            <legend>Fields</legend>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.SpecialityDisciplineId) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.SpecialityDisciplineId) %>
-                <%= Html.ValidationMessageFor(model => model.SpecialityDisciplineId) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.ApplicationDomain) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.ApplicationDomain) %>
-                <%= Html.ValidationMessageFor(model => model.ApplicationDomain) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Purposes) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Purposes) %>
-                <%= Html.ValidationMessageFor(model => model.Purposes) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Requirements) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Requirements) %>
-                <%= Html.ValidationMessageFor(model => model.Requirements) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Volume) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Volume) %>
-                <%= Html.ValidationMessageFor(model => model.Volume) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Razdels) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Razdels) %>
-                <%= Html.ValidationMessageFor(model => model.Razdels) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.RazdelsContent) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.RazdelsContent) %>
-                <%= Html.ValidationMessageFor(model => model.RazdelsContent) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.LabPractice) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.LabPractice) %>
-                <%= Html.ValidationMessageFor(model => model.LabPractice) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Literature) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Literature) %>
-                <%= Html.ValidationMessageFor(model => model.Literature) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Questions) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Questions) %>
-                <%= Html.ValidationMessageFor(model => model.Questions) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.MarkCriterias) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.MarkCriterias) %>
-                <%= Html.ValidationMessageFor(model => model.MarkCriterias) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Reporting) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Reporting) %>
-                <%= Html.ValidationMessageFor(model => model.Reporting) %>
-            </div>
-            
-            <div class="editor-label">
-                <%= Html.LabelFor(model => model.Additional) %>
-            </div>
-            <div class="editor-field">
-                <%= Html.TextBoxFor(model => model.Additional) %>
-                <%= Html.ValidationMessageFor(model => model.Additional) %>
-            </div>
-            
-            <p>
-                <input type="submit" value="Save" />
-            </p>
-        </fieldset>
+         <%
+             if (null != ViewData["discipline"] && null != ViewData["disciplineProgram"])
+             {
+                 //.Replace("Редактрировать", String.Format(@"<img src='/Content/Images/edit2.png' alt='Редактировать'/>Редактрировать"))
+                 SpecialityDiscipline discipline = (SpecialityDiscipline)ViewData["discipline"];
+                 SpecialityDisciplineProgram disciplineProgram = (SpecialityDisciplineProgram)ViewData["disciplineProgram"]; %>
 
-    <% } %>
+        <div class="programText"> 
+
+
+            <fieldset>
+                
+                <h2>Прорамма дисциплины "<% = Html.Encode(discipline.Title)%>"</h2>
+
+            <br />
+                <div class="editor-label">
+                    <br />
+                   <h3>1. Область применения</h3>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("ApplicationDomain", disciplineProgram.ApplicationDomain, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                    <h3>2. Цели и задачи дисциплины</h3>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("Purposes", disciplineProgram.Purposes, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                    <h3>3. Требования к уровню освоения содержания дисциплины</h3>
+                </div>
+                <div class="editor-field">
+                      <%= Html.TextArea("Requirements", disciplineProgram.Requirements, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                 <h3>4.Объем дисциплины и виды учебной работы</h3>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("Volume", disciplineProgram.Volume, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                    <h3>5. Содержание дисциплины</h3>
+                           <br />
+                    <h4>5.1. Разделы дисциплины и виды занятий</h4>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("Razdels", disciplineProgram.Razdels, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                   <h4>5.2. Содержание разделов дисциплины</h4>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("RazdelsContent", disciplineProgram.RazdelsContent, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                   <h3>6. Лабораторный практикум.</h3>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("LabPractice", disciplineProgram.LabPractice, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                    <h3>7. Учебно-методическое обеспечение дисциплины</h3>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("Literature", disciplineProgram.Literature, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                    <h3>8. Вопросы для контроля</h3>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("Questions", disciplineProgram.Questions, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                    <h3>9. Критерии оценок</h3>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("MarkCriterias", disciplineProgram.MarkCriterias, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                    <h3>10. Примерная тематика курсовых работ и критерии их оценки </h3>
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("Reporting", disciplineProgram.Reporting, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+                <div class="editor-label">
+                    <br />
+                    Дополнительно:
+                </div>
+                <div class="editor-field">
+                    <%= Html.TextArea("Additional", disciplineProgram.Additional, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                </div>
+            
+               
+            
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+            </fieldset>
+
+       </div>
+
+    <% }
+       } %>
 
     <div>
         <%= Html.ActionLink("Back to List", "Index") %>
