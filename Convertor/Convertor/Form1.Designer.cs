@@ -64,7 +64,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(233, 20);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "C:\\Users\\orlov.leonid\\Desktop\\Программа дисциплин.doc";
             // 
             // textBox2
             // 
@@ -72,7 +71,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(233, 20);
             this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "C:\\Users\\orlov.leonid\\Desktop\\Программа дисциплин.xml";
             // 
             // button1
             // 
@@ -126,7 +124,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Converter";
             this.ResumeLayout(false);
             this.PerformLayout();
 

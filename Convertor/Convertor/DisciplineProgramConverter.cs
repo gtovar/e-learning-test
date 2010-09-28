@@ -25,7 +25,8 @@ namespace Converter
             {
                 string str = p.Range.Text.Replace("\r\a", "");
                 str = str.Trim();
-                /*if (str != "") */text.Add(str);
+                /*if (str != "") */
+                text.Add(str);
             }
 
             Word.Tables tables = doc.Tables;
@@ -35,16 +36,18 @@ namespace Converter
 
             XmlTextWriter writer = new XmlTextWriter(xmlPath, System.Text.Encoding.Default);
 
+            string temp = "";
+
             writer.WriteStartDocument();
             writer.WriteStartElement("disciplineProgram");
 
             writer.WriteStartElement("title");
-            writer.WriteString("Инженерные основы информационных технологий");
+            writer.WriteString("Программная инженерия");
             writer.WriteEndElement(); // title
 
             for (int i = 0; i < text.Count; i++)
             {
-                string str = text[i].Replace(" ", "").ToLower(); 
+                string str = text[i].Replace(" ", "").ToLower();
                 switch (text[i])
                 {
                     case "1. Область применения":
@@ -56,12 +59,18 @@ namespace Converter
                         {
                             if (text[j].IndexOf("2.") != -1) break;
 
-                            writer.WriteStartElement("p");
+                            /*writer.WriteStartElement("p");
                             writer.WriteString(text[j]);
                             writer.WriteEndElement(); // p
-                            
+                             */
+                            temp += "<p>";
+                            temp += text[j];
+                            temp += "</p>";
+
                         }
-                        
+
+                        writer.WriteCData(temp);
+
                         writer.WriteEndElement(); // applicationDomain
 
                         break;
@@ -70,17 +79,24 @@ namespace Converter
 
                         writer.WriteStartElement("purposes");
                         writer.WriteAttributeString("title", "Цели и задачи дисцмплины");
-                        
 
+                        temp = "";
                         for (int j = i + 1; j < text.Count; j++, i++)
                         {
                             if (text[j].IndexOf("3.") != -1) break;
 
-                            writer.WriteStartElement("p");
+                            /*writer.WriteStartElement("p");
                             writer.WriteString(text[j]);
                             writer.WriteEndElement(); // p
+                             */
+                            temp += "<p>";
+                            temp += text[j];
+                            temp += "</p>";
+
                         }
-                        
+
+                        writer.WriteCData(temp);
+
                         writer.WriteEndElement(); // purposes
 
                         break;
@@ -89,70 +105,97 @@ namespace Converter
 
                         writer.WriteStartElement("requirements");
                         writer.WriteAttributeString("title", "Требования к уровню освоения содержания дисциплины");
-                        
+
+                        temp = "";
                         for (int j = i + 1; j < text.Count; j++, i++)
                         {
                             if (text[j].IndexOf("4.") != -1) break;
 
-                            writer.WriteStartElement("p");
+                            /*writer.WriteStartElement("p");
                             writer.WriteString(text[j]);
                             writer.WriteEndElement(); // p
+                             */
+                            temp += "<p>";
+                            temp += text[j];
+                            temp += "</p>";
                         }
-                        
+
+                        writer.WriteCData(temp);
+
                         writer.WriteEndElement(); // requirements
 
                         break;
 
                     case "4.Объем дисциплины и виды учебной работы":
 
+                        temp = "";
+
                         writer.WriteStartElement("disciplineVolume");
 
                         writer.WriteAttributeString("title", "Объем дисциплины и виды учебной работы");
-                        writer.WriteStartElement("p");
+                        //writer.WriteStartElement("p");                       
+                        temp += "<p>";
+                        //writer.WriteStartElement("table");
+                        temp += "<table>";
+                        //writer.WriteStartElement("thead");
+                        temp += "<thead>";
+                        //writer.WriteStartElement("tr");
+                        temp += "<tr>";
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("Виды учебной работы");
+                        temp += "Виды учебной работы";
+                        //writer.WriteEndElement(); //td
+                        temp += "</td>";
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("Всего часов");
+                        temp += "Всего часов";
+                        //writer.WriteEndElement(); // td
+                        temp += "</td>";
 
-                        writer.WriteStartElement("table");
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("Семестры");
+                        temp += "Семестры";
+                        //writer.WriteEndElement(); //td
+                        temp += "</td>";
 
-                        writer.WriteStartElement("thead");
+                        //writer.WriteEndElement(); // tr
+                        temp += "</tr>";
 
-                        writer.WriteStartElement("tr");
-                        
-                        writer.WriteStartElement("td");
-                        writer.WriteString("Виды учебной работы");
-                        writer.WriteEndElement(); //td
+                        //writer.WriteEndElement(); // thead
+                        temp += "</thead>";
 
-                        writer.WriteStartElement("td");
-                        writer.WriteString("Всего часов");
-                        writer.WriteEndElement(); // td
-
-                        writer.WriteStartElement("td");
-                        writer.WriteString("Семестры");
-                        writer.WriteEndElement(); //td
-
-                        writer.WriteEndElement(); // tr
-
-                        writer.WriteEndElement(); // thead
-
-                        writer.WriteStartElement("tbody");
+                        //writer.WriteStartElement("tbody");
+                        temp += "<tbody>";
 
                         int count = 4;
                         for (int k = 1; k < table.Rows.Count; k++)
                         {
-                            writer.WriteStartElement("tr");
+                            //writer.WriteStartElement("tr");
+                            temp += "<tr>";
                             for (int l = 0; l < table.Columns.Count; l++)
                             {
                                 Word.Range cell = table.Cell(k + 1, l + 1).Range;
-                                writer.WriteStartElement("td");
-                                writer.WriteString(cell.Text.Replace("\r\a", ""));
-                                writer.WriteEndElement(); // td
+                                //writer.WriteStartElement("td");
+                                temp += "<td>";
+                                //writer.WriteString(cell.Text.Replace("\r\a", ""));
+                                temp += cell.Text.Replace("\r\a", "");
+                                //writer.WriteEndElement(); // td
+                                temp += "</td>";
                                 count++;
                             }
-                            writer.WriteEndElement(); //tr
+                            //writer.WriteEndElement(); //tr
+                            temp += "</tr>";
                             count++;
                         }
 
-                        writer.WriteEndElement(); // tbody
+                        //writer.WriteEndElement(); // tbody
+                        temp += "</tbody>";
 
-                        writer.WriteEndElement(); // table
+                        //writer.WriteEndElement(); // table
+                        temp += "</table>";
 
                         i += count;
 
@@ -168,78 +211,113 @@ namespace Converter
                             }
                         }*/
 
-                        writer.WriteEndElement(); // p
+                        //writer.WriteEndElement(); // p
+                        temp += "</p>";
+
+                        writer.WriteCData(temp);
+
                         writer.WriteEndElement(); // disciplineVolume
                         break;
 
                     case "5.1. Разделы дисциплины и виды занятий":
+
+                        temp = "";
 
                         writer.WriteStartElement("disciplineContent");
                         writer.WriteAttributeString("title", "Содержание дисциплины");
 
                         writer.WriteStartElement("disciplineRazdels");
                         writer.WriteAttributeString("title", "Разделы дисциплины и виды занятий");
-                        
-                        writer.WriteStartElement("p");
+
+                        //writer.WriteStartElement("p");
+                        temp += "<p>";
 
                         table = tables[2];
 
-                        writer.WriteStartElement("table");
+                        //writer.WriteStartElement("table");
+                        temp += "<table>";
+                        //writer.WriteStartElement("thead");
+                        temp += "<thead>";
+                        //writer.WriteStartElement("tr");
+                        temp += "<tr>";
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("№п/п");
+                        temp += "№п/п";
+                        //writer.WriteEndElement(); //td
+                        temp += "</td>";
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("Раздел дисциплины");
+                        temp += "Раздел дисциплины";
+                        //writer.WriteEndElement(); //td
+                        temp += "</td>";
 
-                        writer.WriteStartElement("thead");
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("Лекции");
+                        temp += "Лекции";
+                        //writer.WriteEndElement(); // td
+                        temp += "</td>";
 
-                        writer.WriteStartElement("tr");
-                        
-                        writer.WriteStartElement("td");
-                        writer.WriteString("№п/п");
-                        writer.WriteEndElement(); //td
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("ПЗ (или С)");
+                        temp += "ПЗ (или С)";
+                        //writer.WriteEndElement();
+                        temp += "</td>";
 
-                        writer.WriteStartElement("td");
-                        writer.WriteString("Раздел дисциплины");
-                        writer.WriteEndElement(); //td
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("ЛР");
+                        temp += "ЛР";
+                        //writer.WriteEndElement(); //td
+                        temp += "</td>";
 
-                        writer.WriteStartElement("td");
-                        writer.WriteString("Лекции");
-                        writer.WriteEndElement(); // td
+                        //writer.WriteEndElement(); // tr
+                        temp += "</tr>";
 
-                        writer.WriteStartElement("td");
-                        writer.WriteString("ПЗ (или С)");
-                        writer.WriteEndElement();
+                        // writer.WriteEndElement(); // thead
+                        temp += "</thead>";
 
-                        writer.WriteStartElement("td");
-                        writer.WriteString("ЛР");
-                        writer.WriteEndElement(); //td
-
-                        writer.WriteEndElement(); // tr
-
-                        writer.WriteEndElement(); // thead
-
-                        writer.WriteStartElement("tbody");
+                        //writer.WriteStartElement("tbody");
+                        temp += "<tbody>";
                         int count2 = 5;
 
                         for (int k = 1; k < table.Rows.Count; k++)
                         {
-                            writer.WriteStartElement("tr");
+                            //writer.WriteStartElement("tr");
+                            temp += "<tr>";
                             for (int l = 0; l < table.Columns.Count; l++)
                             {
                                 Word.Range cell = table.Cell(k + 1, l + 1).Range;
-                                if (l == 1) razdels.Add(cell.Text.Replace("\r\a","").Trim());
-                                writer.WriteStartElement("td");
-                                writer.WriteString(cell.Text.Replace("\r\a", ""));
-                                writer.WriteEndElement(); //tr
+                                if (l == 1) razdels.Add(cell.Text.Replace("\r\a", "").Trim());
+                                //writer.WriteStartElement("td");
+                                temp += "<td>";
+                                //writer.WriteString(cell.Text.Replace("\r\a", ""));
+                                temp += cell.Text.Replace("\r\a", "");
+                                //writer.WriteEndElement(); //td
+                                temp += "</td>";
                                 count2++;
                             }
-                            writer.WriteEndElement();
+                            //writer.WriteEndElement();
+                            temp += "</tr>";
                             count2++;
                         }
 
-                        writer.WriteEndElement(); // tbody
+                        //writer.WriteEndElement(); // tbody
+                        temp += "</tbody>";
 
-                        writer.WriteEndElement(); // table
+                        //writer.WriteEndElement(); // table
+                        temp += "</table>";
 
                         i += count2;
 
-                        writer.WriteEndElement(); // p
+                        //writer.WriteEndElement(); // p
+                        temp += "</p>";
+
+                        writer.WriteCData(temp);
+
                         writer.WriteEndElement(); // disciplineRazdels
                         break;
 
@@ -251,7 +329,7 @@ namespace Converter
 
                         writer.WriteStartElement("topics");
 
-                        for (int j = i + 2; j < text.Count; j++,i++)
+                        for (int j = i + 2; j < text.Count; j++, i++)
                         {
                             if (text[j].IndexOf("Лабораторный практикум") != -1) break;
                             writer.WriteStartElement("topic");
@@ -276,7 +354,7 @@ namespace Converter
                             writer.WriteAttributeString("title", text[j]);
 
                             writer.WriteEndElement(); // topic
-                            
+
                         }
 
                         writer.WriteEndElement(); // topics
@@ -285,234 +363,345 @@ namespace Converter
 
                     case "6. Лабораторный практикум.":
 
+                        temp = "";
+
                         writer.WriteStartElement("labPractice");
                         writer.WriteAttributeString("title", "Лабораторный практикум");
-                        writer.WriteStartElement("p");
+                        //writer.WriteStartElement("p");
+                        temp += "<p>";
 
                         table = tables[3];
 
-                        writer.WriteStartElement("table");
+                        //writer.WriteStartElement("table");
+                        temp += "<table>";
 
-                        writer.WriteStartElement("thead");
+                        //writer.WriteStartElement("thead");
+                        temp += "<thead>";
 
-                        writer.WriteStartElement("tr");
-                        
-                        writer.WriteStartElement("td");
-                        writer.WriteString("№п/п");
-                        writer.WriteEndElement();
+                        //writer.WriteStartElement("tr");
+                        temp += "<tr>";
 
-                        writer.WriteStartElement("td");
-                        writer.WriteString("№ раздела дисциплины");
-                        writer.WriteEndElement();
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        // writer.WriteString("№п/п");
+                        temp += "№п/п";
+                        //writer.WriteEndElement();
+                        temp += "</td>";
 
-                        writer.WriteStartElement("td");
-                        writer.WriteString("Наименование лабораторных работ");
-                        writer.WriteEndElement();
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("№ раздела дисциплины");
+                        temp += "№ раздела дисциплины";
+                        //writer.WriteEndElement();
+                        temp += "</td>";
 
-                        writer.WriteEndElement(); // tr
+                        //writer.WriteStartElement("td");
+                        temp += "<td>";
+                        //writer.WriteString("Наименование лабораторных работ");
+                        temp += "Наименование лабораторных работ";
+                        //writer.WriteEndElement();
+                        temp += "</td>";
 
-                        writer.WriteEndElement(); // thead
+                        //writer.WriteEndElement(); // tr
+                        temp += "</tr>";
 
-                        writer.WriteStartElement("tbody");
+                        // writer.WriteEndElement(); // thead
+                        temp += "</thead>";
+
+                        //writer.WriteStartElement("tbody");
+                        temp += "<tbody>";
                         int count3 = 4;
 
                         for (int k = 1; k < table.Rows.Count; k++)
                         {
-                            writer.WriteStartElement("tr");
+                            // writer.WriteStartElement("tr");
+                            temp += "<tr>";
                             for (int l = 0; l < table.Columns.Count; l++)
                             {
                                 Word.Range cell = table.Cell(k + 1, l + 1).Range;
-                                writer.WriteStartElement("td");
-                                writer.WriteString(cell.Text.Replace("\r\a", ""));
-                                writer.WriteEndElement();
+                                //writer.WriteStartElement("td");
+                                temp += "<td>";
+                                // writer.WriteString(cell.Text.Replace("\r\a", ""));
+                                temp += cell.Text.Replace("\r\a", "");
+                                // writer.WriteEndElement();
+                                temp += "</td>";
                                 count3++;
                             }
-                            writer.WriteEndElement(); //tr
+                            //writer.WriteEndElement(); //tr
+                            temp += "</tr>";
                             count3++;
                         }
 
-                        writer.WriteEndElement(); // tbody
+                        //writer.WriteEndElement(); // tbody
+                        temp += "</tbody>";
 
-                        writer.WriteEndElement(); // table
+                        //writer.WriteEndElement(); // table
+                        temp += "</table>";
 
                         i += count3;
 
-                        writer.WriteEndElement(); // p
+                        //writer.WriteEndElement(); // p
+                        temp += "</p>";
+
+                        writer.WriteCData(temp);
+
                         writer.WriteEndElement(); // labPractice
 
                         break;
 
                     case "а) основная литература:":
 
+                        temp = "";
+
                         writer.WriteStartElement("disciplineMaintenance");
                         writer.WriteAttributeString("title", "Учебно-методическое обеспечение дисциплины");
                         writer.WriteStartElement("literature");
                         writer.WriteAttributeString("title", "Рекомендуемая литература");
-                        writer.WriteStartElement("p");
-                        writer.WriteString("а) основная литература:");
-                        writer.WriteStartElement("ol");
+                        //writer.WriteStartElement("p");
+                        temp += "<p>";
+                        //writer.WriteString("а) основная литература:");
+                        temp += "а) основная литература:";
+                        //writer.WriteStartElement("ol");
+                        temp += "<ol>";
 
-                        for (int j = i+1; j < text.Count; j++,i++)
+                        for (int j = i + 1; j < text.Count; j++, i++)
                         {
                             if (text[j].IndexOf("дополнительная") != -1) break;
-                            writer.WriteStartElement("li");
-                            writer.WriteString(text[j]);
-                            writer.WriteEndElement();
+                            //writer.WriteStartElement("li");
+                            temp += "<li>";
+                            // writer.WriteString(text[j]);
+                            temp += text[j];
+                            //writer.WriteEndElement();
+                            temp += "</li>";
                         }
-                        writer.WriteEndElement(); // ol
-                        writer.WriteEndElement(); // p
+                        //writer.WriteEndElement(); // ol
+                        temp += "</ol>";
+                        //writer.WriteEndElement(); // p
+                        temp += "</p>";
+
+                        writer.WriteCData(temp);
+
                         break;
 
                     case "б) дополнительная литература:":
 
-                        writer.WriteStartElement("p");
-                        writer.WriteString("б) дополнительная литература:");
-                        writer.WriteStartElement("ol");
+                        temp = "";
 
-                        for (int j = i + 1; j < text.Count; j++,i++)
+                        //writer.WriteStartElement("p");
+                        temp += "<p>";
+                        //writer.WriteString("б) дополнительная литература:");
+                        temp += "б) дополнительная литература:";
+                        //writer.WriteStartElement("ol");
+                        temp += "<ol>";
+
+                        for (int j = i + 1; j < text.Count; j++, i++)
                         {
                             if (text[j].IndexOf("контроля") != -1) break;
-                            writer.WriteStartElement("li");
-                            writer.WriteString(text[j]);
-                            writer.WriteEndElement();
+                            //writer.WriteStartElement("li");
+                            temp += "<li>";
+                            //writer.WriteString(text[j]);
+                            temp += text[j];
+                            //writer.WriteEndElement();
+                            temp += "</li>";
                         }
-                        writer.WriteEndElement(); // ol
-                        writer.WriteEndElement(); // p
+                        //writer.WriteEndElement(); // ol
+                        temp += "</ol>";
+                        //writer.WriteEndElement(); // p
+                        temp += "</p>";
+
+                        writer.WriteCData(temp);
+
                         writer.WriteEndElement(); // literature
                         writer.WriteEndElement(); // disciplineMaintenance
                         break;
 
-                    case "8. Вопросы для контроля":
+                    case "Вопросы для контроля":
+
+                        temp = "";
 
                         writer.WriteStartElement("questions");
                         writer.WriteAttributeString("title", "Вопросы для контроля");
-                        writer.WriteStartElement("p");
-                        writer.WriteStartElement("ol");
-                        for (int j = i + 1; j < text.Count; j++,i++)
+                        //writer.WriteStartElement("p");
+                        temp += "<p>";
+                        //writer.WriteStartElement("ol");
+                        temp += "<ol>";
+                        for (int j = i + 1; j < text.Count; j++, i++)
                         {
                             if (text[j].IndexOf("9.") != -1) break;
-                            writer.WriteStartElement("li");
-                            writer.WriteString(text[j]);
-                            writer.WriteEndElement(); //li
+                            //writer.WriteStartElement("li");
+                            temp += "<li>";
+                            //writer.WriteString(text[j]);
+                            temp += text[j];
+                            //writer.WriteEndElement(); //li
+                            temp += "</li>";
                         }
-                        writer.WriteEndElement(); // ol
-                        writer.WriteEndElement(); // p
+                        //writer.WriteEndElement(); // ol
+                        temp += "</ol>";
+                        //writer.WriteEndElement(); // p
+                        temp += "</p>";
+
+                        writer.WriteCData(temp);
+
                         writer.WriteEndElement(); // questions
                         break;
 
                     case "9. Критерии оценок":
 
+                        temp = "";
+
                         writer.WriteStartElement("markCriterias");
                         writer.WriteAttributeString("title", "Критерии оценок");
-                        writer.WriteStartElement("p");
-                        writer.WriteStartElement("table");
+                        //writer.WriteStartElement("p");
+                        temp += "<p>";
+                        //writer.WriteStartElement("table");
+                        temp += "<table>";
 
                         table = tables[4];
                         for (int k = 0; k < table.Rows.Count; k++)
                         {
-                            writer.WriteStartElement("tr");
+                            //writer.WriteStartElement("tr");
+                            temp += "<tr>";
                             for (int l = 0; l < table.Columns.Count; l++)
                             {
                                 Word.Range cell = table.Cell(k + 1, l + 1).Range;
                                 if (l == 0 && k == 0)
-                                {                                 
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString("Зачтено");
-                                    writer.WriteEndElement(); //td
+                                {
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    //writer.WriteString("Зачтено");
+                                    temp += "Зачтено";
+                                    //writer.WriteEndElement(); //td
+                                    temp += "</td>";
                                 }
 
                                 else if (l == 0 && k == 1)
                                 {
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString("Незачтено");
-                                    writer.WriteEndElement(); //td
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    //writer.WriteString("Незачтено");
+                                    temp += "Незачтено";
+                                    //writer.WriteEndElement(); //td
+                                    temp += "</td>";
                                 }
 
                                 else
                                 {
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString(cell.Text.Replace("\r\a",""));
-                                    writer.WriteEndElement(); //td
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    //writer.WriteString(cell.Text.Replace("\r\a",""));
+                                    temp += cell.Text.Replace("\r\a", "");
+                                    //writer.WriteEndElement(); //td
+                                    temp += "</td>";
                                 }
 
                             }
-                            writer.WriteEndElement(); //tr
+                            //writer.WriteEndElement(); //tr
+                            temp += "</tr>";
                         }
 
-                        writer.WriteEndElement(); // table
-                        writer.WriteStartElement("br");
-                        writer.WriteEndElement(); // br
+                        // writer.WriteEndElement(); // table
+                        temp += "</table>";
 
                         table = tables[5];
-                        writer.WriteStartElement("table");
+                        //writer.WriteStartElement("table");
+                        temp += "<table>";
 
                         for (int k = 0; k < table.Rows.Count; k++)
                         {
-                            writer.WriteStartElement("tr");
+                            //writer.WriteStartElement("tr");
+                            temp += "<tr>";
                             for (int l = 0; l < table.Columns.Count; l++)
                             {
                                 Word.Range cell = table.Cell(k + 1, l + 1).Range;
                                 if (l == 0 && k == 0)
                                 {
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString("Превосходно");
-                                    writer.WriteEndElement(); //td
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    // writer.WriteString("Превосходно");
+                                    temp += "Превосходно";
+                                    //writer.WriteEndElement(); //td
+                                    temp += "</td>";
                                 }
 
                                 else if (l == 0 && k == 1)
                                 {
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString("Отлично");
-                                    writer.WriteEndElement(); //td
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    //writer.WriteString("Отлично");
+                                    temp += "Отлично";
+                                    // writer.WriteEndElement(); //td
+                                    temp += "</td>";
                                 }
 
                                 else if (l == 0 && k == 2)
                                 {
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString("Очень хорошо");
-                                    writer.WriteEndElement(); //td
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    //writer.WriteString("Очень хорошо");
+                                    temp += "Очень хорошо";
+                                    // writer.WriteEndElement(); //td
+                                    temp += "</td>";
                                 }
 
                                 else if (l == 0 && k == 3)
                                 {
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString("Хорошо");
-                                    writer.WriteEndElement(); //td
-                                } 
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    //writer.WriteString("Хорошо");
+                                    temp += "Хорошо";
+                                    //writer.WriteEndElement(); //td
+                                    temp += "</td>";
+                                }
 
                                 else if (l == 0 && k == 4)
                                 {
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString("Удовлетворительно");
-                                    writer.WriteEndElement(); //td
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    //writer.WriteString("Удовлетворительно");
+                                    temp += "Удовлетворительно";
+                                    //writer.WriteEndElement(); //td
+                                    temp += "</td>";
                                 }
 
                                 else if (l == 0 && k == 5)
                                 {
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString("Неудовлетворительно");
-                                    writer.WriteEndElement(); //td
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    //writer.WriteString("Неудовлетворительно");
+                                    temp += "Неудовлетворительно";
+                                    //writer.WriteEndElement(); //td
+                                    temp += "</td>";
                                 }
 
                                 else
                                 {
-                                    writer.WriteStartElement("td");
-                                    writer.WriteString(cell.Text.Replace("\r\a", ""));
-                                    writer.WriteEndElement(); //td
+                                    //writer.WriteStartElement("td");
+                                    temp += "<td>";
+                                    // writer.WriteString(cell.Text.Replace("\r\a", ""));
+                                    temp += cell.Text.Replace("\r\a", "");
+                                    //writer.WriteEndElement(); //td
+                                    temp += "</td>";
                                 }
 
                             }
-                            writer.WriteEndElement(); //tr
+                            //writer.WriteEndElement(); //tr
+                            temp += "</tr>";
                         }
 
-                        writer.WriteEndElement(); // table
-                        writer.WriteEndElement(); // p
+                        //writer.WriteEndElement(); // table
+                        temp += "</table>";
+                        //writer.WriteEndElement(); // p
+                        temp += "</p>";
+
+                        writer.WriteCData(temp);
+
                         writer.WriteEndElement(); // markCriterias
                         break;
                 }
             }
 
             writer.WriteStartElement("reporting");
+            writer.WriteAttributeString("title", "Примерная тематика курсовых работ и критерии их оценки");
             writer.WriteEndElement();
 
             writer.WriteStartElement("additional");
