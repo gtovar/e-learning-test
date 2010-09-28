@@ -71,16 +71,24 @@ namespace Converter
                 case "Список студентов":
                     StudentConverter conv4 = new StudentConverter();
                     conv4.ConvertDocument(textBox1.Text, textBox2.Text);
+                    foreach (string s in conv4.Message)
+                    {
+                        richTextBox1.Text += s + "\r\a";
+                    }
                     break;
                 case "Список групп":
                     GroupConverter conv5 = new GroupConverter();
-                    conv5.ConvertDocument(textBox1.Text, textBox2.Text);                  
+                    conv5.ConvertDocument(textBox1.Text, textBox2.Text);
+                    foreach (string s in conv5.Message)
+                    {
+                        richTextBox1.Text += s + "\r\a";
+                    }
                     break;
-                case "Программа дисциплин":
+                default:
                     DisciplineProgramConverter conv6 = new DisciplineProgramConverter();
                     conv6.ConvertDocument(textBox1.Text, textBox2.Text);
                     richTextBox1.Text = "";
-                    foreach (string s in conv6.text)
+                    foreach (string s in conv6.Message)
                     {
                         richTextBox1.Text += s + "\r\a";
                     }
