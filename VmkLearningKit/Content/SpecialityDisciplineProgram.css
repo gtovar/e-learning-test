@@ -25,6 +25,11 @@ h5
 	border-collapse: collapse;	
 }
 
+.hidden
+{
+	display:none;
+}
+
 #editDiv
 {
 	float:right;

@@ -88,6 +88,7 @@ namespace VmkLearningKit.Controllers
         // GET: /EditSpecialityDisciplineProgram/Edit/5
 
         [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
+        [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Edit(int id)
         {
@@ -124,14 +125,32 @@ namespace VmkLearningKit.Controllers
         //
         // POST: /EditSpecialityDisciplineProgram/Edit/5
 
+        [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+                SpecialityDisciplineProgram newProgram = new SpecialityDisciplineProgram();
+                newProgram.SpecialityDisciplineId = id;
+                newProgram.ApplicationDomain = HttpUtility.HtmlDecode(collection["ApplicationDomain"]);
+                newProgram.Purposes         = HttpUtility.HtmlDecode(collection["Purposes"]);
+                newProgram.Requirements     = HttpUtility.HtmlDecode(collection["Requirements"]);
+                newProgram.Volume           = HttpUtility.HtmlDecode(collection["Volume"]);
+                newProgram.Razdels          = HttpUtility.HtmlDecode(collection["Razdels"]);
+                newProgram.RazdelsContent   = HttpUtility.HtmlDecode(collection["RazdelsContent"]);
+                newProgram.LabPractice      = HttpUtility.HtmlDecode(collection["LabPractice"]);
+                newProgram.Literature       = HttpUtility.HtmlDecode(collection["Literature"]);
+                newProgram.Questions        = HttpUtility.HtmlDecode(collection["Questions"]);
+                newProgram.MarkCriterias    = HttpUtility.HtmlDecode(collection["MarkCriterias"]);
+                newProgram.Reporting        = HttpUtility.HtmlDecode(collection["Reporting"]);
+                newProgram.Additional       = HttpUtility.HtmlDecode(collection["Additional"]);
+
+                repositoryManager.GetSpecialityDisciplineProgramRepository.Edit(newProgram);
+
+                return RedirectToAction("Index/" + collection["Alias"]);
             }
             catch
             {
