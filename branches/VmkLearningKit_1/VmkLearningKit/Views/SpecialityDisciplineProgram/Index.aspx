@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<VmkLearningKit.Models.Repository.SpecialityDisciplineProgram>>" %>
+﻿<%@ Page Title="" Language="C#"  MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<VmkLearningKit.Models.Repository.SpecialityDisciplineProgram>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Прорамма дисциплины
@@ -23,7 +23,7 @@
                 </div>
                 <% } %>
 
-           <h2>Прорамма дисциплины "<% = Html.Encode(discipline.Title)%>"</h2>
+           <h2>Программа дисциплины "<% = Html.Encode(discipline.Title)%>"</h2>
 
             <br />
             <h3>1. Область применения</h3>

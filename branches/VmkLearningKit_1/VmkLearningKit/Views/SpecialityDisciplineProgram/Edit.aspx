@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<VmkLearningKit.Models.Repository.SpecialityDisciplineProgram>" %>
+﻿<%@ Page  Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<VmkLearningKit.Models.Repository.SpecialityDisciplineProgram>"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Edit
@@ -52,23 +52,22 @@
 
 
     <h2>Редактирование</h2>
+<%
+    if (null != ViewData["discipline"] && null != ViewData["disciplineProgram"])
+    {
+        //.Replace("Редактрировать", String.Format(@"<img src='/Content/Images/edit2.png' alt='Редактировать'/>Редактрировать"))
+        SpecialityDiscipline discipline = (SpecialityDiscipline)ViewData["discipline"];
+        SpecialityDisciplineProgram disciplineProgram = (SpecialityDisciplineProgram)ViewData["disciplineProgram"]; %>
 
-    <% using (Html.BeginForm()) {%>
-        <%= Html.ValidationSummary(true) %>
-        
-         <%
-             if (null != ViewData["discipline"] && null != ViewData["disciplineProgram"])
-             {
-                 //.Replace("Редактрировать", String.Format(@"<img src='/Content/Images/edit2.png' alt='Редактировать'/>Редактрировать"))
-                 SpecialityDiscipline discipline = (SpecialityDiscipline)ViewData["discipline"];
-                 SpecialityDisciplineProgram disciplineProgram = (SpecialityDisciplineProgram)ViewData["disciplineProgram"]; %>
+        <% using (Html.BeginForm())
+           {%>
+            <%= Html.ValidationSummary(true)%>
 
         <div class="programText"> 
 
 
-            <fieldset>
                 
-                <h2>Прорамма дисциплины "<% = Html.Encode(discipline.Title)%>"</h2>
+                <h2>Программа дисциплины "<% = Html.Encode(discipline.Title)%>"</h2>
 
             <br />
                 <div class="editor-label">
@@ -76,7 +75,7 @@
                    <h3>1. Область применения</h3>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("ApplicationDomain", disciplineProgram.ApplicationDomain, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("ApplicationDomain", disciplineProgram.ApplicationDomain, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -84,7 +83,7 @@
                     <h3>2. Цели и задачи дисциплины</h3>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("Purposes", disciplineProgram.Purposes, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("Purposes", disciplineProgram.Purposes, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -92,7 +91,7 @@
                     <h3>3. Требования к уровню освоения содержания дисциплины</h3>
                 </div>
                 <div class="editor-field">
-                      <%= Html.TextArea("Requirements", disciplineProgram.Requirements, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                      <%= Html.TextArea("Requirements", disciplineProgram.Requirements, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -100,7 +99,7 @@
                  <h3>4.Объем дисциплины и виды учебной работы</h3>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("Volume", disciplineProgram.Volume, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("Volume", disciplineProgram.Volume, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -110,7 +109,7 @@
                     <h4>5.1. Разделы дисциплины и виды занятий</h4>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("Razdels", disciplineProgram.Razdels, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("Razdels", disciplineProgram.Razdels, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -118,7 +117,7 @@
                    <h4>5.2. Содержание разделов дисциплины</h4>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("RazdelsContent", disciplineProgram.RazdelsContent, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("RazdelsContent", disciplineProgram.RazdelsContent, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -126,7 +125,7 @@
                    <h3>6. Лабораторный практикум.</h3>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("LabPractice", disciplineProgram.LabPractice, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("LabPractice", disciplineProgram.LabPractice, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -134,7 +133,7 @@
                     <h3>7. Учебно-методическое обеспечение дисциплины</h3>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("Literature", disciplineProgram.Literature, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("Literature", disciplineProgram.Literature, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -142,7 +141,7 @@
                     <h3>8. Вопросы для контроля</h3>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("Questions", disciplineProgram.Questions, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("Questions", disciplineProgram.Questions, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -150,7 +149,7 @@
                     <h3>9. Критерии оценок</h3>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("MarkCriterias", disciplineProgram.MarkCriterias, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("MarkCriterias", disciplineProgram.MarkCriterias, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -158,7 +157,7 @@
                     <h3>10. Примерная тематика курсовых работ и критерии их оценки </h3>
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("Reporting", disciplineProgram.Reporting, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("Reporting", disciplineProgram.Reporting, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
                 <div class="editor-label">
@@ -166,25 +165,27 @@
                     Дополнительно:
                 </div>
                 <div class="editor-field">
-                    <%= Html.TextArea("Additional", disciplineProgram.Additional, new { @class = "TextEditor", style = "width:80%; height: 150px;" })%>
+                    <%= Html.TextArea("Additional", disciplineProgram.Additional, new { @class = "TextEditor", style = "width:90%; height: 150px;" })%>
                 </div>
             
-               
-            
+                <div class="hidden">
+                    <%= Html.TextBox("SpecialityDisciplineId", discipline.Id)%>
+                    <%= Html.TextBox("Alias", discipline.Alias)%>
+                </div>
+                <br />
                 <p>
-                    <input type="submit" value="Save" />
+                    <input type="submit" value="Сохранить" />
                 </p>
-            </fieldset>
 
        </div>
 
     <% }
-       } %>
+        %>
 
     <div>
-        <%= Html.ActionLink("Back to List", "Index") %>
+        <%= Html.ActionLink("Назад", "Index", "SpecialityDisciplineProgram", new { alias = discipline.Alias }, new { @class = "" })%>
     </div>
-
+    <%} %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">

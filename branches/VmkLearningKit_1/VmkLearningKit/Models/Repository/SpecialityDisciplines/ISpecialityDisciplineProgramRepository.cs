@@ -8,6 +8,7 @@ namespace VmkLearningKit.Models.Repository
     public interface ISpecialityDisciplineProgramRepository : IRepository<SpecialityDisciplineProgram>
     {
         SpecialityDisciplineProgram Add(SpecialityDisciplineProgram obj);
+        SpecialityDisciplineProgram Edit(SpecialityDisciplineProgram obj);
         List<string> GetTable(long disciplineProgramId, int fl);
         List<string> GetTable2(long disciplineProgramId, out List<string> table2);
         List<string> GetLiterature(long disciplineProgramId, out List<string> second);

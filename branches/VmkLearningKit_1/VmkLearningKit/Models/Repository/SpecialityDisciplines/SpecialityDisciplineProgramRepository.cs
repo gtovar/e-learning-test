@@ -253,6 +253,49 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+        public SpecialityDisciplineProgram Edit(SpecialityDisciplineProgram obj)
+        {
+            try
+            {
+                SpecialityDisciplineProgram program = GetById(obj.SpecialityDisciplineId);
+
+                if (program == null)
+                {
+                    DataContext.SpecialityDisciplinePrograms.InsertOnSubmit(obj);
+                    DataContext.SubmitChanges();
+
+                    return obj;
+                }
+                else
+                {
+                    program.SpecialityDisciplineId = obj.SpecialityDisciplineId;
+                    program.ApplicationDomain = obj.ApplicationDomain;
+                    program.Purposes = obj.Purposes;
+                    program.Requirements = obj.Requirements;
+                    program.Volume = obj.Volume;
+                    program.Razdels = obj.Razdels;
+                    program.RazdelsContent = obj.RazdelsContent;
+                    program.LabPractice = obj.LabPractice;
+                    program.Literature = obj.Literature;
+                    program.Questions = obj.Questions;
+                    program.MarkCriterias = obj.MarkCriterias;
+                    program.Reporting = obj.Reporting;
+                    program.Additional = obj.Additional;
+
+                    DataContext.SubmitChanges();
+
+                    return obj;
+                }
+
+                //return program;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't edit SpecialityDisciplineProgram's entry to database !!!!", ex);
+            }
+            return null;
+        }
+
         public void Delete(SpecialityDisciplineProgram obj)
         {
             DataContext.SpecialityDisciplinePrograms.DeleteOnSubmit(obj);
