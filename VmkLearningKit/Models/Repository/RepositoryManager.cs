@@ -49,6 +49,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Users.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Users);
+
                 if (userRepository == null)
                 {
                     userRepository = new UserRepository(DataContext);
@@ -67,6 +69,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Professors.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Professors);
+
                 if (professorRepository == null)
                 {
                     professorRepository = new ProfessorRepository(DataContext);
@@ -85,6 +89,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Students.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Students);
+
                 if (studentRepository == null)
                 {
                     studentRepository = new StudentRepository(DataContext);
@@ -103,6 +109,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Specialities.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Specialities);
+
                 if (specialityRepository == null)
                 {
                     specialityRepository = new SpecialityRepository(DataContext);
@@ -121,6 +129,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Specializations.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Specializations);
+
                 if (specializationRepository == null)
                 {
                     specializationRepository = new SpecializationRepository(DataContext);
@@ -139,6 +149,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.SpecialityDisciplines.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.SpecialityDisciplines);
+
                 if (specialityDisciplineRepository == null)
                 {
                     specialityDisciplineRepository = new SpecialityDisciplineRepository(DataContext);
@@ -157,6 +169,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.SpecialityDisciplineTerms.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.SpecialityDisciplineTerms);
+
                 if (specialityDisciplineTermRepository == null)
                 {
                     specialityDisciplineTermRepository = new SpecialityDisciplineTermRepository(DataContext);
@@ -175,6 +189,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.SpecialityDisciplineTopics.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.SpecialityDisciplineTopics);
+
                 if (specialityDisciplineTopicRepository == null)
                 {
                     specialityDisciplineTopicRepository = new SpecialityDisciplineTopicRepository(DataContext);
@@ -193,6 +209,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Departments.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Departments);
+
                 if (departmentRepository == null)
                 {
                     departmentRepository = new DepartmentRepository(DataContext);
@@ -211,6 +229,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Chairs.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Chairs);
+
                 if (chairRepository == null)
                 {
                     chairRepository = new ChairRepository(DataContext);
@@ -229,6 +249,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.EducationPlans.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.EducationPlans);
+
                 if (educationPlanRepository == null)
                 {
                     educationPlanRepository = new EducationPlanRepository(DataContext);
@@ -247,6 +269,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.LecturePlans.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.LecturePlans);
+
                 if (lecturePlanRepository == null)
                 {
                     lecturePlanRepository = new LecturePlanRepository(DataContext);
@@ -265,6 +289,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.PracticePlans.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.PracticePlans);
+
                 if (practicePlanRepository == null)
                 {
                     practicePlanRepository = new PracticePlanRepository(DataContext);
@@ -283,6 +309,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Answers.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Answers);
+
                 if (answerRepository == null)
                 {
                     answerRepository = new AnswerRepository(DataContext);
@@ -301,6 +329,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Razdels.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Razdels);
+
                 if (razdelRepository == null)
                 {
                     razdelRepository = new RazdelRepository(DataContext);
@@ -319,6 +349,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Questions.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Questions);
+
                 if (questionRepository == null)
                 {
                     questionRepository = new QuestionRepository(DataContext);
@@ -337,6 +369,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.Groups.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Groups);
+
                 if (groupRepository == null)
                 {
                     groupRepository = new GroupRepository(DataContext);
@@ -355,6 +389,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.LectureTimetables.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.LectureTimetables);
+
                 if (lectureTimetableRepository == null)
                 {
                     lectureTimetableRepository = new LectureTimetableRepository(DataContext);
@@ -373,6 +409,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.GeneratedQuestions.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.GeneratedQuestions);
+
                 if (generatedQuestionRepository == null)
                 {
                     generatedQuestionRepository = new GeneratedQuestionRepository(DataContext);
@@ -390,6 +428,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.GeneratedTestVariants.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.GeneratedTestVariants);
+
                 if (generatedTestVariantRepository == null)
                 {
                     generatedTestVariantRepository = new GeneratedTestVariantRepository(DataContext);
@@ -408,6 +448,8 @@ namespace VmkLearningKit.Models.Repository
         {
             get
             {
+                DataContext.GeneratedTests.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.GeneratedTests);
+
                 if (generatedTestRepository == null)
                 {
                     generatedTestRepository = new GeneratedTestRepository(DataContext);
