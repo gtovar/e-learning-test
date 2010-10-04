@@ -10,6 +10,17 @@ namespace VmkLearningKit.Core.XmlConverter
 {
     public class XmlGroupsParser : XmlAbstractParser
     {
+        public override void DeleteNotExisted()
+        {
+            foreach (Group group in repositoryManager.GetGroupRepository.GetAll())
+            {
+                if (!ExistedDataIds.Contains(group.Id))
+                {
+                    repositoryManager.GetGroupRepository.DeleteById(group.Id);
+                }
+            }
+        }
+        
         public XmlGroupsParser(string schemaUrl) :
             base(schemaUrl)
         {
@@ -17,9 +28,12 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override bool ValidateData(string xmlUrl)
         {
+            ExistedDataIds.Clear();
+
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
-            string specialityAbbreveation;
+            string specialityAbbreveation,
+                   groupNumber;
 
             while (xmlReader.Read())
             {
@@ -31,6 +45,15 @@ namespace VmkLearningKit.Core.XmlConverter
                     if (null == repositoryManager.GetSpecialityRepository.GetByAbbreviation(specialityAbbreveation))
                     {
                         XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_SPECIALITY, xmlReader.LineNumber, xmlReader.LinePosition));
+                    }
+
+                    groupNumber = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_NUMBER);
+                    
+                    Group group = repositoryManager.GetGroupRepository.GetByTitle(groupNumber);
+
+                    if (group != null)
+                    {
+                        ExistedDataIds.Add(group.Id);
                     }
 
                 }
@@ -48,6 +71,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override void ParseXml(string xmlUrl)
         {
+            DeleteNotExisted();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             // Извлекаемые данные
@@ -70,11 +95,23 @@ namespace VmkLearningKit.Core.XmlConverter
                     group.Title         = groupNumber;
                     group.Alias         = Transliteration.Front(groupNumber, TransliterationType.ISO);
 
-                    groupsList.Add(group);
+                    Group existedGroup = repositoryManager.GetGroupRepository.GetByTitle(group.Title);
+
+                    if (existedGroup != null)
+                    {
+                        group.Id = existedGroup.Id;
+
+                        repositoryManager.GetGroupRepository.Update(group);
+                    }
+                    else
+                    {
+                        repositoryManager.GetGroupRepository.Add(group);
+                    }
+                    //groupsList.Add(group);
                 }
             }
 
-            repositoryManager.GetGroupRepository.Add(groupsList.AsEnumerable<Group>());
+            //repositoryManager.GetGroupRepository.Add(groupsList.AsEnumerable<Group>());
         }
     }
 }

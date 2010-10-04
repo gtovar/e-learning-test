@@ -10,6 +10,10 @@ namespace VmkLearningKit.Core.XmlConverter
 {
     public class XmlEducationPlanParser : XmlAbstractParser
     {
+        public override void DeleteNotExisted()
+        {
+        }
+        
         public XmlEducationPlanParser(string schemaUrl) :
             base(schemaUrl)
         {
@@ -17,6 +21,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override bool ValidateData(string xmlUrl)
         {
+            ExistedDataIds.Clear();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;
@@ -92,6 +98,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override void ParseXml(string xmlUrl)
         {
+            DeleteNotExisted();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;

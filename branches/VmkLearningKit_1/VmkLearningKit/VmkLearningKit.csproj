@@ -145,6 +145,8 @@
     <Compile Include="Models\Repository\AssignedTestVariant\AssignedTestVariantRepository.cs" />
     <Compile Include="Models\Repository\AssignedTestVariant\IAssignedTestVariantRepository.cs" />
     <Compile Include="Models\Repository\Chair\ChairRepository.cs" />
+    <Compile Include="Models\Repository\CommentRepository\CommentRepository.cs" />
+    <Compile Include="Models\Repository\CommentRepository\ICommentRepository.cs" />
     <Compile Include="Models\Repository\Department\DepartmentRepository.cs" />
     <Compile Include="Models\Repository\EducationPlan\EducationPlanRepository.cs" />
     <Compile Include="Models\Repository\Answer\IAnswerRepository.cs" />

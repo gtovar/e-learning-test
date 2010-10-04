@@ -957,11 +957,65 @@ namespace QWord
         {
             try
             {
+                // Сохраняем картинки (SaveAllImages)
+
                 if (wordApplication == null)
                 {
                     // открытие документа word
                     OpenWordDocument();
                 }
+
+                InlineShape inlineShape;
+
+                // индекс картинки
+                pictureIndex = GetStartImageIndex();
+
+                int index = pictureIndex;
+
+                // итератор для обхода списка рисунков
+                IEnumerator enumeratorInlineShapes = wordDocument.InlineShapes.GetEnumerator();
+
+                enumeratorInlineShapes.Reset();
+
+                // создание директории для хранения рисунков
+                DirectoryInfo imageDir = new DirectoryInfo(imageServerDir);
+
+                if (!imageDir.Exists)
+                {
+                    imageDir.Create();
+                }
+
+                // сохранение рисунков
+                while (enumeratorInlineShapes.MoveNext())
+                {
+                    // сохраняем изображение во временный файл
+                    inlineShape = (InlineShape)enumeratorInlineShapes.Current;
+
+                    byte[] imageBytes = (byte[])inlineShape.Range.EnhMetaFileBits;
+
+                    FileStream imageFile = new FileStream(imageServerDir + "\\temp" + index.ToString() + ".jpg",
+                                                          FileMode.Create,
+                                                          FileAccess.Write);
+
+                    imageFile.Write(imageBytes, 0, imageBytes.Length);
+
+                    imageFile.Close();
+
+                    // FIXME: ??? Картинки сохраняются в 75% масштабе, увеличиваем размер
+                    inlineShape.ScaleWidth = 400.0f / 3.0f;
+                    inlineShape.ScaleHeight = 400.0f / 3.0f;
+
+                    Bitmap bitmap = new Bitmap(Image.FromFile(imageServerDir + "\\temp" + index.ToString() + ".jpg"),
+                                               (int)inlineShape.Width,
+                                               (int)inlineShape.Height);
+
+                    bitmap.Save(imageServerDir + "\\Image" + index.ToString() + ".jpg");
+
+                    index++;
+                }
+
+                // Картинки сохранены (SaveAllImages)
+
                 // получение списка параграфов документа
                 wordParagraphs = GetParagraphs();
 

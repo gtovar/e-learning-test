@@ -188,5 +188,65 @@ namespace VmkLearningKit.Models.Repository
 
             return null;
         }
+
+        public User GetByFIO(string firstName, string lastName, string patronymic)
+        {
+            try
+            {
+                return DataContext.Users.SingleOrDefault(t => (t.FirstName == firstName && t.SecondName == lastName && t.Patronymic == patronymic));
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR", exc);
+                return null;
+            }
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            try
+            {
+                return DataContext.Users.AsEnumerable();
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR", exc);
+                return null;
+            }
+        }
+
+        public bool DeleteStudent(long id)
+        {
+            try
+            {
+                RepositoryManager.GetRepositoryManager.GetCommentRepository.DeleteAllByStudentId(id);
+                RepositoryManager.GetRepositoryManager.GetAssignedTestVariantRepository.DeleteAllByStudentId(id);
+                RepositoryManager.GetRepositoryManager.GetStudentRepository.DeleteById(id);
+                DeleteById(id);
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR!");
+
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool DeleteProfessor(long id)
+        {
+            try
+            {
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR!");
+
+                return false;
+            }
+
+            return true;
+        }
     }
 }

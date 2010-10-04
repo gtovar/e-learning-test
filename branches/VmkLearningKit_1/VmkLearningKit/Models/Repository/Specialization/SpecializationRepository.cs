@@ -215,5 +215,31 @@ namespace VmkLearningKit.Models.Repository
 
             return null;
         }
+
+        public Specialization Update(Specialization obj)
+        {
+            try
+            {
+                Specialization sp = GetByAbbreviation(obj.Abbreviation);
+                if (null != sp)
+                {
+                    sp.Abbreviation = obj.Abbreviation;
+                    sp.Alias = obj.Alias;
+                    sp.ChairId = obj.ChairId;
+                    sp.Code = obj.Code;
+                    sp.EducationPlanId = obj.EducationPlanId;
+                    sp.SpecialityId = obj.SpecialityId;
+                    sp.Title = obj.Title;
+                    
+                    DataContext.SubmitChanges();
+                    return obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("Specialization can't add to database", ex);
+            }
+            return null;
+        }
     }
 }

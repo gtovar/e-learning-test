@@ -15,5 +15,9 @@ namespace VmkLearningKit.Models.Repository
         User Update(User obj);
         bool IsNickNameExists(long id, string nickName);
         IEnumerable<User> GetByGroupId(long id);
+        User GetByFIO(string firstName, string lastName, string patronymic);
+        IEnumerable<User> GetAll();
+        bool DeleteStudent(long id);
+        bool DeleteProfessor(long id);
     }
 }

@@ -10,6 +10,10 @@ namespace VmkLearningKit.Core.XmlConverter
 {
     public class XmlTeachersParser : XmlAbstractParser
     {
+        public override void DeleteNotExisted()
+        {
+        }
+        
         public XmlTeachersParser(string schemaUrl) :
             base(schemaUrl)
         {
@@ -17,6 +21,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override bool ValidateData(string xmlUrl)
         {
+            ExistedDataIds.Clear();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             string teacherChairAbbreveation;
@@ -47,6 +53,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override void ParseXml(string xmlUrl)
         {
+            DeleteNotExisted();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
             
             // Извлекаемые данные
@@ -116,7 +124,15 @@ namespace VmkLearningKit.Core.XmlConverter
                     {
                         professor.About = HttpUtility.HtmlDecode("<a href=\"" + teacherSite + "\">Сайт преподавателя</a>");
                     }
-                    repositoryManager.GetProfessorRepository.Add(professor);
+
+                    if (repositoryManager.GetProfessorRepository.GetById(userId) != null)
+                    {
+                        repositoryManager.GetProfessorRepository.Update(professor);
+                    }
+                    else
+                    {
+                        repositoryManager.GetProfessorRepository.Add(professor);
+                    }
 
                     //usersList.Add(user);
                     //professorsList.Add(professor);

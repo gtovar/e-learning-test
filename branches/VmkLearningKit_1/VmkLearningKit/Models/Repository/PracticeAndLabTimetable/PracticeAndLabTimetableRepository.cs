@@ -90,5 +90,15 @@ namespace VmkLearningKit.Models.Repository
                 Utility.WriteToLog("!!!!IMPORTANT Can't delete practiceAndLabTimetable by id: " + id, ex);
             }
         }
+
+        public void DeleteAll(long departmentId)
+        {
+            foreach (PracticeAndLabTimetable lt in DataContext.PracticeAndLabTimetables)
+            {
+                if (lt.SpecialityDiscipline.Speciality.DepartmentId == departmentId) DataContext.PracticeAndLabTimetables.DeleteOnSubmit(lt);
+            }
+
+            DataContext.SubmitChanges();
+        }
     }
 }

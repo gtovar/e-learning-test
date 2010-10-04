@@ -39,9 +39,21 @@ namespace VmkLearningKit.Models.Repository
         {
             try
             {
-                SpecialityDisciplineTerm term = DataContext.SpecialityDisciplineTerms.SingleOrDefault(t => (t.SpecialityDisciplineId == obj.Id && t.Term == obj.Term));
+                SpecialityDisciplineTerm term = DataContext.SpecialityDisciplineTerms.SingleOrDefault(t => (t.SpecialityDisciplineId == obj.SpecialityDisciplineId && t.Term == obj.Term));
 
-                if (term != null) return term;
+                if (term != null)
+                {
+                    term.LabVolume = obj.LabVolume;
+                    term.LectureVolume = obj.LectureVolume;
+                    term.PracticeVolume = obj.PracticeVolume;
+                    term.Reporting = obj.Reporting;
+                    term.SpecialityDisciplineId = obj.SpecialityDisciplineId;
+                    term.Term = obj.Term;
+                    term.WeeksVolume = obj.WeeksVolume;
+                    
+                    DataContext.SubmitChanges();
+                    return term;
+                }
 
                 DataContext.SpecialityDisciplineTerms.InsertOnSubmit(obj);
                 DataContext.SubmitChanges();
@@ -49,7 +61,7 @@ namespace VmkLearningKit.Models.Repository
             }
             catch (Exception ex)
             {
-                Utility.WriteToLog("!!!!IMPORTANT Can't add SpecialityDiscipline's entry to database !!!!", ex);
+                Utility.WriteToLog("!!!!IMPORTANT Can't add SpecialityDisciplineTerm's entry to database !!!!", ex);
             }
             return null;
         }

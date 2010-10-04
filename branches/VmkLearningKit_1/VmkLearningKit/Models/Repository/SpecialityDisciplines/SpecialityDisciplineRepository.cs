@@ -127,7 +127,21 @@ namespace VmkLearningKit.Models.Repository
                     DataContext.SubmitChanges();
                     return obj;
                 }
-                return specialityDiscipline;
+                else
+                {
+                    specialityDiscipline.Abbreviation = obj.Abbreviation;
+                    specialityDiscipline.Alias = obj.Alias;
+                    specialityDiscipline.Category = obj.Category;
+                    specialityDiscipline.ChairId = obj.ChairId;
+                    specialityDiscipline.Code = obj.Code;
+                    specialityDiscipline.EducationPlanId = obj.EducationPlanId;
+                    specialityDiscipline.SpecialityId = obj.SpecialityId;
+                    specialityDiscipline.Title = obj.Title;
+
+                    DataContext.SubmitChanges();
+                    
+                    return specialityDiscipline;
+                }
             }
             catch (Exception ex)
             {

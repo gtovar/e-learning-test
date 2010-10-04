@@ -243,8 +243,25 @@ namespace VmkLearningKit.Models.Repository
 
                     return obj;
                 }
+                else
+                {
+                    program.Additional = obj.Additional;
+                    program.ApplicationDomain = obj.ApplicationDomain;
+                    program.LabPractice = obj.LabPractice;
+                    program.Literature = obj.Literature;
+                    program.MarkCriterias = obj.MarkCriterias;
+                    program.Purposes = obj.Purposes;
+                    program.Questions = obj.Questions;
+                    program.Razdels = obj.Razdels;
+                    program.RazdelsContent = obj.RazdelsContent;
+                    program.Reporting = obj.Reporting;
+                    program.Requirements = obj.Requirements;
+                    program.Volume = obj.Volume;
 
-                return program;
+                    DataContext.SubmitChanges();
+                    
+                    return program;
+                }
             }
             catch (Exception ex)
             {

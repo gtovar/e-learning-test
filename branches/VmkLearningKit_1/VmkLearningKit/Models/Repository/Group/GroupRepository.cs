@@ -168,9 +168,36 @@ namespace VmkLearningKit.Models.Repository
 
         public void DeleteById(long id)
         {
-            DataContext.Groups.DeleteOnSubmit(GetById(id));
+            try
+            {
+                foreach (Student obj in DataContext.Students)
+                {
+                    if (obj.GroupId == id) RepositoryManager.GetRepositoryManager.GetUserRepository.DeleteStudent(obj.UserId);
+                }
 
-            DataContext.SubmitChanges();
+                foreach (PracticeAndLabTimetable obj in DataContext.PracticeAndLabTimetables)
+                {
+                    if (obj.GroupId == id) DataContext.PracticeAndLabTimetables.DeleteOnSubmit(obj);
+                }
+
+                foreach (GroupsLectureTimetable obj in DataContext.GroupsLectureTimetables)
+                {
+                    if (obj.GroupId == id) DataContext.GroupsLectureTimetables.DeleteOnSubmit(obj);
+                }
+
+                foreach (PracticePlan obj in DataContext.PracticePlans)
+                {
+                    if (obj.GroupId == id) DataContext.PracticePlans.DeleteOnSubmit(obj);
+                }
+
+                DataContext.Groups.DeleteOnSubmit(GetById(id));
+
+                DataContext.SubmitChanges();
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR!");
+            }
         }
 
         public IEnumerable<Group> Add(IEnumerable<Group> groups)
@@ -201,6 +228,28 @@ namespace VmkLearningKit.Models.Repository
                 Utility.WriteToLog("ERROR", exc);
             }
 
+            return null;
+        }
+
+        public Group Update(Group obj)
+        {
+            try
+            {
+                Group group = GetByTitle(obj.Title);
+                if (null != group)
+                {
+                    group.SpecialityId = obj.SpecialityId;
+                    group.DepartmentId = obj.DepartmentId;
+                    group.Alias = obj.Alias;
+                    
+                    DataContext.SubmitChanges();
+                    return obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("Group can't add to database", ex);
+            }
             return null;
         }
     }

@@ -10,6 +10,12 @@ namespace VmkLearningKit.Core.XmlConverter
 {
     public class XmlSheduleParser : XmlAbstractParser
     {
+        public override void DeleteNotExisted()
+        {
+            repositoryManager.GetPracticeAndLabTimetableRepository.DeleteAll(VLKConstants.VMK_DEPARTMENT_ID);
+            repositoryManager.GetLectureTimetableRepository.DeleteAll(VLKConstants.VMK_DEPARTMENT_ID);
+        }
+        
         public XmlSheduleParser(string schemaUrl) :
             base(schemaUrl)
         {
@@ -17,6 +23,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override bool ValidateData(string xmlUrl)
         {
+            ExistedDataIds.Clear();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;
@@ -270,6 +278,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override void ParseXml(string xmlUrl)
         {
+            DeleteNotExisted();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;

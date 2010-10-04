@@ -135,8 +135,12 @@ namespace VmkLearningKit.Models.Repository
                 Professor professor = GetById(obj.UserId);
                 if (null != professor)
                 {
+                    professor.ChairId = obj.ChairId;
+                    professor.Degree = obj.Degree;
+                    professor.Position = obj.Position;
+                    professor.Rank=obj.Rank;
+
                     DataContext.SubmitChanges();
-                    return professor;
                 }
                 return professor;
             }

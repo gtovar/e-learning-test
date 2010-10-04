@@ -10,5 +10,6 @@ namespace VmkLearningKit.Models.Repository
         IEnumerable<PracticeAndLabTimetable> GetBySpecialityDisciplineId(long specialityDisciplineId);
         PracticeAndLabTimetable Add(PracticeAndLabTimetable obj);
         long GetMaxId();
+        void DeleteAll(long departmentId);
     }
 }
