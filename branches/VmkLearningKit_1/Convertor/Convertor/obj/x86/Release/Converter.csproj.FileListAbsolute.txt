@@ -1,9 +1,0 @@
-D:\repository_1\Convertor\Convertor\bin\Release\Convertor.exe
-D:\repository_1\Convertor\Convertor\bin\Release\Convertor.pdb
-D:\repository_1\Convertor\Convertor\obj\x86\Release\ResolveAssemblyReference.cache
-D:\repository_1\Convertor\Convertor\obj\x86\Release\Converter.Form1.resources
-D:\repository_1\Convertor\Convertor\obj\x86\Release\Convertor.Properties.Resources.resources
-D:\repository_1\Convertor\Convertor\obj\x86\Release\GenerateResource.read.1.tlog
-D:\repository_1\Convertor\Convertor\obj\x86\Release\GenerateResource.write.1.tlog
-D:\repository_1\Convertor\Convertor\obj\x86\Release\Convertor.exe
-D:\repository_1\Convertor\Convertor\obj\x86\Release\Convertor.pdb

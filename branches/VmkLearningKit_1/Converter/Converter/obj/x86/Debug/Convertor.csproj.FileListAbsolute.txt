@@ -1,9 +1,0 @@
-c:\users\orlov.leonid\documents\visual studio 2010\Projects\Convertor\Convertor\bin\Debug\Convertor.exe
-c:\users\orlov.leonid\documents\visual studio 2010\Projects\Convertor\Convertor\bin\Debug\Convertor.pdb
-c:\users\orlov.leonid\documents\visual studio 2010\Projects\Convertor\Convertor\obj\x86\Debug\ResolveAssemblyReference.cache
-c:\users\orlov.leonid\documents\visual studio 2010\Projects\Convertor\Convertor\obj\x86\Debug\Convertor.Form1.resources
-c:\users\orlov.leonid\documents\visual studio 2010\Projects\Convertor\Convertor\obj\x86\Debug\Convertor.Properties.Resources.resources
-c:\users\orlov.leonid\documents\visual studio 2010\Projects\Convertor\Convertor\obj\x86\Debug\GenerateResource.read.1.tlog
-c:\users\orlov.leonid\documents\visual studio 2010\Projects\Convertor\Convertor\obj\x86\Debug\GenerateResource.write.1.tlog
-c:\users\orlov.leonid\documents\visual studio 2010\Projects\Convertor\Convertor\obj\x86\Debug\Convertor.exe
-c:\users\orlov.leonid\documents\visual studio 2010\Projects\Convertor\Convertor\obj\x86\Debug\Convertor.pdb
