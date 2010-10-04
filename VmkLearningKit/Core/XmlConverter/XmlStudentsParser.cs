@@ -10,6 +10,17 @@ namespace VmkLearningKit.Core.XmlConverter
 {
     public class XmlStudentsParser : XmlAbstractParser
     {
+        public override void DeleteNotExisted()
+        {
+            foreach (User user in repositoryManager.GetUserRepository.GetAll())
+            {
+                if (user.Role == Constants.STUDENT_ROLE && !ExistedDataIds.Contains(user.Id))
+                {
+                    repositoryManager.GetUserRepository.DeleteStudent(user.Id);
+                }
+            }
+        }
+        
         public XmlStudentsParser(string schemaUrl) :
             base(schemaUrl)
         {
@@ -17,6 +28,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override bool ValidateData(string xmlUrl)
         {
+            ExistedDataIds.Clear();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;
@@ -58,7 +71,17 @@ namespace VmkLearningKit.Core.XmlConverter
                     {
                         XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_SPECIALIZATION, xmlReader.LineNumber, xmlReader.LinePosition));
                     }
-                    
+
+                    string studentLastName      = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_LASTNAME);
+                    string studentFirstName     = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_FIRSTNAME);
+                    string studentPatronymic    = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_PATRONYMIC);
+
+                    User user = repositoryManager.GetUserRepository.GetByFIO(studentFirstName, studentLastName, studentPatronymic);
+
+                    if (user != null)
+                    {
+                        ExistedDataIds.Add(user.Id);
+                    }
                 }
             }
             
@@ -74,6 +97,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override void ParseXml(string xmlUrl)
         {
+            DeleteNotExisted();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             // Извлекаемые данные
@@ -142,7 +167,14 @@ namespace VmkLearningKit.Core.XmlConverter
                     student.GroupId             = repositoryManager.GetGroupRepository.GetByTitle(studentGroupNumber).Id;
                     student.SpecializationId    = repositoryManager.GetSpecializationRepository.GetByAbbreviation(studentSpecializationAbbreviation).Id;
 
-                    repositoryManager.GetStudentRepository.Add(student);
+                    if (repositoryManager.GetStudentRepository.GetById(userId) != null)
+                    {
+                        repositoryManager.GetStudentRepository.Update(student);
+                    }
+                    else
+                    {
+                        repositoryManager.GetStudentRepository.Add(student);
+                    }
 
                     //usersList.Add(user);
                     //studentsList.Add(student);

@@ -32,6 +32,8 @@ namespace VmkLearningKit.Core.XmlConverter
         private List<LogRecord> xmlStructureWarningLog  = new List<LogRecord>();
         private List<LogRecord> xmlDataErrorLog         = new List<LogRecord>();
 
+        private List<long>      existedDataIds          = new List<long>();
+
         #endregion
 
         #region Protected Fields
@@ -83,6 +85,18 @@ namespace VmkLearningKit.Core.XmlConverter
             set
             {
                 xmlDataErrorLog = value;
+            }
+        }
+
+        protected List<long> ExistedDataIds
+        {
+            get
+            {
+                return existedDataIds;
+            }
+            set
+            {
+                existedDataIds = value;
             }
         }
 
@@ -158,6 +172,8 @@ namespace VmkLearningKit.Core.XmlConverter
         public abstract bool ValidateData(string xmlUrl);
 
         public abstract void ParseXml(string xmlUrl);
+
+        public abstract void DeleteNotExisted();
 
         #endregion
     }

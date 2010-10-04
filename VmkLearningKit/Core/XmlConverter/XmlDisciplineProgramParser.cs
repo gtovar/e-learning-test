@@ -10,6 +10,10 @@ namespace VmkLearningKit.Core.XmlConverter
 {
     public class XmlDisciplineProgramParser : XmlAbstractParser
     {
+        public override void DeleteNotExisted()
+        {
+        }
+        
         public XmlDisciplineProgramParser(string schemaUrl) :
             base(schemaUrl)
         {
@@ -17,6 +21,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override bool ValidateData(string xmlUrl)
         {
+            ExistedDataIds.Clear();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;
@@ -53,6 +59,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override void ParseXml(string xmlUrl)
         {
+            DeleteNotExisted();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             //xmlReader.WhitespaceHandling = WhitespaceHandling.None;
@@ -138,7 +146,18 @@ namespace VmkLearningKit.Core.XmlConverter
                                 topic.SpecialityDisciplineId    = disciplineId;
                                 topic.Title                     = topicLevel1Title + ":::" + topicLevel2Title;
 
-                                repositoryManager.GetSpecialityDisciplineTopicRepository.Add(topic);
+                                SpecialityDisciplineTopic existedTopic = repositoryManager.GetSpecialityDisciplineTopicRepository.GetByTitle(topic.Title);
+
+                                if (existedTopic != null)
+                                {
+                                    existedTopic.SpecialityDisciplineId = disciplineId;
+
+                                    repositoryManager.DataContext.SubmitChanges();
+                                }
+                                else
+                                {
+                                    repositoryManager.GetSpecialityDisciplineTopicRepository.Add(topic);
+                                }
 
                                 LecturePlan lecturePlan = new LecturePlan();
                                 lecturePlan.SpecialityDisciplineId      = disciplineId;

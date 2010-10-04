@@ -12,5 +12,6 @@ namespace VmkLearningKit.Models.Repository
         long GetMaxId();
         LectureTimetable Get(long specialityDisciplineId, string dayOfWeek, string time);
         LectureTimetable Get(long specialityDisciplineId, long professorId);
+        void DeleteAll(long departmentId);
     }
 }

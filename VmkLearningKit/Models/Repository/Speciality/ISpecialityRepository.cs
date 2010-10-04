@@ -17,5 +17,6 @@ namespace VmkLearningKit.Models.Repository
         Speciality Add(Speciality obj);
         IEnumerable<Speciality> Add(IEnumerable<Speciality> specialities);
         Speciality GetByCode(string code);
+        Speciality Update(Speciality obj);
     }
 }

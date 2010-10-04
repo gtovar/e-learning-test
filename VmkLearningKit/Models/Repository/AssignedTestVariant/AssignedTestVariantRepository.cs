@@ -201,5 +201,22 @@ namespace VmkLearningKit.Models.Repository
 
             DataContext.SubmitChanges();
         }
+
+        public void DeleteAllByStudentId(long studentId)
+        {
+            try
+            {
+                foreach (AssignedTestVariant atv in DataContext.AssignedTestVariants)
+                {
+                    if (atv.StudentId == studentId) DataContext.AssignedTestVariants.DeleteOnSubmit(atv);
+                }
+
+                DataContext.SubmitChanges();
+            }
+            catch (Exception exc)
+            {
+                Utility.WriteToLog("ERROR!");
+            }
+        }
     }
 }

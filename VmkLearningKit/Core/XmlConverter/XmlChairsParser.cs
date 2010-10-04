@@ -10,6 +10,10 @@ namespace VmkLearningKit.Core.XmlConverter
 {
     public class XmlChairsParser : XmlAbstractParser
     {
+        public override void DeleteNotExisted()
+        {
+        }
+        
         public XmlChairsParser(string schemaUrl) :
             base(schemaUrl)
         {
@@ -17,11 +21,15 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override bool ValidateData(string xmlUrl)
         {
+            ExistedDataIds.Clear();
+
             return true;
         }
 
         public override void ParseXml(string xmlUrl)
         {
+            DeleteNotExisted();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             // Извлекаемые данные

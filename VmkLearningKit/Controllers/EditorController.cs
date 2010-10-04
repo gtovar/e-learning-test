@@ -391,7 +391,7 @@ namespace VmkLearningKit.Controllers
 
                         QWord.QReader reader = new QWord.QReader(HttpContext.Server.MapPath("/Uploads/Word") + "\\" + docIndex.ToString() + ".doc", HttpContext.Server.MapPath("/Uploads/Images"), Request.Url.AbsoluteUri.ToLower().Replace("editor/upload/" + alias.ToString(), "Uploads/Images"));
 
-                        reader.SaveAllImages();
+                        //reader.SaveAllImages();
 
                         QWord.TestQuestionList testQuestionList = reader.ReadWordDocument();
 

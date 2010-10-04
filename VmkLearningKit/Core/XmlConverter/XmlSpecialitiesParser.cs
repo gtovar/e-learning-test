@@ -10,6 +10,9 @@ namespace VmkLearningKit.Core.XmlConverter
 {
     public class XmlSpecialitiesParser : XmlAbstractParser
     {
+        public override void DeleteNotExisted()
+        {
+        }
         public XmlSpecialitiesParser(string schemaUrl) :
             base(schemaUrl)
         {
@@ -17,6 +20,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override bool ValidateData(string xmlUrl)
         {
+            ExistedDataIds.Clear();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;
@@ -60,6 +65,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
         public override void ParseXml(string xmlUrl)
         {
+            DeleteNotExisted();
+            
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
             xmlReader.WhitespaceHandling = WhitespaceHandling.None;
@@ -96,9 +103,20 @@ namespace VmkLearningKit.Core.XmlConverter
                     speciality.DepartmentId = VLKConstants.VMK_DEPARTMENT_ID;
                     speciality.Title        = specialityTitle;
 
-                    repositoryManager.GetSpecialityRepository.Add(speciality);
+                    Speciality existedSpeciality = repositoryManager.GetSpecialityRepository.GetByAbbreviation(specialityAbbreviation);
 
-                    specialityId            = repositoryManager.GetSpecialityRepository.GetByAbbreviation(specialityAbbreviation).Id;
+                    if (existedSpeciality != null)
+                    {
+                        specialityId = speciality.Id = existedSpeciality.Id;
+
+                        repositoryManager.GetSpecialityRepository.Update(speciality);
+                    }
+                    else
+                    {
+                        repositoryManager.GetSpecialityRepository.Add(speciality);
+
+                        specialityId = repositoryManager.GetSpecialityRepository.GetByAbbreviation(specialityAbbreviation).Id;
+                    }
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_SPECIALIZATION))
@@ -117,20 +135,30 @@ namespace VmkLearningKit.Core.XmlConverter
                     specialization.SpecialityId     = specialityId;
                     specialization.Title            = specializationTitle;
 
-                    repositoryManager.GetSpecializationRepository.Add(specialization);
+                    Specialization existedSpecialization = repositoryManager.GetSpecializationRepository.GetByAbbreviation(specializationAbbreviation);
 
-                    string fakeSpecializationTitle = VLKConstants.FIELD_EMPTY + repositoryManager.GetChairRepository.GetById(specialization.ChairId).Abbreviation + specialityAbbreviation;
+                    if (existedSpecialization != null)
+                    {
+                        specialization.Id = existedSpecialization.Id;
+                        repositoryManager.GetSpecializationRepository.Update(specialization);
+                    }
+                    else
+                    {
+                        repositoryManager.GetSpecializationRepository.Add(specialization);
 
-                    Specialization fakeSpecialization = new Specialization();
-                    fakeSpecialization.Abbreviation     = fakeSpecializationTitle;
-                    fakeSpecialization.Alias            = Transliteration.Front(fakeSpecializationTitle, TransliterationType.ISO);
-                    fakeSpecialization.ChairId          = specialization.ChairId;
-                    fakeSpecialization.Code             = fakeSpecializationTitle;
-                    fakeSpecialization.EducationPlanId  = repositoryManager.GetEducationPlanRepository.GetByTitle(VLKConstants.FIELD_EMPTY).Id;
-                    fakeSpecialization.SpecialityId     = specialityId;
-                    fakeSpecialization.Title            = fakeSpecializationTitle;
+                        string fakeSpecializationTitle = VLKConstants.FIELD_EMPTY + repositoryManager.GetChairRepository.GetById(specialization.ChairId).Abbreviation + specialityAbbreviation;
 
-                    repositoryManager.GetSpecializationRepository.Add(fakeSpecialization);
+                        Specialization fakeSpecialization = new Specialization();
+                        fakeSpecialization.Abbreviation = fakeSpecializationTitle;
+                        fakeSpecialization.Alias = Transliteration.Front(fakeSpecializationTitle, TransliterationType.ISO);
+                        fakeSpecialization.ChairId = specialization.ChairId;
+                        fakeSpecialization.Code = fakeSpecializationTitle;
+                        fakeSpecialization.EducationPlanId = repositoryManager.GetEducationPlanRepository.GetByTitle(VLKConstants.FIELD_EMPTY).Id;
+                        fakeSpecialization.SpecialityId = specialityId;
+                        fakeSpecialization.Title = fakeSpecializationTitle;
+
+                        repositoryManager.GetSpecializationRepository.Add(fakeSpecialization);
+                    }
                 }
             }
 

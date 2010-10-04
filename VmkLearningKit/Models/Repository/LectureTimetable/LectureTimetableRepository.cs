@@ -100,5 +100,22 @@ namespace VmkLearningKit.Models.Repository
         {
             return DataContext.LectureTimetables.SingleOrDefault(t => (t.SpecialityDisciplineId == specialityDisciplineId && t.ProfessorId == professorId));
         }
+
+        public void DeleteAll(long departmentId)
+        {
+            foreach (LectureTimetable lt in DataContext.LectureTimetables)
+            {
+                if (lt.SpecialityDiscipline.Speciality.DepartmentId == departmentId)
+                {
+                    foreach (GroupsLectureTimetable obj in DataContext.GroupsLectureTimetables.Where(t=>t.LectureTimetableId == lt.Id))
+                    {
+                        DataContext.GroupsLectureTimetables.DeleteOnSubmit(obj);
+                    }
+                    DataContext.LectureTimetables.DeleteOnSubmit(lt);
+                }
+            }
+
+            DataContext.SubmitChanges();
+        }
     }
 }

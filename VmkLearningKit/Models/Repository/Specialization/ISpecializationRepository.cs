@@ -16,5 +16,6 @@ namespace VmkLearningKit.Models.Repository
         Specialization Add(Specialization obj);
         Specialization GetByAbbreviation(string abbreviation);
         IEnumerable<Specialization> Add(IEnumerable<Specialization> specializations);
+        Specialization Update(Specialization obj);
     }
 }

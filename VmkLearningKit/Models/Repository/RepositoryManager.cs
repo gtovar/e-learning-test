@@ -552,5 +552,24 @@ namespace VmkLearningKit.Models.Repository
                 return specialityDisciplineProgramRepository;
             }
         }
+
+        /// <summary>
+        /// Поле для хранения объекта класса «CommentRepository»
+        /// </summary>
+        private ICommentRepository commentRepository;
+
+        public ICommentRepository GetCommentRepository
+        {
+            get
+            {
+                DataContext.Comments.Context.Refresh(System.Data.Linq.RefreshMode.OverwriteCurrentValues, DataContext.Comments);
+
+                if (commentRepository == null)
+                {
+                    commentRepository = new CommentRepository(DataContext);
+                }
+                return commentRepository;
+            }
+        }
     }
 }

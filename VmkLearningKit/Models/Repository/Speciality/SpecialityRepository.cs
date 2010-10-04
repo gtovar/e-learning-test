@@ -262,5 +262,30 @@ namespace VmkLearningKit.Models.Repository
         {
             return DataContext.Specialities.SingleOrDefault<Speciality>(t => t.Code == code);
         }
+
+        public Speciality Update(Speciality obj)
+        {
+            try
+            {
+                Speciality sp = GetByAbbreviation(obj.Abbreviation);
+                
+                if (null != sp)
+                {
+                    sp.Alias = obj.Alias;
+                    sp.Abbreviation = obj.Abbreviation;
+                    sp.Code = obj.Code;
+                    sp.DepartmentId = obj.DepartmentId;
+                    sp.Title = obj.Title;
+
+                    DataContext.SubmitChanges();
+                    return obj;
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("Speciality can't add to database", ex);
+            }
+            return null;
+        }
     }
 }

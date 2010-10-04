@@ -152,5 +152,27 @@ namespace VmkLearningKit.Models.Repository
 
             return null;
         }
+
+        public Student Update(Student obj)
+        {
+            try
+            {
+                Student student = GetById(obj.UserId);
+                if (null != student)
+                {
+                    student.ChairId = obj.ChairId;
+                    student.GroupId = obj.GroupId;
+                    student.SpecializationId = obj.SpecializationId;
+
+                    DataContext.SubmitChanges();
+                }
+                return student;
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't add Students's entry to database !!!!", ex);
+            }
+            return null;
+        }
     }
 }

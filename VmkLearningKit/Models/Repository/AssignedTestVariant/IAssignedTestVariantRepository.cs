@@ -15,5 +15,6 @@ namespace VmkLearningKit.Models.Repository
         IEnumerable<AssignedTestVariant> GetAllStudentTopicTests(long idTopic, long idStudent);
         bool UpdateMark(long id, int mark);
         AssignedTestVariant GetLastDoneStudentTopicTest(long idTopic, long idStudent);
+        void DeleteAllByStudentId(long studentId);
     }
 }
