@@ -129,17 +129,17 @@ td.secondAssignement {
         });
 
         $(".left_col").append('<img id="additional_menu_fake" alt="Дополнительное меню" src="/Content/Images/hide_menu_icon.gif" style="display:none; cursor: pointer;" />');
-	      setTimeout('$(".additional_menu").hide("slow");$("#additional_menu_fake").show("normal");', 1000);
-	      $("#additional_menu_fake").click(function () {
-                  $('.additional_menu').show("fast");
-                  $("#additional_menu_fake").hide("fast"); 
-              });
+        setTimeout('$(".additional_menu").hide("slow");$("#additional_menu_fake").show("normal");', 1000);
+        $("#additional_menu_fake").click(function () {
+            $('.additional_menu').show("fast");
+            $("#additional_menu_fake").hide("fast");
+        });
 
 
         $('.left_col').hover(
 	      function () {
-	         // $('.additional_menu').show("fast");
-	         // $("#additional_menu_fake").hide("fast");
+	          // $('.additional_menu').show("fast");
+	          // $("#additional_menu_fake").hide("fast");
 	      },
 	      function () {
 	          $('.additional_menu').hide("normal");
@@ -299,28 +299,31 @@ td.secondAssignement {
 
         var colFlag = 0;
         var hiddens = $("input[id^='hiden_']");
-        HideCol(5, hiddens.length - 5, hiddens);
+//число отображаемых тем на странице
+        var countShowTopics = 4;
+        HideCol(countShowTopics, hiddens.length - countShowTopics, hiddens);
 
+//скролл вправо
+        $("#ButtonRight").click(function () {
+            if (colFlag + countShowTopics < hiddens.length) {
 
-        $("#Button1").click(function () {
-            if (colFlag + 5 < hiddens.length) {
-
-                HideCol(colFlag, 5, hiddens);
-                colFlag += 5;
-                var showCount = 5;
-                if (hiddens.length - colFlag < 5) showCount = hiddens.length - colFlag;
+                HideCol(colFlag, countShowTopics, hiddens);
+                colFlag += countShowTopics;
+                var showCount = countShowTopics;
+                if (hiddens.length - colFlag < countShowTopics) showCount = hiddens.length - colFlag;
                 ShowCol(colFlag, showCount, hiddens);
 
             }
         });
 
-        $("#Button2").click(function () {
-            if (colFlag - 5 >= 0) {
-                var hideCount = 5;
-                if (hiddens.length - colFlag < 5) hideCount = hiddens.length - colFlag;
+//скролл влево
+        $("#ButtonLeft").click(function () {
+            if (colFlag - countShowTopics >= 0) {
+                var hideCount = countShowTopics;
+                if (hiddens.length - colFlag < countShowTopics) hideCount = hiddens.length - colFlag;
                 HideCol(colFlag, hideCount, hiddens)
-                colFlag -= 5;
-                ShowCol(colFlag, 5, hiddens);
+                colFlag -= countShowTopics;
+                ShowCol(colFlag, countShowTopics, hiddens);
             }
         });
 
@@ -680,10 +683,10 @@ function closeBox() {
        {%>
            </tr>
         </table>
-        <p>
-        <div><b>Нет групп обучающихся по данной дисциплине</b>
-        </div>
-        </p>
+       
+        <div style=" color:Red;"> <p><b>Нет групп обучающихся по данной дисциплине</b>
+        </p></div>
+        
     <%;} %>
     
 
@@ -706,10 +709,10 @@ function closeBox() {
     <br/>  
     
     
-    <p>
-    <div><h2><b>В базе данных нет информации о студентах данной группы</b></h2>
-    </div>
-    </p>
+   
+    <div style=" color:Red;"> <p><b>В базе данных нет информации о студентах данной группы</b>
+    </p></div>
+    
     <%}  %>
     <%   //если нет тем по данной дисциплине 
     else if (null != ViewData["groups"] && null == ViewData["topics"])
@@ -728,10 +731,10 @@ function closeBox() {
         </tr>
     </table>
     <br/>     
-    <p>
-    <div><b><h2>Нет тем по данной дисциплине</h2></b>
-    </div>
-    </p>
+    
+    <div style=" color:Red;"><p><b>Нет тем по данной дисциплине</b>
+    </p></div>
+    
             <%}%>
 
 
@@ -884,7 +887,7 @@ function closeBox() {
 
          <tr> 
             <td colspan="<%= ((IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"]).Count()*3+2 %>" style=" border-width:0px;padding-top: 5px; text-align:right;">
-            <img id="Button2" alt="" src="/Content/Images/left.png" height="20px" width="20px"  />&nbsp;<img id="Button1" alt="" src="/Content/Images/right.png" height="20px" width="20px"  />
+            <img id="ButtonLeft" alt="" src="/Content/Images/left.png" height="20px" width="20px"  />&nbsp;<img id="ButtonRight" alt="" src="/Content/Images/right.png" height="20px" width="20px"  />
             </td>
          </tr>
   </tbody>  
@@ -1004,7 +1007,7 @@ function closeBox() {
     <div style="float:right">
     <%=Html.ActionLink("К списку дисциплин", "Professor", "Cabinet", new { alias = ViewData["ProfessorId"] }, new { @class = "" })%>
      <br />
-    <%=Html.ActionLink("К сводной ведомости", "FinalStatement", "FinalStatement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"] }, new { @class = "" })%>
+    <%=Html.ActionLink("К сводной ведомости", "FinalStatement", "FinalStatement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"], param1 = ViewData["IdGroup"] }, new { @class = "" })%>
     </div>        
     </p>
     

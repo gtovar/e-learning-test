@@ -69,7 +69,8 @@
                 <%=Html.Encode(chair.Alias) %>
             </td>
             <td>
-                <a class="transparent_link" href="/Admin/Chairs/Edit/<%=Html.Encode(((Department)ViewData["Department"]).Alias) %>/<%=Html.Encode(chair.Alias) %>">
+                <a class="transparent_link" href="/Admin/Chairs/Edit/<%=Html.Encode(((Department)ViewData["Department"]).Alias)
+                 %>/<%=Html.Encode(chair.Alias) %>">
                     <img class="transparent_img" width="28" src="/Content/Images/edit.png" alt="Редактировать" /></a>
             </td>
             <td>

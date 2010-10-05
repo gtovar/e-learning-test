@@ -32,19 +32,31 @@ namespace VmkLearningKit.Controllers
                 GeneralMenu();
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
                 if (null != alias && !alias.Trim().Equals(String.Empty))
-                {
+                {   ViewData["type_partial"] = "Dapartments";
                     switch (alias)
                     {
                         case "Add":
-                            return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Add.aspx");
-                        case "Edit":
-                            if (null != additional && !additional.Trim().Equals(String.Empty))
-                            {
-                                department = repositoryManager.GetDepartmentRepository.GetByAlias(additional);
-                                ViewData["Department"] = department;
+                            {                                
+                                Department newDepartment=new Department ();
+                                return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Add.aspx", newDepartment);
+                            };break;
 
+                        case "Edit":
+                            {
+                                if (null != additional && !additional.Trim().Equals(String.Empty))
+                                department = repositoryManager.GetDepartmentRepository.GetByAlias(additional);
                                 return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Edit.aspx", department);
-                            }
+                            };break;
+
+                        case "Delete": 
+                            {
+                                if (null != additional && !additional.Trim().Equals(String.Empty))
+                                {
+                                    department = repositoryManager.GetDepartmentRepository.GetByAlias(additional);
+                                    repositoryManager.GetDepartmentRepository.Delete(department);
+                                    return Redirect("/Admin/Departments");
+                                };
+                            };
                             break;
                     }
                 }
@@ -59,7 +71,7 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Chairs(FormCollection form)
+        public ActionResult Chairs(string alias, string additional, string param1, Chair chair,FormCollection form)
         {
             IEnumerable<Department> departments = null;
             Department department = null;
@@ -68,8 +80,51 @@ namespace VmkLearningKit.Controllers
             {
                 GeneralMenu();
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
-
                 string departmentAlias = form["Departments"];
+
+                if (alias != null && additional != null && !alias.Trim().Equals(String.Empty) && !additional.Trim().Equals(String.Empty))
+                {
+                    {
+                        if (form["chairAlias"] == "") chair.Alias = null;
+                        else chair.Alias = form["chairAlias"];
+                        chair.DepartmentId = repositoryManager.GetDepartmentRepository.GetByAlias(additional).Id;
+                        if (chair.Alias == null)
+                            ModelState.AddModelError("Alias", "*Алиас кафедры обязательный параметр");
+
+                        if (chair.Abbreviation == null)
+                            ModelState.AddModelError("Abbreviation", "*Аббревиатура обязательный параметр");
+                        if (chair.Title == null)
+                            ModelState.AddModelError("Title", "*Название кафедры обязательный параметр");
+
+                        switch (alias)
+                        {
+                            case "Add":
+                                {
+                                    if (ModelState.IsValid)
+                                    {
+                                        repositoryManager.GetChairRepository.Add(chair);
+                                        return Redirect("/Admin/Chairs/");
+                                    }
+                                    else return View(Constants.ADMIN_CHAIR_VIEWS + "Add.aspx", chair);
+
+                                }
+
+                            case "Edit":
+                                {
+                                 
+                                    if (ModelState.IsValid && param1!=null)
+                                    {
+                                        repositoryManager.GetChairRepository.UpdateByAlias(param1, chair);
+                                        return Redirect("/Admin/Chairs/");
+                                    }
+                                    else return View(Constants.ADMIN_CHAIR_VIEWS + "Edit.aspx", chair);
+
+                                }
+
+                        }
+                    }
+                }
+                
 
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
                 if (null != departments)
@@ -99,8 +154,9 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Chairs(string alias)
+        public ActionResult Chairs(string alias,string additional,string param1)
         {
+            Chair chair = null;
             IEnumerable<Department> departments = null;
             Department department = null;
             IEnumerable<Chair> chairs = null;
@@ -110,6 +166,39 @@ namespace VmkLearningKit.Controllers
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
 
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
+                if (null != alias && !alias.Trim().Equals(String.Empty) && additional != null && !additional.Trim().Equals(String.Empty))
+                {
+                    department=repositoryManager.GetDepartmentRepository.GetByAlias(additional);
+                    ViewData["type_partial"] = "Chairs";
+                    switch (alias)
+                    {
+                        case "Add":
+                            {
+                                Chair newChair = new Chair();
+                                return View(Constants.ADMIN_CHAIR_VIEWS + "Add.aspx", newChair);
+                            }; break;
+
+                        case "Edit":
+                            {
+                                if (null != param1 && !param1.Trim().Equals(String.Empty))
+                                    chair = repositoryManager.GetChairRepository.GetByAliasAndDepartment(param1, department.Id);
+                                return View(Constants.ADMIN_CHAIR_VIEWS + "Edit.aspx", chair);
+                            }; break;
+
+                        case "Delete":
+                            {
+                                if (null != additional && !additional.Trim().Equals(String.Empty))
+                                {
+                                    if (null != param1 && !param1.Trim().Equals(String.Empty))
+                                        chair = repositoryManager.GetChairRepository.GetByAliasAndDepartment(param1, department.Id);
+                                    repositoryManager.GetChairRepository.Delete(chair);
+                                    return Redirect("/Admin/Chairs");
+                                };
+                            };
+                            break;
+                    }
+                }
+                
                 if (null != departments)
                 {
                     department = departments.First();
@@ -130,13 +219,45 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult EducationPlans()
+        public ActionResult EducationPlans(string alias, string additional)
         {
             IEnumerable<EducationPlan> educationPlans = null;
+            EducationPlan educationPlan = new EducationPlan();
             try
             {
                 GeneralMenu();
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
+                if (null != alias && !alias.Trim().Equals(String.Empty))
+                {
+                    ViewData["type_partial"] = "EducationPlans";
+                    switch (alias)
+                    {
+                        case "Add":
+                            {
+                                EducationPlan newEducationPlan = new EducationPlan();
+                                return View(Constants.ADMIN_EDUCATION_PLAN_VIEWS + "Add.aspx", newEducationPlan);
+                            }; break;
+
+                        case "Edit":
+                            {
+                                if (null != additional && !additional.Trim().Equals(String.Empty))
+                                    educationPlan = repositoryManager.GetEducationPlanRepository.GetByAlias(additional);
+                                return View(Constants.ADMIN_EDUCATION_PLAN_VIEWS + "Edit.aspx", educationPlan);
+                            }; break;
+
+                        case "Delete":
+                            {
+                                if (null != additional && !additional.Trim().Equals(String.Empty))
+                                {
+                                    educationPlan = repositoryManager.GetEducationPlanRepository.GetByAlias(additional);
+                                    repositoryManager.GetEducationPlanRepository.Delete(educationPlan);
+                                    return Redirect("/Admin/EducationPlans");
+                                };
+                            };
+                            break;
+                    }
+                }
+
 
                 educationPlans = repositoryManager.GetEducationPlanRepository.GetAll();
                 ViewData["EducationPlans"] = educationPlans;
@@ -711,5 +832,93 @@ namespace VmkLearningKit.Controllers
             return View("XmlParse");
         }
 
-    }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Departments(string alias,string additional,string departmentAlias, Department department)
+        {
+            if (null != alias && !alias.Trim().Equals(String.Empty))
+                {
+                    if (departmentAlias == "") department.Alias = null;
+                    else department.Alias = departmentAlias;
+                    if (department.Alias == null)
+                        ModelState.AddModelError("Alias", "*Алиас дисциплины обязательный параметр");
+
+                    if (department.Abbreviation == null)
+                        ModelState.AddModelError("Abbreviation", "*Аббревиатура обязательный параметр");
+                    if (department.Title == null)
+                        ModelState.AddModelError("Title", "*Название дисциплины обязательный параметр");
+
+                    switch (alias)
+                    {
+                        case "Add": 
+                            {
+                                if (ModelState.IsValid)
+                                {
+                                    repositoryManager.GetDepartmentRepository.Add(department);
+                                    return Redirect("/Admin/Departments/");
+                                }
+                                else return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Add.aspx", department);
+                                                                
+                            }
+                            
+                        case "Edit":
+                            {
+                                if (ModelState.IsValid)
+                                {
+                                    repositoryManager.GetDepartmentRepository.UpdateByAlias(additional, department);
+                                    return Redirect("/Admin/Departments/");
+                                }
+                                else return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Edit.aspx", department);
+                              
+                            }
+                           
+                    }
+                }
+               
+           return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Departments.aspx");
+        }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EducationPlans(string alias, string additional, string educationPlanAlias, EducationPlan educationPlan)
+        {
+            if (null != alias && !alias.Trim().Equals(String.Empty))
+            {
+                if (educationPlanAlias == "") educationPlan.Alias = null;
+                else educationPlan.Alias = educationPlanAlias;
+                if (educationPlan.Alias == null)
+                    ModelState.AddModelError("Alias", "*Алиас дисциплины обязательный параметр");
+
+                if (educationPlan.Title == null)
+                    ModelState.AddModelError("Title", "*Название дисциплины обязательный параметр");
+
+                switch (alias)
+                {
+                    case "Add":
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                repositoryManager.GetEducationPlanRepository.Add(educationPlan);
+                                return Redirect("/Admin/EducationPlans/");
+                            }
+                            else return View(Constants.ADMIN_EDUCATION_PLAN_VIEWS + "Add.aspx", educationPlan);
+
+                        }
+
+                    case "Edit":
+                        {
+                            if (ModelState.IsValid)
+                            {
+                                repositoryManager.GetEducationPlanRepository.UpdateByAlias(additional, educationPlan);
+                                return Redirect("/Admin/EducationPlans/");
+                            }
+                            else return View(Constants.ADMIN_EDUCATION_PLAN_VIEWS + "Edit.aspx", educationPlan);
+
+                        }
+
+                }
+            }
+
+            return View(Constants.ADMIN_EDUCATION_PLAN_VIEWS + "EducationPlans.aspx");
+        }
+   }
 }

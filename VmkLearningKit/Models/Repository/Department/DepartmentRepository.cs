@@ -174,6 +174,18 @@ namespace VmkLearningKit.Models.Repository
             DataContext.SubmitChanges();
         }
 
+        public void UpdateByAlias(string updatedObjId,Department newObj)
+        {
+            Department updatedObj = GetByAlias(updatedObjId);
+
+            updatedObj.Title = newObj.Title;
+            updatedObj.Alias = newObj.Alias;
+            updatedObj.Abbreviation = newObj.Abbreviation;
+            updatedObj.Description = newObj.Description;
+
+            DataContext.SubmitChanges();
+        }
+
         #endregion
 
         #region Delete

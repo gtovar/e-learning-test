@@ -8,15 +8,19 @@
     <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
 <script type="text/javascript">
     $(function () {
-       $("#setMark").click(function () {
-
+        $("#setMark").click(function () {
             var mark = parseInt($("#Mark").val());
-
             var id = '<%=((AssignedTestVariant)ViewData["test"]).Id %>';
-
-
-            var data = { "alias": id.toString(), "mark": mark };
-            $.post("/ViewTest/SetMark", data, function (str) { alert(str); }, "json");
+            var maxMark = 5;
+            var minMark = 1;
+            if ((mark > maxMark) || (mark < minMark)) {
+                alert("Неверно задана оценка! Значение оценки должно находиться в диапазоне от " + minMark.toString() + " до " + maxMark.toString());
+            }
+            else {
+               
+                var data = { "alias": id.toString(), "mark": mark };
+                $.post("/ViewTest/SetMark", data, function (str) { alert(str); }, "json");
+            }
 
         })
     });

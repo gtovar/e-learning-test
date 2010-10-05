@@ -13,5 +13,7 @@ namespace VmkLearningKit.Models.Repository
         Chair Add(Chair obj);
         long GetMaxId();
         IEnumerable<Chair> Add(IEnumerable<Chair> chairs);
+        Chair GetByAliasAndDepartment(string alias, long idDepartment);
+        void UpdateByAlias(string updatedObjId, Chair newObj);
     }
 }

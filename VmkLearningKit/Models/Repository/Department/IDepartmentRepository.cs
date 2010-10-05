@@ -14,5 +14,7 @@ namespace VmkLearningKit.Models.Repository
         IEnumerable<Department> GetAll();
         Department Add(Department obj);
         void UpdateById(long updatedObjId, string newObjTitle);
+        void UpdateByAlias(string updatedObjId, Department newObj);
+       
     }
 }
