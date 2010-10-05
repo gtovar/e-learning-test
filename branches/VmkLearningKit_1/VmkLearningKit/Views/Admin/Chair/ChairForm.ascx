@@ -1,8 +1,8 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<VmkLearningKit.Models.Repository.Department>" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<VmkLearningKit.Models.Repository.Chair>" %>
 
     <% using (Html.BeginForm()) {%>
         <%= Html.ValidationSummary(true) %>
-        <%if (null != ViewData.Model)
+ <%if (null != ViewData.Model)
         {%>
              <table style="margin: 15px;">
                 <tr>
@@ -24,9 +24,9 @@
                     </td>
                     <td style="padding: 5px;">
                         <%
-                           string alias = Html.Encode(((Department)ViewData.Model).Alias);
+                           string alias = Html.Encode(((Chair)ViewData.Model).Alias);
                         %>
-                        <%= Html.TextBox("departmentAlias", alias , new { @class = "text_box" })%>                  
+                        <%= Html.TextBox("chairAlias", alias , new { @class = "text_box" })%>                  
                         
                     </td>
                     <td style="padding: 5px; color:Red; font-style:italic">
@@ -65,8 +65,7 @@
             </table>
                
         <%}%>
-<% } %>
 
-  
+    <%} %>
 
 

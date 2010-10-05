@@ -124,5 +124,16 @@ namespace VmkLearningKit.Models.Repository
 
             DataContext.SubmitChanges();
         }
+
+        public void UpdateByAlias(string updatedObjId, EducationPlan newObj)
+        {
+            EducationPlan updatedObj = GetByAlias(updatedObjId);
+
+            updatedObj.Title = newObj.Title;
+            updatedObj.Alias = newObj.Alias;
+           
+            DataContext.SubmitChanges();
+        }
+
     }
 }

@@ -54,6 +54,22 @@ namespace VmkLearningKit.Models.Repository
 
             return obj;
         }
+
+
+        public Chair GetByAliasAndDepartment(string alias,long idDepartment)
+        {
+            Chair obj = null;
+            try
+            {
+                obj = DataContext.Chairs.SingleOrDefault(s => s.Alias == alias && s.DepartmentId == idDepartment);
+            }
+            catch (Exception ex)
+            {
+                // FIXME: add some handler
+            }
+
+            return obj;
+        }
         /*
         public Chair GetByTitle(string title)
         {
@@ -238,5 +254,19 @@ namespace VmkLearningKit.Models.Repository
 
             return null;
         }
+
+
+        public void UpdateByAlias(string updatedObjId, Chair newObj)
+        {
+            Chair updatedObj = GetByAlias(updatedObjId);
+
+            updatedObj.Title = newObj.Title;
+            updatedObj.Alias = newObj.Alias;
+            updatedObj.Abbreviation = newObj.Abbreviation;
+            updatedObj.Description = newObj.Description;
+
+            DataContext.SubmitChanges();
+        }
+
     }
 }

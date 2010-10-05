@@ -70,6 +70,44 @@ namespace VmkLearningKit.Models.Repository
             
         }
 
+        public AssignedTestVariant GetLastStudentTopicTestsByDate(long idTopic, long idStudent, DateTime date)
+        {
+            try 
+            {
+                return GetAllStudentTopicTests(idTopic, idStudent).Where(atv => atv.AssignedDate == date).OrderBy(o=>o.AssignedDate).Last();
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public IEnumerable<DateTime> GetAllDatesAssignedTestsByTopic(long topicId)
+        {
+           // IEnumerable<GeneratedTest> gt = RepositoryManager.GetRepositoryManager.GetGeneratedTestRepository.GetAllGeneratedTestsByTopicId(topicId);
+            try
+            {
+                var query = from gt in DataContext.GeneratedTests
+                            from ass in DataContext.AssignedTestVariants
+                            from gtv in DataContext.GeneratedTestVariants
+                            where (gt.SpecialityDisciplineTopicId == topicId)
+                            where gtv.GeneratedTestId == gt.Id
+                            where ass.GeneratedTestVariantId == gtv.Id
+                            select ass;
+                List<DateTime> dates = new List<DateTime>();
+                foreach (AssignedTestVariant atvItem in (IEnumerable<AssignedTestVariant>)query)
+                {
+                    dates.Add(atvItem.AssignedDate);
+                }
+
+                return ((IEnumerable<DateTime>)dates).Distinct() ;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+        }
 
         public AssignedTestVariant GetLastStudentTopicTest(long idTopic, long idStudent)
         {
@@ -88,23 +126,15 @@ namespace VmkLearningKit.Models.Repository
         public AssignedTestVariant GetLastDoneStudentTopicTest(long idTopic, long idStudent)
         {
             try
-            {
-                //bool fl1=Convert.ToDateTime(doneTests.AssignedDate) < DateTime.Now;
+            {              
                 IEnumerable<AssignedTestVariant> atv = GetAllStudentTopicTests(idTopic, idStudent).Where(doneTests =>( (doneTests.State == VLKConstants.TEST_VARIANT_STATE_DONE || doneTests.State == VLKConstants.TEST_VARIANT_STATE_CHECKED) && (doneTests.AssignedDate < DateTime.Now)));
-               /*     List<AssignedTestVariant > temp=new List<AssignedTestVariant> (); 
-                foreach (AssignedTestVariant item in atv)
-                { 
-                    if(item.AssignedDate<DateTime.Now && (item.State==VLKConstants.TEST_VARIANT_STATE_DONE || item.State==VLKConstants.TEST_VARIANT_STATE_CHECKED ))
-                    {
-                        temp.Add(item);
-                    }
-                }*/
+              
                 if (atv.Count() == 0)
                 {
                     return GetLastStudentTopicTest(idTopic, idStudent);
                 }
                 AssignedTestVariant res =atv.OrderBy(d => d.AssignedDate).Last();
-                    //((IEnumerable<AssignedTestVariant >)temp).OrderBy(d => d.AssignedDate).Last();
+                   
                 return res;
             }
             catch (Exception ex)

@@ -6,5 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h3>
         Управление факультетами / Редактировать факультет</h3>
-   <% Html.RenderPartial("Department/DepartmentForm", ViewData.Model); %>
+        <%Html.RenderPartial("Department/DepartmentForm", ViewData.Model);%>
+   
 </asp:Content>

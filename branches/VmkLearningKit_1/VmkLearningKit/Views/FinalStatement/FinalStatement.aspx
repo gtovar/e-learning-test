@@ -299,28 +299,31 @@ td.secondAssignement {
 
         var colFlag = 0;
         var hiddens = $("input[id^='hiden_']");
-        HideCol(5, hiddens.length - 5, hiddens);
+//число отображаемых тем на странице
+        var countShowTopics = 5;
+        HideCol(countShowTopics, hiddens.length - countShowTopics, hiddens);
 
+//скролл вправо
+        $("#ButtonRight").click(function () {
+            if (colFlag + countShowTopics < hiddens.length) {
 
-        $("#Button1").click(function () {
-            if (colFlag + 5 < hiddens.length) {
-
-                HideCol(colFlag, 5, hiddens);
-                colFlag += 5;
-                var showCount = 5;
-                if (hiddens.length - colFlag < 5) showCount = hiddens.length - colFlag;
+                HideCol(colFlag, countShowTopics, hiddens);
+                colFlag += countShowTopics;
+                var showCount = countShowTopics;
+                if (hiddens.length - colFlag < countShowTopics) showCount = hiddens.length - colFlag;
                 ShowCol(colFlag, showCount, hiddens);
 
             }
         });
 
-        $("#Button2").click(function () {
-            if (colFlag - 5 >= 0) {
-                var hideCount = 5;
-                if (hiddens.length - colFlag < 5) hideCount = hiddens.length - colFlag;
+//скролл влево
+        $("#ButtonLeft").click(function () {
+            if (colFlag - countShowTopics >= 0) {
+                var hideCount = countShowTopics;
+                if (hiddens.length - colFlag < countShowTopics) hideCount = hiddens.length - colFlag;
                 HideCol(colFlag, hideCount, hiddens)
-                colFlag -= 5;
-                ShowCol(colFlag, 5, hiddens);
+                colFlag -= countShowTopics;
+                ShowCol(colFlag, countShowTopics, hiddens);
             }
         });
 
@@ -405,7 +408,7 @@ td.secondAssignement {
 
     });
 
-
+    
     //---------------------------------------
     function ParseTdId(str) {
         var arr = str.split("_");
@@ -414,7 +417,7 @@ td.secondAssignement {
         return arr;
     }
 
-    //удаление начальных и конечных пробелов строки
+      //удаление начальных и конечных пробелов строки
     function _trim(str) {
         if (str == null) return "";
         var tmp = str.replace(/^\s*/g, "");
@@ -659,7 +662,7 @@ td.secondAssignement {
 
 
 
-<%using (Html.BeginForm("Statement", "Statement", new { additional = ViewData["DisciplineId"], alias = ViewData["ProfessorId"] }, FormMethod.Get, new { id = "groupFilter" }))%>
+<%using (Html.BeginForm("FinalStatement", "FinalStatement", new { additional = ViewData["DisciplineId"], alias = ViewData["ProfessorId"] }, FormMethod.Get, new { id = "groupFilter" }))%>
    <%  { %>
   
     <table  >
@@ -680,10 +683,10 @@ td.secondAssignement {
        {%>
            </tr>
         </table>
-        <p>
-        <div><b>Нет групп обучающихся по данной дисциплине</b>
-        </div>
-        </p>
+        
+        <div  style=" color:Red"><p><b>Нет групп обучающихся по данной дисциплине</b>
+        </p></div>
+        
     <%;} %>
     
 
@@ -706,10 +709,10 @@ td.secondAssignement {
     <br/>  
     
     
-    <p>
-    <div><h2><b>В базе данных нет информации о студентах данной группы</b></h2>
-    </div>
-    </p>
+    
+    <div  style=" color:Red"><p><b>В базе данных нет информации о студентах данной группы</b>
+    </p></div>
+    
     <%}  %>
     <%   //если нет тем по данной дисциплине 
     else if (null != ViewData["groups"] && null == ViewData["topics"])
@@ -728,10 +731,10 @@ td.secondAssignement {
         </tr>
     </table>
     <br/>     
-    <p>
-    <div><b><h2>Нет тем по данной дисциплине</h2></b>
-    </div>
-    </p>
+    
+    <div  style=" color:Red"><p><b>Нет тем по данной дисциплине</b>
+    </p></div>
+    
             <%}%>
 
 
@@ -883,7 +886,7 @@ td.secondAssignement {
 
          <tr> 
             <td colspan="<%= ((IEnumerable<SpecialityDisciplineTopic>)ViewData["Topics"]).Count()+2 %>" style=" border-width:0px;padding-top: 5px; text-align:right;">
-            <img id="Button2" alt="" src="/Content/Images/left.png" height="20px" width="20px"  />&nbsp;<img id="Button1" alt="" src="/Content/Images/right.png" height="20px" width="20px"  />
+            <img id="ButtonLeft" alt="" src="/Content/Images/left.png" height="20px" width="20px"  />&nbsp;<img id="ButtonRight" alt="" src="/Content/Images/right.png" height="20px" width="20px"  />
             </td>
          </tr>
   </tbody>  
@@ -1003,7 +1006,9 @@ td.secondAssignement {
     <div style="float:right">
     <%=Html.ActionLink("К списку дисциплин", "Professor", "Cabinet", new { alias = ViewData["ProfessorId"] }, new { @class = "" })%>
     <br />
-    <%=Html.ActionLink("К ведомости попыток ", "Statement", "Statement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"] }, new { @class = "" })%>
+    <%=Html.ActionLink("К ведомости попыток ", "Statement", "Statement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"], param1 = ViewData["IdGroup"] }, new { @class = "" })%>
+    <br />
+    <%=Html.ActionLink("К хронологической ведомости", "DateTimeStatement", "DateTimeStatement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"], param1 = ViewData["IdGroup"] }, new { @class = "" })%>
     
     </div>        
     </p>

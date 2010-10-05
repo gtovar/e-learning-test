@@ -24,7 +24,7 @@
                 Название
             </th>
             <th style="padding: 5px;">
-                Абривиатура
+                Аббревиатура 
             </th>
             <th style="padding: 5px;">
                 Алиас

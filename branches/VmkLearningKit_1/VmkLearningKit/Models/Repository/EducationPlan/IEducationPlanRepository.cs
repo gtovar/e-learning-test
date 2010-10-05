@@ -12,5 +12,6 @@ namespace VmkLearningKit.Models.Repository
         EducationPlan GetByTitle(string title);
         long GetMaxId();
         EducationPlan Add(EducationPlan obj);
+        void UpdateByAlias(string updatedObjId, EducationPlan newObj);
     }
 }

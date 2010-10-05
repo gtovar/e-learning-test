@@ -19,8 +19,8 @@ namespace VmkLearningKit
 
             routes.MapRoute(
                 "Default",                                                      // Route name
-                "{controller}/{action}/{alias}/{additional}",                   // URL with parameters
-                new { controller = "Home", action = "Index", alias = "", additional = ""}                    // Parameter defaults
+                "{controller}/{action}/{alias}/{additional}/{param1}",                   // URL with parameters
+                new { controller = "Home", action = "Index", alias = "", additional = "",param1=""}                    // Parameter defaults
             );
             routes.MapRoute(
                 "ProfessorCabinet",                                             // Route name
@@ -56,7 +56,8 @@ namespace VmkLearningKit
             routes.MapRoute(
                 "qwerty",                                                      // Route name
                 "{controller}/{action}/{alias}/{additional}/{param1}/{param2}",                   // URL with parameters
-                new { controller = "PlanGeneration", action = "Add", alias = "", additional = "", param1 = "", param2 = "" }                    // Parameter defaults
+                new { controller = "PlanGeneration", action = "Add", alias = "", additional = "", param1 = "", param2 = "" },                    // Parameter defaults
+                new { controller = "Statement", action = "Statement", alias = "", additional = "", param1 = "", param2 = "" }                    // Parameter defaults
             );
         }
 
