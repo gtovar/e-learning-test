@@ -107,7 +107,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CabinetController.cs" />
-    <Compile Include="Controllers\DateTimeStatementController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EditorController.cs" />
     <Compile Include="Controllers\SpecialityDisciplineProgramController.cs" />

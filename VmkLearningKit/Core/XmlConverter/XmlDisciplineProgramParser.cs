@@ -63,7 +63,7 @@ namespace VmkLearningKit.Core.XmlConverter
             
             XmlTextReader xmlReader = new XmlTextReader(xmlUrl);
 
-            //xmlReader.WhitespaceHandling = WhitespaceHandling.None;
+            xmlReader.WhitespaceHandling = WhitespaceHandling.None;
 
             // Извлекаемые данные
             string disciplineTitle              = String.Empty,
@@ -86,43 +86,54 @@ namespace VmkLearningKit.Core.XmlConverter
             byte level,
                  lectionNumber = 0;
 
-            while (xmlReader.Read())
+            bool flag = true;
+            bool exit = true;
+
+            while (exit)
             {
+                if (flag) exit = xmlReader.Read();
                 if (xmlReader.NodeType == XmlNodeType.Element &&
                     xmlReader.Name.Equals(Constants.XML_ELEMENT_TITLE))
                 {
                     disciplineTitle = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
-                    disciplineId    = repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(disciplineTitle).Id;
+                    disciplineId = repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(disciplineTitle).Id;
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_APPLICATION_DOMAIN))
                 {
                     applicationDomain = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_PURPOSES))
                 {
                     purposes = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_REQUIREMENTS))
                 {
                     requirements = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_DISCIPLINE_VOLUME))
                 {
                     disciplineVolume = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_DISCIPLINE_RAZDELS))
                 {
                     disciplineRazdels = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_DISCIPLINE_RAZDELS_CONTENT))
                 {
                     disciplineRazdelsContent = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_TOPIC))
@@ -143,8 +154,8 @@ namespace VmkLearningKit.Core.XmlConverter
 
                                 SpecialityDisciplineTopic topic = new SpecialityDisciplineTopic();
 
-                                topic.SpecialityDisciplineId    = disciplineId;
-                                topic.Title                     = topicLevel1Title + ":::" + topicLevel2Title;
+                                topic.SpecialityDisciplineId = disciplineId;
+                                topic.Title = topicLevel1Title + ":::" + topicLevel2Title;
 
                                 SpecialityDisciplineTopic existedTopic = repositoryManager.GetSpecialityDisciplineTopicRepository.GetByTitle(topic.Title);
 
@@ -160,14 +171,14 @@ namespace VmkLearningKit.Core.XmlConverter
                                 }
 
                                 LecturePlan lecturePlan = new LecturePlan();
-                                lecturePlan.SpecialityDisciplineId      = disciplineId;
+                                lecturePlan.SpecialityDisciplineId = disciplineId;
                                 lecturePlan.SpecialityDisciplineTopicId = repositoryManager.GetSpecialityDisciplineTopicRepository.GetByTitle(topic.Title).Id;
 
                                 repositoryManager.GetLecturePlanRepository.Add(lecturePlan);
 
                                 PracticePlan practicePlan = new PracticePlan();
-                                practicePlan.SpecialityDisciplineId         = disciplineId;
-                                practicePlan.SpecialityDisciplineTopicId    = repositoryManager.GetSpecialityDisciplineTopicRepository.GetByTitle(topic.Title).Id;
+                                practicePlan.SpecialityDisciplineId = disciplineId;
+                                practicePlan.SpecialityDisciplineTopicId = repositoryManager.GetSpecialityDisciplineTopicRepository.GetByTitle(topic.Title).Id;
 
                                 repositoryManager.GetPracticePlanRepository.Add(practicePlan);
 
@@ -178,58 +189,69 @@ namespace VmkLearningKit.Core.XmlConverter
                                 break;
                             }
                     }
+
+                    flag = true;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_LAB_PRACTICE))
                 {
                     labPractice = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_LITERATURE))
                 {
                     literature = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_QUESTIONS))
                 {
                     questions = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_MARK_CRITERIAS))
                 {
                     markCriterias = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_REPORTING))
                 {
                     reporting = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_ADDITIONAL))
                 {
                     additional = xmlReader.ReadElementContentAsString().Trim().Trim('\n', '\r');
+                    flag = false;
                 }
                 else if (xmlReader.NodeType == XmlNodeType.EndElement &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_DISCIPLINE_PROGRAM))
                 {
                     SpecialityDisciplineProgram program = new SpecialityDisciplineProgram();
 
-                    program.Additional              = HttpUtility.HtmlDecode(additional);
-                    program.ApplicationDomain       = HttpUtility.HtmlDecode(applicationDomain);
-                    program.LabPractice             = HttpUtility.HtmlDecode(labPractice);
-                    program.Literature              = HttpUtility.HtmlDecode(literature);
-                    program.MarkCriterias           = HttpUtility.HtmlDecode(markCriterias);
-                    program.Purposes                = HttpUtility.HtmlDecode(purposes);
-                    program.Questions               = HttpUtility.HtmlDecode(questions);
-                    program.Razdels                 = HttpUtility.HtmlDecode(disciplineRazdels);
-                    program.RazdelsContent          = HttpUtility.HtmlDecode(disciplineRazdelsContent);
-                    program.Reporting               = HttpUtility.HtmlDecode(reporting);
-                    program.Requirements            = HttpUtility.HtmlDecode(requirements);
-                    program.SpecialityDisciplineId  = disciplineId;
-                    program.Volume                  = HttpUtility.HtmlDecode(disciplineVolume);
+                    program.Additional = HttpUtility.HtmlDecode(additional);
+                    program.ApplicationDomain = HttpUtility.HtmlDecode(applicationDomain);
+                    program.LabPractice = HttpUtility.HtmlDecode(labPractice);
+                    program.Literature = HttpUtility.HtmlDecode(literature);
+                    program.MarkCriterias = HttpUtility.HtmlDecode(markCriterias);
+                    program.Purposes = HttpUtility.HtmlDecode(purposes);
+                    program.Questions = HttpUtility.HtmlDecode(questions);
+                    program.Razdels = HttpUtility.HtmlDecode(disciplineRazdels);
+                    program.RazdelsContent = HttpUtility.HtmlDecode(disciplineRazdelsContent);
+                    program.Reporting = HttpUtility.HtmlDecode(reporting);
+                    program.Requirements = HttpUtility.HtmlDecode(requirements);
+                    program.SpecialityDisciplineId = disciplineId;
+                    program.Volume = HttpUtility.HtmlDecode(disciplineVolume);
 
                     repositoryManager.GetSpecialityDisciplineProgramRepository.Add(program);
+
+                    flag = true;
                 }
+                else flag = true;
             }
         }
     }
