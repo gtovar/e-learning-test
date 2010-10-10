@@ -60,7 +60,7 @@ namespace VmkLearningKit.Models.Repository
                 while (flag)
                 {
                     s = str.Substring(idx + "<td>".Length, idx2 - idx - "<td>".Length);
-                    cells.Add(s.Replace("\r\n\t\t\t\t", ""));
+                    cells.Add(s.Replace("\r\n", ""));
                     str = str.Remove(idx, "<td>".Length + s.Length + "</td>".Length);
                     idx = str.IndexOf("<td>");
                     idx2 = str.IndexOf("</td>");
@@ -157,7 +157,9 @@ namespace VmkLearningKit.Models.Repository
                             if (idx < idx1)
                             {
                                 string s = str.Substring(idx + "<li>".Length, idx1 - idx - "<li>".Length);
-                                first.Add(s);
+                                s = s.Replace("\r\n","");
+                                if (s!="")
+                                    first.Add(s);
                                 str = str.Remove(idx, "<li>".Length + s.Length + "</li>".Length);
                             }
                             else
@@ -174,7 +176,9 @@ namespace VmkLearningKit.Models.Repository
                             if (idx < idx1)
                             {
                                 string s = str.Substring(idx + "<li>".Length, idx1 - idx - "<li>".Length);
-                                sec.Add(s);
+                                s = s.Replace("\r\n", "");
+                                if (s!="")
+                                    sec.Add(s);
                                 str = str.Remove(idx, "<li>".Length + s.Length + "</li>".Length);
                             }
                             else
@@ -218,7 +222,9 @@ namespace VmkLearningKit.Models.Repository
                     if (idx < idx1)
                     {
                         string s = str.Substring(idx + "<li>".Length, idx1 - idx - "<li>".Length);
-                        questions.Add(s);
+                        s = s.Replace("\r\n", "");
+                        if (s!="")
+                            questions.Add(s);
                         str = str.Remove(idx, "<li>".Length + s.Length + "</li>".Length);
                     }
                     else
