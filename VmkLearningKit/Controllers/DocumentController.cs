@@ -623,15 +623,9 @@ namespace VmkLearningKit.Controllers
 
                 //Титульный лист
 
-            object patternstyle=Word.WdStyleType.wdStyleTypeParagraph;
+            //object patternstyle=Word.WdStyleType.wdStyleTypeParagraph;
 
-            /*Word.Style style = document.Styles.Add("tempStyle", ref patternstyle);
-            style.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;*/
-
-            /*Word.Style style1 = document.Styles.Add("temp1Style", ref patternstyle);
-            style.ParagraphFormat.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;*/
-
-           // object oStyle = style;
+            
                 Word.Paragraph par = document.Paragraphs.Add(oMissing);
                 par.Range.Text = "ФЕДЕРАЛЬНОЕ АГЕНТСТВО ПО ОБРАЗОВАНИЮ";              
                 par.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
@@ -648,7 +642,6 @@ namespace VmkLearningKit.Controllers
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Text = "«Нижегородский государственный университет им. Н.И. Лобачевского»";
 
-                //document.Paragraphs.Add(oMissing);
                 document.Paragraphs.Add(oMissing);
 
                 document.Paragraphs.Add(oMissing);
@@ -672,8 +665,6 @@ namespace VmkLearningKit.Controllers
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Text = "Декан факультета ВМК";
 
-                //document.Paragraphs.Add();
-
                 document.Paragraphs.Add(oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Text = "__________________В.П.Гергель";
@@ -684,8 +675,6 @@ namespace VmkLearningKit.Controllers
 
                 document.Paragraphs.Add(oMissing);
                 document.Paragraphs.Add(oMissing);
-                //document.Paragraphs.Add();
-                //document.Paragraphs.Add();
 
                 document.Paragraphs.Add(oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -722,11 +711,9 @@ namespace VmkLearningKit.Controllers
                 // Область применения
 
                 string applicationDomain = disciplineProgram.ApplicationDomain;
-
-                //oStyle = style1;
+                applicationDomain = applicationDomain.Replace("\r\n", "");
 
                 document.Paragraphs.Add(oMissing);
-                //p.set_Style(oStyle);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
                 range.Text = "1. Область применения";
@@ -737,11 +724,12 @@ namespace VmkLearningKit.Controllers
                 {
                     int index = applicationDomain.IndexOf("<p>");
                     int index1 = applicationDomain.IndexOf("</p>");
-                    if (index < index1)
+                    if (index + 3 < index1)
                     {
                         document.Paragraphs.Add();
                         range = document.Paragraphs[document.Paragraphs.Count].Range;
                         range.Underline = Word.WdUnderline.wdUnderlineNone;
+                        //document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
                         string s = applicationDomain.Substring(index + "<p>".Length, index1 - index - "<td>".Length + 1);
                         range.Text = s;
                         applicationDomain = applicationDomain.Remove(index,"<td>".Length + s.Length + "</p>".Length -1);
@@ -753,9 +741,7 @@ namespace VmkLearningKit.Controllers
                 // Цели и задачи курса
 
                 string purposes = disciplineProgram.Purposes;
-
-                //document.Paragraphs.Add();
-                //p.Range.Text = "";
+                purposes = purposes.Replace("\r\n", "");
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -767,11 +753,12 @@ namespace VmkLearningKit.Controllers
                 {
                     int index = purposes.IndexOf("<p>");
                     int index1 = purposes.IndexOf("</p>");
-                    if (index < index1)
+                    if (index + 3 < index1)
                     {
                         document.Paragraphs.Add();
                         range = document.Paragraphs[document.Paragraphs.Count].Range;
                         range.Underline = Word.WdUnderline.wdUnderlineNone;
+                        //document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
                         string s = purposes.Substring(index + "<p>".Length, index1 - index - "<td>".Length + 1);
                         range.Text = s;
                         purposes = purposes.Remove(index, "<td>".Length + s.Length + "</p>".Length - 1);
@@ -783,11 +770,11 @@ namespace VmkLearningKit.Controllers
                 // Требования к уровню освоения содержания дисциплины
 
                 string requirements = disciplineProgram.Requirements;
+                requirements = requirements.Replace("\r\n","");
 
                 document.Paragraphs.Add();
 
                 Word.Paragraph p = document.Paragraphs.Add(oMissing);
-                //range = document.Paragraphs[document.Paragraphs.Count].Range;
                 p.Range.Underline = Word.WdUnderline.wdUnderlineSingle;
                 p.Range.Text = "3. Требования к уровню освоения содержания дисциплины";
 
@@ -796,24 +783,21 @@ namespace VmkLearningKit.Controllers
                 {
                     int index = requirements.IndexOf("<p>");
                     int index1 = requirements.IndexOf("</p>");
-                    if (index < index1)
+                    if (index + 3 < index1)
                     {
                         document.Paragraphs.Add();
                         range = document.Paragraphs[document.Paragraphs.Count].Range;
                         range.Underline = Word.WdUnderline.wdUnderlineNone;
-                        string s = requirements.Substring(index + "<p>".Length, index1 - index - "<td>".Length);
+                        string s = requirements.Substring(index + "<p>".Length, index1 - index - "<td>".Length + 1);
+                        //document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
                         range.Text = s;
-                        requirements = requirements.Remove(index, "<td>".Length + s.Length + "</p>".Length);
+                        requirements = requirements.Remove(index, "<td>".Length + s.Length + "</p>".Length - 1);
                     }
                     else
                         flag = false;
                 }
 
                 // Объем дисциплины и виды учебной работы
-
-                string volume = disciplineProgram.Volume;
-
-                //document.Paragraphs.Add();
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -853,7 +837,7 @@ namespace VmkLearningKit.Controllers
                     }
                 }
 
-                document.Paragraphs.Add(oMissing);
+                //document.Paragraphs.Add(oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Size = 12;
                 range.Font.Italic = 1;
@@ -865,8 +849,6 @@ namespace VmkLearningKit.Controllers
 
                 // Содержание дисциплины
 
-                //document.Paragraphs.Add();
-
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Size = 14;
@@ -876,6 +858,7 @@ namespace VmkLearningKit.Controllers
 
                 // Разделы дисциплины и виды занятий
                 string razdels = disciplineProgram.Razdels;
+                razdels = razdels.Replace("\r\n","");
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -921,8 +904,7 @@ namespace VmkLearningKit.Controllers
                         cell = table.Cell(i + 1, j + 1).Range;
                         range = table.Cell(i + 1, j + 1).Range;
                         if (j == 1)
-                        {
-                           
+                        {                        
                             range.Font.Size = 10;
                             range.Font.Italic = 1;
                         }
@@ -936,13 +918,13 @@ namespace VmkLearningKit.Controllers
                     }
                 }
 
-                document.Paragraphs.Add();
+                //document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Size = 12;
                 range.Font.Italic = 1;
                 range.Text = "(в таблице название раздела указывается в соответствии с обязательным минимумом содержания, изложенным в ГОС ВПО. В графах, обозначающих предусматриваемые виды занятий проставляется знак *)";
-                // Содержание разделов дисциплины
-            //--------------------------------------
+                
+            // Содержание разделов дисциплины
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -961,13 +943,19 @@ namespace VmkLearningKit.Controllers
 
                 List<string> top1 = new List<string>();
                 List<string> top2 = new List<string>();
-            top1.Add("temp111111111");
-            top2.Add("temp222222222");
+                top1.Add("temp111111111");
+                top2.Add("temp222222222");
 
+                string t1 = "";
+                string t2 = "";
                 foreach (SpecialityDisciplineTopic t in topics)
                 {
-                    top1.Add(t.Title.Substring(0,t.Title.IndexOf(":::")));
-                    top2.Add(t.Title.Substring(t.Title.IndexOf(":::")+3));
+                    t1 = t.Title.Substring(0, t.Title.IndexOf(":::"));
+                    t1 = t1.Replace("\r\n","");
+                    top1.Add(t1);
+                    t2 = t.Title.Substring(t.Title.IndexOf(":::") + 3);
+                    t2 = t2.Replace("\r\n", "");
+                    top2.Add(t2);
                 }
 
                 int topicsCount = 1;
@@ -983,7 +971,13 @@ namespace VmkLearningKit.Controllers
                         range.Font.Bold = 1;
                         range.Text = topicsCount + ". " + top1[i];
                         topicsCount++;
-                        topic2Count = 1;
+
+                        document.Paragraphs.Add();
+                        range = document.Paragraphs[document.Paragraphs.Count].Range;
+                        range.Font.Bold = 0;
+                        range.Text = "   " + (topicsCount - 1) + ". "+ "1. " + top2[i];
+
+                        topic2Count = 2;
                     }
                     else
                     {
@@ -995,14 +989,7 @@ namespace VmkLearningKit.Controllers
                     }
                 }
 
-            //--------------------------------------
-
-
                 // Лабораторный практикум
-
-                string labPracties = disciplineProgram.LabPractice;
-
-                //document.Paragraphs.Add();
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -1040,7 +1027,7 @@ namespace VmkLearningKit.Controllers
                     }
                 }
 
-                document.Paragraphs.Add();
+                //document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Size = 12;
                 range.Font.Italic = 1;
@@ -1048,10 +1035,6 @@ namespace VmkLearningKit.Controllers
 
 
                 // Учебно-методическое обеспечение дисциплины
-
-                string literature = disciplineProgram.LabPractice;
-
-                //document.Paragraphs.Add();
 
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
@@ -1094,10 +1077,6 @@ namespace VmkLearningKit.Controllers
 
                 // Вопросы для контроля
 
-                string questions = disciplineProgram.Questions;
-
-                //document.Paragraphs.Add();
-
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Size = 14;
@@ -1105,8 +1084,6 @@ namespace VmkLearningKit.Controllers
                 range.Text = "8. Вопросы для контроля";
 
                 List<string> ques = specialityDisciplineProgramRepository.GetQuestions(disciplineProgram.SpecialityDisciplineId);
-
-               // document.Paragraphs.Add();
                
                 for (int i = 0; i < ques.Count; i++)
                 {
@@ -1119,12 +1096,9 @@ namespace VmkLearningKit.Controllers
 
                 // Критерии оценок
 
-                string markCriterias = disciplineProgram.MarkCriterias;
-
-                //document.Paragraphs.Add();
-
                 document.Paragraphs.Add();
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
                 range.Underline = Word.WdUnderline.wdUnderlineSingle;
                 range.Text = "9. Критерии оценок";
 
@@ -1150,7 +1124,7 @@ namespace VmkLearningKit.Controllers
                     }
                 }
 
-                document.Paragraphs.Add(ref oMissing);
+                //document.Paragraphs.Add(ref oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Size = 12;
                 range.Text = "Примечание – таблица заполняется, если формой итогового контроля предусмотрен зачет";
@@ -1173,7 +1147,7 @@ namespace VmkLearningKit.Controllers
                     }
                 }
 
-                document.Paragraphs.Add(ref oMissing);
+                //document.Paragraphs.Add(ref oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Size = 12;
                 range.Text = "Примечание – таблица заполняется, если  формой итогового контроля предусмотрен экзамен";
