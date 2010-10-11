@@ -681,7 +681,7 @@ namespace VmkLearningKit.Controllers
 
                 document.Paragraphs.Add(oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
-                range.Text = "дисциплины ДНМ «Инженерные основы информационных технологий»";
+                range.Text = "дисциплины «" + disciplineProgram.SpecialityDiscipline.Title + "»";
                 range.Font.Bold = 0;
 
                 document.Paragraphs.Add(oMissing);
@@ -1231,8 +1231,9 @@ namespace VmkLearningKit.Controllers
                 string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
                 DirectoryInfo directory = new DirectoryInfo(path);
                 directory.Create();
-                SaveWordDocument(path + "\\Программа дисциплины.doc", document, program);
+                SaveWordDocument(path + "\\" + disciplineProgram.SpecialityDiscipline.Title +".doc", document, program);
 
+                //return RedirectToAction("Professor", "Cabinet", new { alias = professor, additional = disciplineProgram.SpecialityDiscipline.Alias });
                 return RedirectToAction("Index");
             /*}
             catch
