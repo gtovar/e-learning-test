@@ -77,7 +77,7 @@
             <xs:attribute name="title" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
-        <xs:element name="labPractice">
+        <xs:element name="labPractice" minOccurs="0">
           <xs:complexType>
             <xs:simpleContent>
               <xs:extension base="xs:string">
