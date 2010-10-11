@@ -54,7 +54,7 @@
         </tr>
         <% index++;
            } %>
-    </table>
+    </table>          
     <% }
            else if (null != ViewData["SpecialityDiscipline"] && null != ViewData["Professor"])
            {
@@ -70,9 +70,14 @@
                 <%= Html.Encode(specialityDiscipline.Title) %>
                 </h2>
             </td>
+            <td style="text-align:right">
+            <p style="margin-top: 5px; margin-bottom: 10px; font-size:medium">
+            <%=Html.ActionLink("Получить программу дисциплины", "GetDisciplineProgramDocument", "Document", new { specialityDisciplineId = ((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Id }, new {@class="" })%>
+      </p>
+      </td>
             <td style="text-align:center; width:150px">
                <p style="margin-top: 5px; margin-bottom: 10px; font-size:medium">
-                <%=Html.ActionLink("К ведомости", "Statement", "Statement", new { alias = ((Professor)ViewData["Professor"]).User.NickName, additional = ((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Alias}, new { @class = "" })%>
+               <%=Html.ActionLink("К ведомости", "Statement", "Statement", new { alias = ((Professor)ViewData["Professor"]).User.NickName, additional = ((SpecialityDiscipline)ViewData["SpecialityDiscipline"]).Alias}, new { @class = "" })%>
                 </p>
             </td>
         </tr>

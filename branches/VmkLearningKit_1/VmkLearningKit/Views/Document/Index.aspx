@@ -9,13 +9,10 @@
 <%string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear); %>
     <div class="SuperLink">
         <h3 class="SuperLink">Доступные действия</h3>
-        <h4 class="SuperLink"><%= Html.ActionLink("Получиить список кафедр", "GetChairDocument")%></h4>
-        <h4 class="SuperLink"><%= Html.ActionLink("Получиить список преподавателей", "GetTeacherDocument")%></h4>
+        <h4 class="SuperLink"><%= Html.ActionLink("Получить список кафедр", "GetChairDocument")%></h4>
+        <h4 class="SuperLink"><%= Html.ActionLink("Получить список преподавателей", "GetTeacherDocument")%></h4>
         <h4 class="SuperLink"><%= Html.ActionLink("Получить список специальностей", "GetSpecialityDocument")%></h4>
-        <h4 class="SuperLink"><%= Html.ActionLink("Получить список групп", "GetStudentDocument")%></h4>
-        <h4 class="SuperLink"><%= Html.ActionLink("Получить список студентов", "GetStudentDocument")%></h4>
-        <h4 class="SuperLink"><%= Html.ActionLink("Получить программу дисциплины", "GetDisciplineProgramDocument", new { specialityDisciplineId = 6})%></h4>
-
+        <h4 class="SuperLink"><%= Html.ActionLink("Получить контингент", "GetStudentDocument")%></h4>
     </div>
 </asp:Content>
 
