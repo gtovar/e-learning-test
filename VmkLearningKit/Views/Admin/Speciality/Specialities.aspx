@@ -25,7 +25,7 @@
                 <%} %>
             </select>
         </span><span style="float: right; margin-bottom: 5px;">
-            <%=Html.ActionLink("Добавить специальность", "Specialities", "Admin", new { alias = "Add" }, new { @class = "" })%>
+            <%=Html.ActionLink("Добавить специальность", "Specialities", "Admin", new { alias = "Add", additional = ((Department)ViewData["Department"]).Alias }, new { @class = "" })%>
         </span>
     </h4>
     <% Html.EndForm(); %>
@@ -38,10 +38,13 @@
                 Название
             </th>
             <th style="padding: 5px;">
-                Абривиатура
+                Аббревиатура
             </th>
             <th style="padding: 5px;">
                 Алиас
+            </th>
+             <th style="padding: 5px;">
+                Код
             </th>
             <th width="50px" style="padding: 5px;">
                 
@@ -68,13 +71,17 @@
             <td>
                 <%=Html.Encode(speciality.Alias)%>
             </td>
+             <td>
+                <%=Html.Encode(speciality.Code)%>
+            </td>
             <td>
-                <a class="transparent_link" href="/Admin/Specialities/Edit/<%=Html.Encode(speciality.Alias) %>">
+                <a class="transparent_link" href="/Admin/Specialities/Edit/<%=Html.Encode(((Department)ViewData["Department"]).Alias)
+                %>/<%=Html.Encode(speciality.Alias) %>">
                     <img class="transparent_img" width="28" src="/Content/Images/edit.png" alt="Редактировать" /></a>
             </td>
             <td>
                 <a class="transparent_link" href="#">
-                    <img onclick="ConfirmDialog('Вы действительно уверены, что хотите удалить специальность <%=Html.Encode(speciality.Abbreviation) %>', '/Admin/Specialities/Delete/<%=Html.Encode(speciality.Alias) %>')"
+                    <img onclick="ConfirmDialog('Вы действительно уверены, что хотите удалить специальность <%=Html.Encode(speciality.Abbreviation) %>', '/Admin/Specialities/Delete/<%=Html.Encode(((Department)ViewData["Department"]).Alias)%>/<%=Html.Encode(speciality.Alias) %>')"
                         class="transparent_img" width="28" src="/Content/Images/delete.png" alt="Удалить" />
                 </a>
             </td>

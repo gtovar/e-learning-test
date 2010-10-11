@@ -658,6 +658,13 @@
     <Content Include="Views\Admin\EducationPlan\Add.aspx" />
     <Content Include="Views\Admin\EducationPlan\Edit.aspx" />
     <Content Include="Views\Admin\EducationPlan\EducationPlanForm.ascx" />
+    <Content Include="Views\Admin\Error.aspx" />
+    <Content Include="Views\Admin\Speciality\Add.aspx" />
+    <Content Include="Views\Admin\Speciality\Edit.aspx" />
+    <Content Include="Views\Admin\Speciality\SpecialityForm.ascx" />
+    <Content Include="Views\Admin\Specialization\Add.aspx" />
+    <Content Include="Views\Admin\Specialization\SpecializationForm.ascx" />
+    <Content Include="Views\Admin\Specialization\Edit.aspx" />
     <Content Include="Views\Admin\XmlParse.aspx" />
     <Content Include="Views\DateTimeStatement\DateTimeStatement.aspx" />
     <Content Include="Views\Shared\GeneralMenu.ascx" />
@@ -816,7 +823,9 @@
     <Content Include="Views\Tests\GetTestVariant.aspx" />
     <Content Include="Views\Tests\Show.aspx" />
     <Content Include="Views\ViewTest\ViewTestData.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />
     <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />

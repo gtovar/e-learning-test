@@ -11,6 +11,7 @@ namespace VmkLearningKit.Models.Repository
         List<Speciality> GetAllByEducationPlanTitle(string title);
         //bool IsEntryWithAliasExisted(string alias);
         Speciality GetByAlias(string alias);
+        Speciality GetByAliasAndDepartment(string alias, long departmentId);
         long GetMaxId();
         //Speciality GetByTitle(string title);
         Speciality GetByAbbreviation(string abbreviation);
@@ -18,5 +19,6 @@ namespace VmkLearningKit.Models.Repository
         IEnumerable<Speciality> Add(IEnumerable<Speciality> specialities);
         Speciality GetByCode(string code);
         Speciality Update(Speciality obj);
+        void UpdateByAlias(string updatedObjId, Speciality newObj);
     }
 }
