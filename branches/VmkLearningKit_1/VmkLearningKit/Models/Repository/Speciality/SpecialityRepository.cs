@@ -88,7 +88,23 @@ namespace VmkLearningKit.Models.Repository
 
             return obj;
         }
-        
+
+        public Speciality GetByAliasAndDepartment(string alias,long departmentId)
+        {
+            Speciality obj = null;
+            try
+            {
+                obj = DataContext.Specialities.SingleOrDefault(s => s.Alias == alias && s.DepartmentId==departmentId);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Speciality's Table in Database contains more then one entry with the same alias: " + alias + "!!!!", ex);
+            }
+
+            return obj;
+        }
+
+
         public Speciality GetByAbbreviation(string abbreviation)
         {
             Speciality obj = null;
@@ -286,6 +302,19 @@ namespace VmkLearningKit.Models.Repository
                 Utility.WriteToLog("Speciality can't add to database", ex);
             }
             return null;
+        }
+
+
+        public void UpdateByAlias(string updatedObjId, Speciality newObj)
+        {
+            Speciality updatedObj = GetByAlias(updatedObjId);
+
+            updatedObj.Title = newObj.Title;
+            updatedObj.Alias = newObj.Alias;
+            updatedObj.Abbreviation = newObj.Abbreviation;
+            updatedObj.Code = newObj.Code;
+
+            DataContext.SubmitChanges();
         }
     }
 }

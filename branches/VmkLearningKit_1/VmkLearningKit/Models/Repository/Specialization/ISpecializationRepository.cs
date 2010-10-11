@@ -15,7 +15,11 @@ namespace VmkLearningKit.Models.Repository
         Specialization GetByTitle(string title);
         Specialization Add(Specialization obj);
         Specialization GetByAbbreviation(string abbreviation);
+        Specialization GetByAliasAndChair(string alias, long chairId);
         IEnumerable<Specialization> Add(IEnumerable<Specialization> specializations);
         Specialization Update(Specialization obj);
+        void UpdateById(long updatedObjId, Specialization newObj);
+     // void HardDelete(Specialization obj);
+  
     }
 }

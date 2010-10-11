@@ -25,10 +25,11 @@ namespace VmkLearningKit.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Departments(string alias, string additional)
         {
-            IEnumerable<Department> departments = null;
-            Department department = null;
             try
             {
+            IEnumerable<Department> departments = null;
+            Department department = null;
+            
                 GeneralMenu();
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
                 if (null != alias && !alias.Trim().Equals(String.Empty))
@@ -53,21 +54,24 @@ namespace VmkLearningKit.Controllers
                                 if (null != additional && !additional.Trim().Equals(String.Empty))
                                 {
                                     department = repositoryManager.GetDepartmentRepository.GetByAlias(additional);
-                                    repositoryManager.GetDepartmentRepository.Delete(department);
-                                    return Redirect("/Admin/Departments");
+                                    repositoryManager.GetDepartmentRepository.Delete(department); 
+                                    return Redirect("/Admin/Departments");                                                                      
                                 };
                             };
                             break;
                     }
                 }
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
+                ViewData["Departments"] = departments;
+                return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Departments.aspx");
             }
             catch (Exception ex)
             {
                 Utility.RedirectToErrorPage("AdminController.departments: catch exception", ex);
+                ViewData["Error"] = ex;
+                return View("/Views/Admin/Error.aspx");
             }
-            ViewData["Departments"] = departments;
-            return View(Constants.ADMIN_DEPARTMENT_VIEWS + "Departments.aspx");
+            
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -81,7 +85,6 @@ namespace VmkLearningKit.Controllers
                 GeneralMenu();
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
                 string departmentAlias = form["Departments"];
-
                 if (alias != null && additional != null && !alias.Trim().Equals(String.Empty) && !additional.Trim().Equals(String.Empty))
                 {
                     {
@@ -106,26 +109,21 @@ namespace VmkLearningKit.Controllers
                                         return Redirect("/Admin/Chairs/");
                                     }
                                     else return View(Constants.ADMIN_CHAIR_VIEWS + "Add.aspx", chair);
-
                                 }
 
                             case "Edit":
                                 {
-                                 
-                                    if (ModelState.IsValid && param1!=null)
+                                    if (ModelState.IsValid && param1 != null)
                                     {
                                         repositoryManager.GetChairRepository.UpdateByAlias(param1, chair);
                                         return Redirect("/Admin/Chairs/");
                                     }
                                     else return View(Constants.ADMIN_CHAIR_VIEWS + "Edit.aspx", chair);
-
                                 }
-
-                        }
+                         }
                     }
                 }
                 
-
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
                 if (null != departments)
                 {
@@ -270,7 +268,7 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Specialities(FormCollection form)
+        public ActionResult Specialities(string alias, string additional, string param1, Speciality speciality, FormCollection form)
         {
             IEnumerable<Department> departments = null;
             Department department = null;
@@ -281,7 +279,49 @@ namespace VmkLearningKit.Controllers
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
 
                 string departmentAlias = form["Departments"];
+                if (alias != null && additional != null && !alias.Trim().Equals(String.Empty) && !additional.Trim().Equals(String.Empty))
+                {
+                        if (form["specialityAlias"] == "") speciality.Alias = null;
+                        else speciality.Alias = form["specialityAlias"];
+                        speciality.DepartmentId = repositoryManager.GetDepartmentRepository.GetByAlias(additional).Id;
+                        if (speciality.Alias == null)
+                            ModelState.AddModelError("Alias", "*јлиас специальности об€зательный параметр");
 
+                        if (speciality.Abbreviation == null)
+                            ModelState.AddModelError("Abbreviation", "*јббревиатура специальности об€зательный параметр");
+                        if (speciality.Title == null)
+                            ModelState.AddModelError("Title", "*Ќазвание специальности об€зательный параметр");
+                        if (speciality.Code == null)
+                            ModelState.AddModelError("Code", "* од специальности об€зательный параметр");
+
+                        switch (alias)
+                        {
+                            case "Add":
+                                {
+                                    if (ModelState.IsValid)
+                                    {
+                                        repositoryManager.GetSpecialityRepository.Add(speciality);
+                                        return Redirect("/Admin/Specialities/");
+                                    }
+                                    else return View(Constants.ADMIN_SPECIALITY_VIEWS + "Add.aspx", speciality);
+
+                                }
+
+                            case "Edit":
+                                {
+
+                                    if (ModelState.IsValid && param1 != null)
+                                    {
+                                        repositoryManager.GetSpecialityRepository.UpdateByAlias(param1, speciality);
+                                        return Redirect("/Admin/Specialities/");
+                                    }
+                                    else return View(Constants.ADMIN_SPECIALITY_VIEWS + "Edit.aspx", speciality);
+
+                                }
+
+                        
+                    }
+                }
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
                 if (null != departments)
                 {
@@ -310,8 +350,9 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Specialities(string alias)
+        public ActionResult Specialities(string alias, string additional, string param1)
         {
+            Speciality speciality = null;
             IEnumerable<Department> departments = null;
             Department department = null;
             IEnumerable<Speciality> specialities = null;
@@ -321,6 +362,38 @@ namespace VmkLearningKit.Controllers
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
 
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
+                if (null != alias && !alias.Trim().Equals(String.Empty) && additional != null && !additional.Trim().Equals(String.Empty))
+                {
+                    department = repositoryManager.GetDepartmentRepository.GetByAlias(additional);
+                    ViewData["type_partial"] = "Specialities";
+                    switch (alias)
+                    {
+                        case "Add":
+                            {
+                                Speciality newSpeciality = new Speciality();
+                                return View(Constants.ADMIN_SPECIALITY_VIEWS + "Add.aspx", newSpeciality);
+                            }; break;
+
+                        case "Edit":
+                            {
+                                if (null != param1 && !param1.Trim().Equals(String.Empty))
+                                    speciality = repositoryManager.GetSpecialityRepository.GetByAliasAndDepartment(param1,department.Id);
+                                return View(Constants.ADMIN_SPECIALITY_VIEWS + "Edit.aspx", speciality);
+                            }; break;
+
+                        case "Delete":
+                            {
+                                if (null != additional && !additional.Trim().Equals(String.Empty))
+                                {
+                                    if (null != param1 && !param1.Trim().Equals(String.Empty))
+                                        speciality = repositoryManager.GetSpecialityRepository.GetByAliasAndDepartment(param1, department.Id);
+                                    repositoryManager.GetSpecialityRepository.Delete(speciality);
+                                    return Redirect("/Admin/Specialities");
+                                };
+                            };
+                            break;
+                    }
+                }
                 if (null != departments)
                 {
                     department = departments.First();
@@ -341,7 +414,7 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Specializations(FormCollection form)
+        public ActionResult Specializations(string alias, string additional, string param1, Specialization specialization, FormCollection form)
         {
             IEnumerable<Department> departments = null;
             Department department = null;
@@ -352,6 +425,7 @@ namespace VmkLearningKit.Controllers
             IEnumerable<Chair> chairs = null;
             Chair chair = null;
             IEnumerable<Specialization> specializations = null;
+            Specialization specializationsTmp = null;
             try
             {
                 GeneralMenu();
@@ -365,14 +439,16 @@ namespace VmkLearningKit.Controllers
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
                 if (null != departments)
                 {
+                    if (alias.Trim() == "Add" && (additional != null && !additional.Trim().Equals(String.Empty)))
+                        department = repositoryManager.GetDepartmentRepository.GetByAlias(additional);
+                    else if (null != alias && !alias.Trim().Equals(String.Empty) && (additional == null || additional.Trim().Equals(String.Empty)))
+                        department = repositoryManager.GetDepartmentRepository.GetByAlias(alias);
+                    else department = departments.First();
                     if (null != departmentAlias)
                     {
                         department = repositoryManager.GetDepartmentRepository.GetByAlias(departmentAlias);
                     }
-                    if (null == department)
-                    {
-                        department = departments.First();
-                    }
+                    
                     specialities = repositoryManager.GetSpecialityRepository.GetAll(department.Alias);
                     if (null != specialityAlias)
                     {
@@ -414,6 +490,52 @@ namespace VmkLearningKit.Controllers
                 ViewData["Chair"] = chair;
                 ViewData["Chairs"] = chairs;
                 ViewData["Specializations"] = specializations;
+                if (alias != null && additional != null && !alias.Trim().Equals(String.Empty) && !additional.Trim().Equals(String.Empty))
+                {
+
+                    if (form["specializationAlias"] == "") specialization.Alias = null;
+                    else specialization.Alias = form["specializationAlias"];
+                    specialization.EducationPlanId= Convert.ToInt64(form["educationPlanId"]);
+
+                    specialization.ChairId = Convert.ToInt64(form["ChairId"]);
+                    specialization.SpecialityId = Convert.ToInt64(form["SpecialityId"]);
+                    chair = repositoryManager.GetChairRepository.GetById(Convert.ToInt64(form["ChairId"]));
+                    
+
+                    if (specialization.Alias == null)
+                        ModelState.AddModelError("Alias", "*јлиас специализации об€зательный параметр");
+
+                    if (specialization.Abbreviation == null)
+                        ModelState.AddModelError("Abbreviation", "*јббревиатура специализации об€зательный параметр");
+                    if (specialization.Title == null)
+                        ModelState.AddModelError("Title", "*Ќазвание специализации об€зательный параметр");
+                    
+                    switch (alias)
+                    {
+                        case "Add":
+                            {
+                                if (ModelState.IsValid)
+                                {
+                                    repositoryManager.GetSpecializationRepository.Add(specialization);
+                                    return Redirect("/Admin/Specializations/");
+                                }
+                                else return View(Constants.ADMIN_SPECIALIZATION_VIEWS + "Add.aspx", specialization);
+
+                            }
+
+                        case "Edit":
+                            {
+                                if (ModelState.IsValid && param1 != null)
+                                {
+                                    specializationsTmp = repositoryManager.GetSpecializationRepository.GetByAliasAndChair(param1, chair.Id);
+                                    repositoryManager.GetSpecializationRepository.UpdateById(specializationsTmp.Id, specialization);
+                                    return Redirect("/Admin/Specializations/");
+                                }
+                                else return View(Constants.ADMIN_SPECIALIZATION_VIEWS + "Edit.aspx", specialization);
+                            }
+                      }
+                }
+   
             }
             catch (Exception ex)
             {
@@ -423,17 +545,21 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult Specializations(string alias)
+        public ActionResult Specializations(string alias, string additional, string param1)
         {
             IEnumerable<Department> departments = null;
-            Department department = null;
+            Department department=null;
+            
             IEnumerable<Speciality> specialities = null;
             Speciality speciality = null;
+
             IEnumerable<EducationPlan> educationPlans = null;
             EducationPlan educationPlan = null;
+            
             IEnumerable<Chair> chairs = null;
             Chair chair = null;
             IEnumerable<Specialization> specializations = null;
+            Specialization specialization=null;
             try
             {
                 GeneralMenu();
@@ -441,7 +567,11 @@ namespace VmkLearningKit.Controllers
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
                 if (null != departments)
                 {
-                    department = departments.First();
+                    if(alias.Trim()=="Add" && (additional!= null && !additional.Trim().Equals(String.Empty)))
+                        department=repositoryManager.GetDepartmentRepository.GetByAlias(additional);
+                    else if (null != alias && !alias.Trim().Equals(String.Empty) && (additional == null || additional.Trim().Equals(String.Empty)))
+                        department = repositoryManager.GetDepartmentRepository.GetByAlias(alias);
+                    else department = departments.First();
                     specialities = repositoryManager.GetSpecialityRepository.GetAll(department.Alias);
                     if (null != specialities)
                     {
@@ -471,6 +601,46 @@ namespace VmkLearningKit.Controllers
                 ViewData["Chair"] = chair;
                 ViewData["Chairs"] = chairs;
                 ViewData["Specializations"] = specializations;
+
+               if (null != alias && !alias.Trim().Equals(String.Empty) && additional != null && !additional.Trim().Equals(String.Empty))
+                {
+                    chair  = repositoryManager.GetChairRepository.GetByAlias(additional);
+                    ViewData["type_partial"] = "Specializations";
+                    switch (alias)
+                    {
+                       case "Add":
+                            {
+                                Specialization newSpecialization = new Specialization();
+                                return View(Constants.ADMIN_SPECIALIZATION_VIEWS + "Add.aspx", newSpecialization);
+                            }; break;
+                       
+
+                        case "Edit":
+                            {
+                                if (null != param1 && !param1.Trim().Equals(String.Empty))
+                                {
+                                    specialization = repositoryManager.GetSpecializationRepository.GetByAliasAndChair(param1, chair.Id);
+                                    ViewData["EducationPlan"] = specialization.EducationPlan;
+                                    ViewData["Speciality"] = specialization.Speciality;
+                                    ViewData["Chair"] = specialization.Chair;
+                                }
+                                return View(Constants.ADMIN_SPECIALIZATION_VIEWS + "Edit.aspx", specialization);
+                            }; break;
+
+                        case "Delete":
+                            {
+                                if (null != additional && !additional.Trim().Equals(String.Empty))
+                                {
+                                    if (null != param1 && !param1.Trim().Equals(String.Empty))
+                                        specialization = repositoryManager.GetSpecializationRepository.GetByAliasAndChair(param1, chair.Id);
+                                    repositoryManager.GetSpecializationRepository.Delete(specialization);
+                                    return Redirect("/Admin/Specializations");
+                                };
+                            };
+                            break;
+                    }
+                }
+                           
             }
             catch (Exception ex)
             {
@@ -831,6 +1001,8 @@ namespace VmkLearningKit.Controllers
             
             return View("XmlParse");
         }
+
+
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Departments(string alias,string additional,string departmentAlias, Department department)

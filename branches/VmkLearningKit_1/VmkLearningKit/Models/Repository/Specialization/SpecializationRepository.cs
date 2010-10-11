@@ -156,9 +156,9 @@ namespace VmkLearningKit.Models.Repository
         public void Delete(Specialization obj)
         {
             DataContext.Specializations.DeleteOnSubmit(obj);
-
             DataContext.SubmitChanges();
         }
+
 
         public void DeleteById(long id)
         {
@@ -216,6 +216,23 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+       
+
+        public void UpdateById(long updatedObjId, Specialization newObj)
+        {
+            Specialization updatedObj = GetById(updatedObjId);
+
+            updatedObj.Title = newObj.Title;
+            updatedObj.Alias = newObj.Alias;
+            updatedObj.Abbreviation = newObj.Abbreviation;
+            updatedObj.Code = newObj.Code;
+            updatedObj.SpecialityId = newObj.SpecialityId;
+            updatedObj.ChairId = newObj.ChairId;
+            updatedObj.EducationPlanId = newObj.EducationPlanId;
+
+            DataContext.SubmitChanges();
+        }
+
         public Specialization Update(Specialization obj)
         {
             try
@@ -240,6 +257,21 @@ namespace VmkLearningKit.Models.Repository
                 Utility.WriteToLog("Specialization can't add to database", ex);
             }
             return null;
+        }
+
+        public Specialization GetByAliasAndChair(string alias, long chairId)
+        {
+            Specialization obj = null;
+            try
+            {
+                obj = DataContext.Specializations.SingleOrDefault(s => s.Alias == alias && s.ChairId == chairId);
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Speciality's Table in Database contains more then one entry with the same alias: " + alias + "!!!!", ex);
+            }
+
+            return obj;
         }
     }
 }
