@@ -14,7 +14,8 @@
         <h4 class="SuperLink"><%= Html.ActionLink("Получить список специальностей", "GetSpecialityDocument")%></h4>
         <h4 class="SuperLink"><%= Html.ActionLink("Получить список групп", "GetStudentDocument")%></h4>
         <h4 class="SuperLink"><%= Html.ActionLink("Получить список студентов", "GetStudentDocument")%></h4>
-        <h4 class="SuperLink"><%= Html.ActionLink("Получить план дисциплины", "GetDisciplineProgramDocument")%></h4>
+        <h4 class="SuperLink"><%= Html.ActionLink("Получить программу дисциплины", "GetDisciplineProgramDocument", new { specialityDisciplineId = 6})%></h4>
+
     </div>
 </asp:Content>
 
