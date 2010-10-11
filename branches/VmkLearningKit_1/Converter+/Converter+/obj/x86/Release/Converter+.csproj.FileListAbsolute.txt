@@ -1,0 +1,9 @@
+C:\Users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\bin\Release\Converter+.exe
+C:\Users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\bin\Release\Converter+.pdb
+C:\Users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Release\Converter_.Form1.resources
+C:\Users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Release\Converter_.Properties.Resources.resources
+C:\Users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Release\Converter+.exe
+C:\Users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Release\Converter+.pdb
