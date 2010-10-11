@@ -598,7 +598,7 @@ namespace VmkLearningKit.Controllers
             }
         }
 
-        public ActionResult GetDisciplineProgramDocument()
+        public ActionResult GetDisciplineProgramDocument(long specialityDisciplineId)
         {
             //try
             //{
@@ -609,7 +609,7 @@ namespace VmkLearningKit.Controllers
                 ISpecialityDisciplineTopicRepository specialityDisciplineTopicRepository
                     = repositoryManager.GetSpecialityDisciplineTopicRepository;
 
-                SpecialityDisciplineProgram disciplineProgram = specialityDisciplineProgramRepository.GetById(1);
+                SpecialityDisciplineProgram disciplineProgram = specialityDisciplineProgramRepository.GetById(specialityDisciplineId);
 
                 Word.Application program;
                 Word.Document document = CreateWordDocument(out program);
@@ -622,9 +622,6 @@ namespace VmkLearningKit.Controllers
                 bool flag;
 
                 //Титульный лист
-
-            //object patternstyle=Word.WdStyleType.wdStyleTypeParagraph;
-
             
                 Word.Paragraph par = document.Paragraphs.Add(oMissing);
                 par.Range.Text = "ФЕДЕРАЛЬНОЕ АГЕНТСТВО ПО ОБРАЗОВАНИЮ";              
@@ -724,18 +721,22 @@ namespace VmkLearningKit.Controllers
                 {
                     int index = applicationDomain.IndexOf("<p>");
                     int index1 = applicationDomain.IndexOf("</p>");
-                    if (index + 3 < index1)
+                    if (index < index1 && index + 3 < index1)
                     {
                         document.Paragraphs.Add();
                         range = document.Paragraphs[document.Paragraphs.Count].Range;
                         range.Underline = Word.WdUnderline.wdUnderlineNone;
                         //document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
-                        string s = applicationDomain.Substring(index + "<p>".Length, index1 - index - "<td>".Length + 1);
+                        string s = applicationDomain.Substring(index + "<p>".Length, index1 - index - "</p>".Length + 1);
                         range.Text = s;
-                        applicationDomain = applicationDomain.Remove(index,"<td>".Length + s.Length + "</p>".Length -1);
+                        applicationDomain = applicationDomain.Remove(index,"<p>".Length + s.Length + "</p>".Length);
                     }
-                    else
-                        flag = false;
+                    else if (index != -1)
+                    {
+                        //document.Paragraphs.Add();
+                        applicationDomain = applicationDomain.Remove(index, "<p>".Length + "</p>".Length);
+                    }
+                    else flag = false;
                 }
 
                 // Цели и задачи курса
@@ -753,18 +754,22 @@ namespace VmkLearningKit.Controllers
                 {
                     int index = purposes.IndexOf("<p>");
                     int index1 = purposes.IndexOf("</p>");
-                    if (index + 3 < index1)
+                    if (index < index1 && index + 3 < index1)
                     {
                         document.Paragraphs.Add();
                         range = document.Paragraphs[document.Paragraphs.Count].Range;
                         range.Underline = Word.WdUnderline.wdUnderlineNone;
                         //document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
-                        string s = purposes.Substring(index + "<p>".Length, index1 - index - "<td>".Length + 1);
+                        string s = purposes.Substring(index + "<p>".Length, index1 - index - "</p>".Length + 1);
                         range.Text = s;
-                        purposes = purposes.Remove(index, "<td>".Length + s.Length + "</p>".Length - 1);
+                        purposes = purposes.Remove(index, "<p>".Length + s.Length + "</p>".Length);
                     }
-                    else
-                        flag = false;
+                    else if (index != -1)
+                    {
+                        //document.Paragraphs.Add();
+                        purposes = purposes.Remove(index, "<p>".Length + "</p>".Length);
+                    }
+                    else flag = false;
                 }
 
                 // Требования к уровню освоения содержания дисциплины
@@ -783,18 +788,22 @@ namespace VmkLearningKit.Controllers
                 {
                     int index = requirements.IndexOf("<p>");
                     int index1 = requirements.IndexOf("</p>");
-                    if (index + 3 < index1)
+                    if (index < index1 && index + 3 < index1)
                     {
                         document.Paragraphs.Add();
                         range = document.Paragraphs[document.Paragraphs.Count].Range;
                         range.Underline = Word.WdUnderline.wdUnderlineNone;
-                        string s = requirements.Substring(index + "<p>".Length, index1 - index - "<td>".Length + 1);
+                        string s = requirements.Substring(index + "<p>".Length, index1 - index - "</p>".Length + 1);
                         //document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
                         range.Text = s;
-                        requirements = requirements.Remove(index, "<td>".Length + s.Length + "</p>".Length - 1);
+                        requirements = requirements.Remove(index, "<p>".Length + s.Length + "</p>".Length);
                     }
-                    else
-                        flag = false;
+                    else if (index != -1)
+                    {
+                        //document.Paragraphs.Add();
+                        requirements = requirements.Remove(index, "<p>".Length + "</p>".Length);
+                    }
+                    else flag = false;
                 }
 
                 // Объем дисциплины и виды учебной работы
@@ -1151,6 +1160,72 @@ namespace VmkLearningKit.Controllers
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
                 range.Font.Size = 12;
                 range.Text = "Примечание – таблица заполняется, если  формой итогового контроля предусмотрен экзамен";
+
+                // Примерная тематика курсовых работ и критерии их оценки
+
+                string reporting = disciplineProgram.Reporting;
+                reporting = reporting.Replace("\r\n", "");
+
+                document.Paragraphs.Add(oMissing);
+                range = document.Paragraphs[document.Paragraphs.Count].Range;
+                range.Font.Size = 14;
+                range.Font.Underline = Word.WdUnderline.wdUnderlineSingle;
+                range.Text = "9. Примерная тематика курсовых работ и критерии их оценки";
+                document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
+
+                flag = true;
+                while (flag)
+                {
+                    int index = reporting.IndexOf("<p>");
+                    int index1 = reporting.IndexOf("</p>");
+                    if (index < index1 && index + 3 < index1)
+                    {
+                        document.Paragraphs.Add();
+                        range = document.Paragraphs[document.Paragraphs.Count].Range;
+                        range.Underline = Word.WdUnderline.wdUnderlineNone;
+                        //document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+                        string s = reporting.Substring(index + "<p>".Length, index1 - index - "</p>".Length + 1);
+                        range.Text = s;
+                        reporting = reporting.Remove(index, "<p>".Length + s.Length + "</p>".Length);
+                    }
+                    else if (index != -1)
+                    {
+                        //document.Paragraphs.Add();
+                        reporting = reporting.Remove(index, "<p>".Length + "</p>".Length);
+                    }
+                    else flag = false;
+                }
+
+                // Дополнительно
+
+                string additional = disciplineProgram.Additional;
+                additional = additional.Replace("\r\n", "");
+                additional = additional.Replace("\r", "");
+
+                document.Paragraphs.Add();
+
+                flag = true;
+                while (flag)
+                {
+                    int index = additional.IndexOf("<p>");
+                    int index1 = additional.IndexOf("</p>");
+                    if (index < index1 && index + 3 < index1)
+                    {
+                        document.Paragraphs.Add();
+                        range = document.Paragraphs[document.Paragraphs.Count].Range;
+                        range.Underline = Word.WdUnderline.wdUnderlineNone;
+                        string s = additional.Substring(index + "<p>".Length, index1 - index - "</p>".Length + 1);
+                        //document.Paragraphs[document.Paragraphs.Count].Alignment = Word.WdParagraphAlignment.wdAlignParagraphJustify;
+                        range.Text = s;
+                        additional = additional.Remove(index, "<p>".Length + s.Length + "</p>".Length);
+                    }
+                    else if (index != -1)
+                    {
+                        //document.Paragraphs.Add();
+                        additional = additional.Remove(index, "<p>".Length + "</p>".Length);
+                    }
+                    else flag = false;
+                }
 
             //-----------------------------------------------    
                 string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
