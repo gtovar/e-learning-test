@@ -69,7 +69,7 @@ namespace Converter
 
                         writer.WriteAttributeString("groupNumber", groupNumber);
 
-                        if (groupNumber[0] != '0')
+                        /*if (groupNumber[0] != '0')
                         {
                             sheet2 = (Excel.Worksheet)sheets.get_Item("0" + groupNumber);
                         }
@@ -88,7 +88,7 @@ namespace Converter
                             {
                                 if (specializationAbbreviation.Replace(" ", "").ToLower().IndexOf(specialities[j].Replace(" ", "").ToLower()) != -1)
                                 {
-                                    writer.WriteAttributeString("specialityAbbreviation", abbreviation[j]);
+                                    writer.WriteAttributeString("specializationAbbreviation", abbreviation[j]);
                                     fl = true;
                                     break;
                                 }
@@ -96,14 +96,16 @@ namespace Converter
 
                         }
                         if (!fl)
-                            writer.WriteAttributeString("specializationAbbreviation", "Отсутствует");
+                            writer.WriteAttributeString("specializationAbbreviation", "Отсутствует");*/
                     }
 
                     else
                     {
                         writer.WriteAttributeString("groupNumber", "Отсутствует");
-                        writer.WriteAttributeString("specializationAbbreviation", "Отсутствует");
+                        //writer.WriteAttributeString("specializationAbbreviation", "Отсутствует");
                     }
+
+                    writer.WriteAttributeString("specializationAbbreviation", "Отсутствует");
 
                     if (fio != null)
                     {

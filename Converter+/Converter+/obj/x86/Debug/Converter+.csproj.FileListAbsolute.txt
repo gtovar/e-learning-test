@@ -7,3 +7,12 @@ c:\users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter
 c:\users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Debug\GenerateResource.write.1.tlog
 c:\users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Debug\Converter+.exe
 c:\users\leonid.orlov\documents\visual studio 2010\Projects\Converter+\Converter+\obj\x86\Debug\Converter+.pdb
+D:\repository_1\Converter+\Converter+\obj\x86\Debug\Converter+.exe
+D:\repository_1\Converter+\Converter+\obj\x86\Debug\Converter+.pdb
+D:\repository_1\Converter+\Converter+\bin\Debug\Converter+.exe
+D:\repository_1\Converter+\Converter+\bin\Debug\Converter+.pdb
+D:\repository_1\Converter+\Converter+\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\repository_1\Converter+\Converter+\obj\x86\Debug\Converter_.Form1.resources
+D:\repository_1\Converter+\Converter+\obj\x86\Debug\Converter_.Properties.Resources.resources
+D:\repository_1\Converter+\Converter+\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\repository_1\Converter+\Converter+\obj\x86\Debug\GenerateResource.write.1.tlog

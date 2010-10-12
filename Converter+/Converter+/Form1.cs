@@ -73,7 +73,6 @@ namespace Converter_
                     SpecialityConverter conv3 = new SpecialityConverter();
                     richTextBox1.Text = "Подождите несколько секунд - идет конвертирование\n";
                     conv3.ConvertDocument(textBox1.Text, textBox2.Text);
-                    richTextBox1.Text = "\n";
                     foreach (string s in conv3.Message)
                     {
                         richTextBox1.Text += s + "\n";

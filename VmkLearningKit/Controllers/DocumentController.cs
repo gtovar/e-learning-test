@@ -172,8 +172,8 @@ namespace VmkLearningKit.Controllers
                 DirectoryInfo directory = new DirectoryInfo(path);
                 directory.Create();
                 SaveWordDocument(path + "\\Список кафедр.doc", document, program);
-
-                return RedirectToAction("Index");
+                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getchairdocument", "uploads/downloads/" + DateTime.Now.DayOfYear + "/Список кафедр.doc");
+                return Redirect(rw);
             }
             catch
             {
@@ -286,7 +286,8 @@ namespace VmkLearningKit.Controllers
                 directory.Create();
                 SaveWordDocument(path + "\\Список преподавателей.doc", document, program);
 
-                return RedirectToAction("Index");
+                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getteacherdocument", "uploads/downloads/" + DateTime.Now.DayOfYear + "/Список преподавателей.doc");
+                return Redirect(rw);
             }
             catch
             {
@@ -528,7 +529,8 @@ namespace VmkLearningKit.Controllers
                 directory.Create();
                 SaveWordDocument(path + "\\Список специальностей.doc", document, program);
 
-                return RedirectToAction("Index");
+                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getspecialitydocument", "uploads/downloads/" + DateTime.Now.DayOfYear + "/Список специальностей.doc");
+                return Redirect(rw);
             }
             catch
             {
@@ -590,7 +592,8 @@ namespace VmkLearningKit.Controllers
                 directory.Create();
                 SaveExcelDocument(path + "\\Список студентов.xls", program, book);
 
-                return RedirectToAction("Index");
+                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getstudentdocument", "uploads/downloads/" + DateTime.Now.DayOfYear + "/Список студентов.xls");
+                return Redirect(rw);
             }
             catch
             {
@@ -600,8 +603,8 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult GetDisciplineProgramDocument(long specialityDisciplineId)
         {
-            //try
-            //{
+            try
+            {
                 GeneralMenu();
                 RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
                 ISpecialityDisciplineProgramRepository specialityDisciplineProgramRepository
@@ -1233,13 +1236,13 @@ namespace VmkLearningKit.Controllers
                 directory.Create();
                 SaveWordDocument(path + "\\" + disciplineProgram.SpecialityDiscipline.Title +".doc", document, program);
 
-                //return RedirectToAction("Professor", "Cabinet", new { alias = professor, additional = disciplineProgram.SpecialityDiscipline.Alias });
-                return RedirectToAction("Index");
-            /*}
+                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getdisciplineprogramdocument?specialitydisciplineid=6", "uploads/downloads/" + DateTime.Now.DayOfYear + "/" + disciplineProgram.SpecialityDiscipline.Title + ".doc");
+                return Redirect(rw);
+            }
             catch
             {
                 return RedirectToAction("Error", "Home");
-            }*/
+            }
         }
     }
 }
