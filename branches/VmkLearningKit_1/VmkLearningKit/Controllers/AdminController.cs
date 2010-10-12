@@ -509,6 +509,8 @@ namespace VmkLearningKit.Controllers
                         ModelState.AddModelError("Abbreviation", "*јббревиатура специализации об€зательный параметр");
                     if (specialization.Title == null)
                         ModelState.AddModelError("Title", "*Ќазвание специализации об€зательный параметр");
+                    if (specialization.Code == null)
+                        ModelState.AddModelError("Code", "* од специализации об€зательный параметр");
                     
                     switch (alias)
                     {
