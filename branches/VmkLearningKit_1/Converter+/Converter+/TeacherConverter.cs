@@ -78,6 +78,7 @@ namespace Converter
                 List<string> chairStr = new List<string>();
 
                 XmlTextWriter writer = new XmlTextWriter(xmlPath, System.Text.Encoding.Default);
+                writer.Formatting = Formatting.Indented;
 
                 writer.WriteStartDocument();
                 writer.WriteStartElement("teachers");

@@ -107,6 +107,7 @@ namespace Converter
                 List<string> specializationStr = new List<string>();
 
                 XmlTextWriter writer = new XmlTextWriter(xmlPath, System.Text.Encoding.Default);
+                writer.Formatting = Formatting.Indented;
 
                 writer.WriteStartDocument();
                 writer.WriteStartElement("specialities");

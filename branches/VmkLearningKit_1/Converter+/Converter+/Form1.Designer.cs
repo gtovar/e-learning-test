@@ -166,7 +166,8 @@
             "Список специальностей",
             "Список групп",
             "Список студентов",
-            "Программа дисциплины"});
+            "Программа дисциплины",
+            "Учебный план"});
             this.comboBox1.Location = new System.Drawing.Point(305, 82);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(151, 21);
