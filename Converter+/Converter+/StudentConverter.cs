@@ -33,6 +33,7 @@ namespace Converter
                 Excel.Range cell;
 
                 XmlTextWriter writer = new XmlTextWriter(xmlPath, System.Text.Encoding.Default);
+                writer.Formatting = Formatting.Indented;
 
                 writer.WriteStartDocument();
                 writer.WriteStartElement("students");

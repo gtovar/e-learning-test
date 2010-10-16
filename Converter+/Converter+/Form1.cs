@@ -105,6 +105,16 @@ namespace Converter_
                         richTextBox1.Text += s + "\n";
                     }
                     break;
+                case "Учебный план":
+                    EducationPlanConverter conv7 = new EducationPlanConverter();
+                    richTextBox1.Text = "Подождите несколько секунд - идет конвертирование\n";
+                    conv7.ConvertDocument(textBox1.Text, textBox2.Text);
+                    richTextBox1.Text = "";
+                    foreach (string s in conv7.Message)
+                    {
+                        richTextBox1.Text += s + "\n";
+                    }
+                    break;
 
             }
         }

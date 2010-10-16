@@ -55,6 +55,7 @@
     <Compile Include="ChairConverter.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="DisciplineProgramConverter.cs" />
+    <Compile Include="EducationPlanConverter.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
