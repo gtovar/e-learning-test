@@ -107,7 +107,28 @@ namespace VmkLearningKit.Controllers
         public ActionResult Index()
         {
             GeneralMenu();
+            ViewData[Constants.PAGE_TITLE] = "Генерация образовательных документов";
             return View();
+        }
+
+        public FileResult Save(string alias, string additional)
+        {
+            try
+            {
+                DateTime dt   = DateTime.Now; 
+                DateTime dt_2 = dt.AddSeconds(3.0);
+
+                while (DateTime.Now < dt_2) ;
+
+                DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Downloads"));
+                string docName          = targetDir + "\\" + alias;
+                 
+                return File(docName, additional.Replace("_", "/"), alias);
+            }
+            catch(Exception exc)
+            {
+                return null;
+            }
         }
 
         public ActionResult GetChairDocument()
@@ -168,12 +189,13 @@ namespace VmkLearningKit.Controllers
                     }
                 }
 
-                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
-                DirectoryInfo directory = new DirectoryInfo(path);
-                directory.Create();
-                SaveWordDocument(path + "\\Список кафедр.doc", document, program);
-                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getchairdocument", "uploads/downloads/" + DateTime.Now.DayOfYear + "/Список кафедр.doc");
-                return Redirect(rw);
+                DirectoryInfo   targetDir   = new DirectoryInfo(HttpContext.Server.MapPath("/Downloads"));
+                long            docIndex    = targetDir.GetFiles("*.doc").Length;
+                string          docName     = targetDir + "\\" + docIndex.ToString() + ".doc";
+                
+                SaveWordDocument(docName, document, program);
+
+                return RedirectToAction("Save", new { alias = docIndex.ToString() + ".doc", additional = "application_msword" });
             }
             catch
             {
@@ -281,13 +303,13 @@ namespace VmkLearningKit.Controllers
 
                 }
 
-                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
-                DirectoryInfo directory = new DirectoryInfo(path);
-                directory.Create();
-                SaveWordDocument(path + "\\Список преподавателей.doc", document, program);
+                DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Downloads"));
+                long docIndex = targetDir.GetFiles("*.doc").Length;
+                string docName = targetDir + "\\" + docIndex.ToString() + ".doc";
 
-                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getteacherdocument", "uploads/downloads/" + DateTime.Now.DayOfYear + "/Список преподавателей.doc");
-                return Redirect(rw);
+                SaveWordDocument(docName, document, program);
+
+                return RedirectToAction("Save", new { alias = docIndex.ToString() + ".doc", additional = "application_msword" });
             }
             catch
             {
@@ -524,13 +546,13 @@ namespace VmkLearningKit.Controllers
 
                 }
 
-                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
-                DirectoryInfo directory = new DirectoryInfo(path);
-                directory.Create();
-                SaveWordDocument(path + "\\Список специальностей.doc", document, program);
+                DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Downloads"));
+                long docIndex = targetDir.GetFiles("*.doc").Length;
+                string docName = targetDir + "\\" + docIndex.ToString() + ".doc";
 
-                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getspecialitydocument", "uploads/downloads/" + DateTime.Now.DayOfYear + "/Список специальностей.doc");
-                return Redirect(rw);
+                SaveWordDocument(docName, document, program);
+
+                return RedirectToAction("Save", new { alias = docIndex.ToString() + ".doc", additional = "application_msword" });
             }
             catch
             {
@@ -576,24 +598,28 @@ namespace VmkLearningKit.Controllers
                 foreach (Student s in students)
                 {
                     cell = sheet.get_Range("A" + (i + 2));
-                    cell.Value = s.Group.Title + " " + s.Specialization.Abbreviation;
+                    if (s.Specialization.Abbreviation.StartsWith(VLKConstants.FIELD_EMPTY))
+                        cell.Value = s.Group.Title;
+                    else
+                        cell.Value = s.Group.Title + " " + s.Specialization.Abbreviation;
 
                     cell = sheet.get_Range("C" + (i + 2));
                     cell.Value = s.User.SecondName + " " + s.User.FirstName + " " + s.User.Patronymic;
 
                     cell = sheet.get_Range("E" + (i + 2));
-                    cell.Value = s.Chair.Abbreviation;
+                    if (!s.Chair.Abbreviation.StartsWith(VLKConstants.FIELD_EMPTY))
+                        cell.Value = s.Chair.Abbreviation;
 
                     i++;
                 }
 
-                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
-                DirectoryInfo directory = new DirectoryInfo(path);
-                directory.Create();
-                SaveExcelDocument(path + "\\Список студентов.xls", program, book);
+                DirectoryInfo   targetDir   = new DirectoryInfo(HttpContext.Server.MapPath("/Downloads"));
+                long            docIndex    = targetDir.GetFiles("*.xls").Length;
+                string          docName     = targetDir + "\\" + docIndex.ToString() + ".xls";
+                
+                SaveExcelDocument(docName, program, book);
 
-                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getstudentdocument", "uploads/downloads/" + DateTime.Now.DayOfYear + "/Список студентов.xls");
-                return Redirect(rw);
+                return RedirectToAction("Save", new { alias = docIndex.ToString() + ".xls", additional = "application_msexcel" });
             }
             catch
             {
@@ -1231,13 +1257,13 @@ namespace VmkLearningKit.Controllers
                 }
 
             //-----------------------------------------------    
-                string path = System.Web.HttpContext.Current.Server.MapPath("/Uploads/Downloads" + "\\" + DateTime.Now.DayOfYear);
-                DirectoryInfo directory = new DirectoryInfo(path);
-                directory.Create();
-                SaveWordDocument(path + "\\" + disciplineProgram.SpecialityDiscipline.Title +".doc", document, program);
+                DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Downloads"));
+                long docIndex = targetDir.GetFiles("*.doc").Length;
+                string docName = targetDir + "\\" + docIndex.ToString() + ".doc";
 
-                string rw = Request.Url.AbsoluteUri.ToLower().Replace("document/getdisciplineprogramdocument?specialitydisciplineid=6", "uploads/downloads/" + DateTime.Now.DayOfYear + "/" + disciplineProgram.SpecialityDiscipline.Title + ".doc");
-                return Redirect(rw);
+                SaveWordDocument(docName, document, program);
+
+                return RedirectToAction("Save", new { alias = docIndex.ToString() + ".doc", additional = "application_msword" });
             }
             catch
             {
