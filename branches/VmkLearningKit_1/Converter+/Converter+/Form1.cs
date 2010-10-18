@@ -29,9 +29,10 @@ namespace Converter_
             dialog.ShowDialog();
             textBox1.Text = dialog.FileName;
 
-            textBox2.Text = textBox1.Text.Replace(".docx", ".xml");
-            textBox2.Text = textBox2.Text.Replace(".doc", ".xml");
-            textBox2.Text = textBox2.Text.Replace(".xls", ".xml");
+            textBox2.Text = textBox1.Text.ToLower().Replace(".docx", ".xml");
+            textBox2.Text = textBox2.Text.ToLower().Replace(".doc", ".xml");
+            textBox2.Text = textBox2.Text.ToLower().Replace(".xls", ".xml");
+
 
         }
 
