@@ -233,19 +233,21 @@ namespace Converter
                     writer.WriteEndElement();
                 } while (true);
 
-                tmpCell = sheet.Cells.Find("Специальные дисциплины", sheet.Cells[currentRow, 1]);
-                if (tmpCell.Value!="")
+                if (educationPLanDegree == degree.BACHELOR)
                 {
-                    currentRow = tmpCell.Row;
-                    ConvertCurrentSection(writer);
+                    tmpCell = sheet.Cells.Find("Специальные дисциплины", sheet.Cells[currentRow, 1]);
+                    if (tmpCell.Value != null)
+                    {
+                        currentRow = tmpCell.Row;
+                        ConvertCurrentSection(writer);
+                    }
+                    tmpCell = sheet.Cells.Find("Факультативные дисциплины", sheet.Cells[currentRow, 1]);
+                    if (tmpCell.Value != null)
+                    {
+                        currentRow = tmpCell.Row;
+                        ConvertCurrentSection(writer);
+                    }
                 }
-                tmpCell = sheet.Cells.Find("Факультативные дисциплины", sheet.Cells[currentRow, 1]);
-                if (tmpCell.Value!="")
-                {
-                    currentRow = tmpCell.Row;
-                    ConvertCurrentSection(writer);
-                }
-
                 
 
                 writer.WriteEndElement();
