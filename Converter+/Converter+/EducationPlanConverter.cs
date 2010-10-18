@@ -156,7 +156,7 @@ namespace Converter
             {
 
                 writer.WriteStartElement("educationPlan");
-                writer.WriteAttributeString("title", educationPLanTitle);
+                writer.WriteAttributeString("title", educationPLanTitle.Trim());
                 writer.WriteStartElement("speciality");
                 writer.WriteAttributeString("code", Convert.ToString(specialityCode));
                 writer.WriteEndElement();
@@ -176,7 +176,7 @@ namespace Converter
 
                 do
                 {
-                    writer.WriteStartElement("category1");
+                    
                     tmpCell = sheet.Cells.Find("Федеральный компонент", sheet.Cells[currentRow, 1]);
                     if (tmpCell.Row >= currentRow)
                     {
@@ -186,6 +186,7 @@ namespace Converter
                     {
                         break;
                     }
+                    
 
                     currentCol = tmpCell.Column;
 
@@ -198,7 +199,8 @@ namespace Converter
                             category1Title = Convert.ToString(sheet.Cells[currentRow - 1, currentCol + 1].Value);
                         }
                     }
-                    
+
+                    writer.WriteStartElement("category1");
                     writer.WriteAttributeString("title", category1Title);
 
                     ConvertCurrentSection(writer); // - для федерального компонента
@@ -238,15 +240,23 @@ namespace Converter
                     tmpCell = sheet.Cells.Find("Специальные дисциплины", sheet.Cells[currentRow, 1]);
                     if (tmpCell.Value != null)
                     {
+                        writer.WriteStartElement("category1");
+                        writer.WriteAttributeString("title", "Специальные дисциплины");
                         currentRow = tmpCell.Row;
                         ConvertCurrentSection(writer);
+                        writer.WriteEndElement();
                     }
                     tmpCell = sheet.Cells.Find("Факультативные дисциплины", sheet.Cells[currentRow, 1]);
                     if (tmpCell.Value != null)
                     {
                         currentRow = tmpCell.Row;
+                        writer.WriteStartElement("category1");
+                        writer.WriteAttributeString("title", "Факультативные дисциплины");
                         ConvertCurrentSection(writer);
+                        writer.WriteEndElement();
                     }
+
+                    
                 }
                 
 
