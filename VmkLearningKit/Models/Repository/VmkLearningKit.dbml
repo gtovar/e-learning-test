@@ -31,6 +31,7 @@
       <Column Name="GeneratedTestVariantId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="StudentId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="AssignedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AssignedDateEnd" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="State" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Score" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Mark" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />

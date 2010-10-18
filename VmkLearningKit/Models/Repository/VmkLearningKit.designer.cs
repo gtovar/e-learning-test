@@ -891,6 +891,8 @@ namespace VmkLearningKit.Models.Repository
 		
 		private System.DateTime _AssignedDate;
 		
+		private System.DateTime _AssignedDateEnd;
+		
 		private int _State;
 		
 		private int _Score;
@@ -921,6 +923,8 @@ namespace VmkLearningKit.Models.Repository
     partial void OnStudentIdChanged();
     partial void OnAssignedDateChanging(System.DateTime value);
     partial void OnAssignedDateChanged();
+    partial void OnAssignedDateEndChanging(System.DateTime value);
+    partial void OnAssignedDateEndChanged();
     partial void OnStateChanging(int value);
     partial void OnStateChanged();
     partial void OnScoreChanging(int value);
@@ -1028,6 +1032,26 @@ namespace VmkLearningKit.Models.Repository
 					this._AssignedDate = value;
 					this.SendPropertyChanged("AssignedDate");
 					this.OnAssignedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AssignedDateEnd", DbType="DateTime NOT NULL")]
+		public System.DateTime AssignedDateEnd
+		{
+			get
+			{
+				return this._AssignedDateEnd;
+			}
+			set
+			{
+				if ((this._AssignedDateEnd != value))
+				{
+					this.OnAssignedDateEndChanging(value);
+					this.SendPropertyChanging();
+					this._AssignedDateEnd = value;
+					this.SendPropertyChanged("AssignedDateEnd");
+					this.OnAssignedDateEndChanged();
 				}
 			}
 		}
