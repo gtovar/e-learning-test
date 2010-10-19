@@ -155,7 +155,8 @@ namespace VmkLearningKit.Core.XmlConverter
                                       studentFirstNameShort.ToLower() + "." +
                                       studentPatronymicShort.ToLower();
 
-                    user.Password   = Hash.ComputeHash(password);
+                    //user.Password   = Hash.ComputeHash(password);
+                    user.Password     = Hash.ComputeHash("123");
 
                     repositoryManager.GetUserRepository.Add(user);
 
