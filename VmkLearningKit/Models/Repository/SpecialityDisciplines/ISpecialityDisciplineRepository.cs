@@ -71,5 +71,12 @@ namespace VmkLearningKit.Models.Repository
         /// <param name="chairAlias">Псевдоним кафедры</param>
         /// <param name="professorNickName">Псевдоним преподавателя</param>
         IEnumerable<SpecialityDiscipline> GetAll(string specialityAlias, string educationPlanAlias, string chairAlias, string professorNickName);
+
+        /// <summary>
+        /// Обновление объекта класса "SpecialityDiscipline"
+        /// </summary>
+        /// <param name="updatedObjId">ид дисциплины, поля которой изменяются</param>
+        /// <param name="newObj">Объект, содержащий новое значение полей</param>
+        void UpdateById(long updatedObjId, SpecialityDiscipline newObj);
     }
 }

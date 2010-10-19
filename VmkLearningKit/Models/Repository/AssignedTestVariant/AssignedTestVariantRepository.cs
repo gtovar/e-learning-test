@@ -162,14 +162,14 @@ namespace VmkLearningKit.Models.Repository
         }
 
         public long Add(long idGeneratedTestVariant, long idStudent, DateTime date,
-            /*DateTime endDate,*/ long professorId)
+            DateTime endDate, long professorId)
         {
             AssignedTestVariant newAtv = new AssignedTestVariant
             {
                 StudentId = idStudent,
                 GeneratedTestVariantId = idGeneratedTestVariant,
                 AssignedDate = (DateTime)date,
-                // AssignedDateEnd = (DateTime)endDate,
+                AssignedDateEnd = (DateTime)endDate,
                 State = VLKConstants.TEST_VARIANT_STATE_NEW,
                 Path = "",
                 Score = 0,

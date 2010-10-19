@@ -8,21 +8,22 @@
         Управление дисциплинами</h3>
     <% try
        {
-           if (null != ViewData["SpecialityDisciplines"] &&
-               null != ViewData["Department"] &&
+           if (null != ViewData["Department"] &&
                null != ViewData["Departments"] &&
-               null != ViewData["Specialities"] &&
-               null != ViewData["Speciality"] &&
                null != ViewData["EducationPlans"] &&
                null != ViewData["EducationPlan"] &&
-               null != ViewData["Chairs"] &&
-               null != ViewData["Chair"] &&
-               null != ViewData["Professors"] &&
-               null != ViewData["Professor"]
+               null != ViewData["Chairs"] //&&
+              // null != ViewData["Chair"] &&
+              // null != ViewData["Professors"] &&
+              // null != ViewData["Professor"]
+              // null != ViewData["SpecialityDisciplines"] &&
+              // null != ViewData["Specialities"] &&
+              // null != ViewData["Speciality"] &&
               )
            {               
     %>
     <% Html.BeginForm(); %>
+    <%{ %>
     <h4 style="margin-top: 10px">
         <span style="float: left; margin-bottom: 5px;">
             <table>
@@ -119,10 +120,18 @@
                 </tr>
             </table>
         </span><span style="float: right; margin-bottom: 5px; vertical-align: bottom">
-            <%=Html.ActionLink("Добавить дисциплину", "SpecialityDisciplines", "Admin", new { alias = "Add" }, new { @class = "" }) %>
+            <%//=Html.ActionLink("Добавить дисциплину", "SpecialityDisciplines", "Admin", new { alias = "Add", additional = ((Department)ViewData["Department"]).Alias }, new { @class = "" })%>
         </span>
     </h4>
-    <% Html.EndForm(); %>
+   <%
+       if (null != ViewData["Chair"] &&
+           null != ViewData["Professors"] &&
+           null != ViewData["Professor"] &&
+           null != ViewData["SpecialityDisciplines"] &&
+           null != ViewData["Specialities"] &&
+           null != ViewData["Speciality"]
+           )
+       {%>        
     <table width="100%" border="1">
         <tr class="table_header">
             <th width="50px" style="padding: 5px;">
@@ -134,19 +143,28 @@
             <th style="padding: 5px;">
                 Алиас
             </th>
+            <th style="padding: 5px;">
+                Аббревиатура
+            </th>
+            <th style="padding: 5px;">
+                Код
+            </th>
+            <th style="padding: 5px;">
+                Категория
+            </th>
             <th width="50px" style="padding: 5px;">
             </th>
             <th width="50px" style="padding: 5px;">
             </th>
         </tr>
         <%
-            int index = 1;
-            foreach (SpecialityDiscipline specialityDiscipline in (IEnumerable<SpecialityDiscipline>)ViewData["SpecialityDisciplines"])
-            {    
+       int index = 1;
+       foreach (SpecialityDiscipline specialityDiscipline in (IEnumerable<SpecialityDiscipline>)ViewData["SpecialityDisciplines"])
+       {    
         %>
         <tr class="table_row">
             <td style="padding: 7px;">
-                <%= index %>
+                <%= index%>
             </td>
             <td>
                 <%=Html.Encode(specialityDiscipline.Title)%>
@@ -154,25 +172,38 @@
             <td>
                 <%=Html.Encode(specialityDiscipline.Alias)%>
             </td>
+             <td>
+                <%=Html.Encode(specialityDiscipline.Abbreviation)%>
+            </td>
+             <td>
+                <%=Html.Encode(specialityDiscipline.Code)%>
+            </td>
+             <td>
+                <%=Html.Encode(specialityDiscipline.Category)%>
+            </td>
             <td>
-                <a class="transparent_link" href="/Admin/Specializations/Edit/<%=Html.Encode(specialityDiscipline.Alias) %>">
+                <a class="transparent_link" href="/Admin/SpecialityDisciplines/Edit/<%=Html.Encode(((Professor)ViewData["Professor"]).User.NickName)
+                %>/<%=Html.Encode(specialityDiscipline.Alias) %>">
                     <img class="transparent_img" width="28" src="/Content/Images/edit.png" alt="Редактировать" /></a>
             </td>
             <td>
                 <a class="transparent_link" href="#">
-                    <img onclick="ConfirmDialog('Вы действительно уверены, что хотите удалить специализацию <%=Html.Encode(specialityDiscipline.Title) %>', '/Admin/Specializations/Delete/<%=Html.Encode(specialityDiscipline.Alias) %>')"
+                    <img onclick="ConfirmDialog('Вы действительно уверены, что хотите удалить специализацию <%=Html.Encode(specialityDiscipline.Title) %>', '/Admin/SpecialityDisciplines/Delete/<%=Html.Encode(specialityDiscipline.Alias) %>')"
                         class="transparent_img" width="28" src="/Content/Images/delete.png" alt="Удалить" />
                 </a>
             </td>
         </tr>
         <%
-            index++;
-            }
+       index++;
+       }
         %>
     </table>
+    <%} %>
     <%
-        }
-       }
+        }%>
+               <%}%>
+                <% Html.EndForm(); %>
+       <%}
        catch (Exception ex)
        {
            Utility.RedirectToErrorPage("AdminController.SpecialityDisciplines: catch exception", ex);

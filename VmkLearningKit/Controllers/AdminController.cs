@@ -85,46 +85,7 @@ namespace VmkLearningKit.Controllers
                 GeneralMenu();
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
                 string departmentAlias = form["Departments"];
-                if (alias != null && additional != null && !alias.Trim().Equals(String.Empty) && !additional.Trim().Equals(String.Empty))
-                {
-                    {
-                        if (form["chairAlias"] == "") chair.Alias = null;
-                        else chair.Alias = form["chairAlias"];
-                        chair.DepartmentId = repositoryManager.GetDepartmentRepository.GetByAlias(additional).Id;
-                        if (chair.Alias == null)
-                            ModelState.AddModelError("Alias", "*Алиас кафедры обязательный параметр");
-
-                        if (chair.Abbreviation == null)
-                            ModelState.AddModelError("Abbreviation", "*Аббревиатура обязательный параметр");
-                        if (chair.Title == null)
-                            ModelState.AddModelError("Title", "*Название кафедры обязательный параметр");
-
-                        switch (alias)
-                        {
-                            case "Add":
-                                {
-                                    if (ModelState.IsValid)
-                                    {
-                                        repositoryManager.GetChairRepository.Add(chair);
-                                        return Redirect("/Admin/Chairs/");
-                                    }
-                                    else return View(Constants.ADMIN_CHAIR_VIEWS + "Add.aspx", chair);
-                                }
-
-                            case "Edit":
-                                {
-                                    if (ModelState.IsValid && param1 != null)
-                                    {
-                                        repositoryManager.GetChairRepository.UpdateByAlias(param1, chair);
-                                        return Redirect("/Admin/Chairs/");
-                                    }
-                                    else return View(Constants.ADMIN_CHAIR_VIEWS + "Edit.aspx", chair);
-                                }
-                         }
-                    }
-                }
-                
-                departments = repositoryManager.GetDepartmentRepository.GetAll();
+                   departments = repositoryManager.GetDepartmentRepository.GetAll();
                 if (null != departments)
                 {
                     if (null != departmentAlias)
@@ -140,6 +101,56 @@ namespace VmkLearningKit.Controllers
                         chairs = repositoryManager.GetChairRepository.GetAll(department.Alias);
                     }
                 }
+                if (alias != null && additional != null && !alias.Trim().Equals(String.Empty) && !additional.Trim().Equals(String.Empty))
+                {
+                    {
+                        if (form["chairAlias"] == "") chair.Alias = null;
+                        else chair.Alias = form["chairAlias"].Trim();
+                        chair.DepartmentId = repositoryManager.GetDepartmentRepository.GetByAlias(additional).Id;
+                        if (chair.Alias == null)
+                            ModelState.AddModelError("Alias", "*Алиас кафедры обязательный параметр");
+                        
+                        if (chair.Abbreviation == null)
+                            ModelState.AddModelError("Abbreviation", "*Аббревиатура обязательный параметр");
+                        if (chair.Title == null)
+                            ModelState.AddModelError("Title", "*Название кафедры обязательный параметр");
+
+                        switch (alias)
+                        {
+                            case "Add":
+                                {
+                                    foreach (Chair chItem in chairs)
+                                    {
+                                        if (chItem.Alias == chair.Alias)
+                                            ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                                    }
+                                    if (ModelState.IsValid)
+                                    {
+                                        repositoryManager.GetChairRepository.Add(chair);
+                                        return Redirect("/Admin/Chairs/");
+                                    }
+                                    else return View(Constants.ADMIN_CHAIR_VIEWS + "Add.aspx", chair);
+                                }
+
+                            case "Edit":
+                                {
+                                    foreach (Chair chItem in chairs)
+                                    {
+                                        if (chItem.Alias == chair.Alias&& chItem.Alias!=param1 )
+                                            ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                                    }
+                                    if (ModelState.IsValid && param1 != null)
+                                    {
+                                        repositoryManager.GetChairRepository.UpdateByAlias(param1, chair);
+                                        return Redirect("/Admin/Chairs/");
+                                    }
+                                    else return View(Constants.ADMIN_CHAIR_VIEWS + "Edit.aspx", chair);
+                                }
+                         }
+                    }
+                }
+                
+             
                 ViewData["Department"] = department;
                 ViewData["Departments"] = departments;
                 ViewData["Chairs"] = chairs;
@@ -279,49 +290,6 @@ namespace VmkLearningKit.Controllers
                 ViewData[Constants.PAGE_TITLE] = Constants.ADMIN_PANEL_TITLE;
 
                 string departmentAlias = form["Departments"];
-                if (alias != null && additional != null && !alias.Trim().Equals(String.Empty) && !additional.Trim().Equals(String.Empty))
-                {
-                        if (form["specialityAlias"] == "") speciality.Alias = null;
-                        else speciality.Alias = form["specialityAlias"];
-                        speciality.DepartmentId = repositoryManager.GetDepartmentRepository.GetByAlias(additional).Id;
-                        if (speciality.Alias == null)
-                            ModelState.AddModelError("Alias", "*Алиас специальности обязательный параметр");
-
-                        if (speciality.Abbreviation == null)
-                            ModelState.AddModelError("Abbreviation", "*Аббревиатура специальности обязательный параметр");
-                        if (speciality.Title == null)
-                            ModelState.AddModelError("Title", "*Название специальности обязательный параметр");
-                        if (speciality.Code == null)
-                            ModelState.AddModelError("Code", "*Код специальности обязательный параметр");
-
-                        switch (alias)
-                        {
-                            case "Add":
-                                {
-                                    if (ModelState.IsValid)
-                                    {
-                                        repositoryManager.GetSpecialityRepository.Add(speciality);
-                                        return Redirect("/Admin/Specialities/");
-                                    }
-                                    else return View(Constants.ADMIN_SPECIALITY_VIEWS + "Add.aspx", speciality);
-
-                                }
-
-                            case "Edit":
-                                {
-
-                                    if (ModelState.IsValid && param1 != null)
-                                    {
-                                        repositoryManager.GetSpecialityRepository.UpdateByAlias(param1, speciality);
-                                        return Redirect("/Admin/Specialities/");
-                                    }
-                                    else return View(Constants.ADMIN_SPECIALITY_VIEWS + "Edit.aspx", speciality);
-
-                                }
-
-                        
-                    }
-                }
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
                 if (null != departments)
                 {
@@ -338,6 +306,59 @@ namespace VmkLearningKit.Controllers
                         specialities = repositoryManager.GetSpecialityRepository.GetAll(department.Alias);
                     }
                 }
+                if (alias != null && additional != null && !alias.Trim().Equals(String.Empty) && !additional.Trim().Equals(String.Empty))
+                {
+                        if (form["specialityAlias"] == "") speciality.Alias = null;
+                        else speciality.Alias = form["specialityAlias"].Trim();
+                        speciality.DepartmentId = repositoryManager.GetDepartmentRepository.GetByAlias(additional).Id;
+                        if (speciality.Alias == null)
+                            ModelState.AddModelError("Alias", "*Алиас специальности обязательный параметр");
+                        
+                        if (speciality.Abbreviation == null)
+                            ModelState.AddModelError("Abbreviation", "*Аббревиатура специальности обязательный параметр");
+                        if (speciality.Title == null)
+                            ModelState.AddModelError("Title", "*Название специальности обязательный параметр");
+                        if (speciality.Code == null)
+                            ModelState.AddModelError("Code", "*Код специальности обязательный параметр");
+
+                        switch (alias)
+                        {
+                            case "Add":
+                                {
+                                    foreach (Speciality spItem in specialities)
+                                    {
+                                        if (spItem.Alias == speciality.Alias)
+                                            ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                                    }
+                                    if (ModelState.IsValid)
+                                    {
+                                        repositoryManager.GetSpecialityRepository.Add(speciality);
+                                        return Redirect("/Admin/Specialities/");
+                                    }
+                                    else return View(Constants.ADMIN_SPECIALITY_VIEWS + "Add.aspx", speciality);
+
+                                }
+
+                            case "Edit":
+                                {
+                                    foreach (Speciality spItem in specialities)
+                                    {
+                                        if (spItem.Alias == speciality.Alias&& spItem.Alias!=param1)
+                                            ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                                    }
+                                    if (ModelState.IsValid && param1 != null)
+                                    {
+                                        repositoryManager.GetSpecialityRepository.UpdateByAlias(param1, speciality);
+                                        return Redirect("/Admin/Specialities/");
+                                    }
+                                    else return View(Constants.ADMIN_SPECIALITY_VIEWS + "Edit.aspx", speciality);
+
+                                }
+
+                        
+                    }
+                }
+                
                 ViewData["Department"] = department;
                 ViewData["Departments"] = departments;
                 ViewData["Specialities"] = specialities;
@@ -494,7 +515,7 @@ namespace VmkLearningKit.Controllers
                 {
 
                     if (form["specializationAlias"] == "") specialization.Alias = null;
-                    else specialization.Alias = form["specializationAlias"];
+                    else specialization.Alias = form["specializationAlias"].Trim();
                     specialization.EducationPlanId= Convert.ToInt64(form["educationPlanId"]);
 
                     specialization.ChairId = Convert.ToInt64(form["ChairId"]);
@@ -504,7 +525,7 @@ namespace VmkLearningKit.Controllers
 
                     if (specialization.Alias == null)
                         ModelState.AddModelError("Alias", "*Алиас специализации обязательный параметр");
-
+                    
                     if (specialization.Abbreviation == null)
                         ModelState.AddModelError("Abbreviation", "*Аббревиатура специализации обязательный параметр");
                     if (specialization.Title == null)
@@ -516,6 +537,11 @@ namespace VmkLearningKit.Controllers
                     {
                         case "Add":
                             {
+                                foreach (Specialization spItem in specializations)
+                                {
+                                    if (spItem.Alias == specialization.Alias)
+                                        ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                                }
                                 if (ModelState.IsValid)
                                 {
                                     repositoryManager.GetSpecializationRepository.Add(specialization);
@@ -527,6 +553,11 @@ namespace VmkLearningKit.Controllers
 
                         case "Edit":
                             {
+                                foreach (Specialization spItem in specializations)
+                                {
+                                    if (spItem.Alias == specialization.Alias && spItem.Alias!=param1) 
+                                        ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                                }
                                 if (ModelState.IsValid && param1 != null)
                                 {
                                     specializationsTmp = repositoryManager.GetSpecializationRepository.GetByAliasAndChair(param1, chair.Id);
@@ -652,7 +683,7 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult SpecialityDisciplines(FormCollection form)
+        public ActionResult SpecialityDisciplines(string alias, string additional, string param1, SpecialityDiscipline discipline, FormCollection form)
         {
             IEnumerable<Department> departments = null;
             Department department = null;
@@ -717,13 +748,16 @@ namespace VmkLearningKit.Controllers
                     if (null != chair)
                     {
                         professors = repositoryManager.GetProfessorRepository.GetAll(chair.Alias);
-                        if (null != professorNickName)
+                        if (professors.Count() != 0 && professors!=null)
                         {
-                            professor = repositoryManager.GetProfessorRepository.GetByNickName(professorNickName);
-                        }
-                        if (null == professor || professor.ChairId != chair.Id)
-                        {
-                            professor = professors.First();
+                            if (null != professorNickName)
+                            {
+                                professor = repositoryManager.GetProfessorRepository.GetByNickName(professorNickName);
+                            }
+                            if (null == professor || professor.ChairId != chair.Id)
+                            {
+                                professor = professors.First();
+                            }
                         }
                     }
                     if (null != speciality && null != educationPlan && null != chair && null != professor)
@@ -743,6 +777,61 @@ namespace VmkLearningKit.Controllers
                 ViewData["Professors"] = professors;
                 ViewData["Professor"] = professor;
                 ViewData["SpecialityDisciplines"] = specialityDisciplines;
+                if (alias != null && additional != null && !alias.Trim().Equals(String.Empty) && !additional.Trim().Equals(String.Empty))
+                {
+
+                    if (form["disciplineAlias"] == "") discipline.Alias = null;
+                    else discipline.Alias = form["disciplineAlias"].Trim();
+                   // discipline.EducationPlanId = Convert.ToInt64(form["educationPlanId"]);
+
+                    //discipline.ChairId = Convert.ToInt64(form["ChairId"]);
+                   // discipline.SpecialityId = Convert.ToInt64(form["DisciplineId"]);
+                    chair = repositoryManager.GetChairRepository.GetById(Convert.ToInt64(form["ChairId"]));
+                    professor = repositoryManager.GetProfessorRepository.GetByNickName(additional);
+
+                    if (discipline.Alias == null)
+                        ModelState.AddModelError("Alias", "*Алиас дисциплины обязательный параметр");
+                    
+                    if (discipline.Abbreviation == null)
+                        ModelState.AddModelError("Abbreviation", "*Аббревиатура дисциплины обязательный параметр");
+                    if (discipline.Title == null)
+                        ModelState.AddModelError("Title", "*Название дисциплины обязательный параметр");
+                    
+
+                    switch (alias)
+                    {
+                       /* case "Add":
+                            {
+                                if (ModelState.IsValid)
+                                {
+                                    repositoryManager.GetSpecialityDisciplineRepository.Add(discipline);
+                                    return Redirect("/Admin/SpecialityDisciplines/");
+                                }
+                                else return View(Constants.ADMIN_SPECIALITY_DISCIPLINE_VIEWS + "Add.aspx", discipline);
+
+                            }
+                       */
+                        case "Edit":
+                            {
+                                foreach (SpecialityDiscipline spItem in repositoryManager.GetSpecialityDisciplineRepository.GetAllByProfessor(additional))
+                                {
+                                    if (spItem.Alias == discipline.Alias && spItem.Alias!=param1)
+                                        ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                                }
+                                if (ModelState.IsValid && param1 != null)
+                                {
+                                    SpecialityDiscipline disciplineTmp = null;
+                                    disciplineTmp = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(discipline.Alias);
+                                    discipline.SpecialityId = disciplineTmp.SpecialityId;
+                                    discipline.ChairId = disciplineTmp.ChairId;
+                                    discipline.EducationPlan = disciplineTmp.EducationPlan;
+                                    repositoryManager.GetSpecialityDisciplineRepository.UpdateById(disciplineTmp.Id, discipline);
+                                    return Redirect("/Admin/SpecialityDisciplines/");
+                                }
+                                else return View(Constants.ADMIN_SPECIALITY_DISCIPLINE_VIEWS + "Edit.aspx", discipline);
+                            }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -752,7 +841,7 @@ namespace VmkLearningKit.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult SpecialityDisciplines(string alias)
+        public ActionResult SpecialityDisciplines(string alias, string additional, string param1)
         {
             IEnumerable<Department> departments = null;
             Department department = null;
@@ -764,6 +853,7 @@ namespace VmkLearningKit.Controllers
             Chair chair = null;
             IEnumerable<Professor> professors = null;
             Professor professor = null;
+            SpecialityDiscipline discipline = null;
             IEnumerable<SpecialityDiscipline> specialityDisciplines = null;
             try
             {
@@ -772,26 +862,30 @@ namespace VmkLearningKit.Controllers
                 departments = repositoryManager.GetDepartmentRepository.GetAll();
                 if (null != departments)
                 {
-                    department = departments.First();
+                    if (alias.Trim() == "Add" && (additional != null && !additional.Trim().Equals(String.Empty)))
+                        department = repositoryManager.GetDepartmentRepository.GetByAlias(additional);
+                    else if (null != alias && !alias.Trim().Equals(String.Empty) && (additional == null || additional.Trim().Equals(String.Empty)))
+                        department = repositoryManager.GetDepartmentRepository.GetByAlias(alias);
+                    else department = departments.First();
                     specialities = repositoryManager.GetSpecialityRepository.GetAll(department.Alias);
-                    if (null != specialities)
+                    if (null != specialities&& specialities.Count()!=0)
                     {
                         speciality = specialities.First();
                     }
                     educationPlans = repositoryManager.GetEducationPlanRepository.GetAll();
-                    if (null != educationPlans)
+                    if (null != educationPlans && educationPlans.Count()!=0)
                     {
                         educationPlan = educationPlans.First();
                     }
                     chairs = repositoryManager.GetChairRepository.GetAll(department.Alias);
-                    if (null != chairs)
+                    if (null != chairs && chairs.Count()!=0)
                     {
                         chair = chairs.First();
                     }
                     if (null != chair)
                     {
                         professors = repositoryManager.GetProfessorRepository.GetAll(chair.Alias);
-                        if (null != professors)
+                        if (null != professors && professors.Count()!=0 )
                         {
                             professor = professors.First();
                         }
@@ -812,7 +906,49 @@ namespace VmkLearningKit.Controllers
                 ViewData["Professors"] = professors;
                 ViewData["Professor"] = professor;
                 ViewData["SpecialityDisciplines"] = specialityDisciplines;
+
+                if (null != alias && !alias.Trim().Equals(String.Empty) && additional != null && !additional.Trim().Equals(String.Empty))
+                {
+                    chair = repositoryManager.GetChairRepository.GetByAlias(additional);
+                    ViewData["type_partial"] = "Specializations";
+                    switch (alias)
+                    {
+                      /*  case "Add":
+                            {
+                                SpecialityDiscipline newDiscipline = new SpecialityDiscipline();
+                                return View(Constants.ADMIN_SPECIALITY_DISCIPLINE_VIEWS + "Add.aspx", newDiscipline);
+                            }; break;
+                        */
+
+                        case "Edit":
+                            {
+                                if (null != param1 && !param1.Trim().Equals(String.Empty))
+                                {
+                                    discipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(param1);
+                                    ViewData["EducationPlan"] = discipline.EducationPlan;
+                                    ViewData["Speciality"] = discipline.Speciality;
+                                    ViewData["Chair"] = discipline.Chair;
+                                    ViewData["Professor"] = repositoryManager.GetProfessorRepository.GetByNickName(additional);
+                                    
+                                }
+                                return View(Constants.ADMIN_SPECIALITY_DISCIPLINE_VIEWS + "Edit.aspx", discipline);
+                            }; break;
+
+                        case "Delete":
+                            {
+                                if (null != additional && !additional.Trim().Equals(String.Empty))
+                                {
+                                    if (null != param1 && !param1.Trim().Equals(String.Empty))
+                                        discipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(param1);
+                                    repositoryManager.GetSpecialityDisciplineRepository.Delete(discipline);
+                                    return Redirect("/Admin/SpecialityDisciplines");
+                                };
+                            };
+                            break;
+                    }
+                }
             }
+
             catch (Exception ex)
             {
                 Utility.RedirectToErrorPage("AdminController.SpecialityDisciplines: catch exception", ex);
@@ -1012,10 +1148,10 @@ namespace VmkLearningKit.Controllers
             if (null != alias && !alias.Trim().Equals(String.Empty))
                 {
                     if (departmentAlias == "") department.Alias = null;
-                    else department.Alias = departmentAlias;
+                    else department.Alias = departmentAlias.Trim();
                     if (department.Alias == null)
                         ModelState.AddModelError("Alias", "*Алиас дисциплины обязательный параметр");
-
+                   
                     if (department.Abbreviation == null)
                         ModelState.AddModelError("Abbreviation", "*Аббревиатура обязательный параметр");
                     if (department.Title == null)
@@ -1025,6 +1161,11 @@ namespace VmkLearningKit.Controllers
                     {
                         case "Add": 
                             {
+                                foreach (Department depItem in repositoryManager.GetDepartmentRepository.GetAll())
+                                {
+                                    if (depItem.Alias == department.Alias)
+                                        ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                                }
                                 if (ModelState.IsValid)
                                 {
                                     repositoryManager.GetDepartmentRepository.Add(department);
@@ -1036,6 +1177,11 @@ namespace VmkLearningKit.Controllers
                             
                         case "Edit":
                             {
+                                foreach (Department depItem in repositoryManager.GetDepartmentRepository.GetAll())
+                                {
+                                    if (depItem.Alias == department.Alias && depItem.Alias != additional)
+                                        ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                                }
                                 if (ModelState.IsValid)
                                 {
                                     repositoryManager.GetDepartmentRepository.UpdateByAlias(additional, department);
@@ -1058,10 +1204,10 @@ namespace VmkLearningKit.Controllers
             if (null != alias && !alias.Trim().Equals(String.Empty))
             {
                 if (educationPlanAlias == "") educationPlan.Alias = null;
-                else educationPlan.Alias = educationPlanAlias;
+                else educationPlan.Alias = educationPlanAlias.Trim();
                 if (educationPlan.Alias == null)
                     ModelState.AddModelError("Alias", "*Алиас дисциплины обязательный параметр");
-
+               
                 if (educationPlan.Title == null)
                     ModelState.AddModelError("Title", "*Название дисциплины обязательный параметр");
 
@@ -1069,6 +1215,11 @@ namespace VmkLearningKit.Controllers
                 {
                     case "Add":
                         {
+                            foreach (EducationPlan edPlItem in repositoryManager.GetEducationPlanRepository.GetAll())
+                            {
+                                if (edPlItem.Alias == educationPlan.Alias)
+                                    ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                            }
                             if (ModelState.IsValid)
                             {
                                 repositoryManager.GetEducationPlanRepository.Add(educationPlan);
@@ -1080,6 +1231,11 @@ namespace VmkLearningKit.Controllers
 
                     case "Edit":
                         {
+                            foreach (EducationPlan edPlItem in repositoryManager.GetEducationPlanRepository.GetAll())
+                            {
+                                if (edPlItem.Alias == educationPlan.Alias && edPlItem.Alias!=additional)
+                                    ModelState.AddModelError("Alias", "*Такой алиас уже существует");
+                            }
                             if (ModelState.IsValid)
                             {
                                 repositoryManager.GetEducationPlanRepository.UpdateByAlias(additional, educationPlan);
