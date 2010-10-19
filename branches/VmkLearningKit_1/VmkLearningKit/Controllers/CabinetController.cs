@@ -184,7 +184,7 @@ namespace VmkLearningKit.Controllers
                         ViewData["SpecialityDiscipline"] = specialityDiscipline;
                         if (null != specialityDiscipline)
                         {
-                            ViewData["SpecialityDisciplineTopics"] = specialityDiscipline.SpecialityDisciplineTopics;
+                            ViewData["SpecialityDisciplineTopics"] = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(specialityDiscipline.Id);
                             ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id).Distinct(new LecturePlanTopicIdComparer());
 
                             LectureTimetable lectionTimetable = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);

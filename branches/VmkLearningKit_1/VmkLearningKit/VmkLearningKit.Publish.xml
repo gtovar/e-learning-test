@@ -89,7 +89,7 @@
     <file relUrl="Views/Admin/Speciality/Specialities.aspx" publishTime="10/16/2010 16:59:25" />
     <file relUrl="Scripts/MathJax/jax/output/HTML-CSS/fonts/STIX/General/Bold/Latin1Supplement.js" publishTime="10/16/2010 16:58:52" />
     <file relUrl="Scripts/MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Italic/Main.js" publishTime="10/16/2010 16:58:31" />
-    <file relUrl="bin/VmkLearningKit.dll" publishTime="10/19/2010 00:33:39" />
+    <file relUrl="bin/VmkLearningKit.dll" publishTime="10/19/2010 00:50:54" />
     <file relUrl="Scripts/MathJax/jax/input/MathML/entities/c.js" publishTime="10/16/2010 16:58:25" />
     <file relUrl="Content/Images/save.png" publishTime="10/16/2010 16:59:42" />
     <file relUrl="Scripts/MathJax/jax/output/HTML-CSS/fonts/TeX/Script/Bold/Main.js" publishTime="10/16/2010 16:58:35" />
@@ -522,7 +522,7 @@
     <file relUrl="Scripts/Plugins/FancyBox/scripts/jquery.fancybox-1.3.1.js" publishTime="10/16/2010 16:53:22" />
     <file relUrl="Scripts/MathJax/jax/output/HTML-CSS/fonts/STIX/General/BoldItalic/Latin1Supplement.js" publishTime="10/16/2010 16:59:02" />
     <file relUrl="Scripts/MathJax/jax/output/HTML-CSS/fonts/STIX/SizeFourSym/Regular/Main.js" publishTime="10/16/2010 16:58:38" />
-    <file relUrl="bin/VmkLearningKit.pdb" publishTime="10/19/2010 00:33:38" />
+    <file relUrl="bin/VmkLearningKit.pdb" publishTime="10/19/2010 00:50:54" />
     <file relUrl="Scripts/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Regular/BasicLatin.js" publishTime="10/16/2010 16:58:33" />
     <file relUrl="Scripts/MathJax/jax/output/HTML-CSS/fonts/TeX/SansSerif/Bold/Main.js" publishTime="10/16/2010 16:58:32" />
     <file relUrl="Views/Home/Help.aspx" publishTime="10/16/2010 16:59:24" />

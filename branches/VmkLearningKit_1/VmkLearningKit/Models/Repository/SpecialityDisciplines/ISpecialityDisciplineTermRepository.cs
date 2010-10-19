@@ -9,5 +9,6 @@ namespace VmkLearningKit.Models.Repository
     {
         long GetMaxId();
         SpecialityDisciplineTerm Add(SpecialityDisciplineTerm obj);
+        IEnumerable<SpecialityDisciplineTerm> GetAllByDisciplineId(long id);
     }
 }
