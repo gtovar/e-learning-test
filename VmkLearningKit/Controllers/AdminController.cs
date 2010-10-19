@@ -815,16 +815,16 @@ namespace VmkLearningKit.Controllers
                             {
                                 foreach (SpecialityDiscipline spItem in repositoryManager.GetSpecialityDisciplineRepository.GetAllByProfessor(additional))
                                 {
-                                    if (spItem.Alias == discipline.Alias && spItem.Alias!=param1)
+                                    if (spItem.Alias == discipline.Alias && spItem.Alias!=param1.Trim())
                                         ModelState.AddModelError("Alias", "*Такой алиас уже существует");
                                 }
                                 if (ModelState.IsValid && param1 != null)
                                 {
                                     SpecialityDiscipline disciplineTmp = null;
                                     disciplineTmp = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(discipline.Alias);
-                                    discipline.SpecialityId = disciplineTmp.SpecialityId;
                                     discipline.ChairId = disciplineTmp.ChairId;
-                                    discipline.EducationPlan = disciplineTmp.EducationPlan;
+                                    disciplineTmp.EducationPlanId = disciplineTmp.EducationPlanId;
+                                    discipline.SpecialityId = disciplineTmp.SpecialityId;
                                     repositoryManager.GetSpecialityDisciplineRepository.UpdateById(disciplineTmp.Id, discipline);
                                     return Redirect("/Admin/SpecialityDisciplines/");
                                 }
