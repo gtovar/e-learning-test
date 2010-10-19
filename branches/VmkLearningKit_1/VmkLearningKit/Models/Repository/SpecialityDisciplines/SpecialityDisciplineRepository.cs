@@ -219,5 +219,21 @@ namespace VmkLearningKit.Models.Repository
 
             DataContext.SubmitChanges();
         }
+
+        public void UpdateById(long updatedObjId, SpecialityDiscipline newObj)
+        {
+            SpecialityDiscipline updatedObj = GetById(updatedObjId);
+
+            updatedObj.Title = newObj.Title;
+            updatedObj.Alias = newObj.Alias;
+            updatedObj.Abbreviation = newObj.Abbreviation;
+            updatedObj.Code = newObj.Code;
+            updatedObj.SpecialityId = newObj.SpecialityId;
+            updatedObj.ChairId = newObj.ChairId;
+            updatedObj.EducationPlanId = newObj.EducationPlanId;
+            updatedObj.Category = newObj.Category;
+
+            DataContext.SubmitChanges();
+        }
     }
 }

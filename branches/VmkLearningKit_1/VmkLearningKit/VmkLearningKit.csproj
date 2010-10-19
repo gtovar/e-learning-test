@@ -678,6 +678,9 @@
     <Content Include="Views\Admin\EducationPlan\Edit.aspx" />
     <Content Include="Views\Admin\EducationPlan\EducationPlanForm.ascx" />
     <Content Include="Views\Admin\Error.aspx" />
+    <Content Include="Views\Admin\SpecialityDiscipline\Add.aspx" />
+    <Content Include="Views\Admin\SpecialityDiscipline\Edit.aspx" />
+    <Content Include="Views\Admin\SpecialityDiscipline\SpecialityDisciplineForm.ascx" />
     <Content Include="Views\Admin\Speciality\Add.aspx" />
     <Content Include="Views\Admin\Speciality\Edit.aspx" />
     <Content Include="Views\Admin\Speciality\SpecialityForm.ascx" />

@@ -288,8 +288,9 @@ td.secondAssignement {
                         var t = $("td[id^='" + student.toString() + "_" + topic.toString() + "'].changeble").empty().append(tmp);
                         t.attr('class', 'newAssignement');
                         flags = new Array();
-                        flagExistInputChange = 0;
                     }
+                    flagExistInputChange = 0;
+
                 }
                 alert(dataTemp[0]);
 

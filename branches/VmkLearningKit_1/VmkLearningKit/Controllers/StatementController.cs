@@ -181,7 +181,7 @@ namespace VmkLearningKit.Controllers
                             if (gtv != null)
                             {
                                 GeneratedTestVariant tmp = gtv.ElementAt((int)(variantNumsId - 1));
-                                idAddedNewAssignedTestVariant = repositoryManager.GetAssignedTestVariantRepository.Add(tmp.Id, studentsId, Convert.ToDateTime(form["date"]), /*Convert.ToDateTime(form["endDate"]),*/ professor.UserId);
+                                idAddedNewAssignedTestVariant = repositoryManager.GetAssignedTestVariantRepository.Add(tmp.Id, studentsId, Convert.ToDateTime(form["date"]), Convert.ToDateTime(form["endDate"]), professor.UserId);
                                 if (idAddedNewAssignedTestVariant == -1)
                                 {
                                     fl = 0;
