@@ -13,6 +13,11 @@ namespace VmkLearningKit.Models.Repository
         {
         }
 
+        public IEnumerable<SpecialityDisciplineTerm> GetAllByDisciplineId(long id)
+        {
+            return DataContext.SpecialityDisciplineTerms.Where(t => t.SpecialityDisciplineId == id);
+        }
+
         public SpecialityDisciplineTerm GetById(long id)
         {
             return DataContext.SpecialityDisciplineTerms.SingleOrDefault(s => s.Id == id);

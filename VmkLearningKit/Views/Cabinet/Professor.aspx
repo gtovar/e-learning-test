@@ -40,7 +40,7 @@
                 <%= Html.ActionLink(Html.Encode(specialityDiscipline.Title), "Professor", "Cabinet", new { alias = professor.User.NickName, additional = specialityDiscipline.Alias}, new { @class = "" })%>
             </td>
             <% string term = String.Empty;
-               foreach (SpecialityDisciplineTerm specialityDisciplineTerm in (IEnumerable<SpecialityDisciplineTerm>)specialityDiscipline.SpecialityDisciplineTerms)
+               foreach (SpecialityDisciplineTerm specialityDisciplineTerm in (IEnumerable<SpecialityDisciplineTerm>)RepositoryManager.GetRepositoryManager.GetSpecialityDisciplineTermRepository.GetAllByDisciplineId(specialityDiscipline.Id))
                {
                    term += specialityDisciplineTerm.Term + ", ";
                }
@@ -152,7 +152,7 @@
             </td>
             <td id="LectureDateTD<%=plan.SpecialityDisciplineTopicId.ToString() %>" style="padding: 7px; width:60px;">
                 <%= Html.DropDownList("LectureDate" + plan.SpecialityDisciplineTopicId.ToString(), lectureDates, new { id = "LectureDate" + plan.SpecialityDisciplineTopicId.ToString(), @class = "LectureDate"}) %>
-                <%= existedDates[plan.SpecialityDisciplineTopicId] %>
+                <% if (existedDates.Count != 0 && existedDates.Keys.Contains(plan.SpecialityDisciplineTopicId)) %><%= existedDates[plan.SpecialityDisciplineTopicId] %>
             </td>
             <td style="padding: 7px; width:60px">
                 <%= time %>
