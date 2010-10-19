@@ -330,7 +330,7 @@ namespace VmkLearningKit.Controllers
                     SpecialityDiscipline specialityDiscipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
                     SetLecturePlanDates(specialityDiscipline);
                     ViewData["SpecialityDiscipline"] = specialityDiscipline;
-                    ViewData["SpecialityDisciplineTopics"] = specialityDiscipline.SpecialityDisciplineTopics;
+                    ViewData["SpecialityDisciplineTopics"] = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(specialityDiscipline.Id);
                     ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
 
                     LectureTimetable lectionTimetable = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
@@ -1201,8 +1201,8 @@ namespace VmkLearningKit.Controllers
                                 {
                                     if (currentDateIndex < currentTermDates.Count)
                                     {
-                                        plan.Date = currentTermDates[currentDateIndex];
-                                        LecturePlan planFromDB = repositoryManager.GetLecturePlanRepository.SetDateTime(plan.Id, plan.Date.Value);
+                                        plan.Date = currentTermDates[currentDateIndex].Date;
+                                        LecturePlan planFromDB = repositoryManager.GetLecturePlanRepository.SetDateTime(plan.Id, currentTermDates[currentDateIndex].Date);
                                         if (null == planFromDB)
                                         {
                                             // FIXME: can't set lecture plan date
