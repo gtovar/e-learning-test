@@ -1008,7 +1008,7 @@ td.secondAssignement {
     <br />
     <%=Html.ActionLink("К ведомости попыток ", "Statement", "Statement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"], param1 = ViewData["IdGroup"] }, new { @class = "" })%>
     <br />
-    <%=Html.ActionLink("К хронологической ведомости", "DateTimeStatement", "DateTimeStatement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"], param1 = ViewData["IdGroup"] }, new { @class = "" })%>
+    <%//=Html.ActionLink("К хронологической ведомости", "DateTimeStatement", "DateTimeStatement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"], param1 = ViewData["IdGroup"] }, new { @class = "" })%>
     
     </div>        
     </p>

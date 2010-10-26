@@ -19,5 +19,6 @@ namespace VmkLearningKit.Models.Repository
         IEnumerable<User> GetAll();
         bool DeleteStudent(long id);
         bool DeleteProfessor(long id);
+        User GetProfessorByLastName(string lastName);
     }
 }

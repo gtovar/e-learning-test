@@ -372,6 +372,15 @@
   <data name="TERM_DEFAULT_REPORTING" xml:space="preserve">
     <value>Не указано</value>
   </data>
+  <data name="TYPE_LAB" xml:space="preserve">
+    <value>terminal</value>
+  </data>
+  <data name="TYPE_LECTION" xml:space="preserve">
+    <value>lection</value>
+  </data>
+  <data name="TYPE_PRACTICE" xml:space="preserve">
+    <value>practice</value>
+  </data>
   <data name="UP_WEEK" xml:space="preserve">
     <value>Верхняя</value>
   </data>
@@ -404,6 +413,9 @@
   </data>
   <data name="XML_ATTRIBUTE_DEGREE" xml:space="preserve">
     <value>degree</value>
+  </data>
+  <data name="XML_ATTRIBUTE_DISCIPLINE" xml:space="preserve">
+    <value>discipline</value>
   </data>
   <data name="XML_ATTRIBUTE_EDUCATION_PLAN" xml:space="preserve">
     <value>educationPlan</value>
@@ -471,6 +483,9 @@
   <data name="XML_ATTRIBUTE_TITLE" xml:space="preserve">
     <value>title</value>
   </data>
+  <data name="XML_ATTRIBUTE_TYPE" xml:space="preserve">
+    <value>type</value>
+  </data>
   <data name="XML_ATTRIBUTE_WEEK" xml:space="preserve">
     <value>week</value>
   </data>
@@ -506,6 +521,9 @@
   </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_SPECIALIZATION" xml:space="preserve">
     <value>Такой специализации не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_TYPE" xml:space="preserve">
+    <value>Такого типа занятий не существует</value>
   </data>
   <data name="XML_DATA_ERROR_NOT_EXIST_WEEK" xml:space="preserve">
     <value>Такой недели не существует</value>
@@ -567,6 +585,9 @@
   <data name="XML_ELEMENT_MARK_CRITERIAS" xml:space="preserve">
     <value>markCriterias</value>
   </data>
+  <data name="XML_ELEMENT_PAIR" xml:space="preserve">
+    <value>pair</value>
+  </data>
   <data name="XML_ELEMENT_PRACTICE" xml:space="preserve">
     <value>practice</value>
   </data>
@@ -593,6 +614,9 @@
   </data>
   <data name="XML_ELEMENT_STUDENT" xml:space="preserve">
     <value>student</value>
+  </data>
+  <data name="XML_ELEMENT_SUBGROUP" xml:space="preserve">
+    <value>subgroup</value>
   </data>
   <data name="XML_ELEMENT_TEACHER" xml:space="preserve">
     <value>teacher</value>

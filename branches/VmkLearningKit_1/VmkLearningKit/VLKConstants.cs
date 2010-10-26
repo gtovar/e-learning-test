@@ -60,6 +60,10 @@ namespace VmkLearningKit
         public const string XML_UPLOAD_ALIAS_SHEDULE            = "Shedule";
         public const string XML_UPLOAD_ALIAS_DISCIPLINE_PROGRAM = "DisciplineProgram";
 
+        public const string TYPE_LAB = "terminal";
+        public const string TYPE_PRACTICE = "practice";
+        public const string TYPE_LECTION = "lection";
+
         public const int PASSWORD_DEFAULT_LENGTH        = 7;
     }
 }
