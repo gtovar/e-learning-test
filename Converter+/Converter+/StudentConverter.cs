@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Windows.Forms;
 
 namespace Converter
 {
     class StudentConverter : Converter
     {
-        public override void ConvertDocument(string docPath, string xmlPath, List<string> structDocument = null)
+        public override void ConvertDocument(string docPath, string xmlPath, List<string> structDocument = null, ProgressBar bar = null)
         {
             Excel.Application program;
             Excel.Workbook book = OpenExcelFile(docPath, out program);

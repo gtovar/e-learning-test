@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // textBox1
@@ -119,7 +120,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.ForeColor = System.Drawing.Color.DarkCyan;
-            this.checkBox1.Location = new System.Drawing.Point(36, 204);
+            this.checkBox1.Location = new System.Drawing.Point(36, 235);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(256, 17);
             this.checkBox1.TabIndex = 8;
@@ -129,7 +130,7 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(36, 243);
+            this.richTextBox2.Location = new System.Drawing.Point(36, 274);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(421, 168);
             this.richTextBox2.TabIndex = 9;
@@ -150,7 +151,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.label4.Location = new System.Drawing.Point(180, 227);
+            this.label4.Location = new System.Drawing.Point(180, 258);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(152, 13);
             this.label4.TabIndex = 11;
@@ -167,18 +168,27 @@
             "Список групп",
             "Список студентов",
             "Программа дисциплины",
-            "Учебный план"});
+            "Учебный план",
+            "Расписание"});
             this.comboBox1.Location = new System.Drawing.Point(305, 82);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(151, 21);
             this.comboBox1.TabIndex = 12;
             this.comboBox1.Text = "Выберите тип файла";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(36, 205);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(420, 23);
+            this.progressBar1.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 244);
+            this.ClientSize = new System.Drawing.Size(493, 267);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -215,6 +225,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 
