@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using Word = Microsoft.Office.Interop.Word;
 using System.Xml;
+using System.Windows.Forms;
 
 namespace Converter
 {
     class TeacherConverter : Converter
     {
-        public override void ConvertDocument(string docPath, string xmlPath, List<string> structDocument = null)
+        public override void ConvertDocument(string docPath, string xmlPath, List<string> structDocument = null, ProgressBar bar = null)
         {
 
             Word.Application program = OpenDocFile(docPath);

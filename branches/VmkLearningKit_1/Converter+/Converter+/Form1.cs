@@ -19,7 +19,10 @@ namespace Converter_
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            progressBar1.Style = ProgressBarStyle.Continuous;
+            progressBar1.Minimum = 0;
+            progressBar1.Step = 1;
+            progressBar1.Value = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,7 +36,6 @@ namespace Converter_
             textBox2.Text = textBox2.Text.ToLower().Replace(".doc", ".xml");
             textBox2.Text = textBox2.Text.ToLower().Replace(".xls", ".xml");
 
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -42,6 +44,8 @@ namespace Converter_
             name = name.Replace(".doc", "");
             name = name.Replace(".xls", "");
             name = name.Trim();
+
+            progressBar1.Value = 0;
 
             List<string> structPlan = new List<string>();
             for (int i = 0; i < richTextBox2.Lines.Count(); i++)
@@ -116,7 +120,16 @@ namespace Converter_
                         richTextBox1.Text += s + "\n";
                     }
                     break;
-
+                case "Расписание":
+                    ScheduleConverter conv8 = new ScheduleConverter();
+                    richTextBox1.Text = "Подождите несколько секунд - идет конвертирование\n";
+                    conv8.ConvertDocument(textBox1.Text, textBox2.Text, null, progressBar1);
+                    richTextBox1.Text = "";
+                    foreach (string s in conv8.Message)
+                    {
+                        richTextBox1.Text += s + "\n";
+                    }
+                    break;
             }
         }
 
@@ -126,13 +139,13 @@ namespace Converter_
             {
                 label4.Visible = true;
                 richTextBox2.Visible = true;
-                this.Height = 509;
+                this.Height = 500;
             }
             else
             {
                 label4.Visible = false;
                 richTextBox2.Visible = false;
-                this.Height = 282;
+                this.Height = 305;
             }
         }
     }

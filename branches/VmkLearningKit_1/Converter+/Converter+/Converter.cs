@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using Word = Microsoft.Office.Interop.Word;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Windows.Forms;
 
 namespace Converter
 {
@@ -88,7 +89,7 @@ namespace Converter
             program.Quit();
         }
 
-        public abstract void ConvertDocument(string docPath, string xmlPath, List<string> structDocument = null);
+        public abstract void ConvertDocument(string docPath, string xmlPath, List<string> structDocument = null, ProgressBar bar = null);
         //public virtual void rrr(string docPath, string xmlPath, List<string> structDocument) {}
     }
 }

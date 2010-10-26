@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Converter
 {
@@ -34,7 +35,7 @@ namespace Converter
         int row_max;
         int column_max;
 
-        public override void ConvertDocument(string docPath, string xmlPath, List<string> structDocument = null)
+        public override void ConvertDocument(string docPath, string xmlPath, List<string> structDocument = null, ProgressBar bar = null)
         {
 
              educationPLanDegree = degree.BACHELOR;
