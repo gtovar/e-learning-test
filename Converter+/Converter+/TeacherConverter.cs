@@ -140,7 +140,7 @@ namespace Converter
                         for (int j = 1; j < table.Rows.Count; j++)
                         {
                             writer.WriteStartElement("teacher");
-                            if (chairStr[i - 1] != "Отсутствует")
+                            //if (chairStr[i - 1] != "Отсутствует")
                             {
                                 writer.WriteAttributeString("chairAbbreviation", chairStr[i - 1]);
                             }
