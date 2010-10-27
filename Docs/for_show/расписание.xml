@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="windows-1251"?><specialities><speciality abbreviation="ПМИ"><group number="8101"
+><subgroup title="Первая"><pair dayOfWeek="Понедельник" time="8:00" type="lection" week="Каждая" discipline="ДМ" room="221" building="4" teacher=
+"Алексеев" /><pair dayOfWeek="Понедельник" time="9:40" type="lection" week="Каждая" discipline="МА" room="221" building="4" teacher="Кротов" /><pair 
+dayOfWeek="Вторник" time="9:40" type="practice" week="Каждая" discipline="МООП" room="102" building="6" teacher="Барышева" /><pair dayOfWeek=
+"Вторник" time="13:00" type="lection" week="Каждая" discipline="МА" room="338" building="2" teacher="Кротов" /><pair dayOfWeek="Среда" time="14:40" 
+type="practice" week="Каждая" discipline="ДМ" room="512" building="6" teacher="Захарова" /><pair dayOfWeek="Среда" time="16:20" type="practice" week=
+"Каждая" discipline="МА" room="514" building="6" teacher="Сизова" /><pair dayOfWeek="Среда" time="18:00" type="practice" week="Нижняя" discipline=
+"ГА" room="509" building="6" teacher="Кучеренко" /><pair dayOfWeek="Четверг" time="9:40" type="practice" week="Каждая" discipline="АЯ" room="310" 
+building="2" teacher="Ярунина" /><pair dayOfWeek="Четверг" time="13:00" type="lection" week="Каждая" discipline="ГА" room="314" building="2" teacher=
+"Шевченко" /><pair dayOfWeek="Четверг" time="14:40" type="lection" week="Каждая" discipline="Информатика" room="314" building="2" teacher="Кузин" />
+<pair dayOfWeek="Четверг" time="16:20" type="lection" week="Верхняя" discipline="Информатика" room="314" building="2" teacher="Кузин" /><pair 
+dayOfWeek="Пятница" time="14:40" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek=
+"Пятница" time="16:20" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek="Суббота" time=
+"13:00" type="practice" week="Каждая" discipline="АЯ" room="102" building="6" teacher="Ярунина" /><pair dayOfWeek="Суббота" time="14:40" type=
+"practice" week="Каждая" discipline="ГА" room="515" building="6" teacher="Кучеренко" /><pair dayOfWeek="Суббота" time="16:20" type="practice" week=
+"Каждая" discipline="МА" room="102" building="6" teacher="Сизова" /></subgroup><subgroup title="Вторая"><pair dayOfWeek="Понедельник" time="8:00" 
+type="lection" week="Каждая" discipline="ДМ" room="221" building="4" teacher="Алексеев" /><pair dayOfWeek="Понедельник" time="9:40" type="lection" 
+week="Каждая" discipline="МА" room="221" building="4" teacher="Кротов" /><pair dayOfWeek="Вторник" time="13:00" type="lection" week="Каждая" 
+discipline="МА" room="338" building="2" teacher="Кротов" /><pair dayOfWeek="Вторник" time="14:40" type="practice" week="Каждая" discipline="МООП" 
+room="310" building="2" teacher="Баркалов" /><pair dayOfWeek="Вторник" time="18:00" type="practice" week="Каждая" discipline="АЯ" room="8" building=
+"2" teacher="Зыбцева" /><pair dayOfWeek="Среда" time="14:40" type="practice" week="Каждая" discipline="ДМ" room="512" building="6" teacher="Захарова"
+ /><pair dayOfWeek="Среда" time="16:20" type="practice" week="Каждая" discipline="МА" room="514" building="6" teacher="Сизова" /><pair dayOfWeek=
+"Среда" time="18:00" type="practice" week="Нижняя" discipline="ГА" room="509" building="6" teacher="Кучеренко" /><pair dayOfWeek="Четверг" time=
+"13:00" type="lection" week="Каждая" discipline="ГА" room="314" building="2" teacher="Шевченко" /><pair dayOfWeek="Четверг" time="14:40" type=
+"lection" week="Каждая" discipline="Информатика" room="314" building="2" teacher="Кузин" /><pair dayOfWeek="Четверг" time="16:20" type="lection" week
+="Верхняя" discipline="Информатика" room="314" building="2" teacher="Кузин" /><pair dayOfWeek="Пятница" time="14:40" type="lection" week="Каждая" 
+discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek="Пятница" time="16:20" type="lection" week="Каждая" discipline="МООП" 
+room="314" building="2" teacher="Карпенко" /><pair dayOfWeek="Суббота" time="13:00" type="practice" week="Каждая" discipline="АЯ" room="506" building
+="6" teacher="Зыбцева" /><pair dayOfWeek="Суббота" time="14:40" type="practice" week="Каждая" discipline="ГА" room="515" building="6" teacher=
+"Кучеренко" /><pair dayOfWeek="Суббота" time="16:20" type="practice" week="Каждая" discipline="МА" room="102" building="6" teacher="Сизова" />
+</subgroup></group><group number="8102"><subgroup title="Первая"><pair dayOfWeek="Понедельник" time="8:00" type="lection" week="Каждая" discipline=
+"ДМ" room="221" building="4" teacher="Алексеев" /><pair dayOfWeek="Понедельник" time="9:40" type="lection" week="Каждая" discipline="МА" room="221" 
+building="4" teacher="Кротов" /><pair dayOfWeek="Понедельник" time="11:20" type="practice" week="Каждая" discipline="МА" room="306" building="2" 
+teacher="Медведев" /><pair dayOfWeek="Вторник" time="13:00" type="lection" week="Каждая" discipline="МА" room="338" building="2" teacher="Кротов" />
+<pair dayOfWeek="Вторник" time="14:40" type="practice" week="Каждая" discipline="ГА" room="502" building="6" teacher="Сидоров" /><pair dayOfWeek=
+"Вторник" time="16:20" type="practice" week="Каждая" discipline="АЯ" room="502" building="6" teacher="Сорокина" /><pair dayOfWeek="Среда" time=
+"14:40" type="practice" week="Нижняя" discipline="ГА" room="310" building="2" teacher="Сидоров" /><pair dayOfWeek="Среда" time="16:20" type=
+"practice" week="Каждая" discipline="ДМ" room="515" building="6" teacher="Смирнова" /><pair dayOfWeek="Четверг" time="13:00" type="lection" week=
+"Каждая" discipline="ГА" room="314" building="2" teacher="Шевченко" /><pair dayOfWeek="Четверг" time="14:40" type="lection" week="Каждая" discipline=
+"Информатика" room="314" building="2" teacher="Кузин" /><pair dayOfWeek="Четверг" time="16:20" type="lection" week="Верхняя" discipline="Информатика"
+ room="314" building="2" teacher="Кузин" /><pair dayOfWeek="Пятница" time="13:00" type="practice" week="Каждая" discipline="АЯ" room="514" building=
+"6" teacher="Сорокина" /><pair dayOfWeek="Пятница" time="14:40" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher=
+"Карпенко" /><pair dayOfWeek="Пятница" time="16:20" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair
+ dayOfWeek="Суббота" time="11:20" type="practice" week="Каждая" discipline="МООП" room="317" building="2" teacher="Барышева" /><pair dayOfWeek=
+"Суббота" time="13:00" type="practice" week="Каждая" discipline="МА" room="338" building="2" teacher="Медведев" /></subgroup><subgroup title="Вторая"
+><pair dayOfWeek="Понедельник" time="8:00" type="lection" week="Каждая" discipline="ДМ" room="221" building="4" teacher="Алексеев" /><pair dayOfWeek=
+"Понедельник" time="9:40" type="lection" week="Каждая" discipline="МА" room="221" building="4" teacher="Кротов" /><pair dayOfWeek="Понедельник" time=
+"11:20" type="practice" week="Каждая" discipline="МА" room="306" building="2" teacher="Медведев" /><pair dayOfWeek="Вторник" time="13:00" type=
+"lection" week="Каждая" discipline="МА" room="338" building="2" teacher="Кротов" /><pair dayOfWeek="Вторник" time="14:40" type="practice" week=
+"Каждая" discipline="ГА" room="502" building="6" teacher="Сидоров" /><pair dayOfWeek="Среда" time="14:40" type="practice" week="Нижняя" discipline=
+"ГА" room="310" building="2" teacher="Сидоров" /><pair dayOfWeek="Среда" time="16:20" type="practice" week="Каждая" discipline="ДМ" room="515" 
+building="6" teacher="Смирнова" /><pair dayOfWeek="Четверг" time="13:00" type="lection" week="Каждая" discipline="ГА" room="314" building="2" teacher
+="Шевченко" /><pair dayOfWeek="Четверг" time="14:40" type="lection" week="Каждая" discipline="Информатика" room="314" building="2" teacher="Кузин" />
+<pair dayOfWeek="Четверг" time="16:20" type="lection" week="Верхняя" discipline="Информатика" room="314" building="2" teacher="Кузин" /><pair 
+dayOfWeek="Пятница" time="14:40" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek=
+"Пятница" time="16:20" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek="Суббота" time=
+"9:40" type="practice" week="Каждая" discipline="АЯ" room="8" building="2" teacher="Зыбцева" /><pair dayOfWeek="Суббота" time="11:20" type="practice"
+ week="Каждая" discipline="АЯ" room="8" building="2" teacher="Зыбцева" /><pair dayOfWeek="Суббота" time="13:00" type="practice" week="Каждая" 
+discipline="МА" room="338" building="2" teacher="Медведев" /><pair dayOfWeek="Суббота" time="14:40" type="practice" week="Каждая" discipline="МООП" 
+room="506" building="6" teacher="Сиднев" /></subgroup></group><group number="8103"><subgroup title="Первая"><pair dayOfWeek="Понедельник" time="8:00"
+ type="lection" week="Каждая" discipline="ДМ" room="221" building="4" teacher="Алексеев" /><pair dayOfWeek="Понедельник" time="9:40" type="lection" 
+week="Каждая" discipline="МА" room="221" building="4" teacher="Кротов" /><pair dayOfWeek="Понедельник" time="11:20" type="practice" week="Каждая" 
+discipline="ДМ" room="307" building="2" teacher="Жильцова" /><pair dayOfWeek="Вторник" time="13:00" type="lection" week="Каждая" discipline="МА" room
+="338" building="2" teacher="Кротов" /><pair dayOfWeek="Вторник" time="14:40" type="practice" week="Каждая" discipline="ГА" room="102" building="6" 
+teacher="Киселева" /><pair dayOfWeek="Вторник" time="16:20" type="practice" week="Верхняя" discipline="ГА" room="102" building="6" teacher=
+"Киселева" /><pair dayOfWeek="Среда" time="8:00" type="practice" week="Каждая" discipline="МА" room="324" building="2" teacher="Эгамов" /><pair 
+dayOfWeek="Среда" time="9:40" type="practice" week="Каждая" discipline="МА" room="307" building="2" teacher="Эгамов" /><pair dayOfWeek="Среда" time=
+"11:20" type="practice" week="Каждая" discipline="АЯ" room="8" building="2" teacher="Петрова" /><pair dayOfWeek="Четверг" time="13:00" type="lection"
+ week="Каждая" discipline="ГА" room="314" building="2" teacher="Шевченко" /><pair dayOfWeek="Четверг" time="14:40" type="lection" week="Каждая" 
+discipline="Информатика" room="314" building="2" teacher="Кузин" /><pair dayOfWeek="Четверг" time="16:20" type="lection" week="Верхняя" discipline=
+"Информатика" room="314" building="2" teacher="Кузин" /><pair dayOfWeek="Пятница" time="13:00" type="practice" week="Каждая" discipline="АЯ" room="8"
+ building="2" teacher="Петрова" /><pair dayOfWeek="Пятница" time="14:40" type="lection" week="Каждая" discipline="МООП" room="314" building="2" 
+teacher="Карпенко" /><pair dayOfWeek="Пятница" time="16:20" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко"
+ /><pair dayOfWeek="Суббота" time="14:40" type="practice" week="Каждая" discipline="МООП" room="514" building="6" teacher="Шестакова" />
+</subgroup><subgroup title="Вторая"><pair dayOfWeek="Понедельник" time="8:00" type="lection" week="Каждая" discipline="ДМ" room="221" building="4" 
+teacher="Алексеев" /><pair dayOfWeek="Понедельник" time="9:40" type="lection" week="Каждая" discipline="МА" room="221" building="4" teacher="Кротов" 
+/><pair dayOfWeek="Понедельник" time="11:20" type="practice" week="Каждая" discipline="ДМ" room="307" building="2" teacher="Жильцова" /><pair 
+dayOfWeek="Понедельник" time="13:00" type="practice" week="Каждая" discipline="АЯ" room="8" building="2" teacher="Присмотрова" /><pair dayOfWeek=
+"Вторник" time="13:00" type="lection" week="Каждая" discipline="МА" room="338" building="2" teacher="Кротов" /><pair dayOfWeek="Вторник" time="14:40"
+ type="practice" week="Каждая" discipline="ГА" room="102" building="6" teacher="Киселева" /><pair dayOfWeek="Вторник" time="16:20" type="practice" 
+week="Верхняя" discipline="ГА" room="102" building="6" teacher="Киселева" /><pair dayOfWeek="Среда" time="8:00" type="practice" week="Каждая" 
+discipline="МА" room="324" building="2" teacher="Эгамов" /><pair dayOfWeek="Среда" time="9:40" type="practice" week="Каждая" discipline="МА" room=
+"307" building="2" teacher="Эгамов" /><pair dayOfWeek="Среда" time="11:20" type="practice" week="Каждая" discipline="АЯ" room="310" building="2" 
+teacher="Присмотрова" /><pair dayOfWeek="Четверг" time="13:00" type="lection" week="Каждая" discipline="ГА" room="314" building="2" teacher=
+"Шевченко" /><pair dayOfWeek="Четверг" time="14:40" type="lection" week="Каждая" discipline="Информатика" room="314" building="2" teacher="Кузин" />
+<pair dayOfWeek="Четверг" time="16:20" type="lection" week="Верхняя" discipline="Информатика" room="314" building="2" teacher="Кузин" /><pair 
+dayOfWeek="Пятница" time="14:40" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek=
+"Пятница" time="16:20" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek="Суббота" time=
+"16:20" type="practice" week="Каждая" discipline="МООП" room="515" building="6" teacher="Боголепов" />
+</subgroup>
+</group>
+<group number="8104">
+<subgroup title="Первая">
+<pair dayOfWeek="Понедельник" time="8:00" type="lection" week="Каждая" discipline="ДМ" room="221" building="4" teacher="Алексеев" />
+<pair dayOfWeek="Понедельник" time="9:40" type="lection" week="Каждая" discipline="МА" room="221" building="4" teacher="Кротов" />
+<pair dayOfWeek="Понедельник" time="11:20" type="practice" week="Каждая" discipline="МООП" room="317" building="2" teacher="Гергель" />
+<pair dayOfWeek="Вторник" time="8:00" type="practice" week="Каждая" discipline="ДМ" room="303" building="2" teacher="Захарова" />
+<pair dayOfWeek="Вторник" time="9:40" type="practice" week="Каждая" discipline="МА" room="310" building="2" teacher="Гордеева" />
+<pair dayOfWeek="Вторник" time="13:00" type="lection" week="Каждая" discipline="МА" room="338" building="2" teacher="Кротов" />
+<pair dayOfWeek="Среда" time="13:00" type="practice" week="Каждая" discipline="АЯ" room="8" building="2" teacher="Петрова" />
+<pair dayOfWeek="Среда" time="16:20" type="practice" week="Каждая" discipline="ГА" room="102" building="6" teacher="Кучеренко" />
+<pair dayOfWeek="Среда" time="18:00" type="practice" week="Верхняя" discipline="ГА" room="509" building="6" teacher="Кучеренко" />
+<pair dayOfWeek="Четверг" time="13:00" type="lection" week="Каждая" discipline="ГА" room="314" building="2" teacher="Шевченко" />
+<pair dayOfWeek="Четверг" time="14:40" type="lection" week="Каждая" discipline="Информатика" room="314" building="2" teacher="Кузин" />
+<pair dayOfWeek="Четверг" time="16:20" type="lection" week="Верхняя" discipline="Информатика" room="314" building="2" teacher="Кузин" />
+<pair dayOfWeek="Пятница" time="11:20" type="practice" week="Каждая" discipline="АЯ" room="8" building="2" teacher="Петрова" />
+<pair dayOfWeek="Пятница" time="13:00" type="practice" week="Каждая" discipline="МА" room="105/307" building="2" teacher="Гордеева" />
+<pair dayOfWeek="Пятница" time="14:40" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" />
+<pair dayOfWeek="Пятница" time="16:20" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" />
+</subgroup>
+<subgroup title="Вторая">
+<pair dayOfWeek="Понедельник" time="8:00" type="lection" week="Каждая" discipline="ДМ" room="221" building="4" teacher="Алексеев" />
+<pair dayOfWeek="Понедельник" time="9:40" type="lection" week="Каждая" discipline="МА" room="221" building="4" teacher="Кротов" />
+<pair dayOfWeek="Понедельник" time="13:00" type="practice" week="Каждая" discipline="МООП" room="310" building="2" teacher="Баркалов" />
+<pair dayOfWeek="Вторник" time="8:00" type="practice" week="Каждая" discipline="ДМ" room="303" building="2" teacher="Захарова" />
+<pair dayOfWeek="Вторник" time="9:40" type="practice" week="Каждая" discipline="МА" room="310" building="2" teacher="Гордеева" />
+<pair dayOfWeek="Вторник" time="13:00" type="lection" week="Каждая" discipline="МА" room="338" building="2" teacher="Кротов" />
+<pair dayOfWeek="Среда" time="13:00" type="practice" week="Каждая" discipline="АЯ" room="509" building="6" teacher="Присмотрова" />
+<pair dayOfWeek="Среда" time="14:40" type="practice" week="Каждая" discipline="АЯ" room="515" building="6" teacher="Присмотрова" />
+<pair dayOfWeek="Среда" time="16:20" type="practice" week="Каждая" discipline="ГА" room="102" building="6" teacher="Кучеренко" />
+<pair dayOfWeek="Среда" time="18:00" type="practice" week="Верхняя" discipline="ГА" room="509" building="6" teacher="Кучеренко" />
+<pair dayOfWeek="Четверг" time="13:00" type="lection" week="Каждая" discipline="ГА" room="314" building="2" teacher="Шевченко" />
+<pair dayOfWeek="Четверг" time="14:40" type="lection" week="Каждая" discipline="Информатика" room="314" building="2" teacher="Кузин" />
+<pair dayOfWeek="Четверг" time="16:20" type="lection" week="Верхняя" discipline="Информатика" room="314" building="2" teacher="Кузин" />
+<pair dayOfWeek="Пятница" time="13:00" type="practice" week="Каждая" discipline="МА" room="105/307" building="2" teacher="Гордеева" />
+<pair dayOfWeek="Пятница" time="14:40" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" />
+<pair dayOfWeek="Пятница" time="16:20" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" />
+</subgroup>
+</group>
+<group number="8105"><subgroup title="Первая"><pair dayOfWeek=
+"Понедельник" time="8:00" type="lection" week="Каждая" discipline="ДМ" room="221" building="4" teacher="Алексеев" /><pair dayOfWeek="Понедельник" 
+time="9:40" type="lection" week="Каждая" discipline="МА" room="221" building="4" teacher="Кротов" /><pair dayOfWeek="Вторник" time="8:00" type=
+"practice" week="Каждая" discipline="МА" room="234" building="2" teacher="Фокина" /><pair dayOfWeek="Вторник" time="9:40" type="practice" week=
+"Каждая" discipline="ДМ" room="234" building="2" teacher="Захарова" /><pair dayOfWeek="Вторник" time="13:00" type="lection" week="Каждая" discipline=
+"МА" room="338" building="2" teacher="Кротов" /><pair dayOfWeek="Среда" time="8:00" type="practice" week="Каждая" discipline="МООП" room="310" 
+building="2" teacher="Шестакова" /><pair dayOfWeek="Среда" time="11:20" type="practice" week="Каждая" discipline="ГА" room="324" building="2" teacher
+="Шульц" /><pair dayOfWeek="Среда" time="13:00" type="practice" week="Каждая" discipline="МА" room="310" building="2" teacher="Фокина" /><pair 
+dayOfWeek="Четверг" time="13:00" type="lection" week="Каждая" discipline="ГА" room="314" building="2" teacher="Шевченко" /><pair dayOfWeek="Четверг" 
+time="14:40" type="lection" week="Каждая" discipline="Информатика" room="314" building="2" teacher="Кузин" /><pair dayOfWeek="Четверг" time="16:20" 
+type="lection" week="Верхняя" discipline="Информатика" room="314" building="2" teacher="Кузин" /><pair dayOfWeek="Пятница" time="13:00" type=
+"practice" week="Верхняя" discipline="ГА" room="234" building="2" teacher="Шульц" /><pair dayOfWeek="Пятница" time="14:40" type="lection" week=
+"Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek="Пятница" time="16:20" type="lection" week="Каждая" 
+discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek="Суббота" time="11:20" type="practice" week="Каждая" discipline="АЯ" 
+room="505" building="4" teacher="Комарова" /><pair dayOfWeek="Суббота" time="13:00" type="practice" week="Каждая" discipline="АЯ" room="515" building
+="6" teacher="Комарова" /></subgroup><subgroup title="Вторая"><pair dayOfWeek="Понедельник" time="8:00" type="lection" week="Каждая" discipline="ДМ" 
+room="221" building="4" teacher="Алексеев" /><pair dayOfWeek="Понедельник" time="9:40" type="lection" week="Каждая" discipline="МА" room="221" 
+building="4" teacher="Кротов" /><pair dayOfWeek="Вторник" time="8:00" type="practice" week="Каждая" discipline="МА" room="234" building="2" teacher=
+"Фокина" /><pair dayOfWeek="Вторник" time="9:40" type="practice" week="Каждая" discipline="ДМ" room="234" building="2" teacher="Захарова" /><pair 
+dayOfWeek="Вторник" time="13:00" type="lection" week="Каждая" discipline="МА" room="338" building="2" teacher="Кротов" /><pair dayOfWeek="Среда" time
+="9:40" type="practice" week="Каждая" discipline="МООП" room="310" building="2" teacher="Сиднев" /><pair dayOfWeek="Среда" time="11:20" type=
+"practice" week="Каждая" discipline="ГА" room="324" building="2" teacher="Шульц" /><pair dayOfWeek="Среда" time="13:00" type="practice" week="Каждая"
+ discipline="МА" room="310" building="2" teacher="Фокина" /><pair dayOfWeek="Четверг" time="13:00" type="lection" week="Каждая" discipline="ГА" room=
+"314" building="2" teacher="Шевченко" /><pair dayOfWeek="Четверг" time="14:40" type="lection" week="Каждая" discipline="Информатика" room="314" 
+building="2" teacher="Кузин" /><pair dayOfWeek="Четверг" time="16:20" type="lection" week="Верхняя" discipline="Информатика" room="314" building="2" 
+teacher="Кузин" /><pair dayOfWeek="Пятница" time="13:00" type="practice" week="Верхняя" discipline="ГА" room="234" building="2" teacher="Шульц" />
+<pair dayOfWeek="Пятница" time="14:40" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek=
+"Пятница" time="16:20" type="lection" week="Каждая" discipline="МООП" room="314" building="2" teacher="Карпенко" /><pair dayOfWeek="Суббота" time=
+"14:40" type="practice" week="Каждая" discipline="АЯ" room="307" building="2" teacher="Комарова" /><pair dayOfWeek="Суббота" time="16:20" type=
+"practice" week="Каждая" discipline="АЯ" room="307" building="2" teacher="Комарова" /></subgroup></group></speciality></specialities>
