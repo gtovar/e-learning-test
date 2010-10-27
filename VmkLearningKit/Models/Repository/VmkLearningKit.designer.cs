@@ -6441,6 +6441,8 @@ namespace VmkLearningKit.Models.Repository
 		
 		private string _Abbreviation;
 		
+		private bool _Required;
+		
 		private EntitySet<LecturePlan> _LecturePlans;
 		
 		private EntitySet<LectureTimetable> _LectureTimetables;
@@ -6485,6 +6487,8 @@ namespace VmkLearningKit.Models.Repository
     partial void OnCodeChanged();
     partial void OnAbbreviationChanging(string value);
     partial void OnAbbreviationChanged();
+    partial void OnRequiredChanging(bool value);
+    partial void OnRequiredChanged();
     #endregion
 		
 		public SpecialityDiscipline()
@@ -6691,6 +6695,26 @@ namespace VmkLearningKit.Models.Repository
 					this._Abbreviation = value;
 					this.SendPropertyChanged("Abbreviation");
 					this.OnAbbreviationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Required", DbType="Bit NOT NULL")]
+		public bool Required
+		{
+			get
+			{
+				return this._Required;
+			}
+			set
+			{
+				if ((this._Required != value))
+				{
+					this.OnRequiredChanging(value);
+					this.SendPropertyChanging();
+					this._Required = value;
+					this.SendPropertyChanged("Required");
+					this.OnRequiredChanged();
 				}
 			}
 		}

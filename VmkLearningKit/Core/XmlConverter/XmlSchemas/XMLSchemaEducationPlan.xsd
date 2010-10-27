@@ -38,7 +38,7 @@
                                       <xs:element name="teachers">
                                         <xs:complexType>
                                           <xs:sequence>
-                                            <xs:element name="teacher" maxOccurs="unbounded">
+                                            <xs:element name="teacher" minOccurs="0" maxOccurs="unbounded">
                                               <xs:complexType>
                                                 <xs:attribute name="name" type="xs:string" use="required" />
                                               </xs:complexType>
@@ -46,7 +46,7 @@
                                           </xs:sequence>
                                         </xs:complexType>
                                       </xs:element>
-                                      <xs:element maxOccurs="unbounded" name="term">
+                                      <xs:element minOccurs="0" maxOccurs="unbounded" name="term">
                                         <xs:complexType>
                                           <xs:attribute name="number" type="xs:unsignedByte" use="required" />
                                           <xs:attribute name="lections" type="xs:unsignedByte" use="required" />
@@ -59,6 +59,7 @@
                                     <xs:attribute name="abbreviation" type="xs:string" use="required" />
                                     <xs:attribute name="code" type="xs:string" use="required" />
                                     <xs:attribute name="title" type="xs:string" use="required" />
+                                    <xs:attribute name="required" type="xs:byte" use="optional" />
                                   </xs:complexType>
                                 </xs:element>
                               </xs:sequence>

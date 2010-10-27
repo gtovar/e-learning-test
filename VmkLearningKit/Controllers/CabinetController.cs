@@ -187,16 +187,19 @@ namespace VmkLearningKit.Controllers
                             ViewData["SpecialityDisciplineTopics"] = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(specialityDiscipline.Id);
                             ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id).Distinct(new LecturePlanTopicIdComparer());
 
-                            LectureTimetable lectionTimetable = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
-
-                            List<DateTime> lectionDatesList = Utility.GetLectionDateTimesInCurrentTerm(lectionTimetable.Day, lectionTimetable.Week);
-                            List<SelectListItem> list = new List<SelectListItem>();
+                            IEnumerable<LectureTimetable> lectionTimetables = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
+                            List<SelectListItem> list                       = new List<SelectListItem>();
                             
-                            foreach(DateTime lection in lectionDatesList)
+                            foreach (LectureTimetable lectionTimetable in lectionTimetables)
                             {
-                                SelectListItem item = new SelectListItem();
-                                item.Text = item.Value = lection.ToShortDateString();
-                                list.Add(item);
+                                List<DateTime> lectionDatesList = Utility.GetLectionDateTimesInCurrentTerm(lectionTimetable.Day, lectionTimetable.Week);
+                                
+                                foreach (DateTime lection in lectionDatesList)
+                                {
+                                    SelectListItem item = new SelectListItem();
+                                    item.Text = item.Value = lection.ToShortDateString();
+                                    list.Add(item);
+                                }
                             }
                             SelectListItem defaultItem = new SelectListItem();
                             defaultItem.Selected = true;
@@ -333,16 +336,19 @@ namespace VmkLearningKit.Controllers
                     ViewData["SpecialityDisciplineTopics"] = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(specialityDiscipline.Id);
                     ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id);
 
-                    LectureTimetable lectionTimetable = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
-
-                    List<DateTime> lectionDatesList = Utility.GetLectionDateTimesInCurrentTerm(lectionTimetable.Day, lectionTimetable.Week);
+                    IEnumerable<LectureTimetable> lectionTimetables = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
                     List<SelectListItem> list = new List<SelectListItem>();
 
-                    foreach (DateTime lection in lectionDatesList)
+                    foreach (LectureTimetable lectionTimetable in lectionTimetables)
                     {
-                        SelectListItem item = new SelectListItem();
-                        item.Text = item.Value = lection.ToShortDateString();
-                        list.Add(item);
+                        List<DateTime> lectionDatesList = Utility.GetLectionDateTimesInCurrentTerm(lectionTimetable.Day, lectionTimetable.Week);
+
+                        foreach (DateTime lection in lectionDatesList)
+                        {
+                            SelectListItem item = new SelectListItem();
+                            item.Text = item.Value = lection.ToShortDateString();
+                            list.Add(item);
+                        }
                     }
                     SelectListItem defaultItem = new SelectListItem();
                     defaultItem.Selected = true;

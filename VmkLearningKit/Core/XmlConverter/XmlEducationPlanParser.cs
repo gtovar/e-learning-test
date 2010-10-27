@@ -122,12 +122,16 @@ namespace VmkLearningKit.Core.XmlConverter
                      lectionsCount              = 0,
                      practicesCount             = 0,
                      labsCount                  = 0;
+            bool     required                   = true;
             long     specialityId               = VLKConstants.FAKE_VALUE,
                      educationPlanId            = VLKConstants.FAKE_VALUE,
                      chairId                    = VLKConstants.FAKE_VALUE,
                      professorId                = VLKConstants.FAKE_VALUE,
                      specialityDisciplineId     = VLKConstants.FAKE_VALUE;
+            bool     termStart                  = true;
             string[] professorData;
+
+            List<long> professorIds             = new List<long>();
 
             Dictionary<byte, byte> terms    = new Dictionary<byte, byte>();
 
@@ -173,19 +177,19 @@ namespace VmkLearningKit.Core.XmlConverter
                     disciplineTitle         = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_TITLE);
                     chairId                 = repositoryManager.GetChairRepository.GetByAbbreviation(VLKConstants.FIELD_EMPTY).Id;
                     
-                    SpecialityDiscipline discipline = new SpecialityDiscipline();
-                    discipline.Abbreviation     = disciplineAbbreviation;
-                    discipline.Alias            = Transliteration.Front(disciplineAbbreviation, TransliterationType.ISO);
-                    discipline.Category         = category1 + ":" + category2;
-                    discipline.ChairId          = chairId;
-                    discipline.Code             = disciplineCode;
-                    discipline.EducationPlanId  = educationPlanId;
-                    discipline.SpecialityId     = specialityId;
-                    discipline.Title            = disciplineTitle;
-                    
-                    repositoryManager.GetSpecialityDisciplineRepository.Add(discipline);
-
-                    specialityDisciplineId      = repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(disciplineTitle).Id;
+                    try
+                    {
+                        if (0 == Convert.ToByte(xmlReader.GetAttribute("required")))
+                            required = false;
+                        else
+                            required = true;
+                    }
+                    catch (FormatException exc)
+                    {
+                        required = true;
+                    }
+                    termStart               = true;
+                    professorIds.Clear();
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_TEACHER))
@@ -203,16 +207,42 @@ namespace VmkLearningKit.Core.XmlConverter
                                                                                  "." +
                                                                                  Transliteration.Front(professorPatronymicShort, TransliterationType.ISO)).Id;
 
-                    SpecialityDisciplinesProfessor temp = new SpecialityDisciplinesProfessor();
-
-                    temp.SpecialityDisciplineId = specialityDisciplineId;
-                    temp.ProfessorId            = professorId;
-
-                    repositoryManager.GetSpecialityDisciplinesProfessorRepository.Add(temp);
+                    professorIds.Add(professorId);
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
-                         xmlReader.Name.Equals(Constants.XML_ELEMENT_TERM))
+                         xmlReader.Name.Equals(Constants.XML_ELEMENT_TERM) &&
+                         professorIds.Count != 0)
                 {
+                    if (termStart)
+                    {
+                        SpecialityDiscipline discipline = new SpecialityDiscipline();
+                        discipline.Abbreviation     = disciplineAbbreviation;
+                        discipline.Alias            = Transliteration.Front(disciplineAbbreviation, TransliterationType.ISO);
+                        discipline.Category         = category1 + ":" + category2;
+                        discipline.ChairId          = chairId;
+                        discipline.Code             = disciplineCode;
+                        discipline.EducationPlanId  = educationPlanId;
+                        discipline.SpecialityId     = specialityId;
+                        discipline.Title            = disciplineTitle;
+                        discipline.Required         = required;
+
+                        repositoryManager.GetSpecialityDisciplineRepository.Add(discipline);
+
+                        specialityDisciplineId      = repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(disciplineTitle).Id;
+
+                        foreach (long id in professorIds)
+                        {
+                            SpecialityDisciplinesProfessor temp = new SpecialityDisciplinesProfessor();
+
+                            temp.ProfessorId            = id;
+                            temp.SpecialityDisciplineId = specialityDisciplineId;
+
+                            repositoryManager.GetSpecialityDisciplinesProfessorRepository.Add(temp);
+                        }
+                    }
+
+                    termStart = false;
+
                     localTermNumber = Convert.ToByte(xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_NUMBER));
                     localTermWeeks  = terms[localTermNumber];
                     lectionsCount   = Convert.ToByte(xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_LECTIONS));

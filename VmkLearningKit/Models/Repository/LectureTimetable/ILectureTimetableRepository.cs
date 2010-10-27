@@ -10,8 +10,8 @@ namespace VmkLearningKit.Models.Repository
         IEnumerable<LectureTimetable> GetBySpecialityDisciplineId(long specialityDisciplineId);
         LectureTimetable Add(LectureTimetable obj);
         long GetMaxId();
-        LectureTimetable Get(long specialityDisciplineId, string dayOfWeek, string time);
-        LectureTimetable Get(long specialityDisciplineId, long professorId);
+        LectureTimetable Get(long specialityDisciplineId, string dayOfWeek, string time, long professorId);
+        IEnumerable<LectureTimetable> Get(long specialityDisciplineId, long professorId);
         void DeleteAll(long departmentId);
     }
 }
