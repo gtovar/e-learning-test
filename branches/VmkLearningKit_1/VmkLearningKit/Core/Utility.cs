@@ -505,6 +505,42 @@ namespace VmkLearningKit.Core
             return foundTimetables;
         }
 
+        public static List<PracticeAndLabTimetable> FindSchedule(long studentId, IEnumerable<SpecialityDiscipline> specialityDisciplines, string day, string time)
+        {
+            DayOfWeek dayOfWeek = GetDayOfWeekFromString(day);
+            List<PracticeAndLabTimetable> foundTimetables = new List<PracticeAndLabTimetable>();
+
+            string timeWithZero = String.Empty;
+            // 8:00, 9:00
+            if (time.Length < 5)
+            {
+                timeWithZero = "0" + time;
+            }
+
+            foreach (SpecialityDiscipline discipline in specialityDisciplines)
+            {
+                foreach (PracticeAndLabTimetable timetable in discipline.PracticeAndLabTimetables)
+                {
+                    if (timetable.Day.Trim().Equals(day.Trim()) &&
+                       (timetable.Time.Trim().Equals(time.Trim()) || timetable.Time.Trim().Equals(timeWithZero.Trim()))
+                        && timetable.GroupId == RepositoryManager.GetRepositoryManager.GetStudentRepository.GetById(studentId).GroupId)
+                    {
+                        /*foreach (LecturePlan lecturePlan in discipline.LecturePlans)
+                        {
+                            if (lecturePlan.Date.HasValue && lecturePlan.Date.Value.DayOfWeek == dayOfWeek)
+                            {
+                                foundTimetables.Add(timetable);
+                                break;
+                            }
+                        }*/
+                        foundTimetables.Add(timetable);
+                    }
+                }
+            }
+
+            return foundTimetables;
+        }
+
         public static byte GetNumberByDayOfWeek(DayOfWeek dayOfWeek)
         {
             switch (dayOfWeek)
