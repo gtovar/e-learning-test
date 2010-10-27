@@ -51,6 +51,7 @@
             string downSchedule = null;
             LectureTimetable lecture = null;
             List<LectureTimetable> foundLectureTimetables = null;
+            List<PracticeAndLabTimetable> foundPracticeAndLabTimetables = null;
             bool both_weeks = false;
         %>
         <tr class="table_row">
@@ -62,6 +63,8 @@
             <td class="table_td">
                 <%
                     foundLectureTimetables = Utility.FindSchedule(specialityDisciplines, "Понедельник", time);
+                    foundPracticeAndLabTimetables = Utility.FindSchedule(((VmkLearningKit.Models.Domain.User)Session["user"]).DbUser.Id, specialityDisciplines, "Понедельник", time);
+                    
                     if (null != foundLectureTimetables && foundLectureTimetables.Count > 0 && foundLectureTimetables.Count < 3)
                     {
                         both_weeks = foundLectureTimetables.Count == 2 ? true : false;
