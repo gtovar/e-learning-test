@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<educationPlan title="Специалитет">
+  <speciality code="010500" />
+  <!-- <Программа> -->
+  <terms>
+	  <term number="1" weeks = "18" />
+	  <term number="2" weeks = "16" />
+	  <term number="3" weeks = "18" />
+	  <term number="4" weeks = "16" />
+	  <term number="5" weeks = "18" />
+	  <term number="6" weeks = "16" />
+	  <term number="7" weeks = "18" />
+	  <term number="8" weeks = "15" />
+  </terms>
+  <categories>
+<category1 title="МАТЕМАТИЧЕСКИЕ И ЕСТЕСТВЕННО-НАУЧНЫЕ ДИСЦИПЛИНЫ">
+      <category2 title="Федеральный компонент">
+        <disciplines>
+          <discipline abbreviation="ДМ" code="001" title="Основы дискретной математики">
+            <teachers>
+              <teacher name="Алексеев В.Е."/>
+              <teacher name="Жильцова Л.П."/>
+              <teacher name="Захарова Д.В."/>
+              <teacher name="Смирнова Т.Г."/>            
+            </teachers>
+            <term number="1" lections="2" practices="2" labs="0" reportings="Зачет"/>
+          </discipline>
+          <discipline abbreviation="МА" code="002" title="Математический анализ">
+            <teachers>
+              <teacher name="Кротов Н.В."/>
+              <teacher name="Гордеева О.В."/>
+              <teacher name="Медведев Т.В."/>
+              <teacher name="Фокина В.Н."/>
+              <teacher name="Эгамов А.И."/>
+              <teacher name="Сизова Н.А."/>
+            </teachers>
+            <term number="1" lections="4" practices="4" labs="0" reportings="Зачет, Экзамен"/>
+          </discipline>
+        </disciplines>
+      </category2>
+      <category2 title="Вузовский компонент">
+        <disciplines>
+          <discipline abbreviation="ГА" code="003" title="Геометрия и алгебра">
+            <teachers>
+              <teacher name="Шевченко В.Н."/>
+              <teacher name="Киселева Л.Г."/>
+              <teacher name="Сидоров С.В."/>
+              <teacher name="Шульц М.М."/>
+              <teacher name="Кучеренко А.А."/>
+            </teachers>
+            <term number="1" lections="2" practices="3" labs="0" reportings="Зачет, Экзамен"/>
+          </discipline>
+        </disciplines>
+      </category2>
+    </category1>
+		  <category1 title="ОБЩЕПРОФЕССИОНАЛЬНЫЕ ДИСЦИПЛИНЫ">
+		  <category2 title="Федеральный компонент">
+			  <disciplines>
+				  <discipline abbreviation="Информатика" code="004" title="Информатика">
+					  <teachers>
+						  <teacher name="Кузин С.Г."/>
+					  </teachers>
+					  <term number="1" lections="3" practices="0" labs="0" reportings="Зачет"/>
+				  </discipline>
+				  <discipline abbreviation="АЯ" code="005" title="Английский язык">
+					  <teachers>
+						  <teacher name="Присмотрова О.Ю."/>
+						  <teacher name="Зыбцева [.[."/>
+						  <teacher name="Петрова Л.П."/>
+						  <teacher name="Ярунина С.А."/>
+						  <teacher name="Сорокина [.[."/>
+						  <teacher name="Комарова [.[."/>
+					  </teachers>
+					  <term number="1" lections="0" practices="4" labs="0" reportings="Зачет"/>
+				  </discipline>
+			  </disciplines>	
+		  </category2>		
+		  <category2 title="Вузовский компонент">
+			  <disciplines>
+				  <discipline abbreviation="МООП" code="006" title="Методы объектно-ориентированного программирования">
+					  <teachers>
+						  <teacher name="Карпенко С.Н."/>
+						  <teacher name="Гергель В.П."/>
+						  <teacher name="Сиднев А.А."/>
+						  <teacher name="Барышева И.В."/>
+						  <teacher name="Баркалов А.В."/>
+						  <teacher name="Шестакова Н.В."/>
+						  <teacher name="Боголепов Д.К."/>
+					  </teachers>
+					  <term number="1" lections="4" practices="2" labs="0" reportings="Экзамен"/>
+				  </discipline>
+			  </disciplines>	
+		  </category2>
+	  </category1>
+	</categories>
+</educationPlan>

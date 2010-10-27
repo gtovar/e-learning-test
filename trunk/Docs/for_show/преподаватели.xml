@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<teachers>
+  <teacher chairAbbreviation="МОЭВМ" lastName="Стронгин" firstName="Роман" patronymic="Григорьевич" degree="д.ф.-м.н." rank="проф." position="проф." />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Гергель" firstName="Виктор" patronymic="Павлович" degree="д.т.н." rank="проф." position="проф." />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Баркалов" firstName="Александр" patronymic="Валентинович" degree="к.ф.-м.н." rank="доц." position="доц." />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Басалин" firstName="Павел" patronymic="Дмитриевич" degree="к.т.н." rank="доц." position="доц." />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Барышева" firstName="Ирина" patronymic="Викторовна" degree="Отсутствует" rank="Отсутствует" position="ассистент" />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Шестакова" firstName="Наталья" patronymic="Валерьевна" degree="Отсутствует" rank="Отсутствует" position="ассистент" />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Боголепов" firstName="Денис" patronymic="Константинович" degree="Отсутствует" rank="Отсутствует" position="ассистент" />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Карпенко" firstName="Сергей" patronymic="Николаевич" degree="к.т.н." rank="доц." position="доц." />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Кетков" firstName="Юлий" patronymic="Лазаревич" degree="д.ф.-м.н." rank="проф." position="проф." />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Сиднев" firstName="Алексей" patronymic="Александрович" degree="Отсутствует" rank="Отсутствует" position="Отсутствует" />
+  <teacher chairAbbreviation="МОЭВМ" lastName="Турлапов" firstName="Вадим" patronymic="Евгеньевич" degree="д.т.н." rank="проф." position="проф." />
+  <teacher chairAbbreviation="МЛиВА" lastName="Сидоров" firstName="Сергей" patronymic="Владимирович" degree="Отсутствует" rank="Отсутствует" position="ассистент" />
+  <teacher chairAbbreviation="МЛиВА" lastName="Киселева" firstName="Лариса" patronymic="Георгиевна" degree="к.ф.-м.н." rank="доц." position="доц." />
+  <teacher chairAbbreviation="МЛиВА" lastName="Кучеренко" firstName="Александр" patronymic="Александрович" degree="Отсутствует" rank="Отсутствует" position="Отсутствует" />
+  <teacher chairAbbreviation="МЛиВА" lastName="Шульц" firstName="Михаил" patronymic="Михайлович" degree="Отсутствует" rank="ст.пр." position="ст.пр." />
+  <teacher chairAbbreviation="МЛиВА" lastName="Шевченко" firstName="Валерий" patronymic="Николаевич" degree="д.ф.-м.н." rank="проф." position="проф." />
+  <teacher chairAbbreviation="МЛиВА" lastName="Золотых" firstName="Николай" patronymic="Юрьевич" degree="к.ф.-м.н." rank="доц." position="доц." />
+  <teacher chairAbbreviation="МЛиВА" lastName="Смирнова" firstName="Татьяна" patronymic="Геннадьевна" degree="к.ф.-м.н." rank="доц." position="доц." />
+  <teacher chairAbbreviation="МЛиВА" lastName="Алексеев" firstName="Владимир" patronymic="Евгеньевич" degree="д.ф.-м.н." rank="проф." position="проф." />
+  <teacher chairAbbreviation="МЛиВА" lastName="Жильцова" firstName="Лариса" patronymic="Павловна" degree="д.ф.-м.н." rank="проф." position="проф." />
+  <teacher chairAbbreviation="МЛиВА" lastName="Захарова" firstName="Дарья" patronymic="Владимировна" degree="Отсутствует" rank="Отсутствует" position="ассистент" />
+  <teacher chairAbbreviation="ЦПИ" lastName="Кузин" firstName="Станислав" patronymic="Григорьевич" degree="к.т.н." rank="доц." position="доц." />
+  <teacher chairAbbreviation="ЧиФА" lastName="Кротов" firstName="Николай" patronymic="Владимирович" degree="к.ф.-м.н." rank="доц." position="доц." />
+  <teacher chairAbbreviation="ЧиФА" lastName="Медведев" firstName="Тимур" patronymic="Владиславович" degree="Отсутствует" rank="Отсутствует" position="ассистент" />
+  <teacher chairAbbreviation="ЧиФА" lastName="Гордеева" firstName="Ольга" patronymic="Владимировна" degree="Отсутствует" rank="Отсутствует" position="Отсутствует" />
+  <teacher chairAbbreviation="ЧиФА" lastName="Фокина" firstName="Валентина" patronymic="Николаевна" degree="Отсутствует" rank="Отсутствует" position="ассистент" />
+  <teacher chairAbbreviation="ЧиФА" lastName="Сизова" firstName="Наталья" patronymic="Александровна" degree="Отсутствует" rank="Отсутствует" position="ассистент" />
+  <teacher chairAbbreviation="ЧиФА" lastName="Эгамов" firstName="Альюерт" patronymic="Исмаилович" degree="Отсутствует" rank="Отсутствует" position="ст.пр." />
+  <teacher chairAbbreviation="Отсутствует" lastName="Присмотрова" firstName="Оксана" patronymic="Юрьевна" degree="Отсутствует" rank="Отсутствует" position="Отсутствует" />
+  <teacher chairAbbreviation="Отсутствует" lastName="Ярунина" firstName="Светлана" patronymic="Алексеевна" degree="Отсутствует" rank="Отсутствует" position="Отсутствует" />
+  <teacher chairAbbreviation="Отсутствует" lastName="Зыбцева" firstName="[имя]" patronymic="[отчество]" degree="Отсутствует" rank="Отсутствует" position="Отсутствует" />
+  <teacher chairAbbreviation="Отсутствует" lastName="Петрова" firstName="Людмила" patronymic="Платоновна" degree="Отсутствует" rank="Отсутствует" position="Отсутствует" />
+  <teacher chairAbbreviation="Отсутствует" lastName="Сорокина" firstName="[имя]" patronymic="[отчество]" degree="Отсутствует" rank="Отсутствует" position="Отсутствует" />
+  <teacher chairAbbreviation="Отсутствует" lastName="Комарова" firstName="[имя]" patronymic="[отчество]" degree="Отсутствует" rank="Отсутствует" position="Отсутствует" />
+</teachers>
