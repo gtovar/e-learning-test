@@ -310,14 +310,14 @@ namespace Converter
                             writer.WriteAttributeString("week", "Каждая");
 
                             writer.WriteAttributeString("discipline", s1[0]);
-                            string builder = "2";
+                            string building = "2";
                             if (s1[1].IndexOf("(") < s1[1].IndexOf(")") && s1[1].IndexOf("(") != -1)
                             {
-                                builder = s1[1].Substring(s1[1].IndexOf("(") + 1, s1[1].IndexOf(")") - s1[1].IndexOf("(") - 1);
-                                s1[1] = s1[1].Replace("(" + builder + ")", "");
+                                building = s1[1].Substring(s1[1].IndexOf("(") + 1, s1[1].IndexOf(")") - s1[1].IndexOf("(") - 1);
+                                s1[1] = s1[1].Replace("(" + building + ")", "");
                             }
                             writer.WriteAttributeString("room", s1[1]);
-                            writer.WriteAttributeString("builder", builder);
+                            writer.WriteAttributeString("building", building);
                             writer.WriteAttributeString("teacher", s2[0]);
 
                             writer.WriteEndElement();
@@ -340,14 +340,14 @@ namespace Converter
                             writer.WriteAttributeString("week", "Верхняя");
 
                             writer.WriteAttributeString("discipline", s1[0]);
-                            string builder = "2";
+                            string building = "2";
                             if (s1[1].IndexOf("(") < s1[1].IndexOf(")") && s1[1].IndexOf("(") != -1)
                             {
-                                builder = s1[1].Substring(s1[1].IndexOf("(") + 1, s1[1].IndexOf(")") - s1[1].IndexOf("(") - 1);
-                                s1[1] = s1[1].Replace("(" + builder + ")", "");
+                                building = s1[1].Substring(s1[1].IndexOf("(") + 1, s1[1].IndexOf(")") - s1[1].IndexOf("(") - 1);
+                                s1[1] = s1[1].Replace("(" + building + ")", "");
                             }
                             writer.WriteAttributeString("room", s1[1]);
-                            writer.WriteAttributeString("builder", builder);
+                            writer.WriteAttributeString("building", building);
                             writer.WriteAttributeString("teacher", s1[2]);
 
                             writer.WriteEndElement();
@@ -365,14 +365,14 @@ namespace Converter
                             writer.WriteAttributeString("week", "Нижняя");
 
                             writer.WriteAttributeString("discipline", s2[0]);
-                            string _builder = "2";
+                            string _building = "2";
                             if (s2[1].IndexOf("(") < s2[1].IndexOf(")") && s2[1].IndexOf("(") != -1)
                             {
-                                _builder = s2[1].Substring(s2[1].IndexOf("(") + 1, s2[1].IndexOf(")") - s2[1].IndexOf("(") - 1);
-                                s2[1] = s2[1].Replace("(" + _builder + ")", "");
+                                _building = s2[1].Substring(s2[1].IndexOf("(") + 1, s2[1].IndexOf(")") - s2[1].IndexOf("(") - 1);
+                                s2[1] = s2[1].Replace("(" + _building + ")", "");
                             }
                             writer.WriteAttributeString("room", s2[1]);
-                            writer.WriteAttributeString("builder", builder);
+                            writer.WriteAttributeString("building", building);
                             writer.WriteAttributeString("teacher", s2[2]);
 
                             writer.WriteEndElement();
@@ -408,17 +408,17 @@ namespace Converter
                             writer.WriteAttributeString("week", "Верхняя");
                                                                                 
                             writer.WriteAttributeString("discipline", s[0]);
-                            string builder = "2";
+                            string building = "2";
                                
                             if (s[1].IndexOf("(") < s[1].IndexOf(")") && s[1].IndexOf("(") != -1)                               
                             {                                
-                                builder = s[1].Substring(s[1].IndexOf("(") + 1, s[1].IndexOf(")") - s[1].IndexOf("(") - 1);                               
-                                s[1] = s[1].Replace("(" + builder + ")", "");                             
+                                building = s[1].Substring(s[1].IndexOf("(") + 1, s[1].IndexOf(")") - s[1].IndexOf("(") - 1);                               
+                                s[1] = s[1].Replace("(" + building + ")", "");                             
                             }
                                
                             writer.WriteAttributeString("room", s[1]);
                                
-                            writer.WriteAttributeString("builder", builder);
+                            writer.WriteAttributeString("building", building);
                               
                             writer.WriteAttributeString("teacher", s[2]);
 
@@ -450,14 +450,14 @@ namespace Converter
 
                             writer.WriteAttributeString("week", "Нижняя");
                             writer.WriteAttributeString("discipline", s[0]);
-                            string builder = "2";
+                            string building = "2";
                             if (s[1].IndexOf("(") < s[1].IndexOf(")") && s[1].IndexOf("(") != -1)
                             {
-                                builder = s[1].Substring(s[1].IndexOf("(") + 1, s[1].IndexOf(")") - s[1].IndexOf("(") - 1);
-                                s[1] = s[1].Replace("(" + builder + ")", "");
+                                building = s[1].Substring(s[1].IndexOf("(") + 1, s[1].IndexOf(")") - s[1].IndexOf("(") - 1);
+                                s[1] = s[1].Replace("(" + building + ")", "");
                             }
                             writer.WriteAttributeString("room", s[1]);
-                            writer.WriteAttributeString("builder", builder);
+                            writer.WriteAttributeString("building", building);
                             writer.WriteAttributeString("teacher", s[2]);
 
                             writer.WriteEndElement();
@@ -507,6 +507,7 @@ namespace Converter
                     if (s.IndexOf(":") != -1)
                         s = s.Substring(s.IndexOf(":") + 1);
                     startCell = GetRightCell(s.Replace("$",""));
+                    break;
                 }
                 /*startCell = GetUpCell(startCell);
                 while (startCell != endCell) 
@@ -536,6 +537,7 @@ namespace Converter
                     startCell = GetRightCell(startCell);
 
                     writer.WriteEndElement();
+                    break;
                 }
 
                 /*startCell = GetUpCell(startCell); //начальная клетка разбора документа

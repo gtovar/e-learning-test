@@ -15,8 +15,8 @@ namespace Converter
         public override void ConvertDocument(string docPath, string xmlPath, List<string> structDocument = null, ProgressBar bar = null)
         {
             Word.Application program = OpenDocFile(docPath);
-            try
-            {
+            //try
+            //{
 
                 Word.Document doc = new Word.Document();
                 doc = program.Documents.Application.ActiveDocument;
@@ -701,7 +701,7 @@ namespace Converter
                 this.Message.Add("Конвертирование выполнено");
 
                 CloseDocFile(program);
-            }
+            /*}
             catch
             {
                 this.Message.Add("Во время конвертирования произошла ошибка");
@@ -709,7 +709,7 @@ namespace Converter
             finally
             {
                 CloseDocFile(program);
-            }
+            }*/
         }
     }
 }

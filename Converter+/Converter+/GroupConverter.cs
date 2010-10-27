@@ -41,12 +41,12 @@ namespace Converter
                 writer.WriteStartElement("groups");
 
                 List<string> groups = new List<string>();
-                bool flag = true;
                 int i = 2;
-                string number = "";
-                string specialityAbbreviation = "";
+                int countEmpty= 0;
+                string number;
+                string specialityAbbreviation;
 
-                while (flag)
+                while (countEmpty !=5)
                 {
                     cell = sheet.get_Range("A" + i, Type.Missing);
 
@@ -54,7 +54,8 @@ namespace Converter
 
                     if (number == null)
                     {
-                        flag = false;
+                        i++;
+                        countEmpty++;
                         continue;
                     }
 
@@ -98,6 +99,7 @@ namespace Converter
                         writer.WriteEndElement();
 
                         groups.Add(number);
+                        countEmpty++;
                     }
 
                     i++;
