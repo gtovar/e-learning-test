@@ -52,9 +52,12 @@ namespace VmkLearningKit.Models.Repository
         {
             try
             {
-                DataContext.LectureTimetables.InsertOnSubmit(obj);
-                DataContext.SubmitChanges();
-                return obj;
+                if (null == Get(obj.SpecialityDisciplineId, obj.Day, obj.Time, obj.ProfessorId))
+                {
+                    DataContext.LectureTimetables.InsertOnSubmit(obj);
+                    DataContext.SubmitChanges();
+                    return obj;
+                }
             }
             catch (Exception ex)
             {
@@ -91,14 +94,14 @@ namespace VmkLearningKit.Models.Repository
             }
         }
 
-        public LectureTimetable Get(long specialityDisciplineId, string dayOfWeek, string time)
+        public LectureTimetable Get(long specialityDisciplineId, string dayOfWeek, string time, long professorId)
         {
-            return DataContext.LectureTimetables.SingleOrDefault(t => (t.SpecialityDisciplineId == specialityDisciplineId && t.Day == dayOfWeek && t.Time == time));
+            return DataContext.LectureTimetables.SingleOrDefault(t => (t.ProfessorId == professorId && t.SpecialityDisciplineId == specialityDisciplineId && t.Day == dayOfWeek && t.Time == time));
         }
 
-        public LectureTimetable Get(long specialityDisciplineId, long professorId)
+        public IEnumerable<LectureTimetable> Get(long specialityDisciplineId, long professorId)
         {
-            return DataContext.LectureTimetables.SingleOrDefault(t => (t.SpecialityDisciplineId == specialityDisciplineId && t.ProfessorId == professorId));
+            return DataContext.LectureTimetables.Where(t => (t.SpecialityDisciplineId == specialityDisciplineId && t.ProfessorId == professorId));
         }
 
         public void DeleteAll(long departmentId)

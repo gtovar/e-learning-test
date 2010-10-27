@@ -89,8 +89,8 @@ namespace VmkLearningKit.Core.XmlConverter
                         XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_WEEK, xmlReader.LineNumber, xmlReader.LinePosition));
                     }
 
-                    if (type != VLKConstants.TYPE_LAB ||
-                        type != VLKConstants.TYPE_LECTION ||
+                    if (type != VLKConstants.TYPE_LAB &&
+                        type != VLKConstants.TYPE_LECTION &&
                         type != VLKConstants.TYPE_PRACTICE)
                     {
                         XmlDataErrorLog.Add(new LogRecord(Constants.XML_DATA_ERROR_NOT_EXIST_TYPE, xmlReader.LineNumber, xmlReader.LinePosition));
@@ -231,7 +231,7 @@ namespace VmkLearningKit.Core.XmlConverter
 
                                     repositoryManager.GetLectureTimetableRepository.Add(lectureTimetable);
 
-                                    long lectureTimetableId = repositoryManager.GetLectureTimetableRepository.Get(disciplineId, dayOfWeek, time).Id;
+                                    long lectureTimetableId = repositoryManager.GetLectureTimetableRepository.Get(disciplineId, dayOfWeek, time, professorId).Id;
 
                                     GroupsLectureTimetable groupLectureTimetable = new GroupsLectureTimetable();
 
