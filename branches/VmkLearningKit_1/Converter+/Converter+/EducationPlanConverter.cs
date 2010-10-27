@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Converter
 {
 
-    enum degree { BACHELOR, MASTER };
+    enum degree { BACHELOR, MASTER, SPECIALIST };
 
     class EducationPlanConverter: Converter
     {
@@ -28,7 +28,8 @@ namespace Converter
         List<Term> terms ;
         string specialityCode = "";
         int examCol = 0, testsCol = 0, cursProjCol = 0, cursWorkCol = 0, disciplineCodeCol = 0,disciplineNameCol = 0, teacherNameCol = 0;
-                        
+        
+                
         int currentRow=0;
         int currentCol=0;
 
@@ -58,7 +59,7 @@ namespace Converter
             row_max = sheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Row;
             column_max = sheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell).Column;
 
-
+            
             try
             {
                 specialityCode = Regex.Match(sheet.Cells.Find("по направлению").Value, @"\d\d\d+\.\d+").Value;
@@ -72,13 +73,22 @@ namespace Converter
                 catch
                 {
 
-                    this.Message.Add("Ошибка в шаблоне - не найден код специальности");
+                    try
+                    {
+                        specialityCode = Regex.Match(sheet.Cells.Find("по специальности").Value, @"\d\d\d+").Value;
+                    }
+                    catch
+                    {
+
+                        this.Message.Add("Ошибка в шаблоне - не найден код специальности");
+                    }
                 }
             }
-
+            
             try
             {
                 educationPLanTitle = sheet.Cells.Find("Степень - бакалавр").Value;
+                educationPLanTitle = "Бакалавриат";
                 educationPLanDegree = degree.BACHELOR;
             }
             catch
@@ -86,11 +96,21 @@ namespace Converter
                 try
                 {
                     educationPLanTitle = sheet.Cells.Find("Степень - магистр").Value + ". "+ sheet.Cells.Find("Магистерская программа").Value;
+                    educationPLanTitle = "Магистратура";
                     educationPLanDegree = degree.MASTER;
                 }
                 catch
                 {
-                    this.Message.Add("Ошибка в шаблоне - не найдена ученая степень");
+                    try
+                    {
+                        educationPLanTitle = sheet.Cells.Find("Квалификация").Value;
+                        educationPLanTitle = "Специалитет";
+                        educationPLanDegree = degree.SPECIALIST;
+                    }
+                    catch
+                    {
+                        this.Message.Add("Ошибка в шаблоне - не найдена ученая степень");
+                    }
                 }
             }
 
@@ -105,7 +125,15 @@ namespace Converter
             } 
             catch
             {
-                this.Message.Add("Ошибка в шаблоне - 'распредедение по курсам и семестрам'(не указаны номера курсов )");
+                tmpCell = sheet.Cells.Find(" курс", sheet.Cells[currentRow+1, 1]);
+                if (tmpCell.Row == currentRow + 1)
+                {
+                    currentCol = tmpCell.Column;
+                }
+                else
+                {
+                    this.Message.Add("Ошибка в шаблоне - 'распредедение по курсам и семестрам'(не указаны номера курсов )");
+                }
             }
             currentRow = currentRow + 2;
 
@@ -206,7 +234,7 @@ namespace Converter
 
                     ConvertCurrentSection(writer); // - для федерального компонента
                     tmpCell = sheet.Cells.Find("вузовский компонент", sheet.Cells[currentRow, 1]);
-                    if (tmpCell.Row == currentRow + 1)
+                    if (tmpCell != null && tmpCell.Row == currentRow + 1)
                     {
                         currentRow++;
                         ConvertCurrentSection(writer);
@@ -215,31 +243,38 @@ namespace Converter
                     if (educationPLanDegree == degree.MASTER)
                     {
                         tmpCell = sheet.Cells.Find("Специальные дисциплины", sheet.Cells[currentRow, 1]);
-                        if (tmpCell.Row == currentRow + 1)
+                        if (tmpCell != null && tmpCell.Row == currentRow + 1)
                         {
                             currentRow++;
                             ConvertCurrentSection(writer);
                         }
                     }
 
-                    
-                    if (educationPLanDegree == degree.BACHELOR)
+
+                    if (educationPLanDegree == degree.BACHELOR || educationPLanDegree == degree.SPECIALIST)
                     {
                         tmpCell = sheet.Cells.Find("Курсы по выбору", sheet.Cells[currentRow, 1]);
-                        if (tmpCell.Row == currentRow + 1)
+                        if (tmpCell == null)
+                        {
+                            tmpCell = sheet.Cells.Find("Дисциплины по выбору", sheet.Cells[currentRow, 1]);
+                        }
+                        if (tmpCell != null && tmpCell.Row == currentRow + 1)
                         {
                             currentRow++;
-                            ConvertCurrentSection(writer);
+                            ConvertCurrentSection(writer,0);
                         }
                     }
 
                     writer.WriteEndElement();
                 } while (true);
 
-                if (educationPLanDegree == degree.BACHELOR)
+                if (educationPLanDegree == degree.BACHELOR || educationPLanDegree == degree.SPECIALIST)
                 {
                     tmpCell = sheet.Cells.Find("Специальные дисциплины", sheet.Cells[currentRow, 1]);
-                    if (tmpCell.Value != null)
+                    {
+                        tmpCell = sheet.Cells.Find("Дисциплины специализаций", sheet.Cells[currentRow, 1]);
+                    }
+                    if (tmpCell != null)
                     {
                         writer.WriteStartElement("category1");
                         writer.WriteAttributeString("title", "Специальные дисциплины");
@@ -248,7 +283,7 @@ namespace Converter
                         writer.WriteEndElement();
                     }
                     tmpCell = sheet.Cells.Find("Факультативные дисциплины", sheet.Cells[currentRow, 1]);
-                    if (tmpCell.Value != null)
+                    if (tmpCell != null)
                     {
                         currentRow = tmpCell.Row;
                         writer.WriteStartElement("category1");
@@ -292,7 +327,7 @@ namespace Converter
         // currentRow и Col должны указывать на заголовок раздела
         // разбор идет до момента, когда встречается слово "Итого"
         // в процессе- сразу идет запись в XML
-        private void ConvertCurrentSection(XmlTextWriter writer)
+        private void ConvertCurrentSection(XmlTextWriter writer, int isRequiredCource = 1)
         {
 
             writer.WriteStartElement("category2");
@@ -300,26 +335,65 @@ namespace Converter
             writer.WriteStartElement("disciplines");
             int stopRow = sheet.Cells.Find("Итого", sheet.Cells[currentRow, 1]).Row;
             currentRow += 1;
+            int lectionsNum = 0, practicesNum = 0, labsNum = 0;
+            string disciplineCode = "";
+            string teacherName = "";
+            bool isNotRealDiscipline = true;
+            
             while (currentRow < stopRow)
             {
-                if (Convert.ToString(sheet.Cells[currentRow, disciplineCodeCol].Value) == null)
+                isNotRealDiscipline = true;
+                foreach (Term curTerm in terms)
+                {
+                    try
+                    {
+                        if (sheet.Cells[currentRow, curTerm.columnInTable].Value != null)
+                        {
+                            isNotRealDiscipline = false;
+                            break;
+                        }
+                    }
+                    catch { }
+                }
+                if (isNotRealDiscipline)
                 {
                     currentRow++;
                     continue;
                 }
+               // if (Convert.ToString(sheet.Cells[currentRow, disciplineCodeCol].Value) == null)
+               // {
+               //     currentRow++;
+               //     continue;
+               // }
                 writer.WriteStartElement("discipline");
                 writer.WriteAttributeString("abbreviation", "N/A");
-                writer.WriteAttributeString("code", Convert.ToString(sheet.Cells[currentRow, disciplineCodeCol].Value));
+                disciplineCode = Convert.ToString(sheet.Cells[currentRow, disciplineCodeCol].Value);
+                if (disciplineCode == null)
+                {
+                    disciplineCode = "N/A";
+                }
+                writer.WriteAttributeString("code", disciplineCode);
                 writer.WriteAttributeString("title", Convert.ToString(sheet.Cells[currentRow, disciplineNameCol].Value));
+                writer.WriteAttributeString("required", Convert.ToString(isRequiredCource));
+                teacherName =  Convert.ToString(sheet.Cells[currentRow, teacherNameCol].Value);
                 writer.WriteStartElement("teachers");
-                writer.WriteStartElement("teacher");
-                writer.WriteAttributeString("name", Convert.ToString(sheet.Cells[currentRow, teacherNameCol].Value));
+                if (teacherName != null)
+                {
+                    
+                    foreach (string curTeacherName in teacherName.Split(new Char[] { ',' }))
+                    {
+                       
+                        writer.WriteStartElement("teacher");
+                        writer.WriteAttributeString("name", curTeacherName);
+                        writer.WriteEndElement();
+                    }
+                }
                 writer.WriteEndElement();
-                writer.WriteEndElement();
-                int lectionsNum = 0, practicesNum = 0, labsNum = 0;
+                
                 string reportings = "";
                 foreach (Term curTerm in terms)
                 {
+                    lectionsNum = practicesNum = labsNum = 0;
                     reportings = "";
                     try
                     {
@@ -379,6 +453,7 @@ namespace Converter
             } 
             writer.WriteEndElement();
             writer.WriteEndElement();
+            isRequiredCource = 1;
         }
 
         private void ShowErrors(List<string> errorList)
