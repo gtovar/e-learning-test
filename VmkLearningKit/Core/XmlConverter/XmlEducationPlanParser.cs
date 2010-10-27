@@ -160,9 +160,9 @@ namespace VmkLearningKit.Core.XmlConverter
                     }
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
-                         xmlReader.Name.Equals(Constants.XML_ATTRIBUTE_TITLE))
+                         xmlReader.Name.Equals(Constants.XML_ELEMENT_CATEGORY_1))
                 {
-                    category1 = xmlReader.GetAttribute(Constants.XML_ELEMENT_CATEGORY_1);
+                    category1 = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_TITLE);
                 }
                 else if (xmlReader.NodeType == XmlNodeType.Element &&
                          xmlReader.Name.Equals(Constants.XML_ELEMENT_CATEGORY_2))

@@ -13,6 +13,11 @@ namespace VmkLearningKit.Models.Repository
         {
         }
 
+        public string GetChairTitle(long disciplineId)
+        {
+            return GetById(disciplineId).Chair.Title;
+        }
+
         public SpecialityDiscipline GetById(long id)
         {
             return DataContext.SpecialityDisciplines.SingleOrDefault(s => s.Id == id);

@@ -95,106 +95,11 @@
         <tr class="table_row">
             <td style="padding: 7px;">
             </td>
-            <%
-switch (category)
-{
-    // Список дисциплин направления
-    case "ДН":
-            %>
             <td align="left" colspan="8" style="padding: 7px; font-size: 14px; font-weight: bolder;">
-                Дисциплины направления
+                <%= Html.Encode(category) %>
             </td>
-            <%
-break;
-    // Список дисциплин федерального направления
-    case "ФК":
-            %>
-            <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Федеральный компонент
-            </td>
-            <%
-break;
-    // Список дисциплин регионального направления
-    case "РК":
-            %>
-            <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Региональный компонент
-            </td>
-            <%
-break;
-    // Список дисциплин вузовского направления
-    case "ВК":
-            %>
-            <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Вузовский компонент
-            </td>
-            <%
-break;
-    // Список дисциплин по выбору
-    case "ДПВ":
-            %>
-            <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Дисциплины по выбору
-            </td>
-            <%
-break;
-    // Список дисциплин специализации
-    case "ДС":
-            %>
-            <td align="left" colspan="8" style="padding: 7px; font-size: 14px; font-weight: bolder;">
-                Дисциплины специализации
-            </td>
-            <%
-break;
-    // Список специальных дисциплин
-    case "СПД":
-            %>
-            <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Специальные дисциплины
-            </td>
-            <%
-break;
-    // Список дисциплин специализации по выбору
-    /*
-    case "ДСПВ":
-    */
-            %>
-            <!--
-                        <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            Дисциплины по выбору
-                        </td>
-                        -->
-            <%
-/*
-                       break;
-                */
-default:
-try
-{
-    long specializationId = Convert.ToInt64(category);
-    Specialization specialization = RepositoryManager.GetRepositoryManager.GetSpecializationRepository.GetById(specializationId);
-    if (null != specialization)
-    {
-            %>
-            <td align="left" colspan="8" style="padding: 7px; font-size: 12px; font-weight: bold;">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <%= Html.Encode(specialization.Title)%>
-            </td>
-            <%
-}
-}
-catch (Exception ex)
-{
-    Utility.RedirectToErrorPage("Specialities.aspx: catch exception", ex);
-}
-break;
-               
-            %>
         </tr>
         <%
-}
                    }
                }
         %>
@@ -212,22 +117,22 @@ string labVolume = String.Empty;
 string term = String.Empty;
 string reporting = String.Empty;
 
-IEnumerable<SpecialityDisciplineTerm> specialityDisciplineTerms = (IEnumerable<SpecialityDisciplineTerm>)specialityDiscipline.SpecialityDisciplineTerms;
+IEnumerable<SpecialityDisciplineTerm> specialityDisciplineTerms = (IEnumerable<SpecialityDisciplineTerm>)RepositoryManager.GetRepositoryManager.GetSpecialityDisciplineTermRepository.GetAllByDisciplineId(specialityDiscipline.Id);
 if (null != specialityDisciplineTerms)
 {
     foreach (SpecialityDisciplineTerm specialityDisciplineTerm in specialityDisciplineTerms)
     {
         if (0 != specialityDisciplineTerm.LectureVolume)
         {
-            lectureVolume += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.LectureVolume + "<br />";
+            lectureVolume += specialityDisciplineTerm.Term + " сем. - " + (specialityDisciplineTerm.LectureVolume /2.0) + "<br />";
         }
         if (0 != specialityDisciplineTerm.PracticeVolume)
         {
-            practiceVolume += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.PracticeVolume + "<br />";
+            practiceVolume += specialityDisciplineTerm.Term + " сем. - " + (specialityDisciplineTerm.PracticeVolume /2.0) + "<br />";
         }
         if (0 != specialityDisciplineTerm.LabVolume)
         {
-            labVolume += specialityDisciplineTerm.Term + " сем. - " + specialityDisciplineTerm.LabVolume + "<br />";
+            labVolume += specialityDisciplineTerm.Term + " сем. - " + (specialityDisciplineTerm.LabVolume / 2.0) + "<br />";
         }
         if (!specialityDisciplineTerm.Reporting.Equals(String.Empty))
         {
@@ -269,7 +174,7 @@ if (reporting.Trim().Equals(String.Empty))
                 <%= reporting.Trim(',', ' ', '<', '>', 'b', 'r', '/')%>
             </td>
             <td style="padding: 7px;">
-                <%= Html.Encode(specialityDiscipline.Chair.Title)%>
+                <%= Html.Encode(RepositoryManager.GetRepositoryManager.GetSpecialityDisciplineRepository.GetChairTitle(specialityDiscipline.Id))%>
             </td>
             <td style="padding: 7px;">
                 <%

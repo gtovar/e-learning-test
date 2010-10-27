@@ -10,6 +10,8 @@ namespace VmkLearningKit.Models.Repository
     /// </summary>
     public interface ISpecialityDisciplineRepository : IRepository<SpecialityDiscipline>
     {
+        string GetChairTitle(long disciplineId);
+
         /// <summary>
         /// Получение коллекции объектов класса «SpecialityDiscipline» по псевдониму специальности
         /// </summary>

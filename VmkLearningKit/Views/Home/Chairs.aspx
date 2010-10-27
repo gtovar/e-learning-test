@@ -42,9 +42,10 @@
         </tr>
         <% 
             int i = 1;
-            if (null != ((Chair)ViewData["Chair"]).Professors)
+            Chair chair = (Chair)ViewData["Chair"];
+            if (null != chair)
             {
-                foreach (Professor professor in (IEnumerable<Professor>)((Chair)ViewData["Chair"]).Professors)
+                foreach (Professor professor in (IEnumerable<Professor>)RepositoryManager.GetRepositoryManager.GetProfessorRepository.GetAll(chair.Alias))
                 {                    
         %>
         <tr class="table_row">
