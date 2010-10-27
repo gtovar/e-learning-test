@@ -206,7 +206,7 @@
             </th>
         </tr>
         <% int index = 1;
-           foreach (SpecialityDisciplineTerm specialityDisciplineTerm in (IEnumerable<SpecialityDisciplineTerm>)specialityDiscipline.SpecialityDisciplineTerms)
+           foreach (SpecialityDisciplineTerm specialityDisciplineTerm in (IEnumerable<SpecialityDisciplineTerm>)RepositoryManager.GetRepositoryManager.GetSpecialityDisciplineTermRepository.GetAllByDisciplineId(specialityDiscipline.Id))
            {                    
         %>
         <tr class="table_row">
@@ -214,13 +214,13 @@
                 <%= specialityDisciplineTerm.Term %>
             </td>
             <td style="padding: 7px;">
-                <%= specialityDisciplineTerm.LectureVolume %>
+                <%= (specialityDisciplineTerm.LectureVolume) / 2.0 %>
             </td>
             <td style="padding: 7px;">
-                <%= specialityDisciplineTerm.PracticeVolume %>
+                <%= (specialityDisciplineTerm.PracticeVolume) / 2.0 %>
             </td>
             <td style="padding: 7px;">
-                <%= specialityDisciplineTerm.LabVolume %>
+                <%= (specialityDisciplineTerm.LabVolume) / 2.0 %>
             </td>
             <td style="padding: 7px;">
                 <%= Html.Encode(specialityDisciplineTerm.Reporting) %>

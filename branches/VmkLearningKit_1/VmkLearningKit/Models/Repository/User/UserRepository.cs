@@ -15,7 +15,7 @@ namespace VmkLearningKit.Models.Repository
 
         public User GetProfessorByLastName(string lastName)
         {
-            return DataContext.Users.First(t => (t.SecondName == lastName && t.Role == Constants.PROFESSOR_ROLE));
+            return DataContext.Users.FirstOrDefault(t => (t.SecondName == lastName && t.Role == Constants.PROFESSOR_ROLE));
         }
 
         public User GetById(long id)
