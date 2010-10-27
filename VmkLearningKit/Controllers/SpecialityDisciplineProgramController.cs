@@ -13,10 +13,10 @@ namespace VmkLearningKit.Controllers
     {
         
         protected RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
-        //
+        
+        
+        // Страница для отображения прогдаммы дисциплины. Требует алиас с именем дисциплины.
         // GET: /EditSpecialityDisciplineProgram/
-
-
         [AcceptVerbs(HttpVerbs.Get)]
          public ActionResult Index( string alias)
         {
@@ -84,7 +84,8 @@ namespace VmkLearningKit.Controllers
             }
         }
         
-        //
+
+        // Страница редактирования дисциплины
         // GET: /EditSpecialityDisciplineProgram/Edit/5
 
         [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
@@ -122,7 +123,7 @@ namespace VmkLearningKit.Controllers
             return View();
         }
 
-        //
+        // Обработка редактирования дисциплины
         // POST: /EditSpecialityDisciplineProgram/Edit/5
 
         [AuthorizeFilter(Roles = "Admin, Professor, Metodist")]
