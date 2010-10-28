@@ -22,7 +22,7 @@
                   
                 </div>
                 <% } %>
-
+                
            <h2>Программа дисциплины "<% = Html.Encode(discipline.Title)%>"</h2>
 
             <br />
@@ -68,10 +68,60 @@
 
                     
            </div>
+           <h2>Распределение по семестрам:</h2>
+           <table width="100%" border="1">
+        <tr class="table_header">
+            <th style="padding: 7px;" rowspan="2">
+                Семестр
+            </th>
+            <th style="padding: 7px;" colspan="3">
+                Количество часов в неделю
+            </th>
+            <th style="padding: 7px;" rowspan="2">
+                Отчетность
+            </th>
+        </tr>
+        <tr class="table_header">
+            <th style="padding: 7px;">
+                Лекционных занятий
+            </th>
+            <th style="padding: 7px;">
+                Практических занятий
+            </th>
+            <th style="padding: 7px;">
+                Лабораторных занятий
+            </th>
+        </tr>
+        <% int index = 1;
+           foreach (SpecialityDisciplineTerm specialityDisciplineTerm in (IEnumerable<SpecialityDisciplineTerm>)RepositoryManager.GetRepositoryManager.GetSpecialityDisciplineTermRepository.GetAllByDisciplineId(discipline.Id))
+           {                    
+        %>
+        <tr class="table_row">
+            <td style="padding: 7px;">
+                <%= specialityDisciplineTerm.Term %>
+            </td>
+            <td style="padding: 7px;">
+                <%= (specialityDisciplineTerm.LectureVolume) / 2.0 %>
+            </td>
+            <td style="padding: 7px;">
+                <%= (specialityDisciplineTerm.PracticeVolume) / 2.0 %>
+            </td>
+            <td style="padding: 7px;">
+                <%= (specialityDisciplineTerm.LabVolume) / 2.0 %>
+            </td>
+            <td style="padding: 7px;">
+                <%= Html.Encode(specialityDisciplineTerm.Reporting) %>
+            </td>
+        </tr>
+        <% index++;
+           } %>
+    </table>
      <% }
         else
         { %>
             <h2>Ошибка выбора дисциплины!</h2>
+            <br />
+            Возможно дисциплины с таким id не существует, или не загружена программа дисциплины!
            <%} %>
 </asp:Content>
 
