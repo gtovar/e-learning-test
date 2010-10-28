@@ -326,7 +326,7 @@
     <Type Name="SpecialityDisciplineTopic">
       <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="SpecialityDisciplineId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
       <Association Name="SpecialityDisciplineTopic_GeneratedTest" Member="GeneratedTests" ThisKey="Id" OtherKey="SpecialityDisciplineTopicId" Type="GeneratedTest" />
       <Association Name="SpecialityDisciplineTopic_LecturePlan" Member="LecturePlans" ThisKey="Id" OtherKey="SpecialityDisciplineTopicId" Type="LecturePlan" />
       <Association Name="SpecialityDisciplineTopic_PracticePlan" Member="PracticePlans" ThisKey="Id" OtherKey="SpecialityDisciplineTopicId" Type="PracticePlan" />

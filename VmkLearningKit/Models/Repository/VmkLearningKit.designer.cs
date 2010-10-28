@@ -7573,7 +7573,7 @@ namespace VmkLearningKit.Models.Repository
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(1000) NOT NULL", CanBeNull=false)]
 		public string Title
 		{
 			get
