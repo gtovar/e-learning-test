@@ -13,7 +13,7 @@ namespace VmkLearningKit.Models.Repository
         Speciality GetByAlias(string alias);
         Speciality GetByAliasAndDepartment(string alias, long departmentId);
         long GetMaxId();
-        //Speciality GetByTitle(string title);
+        Speciality GetByTitle(string title);
         Speciality GetByAbbreviation(string abbreviation);
         Speciality Add(Speciality obj);
         IEnumerable<Speciality> Add(IEnumerable<Speciality> specialities);
