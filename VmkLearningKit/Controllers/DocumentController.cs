@@ -11,7 +11,7 @@ using System.IO;
 
 namespace VmkLearningKit.Controllers
 {
-    //[AuthorizeFilter(Roles = "Admin")]
+    [AuthorizeFilter(Roles = "Admin")]
     public class DocumentController : AbstractController
     {
         private Word.Document CreateWordDocument(out Word.Application program)
@@ -285,17 +285,20 @@ namespace VmkLearningKit.Controllers
 
                                 else if (j == 2)
                                 {
-                                    cell.Text = teachers[i - 1].Degree;
+                                    if (teachers[i - 1].Degree != "Отсутствует")
+                                        cell.Text = teachers[i - 1].Degree;
                                 }
 
                                 else if (j == 3)
                                 {
-                                    cell.Text = teachers[i - 1].Rank;
+                                    if (teachers[i - 1].Rank != "Отсутствует")
+                                        cell.Text = teachers[i - 1].Rank;
                                 }
 
                                 else if (j == 4)
                                 {
-                                    cell.Text = teachers[i - 1].Position;
+                                    if (teachers[i - 1].Position != "Отсутствует")
+                                        cell.Text = teachers[i - 1].Position;
                                 }
                             }
                         }
@@ -590,10 +593,10 @@ namespace VmkLearningKit.Controllers
                 cell.Font.Bold = 1;
                 cell.Value = "ФИО";
 
-                cell = sheet.get_Range("E1");
+                /*cell = sheet.get_Range("E1");
                 cell.Font.Italic = 1;
                 cell.Font.Bold = 1;
-                cell.Value = "Каф";
+                cell.Value = "Каф";*/
 
                 foreach (Student s in students)
                 {
@@ -606,9 +609,9 @@ namespace VmkLearningKit.Controllers
                     cell = sheet.get_Range("C" + (i + 2));
                     cell.Value = s.User.SecondName + " " + s.User.FirstName + " " + s.User.Patronymic;
 
-                    cell = sheet.get_Range("E" + (i + 2));
+                    /*cell = sheet.get_Range("E" + (i + 2));
                     if (!s.Chair.Abbreviation.StartsWith(VLKConstants.FIELD_EMPTY))
-                        cell.Value = s.Chair.Abbreviation;
+                        cell.Value = s.Chair.Abbreviation;*/
 
                     i++;
                 }
@@ -715,15 +718,12 @@ namespace VmkLearningKit.Controllers
 
                 document.Paragraphs.Add(oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
-                range.Text = "по направлению подготовки  010400.68 «Информационные технологии»";
-
-                document.Paragraphs.Add(oMissing);
-                range = document.Paragraphs[document.Paragraphs.Count].Range;
-                range.Text = "по магистерской программе «Инженерия программного обеспечения»";
+                range.Text = "По направлению подготовки  010200 «Прикладная математика и информатика»";
 
                 document.Paragraphs.Add(oMissing);
                 document.Paragraphs.Add(oMissing);
                 document.Paragraphs.Add(oMissing); 
+                document.Paragraphs.Add(oMissing);
                 document.Paragraphs.Add(oMissing);
 
                 document.Paragraphs.Add(oMissing);
@@ -732,7 +732,7 @@ namespace VmkLearningKit.Controllers
 
                 document.Paragraphs.Add(oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
-                range.Text = "2007 г.";               
+                range.Text = "2006 г.";               
 
                 // Область применения
 

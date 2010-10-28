@@ -46,7 +46,7 @@ namespace VmkLearningKit.Models.Repository
                 specializations = DataContext.Specializations.Where(t => t.SpecialityId == s.Id);
                 foreach (Specialization sp in specializations)
                 {
-                    if (sp.EducationPlan.Id != 4 && sp.EducationPlan.Title == title)
+                    if (sp.EducationPlan.Title == title)
                     {
                         specialities.Add(s);
                         break;
@@ -135,6 +135,10 @@ namespace VmkLearningKit.Models.Repository
             return obj;
         }
         */
+        public Speciality GetByTitle(string title)
+        {
+            return DataContext.Specialities.SingleOrDefault(t => t.Title == title);
+        }
         public Speciality Add(Speciality obj)
         {
             Speciality objWithTheSameAlias = GetByAlias(obj.Alias);

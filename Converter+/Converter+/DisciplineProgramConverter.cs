@@ -38,6 +38,7 @@ namespace Converter
                 Word.Table table;
 
                 List<string> razdels = new List<string>();
+            
 
                 XmlTextWriter writer = new XmlTextWriter(xmlPath, System.Text.Encoding.Default);
 
@@ -132,7 +133,7 @@ namespace Converter
                         case "Цели и задачи дисциплины":
 
                             writer.WriteStartElement("purposes");
-                            writer.WriteAttributeString("title", "Цели и задачи дисцмплины");
+                            writer.WriteAttributeString("title", "Цели и задачи дисциплины");
 
                             temp = "";
                             for (int j = i + 1; j < text.Count; j++, i++)
@@ -346,6 +347,13 @@ namespace Converter
 
                             writer.WriteStartElement("topics");
 
+                            List<bool> razdelFlag = new List<bool>();
+                            for (int h = 0; h < razdels.Count; h++)
+                            {
+                                razdelFlag.Add(true);
+                            }
+
+
                             for (int j = i + 2; j < text.Count; j++, i++)
                             {
                                 string kk = text[j];
@@ -354,12 +362,13 @@ namespace Converter
                                 if (kk.Replace(" ", "").ToLower().IndexOf(breakAnaliz) != -1) break;
                                 writer.WriteStartElement("topic");
                                 bool flag = false;
-                                foreach (string s in razdels)
+                                for (int x = 0; x < razdels.Count; x++ )
                                 {
-                                    if (text[j].ToLower().IndexOf(s.ToLower()) != -1)
+                                    if (text[j].ToLower().IndexOf(razdels[x].ToLower()) != -1 && razdelFlag[x] == true)
                                     {
                                         flag = true;
-                                        text[j] = s;
+                                        text[j] = razdels[x];
+                                        razdelFlag[x] = false;
                                         break;
                                     }
                                 }
