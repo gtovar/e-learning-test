@@ -51,7 +51,7 @@
     </script>
 
 
-    <h2>Редактирование</h2>
+    
 <%
     if (null != ViewData["discipline"] && null != ViewData["disciplineProgram"])
     {
@@ -62,7 +62,7 @@
         <% using (Html.BeginForm())
            {%>
             <%= Html.ValidationSummary(true)%>
-
+        <h2>Редактирование</h2>
         <div class="programText"> 
 
 
@@ -185,7 +185,13 @@
     <div>
         <%= Html.ActionLink("Назад", "Index", "SpecialityDisciplineProgram", new { alias = discipline.Alias }, new { @class = "" })%>
     </div>
-    <%} %>
+    <%} 
+        else
+        { %>
+            <h2>Ошибка выбора дисциплины!</h2>
+            <br />
+            Возможно дисциплины с таким id не существует, или не загружена программа дисциплины!
+           <%} %>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">

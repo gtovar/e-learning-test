@@ -49,7 +49,9 @@
                 <%= term.Trim(',', ' ')%>
             </td>
             <td style="padding: 7px;">
-                <%= Html.ActionLink("Подробнее", "Professor", "Cabinet", new { alias = "Detailed", additional = specialityDiscipline.Alias }, new { @class = "" } ) %>
+                <%= Html.ActionLink("Подробнее", "Index", "SpecialityDisciplineProgram", new { alias = specialityDiscipline.Alias }, new { @class = "" })%>
+                |
+                <%=Html.ActionLink("Редактрировать программу", "Edit", "SpecialityDisciplineProgram", new { id = specialityDiscipline.Id }, new { @class = "" })%> 
             </td>
         </tr>
         <% index++;
@@ -230,6 +232,7 @@
            } %>
     </table>
     <br />
+   
       <%= Html.ActionLink("Программа дисциплины", "Index", "SpecialityDisciplineProgram", new { alias = specialityDiscipline.Alias }, new { @class = "" })%>
     <%
         }
