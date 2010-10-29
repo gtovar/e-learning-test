@@ -11,7 +11,7 @@ using System.IO;
 
 namespace VmkLearningKit.Controllers
 {
-    [AuthorizeFilter(Roles = "Admin")]
+    //[AuthorizeFilter(Roles = "Admin")]
     public class DocumentController : AbstractController
     {
         private Word.Document CreateWordDocument(out Word.Application program)
@@ -732,7 +732,7 @@ namespace VmkLearningKit.Controllers
 
                 document.Paragraphs.Add(oMissing);
                 range = document.Paragraphs[document.Paragraphs.Count].Range;
-                range.Text = "2006 г.";               
+                range.Text = "2006 г.";
 
                 // Область применения
 
@@ -977,7 +977,7 @@ namespace VmkLearningKit.Controllers
                 range.Font.Italic = 1;
                 range.Text = "(указывается название каждого раздела и его содержание)";
 
-                IEnumerable<SpecialityDisciplineTopic> topics = specialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(1);
+                IEnumerable<SpecialityDisciplineTopic> topics = specialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(specialityDisciplineId);
 
                 List<string> top1 = new List<string>();
                 List<string> top2 = new List<string>();

@@ -137,17 +137,18 @@ namespace VmkLearningKit.Models.Repository
             string text = sp.Literature;
 
             bool flag = true;
+            int temp = 0;
 
             while(flag)
             {
-                int index = text.IndexOf("<p>");
-                int index1 = text.IndexOf("</p>");
+                int index = text.IndexOf("<ol>");
+                int index1 = text.IndexOf("</ol>");
                 if (index < index1)
                 {
-                    string str = text.Substring(index + "<p>".Length, index1 - index - "<p>".Length);
+                    string str = text.Substring(index + "<ol>".Length, index1 - index - "<ol>".Length);
                     int count = str.Length;
 
-                    if (str.IndexOf("основная") != -1)
+                    if (temp == 0 /*str.IndexOf("основная") != -1*/)
                     {
                         bool fl = true;
                         while (fl)
@@ -165,8 +166,9 @@ namespace VmkLearningKit.Models.Repository
                             else
                                 fl = false;
                         }
+                        temp++;
                     }
-                    else if (str.IndexOf("дополнительная") != -1)
+                    else if (temp == 1/*str.IndexOf("дополнительная") != -1*/)
                     {
                         bool fl = true;
                         while (fl)
@@ -185,10 +187,10 @@ namespace VmkLearningKit.Models.Repository
                                 fl = false;
                         }
 
-                        index1 = text.IndexOf("</p>");
+                        index1 = text.IndexOf("</ol>");
                     }
 
-                    text = text.Remove(index, "<p>".Length + count + "</p>".Length);
+                    text = text.Remove(index, "<ol>".Length + count + "</ol>".Length);
                 }
 
                 else
@@ -208,11 +210,11 @@ namespace VmkLearningKit.Models.Repository
 
             string text = sp.Questions;
 
-            int index = text.IndexOf("<p>");
-            int index1 = text.IndexOf("</p>");
+            int index = text.IndexOf("<ol>");
+            int index1 = text.IndexOf("</ol>");
             if (index < index1)
             {
-                string str = text.Substring(index + "<p>".Length, index1 - index - "<p>".Length);
+                string str = text.Substring(index + "<ol>".Length, index1 - index - "<ol>".Length);
                 
                 bool flag = true;
                 while (flag)
