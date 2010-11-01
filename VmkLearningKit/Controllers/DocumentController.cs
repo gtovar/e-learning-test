@@ -632,7 +632,7 @@ namespace VmkLearningKit.Controllers
 
         public ActionResult GetDisciplineProgramDocument(long specialityDisciplineId)
         {
-            try
+            //try
             {
                 GeneralMenu();
                 RepositoryManager repositoryManager = RepositoryManager.GetRepositoryManager;
@@ -736,7 +736,7 @@ namespace VmkLearningKit.Controllers
 
                 // Область применения
 
-                string applicationDomain = disciplineProgram.ApplicationDomain;
+                string applicationDomain = disciplineProgram.ApplicationDomain.Replace("<P>","<p>").Replace("</P>","</p>");
                 applicationDomain = applicationDomain.Replace("\r\n", "");
 
                 document.Paragraphs.Add(oMissing);
@@ -770,7 +770,7 @@ namespace VmkLearningKit.Controllers
 
                 // Цели и задачи курса
 
-                string purposes = disciplineProgram.Purposes;
+                string purposes = disciplineProgram.Purposes.Replace("<P>", "<p>").Replace("</P>", "</p>");
                 purposes = purposes.Replace("\r\n", "");
 
                 document.Paragraphs.Add();
@@ -803,7 +803,7 @@ namespace VmkLearningKit.Controllers
 
                 // Требования к уровню освоения содержания дисциплины
 
-                string requirements = disciplineProgram.Requirements;
+                string requirements = disciplineProgram.Requirements.Replace("<P>", "<p>").Replace("</P>", "</p>");
                 requirements = requirements.Replace("\r\n","");
 
                 document.Paragraphs.Add();
@@ -1265,10 +1265,10 @@ namespace VmkLearningKit.Controllers
 
                 return RedirectToAction("Save", new { alias = docIndex.ToString() + ".doc", additional = "application_msword" });
             }
-            catch
+            /*catch
             {
                 return RedirectToAction("Error", "Home");
-            }
+            }*/
         }
     }
 }

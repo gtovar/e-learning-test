@@ -29,16 +29,16 @@ namespace VmkLearningKit.Models.Repository
             switch (fl)
             {
                 case 1:
-                    text = sp.Volume;
+                    text = sp.Volume.Replace("TBODY", "tbody").Replace("<TD>", "<td>");
                     break;
                 case 2:
-                    text = sp.Razdels;
+                    text = sp.Razdels.Replace("TBODY", "tbody").Replace("<TD>", "<td>");
                     break;
                 case 3:
-                    text = sp.LabPractice;
+                    text = sp.LabPractice.Replace("TBODY", "tbody").Replace("<TD>", "<td>");
                     break;
                 default:
-                    text = sp.Volume;
+                    text = sp.Volume.Replace("TBODY", "tbody").Replace("<TD>", "<td>");
                     break;
             }
             
@@ -79,7 +79,7 @@ namespace VmkLearningKit.Models.Repository
 
             SpecialityDisciplineProgram sp = DataContext.SpecialityDisciplinePrograms.SingleOrDefault(t => t.SpecialityDisciplineId == disciplineProgramId);
 
-            string text = sp.MarkCriterias;
+            string text = sp.MarkCriterias.Replace("TABLE", "table").Replace("TD", "td");
             int fake = 1;
             bool flag = true;
 
@@ -134,7 +134,7 @@ namespace VmkLearningKit.Models.Repository
 
             SpecialityDisciplineProgram sp = DataContext.SpecialityDisciplinePrograms.SingleOrDefault(t => t.SpecialityDisciplineId == disciplineProgramId);
 
-            string text = sp.Literature;
+            string text = sp.Literature.Replace("<P>","<p>").Replace("</P>","</p>").Replace("LI","li");
 
             bool flag = true;
             int temp = 0;
@@ -208,7 +208,7 @@ namespace VmkLearningKit.Models.Repository
 
             SpecialityDisciplineProgram sp = DataContext.SpecialityDisciplinePrograms.SingleOrDefault(t => t.SpecialityDisciplineId == disciplineProgramId);
 
-            string text = sp.Questions;
+            string text = sp.Questions.Replace("<P>", "<p>").Replace("</P>", "</p>").Replace("LI", "li");
 
             int index = text.IndexOf("<ol>");
             int index1 = text.IndexOf("</ol>");

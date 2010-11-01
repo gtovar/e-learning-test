@@ -60,7 +60,7 @@ namespace VmkLearningKit.Controllers
 
             if (user.IsStudent)
             {
-                url = Constants.CABINET_URL + "Student/" + user.DbUser.NickName;
+                url = Constants.CABINET_URL + "Schedule/" + user.DbUser.NickName;
             }
             else if (user.IsProfessor)
             {
