@@ -280,7 +280,7 @@
     <value>PartialViewError</value>
   </data>
   <data name="PASSWORD_LENGTH" xml:space="preserve">
-    <value>8</value>
+    <value>5</value>
   </data>
   <data name="PERSON_CABINET" xml:space="preserve">
     <value>Личный кабинет</value>
@@ -390,6 +390,15 @@
   <data name="VIEW_PAGE_ERROR_404" xml:space="preserve">
     <value>Error404</value>
   </data>
+  <data name="VLK_EMAIL" xml:space="preserve">
+    <value>e-vmk@mail.ru</value>
+  </data>
+  <data name="VLK_PASSWORD" xml:space="preserve">
+    <value>u4io2j3kl_23q</value>
+  </data>
+  <data name="VLK_SMTP" xml:space="preserve">
+    <value>smtp.mail.ru</value>
+  </data>
   <data name="VMK_DEPARTMENT_ALIAS" xml:space="preserve">
     <value>VMK</value>
   </data>
@@ -419,6 +428,9 @@
   </data>
   <data name="XML_ATTRIBUTE_EDUCATION_PLAN" xml:space="preserve">
     <value>educationPlan</value>
+  </data>
+  <data name="XML_ATTRIBUTE_EMAIL" xml:space="preserve">
+    <value>email</value>
   </data>
   <data name="XML_ATTRIBUTE_FIRSTNAME" xml:space="preserve">
     <value>firstName</value>

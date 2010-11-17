@@ -688,6 +688,8 @@
     <Content Include="Views\Admin\Specialization\SpecializationForm.ascx" />
     <Content Include="Views\Admin\Specialization\Edit.aspx" />
     <Content Include="Views\Admin\XmlParse.aspx" />
+    <Content Include="Views\Cabinet\EditDiscipline.ascx" />
+    <Content Include="Views\Cabinet\EditTopic.ascx" />
     <Content Include="Views\Shared\GeneralMenu.ascx" />
   </ItemGroup>
   <ItemGroup>
@@ -1018,7 +1020,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>4427</DevelopmentServerPort>
+          <DevelopmentServerPort>1392</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/VmkLearningKit</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

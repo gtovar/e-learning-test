@@ -12,6 +12,8 @@ namespace VmkLearningKit.Models.Repository
     {
         string GetChairTitle(long disciplineId);
 
+        IEnumerable<SpecialityDiscipline> GetAllByProfessorId(long professorId);
+
         /// <summary>
         /// Получение коллекции объектов класса «SpecialityDiscipline» по псевдониму специальности
         /// </summary>

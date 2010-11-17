@@ -55,6 +55,32 @@ namespace VmkLearningKit.Models.Repository
             return null;
         }
 
+        public IEnumerable<SpecialityDiscipline> GetAllByProfessorId(long professorId)
+        {
+            try
+            {
+                List<SpecialityDiscipline> resultList = new List<SpecialityDiscipline>();
+
+                IEnumerable<SpecialityDisciplinesProfessor> specialityDisciplinesProfessors =
+                    DataContext.SpecialityDisciplinesProfessors.Where<SpecialityDisciplinesProfessor>(s => s.ProfessorId == professorId);
+
+                if (null != specialityDisciplinesProfessors)
+                {
+                    foreach (SpecialityDisciplinesProfessor specialityDisciplinesProfessor in specialityDisciplinesProfessors)
+                    {
+                        resultList.Add(specialityDisciplinesProfessor.SpecialityDiscipline);
+                    }
+                }
+
+                return resultList.AsEnumerable<SpecialityDiscipline>();
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToLog("!!!!IMPORTANT Can't get SpecialityDisciplines by professorId: " + professorId.ToString(), ex);
+            }
+            return null;
+        }
+
         public IEnumerable<SpecialityDiscipline> GetAllByProfessor(string professorNickName)
         {
             try

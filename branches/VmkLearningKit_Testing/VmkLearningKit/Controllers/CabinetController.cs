@@ -12,6 +12,109 @@ namespace VmkLearningKit.Controllers
 {
     public class CabinetController : AbstractController
     {
+        [AuthorizeFilter(Roles = "Professor")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult EditDiscipline(long alias)
+        {
+            try
+            {
+                ViewData["DisciplineTitle"] = repositoryManager.GetSpecialityDisciplineRepository.GetById(alias).Title;
+                ViewData["DisciplineId"] = alias;
+
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("PartialViewError", "Home");
+            }
+        }
+
+        [AuthorizeFilter(Roles = "Professor")]
+        [ValidateInput(false)]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditDiscipline(long alias, FormCollection form)
+        {
+            try
+            {
+                string newDisciplineTitle = HttpUtility.HtmlDecode(form["Title"].Trim());
+
+                SpecialityDiscipline discipline = repositoryManager.GetSpecialityDisciplineRepository.GetById(alias);
+
+                if (repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(newDisciplineTitle) == null)
+                {
+                    discipline.Title = newDisciplineTitle;
+
+                    repositoryManager.SubmitChanges();
+                }
+
+                return RedirectToAction("Professor", "Cabinet", new { alias = ((Models.Domain.User)Session["User"]).DbUser.NickName });
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        [AuthorizeFilter(Roles = "Professor")]
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult EditTopic(long alias)
+        {
+            try
+            {
+                ViewData["TopicTitle"] = repositoryManager.GetSpecialityDisciplineTopicRepository.GetById(alias).Title;
+                ViewData["TopicId"]    = alias;
+
+                return View();
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("PartialViewError", "Home");
+            }
+        }
+
+        [AuthorizeFilter(Roles = "Professor")]
+        [ValidateInput(false)]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditTopic(long alias, FormCollection form)
+        {
+            try
+            {
+                string newTopicTitle = HttpUtility.HtmlDecode(form["Title"]);
+
+                SpecialityDisciplineTopic topic = repositoryManager.GetSpecialityDisciplineTopicRepository.GetById(alias);
+                topic.Title = newTopicTitle;
+
+                repositoryManager.SubmitChanges();
+
+                return RedirectToAction("Professor", "Cabinet", new { alias = ((Models.Domain.User)Session["User"]).DbUser.NickName, additional = repositoryManager.GetSpecialityDisciplineRepository.GetById(topic.SpecialityDisciplineId).Title });
+            }
+            catch (Exception exc)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+        }
+
+        [AuthorizeFilter(Roles = "Professor")]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void DeleteTopic(long alias)
+        {
+            try
+            {
+                foreach (Razdel razdel in repositoryManager.GetRazdelRepository.GetAllBySpecialityDisciplineTopicId(alias))
+                {
+                    repositoryManager.GetRazdelRepository.Delete(razdel);
+                }
+
+                repositoryManager.GetSpecialityDisciplineTopicRepository.DeleteById(alias);
+
+                return;
+            }
+            catch (Exception exc)
+            {
+                return;
+            }
+        }
+
         /// <summary>
         /// Action, отображающий форму кабинета администратора при обращении к domain.ru/Cabinet/Administrator
         /// </summary>
@@ -185,54 +288,16 @@ namespace VmkLearningKit.Controllers
                         if (null != specialityDiscipline)
                         {
                             ViewData["SpecialityDisciplineTopics"] = repositoryManager.GetSpecialityDisciplineTopicRepository.GetAllBySpecialityDisciplineId(specialityDiscipline.Id);
-                            ViewData["LecturePlans"] = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineId(specialityDiscipline.Id).Distinct(new LecturePlanTopicIdComparer());
-
-                            IEnumerable<LectureTimetable> lectionTimetables = repositoryManager.GetLectureTimetableRepository.Get(specialityDiscipline.Id, professor.UserId);
-                            List<SelectListItem> list                       = new List<SelectListItem>();
                             
-                            foreach (LectureTimetable lectionTimetable in lectionTimetables)
-                            {
-                                List<DateTime> lectionDatesList = Utility.GetLectionDateTimesInCurrentTerm(lectionTimetable.Day, lectionTimetable.Week);
-                                
-                                foreach (DateTime lection in lectionDatesList)
-                                {
-                                    SelectListItem item = new SelectListItem();
-                                    item.Text = item.Value = lection.ToShortDateString();
-                                    list.Add(item);
-                                }
-                            }
-                            SelectListItem defaultItem = new SelectListItem();
-                            defaultItem.Selected = true;
-                            defaultItem.Text = defaultItem.Value = "Дата...";
-                            list.Add(defaultItem);                      
-
-                            ViewData["LectureDatesList"] = list.AsEnumerable();
-
-                            Dictionary<long, string> existedDates = new Dictionary<long, string>();
-                            foreach (SpecialityDisciplineTopic topic in specialityDiscipline.SpecialityDisciplineTopics)
-                            {
-                                IEnumerable<LecturePlan> plans = repositoryManager.GetLecturePlanRepository.GetBySpecialityDisciplineTopicId(topic.Id).Distinct();
-
-                                if (plans != null)
-                                {
-                                    string date = String.Empty;
-                                    foreach (LecturePlan plan in plans)
-                                    {
-                                        if (plan.Date.HasValue) date += ("<div class=\"DeleteLecturePlanDiv\">" + plan.Date.Value.ToShortDateString() + " <img class=\"DeleteLecturePlan\" title=\"Удалить\" src=\"/Content/Images/delete.png\" width=\"10\" height=\"10\" id=\"Cabinet_DeleteLecturePlan_" + topic.Id.ToString() + "_" + plan.Date.Value.ToShortDateString() + "\"/></div>");
-                                    }
-                                    existedDates.Add(topic.Id, date);
-                                }
-                            }
-                            ViewData["ExistedDates"] = existedDates;
                         }
                     }
                     // отображение списка дисциплин
                     else
                     {
-                        IEnumerable<SpecialityDiscipline> allSpecialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetAllByProfessor(professor.User.NickName);
+                        IEnumerable<SpecialityDiscipline> allSpecialityDisciplines = repositoryManager.GetSpecialityDisciplineRepository.GetAllByProfessorId(professor.UserId);
+                        List<SpecialityDiscipline> specialityDisciplines = new List<SpecialityDiscipline>();
                         if (null != allSpecialityDisciplines)
                         {
-                            List<SpecialityDiscipline> specialityDisciplines = new List<SpecialityDiscipline>();
                             foreach (SpecialityDiscipline specialityDiscipline in allSpecialityDisciplines)
                             {
                                 //if (IsDisciplineContainsCurrentTerms(specialityDiscipline))
@@ -240,8 +305,8 @@ namespace VmkLearningKit.Controllers
                                     specialityDisciplines.Add(specialityDiscipline);
                                 }
                             }
-                            ViewData["ProfessorSpecialityDisciplines"] = specialityDisciplines;
                         }
+                        ViewData["ProfessorSpecialityDisciplines"] = specialityDisciplines;
                     }
                 }
             }
@@ -260,6 +325,88 @@ namespace VmkLearningKit.Controllers
         {
             GeneralMenu();
             ViewData[Constants.PAGE_TITLE] = Constants.PERSON_CABINET;
+
+            if (alias == "AddDiscipline")
+            {
+                string title = form["NewRazdelTitle"].Trim();
+
+                if (null == repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(title))
+                {
+                    SpecialityDiscipline discipline = new SpecialityDiscipline
+                    {
+                        Title = title,
+                        Abbreviation = title,
+                        Alias = Core.Transliteration.Front(title),
+                        Category = "Отсутствует",
+                        ChairId = 1,
+                        Code = "Отсутствует",
+                        EducationPlanId = 1,
+                        Required = true,
+                        SpecialityId = 1
+                    };
+
+                    repositoryManager.GetSpecialityDisciplineRepository.Add(discipline);
+
+                    LectureTimetable timetable = new LectureTimetable
+                    {
+                        Building = 1,
+                        Day = "Отсутствует",
+                        ProfessorId = ((Models.Domain.User)Session["User"]).DbUser.Id,
+                        Room = 1,
+                        SpecialityDisciplineId = repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(title).Id,
+                        Time = "Отсутствует",
+                        Week = "Отсутсвует"
+                    };
+
+                    repositoryManager.GetLectureTimetableRepository.Add(timetable);
+
+                    SpecialityDisciplinesProfessor sp = new SpecialityDisciplinesProfessor
+                    {
+                        ProfessorId = ((Models.Domain.User)Session["User"]).DbUser.Id,
+                        SpecialityDisciplineId = repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(title).Id
+                    };
+
+                    repositoryManager.GetSpecialityDisciplinesProfessorRepository.Add(sp);
+
+                }
+                else
+                {
+                    LectureTimetable timetable = new LectureTimetable
+                    {
+                        Building = 1,
+                        Day = "Отсутствует",
+                        ProfessorId = ((Models.Domain.User)Session["User"]).DbUser.Id,
+                        Room = 1,
+                        SpecialityDisciplineId = repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(title).Id,
+                        Time = "Отсутствует",
+                        Week = "Отсутсвует"
+                    };
+
+                    repositoryManager.GetLectureTimetableRepository.Add(timetable);
+
+                    SpecialityDisciplinesProfessor sp = new SpecialityDisciplinesProfessor
+                    {
+                        ProfessorId = ((Models.Domain.User)Session["User"]).DbUser.Id,
+                        SpecialityDisciplineId = repositoryManager.GetSpecialityDisciplineRepository.GetByTitle(title).Id
+                    };
+
+                    repositoryManager.GetSpecialityDisciplinesProfessorRepository.Add(sp);
+                }
+                return RedirectToAction("Professor", "Cabinet", new { alias = ((Models.Domain.User)(Session["User"])).DbUser.NickName });
+            }
+
+            if (alias == "AddTopic" && additional != null)
+            {
+                SpecialityDisciplineTopic topic = new SpecialityDisciplineTopic 
+                {
+                    SpecialityDisciplineId = Convert.ToInt64(additional),
+                    Title = form["NewRazdelTitle"].Trim()
+                };
+
+                repositoryManager.GetSpecialityDisciplineTopicRepository.Add(topic);
+
+                return RedirectToAction("Professor", "Cabinet", new { alias = ((Models.Domain.User)Session["User"]).DbUser.NickName, additional = repositoryManager.GetSpecialityDisciplineRepository.GetById(Convert.ToInt64(additional)).Alias });
+            }
 
             if (null != form["SaveLecturePlans"])
             {
@@ -729,8 +876,8 @@ namespace VmkLearningKit.Controllers
 
                 if (!hasErrors)
                 {
-                    user.DbUser.Password = Hash.ComputeHash(newPassword);
-                    bool result = repositoryManager.GetUserRepository.ChangePassword(user.DbUser.Id, user.DbUser.Password);
+                    //user.DbUser.Password = Hash.ComputeHash(newPassword);
+                    bool result = repositoryManager.GetUserRepository.ChangePassword(user.DbUser.Id, Hash.ComputeHash(newPassword));
                     hasErrors = !result;
                 }
 

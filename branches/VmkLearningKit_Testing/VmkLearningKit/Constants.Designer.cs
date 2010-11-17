@@ -547,7 +547,7 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 8.
+        ///   Looks up a localized string similar to 5.
         /// </summary>
         internal static string PASSWORD_LENGTH {
             get {
@@ -880,6 +880,33 @@ namespace VmkLearningKit {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to e-vmk@mail.ru.
+        /// </summary>
+        internal static string VLK_EMAIL {
+            get {
+                return ResourceManager.GetString("VLK_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to u4io2j3kl_23q.
+        /// </summary>
+        internal static string VLK_PASSWORD {
+            get {
+                return ResourceManager.GetString("VLK_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to smtp.mail.ru.
+        /// </summary>
+        internal static string VLK_SMTP {
+            get {
+                return ResourceManager.GetString("VLK_SMTP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VMK.
         /// </summary>
         internal static string VMK_DEPARTMENT_ALIAS {
@@ -966,6 +993,15 @@ namespace VmkLearningKit {
         internal static string XML_ATTRIBUTE_EDUCATION_PLAN {
             get {
                 return ResourceManager.GetString("XML_ATTRIBUTE_EDUCATION_PLAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to email.
+        /// </summary>
+        internal static string XML_ATTRIBUTE_EMAIL {
+            get {
+                return ResourceManager.GetString("XML_ATTRIBUTE_EMAIL", resourceCulture);
             }
         }
         
