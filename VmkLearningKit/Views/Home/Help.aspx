@@ -7,6 +7,6 @@
 <asp:Content ID="aboutContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Help me</h2>
     <p>
-        Help me please
+        Страница находится в разработке
     </p>
 </asp:Content>

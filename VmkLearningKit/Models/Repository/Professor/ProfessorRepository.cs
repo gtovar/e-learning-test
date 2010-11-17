@@ -86,7 +86,7 @@ namespace VmkLearningKit.Models.Repository
         {
             try
             {
-                return DataContext.Professors.SingleOrDefault(p => p.User.NickName == nickName);
+                return DataContext.Professors.SingleOrDefault(p => p.User.NickName == nickName && p.User.Role == Constants.PROFESSOR_ROLE);
             }
             catch (Exception ex)
             {

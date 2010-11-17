@@ -5,6 +5,9 @@ using System.Web;
 using System.Xml;
 using System.Xml.Schema;
 using VmkLearningKit.Models.Repository;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Net;
 
 namespace VmkLearningKit.Core.XmlConverter
 {
@@ -65,7 +68,8 @@ namespace VmkLearningKit.Core.XmlConverter
                    teacherDegree,
                    teacherPosition,
                    teacherRank,
-                   teacherSite;
+                   teacherSite,
+                   teacherEmail;
 
             //List<User>      usersList       = new List<User>();
             //List<Professor> professorsList  = new List<Professor>();
@@ -83,6 +87,7 @@ namespace VmkLearningKit.Core.XmlConverter
                     teacherPosition     = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_POSITION);
                     teacherRank         = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_RANK);
                     teacherSite         = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_SITE);
+                    teacherEmail        = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_EMAIL);
 
                     string teacherFirstNameShort    = Transliteration.Front(teacherFirstName.Substring(0, 1), TransliterationType.ISO).ToLower();
                     string teacherLastNameShort     = Transliteration.Front(teacherLastName.Substring(0, 1), TransliterationType.ISO).ToLower();
@@ -99,18 +104,48 @@ namespace VmkLearningKit.Core.XmlConverter
                                       teacherLastNameFull.Substring(1).ToLower() +
                                       teacherFirstNameShort.ToUpper() + 
                                       teacherPatronymicShort.ToUpper();
-                    user.Email      = teacherLastNameFull.ToLower() + "." +
-                                      teacherFirstNameShort.ToLower() + "." + 
-                                      teacherPatronymicShort.ToLower() + Constants.DEFAULT_EMAIL_DOMEN;
-
+                    
                     user.Login      = teacherLastNameFull.ToLower() + "." + 
                                       teacherFirstNameShort.ToLower() + "." +
                                       teacherPatronymicShort.ToLower();
                     
-                    //user.Password   = Hash.ComputeHash(password);
-                    user.Password     = Hash.ComputeHash("123");
+                    user.Password   = Hash.ComputeHash(password);
+
+                    if (teacherEmail != null &&
+                        !teacherEmail.Equals(String.Empty))
+                    {
+                        user.Email = teacherEmail;
+                    }
+                    else
+                    {
+                        user.Email = teacherLastNameFull.ToLower() + "." +
+                                     teacherFirstNameShort.ToLower() + "." +
+                                     teacherPatronymicShort.ToLower() + Constants.DEFAULT_EMAIL_DOMEN;
+                    }
 
                     repositoryManager.GetUserRepository.Add(user);
+
+                    // Отправляем пароль по email
+
+                    // Авторизация на SMTP сервере
+                    SmtpClient smtp  = new SmtpClient(Constants.VLK_SMTP, 25);
+                    smtp.Credentials = new NetworkCredential(Constants.VLK_EMAIL, Constants.VLK_PASSWORD);
+
+                    // Формирование письма
+                    MailMessage message = new MailMessage();
+                    message.From        = new MailAddress(Constants.VLK_EMAIL, "Администрация портала е-ВМК");
+                    message.To.Add(new MailAddress(user.Email));
+                    message.Subject     = "Регистрация на портале е-ВМК";
+                    message.Body        = "Здравствуйте, " + teacherFirstName + " " + teacherPatronymic + "!" + Environment.NewLine +
+                                          "Добро пожаловать на портал е-ВМК!" + Environment.NewLine + Environment.NewLine +
+                                          "Ваши данные для доступа к порталу:" + Environment.NewLine +
+                                          "Логин:  " + user.Login + Environment.NewLine +
+                                          "Пароль: " + password + Environment.NewLine + Environment.NewLine +
+                                          "С уважением," + Environment.NewLine +
+                                          "Администрация портала е-ВМК";
+
+                    smtp.Send(message);
+                    // ---
 
                     long userId = repositoryManager.GetUserRepository.GetByLogin(user.Login).Id;
 
@@ -142,8 +177,6 @@ namespace VmkLearningKit.Core.XmlConverter
 
             //repositoryManager.GetUserRepository.Add(usersList.AsEnumerable<User>());
             //repositoryManager.GetProfessorRepository.Add(professorsList.AsEnumerable<Professor>());
-
-            // Здесь делаем рассылку паролей по email
         }
     }
 }

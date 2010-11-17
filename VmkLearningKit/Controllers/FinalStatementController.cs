@@ -25,7 +25,7 @@ namespace VmkLearningKit.Controllers
             GeneralMenu();
             SpecialityDiscipline _discipline = repositoryManager.GetSpecialityDisciplineRepository.GetByAlias(additional);
             Professor _professor = repositoryManager.GetProfessorRepository.GetByNickName(alias);
-            IEnumerable<Group> _groups = repositoryManager.GetGroupRepository.GetAllByDisciplineProfessor(_discipline.Id, _professor.User.Id);
+            IEnumerable<Group> _groups = repositoryManager.GetGroupRepository.GetAll();
             ViewData["groups"] = _groups;
             ViewData[Constants.PAGE_TITLE] = "Сводная ведомость тестирования";
             ViewData["ProfessorName"] = _professor.User.SecondName.ToString() + " " +

@@ -21,7 +21,7 @@ namespace VmkLearningKit.Models.Repository
 
         public IEnumerable<Speciality> GetAll(string departmentAlias)
         {
-            return DataContext.Specialities.Where(s => s.Department.Alias == departmentAlias);
+            return DataContext.Specialities.Where(s => s.Department.Alias == departmentAlias && s.Title != "Отсутствует");
 
         }
         /*

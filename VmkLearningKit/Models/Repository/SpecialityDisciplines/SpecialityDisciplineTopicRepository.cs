@@ -183,21 +183,10 @@ namespace VmkLearningKit.Models.Repository
                 return objWithTheSameAlias;
             }
             */
-            SpecialityDisciplineTopic objWithTheSameTitle = GetByTitle(obj.Title);
-            /*
-            if (null == objWithTheSameAlias ||
-               null == objWithTheSameTitle)
-            {
-            */
-            if (null == objWithTheSameTitle)
-            {
-                DataContext.SpecialityDisciplineTopics.InsertOnSubmit(obj);
-                DataContext.SubmitChanges();
-                return obj;
-            }
-
-            return objWithTheSameTitle;
-
+            DataContext.SpecialityDisciplineTopics.InsertOnSubmit(obj);
+            DataContext.SubmitChanges();
+            return obj;
+            
             /*
             if (null != objWithTheSameAlias && null == objWithTheSameTitle)
             {
