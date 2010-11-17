@@ -1008,7 +1008,7 @@ function closeBox() {
     <div style="float:right">
     <%=Html.ActionLink("К списку дисциплин", "Professor", "Cabinet", new { alias = ViewData["ProfessorId"] }, new { @class = "" })%>
      <br />
-    <%=Html.ActionLink("К сводной ведомости", "FinalStatement", "FinalStatement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"], param1 = ViewData["IdGroup"] }, new { @class = "" })%>
+    <%//=Html.ActionLink("К сводной ведомости", "FinalStatement", "FinalStatement", new { alias = ViewData["ProfessorId"], additional = ViewData["DisciplineId"], param1 = ViewData["IdGroup"] }, new { @class = "" })%>
     </div>        
     </p>
     
