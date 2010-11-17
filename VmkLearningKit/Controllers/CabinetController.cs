@@ -388,6 +388,7 @@ namespace VmkLearningKit.Controllers
         /// <summary>
         /// Action, отображающий расписание студента
         /// </summary>
+       /*
         [AuthorizeFilter(Roles = "Student")]
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Schedule(string alias, string additional)
@@ -405,6 +406,7 @@ namespace VmkLearningKit.Controllers
             }
             return View(Constants.CABINET_STUDENT_VIEWS + "Schedule.aspx");
         }
+        */
 
         /// <summary>
         /// Action, отображающий список тестовых заданий студента
@@ -438,6 +440,7 @@ namespace VmkLearningKit.Controllers
             return View();
         }
 
+        /*
         /// <summary>
         /// Action, отображающий график занятий студента
         /// </summary>
@@ -488,6 +491,7 @@ namespace VmkLearningKit.Controllers
             }
             return View(Constants.CABINET_STUDENT_VIEWS + "Timetable.aspx");
         }
+        */
 
         /// <summary>
         /// Action, отображающий форму настроек аккаунта

@@ -24,9 +24,9 @@
         <h2 style="margin-bottom: 10px">Тестирование - Список заданий</h2>
     </div>
     <div style="float: right; margin-top: 8px">
-        <%= Html.ActionLink("Расписание", "Schedule") %>
+        <%//= Html.ActionLink("Расписание", "Schedule") %>
         &nbsp;
-        <%= Html.ActionLink("График занятий", "Timetable", new { alias = String.Empty, additional = String.Empty } )%>
+        <%//= Html.ActionLink("График занятий", "Timetable", new { alias = String.Empty, additional = String.Empty } )%>
     </div>
     <br />
     <br />
