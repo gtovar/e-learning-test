@@ -1,1 +1,0 @@
-[assembly: System.Reflection.AssemblyFileVersion("1.4.0.0")]

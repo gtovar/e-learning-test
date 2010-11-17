@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="specialities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="speciality" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="specializations" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="specialization" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="code" type="xs:string" use="required" />
+                        <xs:attribute name="abbreviation" type="xs:string" use="required" />
+                        <xs:attribute name="title" type="xs:string" use="required" />
+                        <xs:attribute name="chairAbbreviation" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="educationPlan" type="xs:string" use="required" />
+            <xs:attribute name="code" type="xs:string" use="required" />
+            <xs:attribute name="abbreviation" type="xs:string" use="required" />
+            <xs:attribute name="title" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

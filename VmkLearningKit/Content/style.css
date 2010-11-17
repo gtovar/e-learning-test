@@ -1,0 +1,928 @@
+* {
+	margin: 0;
+	/*padding: 0;*/
+}
+
+html
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	min-width: 1000px;
+}
+
+body
+{
+	height: 100%;
+	color: #666666;
+	font-family: verdana,arial,helvetica,sans-serif;
+	font-size: 10pt;
+}
+
+a
+{
+	color: #0000ff;
+}
+a:hover
+{
+	color: #aa00ff;
+}
+
+/* Шапка  */
+.header
+{
+	background-color: #FFF;
+	height: 120px;
+	width: expression(((document.documentElement.clientWidth || document.body.clientWidth) < 1000)?  '1000px' : '100%' );
+}
+
+#breadcrumbs
+{
+	float: left;
+	background-color: #eee;
+	padding: 3px 5px;
+	font-size: 8pt;
+	font-family: tahoma;
+}
+#breadcrumbs a
+{
+	color: #777;
+	text-decoration: none;
+}
+
+#admin_mail a
+{
+	float: right;
+	padding: 3px;
+	font-size: 8pt;
+	color: #777;
+	font-family: tahoma;
+	text-decoration: none;
+}
+#user_head
+{
+	clear: both;
+}
+
+.transparent_link
+{
+	background-color: White;
+	color: White;
+	text-decoration: none;
+}
+
+.transparent_img
+{
+	border: 0;
+	text-decoration: none;
+	color: White;
+}
+
+#logo
+{
+	/* background: url(../../Content/Images/eunn-small.gif) no-repeat; */
+	height: 75px;
+	width: 75px;
+	margin: 5px;
+	float: left;
+}
+#system_name
+{
+	font-size: 20pt;
+	font-weight: bold;
+	padding-top: 30px;
+	padding-left: 10px;
+	float: left;
+}
+#user_menu
+{
+	float: right;
+	padding: 2px 2px;
+	text-align: right;
+}
+
+
+/*Меню*/
+.menu
+{
+	clear: both;
+	background-color: #FFF;
+}
+
+#nav, #nav ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #ccf;
+	background: #E2EFFF;
+	float: left;
+}
+#nav li
+{
+	float: left;
+	position: relative;
+	background: #E2EFFF;
+	background: none;
+}
+
+#nav a
+{
+	color: #3764A0;
+	text-decoration: none;
+	display: block;
+	padding: 0.3em 0.5em;
+	background: #E2EFFF;
+}
+#nav a:hover
+{
+	color: #3764A0;
+	background: #F2F8FF;
+}
+#nav li:hover, #nav li.jshover
+{
+	background: #aaa;
+}
+
+#nav li ul
+{
+	display: none;
+	position: absolute;
+	background: #E2EFFF;
+	padding: 0.5em 0;
+	width: 9.99em;
+}
+#nav li li a
+{
+	width: 8.95em;
+	background: none;
+}
+#nav li:hover ul, #nav li.jshover ul
+{
+	display: block;
+}
+
+#nav li:hover li ul, #nav li.jshover li ul
+{
+	display: none;
+	width: 9.99em;
+	top: -0.65em;
+	left: 8.5em;
+	left: 9.6em;
+}
+#nav li:hover li:hover ul, #nav li.jshover li.jshover ul
+{
+	display: block;
+}
+
+
+
+
+
+/* Контент*/
+.main
+{
+	background: #D6E8FF url(../../Content/Images/pagetitlebkgd.gif) repeat-x;
+	clear: both;
+	padding-top: 6px;
+}
+.main table
+{
+	border-spacing: 0;
+}
+.main a
+{
+	text-decoration: none;
+}
+
+.table_header
+{
+	background-color: #e8eef4;
+	color: Black;
+	font-weight: bold;
+}
+
+.table_row
+{
+	color: Black;
+	text-align: left;
+}
+
+.table_th
+{
+    color: Black;
+    padding: 5px;
+}
+
+.table_td
+{
+    color: Black;
+    padding: 5px;
+}
+
+.left_col
+{
+	width: 20px;
+	background: #84B1EC url(../../Content/Images/navshape.jpg) no-repeat;
+	padding-left: 5px;
+}
+
+.menu_lev1
+{
+	font-size: 110%;
+	background: url(../../Content/Images/menu_icon.gif) no-repeat 0 5px;
+	padding-left: 12px;
+}
+
+.menu_lev2
+{
+	font-size: 95%;
+	margin-left: 20px;
+}
+.menu_lev3
+{
+	font-size: 80%;
+	margin-left: 35px;
+}
+
+.right_pagemargin
+{
+	background-color: #83B0EC;
+	background-image: url(../../Content/Images/navshape.jpg);
+	background-position: -143px 0;
+	background-repeat: no-repeat;
+	height: 550px;
+	width: 7px;
+}
+
+.additional_menu
+{
+	padding: 5px;
+	width: 140px;
+}
+
+.content_title
+{
+	color: #000;
+	height: 50px;
+	background: #D6E8FF url(../../Content/Images/topshape.jpg) no-repeat;
+	font-size: 18px;
+	font-weight: bold;
+	padding-left: 5px;
+}
+.content
+{
+	background: #fff;
+	padding: 15px;
+	border: 1px solid #6F9DD9;
+	height: 100%;
+}
+
+.text_box
+{
+	width: 350px;
+	font-size: 15px;
+}
+
+.text_area
+{
+	width: 350px;
+	height: 200px;
+	font-size: 15px;
+}
+
+.submit
+{
+	width: 100px;
+	height: 30px;
+}
+
+.description
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.content h1
+{
+}
+
+.content h2
+{
+}
+
+.content h3
+{
+}
+
+.content h4
+{
+}
+
+.content #Login
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 15px;
+	width: 150px;
+}
+.content #Password
+{
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-size: 15px;
+	width: 150px;
+}
+.content #SubmitLogOn
+{
+	font-size: 15px;
+	width: 70px;
+}
+.content #helpMessage
+{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+.content #error
+{
+	text-align: center;
+	font-size: 20px;
+	color: Red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.content .error
+{
+	text-align: center;
+	font-size: 13px;
+	color: Red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.content ul
+{
+	margin-left: 20px;
+}
+
+.content ul li
+{
+	margin-top: 7px;
+}
+
+.content a
+{
+	color: #3764A0;
+	text-decoration: none;
+}
+
+.content a:hover
+{
+	color: #3764A0;
+	text-decoration: underline;
+}
+
+/*footer*/
+
+.footer
+{
+	clear: both;
+	background-color: #bbb;
+	width: 100%;
+	height: 50px;
+}
+.footer_text
+{
+	padding: 5px;
+}
+
+/* AccountSettings
+----------------------------------------------------------*/
+.label
+{
+    font-size: 15px;
+    margin: 10px;
+}
+
+.input
+{
+    width: 350px;
+    height: 18px;
+}
+
+.info
+{
+    font-size: 11px;
+    color: Green;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.fieldError
+{
+	text-align: left;
+	font-size: 13px;
+	color: Red;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.errorMessage
+{
+    font-size: 15px;
+    color: Red;
+    text-align: center;
+    margin: 10px;
+}
+
+.message
+{
+    font-size: 15px;
+    color: Green;
+    text-align: center;
+    margin: 10px;
+}
+
+/* QuestionsList
+----------------------------------------------------------*/
+.QuestionsList
+{
+	width: 100%;
+	border-bottom: solid 1px #c4c4c4;
+}
+.QuestionsList .MainQuestionHeader
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: medium;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	height:13px;
+}
+.QuestionsList .MainQuestionHeader .QuestionNumber
+{
+	position: absolute;
+	left: 5px;
+}
+.QuestionsList .MainQuestionHeader .QuestionTitle
+{
+	position: absolute;
+	left: 50px;
+}
+.QuestionsList .MainQuestionHeader .QuestionType
+{
+	position: absolute;
+	right: 100px;
+}
+.QuestionsList .Question .QuestionHeader
+{
+	position: relative;
+	background: #ffffff;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: small;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	height:13px;
+}
+.QuestionsList .Question .QuestionEditBlock
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	display: none;
+}
+.QuestionsList .Question .QuestionFooter
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: small;
+	height:20px;
+	display: none;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	border-bottom: solid 1px #c4c4c4;
+}
+.QuestionsList .Question .QuestionFooter .QuestionCancel
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionFooter .QuestionSave
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionHeader .QuestionNumber
+{
+	position: absolute;
+	left: 5px;
+}
+.QuestionsList .Question .QuestionHeader .QuestionTitle
+{
+	position: absolute;
+	left: 50px;
+}
+.QuestionsList .Question .QuestionHeader .QuestionType
+{
+	position: absolute;
+	right: 100px;
+}
+.QuestionsList .Question .QuestionHeader .QuestionEdit
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionHeader .QuestionDelete
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionHeader .QuestionRestore
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionHeader .QuestionRestored
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	display: none;
+}
+.QuestionsList .Question .QuestionHeader .QuestionCancelRestore
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	display: none;
+}
+.QuestionsList .Question .QuestionFooter .AnswerAdd
+{
+	position: absolute;
+	top: 10px;
+	right: 70px;
+	cursor: pointer;
+}
+.QuestionsList .Question .QuestionEditBlock .AnswerRemove
+{
+	right: 10px;
+	cursor: pointer;
+}
+/*
+----------------------------------------------------------*/
+
+/* RazdelsList
+----------------------------------------------------------*/
+.RazdelsList
+{
+	width: 100%;
+}
+
+.RazdelsList .MainRazdelHeader
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: medium;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	height:13px;
+}
+.RazdelsList .MainRazdelHeader .RazdelNumber
+{
+	position: absolute;
+	left: 5px;
+}
+.RazdelsList .MainRazdelHeader .RazdelTitle
+{
+	position: absolute;
+	left: 50px;
+}
+
+.RazdelsList .MainRazdelFooter
+{
+	position: relative;
+	background: none repeat scroll 0 0 #FFFFFF;
+	margin: 0;
+	font-size: small;
+}
+.RazdelsList .MainRazdelFooter .NewRazdel
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	border: solid 1px #c4c4c4;
+	display: none;
+}
+.RazdelsList .MainRazdelFooter .NewRazdel .NewRazdelFooter
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: small;
+	height:20px;
+}
+.RazdelsList .MainRazdelFooter .NewRazdel .NewRazdelFooter .NewRazdelCancel
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.RazdelsList .MainRazdelFooter .NewRazdel .NewRazdelFooter .NewRazdelSave
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+
+.RazdelsList .Razdel .RazdelHeader
+{
+	position: relative;
+	background: #ffffff;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: small;
+	border: solid 1px #c4c4c4;
+	height:13px;
+}
+.RazdelsList .Razdel .RazdelHeader .RazdelNumber
+{
+	position: absolute;
+	left: 5px;
+}
+.RazdelsList .Razdel .RazdelHeader .RazdelTitle
+{
+	position: absolute;
+	left: 50px;
+}
+.RazdelsList .Razdel .RazdelHeader .RazdelEdit
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+.RazdelsList .Razdel .RazdelHeader .RazdelDelete
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.RazdelsList .Razdel .RazdelEditBlock
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	display: none;
+}
+.RazdelsList .Razdel .RazdelFooter
+{
+	position: relative;
+	background: none repeat scroll 0 0 #E2EFFF;
+	padding: 10px 20px 10px;
+	margin: 0;
+	font: bold;
+	font-size: small;
+	height:20px;
+	display: none;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	border-bottom: solid 1px #c4c4c4;
+}
+.RazdelsList .Razdel .RazdelFooter .RazdelCancel
+{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.RazdelsList .Razdel .RazdelFooter .RazdelSave
+{
+	position: absolute;
+	top: 10px;
+	right: 40px;
+	cursor: pointer;
+}
+/*
+----------------------------------------------------------*/
+p
+{
+    margin-bottom: 20px;
+    margin-right: 10px;
+    line-height: 1.6em;
+}
+
+table .Editor
+{
+	padding: 5px 5px 5px 5px;
+}
+
+table th .Editor
+{
+	background-color: #e8eef4;
+	border: solid 1px #e8eef4;
+}
+
+table td .Editor
+{
+	vertical-align:top;
+	padding: 5px 5px 5px 5px;
+}
+
+.UploadContainer
+{
+	padding: 5px 5px 5px 5px;
+	position: relative;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	border-bottom: solid 1px #c4c4c4;
+	border-top: solid 1px #c4c4c4;
+	display: none;
+}
+/*
+----------------------------------------------------------*/
+.Button
+{
+	cursor: pointer;
+	font: bold;
+	font-size: small;
+	border: solid 2px #c4c4c4;
+}
+/*
+----------------------------------------------------------*/
+.XmlFileUpload
+{
+	cursor: pointer;
+}
+/*
+----------------------------------------------------------*/
+
+table .Generator
+{
+	
+}
+
+table td .Generator4
+{
+	vertical-align: middle;
+	padding: 5px 5px 5px 5px;
+	background-color: #E2EFFF;
+	border: solid 1px #e8eef4;
+}
+
+table td .Generator
+{
+	vertical-align: middle;
+	padding: 5px 5px 5px 5px;
+	border: solid 1px #e8eef4;
+	background-color: #FFFFFF;
+}
+
+table td .Generator2
+{
+	vertical-align: middle;
+	padding: 5px 5px 5px 5px;
+	color: Green;
+	border: solid 1px #e8eef4;
+}
+
+table td .Generator3
+{
+	vertical-align:top;
+	padding: 5px 5px 5px 5px;
+	color: Blue;
+	border: solid 1px #e8eef4;
+}
+.TestDelete, .TestView, .VariantQuestions, .VariantShow, .QuestionEdit
+{
+	cursor: pointer;
+}
+
+/*
+----------------------------------------------------------*/
+
+/* XmlParse */
+.uploaders {
+	width:inherit;
+	border-bottom: solid 1px #c4c4c4;
+}
+.uploaders h3 {
+	background: #E2EFFF url(Images/arrow-square.gif) no-repeat right -51px;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	cursor: pointer;
+}
+.uploaders h3:hover {
+	background-color: #e3e2e2;
+}
+.uploaders h3.active {
+	background-position: right 5px;
+}
+.uploaders .UploadVisibleContainer {
+	background: #f7f7f7;
+	margin: 0;
+	padding: 10px 15px 20px;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+	display: none;
+}
+
+.XmlParseErrors 
+{
+    width:inherit;
+	border-bottom: solid 1px #c4c4c4;
+}
+.XmlParseErrors h3 {
+	background: #ff6347;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	cursor: pointer;
+}
+.XmlParseErrors .ErrorsContainer {
+	background: #f7f7f7;
+	margin: 0;
+	padding: 10px 15px 20px;
+	border-left: solid 1px #c4c4c4;
+	border-right: solid 1px #c4c4c4;
+}
+.XmlParseOk
+{
+    width:inherit;
+	border-bottom: solid 1px #c4c4c4;
+}
+.XmlParseOk h3 {
+	background: #90EE90;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+	cursor: pointer;
+}
+.SuperLink
+{
+    width:inherit;
+	border-bottom: solid 1px #c4c4c4;
+}
+.SuperLink h3
+{
+    background: #e3e2e2;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 120%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+}
+.SuperLink h4{
+	background: #E2EFFF;
+	padding: 7px 15px;
+	margin: 0;
+	font: bold 100%/100% Arial, Helvetica, sans-serif;
+	border: solid 1px #c4c4c4;
+	border-bottom: none;
+}
+.SuperLink h4:hover {
+	background-color: #e3e2e2;
+}
+
+.DeleteLecturePlan
+{
+    cursor: pointer;
+}

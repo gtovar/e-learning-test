@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ABBREVIATION_DEFAULT_VALUE" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="ABOUT_ACTION_NAME" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ACTION" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="ADMIN_CHAIR_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Chair/</value>
+  </data>
+  <data name="ADMIN_DEPARTMENT_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Department/</value>
+  </data>
+  <data name="ADMIN_EDUCATION_PLAN_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/EducationPlan/</value>
+  </data>
+  <data name="ADMIN_GROUP_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Group/</value>
+  </data>
+  <data name="ADMIN_NAVIGAITON" xml:space="preserve">
+    <value>AdminNavigation</value>
+  </data>
+  <data name="ADMIN_PANEL_TITLE" xml:space="preserve">
+    <value>Администраторская панель</value>
+  </data>
+  <data name="ADMIN_ROLE" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="ADMIN_SPECIALITY_DISCIPLINE_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/SpecialityDiscipline/</value>
+  </data>
+  <data name="ADMIN_SPECIALITY_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Speciality/</value>
+  </data>
+  <data name="ADMIN_SPECIALIZATION_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/Specialization/</value>
+  </data>
+  <data name="ADMIN_USER_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/User/</value>
+  </data>
+  <data name="ADMIN_VIEWS" xml:space="preserve">
+    <value>/Views/Admin/</value>
+  </data>
+  <data name="ALIAS_DEFAULT_VALUE" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="CABINET_GENERAL_VIEWS" xml:space="preserve">
+    <value>/Views/Cabinet/General/</value>
+  </data>
+  <data name="CABINET_STUDENT_VIEWS" xml:space="preserve">
+    <value>/Views/Cabinet/Student/</value>
+  </data>
+  <data name="CABINET_URL" xml:space="preserve">
+    <value>/Cabinet/</value>
+  </data>
+  <data name="CABINET_VIEWS" xml:space="preserve">
+    <value>/Views/Cabinet/</value>
+  </data>
+  <data name="CHAIR_MENU" xml:space="preserve">
+    <value>ChairMenu</value>
+  </data>
+  <data name="CONNECTION_STRING_NAME" xml:space="preserve">
+    <value>VLK_DBConnectionString</value>
+  </data>
+  <data name="DATABASE_NAME" xml:space="preserve">
+    <value>DatabaseName</value>
+  </data>
+  <data name="DAY_FRIDAY" xml:space="preserve">
+    <value>Пятница</value>
+  </data>
+  <data name="DAY_MONDAY" xml:space="preserve">
+    <value>Понедельник</value>
+  </data>
+  <data name="DAY_SATURDAY" xml:space="preserve">
+    <value>Суббота</value>
+  </data>
+  <data name="DAY_SUNDAY" xml:space="preserve">
+    <value>Воскресенье</value>
+  </data>
+  <data name="DAY_THURSDAY" xml:space="preserve">
+    <value>Четверг</value>
+  </data>
+  <data name="DAY_TUESDAY" xml:space="preserve">
+    <value>Вторник</value>
+  </data>
+  <data name="DAY_WEDNESDAY" xml:space="preserve">
+    <value>Среда</value>
+  </data>
+  <data name="DB_BACKUP_NAME" xml:space="preserve">
+    <value>DbBackup_</value>
+  </data>
+  <data name="DB_BACKUP_PATH" xml:space="preserve">
+    <value>/DbBackups/</value>
+  </data>
+  <data name="DB_DATA_FILE_PATH" xml:space="preserve">
+    <value>DbDataFilePath</value>
+  </data>
+  <data name="DB_LOG_FILE_PATH" xml:space="preserve">
+    <value>DbLogFilePath</value>
+  </data>
+  <data name="DEFAULT_CHAIR_NAME" xml:space="preserve">
+    <value>Отсутствует</value>
+  </data>
+  <data name="DEFAULT_EMAIL_DOMEN" xml:space="preserve">
+    <value>@unn.ru</value>
+  </data>
+  <data name="DOWN_WEEK" xml:space="preserve">
+    <value>Нижняя</value>
+  </data>
+  <data name="ERROR_404_URL" xml:space="preserve">
+    <value>/Home/Error/404</value>
+  </data>
+  <data name="ERROR_URL" xml:space="preserve">
+    <value>/Home/Error/</value>
+  </data>
+  <data name="EVERY_WEEK" xml:space="preserve">
+    <value>Каждая</value>
+  </data>
+  <data name="EXCEL_FILE_UPLOAD_PATH" xml:space="preserve">
+    <value>/Uploads/Excel/</value>
+  </data>
+  <data name="FIELD_MUST_NOT_BE_EMPTY" xml:space="preserve">
+    <value>Поле не может быть пустым</value>
+  </data>
+  <data name="FORM_MESSAGE" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="GENERAL_MENU" xml:space="preserve">
+    <value>GeneralMenu</value>
+  </data>
+  <data name="GENERAL_NAVIGATION" xml:space="preserve">
+    <value>GeneralNavigation</value>
+  </data>
+  <data name="GROUP_DEFAULT_ALIAS" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="HASH_ALGORITHM" xml:space="preserve">
+    <value>SHA1</value>
+  </data>
+  <data name="HOME_URL" xml:space="preserve">
+    <value>/Home</value>
+  </data>
+  <data name="MENU_TYPE" xml:space="preserve">
+    <value>MenuType</value>
+  </data>
+  <data name="METODIST_ROLE" xml:space="preserve">
+    <value>Metodist</value>
+  </data>
+  <data name="NAVIGATION_TYPE" xml:space="preserve">
+    <value>NavigationType</value>
+  </data>
+  <data name="NONE_ROLE" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="PAGE_TITLE" xml:space="preserve">
+    <value>PageTitle</value>
+  </data>
+  <data name="PARTIALVIEW_PAGE_ERROR" xml:space="preserve">
+    <value>PartialViewError</value>
+  </data>
+  <data name="PASSWORD_LENGTH" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="PERSON_CABINET" xml:space="preserve">
+    <value>Личный кабинет</value>
+  </data>
+  <data name="PRACTICE_TYPE_LAB" xml:space="preserve">
+    <value>Лабораторная работа / Терминал-класс</value>
+  </data>
+  <data name="PRACTICE_TYPE_PRACTICE" xml:space="preserve">
+    <value>Практика</value>
+  </data>
+  <data name="PROFESSORS_ACTION_NAME" xml:space="preserve">
+    <value>Professors</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_ABOUT" xml:space="preserve">
+    <value>О себе</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_DEGREE" xml:space="preserve">
+    <value>Не указана</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_LOGIN" xml:space="preserve">
+    <value>Professor_None</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_NAME" xml:space="preserve">
+    <value>Не указан</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_NICKNAME" xml:space="preserve">
+    <value>Professor_None</value>
+  </data>
+  <data name="PROFESSOR_DEFAULT_POSITION" xml:space="preserve">
+    <value>Не указана</value>
+  </data>
+  <data name="PROFESSOR_MENU" xml:space="preserve">
+    <value>ProfessorMenu</value>
+  </data>
+  <data name="PROFESSOR_ROLE" xml:space="preserve">
+    <value>Professor</value>
+  </data>
+  <data name="REGULAR_EXPRESSION_VALUE_WITH_POINT" xml:space="preserve">
+    <value>([1-9]\d*\.\d+)|([1-9]\d*)|([0])|([0]\.d+)</value>
+  </data>
+  <data name="REPORTING_TYPE_EXAM" xml:space="preserve">
+    <value>экзамен</value>
+  </data>
+  <data name="REPORTING_TYPE_SCIENTIFIC_WORK" xml:space="preserve">
+    <value>курсовая работа</value>
+  </data>
+  <data name="REPORTING_TYPE_ZACHOT" xml:space="preserve">
+    <value>зачет</value>
+  </data>
+  <data name="SESSION_USER" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="SESSION_USER_AUTH" xml:space="preserve">
+    <value>UserAuth</value>
+  </data>
+  <data name="SESSION_USER_LOGIN" xml:space="preserve">
+    <value>UserLogin</value>
+  </data>
+  <data name="SESSION_USER_NAME" xml:space="preserve">
+    <value>UserName</value>
+  </data>
+  <data name="SESSION_USER_ROLE" xml:space="preserve">
+    <value>UserRole</value>
+  </data>
+  <data name="SPECIALITIES_TITLE" xml:space="preserve">
+    <value>Специальности и специализации</value>
+  </data>
+  <data name="SPECIALITY_ALIAS" xml:space="preserve">
+    <value>SpecialityAlias</value>
+  </data>
+  <data name="STRING_DEFAULT_VALUE" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
+  <data name="STUDENT_DEFAULT_LOGIN" xml:space="preserve">
+    <value>Studnet_None</value>
+  </data>
+  <data name="STUDENT_DEFAULT_NICKNAME" xml:space="preserve">
+    <value>Student_None</value>
+  </data>
+  <data name="STUDENT_DEFAULT_SECOND_NAME" xml:space="preserve">
+    <value>Не указан</value>
+  </data>
+  <data name="STUDENT_ROLE" xml:space="preserve">
+    <value>Student</value>
+  </data>
+  <data name="STUDENT_TIMETABLE_URL" xml:space="preserve">
+    <value>/Cabinet/Timetable/</value>
+  </data>
+  <data name="TERM_DEFAULT_REPORTING" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
+  <data name="TYPE_LAB" xml:space="preserve">
+    <value>terminal</value>
+  </data>
+  <data name="TYPE_LECTION" xml:space="preserve">
+    <value>lection</value>
+  </data>
+  <data name="TYPE_PRACTICE" xml:space="preserve">
+    <value>practice</value>
+  </data>
+  <data name="UP_WEEK" xml:space="preserve">
+    <value>Верхняя</value>
+  </data>
+  <data name="VIEW_PAGE_ERROR" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="VIEW_PAGE_ERROR_404" xml:space="preserve">
+    <value>Error404</value>
+  </data>
+  <data name="VMK_DEPARTMENT_ALIAS" xml:space="preserve">
+    <value>VMK</value>
+  </data>
+  <data name="XML_ATTRIBUTE_ABBREVIATION" xml:space="preserve">
+    <value>abbreviation</value>
+  </data>
+  <data name="XML_ATTRIBUTE_BUILDING" xml:space="preserve">
+    <value>building</value>
+  </data>
+  <data name="XML_ATTRIBUTE_CHAIR_ABBREVIATION" xml:space="preserve">
+    <value>chairAbbreviation</value>
+  </data>
+  <data name="XML_ATTRIBUTE_CODE" xml:space="preserve">
+    <value>code</value>
+  </data>
+  <data name="XML_ATTRIBUTE_COUNT" xml:space="preserve">
+    <value>count</value>
+  </data>
+  <data name="XML_ATTRIBUTE_DAY_OF_WEEK" xml:space="preserve">
+    <value>dayOfWeek</value>
+  </data>
+  <data name="XML_ATTRIBUTE_DEGREE" xml:space="preserve">
+    <value>degree</value>
+  </data>
+  <data name="XML_ATTRIBUTE_DISCIPLINE" xml:space="preserve">
+    <value>discipline</value>
+  </data>
+  <data name="XML_ATTRIBUTE_EDUCATION_PLAN" xml:space="preserve">
+    <value>educationPlan</value>
+  </data>
+  <data name="XML_ATTRIBUTE_FIRSTNAME" xml:space="preserve">
+    <value>firstName</value>
+  </data>
+  <data name="XML_ATTRIBUTE_GROUP_NUMBER" xml:space="preserve">
+    <value>groupNumber</value>
+  </data>
+  <data name="XML_ATTRIBUTE_LABS" xml:space="preserve">
+    <value>labs</value>
+  </data>
+  <data name="XML_ATTRIBUTE_LASTNAME" xml:space="preserve">
+    <value>lastName</value>
+  </data>
+  <data name="XML_ATTRIBUTE_LECTIONS" xml:space="preserve">
+    <value>lections</value>
+  </data>
+  <data name="XML_ATTRIBUTE_LEVEL" xml:space="preserve">
+    <value>level</value>
+  </data>
+  <data name="XML_ATTRIBUTE_NAME" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="XML_ATTRIBUTE_NUMBER" xml:space="preserve">
+    <value>number</value>
+  </data>
+  <data name="XML_ATTRIBUTE_PART" xml:space="preserve">
+    <value>part</value>
+  </data>
+  <data name="XML_ATTRIBUTE_PATRONYMIC" xml:space="preserve">
+    <value>patronymic</value>
+  </data>
+  <data name="XML_ATTRIBUTE_POSITION" xml:space="preserve">
+    <value>position</value>
+  </data>
+  <data name="XML_ATTRIBUTE_PRACTICES" xml:space="preserve">
+    <value>practices</value>
+  </data>
+  <data name="XML_ATTRIBUTE_RANK" xml:space="preserve">
+    <value>rank</value>
+  </data>
+  <data name="XML_ATTRIBUTE_REPORTINGS" xml:space="preserve">
+    <value>reportings</value>
+  </data>
+  <data name="XML_ATTRIBUTE_ROOM" xml:space="preserve">
+    <value>room</value>
+  </data>
+  <data name="XML_ATTRIBUTE_SITE" xml:space="preserve">
+    <value>site</value>
+  </data>
+  <data name="XML_ATTRIBUTE_SPECIALITY_ABBREVIATION" xml:space="preserve">
+    <value>specialityAbbreviation</value>
+  </data>
+  <data name="XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION" xml:space="preserve">
+    <value>specializationAbbreviation</value>
+  </data>
+  <data name="XML_ATTRIBUTE_TEACHER" xml:space="preserve">
+    <value>teacher</value>
+  </data>
+  <data name="XML_ATTRIBUTE_TIME" xml:space="preserve">
+    <value>time</value>
+  </data>
+  <data name="XML_ATTRIBUTE_TITLE" xml:space="preserve">
+    <value>title</value>
+  </data>
+  <data name="XML_ATTRIBUTE_TYPE" xml:space="preserve">
+    <value>type</value>
+  </data>
+  <data name="XML_ATTRIBUTE_WEEK" xml:space="preserve">
+    <value>week</value>
+  </data>
+  <data name="XML_ATTRIBUTE_WEEKS" xml:space="preserve">
+    <value>weeks</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_CHAIR" xml:space="preserve">
+    <value>Такой кафедры не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_DAY_OF_WEEK" xml:space="preserve">
+    <value>Такого дня недели не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_DISCIPLINE" xml:space="preserve">
+    <value>Такой дисциплины не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_EDUCATION_PLAN" xml:space="preserve">
+    <value>Такого образовательного плана не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_GROUP" xml:space="preserve">
+    <value>Такой группы не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_PROFESSOR" xml:space="preserve">
+    <value>Такого преподавателя не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_PROFESSOR_OF_DISCIPLINE" xml:space="preserve">
+    <value>Такая дисциплина не читается данным преподавателем</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_REPORTING" xml:space="preserve">
+    <value>Неизвестный тип отчетности</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_SPECIALITY" xml:space="preserve">
+    <value>Такой специальности не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_SPECIALIZATION" xml:space="preserve">
+    <value>Такой специализации не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_TYPE" xml:space="preserve">
+    <value>Такого типа занятий не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_EXIST_WEEK" xml:space="preserve">
+    <value>Такой недели не существует</value>
+  </data>
+  <data name="XML_DATA_ERROR_NOT_VALID_FORMAT" xml:space="preserve">
+    <value>Данные имеют неправильный формат</value>
+  </data>
+  <data name="XML_ELEMENT_ADDITIONAL" xml:space="preserve">
+    <value>additional</value>
+  </data>
+  <data name="XML_ELEMENT_APPLICATION_DOMAIN" xml:space="preserve">
+    <value>applicationDomain</value>
+  </data>
+  <data name="XML_ELEMENT_CATEGORY_1" xml:space="preserve">
+    <value>category1</value>
+  </data>
+  <data name="XML_ELEMENT_CATEGORY_2" xml:space="preserve">
+    <value>category2</value>
+  </data>
+  <data name="XML_ELEMENT_CHAIR" xml:space="preserve">
+    <value>chair</value>
+  </data>
+  <data name="XML_ELEMENT_DISCIPLINE" xml:space="preserve">
+    <value>discipline</value>
+  </data>
+  <data name="XML_ELEMENT_DISCIPLINE_PROGRAM" xml:space="preserve">
+    <value>disciplineProgram</value>
+  </data>
+  <data name="XML_ELEMENT_DISCIPLINE_RAZDELS" xml:space="preserve">
+    <value>disciplineRazdels</value>
+  </data>
+  <data name="XML_ELEMENT_DISCIPLINE_RAZDELS_CONTENT" xml:space="preserve">
+    <value>disciplineRazdelsContent</value>
+  </data>
+  <data name="XML_ELEMENT_DISCIPLINE_VOLUME" xml:space="preserve">
+    <value>disciplineVolume</value>
+  </data>
+  <data name="XML_ELEMENT_EDUCATION_PLAN" xml:space="preserve">
+    <value>educationPlan</value>
+  </data>
+  <data name="XML_ELEMENT_GROUP" xml:space="preserve">
+    <value>group</value>
+  </data>
+  <data name="XML_ELEMENT_LAB" xml:space="preserve">
+    <value>lab</value>
+  </data>
+  <data name="XML_ELEMENT_LAB_PRACTICE" xml:space="preserve">
+    <value>labPractice</value>
+  </data>
+  <data name="XML_ELEMENT_LECTION" xml:space="preserve">
+    <value>lection</value>
+  </data>
+  <data name="XML_ELEMENT_LECTIONS" xml:space="preserve">
+    <value>lections</value>
+  </data>
+  <data name="XML_ELEMENT_LITERATURE" xml:space="preserve">
+    <value>literature</value>
+  </data>
+  <data name="XML_ELEMENT_MARK_CRITERIAS" xml:space="preserve">
+    <value>markCriterias</value>
+  </data>
+  <data name="XML_ELEMENT_PAIR" xml:space="preserve">
+    <value>pair</value>
+  </data>
+  <data name="XML_ELEMENT_PRACTICE" xml:space="preserve">
+    <value>practice</value>
+  </data>
+  <data name="XML_ELEMENT_PURPOSES" xml:space="preserve">
+    <value>purposes</value>
+  </data>
+  <data name="XML_ELEMENT_QUESTIONS" xml:space="preserve">
+    <value>questions</value>
+  </data>
+  <data name="XML_ELEMENT_REPORTING" xml:space="preserve">
+    <value>reporting</value>
+  </data>
+  <data name="XML_ELEMENT_REQUIREMENTS" xml:space="preserve">
+    <value>requirements</value>
+  </data>
+  <data name="XML_ELEMENT_SPECIALITY" xml:space="preserve">
+    <value>speciality</value>
+  </data>
+  <data name="XML_ELEMENT_SPECIALIZATION" xml:space="preserve">
+    <value>specialization</value>
+  </data>
+  <data name="XML_ELEMENT_SPECIALIZATIONS" xml:space="preserve">
+    <value>specializations</value>
+  </data>
+  <data name="XML_ELEMENT_STUDENT" xml:space="preserve">
+    <value>student</value>
+  </data>
+  <data name="XML_ELEMENT_SUBGROUP" xml:space="preserve">
+    <value>subgroup</value>
+  </data>
+  <data name="XML_ELEMENT_TEACHER" xml:space="preserve">
+    <value>teacher</value>
+  </data>
+  <data name="XML_ELEMENT_TEACHERS" xml:space="preserve">
+    <value>teachers</value>
+  </data>
+  <data name="XML_ELEMENT_TERM" xml:space="preserve">
+    <value>term</value>
+  </data>
+  <data name="XML_ELEMENT_TERMS" xml:space="preserve">
+    <value>terms</value>
+  </data>
+  <data name="XML_ELEMENT_TITLE" xml:space="preserve">
+    <value>title</value>
+  </data>
+  <data name="XML_ELEMENT_TOPIC" xml:space="preserve">
+    <value>topic</value>
+  </data>
+  <data name="XML_SCHEMA_BASE_URL" xml:space="preserve">
+    <value>/Core/XmlConverter/XmlSchemas/</value>
+  </data>
+</root>
