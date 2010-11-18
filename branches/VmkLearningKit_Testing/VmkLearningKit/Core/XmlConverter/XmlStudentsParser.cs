@@ -5,6 +5,8 @@ using System.Web;
 using System.Xml;
 using System.Xml.Schema;
 using VmkLearningKit.Models.Repository;
+using System.Net.Mail;
+using System.Net;
 
 namespace VmkLearningKit.Core.XmlConverter
 {
@@ -57,11 +59,6 @@ namespace VmkLearningKit.Core.XmlConverter
                     {
                         specialityAbbreviation = repositoryManager.GetGroupRepository.GetByTitle(studentGroupNumber).Speciality.Abbreviation;
                     }
-                    
-                    if (studentSpecializationAbbreviation == VLKConstants.FIELD_EMPTY)
-                    {
-                        studentSpecializationAbbreviation += (studentChairAbbreveation + specialityAbbreviation);
-                    }
 
                     if (null == repositoryManager.GetChairRepository.GetByAbbreviation(studentChairAbbreveation))
                     {
@@ -107,7 +104,8 @@ namespace VmkLearningKit.Core.XmlConverter
                    studentGroupNumber,
                    studentLastName,
                    studentFirstName,
-                   studentPatronymic;
+                   studentPatronymic,
+                   studentEmail;
 
             //List<User>      usersList       = new List<User>();
             //List<Student>   studentsList    = new List<Student>();
@@ -120,13 +118,9 @@ namespace VmkLearningKit.Core.XmlConverter
                     studentChairAbbreveation            = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_CHAIR_ABBREVIATION);
                     studentSpecializationAbbreviation   = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_SPECIALIZATION_ABBREVIATION);
                     studentGroupNumber                  = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_GROUP_NUMBER);
+                    studentEmail                        = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_EMAIL);
 
                     string specialityAbbreviation       = repositoryManager.GetGroupRepository.GetByTitle(studentGroupNumber).Speciality.Abbreviation;
-
-                    if (studentSpecializationAbbreviation == VLKConstants.FIELD_EMPTY)
-                    {
-                        studentSpecializationAbbreviation += (studentChairAbbreveation + specialityAbbreviation);
-                    }
 
                     studentLastName                     = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_LASTNAME);
                     studentFirstName                    = xmlReader.GetAttribute(Constants.XML_ATTRIBUTE_FIRSTNAME);
@@ -147,18 +141,47 @@ namespace VmkLearningKit.Core.XmlConverter
                                       studentLastNameFull.Substring(1).ToLower() +
                                       studentFirstNameShort.ToUpper() +
                                       studentPatronymicShort.ToUpper();
-                    user.Email      = studentLastNameFull.ToLower() + "." +
-                                      studentFirstNameShort.ToLower() + "." +
-                                      studentPatronymicShort.ToLower() + Constants.DEFAULT_EMAIL_DOMEN;
+                    if (studentEmail != null &&
+                        !studentEmail.Equals(String.Empty))
+                    {
+                        user.Email = studentEmail;
+                    }
+                    else
+                    {
+                        user.Email = studentLastNameFull.ToLower() + "." +
+                                     studentFirstNameShort.ToLower() + "." +
+                                     studentPatronymicShort.ToLower() + Constants.DEFAULT_EMAIL_DOMEN;
+                    }
 
                     user.Login      = studentLastNameFull.ToLower() + "." +
                                       studentFirstNameShort.ToLower() + "." +
                                       studentPatronymicShort.ToLower();
 
-                    //user.Password   = Hash.ComputeHash(password);
-                    user.Password     = Hash.ComputeHash("123");
+                    user.Password   = Hash.ComputeHash(password);
 
                     repositoryManager.GetUserRepository.Add(user);
+
+                    // Отправляем пароль по email
+
+                    // Авторизация на SMTP сервере
+                    SmtpClient smtp  = new SmtpClient(Constants.VLK_SMTP, 25);
+                    smtp.Credentials = new NetworkCredential(Constants.VLK_EMAIL, Constants.VLK_PASSWORD);
+
+                    // Формирование письма
+                    MailMessage message = new MailMessage();
+                    message.From        = new MailAddress(Constants.VLK_EMAIL, "Администрация портала е-ВМК");
+                    message.To.Add(new MailAddress(user.Email));
+                    message.Subject     = "Регистрация на портале е-ВМК";
+                    message.Body        = "Здравствуйте, " + studentFirstName + " " + studentPatronymic + "!" + Environment.NewLine +
+                                          "Добро пожаловать на портал е-ВМК!" + Environment.NewLine + Environment.NewLine +
+                                          "Ваши данные для доступа к порталу:" + Environment.NewLine +
+                                          "Логин:  " + user.Login + Environment.NewLine +
+                                          "Пароль: " + password + Environment.NewLine + Environment.NewLine +
+                                          "С уважением," + Environment.NewLine +
+                                          "Администрация портала е-ВМК";
+
+                    smtp.Send(message);
+                    // ---
 
                     long userId = repositoryManager.GetUserRepository.GetByLogin(user.Login).Id;
 
@@ -184,8 +207,6 @@ namespace VmkLearningKit.Core.XmlConverter
 
             //repositoryManager.GetUserRepository.Add(usersList.AsEnumerable<User>());
             //repositoryManager.GetStudentRepository.Add(studentsList.AsEnumerable<Student>());
-
-            // Здесь делаем рассылку паролей по email
         }
     }
 }
