@@ -7,6 +7,7 @@ using VmkLearningKit.Models.Repository;
 using System.Collections;
 using System.IO;
 using VmkLearningKit.Core;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace VmkLearningKit.Controllers
 {
@@ -233,6 +234,33 @@ namespace VmkLearningKit.Controllers
             catch
             {
                 return RedirectToAction("Error", "Home");
+            }
+        }
+
+
+        public ActionResult Download(long alias)
+        {
+            try
+            {
+                string additional = "application_x-zip-compressed";
+                DateTime dt = DateTime.Now;
+                DateTime dt_2 = dt.AddSeconds(3.0);
+
+                while (DateTime.Now < dt_2) ;
+
+                DirectoryInfo targetDir = new DirectoryInfo(HttpContext.Server.MapPath("/Uploads/Packages"));
+                string docName = targetDir + "\\" + alias;
+
+                FastZip fz = new FastZip();
+                fz.CreateEmptyDirectories = true;
+                fz.CreateZip(docName+".zip", docName, true, "");
+                fz = null;
+
+                return File(docName + ".zip", additional.Replace("_","/"), alias.ToString());
+            }
+            catch (Exception exc)
+            {
+                return null;
             }
         }
 

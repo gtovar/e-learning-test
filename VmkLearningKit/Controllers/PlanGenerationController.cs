@@ -81,16 +81,17 @@ namespace VmkLearningKit.Controllers
         /// <returns></returns>
         public ActionResult AddTest(long topicId, int variantCount, int questionCount)
         {
-            try
+            //try
             {
+
                 repositoryManager.GetGeneratedTestRepository.Add(topicId, variantCount, questionCount);
 
                 return Redirect("/Tests/GetGeneratedTests/" + topicId.ToString());
             }
-            catch
+            /*catch
             {
                 return RedirectToAction("Error", "Home");
-            }
+            }*/
         }
 
         /// <summary>

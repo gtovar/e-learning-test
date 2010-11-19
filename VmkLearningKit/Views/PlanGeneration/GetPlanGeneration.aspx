@@ -8,7 +8,8 @@
     <script type="text/javascript" src="/Scripts/jquery-1.3.2.min.js"></script>
 
     <% using (Html.BeginForm("Edit", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]) }, FormMethod.Post))
-       { %>
+       { 
+           %>
     <div align="center">
         <h2>
             План генерации</h2>
@@ -22,10 +23,10 @@
                     <b>Тема</b>
                 </td>
                 <td class="Generator4">
-                    <b>Количество разделов</b>
+                    <b>Разделов</b>
                 </td>
                 <th class="Generator4">
-                    <b>Количество вопросов</b>
+                    <b>Вопросов</b>
                 </th>
             </tr>
             <% SpecialityDiscipline sd = (SpecialityDiscipline)ViewData["SpecialityDiscipline"];
@@ -87,11 +88,11 @@
                 <% if (Convert.ToString(r.QuestionsCount).IndexOf("-") == -1)
                    { %>
                 <input type="text" value="<%= r.QuestionsCount %>" size="1" name="in<%= index %>"
-                    id="in<%= index %>" class="Generator" />
+                    class="Generator" />
                 <% }
                    else
                    {%>
-                <input type="text" value="<%= 0 %>" size="1" name="in<%= index %>" id="in<%= index %>"
+                <input type="text" value="<%= 0 %>" size="1" name="in<%= index %>"
                     class="Generator" />
                 <%} %>
             </td>
@@ -119,7 +120,7 @@
     <div align="left">
         <table>
             <tr align="center">
-                <td class="Generator4">
+                <td class="Generator">
                     <b>Количество тестовых вариантов для генерации</b>
                 </td>
                 <td class="Generator">
@@ -131,8 +132,8 @@
     </div>
     <br />
     <div align="center">
-        <%= Html.ActionLink("Назад", "Index", "Home")%>&nbsp&nbsp&nbsp&nbsp&nbsp
-        <%= Html.ActionLink("Сгенерировать тест", "AddTest", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]), variantCount = Convert.ToInt32(ViewData["VariantCount"]), questionCount = Convert.ToInt32(ViewData["QuestionCountInTestVariantBySpecialityDisciplineTopic"]) }, new { @class = "" })%>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <%= Html.ActionLink("Назад", "Index", "Testing", new { alias = Convert.ToInt64(ViewData["TopicId"])}, new { @class = ""})%>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <%= Html.ActionLink("Сгенерировать тест", "AddTest", "PlanGeneration", new { topicId = Convert.ToInt64(ViewData["TopicId"]), variantCount = Convert.ToInt32(ViewData["VariantCount"]), questionCount = Convert.ToInt32(ViewData["QuestionCountInTestVariantBySpecialityDisciplineTopic"]) }, new {@class="" })%>&nbsp&nbsp&nbsp&nbsp&nbsp
         <%= Html.ActionLink("Посмотреть сгенерированные тесты", "GetGeneratedTests", "Tests", new { alias = Convert.ToInt64(ViewData["TopicId"]) }, new { @class = "" })%>
     </div>
     <%
