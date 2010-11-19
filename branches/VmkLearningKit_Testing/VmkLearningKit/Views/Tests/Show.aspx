@@ -35,7 +35,7 @@
                         <%int QuestionNum = index;%>
                         <tr style="vertical-align: baseline">
                             <td class="QNum">
-                                <nobr><%=QuestionNum%>.</nobr>
+                                <nobr><%=QuestionNum%>. </nobr>
                             </td>
                             <td class="QText" style="width: 100%" colspan="3">
                                 <%= gq.Question.Text %>

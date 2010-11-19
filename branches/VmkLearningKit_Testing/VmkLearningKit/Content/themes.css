@@ -12,7 +12,7 @@ td.bodycell	{ color: black; font-size: x-small; font-family: Arial, Helvetica, s
 /* RHeader	Used for performance objectives or minor headings		*/
 /* RText	General text cells in a rubric					*/
 /* RPts		The checkboxes and point values for the rubric elements		*/
-table.QTable	{ width: 99%; border-collapse: collapse; color: black; font-size: x-small; font-family: Arial, Helvetica, sans-serif; margin-top: 15px; margin-bottom: 15px }
+table.QTable	{ width: 99%; border-collapse: collapse; color: black; font-size: small; font-family: Arial, Helvetica, sans-serif; margin-top: 15px; margin-bottom: 15px }
 td.QNum		{ font-weight: bold }
 td.QText	{ }
 td.QPts		{ font-weight: bold; color: gray }

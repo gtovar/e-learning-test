@@ -47,6 +47,24 @@
                     window.location = url;
                 }
             });
+
+            /*
+            * Обработка события "Загрузка теста"
+            *
+            */
+            $("img[class=TestDownload]").click(function () {
+
+                // Получаем атрибут id родителя элемента
+                var id = $(this).parent().attr("id");
+                /*
+                * Формируем url страницы для получения подробной информации о тесте.
+                * Идентификтор теста (в БД) заложен в полученный аттрибут.
+                *
+                */
+                var url = "/Tests/Download/" + id;
+                //alert(url);
+                window.location = url;
+            });
         });
     </script>
 
@@ -91,11 +109,16 @@
                         <%= gt.QuestionsCount%>
                     </td>
                     <td class="Generator" id="<%= Html.Encode(gt.Id.ToString())%>">
-                        <img src="/Content/Images/rarrow.png" class="TestView" alt="Подробнее" title="Подробнее" width="20"
-                            height="20" />
+                        <img src="/Content/Images/rarrow.png" class="TestView" alt="Подробнее" title="Подробнее"
+                            width="20" height="20" />
+                        <td class="Generator" id="<%= Html.Encode(gt.Id.ToString())%>">
+                            <img src="/Content/Images/download.png" class="TestDownload" alt="Загрузить" title="Загрузить"
+                                width="20" height="20" />
+                        </td>
                     </td>
                     <td class="Generator" id="<%= Html.Encode(gt.Id.ToString())%>">
-                        <img src="/Content/Images/ko.png" class="TestDelete" alt="Удалить" title="Удалить" width="20" height="20" />
+                        <img src="/Content/Images/ko.png" class="TestDelete" alt="Удалить" title="Удалить"
+                            width="20" height="20" />
                     </td>
                 </tr>
             </div>

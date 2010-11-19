@@ -35,7 +35,6 @@
     <div align="center">
         <h2>
             Вопросы варианта</h2>
-    </div>
     <br />
     <table class="Generator">
         <tr align="center">
@@ -195,6 +194,7 @@
         %>
     </table>
     <br />
+    </div>
     <div align="center">
         <%= Html.ActionLink("Назад", "GetTest", new { alias = testId })%>
     </div>
