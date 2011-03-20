@@ -315,8 +315,15 @@
 							<div class="RazdelHeader">
 								<div class="RazdelNumber"><%= razdelNumber%></div>
 								<div class="RazdelTitle">
-									<%= Html.ActionLink(topic.Title, "Index", "Testing", new { alias = topic.Id }, new { @class = "" })%>
-								</div>
+                                    <% if (topic.Title.Length < 80)
+                                       {%>
+									    <%= Html.ActionLink(topic.Title, "Index", "Testing", new { alias = topic.Id }, new { @class = "" })%>
+								    <% }
+                                       else
+                                       {%>
+                                        <%= Html.ActionLink(topic.Title.Substring(0, 80) + " ... ", "Index", "Testing", new { alias = topic.Id }, new { @class = "" })%>   
+                                       <%}%>
+                                </div>
 								<img src="/Content/Images/edit.png" title="Редактировать" class="RazdelEdit" alt="Редактировать" width="20" height="20" />
 								<img src="/Content/Images/delete.png" title="Удалить" class="RazdelDelete" alt="Удалить" width="20" height="20" />
 							</div>
