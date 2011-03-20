@@ -17,8 +17,7 @@
            
                 <% if(null!=ViewData["isEdit"]){ %>
                 <div id="editDiv">
-                    <img src="/Content/Images/edit2.png" alt="Редактировать" />
-                    <%=Html.ActionLink("Редактрировать", "Edit", new { id = disciplineProgram.SpecialityDisciplineId })%>    
+                    <%=Html.ActionLink("Редактировать", "Edit", new { id = disciplineProgram.SpecialityDisciplineId })%>    
                   
                 </div>
                 <% } %>
