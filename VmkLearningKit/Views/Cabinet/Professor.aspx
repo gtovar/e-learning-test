@@ -292,6 +292,11 @@
 				<td class="Editor" style="width:60%"></td>
 				<td class="Editor" style="width:30%"><%=Html.ActionLink("Перейти к ведомости", "Statement", "Statement", new { alias = ((VmkLearningKit.Models.Domain.User)Session["User"]).DbUser.NickName, additional = discipline.Alias }, new { @class = "" })%></td>
 			</tr>
+            <tr class="Editor">
+				<td class="Editor" style="width:10%" colspan="2"><%=Html.ActionLink("Перейти к программе дисциплины", "Index", "SpecialityDisciplineProgram", new { alias = discipline.Alias }, new { @class = "" })%></td>
+				<td class="Editor" style="width:60%"></td>
+				<td class="Editor" style="width:30%"></td>
+			</tr>
 		</table>
         <br />
 
