@@ -18,7 +18,7 @@
                 <% if(null!=ViewData["isEdit"]){ %>
                 <div id="editDiv">
                     <%=Html.ActionLink("Редактировать", "Edit", new { id = disciplineProgram.SpecialityDisciplineId })%>    
-                  
+                    <%=Html.ActionLink("Получить копию", "GetDisciplineProgramDocument", "Document", new { specialityDisciplineId = disciplineProgram.SpecialityDisciplineId }, new { @class = "" })%> 
                 </div>
                 <% } %>
                 
