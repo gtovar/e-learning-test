@@ -1,53 +1,16 @@
-/*************************************************************
+/*
+ *  /MathJax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Other.js
+ *  
+ *  Copyright (c) 2012 Design Science, Inc.
  *
- *  MathJax/jax/output/HTML-CSS/fonts/TeX/Typewriter/Regular/Other.js
- *
- *  Copyright (c) 2009 Design Science, Inc.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  Part of the MathJax library.
+ *  See http://www.mathjax.org for details.
+ * 
+ *  Licensed under the Apache License, Version 2.0;
  *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *      http://www.apache.org/licenses/LICENSE-2.0
  */
 
-MathJax.Hub.Insert(
-  MathJax.OutputJax['HTML-CSS'].FONTDATA.FONTS['MathJax_Typewriter'],
-  {
-    0xA0: [0,0,250,0,0],               //  
-    0x131: [432,-1,525,71,463],        // ı
-    0x237: [432,228,525,48,377],       // ȷ
-    0x300: [611,-485,0,116,330],       // ̀
-    0x301: [611,-485,0,194,408],       // ́
-    0x302: [612,-459,0,95,428],        // ̂
-    0x303: [611,-466,0,87,437],        // ̃
-    0x304: [578,-500,0,72,451],        // ̄
-    0x306: [612,-503,0,79,447],        // ̆
-    0x308: [612,-518,0,104,421],       // ̈
-    0x30A: [619,-499,0,131,293],       // ̊
-    0x30C: [577,-449,0,97,426],        // ̌
-    0x393: [612,1,525,25,489],         // Γ
-    0x394: [623,0,525,35,489],         // Δ
-    0x398: [621,11,525,56,468],        // Θ
-    0x39B: [623,-1,525,29,496],        // Λ
-    0x39E: [611,-1,525,32,492],        // Ξ
-    0x3A0: [611,-1,525,16,508],        // Π
-    0x3A3: [612,-1,525,40,485],        // Σ
-    0x3A5: [623,-1,525,38,487],        // Υ
-    0x3A6: [611,-1,525,41,483],        // Φ
-    0x3A8: [611,-1,525,36,487],        // Ψ
-    0x3A9: [622,0,525,31,493],         // Ω
-    0x7E2: [611,-287,525,175,349],     // ߢ
-    0x7E3: [681,-357,525,176,350],     // ߣ
-    0x2032: [623,-334,525,211,313]     // ′
-  }
-);
+MathJax.Hub.Insert(MathJax.OutputJax["HTML-CSS"].FONTDATA.FONTS.MathJax_Typewriter,{160:[0,0,250,0,0],305:[431,-1,525,72,462],567:[431,228,525,48,376],915:[611,0,525,25,488],916:[623,0,525,35,489],920:[621,10,525,56,468],923:[623,-1,525,30,495],926:[611,-1,525,33,491],928:[611,-1,525,16,508],931:[611,-1,525,40,484],933:[622,-1,525,38,486],934:[611,-1,525,41,483],936:[611,-1,525,37,487],937:[622,-1,525,32,492],2018:[611,-287,525,175,349],2019:[681,-357,525,176,350],8242:[623,-334,525,211,313]});MathJax.Ajax.loadComplete(MathJax.OutputJax["HTML-CSS"].fontDir+"/Typewriter/Regular/Other.js");
 
-MathJax.Ajax.loadComplete(MathJax.OutputJax["HTML-CSS"].fontDir + "/Typewriter/Regular/Other.js");

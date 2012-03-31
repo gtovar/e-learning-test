@@ -189,7 +189,7 @@ function DisplayFormulaEditor(ev) {
                 
             el += ('</div>');
     		
-            el += ('Формула в LaTeX:<br>');
+            el += ('<br/>Формула в LaTeX:<br>');
             el += ('<div id="div_formula_edit" ><textarea name="formula_edit" id="formula_edit" rows="3" cols="60" onselect="StoreCaret(this)" onclick="StoreCaret(this)" onkeyup="StoreCaret(this)" ></textarea></div>');
             el += ('<br>');
             el += ('Предварительный просмотр:<br>');

@@ -1,56 +1,16 @@
-/*************************************************************
+/*
+ *  /MathJax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/BasicLatin.js
+ *  
+ *  Copyright (c) 2012 Design Science, Inc.
  *
- *  MathJax/jax/output/HTML-CSS/fonts/TeX/Script/Regular/BasicLatin.js
- *
- *  Copyright (c) 2009 Design Science, Inc.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  Part of the MathJax library.
+ *  See http://www.mathjax.org for details.
+ * 
+ *  Licensed under the Apache License, Version 2.0;
  *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *      http://www.apache.org/licenses/LICENSE-2.0
  */
 
-MathJax.Hub.Insert(
-  MathJax.OutputJax['HTML-CSS'].FONTDATA.FONTS['MathJax_Script'],
-  {
-    0x20: [0,0,250,0,0],               //  
-    0x41: [688,14,771,-8,737],         // A
-    0x42: [714,3,761,42,682],          // B
-    0x43: [700,15,603,70,561],         // C
-    0x44: [718,-5,830,48,762],         // D
-    0x45: [707,11,608,69,530],         // E
-    0x46: [702,14,649,37,707],         // F
-    0x47: [698,132,604,73,524],        // G
-    0x48: [695,13,885,33,877],         // H
-    0x49: [690,14,431,28,402],         // I
-    0x4A: [698,129,506,27,467],        // J
-    0x4B: [698,12,823,30,796],         // K
-    0x4C: [697,7,715,31,632],          // L
-    0x4D: [700,26,982,26,959],         // M
-    0x4E: [706,14,774,28,801],         // N
-    0x4F: [685,21,708,71,630],         // O
-    0x50: [719,11,661,43,637],         // P
-    0x51: [702,26,663,74,615],         // Q
-    0x52: [720,8,723,31,709],          // R
-    0x53: [706,17,542,46,480],         // S
-    0x54: [696,12,587,26,666],         // T
-    0x55: [698,16,714,25,689],         // U
-    0x56: [709,14,665,28,637],         // V
-    0x57: [709,9,989,25,962],          // W
-    0x58: [711,11,717,49,693],         // X
-    0x59: [703,138,596,26,499],        // Y
-    0x5A: [700,16,657,58,632],         // Z
-    0x7B: [730,177,320,-3,292],        // {
-    0x7D: [735,177,320,21,321]         // }
-  }
-);
+MathJax.Hub.Insert(MathJax.OutputJax["HTML-CSS"].FONTDATA.FONTS.MathJax_Script,{32:[0,0,250,0,0],65:[717,8,803,35,1016],66:[708,28,908,31,928],67:[728,26,666,26,819],68:[708,31,774,68,855],69:[707,8,562,46,718],70:[735,36,895,39,990],71:[717,37,610,12,738],72:[717,36,969,29,1241],73:[717,17,809,59,946],74:[717,314,1052,92,1133],75:[717,37,914,29,1204],76:[717,17,874,14,1035],77:[721,50,1080,30,1216],78:[726,36,902,29,1208],79:[707,8,738,96,805],80:[716,37,1013,90,1031],81:[717,17,883,54,885],82:[717,17,850,-2,887],83:[708,36,868,29,1016],84:[735,37,747,92,996],85:[717,17,800,55,960],86:[717,17,622,56,850],87:[717,17,805,46,1026],88:[717,17,944,103,1131],89:[716,17,710,57,959],90:[717,16,821,83,1032]});MathJax.Ajax.loadComplete(MathJax.OutputJax["HTML-CSS"].fontDir+"/Script/Regular/BasicLatin.js");
 
-MathJax.Ajax.loadComplete(MathJax.OutputJax["HTML-CSS"].fontDir + "/Script/Regular/BasicLatin.js");
