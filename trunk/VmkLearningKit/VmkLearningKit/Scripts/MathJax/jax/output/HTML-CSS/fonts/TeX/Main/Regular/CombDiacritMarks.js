@@ -1,39 +1,16 @@
-/*************************************************************
+/*
+ *  /MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/CombDiacritMarks.js
+ *  
+ *  Copyright (c) 2012 Design Science, Inc.
  *
- *  MathJax/jax/output/HTML-CSS/fonts/TeX/Main/Regular/CombDiacritMarks.js
- *
- *  Copyright (c) 2009 Design Science, Inc.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  Part of the MathJax library.
+ *  See http://www.mathjax.org for details.
+ * 
+ *  Licensed under the Apache License, Version 2.0;
  *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *      http://www.apache.org/licenses/LICENSE-2.0
  */
 
-MathJax.Hub.Insert(
-  MathJax.OutputJax['HTML-CSS'].FONTDATA.FONTS['MathJax_Main'],
-  {
-    0x300: [699,-505,0,106,295],       // ̀
-    0x301: [699,-505,0,203,393],       // ́
-    0x302: [694,-531,0,112,387],       // ̂
-    0x303: [668,-565,0,83,416],        // ̃
-    0x304: [590,-544,0,69,430],        // ̄
-    0x306: [694,-515,0,92,407],        // ̆
-    0x307: [669,-549,0,190,309],       // ̇
-    0x308: [669,-554,0,95,404],        // ̈
-    0x30A: [715,-542,0,147,352],       // ̊
-    0x30B: [701,-510,0,122,420],       // ̋
-    0x30C: [644,-513,0,114,385],       // ̌
-    0x338: [716,215,0,139,638]         // ̸
-  }
-);
+MathJax.Hub.Insert(MathJax.OutputJax["HTML-CSS"].FONTDATA.FONTS.MathJax_Main,{768:[699,-505,0,-394,-205],769:[699,-505,0,-297,-107],770:[694,-531,0,-388,-113],771:[668,-565,0,-417,-84],772:[590,-544,0,-431,-70],774:[694,-515,0,-408,-93],775:[669,-549,0,-310,-191],776:[669,-554,0,-405,-96],778:[715,-542,0,-353,-148],779:[701,-510,0,-378,-80],780:[644,-513,0,-386,-115],824:[716,215,0,-639,-140]});MathJax.Ajax.loadComplete(MathJax.OutputJax["HTML-CSS"].fontDir+"/Main/Regular/CombDiacritMarks.js");
 
-MathJax.Ajax.loadComplete(MathJax.OutputJax["HTML-CSS"].fontDir + "/Main/Regular/CombDiacritMarks.js");

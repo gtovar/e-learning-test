@@ -1,47 +1,16 @@
-/*************************************************************
+/*
+ *  /MathJax/jax/output/HTML-CSS/fonts/STIX/General/Italic/CombDiactForSymbols.js
+ *  
+ *  Copyright (c) 2012 Design Science, Inc.
  *
- *  MathJax/jax/output/HTML-CSS/fonts/STIX/General/Italic/CombDiactForSymbols.js
- *
- *  Copyright (c) 2009 Design Science, Inc.
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  Part of the MathJax library.
+ *  See http://www.mathjax.org for details.
+ * 
+ *  Licensed under the Apache License, Version 2.0;
  *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
+ *      http://www.apache.org/licenses/LICENSE-2.0
  */
 
-MathJax.Hub.Insert(
-  MathJax.OutputJax['HTML-CSS'].FONTDATA.FONTS['STIXGeneral-italic'],
-  {
-    0x20D0: [760,-627,0,27,463],       // ⃐
-    0x20D1: [760,-627,0,54,490],       // ⃑
-    0x20D2: [662,156,266,100,166],     // ⃒
-    0x20D6: [760,-548,0,27,463],       // ⃖
-    0x20D7: [760,-548,0,27,463],       // ⃗
-    0x20DB: [622,-523,0,27,524],       // ⃛
-    0x20DC: [622,-523,0,18,714],       // ⃜
-    0x20DD: [725,221,1000,27,973],     // ⃝
-    0x20E1: [760,-548,0,27,505],       // ⃡
-    0x20E4: [1023,155,1510,25,1485],   // ⃤
-    0x20E5: [662,156,506,50,456],      // ⃥
-    0x20E6: [662,156,523,129,394],     // ⃦
-    0x20E7: [725,178,926,55,871],      // ⃧
-    0x20E8: [-119,218,0,18,515],       // ⃨
-    0x20E9: [681,-538,0,2,535],        // ⃩
-    0x20EA: [419,-87,1000,27,973],     // ⃪
-    0x20EC: [681,-548,0,27,463],       // ⃬
-    0x20ED: [681,-548,0,27,463],       // ⃭
-    0x20EE: [-40,252,490,27,463],      // ⃮
-    0x20EF: [-40,252,490,27,463]       // ⃯
-  }
-);
+MathJax.Hub.Insert(MathJax.OutputJax["HTML-CSS"].FONTDATA.FONTS["STIXGeneral-italic"],{8400:[760,-627,0,-453,-17],8401:[760,-627,0,-426,10],8402:[662,156,0,-300,-234],8406:[760,-548,0,-453,-17],8407:[760,-548,0,-453,-17],8411:[622,-523,0,-453,44],8412:[622,-523,0,-582,114],8413:[725,221,0,-723,223],8417:[760,-548,0,-453,25],8420:[1023,155,0,-970,490],8421:[662,156,0,-430,-24],8422:[662,156,0,-351,-86],8423:[725,178,0,-595,221],8424:[-119,218,0,-462,35],8425:[681,-538,0,-478,55],8426:[419,-87,0,-793,153],8428:[-119,252,0,27,463],8429:[-119,252,0,27,463],8430:[-40,252,0,-453,-17],8431:[-40,252,0,-453,-17]});MathJax.Ajax.loadComplete(MathJax.OutputJax["HTML-CSS"].fontDir+"/General/Italic/CombDiactForSymbols.js");
 
-MathJax.Ajax.loadComplete(MathJax.OutputJax["HTML-CSS"].fontDir + "/General/Italic/CombDiactForSymbols.js");

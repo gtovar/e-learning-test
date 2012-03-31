@@ -1,46 +1,65 @@
-<HTML>
-<HEAD>
-<TITLE>MathJax Test Page</TITLE>
-<!-- Copyright (c) 2009 Design Science, Inc. -->
-</HEAD>
-<BODY>
+<!DOCTYPE html>
+<html>
+<head>
+<title>MathJax Test Page</title>
+<!-- Copyright (c) 2009-2012 Design Science, Inc. -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<SCRIPT SRC="../MathJax.js">
+<script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
     jax: ["input/TeX","output/HTML-CSS"],
     tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
   });
-</SCRIPT>
-<NOSCRIPT>
-<DIV STYLE="color:#CC0000; text-align:center">
-<B>Warning: <A HREF="http://www.mathjax.org/">MathJax</A>
-requires JavaScript to process the mathematics on this page.<BR>
-If your browser supports JavaScript, be sure it is enabled.<B>
-</DIV>
-<HR>
-</NOSCRIPT>
+</script>
+<script type="text/javascript" src="../MathJax.js"></script>
 
-<BLOCKQUOTE>
+<style>
+h1 {text-align:center}
+h2 {
+  font-weight: bold;
+  background-color: #DDDDDD;
+  padding: .2em .5em;
+  margin-top: 1.5em;
+  border-top: 3px solid #666666;
+  border-bottom: 2px solid #999999;
+}
+</style>
+</head>
+<body>
 
-<p><b>The Lorenz Equations</b></p>
+<noscript>
+<div style="color:#CC0000; text-align:center">
+<b>Warning: <a href="http://www.mathjax.org/">MathJax</a>
+requires JavaScript to process the mathematics on this page.<br />
+If your browser supports JavaScript, be sure it is enabled.</b>
+</div>
+<hr>
+</noscript>
+
+<h1>Sample MathJax Equations</h1>
+
+<blockquote>
+
+<h2>The Lorenz Equations</h2>
 
 <p>
-\[\begin{align}
+\begin{align}
 \dot{x} & = \sigma(y-x) \\
 \dot{y} & = \rho x - y - xz \\
 \dot{z} & = -\beta z + xy
-\end{align}\]
+\end{align}
 </p>
 
-<p><b>The Cauchy-Schwarz Inequality</b></p>
+<h2>The Cauchy-Schwarz Inequality</h2>
 
 <p>\[
 \left( \sum_{k=1}^n a_k b_k \right)^{\!\!2} \leq
  \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
 \]</p>
 
-<p><b>A Cross Product Formula</b></p>
+<h2>A Cross Product Formula</h2>
 
 <p>\[
   \mathbf{V}_1 \times \mathbf{V}_2 =
@@ -51,11 +70,11 @@ If your browser supports JavaScript, be sure it is enabled.<B>
    \end{vmatrix}
 \]</p>
 
-<p><b>The probability of getting \(k\) heads when flipping \(n\) coins is:</b></p>
+<h2>The probability of getting \(k\) heads when flipping \(n\) coins is:</h2>
 
 <p>\[P(E) = {n \choose k} p^k (1-p)^{ n-k} \]</p>
 
-<p><b>An Identity of Ramanujan</b></p>
+<h2>An Identity of Ramanujan</h2>
 
 <p>\[
    \frac{1}{(\sqrt{\phi \sqrt{5}}-\phi) e^{\frac25 \pi}} =
@@ -63,7 +82,7 @@ If your browser supports JavaScript, be sure it is enabled.<B>
       {1+\frac{e^{-8\pi}} {1+\ldots} } } }
 \]</p>
 
-<p><b>A Rogers-Ramanujan Identity</b></p>
+<h2>A Rogers-Ramanujan Identity</h2>
 
 <p>\[
   1 +  \frac{q^2}{(1-q)}+\frac{q^6}{(1-q)(1-q^2)}+\cdots =
@@ -71,17 +90,18 @@ If your browser supports JavaScript, be sure it is enabled.<B>
      \quad\quad \text{for $|q|<1$}.
 \]</p>
 
-<p><b>Maxwell's Equations</b></p>
+<h2>Maxwell's Equations</h2>
 
-<p>\[
-  \begin{align}
-    \nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} & = \frac{4\pi}{c}\vec{\mathbf{j}} \\
-    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-    \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-    \nabla \cdot \vec{\mathbf{B}} & = 0
- \end{align}
-\]
+<p>
+\begin{align}
+  \nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} & = \frac{4\pi}{c}\vec{\mathbf{j}} \\
+  \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
+  \nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
+  \nabla \cdot \vec{\mathbf{B}} & = 0
+\end{align}
 </p>
+
+<h2>In-line Mathematics</h2>
 
 <p>Finally, while display equations look good for a page of samples, the
 ability to mix math and text in a paragraph is also important.  This
@@ -90,7 +110,7 @@ you see, MathJax equations can be used this way as well, without unduly
 disturbing the spacing between lines.</p>
 
 
-</BLOCKQUOTE>
+</blockquote>
 
-</BODY>
-</HTML>
+</body>
+</html>

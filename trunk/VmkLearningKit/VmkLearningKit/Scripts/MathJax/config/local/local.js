@@ -30,6 +30,7 @@ MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () {
 
   // place macros here.  E.g.:
   //   TEX.Macro("R","{\\bf R}");
+  //   TEX.Macro("op","\\mathop{\\rm #1}",1); // a macro with 1 parameter
   
 });
 
