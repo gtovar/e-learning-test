@@ -53,6 +53,7 @@
 	width:350px;
 	margin:5px;
 	min-height:65px;
+    display: inline-block;
 }
 
 .formula_edit{
@@ -107,6 +108,7 @@ input.formula_input{
 	cursor:pointer;
 	width:51px;
 	height:57px;
+    float: left;
 }
 
 .math{
