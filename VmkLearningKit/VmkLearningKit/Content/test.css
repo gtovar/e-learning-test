@@ -77,13 +77,29 @@
 	margin: 10px;
 }
 
-#formula_editor{
+#formula_editor {
 	background: #dddddd url(../../Content/Images/formulaEdit_back.gif) top left repeat-y;
 	width:725px;
 	min-height:345px;
 	padding:25px 5px;
 	display:none;
 	border: solid 1px #aaaaaa;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+#formula_editor #newPaletteFormula
+{
+    float: left; 
+    margin: 6px 3px 3px;
+}
+
+#formula_editor .addNewSymbolToPalette
+{
+    display: block; 
+    float: left; 
+    margin: 3px;
 }
 
 #formula_teacher_palette{
