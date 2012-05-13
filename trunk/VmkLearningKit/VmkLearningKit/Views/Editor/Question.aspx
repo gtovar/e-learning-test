@@ -256,7 +256,8 @@
                 tex2jax: {
                     //    inlineMath: [['$','$'],['\\(','\\)']], // uncomment to use $...$ for inline math
                     processEscapes: 1                      // set to 1 to allow \$ to produce a dollar sign
-                }
+                },
+                "HTML-CSS": { scale: 85 }
             });
 
         }
