@@ -8,6 +8,7 @@
 	margin:5px;
 	min-height:65px;
     display: inline-block;
+    overflow: auto;
 }
 
 .formula_edit{
@@ -17,7 +18,16 @@
 	margin:5px;
 }
 
+.addNewFormulaContainer {
+    padding: 3px;
+    height: 115px;
+    overflow: hidden;
+}
 
+.fullPaletteButtonsContainer 
+{
+    height: 175px;
+}
 
 #div_formula_edit
 {
@@ -29,6 +39,15 @@
 	width:500px;
 	min-height:50px;
 	margin: 10px;
+	overflow: auto;
+}
+
+#new_pallete_formula_display
+{   
+    margin: 10px 5px;
+    min-height: 40px;
+    width: 180px;
+	overflow: auto;
 }
 
 #formula_editor {
@@ -95,9 +114,9 @@ input.formula_input{
 
 .btn_pallete, .btn_big_palette{
 	cursor:pointer;
-	*width:51px;
-	min-width: 51px;
-	height:57px;
+	*width:47px;
+	min-width: 47px;
+	height:50px;
     float: left;
      margin: 1px;
     background: #cedce7; 
@@ -128,12 +147,14 @@ input.formula_input{
 {
     width: 185px;
     height: 40px;
+    color: #ffffff;
 }
 
 #editor_input, #editor_exit
 {
     height: 28px;
     width: 200px;
+    color: #ffffff;
 }
 
 .math{
