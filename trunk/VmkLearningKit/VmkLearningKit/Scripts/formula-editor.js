@@ -135,7 +135,7 @@ function AddToPalette(){
 // добавление Произвольной функции в палитру студента
 function AddNewToPalette(obj) {
     var text = obj.value;
-    if (!($('.btn_pallete[name=' + text + ']')[0])) {
+    if (!($('.btn_pallete[name=' + text + ']')[0]) && text.trim() !="") {
         var el = $('<button class="btn_pallete" name="' + text + '" onclick="InsertTextFormul(); return false">  </button>');
         $(el).appendTo($('#formula_palette')[0]);
         $(el)[0].onclick = InsertTextFormul;
@@ -162,7 +162,7 @@ function DisplayFormulaEditor(ev) {
     else {
         // непосредственно генерация html-кода редактора
          var el = ('<div id="formula_editor" style="" >');
-             el += ('<div id="formula_teacher_palette" style="" >');
+             el += ('<div id="formula_teacher_palette" style="" > <div class="fullPaletteButtonsContainer">');
                  el += ('Полная палитра:<br>');
                  el += ('<button class="btn_big_palette" name="\\int_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
                  el += ('<button class="btn_big_palette" name="\\sum_{*}^{*}{*}" onclick="AddToPalette(); return false"></button>');
@@ -176,13 +176,13 @@ function DisplayFormulaEditor(ev) {
                  el += ('<button class="btn_big_palette" name="\\geq{*}" onclick="AddToPalette(); return false"> </button>');
                  el += ('<button class="btn_big_palette" name="\\leq{*}" onclick="AddToPalette(); return false"> </button>');
                  el += ('<button class="btn_big_palette" name="\\varepsilon" onclick="AddToPalette(); return false"> </button>');
-                 el += ('<br />');
-                 el += ('Произвольный символ/формула в TeX:<br />');
+                 el += ('</div><br /> <div class ="addNewFormulaContainer">');
+                 el += ('<span>Произвольный символ/формула в TeX:</span><br />');
                  el += ('<input id="newPaletteFormula"/>');
-                el += ('<button class="" onclick="AddNewToPalette($(\'#newPaletteFormula\')[0]); return false"> Ввести </button>');
-                el += ('<br />');
-                el += ('<br />');
-                el += ('<button class="" onclick="ClearStudentPalette(); return false"> Очистить палитру студента </button>');
+                 el += ('<input type="image" class="addNewSymbolToPalette"  src="/Content/Images/add.png" width="24px" onclick="AddNewToPalette($(\'#newPaletteFormula\')[0]); return false"/>');
+                 el += ('<br />');
+                 el += ('<div id="new_pallete_formula_display"></div></div>');
+                el += ('<button class="fe_button fe_clearStudentPalette" onclick="ClearStudentPalette(); return false"> Очистить палитру студента </button>');
             el += ('</div>');
             el += ('Палитра:<br>');
             el += ('<div id="formula_palette">');
@@ -194,13 +194,14 @@ function DisplayFormulaEditor(ev) {
             el += ('<br>');
             el += ('Предварительный просмотр:<br>');
             el += ('<div id="formula_display"></div>');
-    		
-            el += ('<button id="editor_input" onclick=" InputAndHideFormulaEditor(this); return false ">Ввести</button>');
-            el += ('<button id="editor_exit" onclick=" HideFormulaEditor(this); return false ">Закрыть</button>');
+
+            el += ('<button class="fe_button" o id="editor_input" onclick=" InputAndHideFormulaEditor(this); return false ">Ввести</button>');
+            el += ('<button class="fe_button" o id="editor_exit" onclick=" HideFormulaEditor(this); return false ">Закрыть</button>');
 	    el += ('</div>');
 	    $(el).appendTo($('.content')[0]);
 
 	    document.getElementById('formula_edit').onblur = RunEdit;
+	    document.getElementById('newPaletteFormula').onblur = PreviewNewPaletteFormula;
 	    document.getElementById('editor_input').onclick = InputAndHideFormulaEditor;
 	    document.getElementById('editor_exit').onclick = HideFormulaEditor;
     }
@@ -333,6 +334,16 @@ $(document).ready(function() {
         //GeneratePallete(this);
     }
 });
+
+function PreviewNewPaletteFormula() {
+    var eqnmathjs = document.getElementById('new_pallete_formula_display');
+    var formula;
+    formula = document.getElementById('newPaletteFormula').value;
+
+    DisplayMath(eqnmathjs, formula);
+	//MathJax.Hub.Typeset(eqnmathjs);
+	MathJax.Hub.Process(eqnmathjs);
+}
 
 function RunEdit() {
     var eqnmathjs = document.getElementById('formula_display');
