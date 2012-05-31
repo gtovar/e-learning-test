@@ -20,13 +20,13 @@
 
 .addNewFormulaContainer {
     padding: 3px;
-    height: 115px;
+    height: 110px;
     overflow: hidden;
 }
 
 .fullPaletteButtonsContainer 
 {
-    height: 175px;
+    height: 190px;
 }
 
 #div_formula_edit
@@ -37,7 +37,7 @@
 #formula_display
 {
 	width:500px;
-	min-height:50px;
+	min-height:54px;
 	margin: 10px;
 	overflow: auto;
 }
@@ -45,7 +45,7 @@
 #new_pallete_formula_display
 {   
     margin: 10px 5px;
-    min-height: 40px;
+    min-height: 52px;
     width: 180px;
 	overflow: auto;
 }
@@ -85,8 +85,8 @@
 
 .MathJax_Display {
 	margin: 0 !important;
-	
-	text-align:left !important;
+    text-align: center;
+	/*text-align:left !important;*/
 }
 
 input.formula_input{
@@ -115,9 +115,9 @@ input.formula_input{
 .btn_pallete, .btn_big_palette{
 	cursor:pointer;
 	*width:42px;
-	min-width: 47px;
+	min-width: 48px;
 	min-width: 42px\0/;
-	height:50px;
+	height:54px;
     float: left;
      margin: 1px;
     background: #cedce7;
@@ -139,7 +139,7 @@ input.formula_input{
 
 :root .btn_pallete, .btn_big_palette
 {
-    min-width: 47px;
+    min-width: 48px;
 }
 
 :root .fe_button,
@@ -154,6 +154,7 @@ input.formula_input{
     width: 185px;
     height: 40px;
     color: #ffffff;
+    margin-top: 0;
 }
 
 #editor_input, #editor_exit
@@ -165,4 +166,233 @@ input.formula_input{
 
 .math{
 	margin:10px;
+}
+
+
+
+
+/* Pallete styles */
+.fmlEditorMenu{
+  width: 190px;
+  margin: 3px 0 !important; 
+  padding: 4px;
+  list-style: none;
+  counter-reset: li;
+  background: #eee;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1) inset;
+  border-radius: 10px;
+}
+
+.fmlEditorMenu:before,
+.fmlEditorMenu:after {
+  content: "";
+  display: table;
+}
+
+.fmlEditorMenu:after {
+  clear: both;
+}
+
+.fmlEditorMenu {
+  zoom:1;
+}
+
+.fmlEditorMenu li {
+  position: relative;
+  float: left;
+  cursor: pointer;
+  height: 54px; 
+  width: 56px;
+  margin: 5px 0 0 5px;
+  color: #fff;
+  
+   background: rgb(167,178,186); /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2E3YjJiYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM0ODU1NWIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top,  rgba(167,178,186,1) 0%, rgba(72,85,91,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(167,178,186,1)), color-stop(100%,rgba(72,85,91,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(167,178,186,1) 0%,rgba(72,85,91,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(167,178,186,1) 0%,rgba(72,85,91,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(167,178,186,1) 0%,rgba(72,85,91,1) 100%); /* IE10+ */
+    background: linear-gradient(top,  rgba(167,178,186,1) 0%,rgba(72,85,91,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7b2ba', endColorstr='#48555b',GradientType=0 ) !important; /* IE6-8 */
+    
+    
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+} 
+
+.fmlEditorMenu li.cover
+{
+    filter: none !important;
+}
+
+.fmlEditorMenu li
+{
+    filter: none\0/IE9;
+}
+
+.fmlEditorMenu li:hover, .fmlEditorMenu li:focus{
+  background-image: linear-gradient(top, rgba(255,255,255,.2), rgba(255,255,255,0));
+}
+
+.fmlEditorMenu .cover{
+  z-index: 2;
+}
+
+.fmlEditorMenu .cover:focus{
+  outline: 0;
+}
+
+/* -------------------------------- */
+
+.fmlEditorMenu li::after{
+  content: counter(li);
+  counter-increment: li;
+ /* font: italic bold 10px serif, georgia;*/
+  position: absolute;
+  /*color: rgba(255,255,255,.1);*/
+  opacity: 0;
+  transition: all .2s ease-out;
+     
+}      
+
+.fmlEditorMenu li:hover::after, .fmlEditorMenu li:focus::after{
+  /*font-size: 100px;*/
+  opacity: 0;
+  
+}
+
+.fmlEditorMenu .cover::after{
+  z-index: -1;
+}
+
+.fmlEditorMenu li:nth-child(1),
+.fmlEditorMenu li:nth-child(2),
+.fmlEditorMenu li:nth-child(3){
+  margin-top: 0;
+}
+
+.fmlEditorMenu li:nth-child(1),
+.fmlEditorMenu li:nth-child(4),
+.fmlEditorMenu li:nth-child(7){
+  /*margin-left: 0;*/
+}
+
+/* -------------------------------- */       
+
+.fmlEditorMenu li,
+.fmlEditorMenu li .fmlEditorMenuContent,
+.fmlEditorMenu li .close{
+  background-color: #747478;
+}
+
+/* -------------------------------- */
+
+.fmlEditorMenu .fmlEditorMenuContent{
+  opacity: 0; display: none\9;
+  overflow: hidden;
+ /* font: 12px Arial, Helvetica;*/
+  position: absolute;
+  height: 54px; width: 45px; /* В идеале: height: 100%; width: 100%; , но будет работать только в FF */
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -ms-transition: all .3s ease-out; 
+  -o-transition: all .3s ease-out;  
+  transition: all .3s ease-out;      
+}  
+
+.fmlEditorMenuContent.expanded{
+  opacity: .96; display: block\9;
+  overflow: visible;
+  padding: 1px 1px 1px 20px;
+  height: auto;
+  width: 170px; /* Покрываем всю область */
+    left: 0;
+    margin-left: -5px;
+    position: absolute;
+    top: 0;
+}
+
+.fmlEditorMenu li:nth-child(3n) .fmlEditorMenuContent{ /* 3,6,9 */
+                                                       
+    top: auto;
+    left: auto;
+  right: -7px;
+}
+
+.fmlEditorMenu li:nth-child(3n-1) .expanded{ /* 2,5,8 */
+                                             
+    top: auto;
+  left: 50%;
+  margin-left: -95px;
+}
+
+.fmlEditorMenu li:nth-child(3n-2) .expanded{ /* 1,4,7 */
+                                             
+    top: auto;
+  left: 50%;
+  margin-left: -34px;
+}
+                                                        
+.fmlEditorMenu li:nth-child(7) .fmlEditorMenuContent,    /* 10,11,12 */
+.fmlEditorMenu li:nth-child(8) .fmlEditorMenuContent,
+.fmlEditorMenu li:nth-child(9) .fmlEditorMenuContent{
+  bottom: -50px;
+}                      
+
+.fmlEditorMenu li:nth-child(4) .expanded, /* 4,5,6 */
+.fmlEditorMenu li:nth-child(5) .expanded,
+.fmlEditorMenu li:nth-child(6) .expanded{
+  margin-top: -88px;
+  top: 50%;
+}      
+                                     
+.fmlEditorMenu li:nth-child(1) .fmlEditorMenuContent,    /* 10,11,12 */
+.fmlEditorMenu li:nth-child(2) .fmlEditorMenuContent,
+.fmlEditorMenu li:nth-child(3) .fmlEditorMenuContent{
+  margin-top: -55px;
+}                      
+
+
+/* -------------------------------- */    
+
+.fmlEditorMenu .fmlEditorMenuTitle{
+  /* position: absolute;
+ height: 100%; width: 100%;/
+  text-align: center;
+ /* font: italic bold 1em/120px 'trebuchet MS', Arial, helvetica;*/
+  opacity: .9;
+  
+  /*padding-top: 18px;*/
+    display: table-cell;
+    vertical-align: middle;
+    height: 55px;
+    width: 45px;
+}
+
+.fmlEditorMenu li:hover .fmlEditorMenuTitle{
+  opacity: 1;
+}    
+
+/* -------------------------------- */
+
+.fmlEditorMenu .close {
+  display: none;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  height: 20px; width: 20px;
+  /*font: bold 3px/6px arial, helvetica;*/
+  position: absolute;
+  text-align: center;
+  top: -10px; right: -10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;      
+}
+
+.fmlEditorMenu .cover .close{
+  display: block;
 }
